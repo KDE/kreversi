@@ -6,6 +6,7 @@ Comment[sv]=Kreversi
 
 [click]
 Name=Click
+Name[bg]=Щракване
 Name[da]=Klik
 Name[et]=Klõps
 Name[hu]=Kattintás
@@ -16,6 +17,7 @@ Name[pt_BR]=Carregar
 Name[sv]=Klicka
 Name[ta]=சொடுக்கு
 Comment=Click
+Comment[bg]=Щракване
 Comment[da]=Klik
 Comment[et]=Klõps
 Comment[hu]=Kattintás
@@ -177,6 +179,7 @@ default_presentation=0
 
 [draw]
 Name=Draw
+Name[bg]=Равенство
 Name[da]=Træk
 Name[et]=Viik
 Name[hu]=Döntetlen
@@ -187,6 +190,7 @@ Name[pt_BR]=Empate
 Name[sv]=Oavgjort
 Name[ta]=வரை
 Comment=Draw
+Comment[bg]=Равенство
 Comment[da]=Træk
 Comment[et]=Viik
 Comment[hu]=Döntetlen
@@ -200,6 +204,7 @@ default_presentation=0
 
 [illegal_move]
 Name=Illegal Move
+Name[bg]=Невалиден ход
 Name[da]=Ulovligt træk
 Name[et]=Lubamatu käik
 Name[hu]=Szabálytalan lépés
@@ -210,6 +215,7 @@ Name[pt_BR]=Jogada Inválida
 Name[sv]=Felaktigt drag
 Name[ta]=நிகழ்ச்சியை வெளிப்படுத்து
 Comment=Illegal Move
+Comment[bg]=Невалиден ход
 Comment[ca]=Moviment il·legal
 Comment[da]=Ulovligt træk
 Comment[et]=Lubamatu käik
