@@ -167,13 +167,19 @@ void QReversiBoardView::showHint(Move move)
   // The isVisible condition has been added so that when the player
   // was viewing a hint and quits the game window, the game doesn't
   // still have to do all this looping and directly ends.
+  QPainter p(this);
+  p.setPen(black);
   m_hintShowing = true;
   for (int flash = 0;
        flash < 100 && m_hintShowing && isVisible(); 
        flash++)
   {
-    if (flash & 1)
+    if (flash & 1) {
+      // FIXME: Draw small circle if showLegalMoves is turned on.
       drawPiece(move.y() - 1, move.x() - 1, Nobody);
+      if (m_legalMovesShowing)
+	drawSmallCircle(move.x(), move.y(), p);
+    }
     else
       drawPiece(move.y() - 1, move.x() - 1, m_krgame->toMove());
 
@@ -183,9 +189,12 @@ void QReversiBoardView::showHint(Move move)
       qApp->processEvents();
     }
   }
+  m_hintShowing = false;
 
   // Draw the empty square again.
   drawPiece(move.y() - 1, move.x() - 1, m_krgame->color(move.x(), move.y()));
+  if (m_legalMovesShowing)
+    drawSmallCircle(move.x(), move.y(), p);
 }
 
 
@@ -208,6 +217,14 @@ void QReversiBoardView::setShowLegalMoves(bool show)
 void QReversiBoardView::setShowMarks(bool show)
 {
   m_marksShowing = show;
+  updateBoard(true);
+}
+
+
+void QReversiBoardView::setShowLastMove(bool show)
+{
+  m_showLastMove = show;
+  updateBoard(true);
 }
 
 
@@ -396,17 +413,24 @@ void QReversiBoardView::showLegalMoves()
   MoveList  moves  = m_krgame->position().generateMoves(toMove);
 
   // Show the moves on the board.
-  int offset = m_marksShowing ? OFFSET() : 0;
   MoveList::iterator  it;
-  int ellipseSize = zoomedSize() / 3;
-  for (it = moves.begin(); it != moves.end(); ++it) {
-    int  px = offset + ((*it).x() - 1) * zoomedSize() + zoomedSize() / 2;
-    int  py = offset + ((*it).y() - 1) * zoomedSize() + zoomedSize() / 2;
-
-    p.drawEllipse(px - ellipseSize / 2, py - ellipseSize / 2,
-		  ellipseSize, ellipseSize);
-  }
+  for (it = moves.begin(); it != moves.end(); ++it)
+    drawSmallCircle((*it).x(), (*it).y(), p);
 }
+
+
+void QReversiBoardView::drawSmallCircle(int x, int y, QPainter &p)
+{
+  int offset      = m_marksShowing ? OFFSET() : 0;
+  int ellipseSize = zoomedSize() / 3;
+ 
+  int  px = offset + (x - 1) * zoomedSize() + zoomedSize() / 2;
+  int  py = offset + (y - 1) * zoomedSize() + zoomedSize() / 2;
+
+  p.drawEllipse(px - ellipseSize / 2, py - ellipseSize / 2,
+		ellipseSize, ellipseSize);
+}
+
 
 
 QPixmap QReversiBoardView::chipPixmap(Color color, uint size) const

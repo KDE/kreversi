@@ -1,5 +1,12 @@
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
+	Fix bug where hint and 'show legal moves' didn't work together.
+	* board.cpp (showHint): call drawSmallCircle if showLegalMoves is true.
+	(drawSmallCircle): new private method
+	New feature: show last move.
+	* board.cpp (setShowLastMove): new method
+	
+	
 	Refactoring: make showing of legal moves simpler
 	* board.cpp (showLegalMoves): Take bool for on/off instead of Movelist
 	(quitShowLegalMoves): removed

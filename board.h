@@ -73,16 +73,10 @@ public:
   void    showHint(Move move);
   void    quitHint();
 
-  // Show all legal moves
+  // Turn on or off some special features.
   void    setShowLegalMoves(bool show);
-
-  // Show letters and numbers on the board
   void    setShowMarks(bool show);
-  bool    marks()                          const { return m_marksShowing; }
-
-  // Show last move on the board
-  void    setShowLastMove(bool show)             { m_showLastMove = show; }
-  bool    showLastMove()                   const { return m_showLastMove; }
+  void    setShowLastMove(bool show);
 
   // View methods called from the outside.
   void    updateBoard(bool force = FALSE);
@@ -125,7 +119,8 @@ private:
   QPixmap   chipPixmap(uint i, uint size)       const;
 
   // Private drawing methods.
-  void    showLegalMoves();
+  void  showLegalMoves();
+  void  drawSmallCircle(int x, int y, QPainter &p);
 
 
 private:

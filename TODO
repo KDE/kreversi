@@ -4,7 +4,7 @@ TODO-list for KREVERSI
 Next
 ----
 
-* Create QReversiGameView
+* 
 
 
 ================================================================
@@ -29,15 +29,15 @@ Next
     - Create a toggle action to toggle it on/off			done
     - Make an icon for the toggle action				--
     - Bug: legal moves don't get updated if one side has to pass	done
-    - Bug: legal moves don't work together with hint.			--
+    - Bug: legal moves don't work together with hint.			done
   + Show moves made during the game					DONE
 
   + Navigate in the list of moves					----
 
   + Wish 102813: Should be able to show last move			DONE
     - Make an icon for the toggle action				--
-    - Bug: When turned on, should show last move immediately		--
-    - Bug: When turned off, should unshow ast move immediately		--
+    - Bug: When turned on, should show last move immediately		done
+    - Bug: When turned off, should unshow last move immediately		done
 
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.
@@ -50,7 +50,7 @@ Next
 	and sends a lot of signals.
         - Split out a lot of methods from the current class Board.	done
      5. Create QReversiBoardView from the rest of the current Board	DONE
-        - Clean it							--
+        - Clean it							done
 
   II. Introduce a class ReversiPlayer
 

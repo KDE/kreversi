@@ -89,9 +89,7 @@ public:
 
   void    setShowLegalMoves(bool show){ m_boardView->setShowLegalMoves(show); }
   void    setShowMarks(bool show)   { m_boardView->setShowMarks(show);        }
-  bool    marks()        const      { return m_boardView->marks();            }
   void    setShowLastMove(bool show){ m_boardView->setShowLastMove(show);     }
-  bool    showLastMove() const      { return m_boardView->showLastMove();     }
 
   void    setAnimationSpeed(uint speed){m_boardView->setAnimationSpeed(speed);}
 
@@ -101,7 +99,6 @@ public:
 
   // Proxy methods for the movelist
   // FIXME: Not all of these need to be externally reachable
-  //        example: ensureCurrentVisible().
   void insertMove(QString moveString) { m_movesView->insertItem(moveString); }
   void removeMove(int moveNum) { m_movesView->removeItem(moveNum); }
   void setCurrentMove(int moveNum) { 
