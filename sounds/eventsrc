@@ -1,6 +1,7 @@
 [!Global!]
 IconName=kreversi
 Comment=KReversi
+Comment[ca]=Reversi
 Comment[is]=Viðsnúningur
 Comment[ru]=Реверси
 Comment[sv]=Kreversi
@@ -9,6 +10,7 @@ Comment[sv]=Kreversi
 Name=Click
 Name[bg]=Щракване
 Name[bs]=Klikni
+Name[ca]=Clic
 Name[da]=Klik
 Name[de]=Klick
 Name[et]=Klõps
@@ -33,6 +35,7 @@ Name[zh_CN]=单击
 Comment=Click
 Comment[bg]=Щракване
 Comment[bs]=Klik
+Comment[ca]=Clic
 Comment[da]=Klik
 Comment[de]=Klick
 Comment[et]=Klõps
