@@ -4,6 +4,7 @@
 	* removed the private wallpapers and use the KDE ones instead
 	* use kimgio
 	* fixed locating toolbar icons
+	* compiles now with --enable-final
 
 1999-06-16 Mario Weilguni <mweilguni@kde.org>
 
