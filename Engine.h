@@ -127,7 +127,6 @@
 #include "Score.h"
 #include <qmemarray.h>
 #include <sys/times.h>
-#include "misc.h"
 #include <qbitarray.h>
 
 #if defined(__GNUC__)
