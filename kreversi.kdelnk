@@ -1,4 +1,4 @@
 [KDE Desktop Entry]
 Exec=kreversi
 DocPath=Reversi.html
-Info=Play Reversi against the computer
+Comment=Play Reversi against the computer
