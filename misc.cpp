@@ -51,5 +51,6 @@ void DBG(char *msg, ...) {
   va_end(ap);
 }
 #else
-#define DBG(args...) (void)0
+inline DBG(char *msg, ...) {}
 #endif
+

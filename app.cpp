@@ -850,7 +850,7 @@ int MAX(int a, int b) {
     return b;
 }
 
-void App::showHighscore(int focusitem = -1) {
+void App::showHighscore(int focusitem) {
   // this may look a little bit confusing...
   QDialog *dlg = new QDialog(0, locale->translate("Hall of Fame"), TRUE);
   dlg->setCaption(locale->translate("KReversi: Hall Of Fame"));

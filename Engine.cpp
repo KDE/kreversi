@@ -296,13 +296,16 @@ Move Engine::ComputeMove(Game g) {
 
   SetInterrupt(false);
 
+  QBitArray null_bits;
+  null_bits = 0;
+
   //struct tms tmsdummy; 
   //long starttime = times(&tmsdummy);
 
   for (int x=1; x<9; x++)
     for (int y=1; y<9; y++)
       if (m_board[x][y] == Score::NOBODY &&
-	  (m_neighbor_bits[x][y] & opponentbits) != 0)
+	  (m_neighbor_bits[x][y] & opponentbits) != null_bits)
 	{
 
 	  int val = ComputeMove2(x, y, player, 1, maxval, 
@@ -498,11 +501,14 @@ int Engine::TryAllMoves(int opponent, int level, int cutoffval,
   // keep GUI alive
   yield();
 
+  QBitArray null_bits;
+  null_bits = 0;
+
   for (int x=1; x<9; x++)
     {
       for (int y=1; y<9; y++)
 	if (m_board[x][y] == Score::NOBODY &&
-	    (m_neighbor_bits[x][y] & playerbits) != 0)
+	    (m_neighbor_bits[x][y] & playerbits) != null_bits)
 	  {
 	    int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
 				   playerbits);
