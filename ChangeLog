@@ -1,5 +1,13 @@
 2004-09-26  Inge Wallin  <inge@lysator.liu.se>
 
+	Backport of fix for Bug 90190: KReversi: Switch sides and then
+	Undo gets the program out of sync.
+	* board.cpp (undo): If it is the computers turn to move after an
+	undo, call computerMakeMove().
+	(undo): Fix repainting so that it looks nice.
+
+2004-09-26  Inge Wallin  <inge@lysator.liu.se>
+
 	Backport of fix for bug 89829: KReversi: When you save a game, the
 	color for Human and Computer is not saved
 	* board.cpp (Board::saveGame): Save m_humanColor as HumanColor.  

@@ -105,12 +105,25 @@ void Board::setAnimationSpeed(uint speed) {
 
 /// takes back last set of moves
 void Board::undo() {
-  if(state() == Ready) {
+  if(state() == Ready && game->moveNumber() > 0) {
+    // Get the color of te last move.
     Player last_player = game->lastMove().player();
+
+    // Undo all moves of the same color as the last one.
     while ((game->moveNumber() != 0) &&
            (last_player == game->lastMove().player()))
        game->TakeBackMove();
+
+    // Take back one move more.
     game->TakeBackMove();
+
+  if (whoseTurn() == computerPlayer()) {
+    // Must repaint so that the new move is not shown before the old
+    // one is removed on the screen.
+    repaint();
+    computerMakeMove();
+  }
+  else
     update();
   }
 }
