@@ -36,6 +36,8 @@
  *******************************************************************
  */
 
+#include <config.h>
+
 #include "Random.h"
 #include <stdlib.h>
 #include <sys/times.h>
@@ -53,10 +55,10 @@ Random::Random(int seed) {
 };
 
 void Random::setSeed(int seed) { 
-  srand((unsigned int)seed); 
+  srandom((unsigned int)seed); 
 }
 
 int Random::nextInt() {
-  int r = rand();
+  int r = random();
   return r; 
 }
