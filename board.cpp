@@ -370,13 +370,30 @@ void Board::doUndo()
   if (state() != Ready) 
     return;
 
+  // Can't undo anything if no moves are made.
+  if (m_game->moveNumber() == 0)
+    return;
+
+  // Get the color of the last move.  
   Color last_color = m_game->lastMove().color();
+
+  // Undo all moves of the same color as the last one.
   while (m_game->moveNumber() != 0
 	 && last_color == m_game->lastMove().color())
     m_game->TakeBackMove();
 
+  // Take back one move more.
   m_game->TakeBackMove();
-  update();
+
+
+  if (m_game->toMove() == computerColor()) {
+    // Must repaint so that the new move is not shown before the old
+    // one is removed on the screen.
+    repaint();
+    computerMakeMove();
+  }
+  else
+    update();
 }
 
 

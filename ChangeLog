@@ -1,3 +1,11 @@
+2004-09-26  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+
+	Fix Bug 90190: KReversi: Switch sides and then Undo gets the
+	program out of sync.
+	* board.cpp (doUndo): If it is the computers turn to move after an
+	undo, call computerMakeMove().
+	(doUndo): Fix repainting so that it looks nice.
+
 2004-09-25  Inge Wallin  <inge@lysator.liu.se>
 
 	Transfer the rest of the slots for KActions to kreversi.cpp
@@ -39,7 +47,7 @@
 	Change CustomAdditions=false back in prefs.kcfg to fix compilation
 	Tested Inges fix and found it works well.
 	
-2004-09-22  Inge Wallin  <ing@lysator.liu.se>
+2004-09-22  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 89829: "KReversi: When you save a game, the color for
 	Human and Computer is not saved" again.  See the discussion on the
