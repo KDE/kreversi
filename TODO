@@ -30,6 +30,10 @@ Next
 
   + Navigate in the list of moves					----
 
+  + Wish 102813: Should be able to show last move			DONE
+    - Bug: When turned on, should show last move immediately		--
+    - Bug: When turned off, should unshow ast move immediately		--
+
   + Create a new class QReversiGameView that contains the view		----
     classes currently in kreversi.cpp
 
