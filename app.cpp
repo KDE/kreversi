@@ -67,8 +67,8 @@
 
 #include "Score.h"
 #include "app.h"
-#include "about.h"
 #include "playsound.h"
+#include "version.h"
 
 #define APPDATA(x) KGlobal::dirs()->findResource("appdata", x)
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
@@ -127,7 +127,7 @@ const int SB_TURN       = 4;
 App::App() : KMainWindow(0) {
   highscore.resize(0);
   readHighscore();
-  setCaption( kapp->caption() );
+  setCaption("");
 
   // create reversi board
   b = new Board(this);
@@ -212,21 +212,17 @@ App::App() : KMainWindow(0) {
 
 
 App::~App() {
-  if(tb)
-    delete tb;
-  if(menu)
-    delete menu;
 }
 
 void App::createMenuBar() {
-  menu = new KMenuBar(this);
+  menu = menuBar();
 
   QPopupMenu *fm = new QPopupMenu;
-  fm->insertItem(i18n("&New game"), ID_GNEW);
-  fm->insertItem(i18n("&Load game"), ID_FLOAD);
-  fm->insertItem(i18n("&Save game"), ID_FSAVE);
+  fm->insertItem(SmallIcon("filenew"),i18n("&New game"), ID_GNEW);
+  fm->insertItem(SmallIcon("fileopen"),i18n("&Load game"), ID_FLOAD);
+  fm->insertItem(SmallIcon("filesave"),i18n("&Save game"), ID_FSAVE);
   fm->insertSeparator();
-  fm->insertItem(i18n("&Quit"), ID_FQUIT);
+  fm->insertItem(SmallIcon("exit"),i18n("&Quit"), ID_FQUIT);
 
   QPopupMenu *gm = new QPopupMenu;
   gm->insertItem(i18n("Get &hint"), ID_HHINT);
@@ -315,16 +311,24 @@ void App::createMenuBar() {
   om->insertItem(i18n("S&ound"), ID_OSOUND);
 #endif
 
-  QPopupMenu *help = helpMenu(QString::null);  // Use our own About box
-  help = new QPopupMenu;
-  help->insertItem(i18n("&Contents"), ID_HCONTENTS);
-  help->insertSeparator();
-  help->insertItem(i18n("&About %1...").arg(kapp->name()), ID_HABOUT);
-  help->insertItem(i18n("About &KDE..."), ID_HABOUTKDE);
+  QString s;
+  s = i18n("Version ");
+  s += KREVERSI_VERSION;
+  s += i18n("\n(c) 1997 Mario Weilguni <mweilguni@sime.com>\n\n" \
+    "This program is free software\npublished under the GNU General\n" \
+    "Public License (take a look\ninto help for details)\n\n" \
+    "Thanks to:\n" \
+    "\tMats Luthman for the game engine\n" \
+    "\t(I've ported it from his JAVA applet)\n\n" \
+    "\tStephan Kulow\n\tfor comments "\
+    "and bugfixes\n\n" \
+    "\tArne Klaassen\n\t "\
+    "for the raytraced chips");
+  QPopupMenu *help = helpMenu(s);
 
   menu->insertItem(i18n("&File"), fm);
   menu->insertItem(i18n("&Game"), gm);
-  menu->insertItem(i18n("&Options"), om);
+  menu->insertItem(i18n("&Settings"), om);
   menu->insertSeparator();
   menu->insertItem(i18n("&Help"), help);
   connect(menu, SIGNAL(activated(int)), this, SLOT(processEvent(int)));
@@ -359,7 +363,7 @@ void App::createMenuBar() {
 #define ICON(x) QPixmap(PICDATA(x))
 
 void App::createToolBar() {
-  tb = new KToolBar(this);
+  tb = toolBar();
 
   tb->insertButton(ICON("stop.xpm"), 
 		   ID_GSTOP, TRUE, i18n("Stop thinking"));
@@ -379,9 +383,9 @@ void App::createToolBar() {
 
 void App::createStatusBar() {
   sb = new KStatusBar(this);
-  sb->insertItem(i18n("XXXXX's turn"), SB_TURN);
-  sb->insertItem(i18n("You (XXXXX): 88"), SB_SCOREH);
-  sb->insertItem(i18n("Computer (XXXXX): 88"), SB_SCOREC);
+  sb->insertItem(i18n("XXXXX's turn"), SB_TURN,1);
+  sb->insertItem(i18n("You (XXXXX): 88"), SB_SCOREH,2);
+  sb->insertItem(i18n("Computer (XXXXX): 88"), SB_SCOREC,2);
 }
 
 
@@ -535,7 +539,7 @@ void App::processEvent(int itemid) {
 
   case ID_COLOR:
     {
-      if(KColorDialog::getColor(c)) {
+      if(KColorDialog::getColor(c,this)) {
 	b->setColor(c);
 	kapp->config()->writeEntry("Background", 1);
 	s = QString("%1 %2 %3").arg(c.red()).arg(c.green()).arg(c.blue());
@@ -566,21 +570,6 @@ void App::processEvent(int itemid) {
     b->hint();
     break;
 
-  case ID_HABOUT:
-    {
-      QDialog *dlg = new About(0);
-      dlg->exec();
-      delete dlg;
-    }
-  break;
-
-  case ID_HABOUTKDE:
-    {
-	KHelpMenu hm;
-	hm.aboutKDE();
-    }
-    break;
-
   default:
     {
       if((itemid >= ID_PIXMAP) && (itemid < ID_PIXMAP + (int)backgroundPixmaps.count())) {
@@ -593,9 +582,10 @@ void App::processEvent(int itemid) {
       } else if((itemid >= ID_OSPEED) && (itemid <= ID_OSPEED + 10)) {
 	b->setAnimationSpeed(itemid - ID_OSPEED);
 	kapp->config()->writeEntry("AnimationSpeed", b->animationSpeed());
-      } else
-	KMessageBox::sorry(this,
-				 i18n("Sorry, not yet implemented!"));
+      } else {
+/*	KMessageBox::sorry(this,
+                                i18n("Sorry, not yet implemented!"));*/
+      }
     }
   }
   enableItems();
@@ -855,7 +845,7 @@ int MAX(int a, int b) {
 
 void App::showHighscore(int focusitem) {
   // this may look a little bit confusing...
-  QDialog *dlg = new QDialog(0, "hall_of_fame", TRUE);
+  QDialog *dlg = new QDialog(this, "hall_of_fame", TRUE);
   dlg->setCaption(i18n("KReversi: Hall Of Fame"));
 
   QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
@@ -959,7 +949,7 @@ void App::showHighscore(int focusitem) {
       table->addWidget(e[i][j], i+2, j, AlignCenter);	
     }
     
-  QPushButton *b = new QPushButton(i18n("Close"), dlg);
+  QPushButton *b = new QPushButton(i18n("&Close"), dlg);
   if(style().guiStyle() == MotifStyle)
     b->setFixedSize(b->sizeHint().width() + 10,
 		    b->sizeHint().height() + 10);
