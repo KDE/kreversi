@@ -184,17 +184,19 @@ void KReversi::createKActions()
 		       "game_undo");
 
   // Non-standard Game Actions: Stop, Continue, Switch sides
-  stopAction = new KAction(i18n("&Stop Thinking"), "game_stop",
-			   Qt::Key_Escape, m_board, 
-			   SLOT(interrupt()), actionCollection(), "game_stop");
-  continueAction = new KAction(i18n("&Continue Thinking"), "reload",
-	0, m_board, SLOT(doContinue()), actionCollection(), "game_continue");
-  new KAction(i18n("S&witch Sides"), 0,
-	0, this, SLOT(switchSides()), actionCollection(), "game_switch_sides");
+  stopAction = new KAction(i18n("&Stop Thinking"), "game_stop", Qt::Key_Escape,
+			   this, SLOT(slotInterrupt()), actionCollection(),
+			   "game_stop");
+  continueAction = new KAction(i18n("&Continue Thinking"), "reload", 0,
+			       this, SLOT(slotContinue()), actionCollection(),
+			       "game_continue");
+  new KAction(i18n("S&witch Sides"), 0, 0,
+	      this, SLOT(slotSwitchSides()), actionCollection(),
+	      "game_switch_sides");
 
   // Some more standard game actions: Highscores, Settings.
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
-  KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
+  KStdAction::preferences(this, SLOT(slotEditSettings()), actionCollection());
 }
 
 
@@ -268,6 +270,42 @@ void KReversi::slotUndo()
     return;
 
   m_board->doUndo();
+}
+
+
+// Interrupt thinking of game engine.
+//
+
+void KReversi::slotInterrupt()
+{
+  m_board->interrupt();
+}
+
+
+// Continues a move if it was interrupted earlier.
+//
+
+void KReversi::slotContinue()
+{
+  m_board->doContinue();
+}
+
+
+void KReversi::slotSwitchSides()
+{
+  // It's ok to change sides before the first move.
+  if (m_board->moveNumber() != 0) {
+    int res = KMessageBox::warningContinueCancel(this,
+						 i18n("If you switch side, your score will not be added to the highscores."),
+						 QString::null, QString::null, "switch_side_warning");
+    if ( res==KMessageBox::Cancel ) 
+      return;
+
+    cheating = true;
+  }
+
+  m_board->switchSides();
+  updateColors();
 }
 
 
@@ -393,7 +431,7 @@ void KReversi::showHighScoreDialog()
 }
 
 
-void KReversi::showSettings()
+void KReversi::slotEditSettings()
 {
   // If we are already editing the settings, then do nothing.
   if (KConfigDialog::showDialog("settings"))
@@ -428,22 +466,6 @@ void KReversi::loadSettings()
   updateColors(); 
 }
 
-
-void KReversi::switchSides()
-{
-  if (m_board->moveNumber() != 0) {
-    int res = KMessageBox::warningContinueCancel(this,
-						 i18n("If you switch side, your score will not be added to the highscores."),
-						 QString::null, QString::null, "switch_side_warning");
-    if ( res==KMessageBox::Cancel ) 
-      return;
-
-    cheating = true;
-  }
-
-  m_board->switchSides();
-  updateColors();
-}
 
 bool KReversi::isPlaying() const
 {

@@ -97,11 +97,17 @@ private slots:
   void  slotSave();
   void  slotHint();
   void  slotUndo();
+  void  slotSwitchSides();
+
+  // Interrupt and continue the engines thinking.
+  void  slotInterrupt();
+  void  slotContinue();
 
   void  configureNotifications();
 
+  // Some dialogs and other misc stuff.
   void  showHighScoreDialog();
-  void  showSettings();
+  void  slotEditSettings();
   void  loadSettings();
 
   // Slots for the game view.
@@ -109,7 +115,6 @@ private slots:
   void  slotGameEnded(Color);
   void  slotTurn(Color);
   void  slotStatusChange(Board::State);
-  void  switchSides();
 
 private:
   KAction  *stopAction;

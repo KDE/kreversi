@@ -76,6 +76,7 @@ public:
   void   setStrength(uint);
   uint   strength() const         { return m_engine->strength();   }
   bool   competitive() const      { return m_competitiveGame;      }
+  void   interrupt()              { m_engine->setInterrupt(TRUE);  }
   bool   interrupted() const      { return (m_game->toMove() == computerColor()
 					    && state() == Ready);  }
   
@@ -96,6 +97,7 @@ public:
   State  state() const { return m_status; }
   void   setState(State);
   void   setAnimationSpeed(uint);
+  void   doContinue();
 
   // Methods for handling images of pieces.
   enum      ChipType { Unloaded, Colored, Grayscale };
@@ -111,11 +113,8 @@ public:
   QColor  color() const { return bgColor; }
   void    setPixmap(QPixmap &);
 
-public slots:
-  void  interrupt();
-  void  doContinue();
-  void  switchSides();
-  void  loadSettings();
+  void    switchSides();
+  void    loadSettings();
 
 signals:
   void  score();

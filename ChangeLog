@@ -1,3 +1,16 @@
+2004-09-25  Inge Wallin  <inge@lysator.liu.se>
+
+	Transfer the rest of the slots for KActions to kreversi.cpp
+	* Board::interrupt()  -> KReversi::slotInterrupt()
+	* Board::doContinue() -> KReversi::slotContinue()
+	
+	Rename some slots for clarity
+	* KReversi::switchSides()  -> KReversi::slotSwitchSides()
+	* KReversi::showSettings() -> KReversi::slotEditSettings()
+
+	Make a trivial function inline:
+	* Board::interrupt()
+
 2004-09-24  Inge Wallin  <inge@lysator.liu.se>
 
 	Start the work to port KReversi to KGame/Kplayer:

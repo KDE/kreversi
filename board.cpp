@@ -132,15 +132,6 @@ void Board::setAnimationSpeed(uint speed)
 }
 
 
-// Interrupt thinking of game engine.
-//
-
-void Board::interrupt()
-{
-  m_engine->setInterrupt(TRUE);
-}
-
-
 // Continues a move if it was interrupted earlier.
 //
 
