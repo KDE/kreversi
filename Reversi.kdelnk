@@ -1,0 +1,6 @@
+# KDE Config File
+[KDE Desktop Entry]
+Exec=kreversi
+DocPath=Reversi.html
+Info=Play Reversi against the computer
+Terminal=0

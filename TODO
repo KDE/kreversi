@@ -1,0 +1,52 @@
+TODO-list for KREVERSI
+======================
+
+* network-play against human
+* commenting the code
+* implement ULONG64 as a class instead of using gcc "long long int"
+
+
+PARTIALLY DONE/NOT DONE
+=======================
+* undo/redo
+	undo works, but I'll probably do not make a redo function
+
+* load/save
+	I think it's not really needed for a simple game like
+	Reversi, so I'll skip it
+
+* KDE compliant accelerator keys
+	since Undo/New game... are not specified yet this may change
+
+* Sound support using the libmediatool.
+  I'm not happy with
+  the sound files I havem so if
+  you have better sounds, mail them to me 
+  (uuencoded). I need sounds for the following actions:
+	- game won
+	- game lost
+	- game drawn
+	- turning a piece
+	- putting a piece
+	- something for the hall of fame (trumpets???)
+
+DONE
+====
+* better strategy
+	ported a JAVA applet with good strategy from Mats Luthman
+
+* end-of-game
+	shown via KMsgBox
+
+* help
+	via KDEHELP
+
+* save options
+	options are saved whenever they change
+
+* highscores
+
+* pieces should be drawn instead of bitmaps. Will allow other 
+  colors than black/white.
+
+* animated drawing of pieces

@@ -1,0 +1,25 @@
+/* XPM */
+static char * zoomout_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"16 16 3 1",
+/* colors */
+" 	c None",
+".	c black",
+"X	c white",
+/* pixels */
+"                ",
+"                ",
+"   ....         ",
+"  .    .        ",
+" .  X   .       ",
+" . X    .  .....",
+" .      .  .....",
+" .      .       ",
+"  .    ..       ",
+"   .......      ",
+"        ...     ",
+"         ...    ",
+"          ...   ",
+"           ..   ",
+"                ",
+"                "};

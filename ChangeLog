@@ -1,0 +1,43 @@
+0.1 : First release
+	
+0.1.1: now pixmaps are installed
+       a kdelnk file is installed
+       version numbering changed
+
+0.1.2: background color selectable via dialog
+       background pixmaps implemented, selectable via menu
+       background pixmaps are scaled to fit size
+       pieces are drawn at runtime instead of pixmaps
+       some accelerators added
+       toolbar buttons for help and hint added
+
+0.2:   better pieces
+       animations
+       fixed a small bug: when someone made it in the hall of fame,
+       he was'nt notified of this
+       some improvements in the Hall Of Fame
+
+0.2.1: times(NULL) does not work with FreeBSD (fixed)
+       fixed a bug (reported by Stephan Kulow) where pixmaps of pieces
+       are not initialized properly (could't reproduce the bug with
+       my system)
+       New "About" dialog showing all (well, most) of the contributors
+       All xpm's have now 8 bits per color component instead of 16.
+       16 bits seems to confuse the XPM loader of Qt.       
+
+0.3: Sound support (using libmediatool)
+     When switching sides, the Quit -> the computer made on move. FIXED
+     Fixed a few typos
+     Cursor changes when thinking
+
+0.4: interims release - no changelog	
+
+0.5: added klocale to support translation
+	added german translation
+	fixed a few bugs
+	tried to remove absolute widget placing/sizing
+	removed the date field from the HOF
+	grayscale support
+	fixed those CPU busy bug
+	removed the -finline-functions optimize flag (not portable)
+	ported to new KDE file system standards (well, mostly)

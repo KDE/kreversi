@@ -1,0 +1,113 @@
+# This is a sample Makefile.in 
+
+# @CXXFLAGS@     : is set to -g -Wall (when debuging) or -O2 -Wall (when not)
+# @all_includes@ : is set to all needed include paths for QT, KDE and X11
+# -I.. 	         : needed for config.h
+CXXFLAGS= @CXXFLAGS@ @all_includes@ -DHAVE_CONFIG_H -I..
+
+# @LDFLAGS@    : is set to -s (when not debuging) for stripping
+# @all_libra.@ : is set to all needed libraries paths for QT, KDE and X11
+# you need also @LIBSOCKET@, if you link with -lkfm
+LDFLAGS	= @LDFLAGS@ @all_libraries@ -lkdecore -lkdeui -lqt -lXext -lX11 \
+	@LIBMEDIATOOL@
+
+# both are clear, I think
+CXX     = @CXX@
+MOC   	= @MOC@
+
+############# INSTALL #################
+
+install = @INSTALL@
+INSTALL = $(install) -m 0755
+INSTALL_DATA = $(install) -m 0644
+INSTALL_DIR = $(install) -d -m 0755
+INSTALL_DIR_PRIVATE = $(install) -d -m 0700
+
+prefix = @prefix@
+KDEINC = $(prefix)/include
+BINDIR = $(prefix)/bin
+LIBDIR = $(prefix)/lib
+DOCDIR = $(prefix)/share/doc/HTML/Reversi
+PICSDIR = $(LIBDIR)/pics/Reversi
+BGDIR	= $(PICSDIR)/background
+SOUNDDIR= $(LIBDIR)/sounds/Reversi
+KDELNKDIR= $(prefix)/share/applnk/Games
+
+
+########### File Formats ###########
+
+.SUFFIXES: .cpp
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $<
+
+%.moc: %.h
+	$(MOC) $< -o $@
+
+########## Files #####################
+
+OBJECTS =	main.o misc.o app.o board.o Game.o Score.o SuperEngine.o \
+		Engine.o Position.o Move.o Random.o about.o \
+		playsound.o kfixedtopwidget.o ktablistbox.o
+SRCMETA =	app.moc board.moc about.moc kfixedtopwidget.moc \
+		ktablistbox.moc
+DOCS    =       html/Reversi.html html/gpl.html
+PICS    =       hint.xpm help.xpm undo.xpm zoomout.xpm zoomin.xpm \
+		stop.xpm chips.xpm logo.xpm chips_mono.xpm
+BGPICS	=	Dark_Wood.xpm \
+		Earth.xpm \
+		Granite.xpm \
+		Hexagon.xpm \
+		Light_Wood.xpm \
+		Mystique.xpm \
+		Ocean.xpm \
+		Pipes.xpm \
+		Puzzle.xpm \
+		Stones.xpm 
+SOUNDS  =	click.wav lost.wav won.wav
+TARGET	=	kreversi
+
+######### build rules ################
+
+all: Makefile $(TARGET)
+
+Makefile: Makefile.in
+	cd .. && CONFIG_FILES=kreversi/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+$(TARGET): $(SRCMETA) $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LDFLAGS)
+
+clean:
+	rm -f *.o *.bak *~ *% #*
+	rm -f $(SRCMETA) $(TARGET)
+
+distclean: clean
+	rm -f Makefile
+
+install: all
+	$(INSTALL_DIR) $(BINDIR)
+	$(INSTALL) $(TARGET) $(BINDIR)
+	$(INSTALL_DIR) $(DOCDIR)
+	$(INSTALL) $(DOCS) $(DOCDIR)
+	$(INSTALL_DIR) $(PICSDIR)
+	@for i in $(PICS); do \
+	echo $(INSTALL_DATA) pics/$$i $(PICSDIR);\
+	$(INSTALL_DATA) "pics/$$i" $(PICSDIR)/$$i ;\
+	done
+	$(INSTALL_DIR) $(BGDIR)
+	@for i in $(BGPICS); do \
+	echo $(INSTALL_DATA) $$i $(BGDIR); \
+	$(INSTALL_DATA) pics/background/$$i $(BGDIR)/$$i; \
+	done
+	$(INSTALL_DIR) $(KDELNKDIR)
+	$(INSTALL_DATA) Reversi.kdelnk $(KDELNKDIR)
+	$(INSTALL_DIR) $(SOUNDDIR)
+	@for i in $(SOUNDS); do \
+	echo $(INSTALL_DATA) sounds/$$i $(SOUNDDIR); \
+	$(INSTALL_DATA) sounds/$$i $(SOUNDDIR); \
+	done
+
+uninstall:
+	rm -f $(BINDIR)/$(TARGET)
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.

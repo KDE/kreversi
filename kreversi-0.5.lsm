@@ -1,0 +1,17 @@
+Begin
+Title:          kreversi
+Version:        0.4
+Entered-date:   081597
+Description:    Reversi (or Othello) game
+Keywords:       Reversi Game KDE X11 Qt
+Author:         Mario Weilguni <mweilguni@sime.com>
+Maintained-by:  Mario Weilguni <mweilguni@sime.com>
+Primary-site:   ftp://fiwi02.wiwi.uni-tuebingen.de/pub/kde/apps/games
+File1:	        kreversi-0.2.1.tar.gz
+FileSize1:      259Kb
+Alternate-site: 
+Original-site:  
+Platform:       Linux and other Unices, needs Qt (v 1.2 or newer available at
+http://www.troll.no), KDE libraries libkdecore, libkdeui, libmediatool
+Copying-policy: GPL V2
+End

@@ -1,0 +1,106 @@
+<HTML>
+<HEAD>
+<TITLE>kreversi ( 9-Jun-1997)</TITLE>
+<!-- Created by: Mario Weilguni,  4-Jun-1997 -->
+<!-- Changed by: Mario Weilguni,  9-Jun-1997 -->
+
+</HEAD>
+<BODY>
+<H1>kreversi</H1>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#about">What is "Reversi"?</a></li>
+<li><a href="#object">Object of the game</a></li>
+<li><a href="#rules">Rules of the game</a></li>
+<li><a href="#strategy">Strategy hints</a></li>
+<li><a href="#author">About "kreversi"</a></li>
+<li><a href="gpl.html">GNU General Public License</a></li>
+</ul>
+
+<hr>
+
+<h2><a name=about>What is "Reversi"?</a></h2>
+Reversi is a simple strategy game. It's played by two players. There is only one type of piece - one side of it is black, the other white. If a player captures a piece on the board, that piece is turned and belongs now to that player. The winner is who has more pieces of it's own color on the board if no moves are possible anymore.
+
+<hr>
+
+<H3><a name=object>Object of the Game</a></H3>
+
+The object of the game is to have the majority of your colour discs on the
+board at the end of the game<p>
+
+<H3> A Minute To Learn </H3>
+
+A move consists of "outflanking" your opponent's disc(s), then <i>flipping</i>
+the outflanked disc(s) to your colour.<p>
+
+To outflank means to place a disc on the board so that your opponent's row (or
+rows) of disc(s) is bordered at each end by a disc of your colour.  (A "row"
+may be made up of one or more discs).<p>
+
+<H2><a name=rules>The Rules for Reversi</a></H2>
+
+1. Black always moves first. <p>
+
+2. If on your turn you cannot outflank and flip at least one opposing disc,
+your turn is forfeited and your opponent moves again.  However, if a move
+is available to you, you may not forfeit your turn.<p>
+
+3. A disc may outflank any number of discs in one or more rows in any number
+of directions at the same time - horizontally, vertically or diagonally.  
+(A row is defined as one or more discs <i> in a continuous straight line </i>).
+<p>
+
+4.  You may not skip over your own colour disc to outflank an opposing disc.
+(See Figure 4).<p>
+
+5.  Discs may only be outflanked as a direct result of a move and must fall
+in the direct line of the disc placed down.<p>
+
+6.  All discs outflanked in any one move must be flipped, even if it is to
+the player's advantage not to flip them at all. <p>
+
+7.  A player who flips a disc which should not have been turned may correct 
+the mistake as long as the opponent has not made a subsequent move.  If the 
+opponent has already moved, it is too late to change and the disc(s) remain
+as is. <p>
+
+8.  Once a disc is placed on a square, it can never be moved to another square
+later in the game. <p>
+
+9.  If a player runs out of discs, but still has an opportunity to outflank 
+an opposing disc on his or her turn, the opponent must give the player a disc
+to use.  (This can happen as many times as the player needs and can use a 
+disc). <p>
+
+10. When it is no longer possible for either player to move, the game is over.
+Discs are counted and the player with the majority of his or her colour 
+discs on the board is the winner. <p>
+NOTE:  It is possible for a game to end before all 64 squares are filled. <p>
+
+<hr> 
+
+<H2><a name=strategy>Strategy hints</a></H2>
+<bl>
+<li>Try to put pieces on the edges whenever possible. Your oppenent can not outflank these pieces!</li>
+<li>Avoid putting pieces on one of the three neighbour fields of an edge unless you are
+absolutly sure that your opponent will not be able to put a piece into an edge.</li>
+<li>Sometimes it's better to offer some pieces to your oppenent.</li>
+<li>Try to put pieces on fields which prevent your opponent from moving</li>
+<li>Try to force your opponent to put a piece in the neighbourfield of an edge</li>
+</bl>
+
+<hr>
+
+<h2><a name=author>About "kreversi"</a></h2>
+"kreversi" is part of the <a href="http://www.kde.org">KDE (Kool Desktop Environment)</a> project. It was 
+written in June 1997 by Mario Weilguni <mailto:mweilguni@sime.com>. This program is
+published under the <a href="#gpl">GNU GPL</a>.
+
+The move engine was ported from the JAVA applet from Mats Luthman.
+
+<p>
+
+</BODY>
+</HTML>
