@@ -62,6 +62,7 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <khelpmenu.h>
+#include <kpopupmenu.h>
 
 #include <config.h>
 
