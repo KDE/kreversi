@@ -24,13 +24,11 @@ INSTALL_DIR = $(install) -d -m 0755
 INSTALL_DIR_PRIVATE = $(install) -d -m 0700
 
 prefix = @prefix@
-KDEINC = $(prefix)/include
 BINDIR = $(prefix)/bin
-LIBDIR = $(prefix)/lib
 DOCDIR = $(prefix)/share/doc/HTML/Reversi
-PICSDIR = $(LIBDIR)/pics/Reversi
+PICSDIR = $(LIBDIR)/share/apps/Reversi/pics
 BGDIR	= $(PICSDIR)/background
-SOUNDDIR= $(LIBDIR)/sounds/Reversi
+SOUNDDIR= $(prefix)/share/apps/Reversi/sounds
 KDELNKDIR= $(prefix)/share/applnk/Games
 
 
