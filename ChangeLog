@@ -1,3 +1,9 @@
+2004-09-23 Anne-Marie Mahfouf <annemarie.mahfouf@free.fr>
+
+	Cleaned some previously left lines of code in board.cpp  
+	Change CustomAdditions=false back in prefs.kcfg to fix compilation
+	Tested Inge fix and found it works well.
+	
 2004-09-22  Inge Wallin  <ing@lysator.liu.se>
 
 	Fix bug 89829: "KReversi: When you save a game, the color for
