@@ -1,4 +1,10 @@
-2004-09-16  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+2004-09-17  Inge Wallin  <inge@lysator.liu.se>
+
+	Some further cleanup:
+	* board.{h,cpp} (game, engine, human): renamed into m_game,
+	m_engine and m_humanColor.
+	
+2004-09-16  Inge Wallin  <inge@lysator.liu.se>
 
 	Support Casual and Competitive play:
 	* SuperEngine.cpp (SuperEngine::computeMove()): new parameter

@@ -65,8 +65,8 @@ public:
 
   void   newGame();
   Color  whoseTurn() const;
-  Color  humanColor() const    { return human; }
-  Color  computerColor() const { return opponent(human); }
+  Color  humanColor() const    { return m_humanColor; }
+  Color  computerColor() const { return opponent(m_humanColor); }
 
   uint   score(Color) const;
   void   setStrength(uint);
@@ -136,14 +136,14 @@ private:
   bool  isField(int row, int col) const;
 
 private:
-  Engine  *engine;              // The actual Position of the game and
+  Engine  *m_engine;            // The actual Position of the game and
 				// some machinery to come up with moves.
-  Game    *game;		// Stores the moves of the game
+  Game    *m_game;		// Stores the moves of the game
 
   State    m_status;		// Ready, Thinking, Hint
   bool     m_competitiveGame;	// True if the game has been
 				// competitive during all moves so far.
-  Color    human;
+  Color    m_humanColor;	// The Color of the human player.
   bool     nopaint;
 
   QColor   bgColor;

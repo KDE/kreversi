@@ -68,17 +68,17 @@ const uint  CHIP_SIZE             = 36;
 
 Board::Board(QWidget *parent)
     : QWidget(parent, "board"),
-      human(Black), nopaint(false), chiptype(Unloaded)
+      m_humanColor(Black), nopaint(false), chiptype(Unloaded)
 {
-  engine = new Engine();
-  game   = new Game();
+  m_engine = new Engine();
+  m_game   = new Game();
   setStrength(1);
 }
 
 
 Board::~Board() {
-  delete engine;
-  delete game;
+  delete m_engine;
+  delete m_game;
 }
 
 
@@ -137,12 +137,12 @@ void Board::undo()
   if (state() != Ready) 
     return;
 
-  Color last_color = game->lastMove().color();
-  while ((game->moveNumber() != 0) &&
-	 (last_color == game->lastMove().color()))
-    game->TakeBackMove();
+  Color last_color = m_game->lastMove().color();
+  while (m_game->moveNumber() != 0
+	 && last_color == m_game->lastMove().color())
+    m_game->TakeBackMove();
 
-  game->TakeBackMove();
+  m_game->TakeBackMove();
   update();
 }
 
@@ -152,13 +152,13 @@ void Board::undo()
 
 void Board::interrupt()
 {
-  engine->setInterrupt(TRUE);
+  m_engine->setInterrupt(TRUE);
 }
 
 
 bool Board::interrupted() const 
 {
-  return ((game->toMove() == computerColor()) && (state() == Ready));
+  return ((m_game->toMove() == computerColor()) && (state() == Ready));
 }
 
 
@@ -177,7 +177,7 @@ void Board::doContinue()
 
 void Board::newGame()
 {
-  game->Reset();
+  m_game->Reset();
   m_competitiveGame = Prefs::competitiveGameChoice();
   //kdDebug() << "Competitive: " << m_competitiveGame << endl;
 
@@ -187,7 +187,7 @@ void Board::newGame()
   emit turn(Black);
 
   // Black always makes first move.
-  if (human == White)
+  if (m_humanColor == White)
     computerMakeMove();
 }
 
@@ -233,16 +233,16 @@ void Board::fieldClicked(int row, int col)
   if (state() != Ready) 
     return;
 
-  Color color = game->toMove();
+  Color color = m_game->toMove();
 
   // Create a move from the mouse click and see if it is legal.
   // If it is, then make a human move.
   Move  m(color, col + 1, row + 1);
-  if (game->moveIsLegal(m)) {
-    game->MakeMove(m);
+  if (m_game->moveIsLegal(m)) {
+    m_game->MakeMove(m);
     animateChanged(m);
 
-    if (!game->moveIsAtAllPossible()) {
+    if (!m_game->moveIsAtAllPossible()) {
       updateBoard();
       setState(Ready);
       gameEnded();
@@ -251,7 +251,7 @@ void Board::fieldClicked(int row, int col)
 
     updateBoard();
 
-    if (color != game->toMove())
+    if (color != m_game->toMove())
       computerMakeMove();
   } else
     illegalMove();
@@ -264,12 +264,12 @@ void Board::fieldClicked(int row, int col)
 void Board::computerMakeMove()
 {
   // Check if the computer can move.
-  Color color    = game->toMove();
+  Color color    = m_game->toMove();
   Color opponent = ::opponent(color);
 
   emit turn(color);
 
-  if (!game->moveIsPossible(color))
+  if (!m_game->moveIsPossible(color))
     return;
  
   // Make computer moves until the human can play or until the game is over.
@@ -277,13 +277,13 @@ void Board::computerMakeMove()
   do {
     Move  move;
 
-    if (!game->moveIsAtAllPossible()) {
+    if (!m_game->moveIsAtAllPossible()) {
       setState(Ready);
       gameEnded();
       return;
     }
 
-    move = engine->computeMove(*game, m_competitiveGame);
+    move = m_engine->computeMove(*m_game, m_competitiveGame);
     if (move.x() == -1) {
       setState(Ready);
       return;
@@ -291,16 +291,16 @@ void Board::computerMakeMove()
     usleep(300000); // Pretend we have to think hard.
 
     //playSound("click.wav");
-    game->MakeMove(move);
+    m_game->MakeMove(move);
     animateChanged(move);
     updateBoard();
-  } while (!game->moveIsPossible(opponent));
+  } while (!m_game->moveIsPossible(opponent));
 
 
   emit turn(opponent);
   setState(Ready);
 
-  if (!game->moveIsAtAllPossible()) {
+  if (!m_game->moveIsAtAllPossible()) {
     gameEnded();
     return;
   }
@@ -330,7 +330,7 @@ void Board::switchSides()
   if (state() != Ready) 
     return;
 
-  human = opponent(human);
+  m_humanColor = opponent(m_humanColor);
   emit score();
   kapp->processEvents();
   computerMakeMove();
@@ -350,32 +350,32 @@ void Board::setStrength(uint st)
   Q_ASSERT( 1 <= st && st <= 7 );
 
   st = QMAX(QMIN(st, 7), 1);
-  engine->setStrength(st);
+  m_engine->setStrength(st);
   KExtHighscore::setGameType(st-1);
 }
 
 
 uint Board::strength() const
 {
-  return engine->strength();
+  return m_engine->strength();
 }
 
 
 uint Board::moveNumber() const
 {
-  return game->moveNumber();
+  return m_game->moveNumber();
 }
 
 
 uint Board::score(Color color) const
 {
-  return game->score(color);
+  return m_game->score(color);
 }
 
 
 Color Board::whoseTurn() const
 {
-  return game->toMove();
+  return m_game->toMove();
 }
 
 
@@ -385,7 +385,7 @@ void Board::hint()
     return;
 
   setState(Thinking);
-  Move  move = engine->computeMove(*game, m_competitiveGame);
+  Move  move = m_engine->computeMove(*m_game, m_competitiveGame);
 
   setState(Hint);
   if (move.x() != -1) {
@@ -398,7 +398,7 @@ void Board::hint()
       if (flash & 1)
 	drawPiece(move.y() - 1, move.x() - 1, Nobody);
       else
-	drawPiece(move.y() - 1, move.x() - 1, game->toMove());
+	drawPiece(move.y() - 1, move.x() - 1, m_game->toMove());
 
       // keep GUI alive while waiting
       for (int dummy = 0; dummy < 5; dummy++) {
@@ -406,7 +406,7 @@ void Board::hint()
 	qApp->processEvents();
       }
     }
-    drawPiece(move.y() - 1, move.x() - 1, game->color(move.x(), move.y()));
+    drawPiece(move.y() - 1, move.x() - 1, m_game->color(move.x(), move.y()));
   }
 
   setState(Ready);
@@ -448,7 +448,7 @@ void Board::animateChangedRow(int row, int col, int dy, int dx)
   row = row + dy;
   col = col + dx;
   while (isField(row, col)) {
-    if (game->wasTurned(col+1, row+1)) {
+    if (m_game->wasTurned(col+1, row+1)) {
       KNotifyClient::event(winId(), "click", i18n("Click"));
       rotateChip(row, col);
    } else
@@ -465,7 +465,7 @@ void Board::rotateChip(uint row, uint col)
   // Check which direction the chip has to be rotated.  If the new
   // chip is white, the chip was black first, so lets begin at index
   // 1, otherwise it was white.
-  Color  color = game->color(col+1, row+1);
+  Color  color = m_game->color(col+1, row+1);
   uint   from  = CHIP_OFFSET[opponent(color)];
   uint   end   = CHIP_OFFSET[color];
   int    delta = (color==White ? 1 : -1);
@@ -483,15 +483,15 @@ void Board::rotateChip(uint row, uint col)
 
 // Redraw the board.  If 'force' is true, redraw everything, otherwise
 // only redraw those squares that have changed (marked by
-// game->squareModified(col, row)).
+// m_game->squareModified(col, row)).
 //
 
 void Board::updateBoard(bool force)
 {
   for (uint row = 0; row < 8; row++)
     for (uint col = 0; col < 8; col++)
-      if ( force || game->squareModified(col + 1, row + 1) ) {
-	Color  color = game->color(col + 1, row + 1);
+      if ( force || m_game->squareModified(col + 1, row + 1) ) {
+	Color  color = m_game->color(col + 1, row + 1);
 	drawPiece(row, col, color);
       }
 
@@ -612,8 +612,8 @@ void Board::saveGame(KConfig *config)
 
   // Write the game itself to the file.
   for (uint i = moveNumber(); i > 0; i--) {
-    Move  move = game->lastMove();
-    game->TakeBackMove();
+    Move  move = m_game->lastMove();
+    m_game->TakeBackMove();
 
     QString s, idx;
     s.sprintf("%d %d %d", move.x(), move.y(), (int)move.color());
@@ -622,7 +622,7 @@ void Board::saveGame(KConfig *config)
   }
 
   // save whose turn it is and if the game is casual.
-  config->writeEntry("WhoseTurn",   (int) human);
+  config->writeEntry("WhoseTurn",   (int) m_humanColor);
   config->writeEntry("Competitive", (int) m_competitiveGame);
   config->sync();
 
@@ -645,7 +645,7 @@ bool Board::loadGame(KConfig *config, bool noupdate)
   if (nmoves==0) 
     return false;
 
-  game->Reset();
+  m_game->Reset();
   uint movenumber = 1;
   while (nmoves--) {
     // Read one move.
@@ -658,13 +658,13 @@ bool Board::loadGame(KConfig *config, bool noupdate)
     Color        color = (Color)(*s.at(2)).toInt();
 
     Move move(color, x, y);
-    game->MakeMove(move);
+    m_game->MakeMove(move);
   }
 
   if (noupdate)
     return true;
 
-  human = (Color)config->readNumEntry("WhoseTurn");
+  m_humanColor = (Color)config->readNumEntry("WhoseTurn");
 
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));
@@ -678,7 +678,7 @@ bool Board::loadGame(KConfig *config, bool noupdate)
     emit turn(Black);
 
     // Computer makes first move.
-    if (human == White)
+    if (m_humanColor == White)
       computerMakeMove();
   }
 
