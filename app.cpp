@@ -220,20 +220,20 @@ void App::createMenuBar() {
   menu = menuBar();
 
   QPopupMenu *fm = new QPopupMenu;
-  fm->insertItem(SmallIcon("filenew"),i18n("&New game"), ID_GNEW);
-  fm->insertItem(SmallIcon("fileopen"),i18n("&Load game"), ID_FLOAD);
-  fm->insertItem(SmallIcon("filesave"),i18n("&Save game"), ID_FSAVE);
+  fm->insertItem(SmallIcon("filenew"),i18n("&New Game"), ID_GNEW);
+  fm->insertItem(SmallIcon("fileopen"),i18n("&Load Game"), ID_FLOAD);
+  fm->insertItem(SmallIcon("filesave"),i18n("&Save Game"), ID_FSAVE);
   fm->insertSeparator();
   fm->insertItem(SmallIcon("exit"),i18n("&Quit"), ID_FQUIT);
 
   QPopupMenu *gm = new QPopupMenu;
-  gm->insertItem(i18n("Get &hint"), ID_HHINT);
+  gm->insertItem(i18n("Get &Hint"), ID_HHINT);
   gm->insertSeparator();
-  gm->insertItem(i18n("&Stop thinking"), ID_GSTOP);
+  gm->insertItem(i18n("&Stop Thinking"), ID_GSTOP);
   gm->insertItem(i18n("&Continue"), ID_GCONTINUE);
   gm->insertSeparator();
-  gm->insertItem(i18n("&Undo move"), ID_GUNDO);
-  gm->insertItem(i18n("Switch si&des"), ID_GSWITCH);
+  gm->insertItem(i18n("&Undo Move"), ID_GUNDO);
+  gm->insertItem(i18n("Switch Si&des"), ID_GSWITCH);
   gm->insertSeparator();
   gm->insertItem(i18n("Hall Of &Fame..."), ID_GHIGHSCORES);
 
@@ -250,24 +250,24 @@ void App::createMenuBar() {
   om_s->insertItem(i18n("Level 7 (Master)"),  ID_O8);
   om->insertItem(i18n("Skill"), om_s);
   om->insertSeparator();
-  om->insertItem(i18n("&Shrink board"), ID_VZOOMOUT);
-  om->insertItem(i18n("&Enlarge board"), ID_VZOOMIN);
+  om->insertItem(i18n("&Shrink Board"), ID_VZOOMOUT);
+  om->insertItem(i18n("&Enlarge Board"), ID_VZOOMIN);
 
   QPopupMenu *zm = new QPopupMenu;
   zm->setCheckable(TRUE);
-  zm->insertItem(i18n("&Half size"), ID_VZOOM50);
+  zm->insertItem(i18n("&Half Size"), ID_VZOOM50);
   zm->insertItem(i18n("60%"), ID_VZOOM60);
   zm->insertItem(i18n("80%"), ID_VZOOM80);
-  zm->insertItem(i18n("D&efault size"), ID_VZOOM100);
+  zm->insertItem(i18n("D&efault Size"), ID_VZOOM100);
   zm->insertItem(i18n("120%"), ID_VZOOM120);
   zm->insertItem(i18n("140%"), ID_VZOOM140);
   zm->insertItem(i18n("160%"), ID_VZOOM160);
   zm->insertItem(i18n("180%"), ID_VZOOM180);
-  zm->insertItem(i18n("&Double size"), ID_VZOOM200);
-  om->insertItem(i18n("Set size"), zm);
+  zm->insertItem(i18n("&Double Size"), ID_VZOOM200);
+  om->insertItem(i18n("Set Size"), zm);
 
   om->insertSeparator();
-  om->insertItem(i18n("Select &background color..."), ID_COLOR);
+  om->insertItem(i18n("Select &Background Color..."), ID_COLOR);
 
   QPopupMenu *om_bg = new QPopupMenu;
   lookupBackgroundPixmaps();
@@ -293,7 +293,7 @@ void App::createMenuBar() {
     }
   }
 
-  om->insertItem(i18n("Select background image"), om_bg);
+  om->insertItem(i18n("Select Background Image"), om_bg);
   om->insertItem(i18n("&Grayscale"), ID_OGSCALE);
   om->insertSeparator();
   om->insertItem(i18n("&Animations"), ID_OANIMATION);
