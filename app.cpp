@@ -976,7 +976,7 @@ void App::showHighscore(int focusitem) {
 QString App::getPlayerName() {
   QDialog *dlg = new QDialog(this, "Hall Of Fame", TRUE);
 
-  QLabel  *l1  = new QLabel(i18n("You've made in into the \"Hall Of Fame\".Type in\nyour name so mankind will always remember\nyour cool rating."), dlg);
+  QLabel  *l1  = new QLabel(i18n("You've made it into the \"Hall Of Fame\". Type in\nyour name so mankind will always remember\nyour cool rating."), dlg);
   l1->setFixedSize(l1->sizeHint());
 
   QLabel *l2 = new QLabel(i18n("Your name:"), dlg);
