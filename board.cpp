@@ -80,8 +80,6 @@ Board::Board(QWidget *parent)
   engine = new Engine();
   game = new Game();
   setStrength(1);
-
-  loadSettings();
 }
 
 
@@ -478,6 +476,17 @@ void Board::updateBoard(bool force) {
   emit score();
 }
 
+QPixmap Board::chipPixmap(Player player) const
+{
+  int offset = (player==White ? CHIP_WHITE : CHIP_BLACK);
+  QPixmap tmp(CHIP_SIZE, CHIP_SIZE);
+  copyBlt(&tmp, 0, 0,
+	  &allchips, (offset%5) * CHIP_SIZE, (offset/5) * CHIP_SIZE,
+	  CHIP_SIZE, CHIP_SIZE);
+  QWMatrix wm3;
+  wm3.scale(float(20)/CHIP_SIZE, float(20)/CHIP_SIZE);
+  return tmp.xForm(wm3);
+}
 
 void Board::drawOnePiece(int row, int col, int i) {
   int px = col * _zoomed_size + 1;

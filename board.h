@@ -92,6 +92,7 @@ public:
 
   enum ChipType { Unloaded, Colored, Grayscale };
   void loadChips(ChipType);
+  QPixmap chipPixmap(Player player) const;
   ChipType chipType() const { return chiptype; }
 
   void loadGame(KConfig *, bool noupdate = FALSE);
