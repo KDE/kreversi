@@ -111,6 +111,7 @@ bool initAudio() {return FALSE;}
 bool doneAudio() {return FALSE;}
 bool playSound(const char *) {return FALSE;}
 bool syncPlaySound(const char *) {return FALSE;}
+bool soundSync() {return FALSE;}
 bool audioOK() {
   return FALSE;
 }
