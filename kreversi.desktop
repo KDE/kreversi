@@ -64,4 +64,4 @@ Comment[xh]=Dlala iReversi ngokuchasene necomputer
 Comment[zh_CN.GB2312]=和计算机玩翻转棋
 Terminal=0
 Icon=kreversi
-KDE-X-StartupNotify=true
+X-KDE-StartupNotify=true
