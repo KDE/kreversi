@@ -54,6 +54,7 @@
 
 #include "Score.h"
 #include "kreversi.h"
+#include "kreversi.moc"
 #include "playsound.h"
 #include "board.h"
 #include "settings.h"
@@ -82,7 +83,7 @@ KReversi::KReversi( QWidget* parent, const char *name) : KMainWindow(parent, nam
   connect(board, SIGNAL(illegalMove()), this, SLOT(slotIllegalMove()));
   connect(board, SIGNAL(sizeChange()), this, SLOT(sizeChanged()));
   setAutoSaveSettings();
-  
+
 #ifdef HAVE_MEDIATOOL
   if(conf->readNumEntry("Sound", 0) != 0) {
     initAudio();
@@ -115,19 +116,19 @@ void KReversi::createKActions() {
 	0, board, SLOT(doContinue()), actionCollection(), "game_continue");
   new KAction(i18n("S&witch Sides"), 0,
 	0, board, SLOT(switchSides()), actionCollection(), "game_switch_sides");
- 
+
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection(), "zoomIn");
   zoomOutAction = KStdAction::zoomOut(this, SLOT(zoomOut()), actionCollection(), "zoomOut");
   #ifdef HAVE_MEDIATOOL
   soundAction = new KToggleAction(i18n("&Play Sounds"), 0, 0, 0, actionCollection(), "game_sound");
-  #endif 
+  #endif
   // Settings
   createStandardStatusBarAction();
   setStandardToolBarMenuEnabled(true);
   KStdAction::keyBindings(this, SLOT(configureKeyBindings()), actionCollection());
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
-   
+
   createGUI();
 }
 
@@ -194,7 +195,7 @@ void KReversi::slotScore() {
   QString s1, s2;
 
   board->getScore(black, white);
-  
+
   if(board->chipsName() == "chips.png") {
     if(board->humanIs() == Score::BLACK) {
       s1 = i18n("You (blue): %1").arg(black);
@@ -210,7 +211,7 @@ void KReversi::slotScore() {
     } else {
       s2 = i18n("You (white): %1").arg(white);
       s1 = i18n("Computer (black): %1").arg(black);
-    } 
+    }
   }
 
   statusBar()->changeItem(s1, SB_SCOREH);
@@ -239,7 +240,7 @@ void KReversi::slotGameEnded(int color) {
     int sum = winner + loser;
     // 8 is the highest level so it is the bases for the scale.
     float score= (float)winner / sum * ((100/8)*st);
-    
+
     playSound("reversi-won.wav");
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
 	      .arg(winner).arg(loser).arg(score,1);
@@ -334,7 +335,7 @@ void KReversi::showHighScoreDialog() {
 void KReversi::showSettings(){
   if(KAutoConfigDialog::showDialog("settings"))
     return;
-  
+
   KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings", KDialogBase::Swallow);
   Settings *general = new Settings(0, "General");
   general->BackgroundImage->setURL(PICDATA("background/Light_Wood.png"));
