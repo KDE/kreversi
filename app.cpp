@@ -598,11 +598,11 @@ void App::slotScore() {
 
   b->getScore(black, white);
   if(b->humanIs() == Score::BLACK) {
-    s1.sprintf(i18n("You (blue): %d"), black);
-    s2.sprintf(i18n("Computer (red): %d"), white);
+    s1 = i18n("You (blue): %1").arg(black);
+    s2 = i18n("Computer (red): %1").arg(white);
   } else {
-    s2.sprintf(i18n("You (red): %d"), white);
-    s1.sprintf(i18n("Computer (blue): %d"), black);
+    s2 = i18n("You (red): %1").arg(white);
+    s1 = i18n("Computer (blue): %1").arg(black);
   }
 
   sb->changeItem(s1, SB_SCOREH);
@@ -656,7 +656,7 @@ void App::slotGameEnded(int color) {
   
   if(color == Score::NOBODY) {
     playSound("drawn.wav");
-    s.sprintf(i18n("Game is drawn!\n\nYou     : %d\nComputer: %d"), winner, loser);
+    s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
     KMsgBox::message(this, i18n("Game ended"), (const char *)s);
   } else if(b->humanIs() == color) {
     // calculate score
@@ -687,8 +687,8 @@ void App::slotGameEnded(int color) {
     }
   } else {
     playSound("lost.wav");
-    s.sprintf(i18n("You have lost the game!\n\nYou     : %d\nComputer: %d"), 
-	      loser, winner);
+    s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
+	      .arg(loser).arg(winner);
     KMsgBox::message(this, i18n("Game ended"), (const char *)s);
   }
 }
@@ -798,7 +798,7 @@ void App::readHighscore() {
   while ((i < HIGHSCORE_MAX) && !eol) {
     s.sprintf("Highscore_%d", i);
     if(conf->hasKey(s)) {
-      e = conf->readEntry(s.data());
+      e = conf->readEntry(s);
       highscore.resize(i+1);
 
       HighScore hs;
@@ -812,7 +812,7 @@ void App::readHighscore() {
   }
 
   // restore old group
-  conf->setGroup(grp.data());
+  conf->setGroup(grp);
 }
 
 
@@ -833,7 +833,7 @@ void App::writeHighscore() {
   }
   
   // restore old group
-  conf->setGroup(grp.data());
+  conf->setGroup(grp);
 }
 
 int MAX(int a, int b) {
@@ -909,7 +909,7 @@ void App::showHighscore(int focusitem) {
     
     // insert rank    
     s.sprintf("%d", i+1);
-    e[i][0] = new QLabel(s.data(), dlg);
+    e[i][0] = new QLabel(s, dlg);
 
     // insert name
     if(i < highscore.size())
@@ -928,14 +928,14 @@ void App::showHighscore(int focusitem) {
       s.sprintf("%d/%d", hs.winner, hs.loser);
     else
       s = "";
-    e[i][3] = new QLabel(s.data(), dlg);
+    e[i][3] = new QLabel(s, dlg);
     
     // insert rating
     if(i < highscore.size())
       s.sprintf("%3.0f", hs.rating);
     else
       s = "";
-    e[i][4] = new QLabel(s.data(), dlg);
+    e[i][4] = new QLabel(s, dlg);
   }
 
   f = font();

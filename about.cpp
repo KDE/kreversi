@@ -51,7 +51,7 @@ extern QString PICDIR;
 About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
   setCaption(i18n("About kreversi"));
 
-  QPixmap pm((PICDIR + "logo.xpm").data());
+  QPixmap pm((PICDIR + "logo.xpm"));
   QLabel *logo = new QLabel(this);
   logo->setPixmap(pm);
   logo->setFixedSize(logo->sizeHint());  
@@ -74,7 +74,7 @@ About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
     "and bugfixes\n\n" \
     "\tArne Klaassen\n\t "\
     "for the raytraced chips");
-  QLabel *l1 = new QLabel(s.data(), this);
+  QLabel *l1 = new QLabel(s, this);
   l1->setAlignment(AlignLeft|ExpandTabs);
   l1->setFixedSize(l1->sizeHint());
   l1->show();
