@@ -5,10 +5,12 @@ Comment[ca]=Reversi
 Comment[is]=Viðsnúningur
 Comment[ru]=Реверси
 Comment[sv]=Kreversi
+Comment[tg]=KРеверсия
 
 [click]
 Name=Click
 Name[bg]=Щракване
+Name[br]=Klik
 Name[bs]=Klikni
 Name[ca]=Clic
 Name[da]=Klik
@@ -65,6 +67,7 @@ default_sound=kreversi-click.wav
 
 [won]
 Name=Game won
+Name[ar]=ربحت اللعبة
 Name[bg]=Спечелихте
 Name[bn]=খেলা জিতেছেন
 Name[bs]=Pobjeda
@@ -104,6 +107,7 @@ Name[wa]=Djeu wangnî
 Name[zh_CN]=您赢了游戏
 Name[zh_TW]=遊戲獲勝
 Comment=Game won
+Comment[ar]=ربحت اللعبة
 Comment[bg]=Спечелихте
 Comment[bn]=খেল খতম
 Comment[bs]=Pobjeda
@@ -147,6 +151,7 @@ default_sound=kreversi-won.wav
 
 [lost]
 Name=Game lost
+Name[ar]=خسرت اللعبة
 Name[bg]=Загубихте
 Name[bn]=খেলায় হেরে গিয়েছেন
 Name[bs]=Poraz
@@ -186,6 +191,7 @@ Name[wa]=Djeu pierdou
 Name[zh_CN]=您输了游戏
 Name[zh_TW]=遊戲失敗
 Comment=Game lost
+Comment[ar]=خسرت اللعبة
 Comment[bg]=Загубихте
 Comment[bn]=খেলায় হেরে গিয়েছেন
 Comment[bs]=Poraz
@@ -229,6 +235,7 @@ default_presentation=0
 [draw]
 Name=Draw
 Name[bg]=Равенство
+Name[br]=Tresañ
 Name[bs]=Crtaj
 Name[ca]=Empat
 Name[da]=Træk
@@ -257,6 +264,7 @@ Name[tr]=Berabere
 Name[zh_CN]=平局
 Comment=Draw
 Comment[bg]=Равенство
+Comment[br]=Tresañ
 Comment[bs]=Crtaj
 Comment[ca]=Empat
 Comment[da]=Træk
@@ -338,5 +346,6 @@ Comment[sr]=Недозвољен потез
 Comment[sr@Latn]=Nedozvoljen potez
 Comment[sv]=Felaktigt drag
 Comment[ta]=தவறாண நகர்த்தல்
+Comment[tg]=Ҳаракати нодуруст
 Comment[zh_CN]=无效移动
 default_presentation=0
