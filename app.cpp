@@ -329,7 +329,7 @@ void App::createMenuBar() {
   help = new QPopupMenu;
   help->insertItem(i18n("&Contents"), ID_HCONTENTS);
   help->insertSeparator();
-  help->insertItem(i18n("&About")+" "+kapp->appName(), ID_HABOUT);
+  help->insertItem(i18n("&About")+" "+kapp->name(), ID_HABOUT);
   help->insertItem(i18n("About &KDE"), ID_HABOUTKDE);
 
   menu->insertItem(i18n("&File"), fm);
@@ -392,9 +392,9 @@ void App::createStatusBar() {
 
 void App::lookupBackgroundPixmaps() {
   QString PICDIR = KGlobal::dirs()->findResourceDir("data",
-						    kapp->appName());
+						    kapp->name());
 
-  QDir dir(PICDIR + kapp->appName() + "/pics/background", "*.xpm");
+  QDir dir(PICDIR + kapp->name() + "/pics/background", "*.xpm");
   if(!dir.exists())
     return;
 
