@@ -1,5 +1,5 @@
 
-INCLUDES = $(all_includes)
+INCLUDES = -I$(top_srcdir)/libkdegames -I$(top_srcdir)/libkdegames/highscore $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
 LDADD =   $(LIB_KDEGAMES) $(LIB_KSYCOCA) $(LIB_KDEUI) 
 
