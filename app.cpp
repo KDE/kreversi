@@ -154,15 +154,7 @@ App::App() : KTMainWindow() {
 
   b->start();
 
-#define menuPosition
-  connect(menu, SIGNAL(moved(menuPosition)),
-	  this, SLOT(slotBarChanged()));
-#undef menuPosition
-
-#define BarPosition
-  connect(tb, SIGNAL(moved(BarPosition)),
-	  this, SLOT(slotBarChanged()));
-#undef BarPosition
+  connect(tb, SIGNAL(moved(BarPosition)), this, SLOT(slotBarChanged()));
 
   KConfig *conf = kapp->config();
   if(conf != 0) {
@@ -191,11 +183,6 @@ App::App() : KTMainWindow() {
       b->setFixedSize(b->sizeHint());
       updateRects();
     }
-
-    // set menubar position
-    int mbpos = conf->readNumEntry("Menubar_Pos",
-				   (int)(KMenuBar::Top));
-    menu->setMenuBarPos((KMenuBar::menuPosition)mbpos);
 
     // set toolbar position
     int tbpos = conf->readNumEntry("Toolbar_1_Pos",
@@ -1061,9 +1048,9 @@ QString App::getPlayerName() {
 }
 
 void App::slotBarChanged() {
+debug("void App::slotBarChanged()");
   KConfig *conf = kapp->config();
   if(conf) {
-    conf->writeEntry("Menubar_Pos", (int)(menu->menuBarPos()));
     conf->writeEntry("Toolbar_1_Pos", (int)(tb->barPos()));
   }
 }
