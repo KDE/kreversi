@@ -153,6 +153,7 @@ private slots:
  public slots: 
   // Slots for the view.
   void  showColors();
+  void  showMove(uint moveno, Move &move);
   void  showScore();
   void  showTurn(Color);
   void  slotGameOver();
@@ -188,6 +189,7 @@ private:
 
   // Widgets
   KReversiBoardView  *m_boardView;          // The board widget.
+  QListBox           *m_movesView;
   StatusWidget       *m_humanStatus;
   StatusWidget       *m_computerStatus;
 };

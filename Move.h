@@ -50,6 +50,8 @@
 #ifndef __MOVE__H__
 #define __MOVE__H__
 
+#include "qstring.h"
+
 #include "Score.h"
 
 
@@ -62,6 +64,8 @@ public:
   Color color() const { return m_color; }
   int   x()     const { return m_x; }
   int   y()     const { return m_y; }
+
+  QString  asString() const;
 
 private:
   Color  m_color;

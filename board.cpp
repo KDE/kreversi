@@ -306,17 +306,19 @@ void KReversiBoardView::updateBoard (bool force)
     QChar  number = "12345678"[i];
     uint   charWidth = metrics.charWidth("ABCDEFGH", i);
 
+    // The horizontal letters
     p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
 	       offset - charHeight / 2 + 2,
 	       QString(letter));
-    p.drawText(offset + i * zoomedSize() + (offset - charWidth) / 2, 
+    p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
 	       offset + 8 * zoomedSize() + offset - charHeight / 2 + 2,
 	       QString(letter));
 
+    // The vertical numbers
     p.drawText((offset - charWidth) / 2 + 2, 
 	       offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
 	       QString(number));
-    p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2, 
+    p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2 + 2, 
 	       offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
 	       QString(number));
   }

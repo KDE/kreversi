@@ -79,6 +79,7 @@ class QReversiGame : public QObject, public Game {
   void  saveGame(KConfig *);
 
  signals:
+  void  sig_move(uint, Move&);
   void  updateBoard();
   void  sig_score();
   void  turn(Color);

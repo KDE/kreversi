@@ -131,7 +131,7 @@ public:
   bool   squareModified(uint x, uint y) const;
   bool   wasTurned(uint x, uint y)      const;
 
-private:
+protected:
   Move      m_moves[64];
   Position  m_position;		// The current position in the game
   Position  m_lastPosition;	// The last position in the game

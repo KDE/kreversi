@@ -68,7 +68,10 @@ void QReversiGame::newGame()
 bool QReversiGame::makeMove(Move move)
 {
   bool  retval = Game::makeMove(move);
+  if (!retval)
+      return false;
 
+  emit sig_move(m_moveNumber, move);
   emit updateBoard();
   emit sig_score();
   emit turn(Game::toMove());

@@ -40,6 +40,8 @@
 #include <unistd.h>
 
 #include <qlayout.h>
+#include <qlabel.h>
+#include <qlistbox.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -121,7 +123,7 @@ KReversi::KReversi()
     m_gameOver(false)
 {
   QWidget     *w;
-  QHBoxLayout *top;
+  QGridLayout *top;
 
   KNotifyClient::startDaemon();
 
@@ -134,13 +136,22 @@ KReversi::KReversi()
   w = new QWidget(this);
   setCentralWidget(w);
 
-  top = new QHBoxLayout(w);
-  top->addStretch(1);
+  top = new QGridLayout(w, 2, 2);
 
   // The reversi board view.
   m_boardView = new KReversiBoardView(w, m_krgame);
-  top->addWidget(m_boardView);
-  top->addStretch(1);
+  top->addMultiCellWidget(m_boardView, 0, 1, 0, 0);
+
+  // The "Moves" label
+  QLabel  *movesLabel = new QLabel( "Moves", w);
+  movesLabel->setAlignment(AlignCenter);
+  top->addWidget(movesLabel, 0, 1);
+
+  // The list of moves.
+  m_movesView = new QListBox(w, "moves");
+  m_movesView->setMinimumWidth(150);
+  top->addWidget(m_movesView, 1, 1);
+
 
   // The Engine
   m_engine = new Engine();
@@ -152,6 +163,8 @@ KReversi::KReversi()
   addWidget(m_boardView);
 
   // Connect some signals on the board with slots of the application
+  connect(m_krgame, SIGNAL(sig_move(uint, Move&)), 
+	  this,     SLOT(showMove(uint, Move&)));
   connect(m_krgame, SIGNAL(sig_score()),    this, SLOT(showScore()));
   connect(m_krgame, SIGNAL(gameOver()),     this, SLOT(slotGameOver()));
   connect(m_krgame, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
@@ -286,6 +299,7 @@ void KReversi::slotNewGame()
   setState(Ready);
   showTurn(Black);
   m_boardView->updateBoard(TRUE);
+  m_movesView->clear();
   showScore();
 
   // Black always makes first move.
@@ -357,11 +371,19 @@ void KReversi::slotUndo()
   // Undo all moves of the same color as the last one.
   Color  last_color = m_krgame->lastMove().color();
   while (m_krgame->moveNumber() != 0
-	 && last_color == m_krgame->lastMove().color())
+	 && last_color == m_krgame->lastMove().color()) {
+    m_movesView->removeItem(m_krgame->moveNumber() - 1);
     m_krgame->takeBackMove();
+  }
 
   // Take back one more move.
-  m_krgame->takeBackMove();
+  if (m_krgame->moveNumber() > 0) {
+    m_movesView->removeItem(m_krgame->moveNumber() - 1);
+    m_krgame->takeBackMove();
+
+    m_movesView->setCurrentItem(m_krgame->moveNumber() - 1);
+    m_movesView->ensureCurrentVisible();
+  }
 
   if (m_krgame->toMove() == computerColor()) {
     // Must repaint so that the new move is not shown before the old
@@ -464,6 +486,26 @@ void KReversi::showColors()
 {
   m_humanStatus   ->setPixmap(m_boardView->chipPixmap(humanColor(),    20));
   m_computerStatus->setPixmap(m_boardView->chipPixmap(computerColor(), 20));
+}
+
+
+// Show the move in the move view.
+
+void  KReversi::showMove(uint moveno, Move &move)
+{
+  //FIXME: Error checks.
+  QString colors[] = {
+    i18n("White"),
+    i18n("Black")
+  };
+
+  m_movesView->insertItem(QString("%1. %2 %3")
+			  .arg(moveno)
+			  .arg(colors[move.color()]).arg(move.asString()));
+
+  // Mark the current move in the listbox.
+  m_movesView->setCurrentItem(moveno - 1);
+  m_movesView->ensureCurrentVisible();
 }
 
 

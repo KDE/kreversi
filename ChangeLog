@@ -1,5 +1,14 @@
 2005-03-30  Inge Wallin  <inge@lysator.liu.se>
 
+	Implement wish 82517: show moves of the game in a view
+	* Game.h (Game): Make members protected.
+	(asString): new method
+	* qreversigame.cpp (makeMove): emit new signal sig_move .
+	* kreversi.{h,cpp} (m_movesView): new member
+	(showMove): new slot
+
+	----------------------------------------------------------------
+
 	Implement wish 82519: Label the board with A-H, 1-8
 	* board.cpp (OFFSET): new macro
 	(m_marksShowing): new member

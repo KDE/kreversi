@@ -53,3 +53,12 @@ Move::Move(Color color, int x, int y)
   m_x     = x;
   m_y     = y;
 }
+
+
+QString Move::asString() const
+{
+  if (m_x == -1)
+    return QString("pass");
+  else
+    return QString("%1%2").arg(" ABCDEFGH"[m_x]).arg(" 12345678"[m_y]);
+}
