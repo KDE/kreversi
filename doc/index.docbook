@@ -112,7 +112,7 @@ in the center four squares of the board in the following pattern:</para>
 <varlistentry>
 <term><interface>Menu Bar</interface></term>
 <listitem>
-<para>The <interface>Menu Bar</interface> contains four choices of
+<para>The <interface>Menu Bar</interface> contains several choices of
 drop-down menus. These are <link
 linkend="game-menu"><guimenu>Game</guimenu></link>, <link
 linkend="move-menu"><guimenu>Move</guimenu></link>, <link
