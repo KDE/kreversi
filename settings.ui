@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>Settings</class>
 <widget class="QWidget">
     <property name="name">
@@ -8,9 +8,12 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>350</width>
-            <height>267</height>
+            <width>431</width>
+            <height>285</height>
         </rect>
+    </property>
+    <property name="caption">
+        <string>Settings</string>
     </property>
     <vbox>
         <property name="name">
@@ -55,7 +58,7 @@
                                 <cstring>BackgroundColorChoice</cstring>
                             </property>
                             <property name="text">
-                                <string>Color</string>
+                                <string>Color:</string>
                             </property>
                         </widget>
                         <widget class="KURLRequester" row="1" column="1">
@@ -68,7 +71,7 @@
                                 <cstring>BackgroundImageChoice</cstring>
                             </property>
                             <property name="text">
-                                <string>Image</string>
+                                <string>Image:</string>
                             </property>
                             <property name="checked">
                                 <bool>true</bool>
@@ -116,7 +119,7 @@
                         <cstring>Grayscale</cstring>
                     </property>
                     <property name="text">
-                        <string>Grayscale Chips</string>
+                        <string>Grayscale chips</string>
                     </property>
                 </widget>
                 <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="2">
@@ -186,7 +189,7 @@
                                 <enum>Horizontal</enum>
                             </property>
                             <property name="tickmarks">
-                                <enum>Right</enum>
+                                <enum>NoMarks</enum>
                             </property>
                         </widget>
                     </grid>
@@ -222,7 +225,7 @@
                                 <enum>Horizontal</enum>
                             </property>
                             <property name="tickmarks">
-                                <enum>Right</enum>
+                                <enum>NoMarks</enum>
                             </property>
                         </widget>
                         <widget class="QLabel" row="1" column="0">
@@ -264,6 +267,8 @@
         </widget>
     </vbox>
 </widget>
+<customwidgets>
+</customwidgets>
 <connections>
     <connection>
         <sender>Animation</sender>
@@ -286,9 +291,7 @@
 </connections>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>kurlrequester.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
-    <includehint>kcolorbutton.h</includehint>
 </includehints>
 </UI>
