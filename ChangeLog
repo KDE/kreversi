@@ -1,54 +1,31 @@
+1.0
+	* I finally decided that it´s stable enough. This is the final
+	version (if no further bugs are detected and I do not have a
+	good idea what to improve)
+
+	* ChangeLog reversed
+	
 0.6.6
     * [Robert Williams]  Changed Reversi.kdelnk to kreversi.kdelnk
     * [Robert Williams]  Add -caption "%c" to kreversi.kdelnk
     * [Robert Williams]  Added kapp->getCaption()
     * [Robert Williams]  getHelpMenu(true, 0) -> Uses own About dialog
 
-
-0.1 : First release
+0.6.5	Support for non GNUC++ compilers.
 	
-0.1.1: now pixmaps are installed
-       a kdelnk file is installed
-       version numbering changed
+0.6.4	fixed that get-hit-and-then-doubleclick bug
 
-0.1.2: background color selectable via dialog
-       background pixmaps implemented, selectable via menu
-       background pixmaps are scaled to fit size
-       pieces are drawn at runtime instead of pixmaps
-       some accelerators added
-       toolbar buttons for help and hint added
+	fixed a bug that caused the computer to switch sides if no
+	computer move is possible instead of getting another human move
 
-0.2:   better pieces
-       animations
-       fixed a small bug: when someone made it in the hall of fame,
-       he was'nt notified of this
-       some improvements in the Hall Of Fame
+0.6.3	sound fix: when the animation is finished, the correct piece gets
+	redrawn before doing a sound-sync (how could I ever believe 0.6.2
+	would be the last change :-)
 
-0.2.1: times(NULL) does not work with FreeBSD (fixed)
-       fixed a bug (reported by Stephan Kulow) where pixmaps of pieces
-       are not initialized properly (could't reproduce the bug with
-       my system)
-       New "About" dialog showing all (well, most) of the contributors
-       All xpm's have now 8 bits per color component instead of 16.
-       16 bits seems to confuse the XPM loader of Qt.       
+0.6.2   animation fixed (hope this will be the last change)
 
-0.3: Sound support (using libmediatool)
-     When switching sides, the Quit -> the computer made on move. FIXED
-     Fixed a few typos
-     Cursor changes when thinking
-
-0.4: interims release - no changelog	
-
-0.5: added klocale to support translation
-	added german translation
-	fixed a few bugs
-	tried to remove absolute widget placing/sizing
-	removed the date field from the HOF
-	grayscale support
-	fixed those CPU busy bug
-	removed the -finline-functions optimize flag (not portable)
-	ported to new KDE file system standards (well, mostly)
-	fixed segfaulting on exit
+0.6.1   fixed that newly introduced highscore bug
+	computer continues now if a game was saved while thinking
 
 0.6:	better integration into new FSSTND
 	fixes for new kdecore
@@ -61,18 +38,48 @@
 	session-managment - what an overkill for kreversi :-))
 	you can save (and load) exactly ONE game
 
-l0.6.1   fixed that newly introduced highscore bug
-	computer continues now if a game was saved while thinking
 
-0.6.2   animation fixed (hope this will be the last change)
+0.5: added klocale to support translation
+	added german translation
+	fixed a few bugs
+	tried to remove absolute widget placing/sizing
+	removed the date field from the HOF
+	grayscale support
+	fixed those CPU busy bug
+	removed the -finline-functions optimize flag (not portable)
+	ported to new KDE file system standards (well, mostly)
+	fixed segfaulting on exit
 
-0.6.3	sound fix: when the animation is finished, the correct piece gets
-	redrawn before doing a sound-sync (how could I ever believe 0.6.2
-	would be the last change :-)
+0.4: interims release - no changelog
 
-0.6.4	fixed that get-hit-and-then-doubleclick bug
-
-	fixed a bug that caused the computer to switch sides if no
-	computer move is possible instead of getting another human move
+0.3: Sound support (using libmediatool)
+     When switching sides, the Quit -> the computer made on move. FIXED
+     Fixed a few typos
+     Cursor changes when thinking
 	
-0.6.5	Support for non GNUC++ compilers.
+0.2.1: times(NULL) does not work with FreeBSD (fixed)
+       fixed a bug (reported by Stephan Kulow) where pixmaps of pieces
+       are not initialized properly (could't reproduce the bug with
+       my system)
+       New "About" dialog showing all (well, most) of the contributors
+       All xpm's have now 8 bits per color component instead of 16.
+       16 bits seems to confuse the XPM loader of Qt.       
+
+0.2:   better pieces
+       animations
+       fixed a small bug: when someone made it in the hall of fame,
+       he was'nt notified of this
+       some improvements in the Hall Of Fame
+
+0.1.2: background color selectable via dialog
+       background pixmaps implemented, selectable via menu
+       background pixmaps are scaled to fit size
+       pieces are drawn at runtime instead of pixmaps
+       some accelerators added
+       toolbar buttons for help and hint added
+
+0.1.1: now pixmaps are installed
+       a kdelnk file is installed
+       version numbering changed
+
+0.1 : First release
