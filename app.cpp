@@ -71,6 +71,9 @@
 #include "about.h"
 #include "playsound.h"
 
+#define APPDATA(x) KGlobal::dirs()->findResource("appdata", x)
+#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
+
 const int ID_FSAVE	= 101;
 const int ID_FLOAD	= 102;
 const int ID_FQUIT	= 104;
@@ -296,14 +299,24 @@ void App::createMenuBar() {
 
   if(backgroundPixmaps.count() == 0)
     om_bg->insertItem(i18n("none"), ID_PIXMAP);
-  else
+  else {
+    QPopupMenu *current = om_bg;
     for(unsigned i = 0; i < backgroundPixmaps.count(); i++) {
       // since the filename may contain underscore, they
       // are replaced with spaces in the menu entry
       QString s(backgroundPixmaps.at(i)->baseName());
       s = s.replace(QRegExp("_"), " ");
-      om_bg->insertItem((const char *)s, ID_PIXMAP + i);
+      
+      // avoid too longish menus
+      if(current->count() > 20) {
+	QPopupMenu *newmenu = new QPopupMenu;
+	current->insertItem(i18n("More..."), newmenu);
+	current = newmenu;
+      }
+
+      current->insertItem((const char *)s, ID_PIXMAP + i);
     }
+  }
   
   om->insertItem(i18n("Select background image"), om_bg);
   om->insertItem(i18n("&Grayscale"), ID_OGSCALE);
@@ -362,6 +375,11 @@ void App::createMenuBar() {
   menu->setItemEnabled(ID_PIXMAP, backgroundPixmaps.count()!=0);
 }
 
+#ifdef ICON
+#undef ICON
+#endif
+
+#define ICON(x) QPixmap(PICDATA(x))
 
 void App::createToolBar() {
   tb = new KToolBar(this);
@@ -391,10 +409,9 @@ void App::createStatusBar() {
 
 
 void App::lookupBackgroundPixmaps() {
-  QString PICDIR = KGlobal::dirs()->findResourceDir("data",
-						    kapp->name());
+  QString PICDIR = KGlobal::dirs()->findResourceDir("wallpaper", "chess.jpg");
 
-  QDir dir(PICDIR + kapp->name() + "/pics/background", "*.xpm");
+  QDir dir(PICDIR, "*.jpg");
   if(!dir.exists())
     return;
 

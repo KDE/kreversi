@@ -45,11 +45,15 @@
 #include <qlayout.h>
 #include <kiconloader.h>
 #include <kglobal.h>
+#include <kstddirs.h>
+
+#define APPDATA(x) KGlobal::dirs()->findResource("appdata", x)
+#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
 
 About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
   setCaption(i18n("About kreversi"));
 
-  QPixmap pm = ICON("logo.xpm");
+  QPixmap pm(PICDATA("logo.xpm"));
   QLabel *logo = new QLabel(this);
   logo->setPixmap(pm);
   logo->setFixedSize(logo->sizeHint());  

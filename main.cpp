@@ -41,11 +41,14 @@
 #include <kapp.h>
 #include <kstddirs.h>
 #include <kglobal.h>
+#include <kimgio.h>
 #include "app.h"
 
 int main(int argc, char **argv) {
   KApplication a(argc, argv, "kreversi");
 
+  kimgioRegister();
+  
   App *app = new App;
 
   app->show();

@@ -53,6 +53,9 @@
 #include <config.h>
 #include <unistd.h>
 
+#define APPDATA(x) KGlobal::dirs()->findResource("appdata", x)
+#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
+
 extern QString SOUNDDIR;
 
 const int HINT_BLINKRATE = 250000;
@@ -103,7 +106,7 @@ void Board::start() {
 }
 
 void Board::loadChips(const char *filename) {
-  allchips = ICON(filename);
+  allchips.load(PICDATA(filename));
   chipname = filename;
   loadPixmaps();
 }
