@@ -105,7 +105,7 @@ install: all
 	$(INSTALL_DATA) sounds/$$i $(SOUNDDIR); \
 	done
 	$(INSTALL_DIR) $(ICONDIR)
-	$(INSTALL_DATA) icons/Reversi.xpm $(ICONDIR)
+	$(INSTALL_DATA) pics/Reversi.xpm $(ICONDIR)
 
 uninstall:
 	rm -f $(BINDIR)/$(TARGET)
