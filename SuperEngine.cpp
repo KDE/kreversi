@@ -111,6 +111,7 @@
 SuperEngine::SuperEngine(int st) {
   m_strength = st;
   // JAVA m_random = new Random();
+  m_random.setSeed(0);
   m_interrupt = false;
 }
 
@@ -122,6 +123,8 @@ SuperEngine::SuperEngine(int st, int sd) {
   m_interrupt = false;
 }
 
+SuperEngine::~SuperEngine() {
+}
 
 void SuperEngine::SetInterrupt(bool intr)
 {

@@ -6,11 +6,11 @@ LDADD =   -lkimgio -lmediatool $(LIB_KDEUI)
 bin_PROGRAMS = kreversi
 
 kreversi_SOURCES = main.cpp misc.cpp app.cpp board.cpp Game.cpp Score.cpp SuperEngine.cpp \
-		Engine.cpp Position.cpp Move.cpp Random.cpp about.cpp playsound.cpp
+		Engine.cpp Position.cpp Move.cpp about.cpp playsound.cpp
 METASOURCES =	app.moc board.moc about.moc
 
 noinst_HEADERS = Engine.h about.h Game.h app.h Move.h board.h Position.h \
-	misc.h Random.h playsound.h Score.h version.h SuperEngine.h           
+	misc.h playsound.h Score.h version.h SuperEngine.h           
 
 SUBDIRS = . pics sounds icons
 

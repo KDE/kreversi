@@ -110,13 +110,15 @@
 #define __SUPERENGINE__H__
 
 #include "misc.h"
-#include "Random.h"
 #include "Game.h"
+
+#include <krandomsequence.h>
 
 class SuperEngine {
 public:
   SuperEngine(int st);
   SuperEngine(int st, int sd);
+  virtual ~SuperEngine();
   void SetInterrupt(bool intr);
   bool GetInterrupt();
   void SetStrength(int st);
@@ -126,7 +128,7 @@ public:
 
 protected:
   int m_strength;
-  Random m_random;
+  KRandomSequence m_random;
 
 private:
   bool m_interrupt;

@@ -332,7 +332,7 @@ Move Engine::ComputeMove(Game g) {
 
   if (number_of_maxval > 1)
     {
-      int r = (m_random.nextInt() % number_of_maxval) + 1;
+      int r = m_random.getLong(number_of_maxval) + 1;
 
       int i;
 
@@ -357,7 +357,7 @@ Move Engine::ComputeFirstMove(Game g) {
   int r;
   int player = g.GetWhoseTurn();
 
-  r = (m_random.nextInt() % 4) + 1;
+  r = m_random.getLong(4) + 1;
 
   if (player == Score::WHITE)
     {
