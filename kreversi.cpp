@@ -105,8 +105,8 @@ KReversi::KReversi()
   addWidget(board);
 
   connect(board, SIGNAL(score()), this, SLOT(slotScore()));
-  connect(board, SIGNAL(gameWon(Player)), this, SLOT(slotGameEnded(Player)));
-  connect(board, SIGNAL(turn(Player)), this, SLOT(slotTurn(Player)));
+  connect(board, SIGNAL(gameWon(Color)), this, SLOT(slotGameEnded(Color)));
+  connect(board, SIGNAL(turn(Color)), this, SLOT(slotTurn(Color)));
   connect(board, SIGNAL(statusChange(Board::State)),
           this, SLOT(slotStatusChange(Board::State)));
 
@@ -167,27 +167,27 @@ void KReversi::save(){
 
 
 void KReversi::slotScore() {
-  _humanStatus->setScore(board->score(board->humanPlayer()));
-  _computerStatus->setScore(board->score(board->computerPlayer()));
+  _humanStatus->setScore(board->score(board->humanColor()));
+  _computerStatus->setScore(board->score(board->computerColor()));
 }
 
-void KReversi::slotGameEnded(Player player) {
+void KReversi::slotGameEnded(Color color) {
   if (gameOver) return;
   statusBar()->message(i18n("End of game"));
 
   // get the scores
-  uint human = board->score(board->humanPlayer());
-  uint computer = board->score(board->computerPlayer());
+  uint human = board->score(board->humanColor());
+  uint computer = board->score(board->computerColor());
 
   KExtHighscore::Score score;
-  score.setScore(board->score(board->humanPlayer()));
+  score.setScore(board->score(board->humanColor()));
   
-  if( player==Nobody ) {
+  if( color==Nobody ) {
     KNotifyClient::event(winId(), "draw", i18n("Draw!"));
     QString s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Draw);
-  } else if( board->humanPlayer()==player ) {
+  } else if( board->humanColor()==color ) {
     KNotifyClient::event(winId(), "won", i18n("Game won!"));
     QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2")
                 .arg(human).arg(computer);
@@ -205,13 +205,13 @@ void KReversi::slotGameEnded(Player player) {
   gameOver = true;
 }
 
-void KReversi::slotTurn(Player player) {
+void KReversi::slotTurn(Color color) {
   if (gameOver)
     return;
 
-  if(player == board->humanPlayer())
+  if(color == board->humanColor())
     statusBar()->message(i18n("Your turn"));
-  else if(player == board->computerPlayer())
+  else if(color == board->computerColor())
     statusBar()->message(i18n("Computer's turn"));
   else
     statusBar()->clear();
@@ -261,8 +261,8 @@ void KReversi::configureNotifications()
 
 void KReversi::updateColors()
 {
-  _humanStatus->setPixmap(board->chipPixmap(board->humanPlayer(), 20));
-  _computerStatus->setPixmap(board->chipPixmap(board->computerPlayer(), 20));
+  _humanStatus->setPixmap(board->chipPixmap(board->humanColor(), 20));
+  _computerStatus->setPixmap(board->chipPixmap(board->computerColor(), 20));
 }
 
 void KReversi::loadSettings()

@@ -46,8 +46,8 @@
 
 #include "Move.h"
 
-Move::Move(int x, int y, Player player) {
+Move::Move(int x, int y, Color color) {
   m_x = x;
   m_y = y;
-  m_player = player;
+  m_color = color;
 }

@@ -100,11 +100,11 @@ void Position::constrCopy(Position &p, Move &m) {
 
   m_score = p.m_score;
 
-  Player player = m.player();
-  Player opponent = ::opponent(player);
+  Color color = m.color();
+  Color opponent = ::opponent(color);
 
-  m_board[m.x()][m.y()] = player;
-  m_score.inc(player);
+  m_board[m.x()][m.y()] = color;
+  m_score.inc(color);
 
   for (int xinc=-1; xinc<=1; xinc++)
     for (int yinc=-1; yinc<=1; yinc++)
@@ -116,12 +116,12 @@ void Position::constrCopy(Position &p, Move &m) {
 	   x += xinc, y += yinc)
 	;
 
-      if (m_board[x][y] == player)
+      if (m_board[x][y] == color)
 	for (x -= xinc, y -= yinc; x != m.x() || y != m.y();
 	     x -= xinc, y -= yinc)
 	  {
-	    m_board[x][y] = player;
-	    m_score.inc(player);
+	    m_board[x][y] = color;
+	    m_score.inc(color);
 	    m_score.dec(opponent);
 	  }
 	}
@@ -141,18 +141,18 @@ Position::Position(Position &p, Move &m)
 }
 
 
-Player Position::player(uint x, uint y) const {
+Color Position::color(uint x, uint y) const {
   return m_board[x][y];
 }
 
-uint Position::score(Player player) const { return m_score.score(player); }
+uint Position::score(Color color) const { return m_score.score(color); }
 
 bool Position::moveIsLegal(Move m) const
 {
   if (m_board[m.x()][m.y()] != Nobody) return false;
 
-  Player player = m.player();
-  Player opponent = ::opponent(player);
+  Color color = m.color();
+  Color opponent = ::opponent(color);
 
   for (int xinc=-1; xinc<=1; xinc++)
     for (int yinc=-1; yinc<=1; yinc++)
@@ -164,7 +164,7 @@ bool Position::moveIsLegal(Move m) const
 	       x += xinc, y += yinc)
 	    ;
 
-	  if (m_board[x][y] == player &&
+	  if (m_board[x][y] == color &&
 	      (x - xinc != m.x() || y - yinc != m.y()))
 	    return true;
 	}
@@ -173,11 +173,11 @@ bool Position::moveIsLegal(Move m) const
 }
 
 
-bool Position::moveIsPossible(Player player) const
+bool Position::moveIsPossible(Color color) const
 {
   for (uint i=1; i<9; i++)
     for (uint j=1; j<9; j++)
-      if (moveIsLegal(Move(i, j, player))) return true;
+      if (moveIsLegal(Move(i, j, color))) return true;
 
   return false;
 }

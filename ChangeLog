@@ -1,9 +1,15 @@
+2004-08-14  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+
+	Step 1 in the plan to use KGame from libkdegames:
+	* Code cleaning: Change "enum Player" to "enum Color", since that
+	is really what it describes.
+
 2004-06-29 (1.5) Nicolas Hadacek <hadacek@kde.org>
-  * use KZoomMainWindow
+	* use KZoomMainWindow
 
 2004-05-29 (1.4) Nicolas Hadacek <hadacek@kde.org>
-  * fix statusbar + cleanup code
-  * use notify framework for sounds
+	* fix statusbar + cleanup code
+	* use notify framework for sounds
 
 1999-06-20 Mario Weilguni <mweilguni@kde.org>
 	* fixed bugs with those damned KStdDirs

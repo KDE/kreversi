@@ -84,8 +84,8 @@ private:
 
 private slots:
   void slotScore();
-  void slotGameEnded(Player);
-  void slotTurn(Player);
+  void slotGameEnded(Color);
+  void slotTurn(Color);
   void slotStatusChange(Board::State);
   void switchSides();
 

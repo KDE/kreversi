@@ -234,9 +234,9 @@ void Engine::yield() {
 Move Engine::computeMove(Game g) {
   m_exhaustive = false;
 
-  Player player = g.whoseTurn();
+  Color color = g.whoseTurn();
 
-  if (player == Nobody)
+  if (color == Nobody)
     return Move(-1, -1, Nobody);
 
   // Figure out the current score
@@ -278,13 +278,13 @@ Move Engine::computeMove(Game g) {
 
   for (uint x=1; x<9; x++)
     for (uint y=1; y<9; y++)
-      m_board[x][y] = g.player(x, y);
+      m_board[x][y] = g.color(x, y);
 
   m_bc_score.set(White, CalcBcScore(White));
   m_bc_score.set(Black, CalcBcScore(Black));
 
-  ULONG64 playerbits = ComputeOccupiedBits(player);
-  ULONG64 opponentbits = ComputeOccupiedBits(opponent(player));
+  ULONG64 colorbits = ComputeOccupiedBits(color);
+  ULONG64 opponentbits = ComputeOccupiedBits(opponent(color));
 
   int maxval = -LARGEINT;
   int max_x = 0;
@@ -310,8 +310,8 @@ Move Engine::computeMove(Game g) {
 	  (m_neighbor_bits[x][y] & opponentbits) != null_bits)
 	{
 
-	  int val = ComputeMove2(x, y, player, 1, maxval,
-				 playerbits, opponentbits);
+	  int val = ComputeMove2(x, y, color, 1, maxval,
+				 colorbits, opponentbits);
 
 	  if (val != ILLEGAL_VALUE)
 	    {
@@ -354,7 +354,7 @@ Move Engine::computeMove(Game g) {
   if (interrupt()) {
     return Move(-1, -1, Nobody);
   } else if (maxval != -LARGEINT) {
-    return Move(max_x, max_y, player);
+    return Move(max_x, max_y, color);
   } else {
     return Move(-1, -1, Nobody);
   }
@@ -363,41 +363,41 @@ Move Engine::computeMove(Game g) {
 
 Move Engine::ComputeFirstMove(Game g) {
   int r;
-  Player player = g.whoseTurn();
+  Color color = g.whoseTurn();
 
   r = m_random.getLong(4) + 1;
 
-  if (player == White)
+  if (color == White)
     {
-      if (r == 1) return Move(3, 5, player);
-      else if (r == 2) return  Move(4, 6, player);
-      else if (r == 3) return  Move(5, 3, player);
-      else return  Move(6, 4, player);
+      if (r == 1) return Move(3, 5, color);
+      else if (r == 2) return  Move(4, 6, color);
+      else if (r == 3) return  Move(5, 3, color);
+      else return  Move(6, 4, color);
     }
   else
     {
-      if (r == 1) return  Move(3, 4, player);
-      else if (r == 2) return  Move(5, 6, player);
-      else if (r == 3) return  Move(4, 3, player);
-      else return  Move(6, 5, player);
+      if (r == 1) return  Move(3, 4, color);
+      else if (r == 2) return  Move(5, 6, color);
+      else if (r == 3) return  Move(4, 3, color);
+      else return  Move(6, 5, color);
     }
 }
 
 
-int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
-			 int cutoffval, ULONG64 playerbits,
+int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
+			 int cutoffval, ULONG64 colorbits,
 			 ULONG64 opponentbits)
 {
   int number_of_turned = 0;
   SquareStackEntry mse;
-  Player opponent = ::opponent(player);
+  Color opponent = ::opponent(color);
 
   m_nodes_searched++;
 
-  m_board[xplay][yplay] = player;
-  playerbits |= m_coord_bit[xplay][yplay];
-  m_score.inc(player);
-  m_bc_score.add(player, m_bc_board[xplay][yplay]);
+  m_board[xplay][yplay] = color;
+  colorbits |= m_coord_bit[xplay][yplay];
+  m_score.inc(color);
+  m_bc_score.add(color, m_bc_board[xplay][yplay]);
 
   ///////////////////
   // Turn all pieces:
@@ -413,15 +413,15 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 	       x += xinc, y += yinc)
 	    ;
 
-	  if (m_board[x][y] == player)
+	  if (m_board[x][y] == color)
 	    for (x -= xinc, y -= yinc; x != xplay || y != yplay;
 		 x -= xinc, y -= yinc)
 	      {
-		m_board[x][y] = player;
-		playerbits |= m_coord_bit[x][y];
+		m_board[x][y] = color;
+		colorbits |= m_coord_bit[x][y];
 		opponentbits &= ~m_coord_bit[x][y];
 		m_squarestack.Push(x, y);
-		m_bc_score.add(player, m_bc_board[x][y]);
+		m_bc_score.add(color, m_bc_board[x][y]);
 		m_bc_score.sub(opponent, m_bc_board[x][y]);
 		number_of_turned++;
 	      }
@@ -435,22 +435,22 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
       // Legal move:
       //////////////
 
-      m_score.add(player, number_of_turned);
+      m_score.add(color, number_of_turned);
       m_score.sub(opponent, number_of_turned);
 
-      if (level >= m_depth) retval = EvaluatePosition(player); // Terminal node
+      if (level >= m_depth) retval = EvaluatePosition(color); // Terminal node
       else
 	{
 	  int maxval = TryAllMoves(opponent, level, cutoffval, opponentbits,
-				   playerbits);
+				   colorbits);
 
 	  if (maxval != -LARGEINT) retval = -maxval;
 	  else
 	    {
 	      ///////////////////////////////////////////////////////////////
-	      // No possible move for the opponent, it is players turn again:
+	      // No possible move for the opponent, it is colors turn again:
 	      ///////////////////////////////////////////////////////////////
-	      retval= TryAllMoves(player, level, -LARGEINT, playerbits,
+	      retval= TryAllMoves(color, level, -LARGEINT, colorbits,
 				  opponentbits);
 
 	      if (retval == -LARGEINT)
@@ -460,7 +460,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 		  ///////////////////////////////////////////////
 
 		  int finalscore =
-		    m_score.score(player) - m_score.score(opponent);
+		    m_score.score(color) - m_score.score(opponent);
 
 		  if (m_exhaustive) retval = finalscore;
 		  else
@@ -476,7 +476,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 	}
 
       m_score.add(opponent, number_of_turned);
-      m_score.sub(player, number_of_turned);
+      m_score.sub(color, number_of_turned);
     }
 
   /////////////////
@@ -487,21 +487,21 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
     {
       mse = m_squarestack.Pop();
       m_bc_score.add(opponent, m_bc_board[mse.m_x][mse.m_y]);
-      m_bc_score.sub(player, m_bc_board[mse.m_x][mse.m_y]);
+      m_bc_score.sub(color, m_bc_board[mse.m_x][mse.m_y]);
       m_board[mse.m_x][mse.m_y] = opponent;
     }
 
   m_board[xplay][yplay] = Nobody;
-  m_score.sub(player, 1);
-  m_bc_score.sub(player, m_bc_board[xplay][yplay]);
+  m_score.sub(color, 1);
+  m_bc_score.sub(color, m_bc_board[xplay][yplay]);
 
   if (number_of_turned < 1 || interrupt()) return ILLEGAL_VALUE;
   else return retval;
 }
 
 
-int Engine::TryAllMoves(Player opponent, int level, int cutoffval,
-			ULONG64 opponentbits, ULONG64 playerbits)
+int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
+			ULONG64 opponentbits, ULONG64 colorbits)
 {
   int maxval = -LARGEINT;
 
@@ -515,10 +515,10 @@ int Engine::TryAllMoves(Player opponent, int level, int cutoffval,
     {
       for (int y=1; y<9; y++)
 	if (m_board[x][y] == Nobody &&
-	    (m_neighbor_bits[x][y] & playerbits) != null_bits)
+	    (m_neighbor_bits[x][y] & colorbits) != null_bits)
 	  {
 	    int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
-				   playerbits);
+				   colorbits);
 
 	    if (val != ILLEGAL_VALUE && val > maxval)
 	      {
@@ -535,21 +535,21 @@ int Engine::TryAllMoves(Player opponent, int level, int cutoffval,
 }
 
 
-int Engine::EvaluatePosition(Player player)
+int Engine::EvaluatePosition(Color color)
 {
   int retval;
 
-  Player opponent = ::opponent(player);
-  int score_player = m_score.score(player);
+  Color opponent = ::opponent(color);
+  int score_color = m_score.score(color);
   int score_opponent = m_score.score(opponent);
 
-  if (m_exhaustive) retval = score_player - score_opponent;
+  if (m_exhaustive) retval = score_color - score_opponent;
   else
     {
       retval = (100-m_coeff) *
-	(m_score.score(player) - m_score.score(opponent)) +
+	(m_score.score(color) - m_score.score(opponent)) +
 	m_coeff * BC_WEIGHT *
-	(m_bc_score.score(player)-m_bc_score.score(opponent));
+	(m_bc_score.score(color)-m_bc_score.score(opponent));
     }
 
   return retval;
@@ -615,26 +615,26 @@ void Engine::SetupBcBoard()
 }
 
 
-int Engine::CalcBcScore(Player player)
+int Engine::CalcBcScore(Color color)
 {
   int sum = 0;
 
   for (int i=1; i < 9; i++)
     for (int j=1; j < 9; j++)
-      if (m_board[i][j] == player)
+      if (m_board[i][j] == color)
 	sum += m_bc_board[i][j];
 
   return sum;
 }
 
 
-ULONG64 Engine::ComputeOccupiedBits(Player player)
+ULONG64 Engine::ComputeOccupiedBits(Color color)
 {
   ULONG64 retval = 0;
 
   for (int i=1; i < 9; i++)
     for (int j=1; j < 9; j++)
-      if (m_board[i][j] == player) retval |= m_coord_bit[i][j];
+      if (m_board[i][j] == color) retval |= m_coord_bit[i][j];
 
   return retval;
 }

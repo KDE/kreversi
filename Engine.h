@@ -189,17 +189,17 @@ public:
 
   Move computeMove(Game g);
   Move ComputeFirstMove(Game g);
-  int ComputeMove2(int xplay, int yplay, Player player, int level,
-    int cutoffval, ULONG64 playerbits, ULONG64 opponentbits);
+  int ComputeMove2(int xplay, int yplay, Color color, int level,
+    int cutoffval, ULONG64 colorbits, ULONG64 opponentbits);
 
-  int TryAllMoves(Player opponent, int level, int cutoffval,
-		  ULONG64 opponentbits, ULONG64 playerbits);
+  int TryAllMoves(Color opponent, int level, int cutoffval,
+		  ULONG64 opponentbits, ULONG64 colorbits);
 
-  int EvaluatePosition(Player player);
+  int EvaluatePosition(Color color);
   void SetupBcBoard();
   void SetupBits();
-  int CalcBcScore(Player player);
-  ULONG64 ComputeOccupiedBits(Player player);
+  int CalcBcScore(Color color);
+  ULONG64 ComputeOccupiedBits(Color color);
 
   void yield();
 
@@ -207,7 +207,7 @@ private:
   static const int LARGEINT;
   static const int ILLEGAL_VALUE;
   static const int BC_WEIGHT;
-  Player m_board[10][10];
+  Color m_board[10][10];
   int m_bc_board[9][9];
   Score m_score;
   Score m_bc_score;

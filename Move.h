@@ -55,16 +55,16 @@
 class Move
 {
 public:
-  Move() { m_x = -1; m_y = -1; m_player = Nobody; }
-  Move(int x, int y, Player player);
+  Move() { m_x = -1; m_y = -1; m_color = Nobody; }
+  Move(int x, int y, Color color);
 
   int x() const { return m_x; }
   int y() const { return m_y; }
-  Player player() const { return m_player; }
+  Color color() const { return m_color; }
 
 private:
   int m_x, m_y;
-  Player m_player;
+  Color m_color;
 };
 
 #endif

@@ -49,21 +49,21 @@
 
 #include <qglobal.h>
 
-enum Player { White = 0, Black = 1, NbPlayers = 2, Nobody = NbPlayers };
-Player opponent(Player player);
+enum Color { White = 0, Black = 1, NbColors = 2, Nobody = NbColors };
+Color opponent(Color color);
 
 class Score {
 public:
   Score();
-  uint score(Player player) const { return m_score[player]; }
-  void set(Player player, uint score) { m_score[player] = score; }
-  void inc(Player player) { m_score[player]++; }
-  void dec(Player player) { m_score[player]--; }
-  void add(Player player, uint s) { m_score[player] += s; }
-  void sub(Player player, uint s) { m_score[player] -= s; }
+  uint score(Color color) const { return m_score[color]; }
+  void set(Color color, uint score) { m_score[color] = score; }
+  void inc(Color color) { m_score[color]++; }
+  void dec(Color color) { m_score[color]--; }
+  void add(Color color, uint s) { m_score[color] += s; }
+  void sub(Color color, uint s) { m_score[color] -= s; }
   
 private:
-  uint m_score[NbPlayers];
+  uint m_score[NbColors];
 };
 
 #endif

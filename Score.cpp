@@ -52,9 +52,9 @@ Score::Score()
   m_score[Black] = 0;
 }
 
-Player opponent(Player player)
+Color opponent(Color color)
 {
-  switch (player) {
+  switch (color) {
   case White: return Black;
   case Black: return White;
   case Nobody: break;

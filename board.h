@@ -58,10 +58,10 @@ public:
   ~Board();
 
   void newGame();
-  Player whoseTurn() const;
-  Player humanPlayer() const { return human; }
-  Player computerPlayer() const { return opponent(human); }
-  uint score(Player) const;
+  Color whoseTurn() const;
+  Color humanColor() const { return human; }
+  Color computerColor() const { return opponent(human); }
+  uint score(Color) const;
   void setStrength(uint);
   uint strength() const;
   bool interrupted() const;
@@ -85,7 +85,7 @@ public:
   enum ChipType { Unloaded, Colored, Grayscale };
   void loadChips(ChipType);
   ChipType chipType() const { return chiptype; }
-  QPixmap chipPixmap(Player player, uint size) const;
+  QPixmap chipPixmap(Color color, uint size) const;
   QPixmap chipPixmap(uint i, uint size) const;
 
   bool loadGame(KConfig *, bool noupdate = FALSE);
@@ -105,10 +105,10 @@ public slots:
 
 signals:
   void score();
-  void gameWon(Player);
+  void gameWon(Color);
   void statusChange(Board::State);
   void sizeChange();
-  void turn(Player);
+  void turn(Color);
 
 private:
   void fieldClicked(int, int);
@@ -119,7 +119,7 @@ private:
   void updateBoard(bool force = FALSE);
 
   uint zoomedSize() const;
-  void drawPiece(uint row, uint col, Player);
+  void drawPiece(uint row, uint col, Color);
   void drawOnePiece(uint row, uint col, int i);
   void animateChanged(Move m);
   void animateChangedRow(int row, int col, int dy, int dx);
@@ -131,7 +131,7 @@ private:
   Game *game;
 
   State _status;
-  Player human;
+  Color human;
   bool nopaint;
 
   QColor bgColor;

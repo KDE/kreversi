@@ -114,8 +114,8 @@ void Game::Reset()
 
 bool Game::MakeMove(Move m)
 {
-  if (m.player() == Nobody) return false;
-  if (whoseTurn() != m.player()) return false;
+  if (m.color() == Nobody) return false;
+  if (whoseTurn() != m.color()) return false;
   if (! m_positions[m_movenumber].moveIsLegal(m)) return false;
 
   m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], m);
@@ -135,15 +135,15 @@ bool Game::TakeBackMove()
 }
 
 
-Player Game::player(uint x, uint y) const
+Color Game::color(uint x, uint y) const
 {
-  return m_positions[m_movenumber].player(x, y);
+  return m_positions[m_movenumber].color(x, y);
 }
 
 
-uint Game::score(Player player) const
+uint Game::score(Color color) const
 {
-  return m_positions[m_movenumber].score(player);
+  return m_positions[m_movenumber].score(color);
 }
 
 
@@ -156,9 +156,9 @@ bool Game::moveIsLegal(Move m) const
 }
 
 
-bool Game::moveIsPossible(Player player) const
+bool Game::moveIsPossible(Color color) const
 {
-  return m_positions[m_movenumber].moveIsPossible(player);
+  return m_positions[m_movenumber].moveIsPossible(color);
 }
 
 
@@ -168,15 +168,15 @@ bool Game::moveIsAtAllPossible() const
 }
 
 
-Player Game::whoseTurn() const
+Color Game::whoseTurn() const
 {
   if (m_movenumber == 0) return Black;
 
-  Player player = lastMove().player();
-  Player opponent = ::opponent(player);
+  Color color = lastMove().color();
+  Color opponent = ::opponent(color);
 
   if (moveIsPossible(opponent)) return opponent;
-  if (moveIsPossible(player)) return player;
+  if (moveIsPossible(color)) return color;
   return Nobody;
 }
 
@@ -184,15 +184,15 @@ bool Game::squareModified(uint x, uint y) const {
   if(moveNumber() == 0)
     return true;
   else
-    return (m_positions[m_movenumber].player(x, y) != m_positions[m_movenumber-1].player(x, y));
+    return (m_positions[m_movenumber].color(x, y) != m_positions[m_movenumber-1].color(x, y));
 }
 
 bool Game::wasTurned(uint x, uint y) const {
   if(moveNumber() == 0)
     return false;
   else {
-    Player c1 = m_positions[m_movenumber-1].player(x, y);
-    Player c2 = m_positions[m_movenumber].player(x, y);
+    Color c1 = m_positions[m_movenumber-1].color(x, y);
+    Color c2 = m_positions[m_movenumber].color(x, y);
 
     if(c1 == Nobody)
       return false;

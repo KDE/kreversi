@@ -56,7 +56,7 @@
 
 const uint HINT_BLINKRATE = 250000;
 const uint ANIMATION_DELAY = 3000;
-const uint CHIP_OFFSET[NbPlayers] = { 24, 1 };
+const uint CHIP_OFFSET[NbColors] = { 24, 1 };
 const uint CHIP_SIZE       = 36;
 
 //-----------------------------------------------------------------------------
@@ -106,9 +106,9 @@ void Board::setAnimationSpeed(uint speed) {
 /// takes back last set of moves
 void Board::undo() {
   if(state() == Ready) {
-    Player last_player = game->lastMove().player();
+    Color last_color = game->lastMove().color();
     while ((game->moveNumber() != 0) &&
-           (last_player == game->lastMove().player()))
+           (last_color == game->lastMove().color()))
        game->TakeBackMove();
     game->TakeBackMove();
     update();
@@ -122,7 +122,7 @@ void Board::interrupt() {
 }
 
 bool Board::interrupted() const {
-  return ((game->whoseTurn() == computerPlayer()) && (state() == Ready));
+  return ((game->whoseTurn() == computerColor()) && (state() == Ready));
 }
 
 
@@ -173,10 +173,10 @@ void Board::illegalMove()
 /// handles piece settings
 void Board::fieldClicked(int row, int col) {
   if(state() == Ready) {
-    Player player = game->whoseTurn();
+    Color color = game->whoseTurn();
 
     /// makes a human move
-    Move m(col + 1, row + 1, player);
+    Move m(col + 1, row + 1, color);
     if(game->moveIsLegal(m)) {
       game->MakeMove(m);
       animateChanged(m);
@@ -190,7 +190,7 @@ void Board::fieldClicked(int row, int col) {
 
       updateBoard();
 
-      if(player != game->whoseTurn())
+      if(color != game->whoseTurn())
 	computerMakeMove();
     } else
       illegalMove();
@@ -201,12 +201,12 @@ void Board::fieldClicked(int row, int col) {
 /// makes a computer move
 void Board::computerMakeMove() {
   // check if the computer can move
-  Player player = game->whoseTurn();
-  Player opponent = ::opponent(player);
+  Color color = game->whoseTurn();
+  Color opponent = ::opponent(color);
 
-  emit turn(player);
+  emit turn(color);
 
-  if(game->moveIsPossible(player)) {
+  if(game->moveIsPossible(color)) {
     setState(Thinking);
     do {
       Move m;
@@ -285,11 +285,11 @@ uint Board::moveNumber() const {
   return game->moveNumber();
 }
 
-uint Board::score(Player player) const {
-  return game->score(player);
+uint Board::score(Color color) const {
+  return game->score(color);
 }
 
-Player Board::whoseTurn() const {
+Color Board::whoseTurn() const {
   return game->whoseTurn();
 }
 
@@ -314,7 +314,7 @@ void Board::hint() {
 	  qApp->processEvents();
 	}
       }
-      drawPiece(m.y() - 1, m.x() - 1, game->player(m.x(), m.y()));
+      drawPiece(m.y() - 1, m.x() - 1, game->color(m.x(), m.y()));
     }
     setState(Ready);
   }
@@ -335,7 +335,7 @@ void Board::animateChanged(Move m) {
     return;
 
   // draw the new piece
-  drawPiece(m.y()-1, m.x()-1, m.player());
+  drawPiece(m.y()-1, m.x()-1, m.color());
 
   for(int dx = -1; dx < 2; dx++)
     for(int dy = -1; dy < 2; dy++)
@@ -368,10 +368,10 @@ void Board::rotateChip(uint row, uint col) {
   // check which direction the chip has to be rotated
   // if the new chip is white, the chip was black first,
   // so lets begin at index 1, otherwise it was white
-  Player player = game->player(col+1, row+1);
-  uint from = CHIP_OFFSET[opponent(player)];
-  uint end = CHIP_OFFSET[player];
-  int delta = (player==White ? 1 : -1);
+  Color color = game->color(col+1, row+1);
+  uint from = CHIP_OFFSET[opponent(color)];
+  uint end = CHIP_OFFSET[color];
+  int delta = (color==White ? 1 : -1);
   from += delta;
   end -= delta;
 
@@ -387,8 +387,8 @@ void Board::updateBoard(bool force) {
   for(uint row = 0; row < 8; row++)
     for(uint col = 0; col < 8; col++)
         if ( force || game->squareModified(col+1, row+1) ) {
-            Player player = game->player(col + 1, row + 1);
-            drawPiece(row, col, player);
+            Color color = game->color(col + 1, row + 1);
+            drawPiece(row, col, color);
         }
   QPainter p(this);
   p.setPen(black);
@@ -397,9 +397,9 @@ void Board::updateBoard(bool force) {
   emit score();
 }
 
-QPixmap Board::chipPixmap(Player player, uint size) const
+QPixmap Board::chipPixmap(Color color, uint size) const
 {
-  return chipPixmap(CHIP_OFFSET[player], size);
+  return chipPixmap(CHIP_OFFSET[color], size);
 }
 
 QPixmap Board::chipPixmap(uint i, uint size) const
@@ -428,8 +428,8 @@ void Board::drawOnePiece(uint row, uint col, int i) {
   p.drawPixmap(px, py, chipPixmap(i, zoomedSize()));
 }
 
-void Board::drawPiece(uint row, uint col, Player player) {
-  int i = (player==Nobody ? -1 : int(CHIP_OFFSET[player]));
+void Board::drawPiece(uint row, uint col, Color color) {
+  int i = (color==Nobody ? -1 : int(CHIP_OFFSET[color]));
   drawOnePiece(row, col, i);
 }
 
@@ -467,7 +467,7 @@ void Board::saveGame(KConfig *config) {
     Move m = game->lastMove();
     game->TakeBackMove();
     QString s, idx;
-    s.sprintf("%d %d %d", m.x(), m.y(), (int)m.player());
+    s.sprintf("%d %d %d", m.x(), m.y(), (int)m.color());
     idx.sprintf("Move_%d", i);
     config->writeEntry(idx, s);
   }
@@ -497,15 +497,15 @@ bool Board::loadGame(KConfig *config, bool noupdate) {
     QStringList s = config->readListEntry(idx, ' ');
     uint x = (*s.at(0)).toUInt();
     uint y = (*s.at(1)).toUInt();
-    Player player = (Player)(*s.at(2)).toInt();
-    Move m(x, y, player);
+    Color color = (Color)(*s.at(2)).toInt();
+    Move m(x, y, color);
     game->MakeMove(m);
   }
 
   if(noupdate)
     return true;
 
-  human = (Player)config->readNumEntry("WhoseTurn");
+  human = (Color)config->readNumEntry("WhoseTurn");
 
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));

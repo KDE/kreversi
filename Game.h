@@ -112,14 +112,14 @@ public:
   bool MakeMove(Move m);
   bool TakeBackMove();
   
-  Player player(uint x, uint y) const;
-  uint score(Player player) const;
+  Color color(uint x, uint y) const;
+  uint score(Color color) const;
   Move lastMove() const;
   bool moveIsLegal(Move m) const;
-  bool moveIsPossible(Player player) const;
+  bool moveIsPossible(Color color) const;
   bool moveIsAtAllPossible() const;
   uint moveNumber() const { return m_movenumber; }
-  Player whoseTurn() const;
+  Color whoseTurn() const;
   bool squareModified(uint x, uint y) const;
   bool wasTurned(uint x, uint y) const;
 
