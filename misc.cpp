@@ -51,6 +51,6 @@ void DBG(char *msg, ...) {
   va_end(ap);
 }
 #else
-inline DBG(char *msg, ...) {}
+inline int DBG(char *msg, ...) { return 0;}
 #endif
 

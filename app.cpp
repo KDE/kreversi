@@ -765,8 +765,8 @@ int App::insertHighscore(HighScore &hs) {
     return 0;
   } else {
     HighScore last = highscore[highscore.size() - 1];
-    if(isBetter(hs, last) || (highscore.size() < HIGHSCORE_MAX)) {
-      if(highscore.size() == HIGHSCORE_MAX)
+    if(isBetter(hs, last) || ((int)highscore.size() < HIGHSCORE_MAX)) {
+      if((int)highscore.size() == HIGHSCORE_MAX)
 	highscore[HIGHSCORE_MAX - 1] = hs;
       else {
 	highscore.resize(highscore.size()+1);
