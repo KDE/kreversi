@@ -46,7 +46,7 @@
 #include <kmenubar.h>
 #include <qmemarray.h>
 #include <time.h>
-#include <qlist.h>
+#include <qptrlist.h>
 #include <qfileinfo.h>
 #include <qdialog.h>
 #include <qlineedit.h>

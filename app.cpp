@@ -55,7 +55,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
-#include <kcolordlg.h>
+#include <kcolordialog.h>
 #include <kseparator.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
@@ -170,12 +170,12 @@ App::App() : KMainWindow(0) {
 	}
       }
     }
-    
+
     if(conf->readNumEntry("Skill", -1) != -1)
       b->setStrength(conf->readNumEntry("Skill", -1));
-    
-    if(conf->readNumEntry("Zoom", -1) != -1) {      
-      b->setZoom(conf->readNumEntry("Zoom", -1)); 
+
+    if(conf->readNumEntry("Zoom", -1) != -1) {
+      b->setZoom(conf->readNumEntry("Zoom", -1));
       b->setFixedSize(b->sizeHint());
     }
 
@@ -183,9 +183,9 @@ App::App() : KMainWindow(0) {
     int tbpos = conf->readNumEntry("Toolbar_1_Pos",
 				   (int)(KToolBar::Top));
     tb->setBarPos((KToolBar::BarPosition)tbpos);
-    
-    if(conf->readNumEntry("AnimationSpeed", -1000) != -1000) 
-      b->setAnimationSpeed(conf->readNumEntry("AnimationSpeed", 0)); 
+
+    if(conf->readNumEntry("AnimationSpeed", -1000) != -1000)
+      b->setAnimationSpeed(conf->readNumEntry("AnimationSpeed", 0));
 
     if(conf->readNumEntry("Grayscale", 0)) {
       b->loadChips("chips_mono.xpm");
@@ -206,7 +206,7 @@ App::App() : KMainWindow(0) {
       doneAudio(); // just to be sure
 #endif
   }
-    
+
   if(kapp->isRestored())
     restore(1);
 }
@@ -228,7 +228,7 @@ void App::createMenuBar() {
 
   QPopupMenu *gm = new QPopupMenu;
   gm->insertItem(i18n("Get &hint"), ID_HHINT);
-  gm->insertSeparator();  
+  gm->insertSeparator();
   gm->insertItem(i18n("&Stop thinking"), ID_GSTOP);
   gm->insertItem(i18n("&Continue"), ID_GCONTINUE);
   gm->insertSeparator();
@@ -236,10 +236,10 @@ void App::createMenuBar() {
   gm->insertItem(i18n("Switch si&des"), ID_GSWITCH);
   gm->insertSeparator();
   gm->insertItem(i18n("Hall Of &Fame..."), ID_GHIGHSCORES);
-  
+
   QPopupMenu *om = new QPopupMenu;
   om->setCheckable(TRUE);
-  QPopupMenu *om_s = new QPopupMenu;  
+  QPopupMenu *om_s = new QPopupMenu;
   om_s->setCheckable(TRUE);
   om_s->insertItem(i18n("Level 1 (Wimp)"), ID_O2);
   om_s->insertItem(i18n("Level 2 (Beginner)"), ID_O3);
@@ -268,7 +268,7 @@ void App::createMenuBar() {
 
   om->insertSeparator();
   om->insertItem(i18n("Select &background color..."), ID_COLOR);
-  
+
   QPopupMenu *om_bg = new QPopupMenu;
   lookupBackgroundPixmaps();
 
@@ -281,7 +281,7 @@ void App::createMenuBar() {
       // are replaced with spaces in the menu entry
       QString s(backgroundPixmaps.at(i)->baseName());
       s = s.replace(QRegExp("_"), " ");
-      
+
       // avoid too longish menus
       if(current->count() > 20) {
 	QPopupMenu *newmenu = new QPopupMenu;
@@ -292,7 +292,7 @@ void App::createMenuBar() {
       current->insertItem(s, ID_PIXMAP + i);
     }
   }
-  
+
   om->insertItem(i18n("Select background image"), om_bg);
   om->insertItem(i18n("&Grayscale"), ID_OGSCALE);
   om->insertSeparator();
@@ -368,19 +368,19 @@ void App::createMenuBar() {
 void App::createToolBar() {
   tb = toolBar();
 
-  tb->insertButton(ICON("stop.xpm"), 
+  tb->insertButton(ICON("stop.xpm"),
 		   ID_GSTOP, TRUE, i18n("Stop thinking"));
-  tb->insertButton(ICON("undo.xpm"), 
+  tb->insertButton(ICON("undo.xpm"),
 		   ID_GUNDO, TRUE, i18n("Undo move"));
-  tb->insertButton(ICON("zoomout.xpm"), 
+  tb->insertButton(ICON("zoomout.xpm"),
 		   ID_VZOOMOUT, TRUE, i18n("Shrink board"));
   tb->insertButton(ICON("zoomin.xpm"),
-		   ID_VZOOMIN, TRUE, i18n("Enlarge board"));  
-  tb->insertButton(ICON("hint.xpm"), 
+		   ID_VZOOMIN, TRUE, i18n("Enlarge board"));
+  tb->insertButton(ICON("hint.xpm"),
 		   ID_HHINT, TRUE, i18n("Get hint"));
-  tb->insertButton(ICON("help.xpm"), 
+  tb->insertButton(ICON("help.xpm"),
 		   ID_HCONTENTS, TRUE, i18n("Get help"));
-  connect(tb, SIGNAL(clicked(int)), this, SLOT(processEvent(int)));  
+  connect(tb, SIGNAL(clicked(int)), this, SLOT(processEvent(int)));
 }
 
 
@@ -421,13 +421,13 @@ void App::processEvent(int itemid) {
   switch(itemid) {
 
   case 0:
-      break;        // Built in help 
+      break;        // Built in help
   case 3:
-      break;        // About KDE  
+      break;        // About KDE
 
   case ID_HCONTENTS:
   {
-      KApplication::kApplication()->invokeHelp();  
+      KApplication::kApplication()->invokeHelp();
       break;
   }
   case ID_FSAVE:
@@ -440,7 +440,7 @@ void App::processEvent(int itemid) {
     }
     break;
 
-  case ID_FLOAD: 
+  case ID_FLOAD:
     {
       KConfig *config = kapp->config();
       config->setGroup("Savegame");
@@ -450,11 +450,11 @@ void App::processEvent(int itemid) {
     }
     break;
 
-  case ID_FQUIT:    
+  case ID_FQUIT:
     b->interrupt();
 
     // interesting, without this kreversi seems to segfault
-    delete this;    
+    delete this;
     kapp->quit();
     return;
     break;
@@ -474,7 +474,7 @@ void App::processEvent(int itemid) {
   case ID_GUNDO:
     b->undo();
     break;
-    
+
   case ID_GSWITCH:
     b->switchSides();
     break;
@@ -488,7 +488,7 @@ void App::processEvent(int itemid) {
     b->setFixedSize(b->sizeHint());
     kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
-    
+
   case ID_VZOOMOUT:
     b->zoomOut();
     b->setFixedSize(b->sizeHint());
@@ -517,7 +517,7 @@ void App::processEvent(int itemid) {
   case ID_OGSCALE:
     {
       bool gs;
-      
+
       if(b->chipsName() == "chips.xpm") {
 	b->loadChips("chips_mono.xpm");
 	gs = TRUE;
@@ -560,8 +560,8 @@ void App::processEvent(int itemid) {
 			   i18n("A problem with the sound server occured!\n"
 				"Cannot enable sound support."));
 	kapp->config()->writeEntry("Sound", 0);
-      } else 
-	kapp->config()->writeEntry("Sound", 1);  
+      } else
+	kapp->config()->writeEntry("Sound", 1);
     } else {
       doneAudio();
       kapp->config()->writeEntry("Sound", 0);
@@ -622,7 +622,7 @@ void App::enableItems() {
   menu->setItemEnabled(ID_GSTOP, (bool)(b->getState() == Board::THINKING));
   tb->setItemEnabled(ID_VZOOMIN, b->canZoomIn());
   tb->setItemEnabled(ID_VZOOMOUT, b->canZoomOut());
-  tb->setItemEnabled(ID_GSTOP, (bool)(b->getState() == Board::THINKING));  
+  tb->setItemEnabled(ID_GSTOP, (bool)(b->getState() == Board::THINKING));
   menu->setItemEnabled(ID_GCONTINUE, b->interrupted());
 
   // check size entry
@@ -650,13 +650,13 @@ void App::slotGameEnded(int color) {
   int winner, loser;
 
   sb->changeItem(i18n("End of game"), SB_TURN);
-    
+
   // get the score
-  if(color == Score::BLACK) 
+  if(color == Score::BLACK)
     b->getScore(winner, loser);
   else
     b->getScore(loser, winner);
-  
+
   if(color == Score::NOBODY) {
     playSound("reversi-drawn.wav");
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
@@ -664,9 +664,9 @@ void App::slotGameEnded(int color) {
   } else if(b->humanIs() == color) {
     // calculate score
     int  st = b->getStrength();
-    int sum = winner + loser;    
-    float score= (float)winner / sum * 
-                 (st - (ID_O2 - ID_OBASE) + 1) / (ID_O8 - ID_O2 + 1) * 
+    int sum = winner + loser;
+    float score= (float)winner / sum *
+                 (st - (ID_O2 - ID_OBASE) + 1) / (ID_O8 - ID_O2 + 1) *
                  100.0;
 
     playSound("reversi-won.wav");
@@ -681,7 +681,7 @@ void App::slotGameEnded(int color) {
     hs.color = b->humanIs();
     hs.winner = winner;
     hs.loser = loser;
-    hs.rating = score;   
+    hs.rating = score;
     hs.date = time((time_t*)0);
 
     int rank = insertHighscore(hs);
@@ -805,8 +805,8 @@ void App::readHighscore() {
       highscore.resize(i+1);
 
       HighScore hs;
-      sscanf((const char *)e.utf8(), "%s %d %d %d %f %ld", 
-	     (char *)&hs.name, &hs.color, &hs.winner, 
+      sscanf((const char *)e.utf8(), "%s %d %d %d %f %ld",
+	     (char *)&hs.name, &hs.color, &hs.winner,
 	     &hs.loser, &hs.rating, &hs.date);
       highscore[i] = hs;
     } else
@@ -834,7 +834,7 @@ void App::writeHighscore() {
 	      .arg(hs.loser).arg(hs.rating).arg(hs.date);
     conf->writeEntry(s, e);
   }
-  
+
   // restore old group
   conf->setGroup(grp);
 }
@@ -845,7 +845,7 @@ void App::showHighscore(int focusitem) {
   dlg->setCaption(i18n("KReversi: Hall Of Fame"));
 
   QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
-  
+
   QLabel *l = new QLabel(i18n("KReversi: Hall Of Fame"), dlg);
   QFont f = font();
   f.setPointSize(24);
@@ -887,7 +887,7 @@ void App::showHighscore(int focusitem) {
   l->setFont(f);
   l->setMinimumSize(l->sizeHint());
   table->addWidget(l, 0, 4);
-  
+
   QString s;
   QLabel *e[10][5];
   unsigned i, j;
@@ -902,8 +902,8 @@ void App::showHighscore(int focusitem) {
       else
 	color = i18n("red");
     }
-    
-    // insert rank    
+
+    // insert rank
     s.setNum(i+1);
     e[i][0] = new QLabel(s, dlg);
 
@@ -925,7 +925,7 @@ void App::showHighscore(int focusitem) {
     else
       s = "";
     e[i][3] = new QLabel(s, dlg);
-    
+
     // insert rating
     if(i < highscore.size())
       s.sprintf("%3.0f", hs.rating);
@@ -942,9 +942,9 @@ void App::showHighscore(int focusitem) {
       e[i][j]->setMinimumSize(e[i][j]->sizeHint());
       if((int)i == focusitem)
 	e[i][j]->setFont(f);
-      table->addWidget(e[i][j], i+2, j, AlignCenter);	
+      table->addWidget(e[i][j], i+2, j, AlignCenter);
     }
-    
+
   QPushButton *b = new QPushButton(i18n("&Close"), dlg);
 #if QT_VERSION < 300
   if(style().guiStyle() == MotifStyle)
@@ -998,7 +998,7 @@ QString App::getPlayerName() {
 #endif
     b->setFixedSize(b->sizeHint());
   connect(b, SIGNAL(released()), dlg, SLOT(accept()));
-  connect(e, SIGNAL(returnPressed()), 
+  connect(e, SIGNAL(returnPressed()),
 	  dlg, SLOT(accept()));
 
   // create layout
@@ -1033,7 +1033,7 @@ void App::slotBarChanged() {
   }
 }
 
-void App::saveProperties(KConfig *c) {  
+void App::saveProperties(KConfig *c) {
   // make sure options are written
   kapp->config()->sync();
   b->saveGame(c);
