@@ -241,11 +241,12 @@ void KReversi::slotGameEnded(Player player) {
     KMessageBox::information(this, s, i18n("Game Ended"));
 
     if (!gameOver){
-      KScoreDialog highscore(KScoreDialog::Name, this);
+      KScoreDialog highscore(KScoreDialog::Name | KScoreDialog::Date, this);
       highscore.addField(KScoreDialog::Score, i18n("Rating"), "Rating");
       highscore.addField(KScoreDialog::Custom1, i18n("Score"), "NumChips");
       KScoreDialog::FieldInfo scoreInfo;
 
+      scoreInfo.insert(KScoreDialog::Date, QDateTime::currentDateTime().toString());
       scoreInfo[KScoreDialog::Custom1].setNum(winner);
       if (highscore.addScore((int)score, scoreInfo))
         highscore.exec();
@@ -303,7 +304,7 @@ void KReversi::readProperties(KConfig *c) {
  * Bring up the standard kde high score dialog.
  */
 void KReversi::showHighScoreDialog() {
-  KScoreDialog highscore(KScoreDialog::Name, this);
+  KScoreDialog highscore(KScoreDialog::Name | KScoreDialog::Date, this);
   highscore.addField(KScoreDialog::Score, i18n("Rating"), "Rating");
   highscore.addField(KScoreDialog::Custom1, i18n("Score"), "NumChips");
   highscore.exec();
