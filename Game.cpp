@@ -117,8 +117,10 @@ void Game::Reset()
 }
 
 
-// Make a move in the game, resulting in a new position.
+// Make a move in the game, resulting in a new position.  
 //
+// If everything went well, return true.  Otherwise return false and
+// do nothing.
 
 bool Game::MakeMove(Move move)
 {

@@ -4,6 +4,12 @@ TODO-list for KREVERSI
 Now
 ---
 
+* Convert KReversi to use KGame / KPlayer
+  I. Convert KReversi to a proper Model/View program.
+     1. Make Game the Model.
+        - Clean it up. (Only store the moves).
+        - Add a few necessary methods.
+  II. Introduce a class Player
 
 Later
 -----

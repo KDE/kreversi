@@ -144,7 +144,6 @@ private:
   bool     m_competitiveGame;	// True if the game has been
 				// competitive during all moves so far.
   Color    m_humanColor;	// The Color of the human player.
-  bool     nopaint;
 
   QColor   bgColor;
   QPixmap  bg;

@@ -111,12 +111,16 @@ private:
   KAction  *stopAction;
   KAction  *continueAction;
 
-  StatusWidget  *m_humanStatus;
-  StatusWidget  *m_computerStatus;
+  // The board widget.  FIXME: Should be split into m_game and m_gameView.
+  Board         *m_board;
 
-  Board         *board;
+  // Some status values.
   bool           gameOver;
   bool           cheating;
+
+  // Score widgets
+  StatusWidget  *m_humanStatus;
+  StatusWidget  *m_computerStatus;
 };
 
 #endif

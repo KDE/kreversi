@@ -128,27 +128,27 @@ KReversi::KReversi()
   top->addStretch(1);
 
   // The reversi board itself.
-  board = new Board(w);
-  top->addWidget(board);
+  m_board = new Board(w);
+  top->addWidget(m_board);
   top->addStretch(1);
   
   // Populate the GUI.
   createStatusBar();
   createKActions();
-  addWidget(board);
+  addWidget(m_board);
 
   // Connect some signals on the board with slots of the application
-  connect(board, SIGNAL(score()), this, SLOT(slotScore()));
-  connect(board, SIGNAL(gameWon(Color)), this, SLOT(slotGameEnded(Color)));
-  connect(board, SIGNAL(turn(Color)), this, SLOT(slotTurn(Color)));
-  connect(board, SIGNAL(statusChange(Board::State)),
+  connect(m_board, SIGNAL(score()), this, SLOT(slotScore()));
+  connect(m_board, SIGNAL(gameWon(Color)), this, SLOT(slotGameEnded(Color)));
+  connect(m_board, SIGNAL(turn(Color)), this, SLOT(slotTurn(Color)));
+  connect(m_board, SIGNAL(statusChange(Board::State)),
           this, SLOT(slotStatusChange(Board::State)));
 
   loadSettings();
 
   setupGUI();
   init("popup");
-  board->start();
+  m_board->start();
 }
 
 
@@ -175,15 +175,15 @@ void KReversi::createKActions()
   KStdGameAction::load(this,  SLOT(openGame()), actionCollection());
   KStdGameAction::save(this,  SLOT(save()),     actionCollection());
   KStdGameAction::quit(this,  SLOT(close()),    actionCollection());
-  KStdGameAction::hint(board, SLOT(hint()),     actionCollection(), "game_hint");
-  undoAction = KStdGameAction::undo(board, SLOT(undo()), actionCollection(), "game_undo");
+  KStdGameAction::hint(m_board, SLOT(hint()),     actionCollection(), "game_hint");
+  undoAction = KStdGameAction::undo(m_board, SLOT(undo()), actionCollection(), "game_undo");
 
   // Non-standard Game Actions: Stop, Continue, Switch sides
   stopAction = new KAction(i18n("&Stop Thinking"), "game_stop",
-			   Qt::Key_Escape, board, 
+			   Qt::Key_Escape, m_board, 
 			   SLOT(interrupt()), actionCollection(), "game_stop");
   continueAction = new KAction(i18n("&Continue Thinking"), "reload",
-	0, board, SLOT(doContinue()), actionCollection(), "game_continue");
+	0, m_board, SLOT(doContinue()), actionCollection(), "game_continue");
   new KAction(i18n("S&witch Sides"), 0,
 	0, this, SLOT(switchSides()), actionCollection(), "game_switch_sides");
 
@@ -209,7 +209,7 @@ void KReversi::newGame()
   gameOver = false;
   cheating = false;
 
-  board->newGame();
+  m_board->newGame();
 }
 
 
@@ -223,8 +223,8 @@ void KReversi::openGame()
   KConfig *config = kapp->config();
   config->setGroup("Savegame");
 
-  if (board->loadGame(config))
-    Prefs::setSkill(board->strength());
+  if (m_board->loadGame(config))
+    Prefs::setSkill(m_board->strength());
 }
 
 
@@ -237,7 +237,7 @@ void KReversi::save()
 {
   KConfig *config = kapp->config();
   config->setGroup("Savegame");
-  board->saveGame(config);
+  m_board->saveGame(config);
 
   KMessageBox::information(this, i18n("Game saved."));
 }
@@ -248,8 +248,8 @@ void KReversi::save()
 
 void KReversi::slotScore()
 {
-  m_humanStatus->setScore(board->score(board->humanColor()));
-  m_computerStatus->setScore(board->score(board->computerColor()));
+  m_humanStatus->setScore(m_board->score(m_board->humanColor()));
+  m_computerStatus->setScore(m_board->score(m_board->computerColor()));
 }
 
 
@@ -265,11 +265,11 @@ void KReversi::slotGameEnded(Color color)
   statusBar()->message(i18n("End of game"));
 
   // Get the scores.
-  uint human    = board->score(board->humanColor());
-  uint computer = board->score(board->computerColor());
+  uint human    = m_board->score(m_board->humanColor());
+  uint computer = m_board->score(m_board->computerColor());
 
   KExtHighscore::Score score;
-  score.setScore(board->score(board->humanColor()));
+  score.setScore(m_board->score(m_board->humanColor()));
   
   // Show the winner in a messagebox.
   if ( color == Nobody ) {
@@ -279,7 +279,7 @@ void KReversi::slotGameEnded(Color color)
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Draw);
   }
-  else if ( board->humanColor() == color ) {
+  else if ( m_board->humanColor() == color ) {
     KNotifyClient::event(winId(), "won", i18n("Game won!"));
     QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2")
                 .arg(human).arg(computer);
@@ -296,7 +296,7 @@ void KReversi::slotGameEnded(Color color)
   
   // Store the result in the highscore file if no cheating was done,
   // and only if the game was competitive.
-  if ( !cheating && board->competitive()) {
+  if ( !cheating && m_board->competitive()) {
     KExtHighscore::submitScore(score, this);
   }
   gameOver = true;
@@ -312,9 +312,9 @@ void KReversi::slotTurn(Color color)
   if (gameOver)
     return;
 
-  if (color == board->humanColor())
+  if (color == m_board->humanColor())
     statusBar()->message(i18n("Your turn"));
-  else if (color == board->computerColor())
+  else if (color == m_board->computerColor())
     statusBar()->message(i18n("Computer's turn"));
   else
     statusBar()->clear();
@@ -335,7 +335,7 @@ void KReversi::slotStatusChange(Board::State status)
     stopAction->setEnabled(false);
   }
 
-  continueAction->setEnabled(board->interrupted());
+  continueAction->setEnabled(m_board->interrupted());
 }
 
 
@@ -344,12 +344,12 @@ void KReversi::slotStatusChange(Board::State status)
 
 void KReversi::saveProperties(KConfig *c)
 {
-  board->saveGame(c);
+  m_board->saveGame(c);
 }
 
 
 void KReversi::readProperties(KConfig *c) {
-  board->loadGame(c);
+  m_board->loadGame(c);
   gameOver = false;
   cheating = false;
 }
@@ -385,21 +385,21 @@ void KReversi::configureNotifications()
 
 void KReversi::updateColors()
 {
-  m_humanStatus->setPixmap(board->chipPixmap(board->humanColor(), 20));
-  m_computerStatus->setPixmap(board->chipPixmap(board->computerColor(), 20));
+  m_humanStatus->setPixmap(m_board->chipPixmap(m_board->humanColor(), 20));
+  m_computerStatus->setPixmap(m_board->chipPixmap(m_board->computerColor(), 20));
 }
 
 
 void KReversi::loadSettings()
 {
-  board->loadSettings();
+  m_board->loadSettings();
   updateColors(); 
 }
 
 
 void KReversi::switchSides()
 {
-  if (board->moveNumber() != 0) {
+  if (m_board->moveNumber() != 0) {
     int res = KMessageBox::warningContinueCancel(this,
 						 i18n("If you switch side, your score will not be added to the highscores."),
 						 QString::null, QString::null, "switch_side_warning");
@@ -409,13 +409,13 @@ void KReversi::switchSides()
     cheating = true;
   }
 
-  board->switchSides();
+  m_board->switchSides();
   updateColors();
 }
 
 bool KReversi::isPlaying() const
 {
-  return ( board->moveNumber()!=0 && !gameOver );
+  return ( m_board->moveNumber()!=0 && !gameOver );
 }
 
 

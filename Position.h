@@ -98,12 +98,13 @@ public:
   Move   lastMove() const { return m_last_move; }
   Color  toMove()   const { return m_to_move; }
 
+  // Moves in the current position.
   bool   moveIsLegal(Move m)         const;
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
 
 private:
-  // The actual position itself
+  // The actual position itself.  Use the simplest representation possible.
   Color  m_board[10][10];
   Color  m_to_move;
 
@@ -111,5 +112,6 @@ private:
   Move   m_last_move;		// The last move in the game so far
   Score  m_score;		// The number of pieces for each side.
 };
+
 
 #endif

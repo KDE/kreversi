@@ -1,3 +1,11 @@
+2004-09-18  Inge Wallin  <inge@lysator.liu.se>
+
+	Some cleaning: remove unused members, add m_ to members and some
+	comments.
+	* Engine.h (Engine::lastYield): removed
+	* Board.h (Board::nopaint): removed
+	* kreversi.{h,cpp} (KReversi::board): renamed into m_board.
+
 2004-09-17  Inge Wallin  <inge@lysator.liu.se>
 
 	Some further cleanup:

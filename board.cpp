@@ -68,10 +68,11 @@ const uint  CHIP_SIZE             = 36;
 
 Board::Board(QWidget *parent)
     : QWidget(parent, "board"),
-      m_humanColor(Black), nopaint(false), chiptype(Unloaded)
+      m_humanColor(Black), chiptype(Unloaded)
 {
   m_engine = new Engine();
   m_game   = new Game();
+
   setStrength(1);
 }
 

@@ -240,8 +240,6 @@ private:
 
   ULONG64      m_coord_bit[9][9];
   ULONG64      m_neighbor_bits[9][9];
-
-  long         lastYield;
 };
 
 #endif
