@@ -19,7 +19,7 @@ Next
   + Implement the QEngineView class					----
 
 * More cleaning / refactoring
-  + class KReversi is still a bit of a mess.  Separate it more		----
+  + class KReversi is still a bit of a mess.  Separate it more		DONE
 
 * Enhancements to the view
   + Letters A-H and figures 1-8 on the board view.			DONE
@@ -28,7 +28,7 @@ Next
     - Actually show them on the board					done
     - Create a toggle action to toggle it on/off			done
     - Make an icon for the toggle action				--
-    - Bug: legal moves don't get updated if one side has to pass 	--
+    - Bug: legal moves don't get updated if one side has to pass	done
     - Bug: legal moves don't work together with hint.			--
   + Show moves made during the game					DONE
 
