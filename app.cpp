@@ -307,7 +307,7 @@ void App::createMenuBar() {
     om_sp->insertItem(txt, i);
   }
   om_sp->insertItem(i18n("10 (slowest)"), ID_OSPEED+10);
-  om->insertItem(i18n("Animation speed"), om_sp, ID_OSPEED);
+  om->insertItem(i18n("Animation Speed"), om_sp, ID_OSPEED);
 #ifdef HAVE_MEDIATOOL
   om->insertSeparator();
   om->insertItem(i18n("S&ound"), ID_OSOUND);
