@@ -25,6 +25,10 @@
       <max>300</max>
       <default>100</default>
     </entry>
+    <entry name="CompetitiveGameChoice" type="Bool">
+      <label>Whether to play competitively in contrast to casually.</label>
+      <default>true</default>
+    </entry>
     <entry name="skill" type="Int">
       <label>The strength of the computer player.</label>
       <min>1</min>

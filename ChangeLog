@@ -1,3 +1,17 @@
+2004-09-16  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+
+	Support Casual and Competitive play:
+	* SuperEngine.cpp (SuperEngine::computeMove()): new parameter
+	'competitive'
+	* Engine.cpp (Engine::computeMove()): new parameter 'competitive'
+	* board.cpp (m_competitiveGame): new member
+	(saveGame, loadGame): Save competitive in config file.
+	* kreversi.cpp (slotGameEnded): Only store result in highscore
+	file if the game was competitive all the time.
+	* kreversi.kcfg (CompetitiveGameChoice): new setting
+	* settings.ui: redesigned
+	
+
 2004-08-17  Inge Wallin  <inge@lysator.liu.se>
 
 	Finish the big code cleanup:

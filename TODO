@@ -1,6 +1,13 @@
 TODO-list for KREVERSI
 ======================
 
+Now
+---
+
+
+Later
+-----
+
 * network-play against human
 * implement ULONG64 as a class instead of using gcc "long long int"
 
@@ -13,7 +20,7 @@ PARTIALLY DONE/NOT DONE
 
 * Sound support:
   I'm not happy with
-  the sound files I havem so if
+  the sound files I have so if
   you have better sounds, mail them to me 
   (uuencoded). I need sounds for the following actions:
 	- game won

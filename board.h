@@ -71,6 +71,7 @@ public:
   uint   score(Color) const;
   void   setStrength(uint);
   uint   strength() const;
+  bool   competitive() const   { return m_competitiveGame; }
   bool   interrupted() const;
   
   virtual void adjustSize();
@@ -135,10 +136,13 @@ private:
   bool  isField(int row, int col) const;
 
 private:
-  Engine  *engine;
-  Game    *game;
+  Engine  *engine;              // The actual Position of the game and
+				// some machinery to come up with moves.
+  Game    *game;		// Stores the moves of the game
 
-  State    m_status;		// 
+  State    m_status;		// Ready, Thinking, Hint
+  bool     m_competitiveGame;	// True if the game has been
+				// competitive during all moves so far.
   Color    human;
   bool     nopaint;
 

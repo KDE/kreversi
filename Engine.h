@@ -202,7 +202,7 @@ public:
   Engine(int st);
   Engine();
 
-  Move     computeMove(Game g);
+  Move     computeMove(Game game, bool competitive);
 
 private:
   Move     ComputeFirstMove(Game g);
@@ -236,6 +236,7 @@ private:
   int          m_coeff;
   int          m_nodes_searched;
   bool         m_exhaustive;
+  bool         m_competitive;
 
   ULONG64      m_coord_bit[9][9];
   ULONG64      m_neighbor_bits[9][9];

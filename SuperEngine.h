@@ -129,7 +129,7 @@ public:
 
   void setSeed(int sd);
 
-  virtual Move computeMove(Game g) = 0;
+  virtual Move computeMove(Game g, bool competitive) = 0;
 
 protected:
   uint             m_strength;

@@ -49,6 +49,7 @@
 #include <knotifyclient.h>
 #include <klocale.h>
 #include <kexthighscore.h>
+#include <kdebug.h>
 
 #include "prefs.h"
 #include "Engine.h"
@@ -177,6 +178,9 @@ void Board::doContinue()
 void Board::newGame()
 {
   game->Reset();
+  m_competitiveGame = Prefs::competitiveGameChoice();
+  //kdDebug() << "Competitive: " << m_competitiveGame << endl;
+
   updateBoard(TRUE);
   setState(Ready);
 
@@ -279,7 +283,7 @@ void Board::computerMakeMove()
       return;
     }
 
-    move = engine->computeMove(*game);
+    move = engine->computeMove(*game, m_competitiveGame);
     if (move.x() == -1) {
       setState(Ready);
       return;
@@ -381,7 +385,7 @@ void Board::hint()
     return;
 
   setState(Thinking);
-  Move  move = engine->computeMove(*game);
+  Move  move = engine->computeMove(*game, m_competitiveGame);
 
   setState(Hint);
   if (move.x() != -1) {
@@ -617,8 +621,9 @@ void Board::saveGame(KConfig *config)
     config->writeEntry(idx, s);
   }
 
-  // save whose turn it is
-  config->writeEntry("WhoseTurn", (int)human);
+  // save whose turn it is and if the game is casual.
+  config->writeEntry("WhoseTurn",   (int) human);
+  config->writeEntry("Competitive", (int) m_competitiveGame);
   config->sync();
 
   // All moves must be redone.
@@ -664,7 +669,9 @@ bool Board::loadGame(KConfig *config, bool noupdate)
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));
   setStrength(config->readNumEntry("Strength", 1));
-    
+  m_competitiveGame = (bool) config->readNumEntry("Competitive");
+  //kdDebug() << "Competitive set to: " << m_competitiveGame << endl;
+
   if (interrupted())
     doContinue();
   else {
@@ -695,6 +702,11 @@ void Board::loadSettings()
   else
     setAnimationSpeed(10 - Prefs::animationSpeed());
   setStrength(Prefs::skill());
+
+  // This is set at the start of a game and can only be downgraded
+  // during the game.
+  if ( !Prefs::competitiveGameChoice() )
+    m_competitiveGame = false;
 
   if ( Prefs::backgroundImageChoice() ) {
     QPixmap pm( Prefs::backgroundImage() );

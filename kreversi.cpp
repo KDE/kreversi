@@ -208,6 +208,7 @@ void KReversi::newGame()
 
   gameOver = false;
   cheating = false;
+
   board->newGame();
 }
 
@@ -278,7 +279,7 @@ void KReversi::slotGameEnded(Color color)
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Draw);
   }
-  else if ( board->humanColor()==color ) {
+  else if ( board->humanColor() == color ) {
     KNotifyClient::event(winId(), "won", i18n("Game won!"));
     QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2")
                 .arg(human).arg(computer);
@@ -293,9 +294,11 @@ void KReversi::slotGameEnded(Color color)
     score.setType(KExtHighscore::Lost);
   }
   
-  // Store the result in the highscore file if no cheating was done.
-  if ( !cheating ) 
+  // Store the result in the highscore file if no cheating was done,
+  // and only if the game was competitive.
+  if ( !cheating && board->competitive()) {
     KExtHighscore::submitScore(score, this);
+  }
   gameOver = true;
 }
 

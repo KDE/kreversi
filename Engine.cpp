@@ -117,8 +117,9 @@
 // or nearly equal value after the search is completed.
 
 
-#include "Engine.h"
 #include <qapplication.h>
+
+#include "Engine.h"
 
 
 // ================================================================
@@ -295,9 +296,16 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-Move Engine::computeMove(Game game) 
+Move Engine::computeMove(Game game, bool competitive) 
 {
   Color color;
+
+  // A competitive game is one where we try our damnedest to make the
+  // best move.  The opposite is a casual game where the engine might
+  // make "a mistake".  The idea behind this is not to scare away
+  // newbies.  The member m_competitive is used during search for this
+  // very move.
+  m_competitive = competitive;
 
   // Suppose that we should give a heuristic evaluation.  If we are
   // close to the end of the game we can make an exhaustive search,
@@ -406,12 +414,13 @@ Move Engine::computeMove(Game game)
 
 	  // ...except that we want to make the computer miss some
 	  // good moves so that beginners can play against the program
-	  // and not always lose.
-	  //
-	  // FIXME: Should be a way to disable this "feature".
-	  //
+	  // and not always lose.  However, we only do this if the
+	  // user wants a casual game, which is set in the settings
+	  // dialog.
 	  int randi = m_random.getLong(7);
-	  if (maxval == -LARGEINT || randi < (int) m_strength) {
+	  if (maxval == -LARGEINT 
+	      || m_competitive 
+	      || randi < (int) m_strength) {
 	    maxval = val;
 	    max_x  = x;
 	    max_y  = y;
