@@ -249,7 +249,7 @@ void App::createMenuBar() {
   fm->insertItem(locale->translate("&Quit"), ID_FQUIT);
 
   QPopupMenu *gm = new QPopupMenu;
-  gm->insertItem(locale->translate("Get &hint)"), ID_HHINT);
+  gm->insertItem(locale->translate("Get &hint"), ID_HHINT);
   gm->insertSeparator();  
   gm->insertItem(locale->translate("&Stop thinking"), ID_GSTOP);
   gm->insertItem(locale->translate("&Continue"), ID_GCONTINUE);
@@ -326,9 +326,7 @@ void App::createMenuBar() {
 #endif
 
   QPopupMenu *hm = new QPopupMenu;
-  hm->insertItem(locale->translate("&Help"), ID_HHELP);
-  hm->insertItem(locale->translate("&Rules"), ID_HRULES);
-  hm->insertItem(locale->translate("&Strategy hints"), ID_HSTRATEGY);
+  hm->insertItem(locale->translate("&Contents"), ID_HHELP);
   hm->insertSeparator();
   hm->insertItem(locale->translate("About &Qt..."), ID_HABOUTQT);
   hm->insertItem(locale->translate("&About..."), ID_HABOUT);
@@ -564,14 +562,6 @@ void App::processEvent(int itemid) {
 
   case ID_HHELP:
     KApplication::getKApplication()->invokeHTMLHelp("", "");
-    break;
-
-  case ID_HRULES:
-    KApplication::getKApplication()->invokeHTMLHelp("", "rules");
-    break;
-
-  case ID_HSTRATEGY:
-    KApplication::getKApplication()->invokeHTMLHelp("", "strategy");
     break;
 
   case ID_HABOUT:
