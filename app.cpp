@@ -215,6 +215,7 @@ App::~App() {
 }
 
 void App::createMenuBar() {
+// TODO: all of this should be done by KActions using KStdAction and KStdGameAction
   menu = menuBar();
 
   QPopupMenu *fm = new QPopupMenu;
@@ -340,6 +341,7 @@ void App::createMenuBar() {
   menu->setAccel(Key_Escape, ID_GSTOP);
   menu->setAccel(CTRL+Key_N, ID_GNEW);
   menu->setAccel(CTRL+Key_U, ID_GUNDO);
+  menu->setAccel(CTRL+Key_H, ID_GHIGHSCORES);
   menu->setAccel(CTRL+Key_1, ID_O2);
   menu->setAccel(CTRL+Key_2, ID_O3);
   menu->setAccel(CTRL+Key_3, ID_O4);
