@@ -10,7 +10,6 @@ Name[sv]=Othello
 Type=Application
 DocPath=kreversi/index.html
 Comment=Play Reversi against the computer
-Comment[br]=C'hoariit Reversi a-enep an urzhiataer
 Comment[ca]=Jugueu Reversi contra l'ordinador
 Comment[cs]=Hraj reversi proti poèítaèi
 Comment[da]=Spil Reversi mod maskinen
