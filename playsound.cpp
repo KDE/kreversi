@@ -82,8 +82,8 @@ bool playSound(const char *s) {
 }
 
 bool soundSync() {
-  if(audio)
-    audio->sync();
+//   if(audio)
+//     audio->sync();
 
   return (bool)(audio != 0);
 }

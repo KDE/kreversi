@@ -36,7 +36,7 @@
  *******************************************************************
  */
 
-
+#ifdef DEBUGGING
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -50,4 +50,6 @@ void DBG(char *msg, ...) {
   fprintf(stderr, "\n");
   va_end(ap);
 }
-
+#else
+#define DBG(args...) (void)0
+#endif
