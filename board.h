@@ -61,11 +61,7 @@ public:
   Board(QWidget *parent, Game *game);
   ~Board();
 
-  // Methods that deal with the game.
-#if 0
-  bool   competitive() const      { return m_competitiveGame;      }
-#endif
-
+  // Used by the outer KZoomMainWindow class.
   virtual void adjustSize();
 
   // Helper functions for actions in the main program.
@@ -85,12 +81,12 @@ public:
   // Methods for handling images of pieces.
   enum      ChipType { Unloaded, Colored, Grayscale };
   void      loadChips(ChipType);
-  ChipType  chipType() const { return chiptype; }
-  QPixmap   chipPixmap(Color color, uint size) const;
-  QPixmap   chipPixmap(uint i, uint size) const;
+  ChipType  chipType()                          const { return chiptype; }
+  QPixmap   chipPixmap(Color color, uint size)  const;
+  QPixmap   chipPixmap(uint i, uint size)       const;
 
   void    setColor(const QColor &);
-  QColor  color() const { return bgColor; }
+  QColor  color()                               const { return bgColor; }
   void    setPixmap(QPixmap &);
 
   // View methods called from the outside.
@@ -121,8 +117,8 @@ private:
   Game    *m_game;		// Pointer to the game object (not owner).
 
   // The background of the board - a color and a pixmap.
-  QColor   bgColor;
-  QPixmap  bg;
+  QColor    bgColor;
+  QPixmap   bg;
 
   // the pieces
   ChipType  chiptype;
@@ -130,7 +126,7 @@ private:
   uint      anim_speed;
 
   // Special stuff used only in smaller areas.
-  bool  m_hintShowing;
+  bool      m_hintShowing;
 };
 
 #endif

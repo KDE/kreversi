@@ -84,12 +84,6 @@ Board::~Board()
 // ----------------------------------------------------------------
 
 
-uint Board::zoomedSize() const
-{
-  return qRound(float(CHIP_SIZE) * Prefs::zoom() / 100);
-}
-
-
 // Start it all up.
 //
 
@@ -150,7 +144,7 @@ void Board::mousePressEvent(QMouseEvent *e)
 
 // Calculate the final score.
 //
-// FIXME: Move this to kreversi.h?
+// FIXME: Move this to kreversi.h?  Or to KReversiGame.
 
 void Board::gameEnded()
 {
@@ -178,7 +172,7 @@ void Board::showHint(Move move)
   //
   // The isVisible condition has been added so that when the player
   // was viewing a hint and quits the game window, the game doesn't
-  // still have to do all this looping and directly ends
+  // still have to do all this looping and directly ends.
   m_hintShowing = true;
   for (int flash = 0;
        flash < 100 && m_hintShowing && isVisible(); 
@@ -196,6 +190,7 @@ void Board::showHint(Move move)
     }
   }
 
+  // Draw the empty square again.
   drawPiece(move.y() - 1, move.x() - 1, m_game->color(move.x(), move.y()));
 }
 
@@ -224,9 +219,10 @@ void Board::animateChanged(Move move)
   if (anim_speed == 0)
     return;
 
-  // draw the new piece
+  // Draw the new piece.
   drawPiece(move.y() - 1, move.x() - 1, move.color());
 
+  // Animate row by row in all directions.
   for (int dx = -1; dx < 2; dx++)
     for (int dy = -1; dy < 2; dy++)
       if ((dx != 0) || (dy != 0))
@@ -328,6 +324,19 @@ QPixmap Board::chipPixmap(uint i, uint size) const
 }
 
 
+uint Board::zoomedSize() const
+{
+  return qRound(float(CHIP_SIZE) * Prefs::zoom() / 100);
+}
+
+
+void Board::drawPiece(uint row, uint col, Color color)
+{
+  int  i = (color == Nobody ? -1 : int(CHIP_OFFSET[color]));
+  drawOnePiece(row, col, i);
+}
+
+
 void Board::drawOnePiece(uint row, uint col, int i)
 {
   int       px = col * zoomedSize() + 1;
@@ -350,13 +359,6 @@ void Board::drawOnePiece(uint row, uint col, int i)
 
   // ...otherwise finally draw the piece on the square.
   p.drawPixmap(px, py, chipPixmap(i, zoomedSize()));
-}
-
-
-void Board::drawPiece(uint row, uint col, Color color)
-{
-  int i = (color == Nobody ? -1 : int(CHIP_OFFSET[color]));
-  drawOnePiece(row, col, i);
 }
 
 

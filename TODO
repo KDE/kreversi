@@ -4,10 +4,14 @@ TODO-list for KREVERSI
 Next
 ----
 
-(from step 4 below)
-Create a new class KReversiGame, that stores a ReversiGame
-and sends a lot of signals.
-  - Split out a lot of methods from the current class Board.
+* (from step 4 below)
+  Create a new class KReversiGame, that stores a ReversiGame
+  and sends a lot of signals.
+    - Split out a lot of methods from the current class Board.
+
+* Investigate if there is something wrong with the highscore handling.
+  It seems as if a game is finished before all squares are covered
+  that the highscore code is never engaged.
 
 
 --------  Commit here  --------

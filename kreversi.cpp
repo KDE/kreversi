@@ -152,11 +152,10 @@ KReversi::KReversi()
   // Connect some signals on the board with slots of the application
   // FIXME: Look through all signals and see if they make sense,
   //        both from this class and from Board.
-  connect(m_board, SIGNAL(score()),        this, SLOT(slotScore()));
-  connect(this,    SIGNAL(score()),        this, SLOT(slotScore()));
+  connect(m_board, SIGNAL(score()),        this, SLOT(showScore()));
+  connect(this,    SIGNAL(score()),        this, SLOT(showScore()));
   connect(m_board, SIGNAL(gameWon(Color)), this, SLOT(slotGameEnded(Color)));
-  connect(m_board, SIGNAL(turn(Color)),    this, SLOT(slotTurn(Color)));
-  connect(this,    SIGNAL(turn(Color)),    this, SLOT(slotTurn(Color)));
+  connect(m_board, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
   connect(this,    SIGNAL(stateChange(State)),
           this,    SLOT(slotStateChange(State)));
 
@@ -266,7 +265,7 @@ void KReversi::slotNewGame()
 
   // Show some data
   setState(Ready);
-  emit turn(Black);
+  showTurn(Black);
   // FIXME: emit a signal instead (signalBoard(bool)?).
   m_board->updateBoard(TRUE);
 
@@ -288,7 +287,7 @@ void KReversi::slotOpenGame()
 
   if (loadGame(config))
     Prefs::setSkill(m_engine->strength());
-  updateColors();
+  showColors();
 }
 
 
@@ -393,8 +392,9 @@ void KReversi::slotSwitchSides()
 
   m_humanColor = opponent(m_humanColor);
 
-  emit score();
-  updateColors();
+  // Show the new state of things in the window.
+  showScore();
+  showColors();
   kapp->processEvents();
   computerMakeMove();
 }
@@ -430,13 +430,38 @@ void KReversi::slotSquareClicked(int row, int col)
 //                   Slots for the game view
 
 
+void KReversi::showColors()
+{
+  m_humanStatus   ->setPixmap(m_board->chipPixmap(humanColor(),    20));
+  m_computerStatus->setPixmap(m_board->chipPixmap(computerColor(), 20));
+}
+
+
 // Show the number of pieces for each side.
 //
 
-void KReversi::slotScore()
+void KReversi::showScore()
 {
   m_humanStatus   ->setScore(m_game->score(humanColor()));
   m_computerStatus->setScore(m_game->score(computerColor()));
+}
+
+
+// A slot that is called when it is time to show whose turn it is.
+//
+
+void KReversi::showTurn(Color color)
+{
+  // If we are not playing, do nothing. 
+  if (gameOver)
+    return;
+
+  if (color == humanColor())
+    statusBar()->message(i18n("Your turn"));
+  else if (color == computerColor())
+    statusBar()->message(i18n("Computer's turn"));
+  else
+    statusBar()->clear();
 }
 
 
@@ -487,24 +512,6 @@ void KReversi::slotGameEnded(Color color)
     KExtHighscore::submitScore(score, this);
   }
   gameOver = true;
-}
-
-
-// A slot that is called when it is time to show whose turn it is.
-//
-
-void KReversi::slotTurn(Color color)
-{
-  // If we are not playing, do nothing. 
-  if (gameOver)
-    return;
-
-  if (color == humanColor())
-    statusBar()->message(i18n("Your turn"));
-  else if (color == computerColor())
-    statusBar()->message(i18n("Computer's turn"));
-  else
-    statusBar()->clear();
 }
 
 
@@ -572,7 +579,7 @@ void KReversi::computerMakeMove()
   Color color    = m_game->toMove();
   Color opponent = ::opponent(color);
 
-  emit turn(color);
+  showTurn(color);
 
   if (!m_game->moveIsPossible(color))
     return;
@@ -602,7 +609,7 @@ void KReversi::computerMakeMove()
   } while (!m_game->moveIsPossible(opponent));
 
 
-  emit turn(opponent);
+  showTurn(opponent);
   setState(Ready);
 
   if (!m_game->moveIsAtAllPossible()) {
@@ -701,7 +708,7 @@ bool KReversi::loadGame(KConfig *config, bool noupdate)
     slotContinue();
   else {
     // Make the view show who is to move.
-    emit turn(m_game->toMove());
+    showTurn(m_game->toMove());
 
     // Computer makes first move.
     if (m_humanColor != m_game->toMove())
@@ -756,13 +763,6 @@ void KReversi::configureNotifications()
 }
 
 
-void KReversi::updateColors()
-{
-  m_humanStatus   ->setPixmap(m_board->chipPixmap(humanColor(), 20));
-  m_computerStatus->setPixmap(m_board->chipPixmap(computerColor(), 20));
-}
-
-
 void KReversi::loadSettings()
 {
   m_humanColor = (Color) Prefs::humanColor();
@@ -776,7 +776,7 @@ void KReversi::loadSettings()
   m_board->loadSettings();
 
   // Show the color of the human and the computer.
-  updateColors(); 
+  showColors(); 
 }
 
 

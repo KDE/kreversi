@@ -108,7 +108,6 @@ private:
 
   // View functions.
   QString  getPlayerName();
-  void     updateColors();
 
   virtual void  writeZoomSetting(uint zoom);
   virtual uint  readZoomSetting() const;
@@ -150,9 +149,10 @@ private slots:
   void  loadSettings();
 
   // Slots for the view.
-  void  slotScore();
+  void  showColors();
+  void  showScore();
+  void  showTurn(Color);
   void  slotGameEnded(Color);
-  void  slotTurn(Color);
   void  slotStateChange(State);
 
 private:
