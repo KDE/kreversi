@@ -36,16 +36,24 @@
  *******************************************************************
  */
 
-
-#include "misc.h"
 #include <kapp.h>
 #include <kstddirs.h>
 #include <kglobal.h>
 #include <kimgio.h>
+#include <klocale.h>
+#include <kcmdlineargs.h>
+
+#include "misc.h"
+#include "version.h"
 #include "app.h"
 
+
+static const char *description = I18N_NOOP("KDE Board Game");
+
 int main(int argc, char **argv) {
-  KApplication a(argc, argv, "kreversi");
+  KCmdLineArgs::init(argc, argv, "kreversi", description, KREVERSI_VERSION );
+
+  KApplication a;
 
   kimgioRegister();
   
