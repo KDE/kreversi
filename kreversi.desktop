@@ -17,6 +17,7 @@ Name[zu]=I Reversi ka K
 Type=Application
 DocPath=kreversi/index.html
 GenericName=Board Game
+GenericName[af]=bord speletjie
 GenericName[ar]=لعبة لوحة
 GenericName[bg]=Игра на дъска
 GenericName[bs]=Igra s pločom
