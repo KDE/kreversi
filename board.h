@@ -39,14 +39,14 @@
 #ifndef __BOARD__H__
 #define __BOARD__H__
 
-#include "misc.h"
 #include <qwidget.h>
 #include <qpixmap.h>
-#include "Engine.h"
-#include "Score.h"
+
 #include "Move.h"
-#include "Position.h"
-#include <kconfig.h>
+
+class KConfig;
+class Engine;
+class Game;
 
 class Board : public QWidget {
   Q_OBJECT
@@ -54,7 +54,7 @@ public:
 
   enum { READY = 1, THINKING = 2, HINT = 3};
 
-  Board(QWidget *parent = 0);
+  Board(QWidget *parent = 0, const char *name=0);
   ~Board();
 
   void newGame();
@@ -63,11 +63,7 @@ public:
   void getScore(int&, int&);
   void setStrength(int);
   int  getStrength();
-  void interrupt();
   bool interrupted();
-  void doContinue();
-  void undo();
-  void hint();
   
   // starts all: emits some signal, so it can't be called from 
   // constructor
@@ -86,7 +82,6 @@ public:
   void setZoom(int);
   int  getZoom() const;
 
-  void switchSides();
   int  getState();
   void setState(int);
   void setAnimationSpeed(int);
@@ -104,6 +99,14 @@ public slots:
   void setColor(const QColor &);
   void setPixmap(QPixmap &);
 
+  void undo();
+  void hint();
+  void interrupt();
+  void doContinue();
+  void switchSides();
+
+  void loadSettings();
+  
 protected slots:
   void slotFieldClicked(int, int);  
 
@@ -132,12 +135,13 @@ private:
   bool isField(int row, int col);
 
 private:
+  Engine *engine;
+  Game *game;
+  
   QString chipname;
-  Engine e;
-  Game   g;
   int  _status;
-  int _size;
   int oldsizehint;
+  int _size;
   int _zoom;
   int _zoomed_size;
   int human;
@@ -153,3 +157,4 @@ private:
 };
 
 #endif
+

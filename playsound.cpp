@@ -57,8 +57,6 @@ bool initAudio() {
 
 bool playSound(const char *s) {
   // look in SOUNDDIR
- 
-
   KAudioPlayer::play(locate("data", QString("kreversi/sounds/")+s));
   return TRUE;
 }

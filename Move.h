@@ -50,8 +50,6 @@
 #ifndef __MOVE__H__
 #define __MOVE__H__
 
-#include "misc.h"
-
 class Move
 {
 public:

@@ -109,7 +109,6 @@
 #ifndef __SUPERENGINE__H__
 #define __SUPERENGINE__H__
 
-#include "misc.h"
 #include "Game.h"
 
 #include <krandomsequence.h>

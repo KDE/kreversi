@@ -220,7 +220,7 @@ Engine::Engine(int st) : SuperEngine(st) {
 }
 
 
-Engine::Engine() : SuperEngine(5) { 
+Engine::Engine() : SuperEngine(1) { 
   SetupBcBoard(); 
   SetupBits(); 
 }
@@ -231,7 +231,6 @@ void Engine::yield() {
   qApp->processEvents();
 }
 
-
 Move Engine::ComputeMove(Game g) {
   m_exhaustive = false;
 
@@ -240,7 +239,9 @@ Move Engine::ComputeMove(Game g) {
   if (player == Score::NOBODY) 
     return Move(-1,-1,-1);
 
+  // Figure out the current score
   m_score.InitScore(g.GetScore(Score::WHITE), g.GetScore(Score::BLACK));
+  // If the game just started...
   if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) == 4)
     return ComputeFirstMove(g);
 
@@ -250,17 +251,14 @@ Move Engine::ComputeMove(Game g) {
   m_depth = m_strength;
 
   if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
-      m_depth + 4 >= 64)
+      m_depth + 3 >= 64)
     m_depth =
       64 - m_score.GetScore(Score::WHITE) - m_score.GetScore(Score::BLACK);
   else if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
-	   m_depth + 7 >= 64)
-    m_depth += 3;
-  else if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
-	   m_depth + 9 >= 64)
+	   m_depth + 4 >= 64)
     m_depth += 2;
   else if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
-	   m_depth + 11 >= 64)
+	   m_depth + 5 >= 64)
     m_depth++;
 
   if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
@@ -301,6 +299,8 @@ Move Engine::ComputeMove(Game g) {
 
   //struct tms tmsdummy; 
   //long starttime = times(&tmsdummy);
+  // Compute this once at the start of the loops.
+  int high = 20 - m_strength;
 
   for (int x=1; x<9; x++)
     for (int y=1; y<9; y++)
@@ -317,10 +317,16 @@ Move Engine::ComputeMove(Game g) {
 
 	      if (val > maxval)
 		{
-		  maxval = val;
-		  max_x = x;
-		  max_y = y;
-		  number_of_maxval = 1;
+		  // Make it so it is easy for us to "miss" something.
+		  // i.e. more relistic.  Also makes m_strength mean more.
+		  if(maxval == -LARGEINT ||
+		   m_random.getLong(number_of_maxval) % 
+		      high - ((maxval-val)/2) == 0){
+		    maxval = val;
+		    max_x = x;
+		    max_y = y;
+		    number_of_maxval = 1;
+		  }
 		}
 	      else if (val == maxval) number_of_maxval++;
 	    }
@@ -587,23 +593,23 @@ void Engine::SetupBcBoard()
   for (int i=1; i < 9; i++)
     for (int j=1; j < 9; j++)
       {
-	if (i == 2 || i == 7) m_bc_board[i][j] = -2; else m_bc_board[i][j] = 0;
-	if (j == 2 || j == 7) m_bc_board[i][j] -= 2;
+	if (i == 2 || i == 7) m_bc_board[i][j] = -1; else m_bc_board[i][j] = 0;
+	if (j == 2 || j == 7) m_bc_board[i][j] -= 1;
       }
 
-  m_bc_board[1][1] = 20;
-  m_bc_board[8][1] = 20;
-  m_bc_board[1][8] = 20;
-  m_bc_board[8][8] = 20;
+  m_bc_board[1][1] = 2;
+  m_bc_board[8][1] = 2;
+  m_bc_board[1][8] = 2;
+  m_bc_board[8][8] = 2;
 
-  m_bc_board[1][2] = -2;
-  m_bc_board[2][1] = -2;
-  m_bc_board[1][7] = -2;
-  m_bc_board[7][1] = -2;
-  m_bc_board[8][2] = -2;
-  m_bc_board[2][8] = -2;
-  m_bc_board[8][7] = -2;
-  m_bc_board[7][8] = -2;
+  m_bc_board[1][2] = -1;
+  m_bc_board[2][1] = -1;
+  m_bc_board[1][7] = -1;
+  m_bc_board[7][1] = -1;
+  m_bc_board[8][2] = -1;
+  m_bc_board[2][8] = -1;
+  m_bc_board[8][7] = -1;
+  m_bc_board[7][8] = -1;
 }
 
 

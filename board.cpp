@@ -36,7 +36,6 @@
  *******************************************************************
  */
 
-#include "misc.h"
 #include "board.h"
 #include <qpainter.h>
 #include <qimage.h>
@@ -46,9 +45,15 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
+#include <kconfig.h>
 
 #include "Score.h"
 #include "playsound.h"
+#include "Score.h"
+#include "Move.h"
+#include "Position.h"
+#include "Engine.h"
+#include "Game.h"
 
 #include <config.h>
 #include <unistd.h>
@@ -66,33 +71,38 @@ const int CHIP_WHITE      = 24;
 const int CHIP_MAX	  = 25;
 const int CHIP_SIZE       = 36;
 
-Board::Board(QWidget *parent) : QWidget(parent) {
-  setAnimationSpeed(DEFAULT_ANIMATION_DELAY);
-  setUpdatesEnabled(FALSE);
-
+Board::Board(QWidget *parent, const char *name) : QWidget(parent, name), 
+  chipname(""),
   // ensure that the first time adjustsize does
   // pixmap loading
-  oldsizehint = -1;
+  oldsizehint(-1),
+  _size(32),
+  _zoom(100),
+  _zoomed_size((_size * _zoom) / 100 + 2),
 
-  _size = 32;
-  _zoom = 100;
-  _zoomed_size = (_size * _zoom) / 100 + 2;
-
-  nopaint = FALSE;
-  human = Score::BLACK;
-  setStrength(4);
+  human(Score::BLACK),
+  nopaint(FALSE){
+  
+  setAnimationSpeed(DEFAULT_ANIMATION_DELAY);
+  setUpdatesEnabled(FALSE);
+  engine = new Engine();
+  game = new Game();
+  setStrength(1);
 
   connect(this, SIGNAL(signalFieldClicked(int, int)),
 	  this, SLOT(slotFieldClicked(int, int)));
+  loadSettings();
 }
 
 
 Board::~Board() {
+  delete engine;
+  delete game;
 }
 
 void Board::start() {
   // make sure a signal is emitted  
-  setStrength(e.GetStrength());
+  setStrength(engine->GetStrength());
   newGame();
   adjustSize();
   setUpdatesEnabled(TRUE);
@@ -114,7 +124,7 @@ QString Board::chipsName() {
 
 
 int Board::getMoveNumber() {
-  return g.GetMoveNumber();
+  return game->GetMoveNumber();
 }
 
 // negative speed is allowed. if speed is negative,
@@ -131,11 +141,11 @@ int Board::animationSpeed() {
 /// takes back last set of moves
 void Board::undo() {
   if((getState() == READY)) {
-    int last_player = g.GetLastMove().GetPlayer();
-    while ((g.GetMoveNumber() != 0) && 
-           (last_player == g.GetLastMove().GetPlayer()))
-       g.TakeBackMove();
-    g.TakeBackMove();
+    int last_player = game->GetLastMove().GetPlayer();
+    while ((game->GetMoveNumber() != 0) && 
+           (last_player == game->GetLastMove().GetPlayer()))
+       game->TakeBackMove();
+    game->TakeBackMove();
     update();
   }
 }
@@ -143,11 +153,11 @@ void Board::undo() {
 
 /// interrupt thinking of game engine
 void Board::interrupt() {
-  e.SetInterrupt(TRUE);
+  engine->SetInterrupt(TRUE);
 }
 
 bool Board::interrupted() {
-  return ((g.GetWhoseTurn() == computerIs()) && (getState() == THINKING));
+  return ((game->GetWhoseTurn() == computerIs()) && (getState() == READY));
 }
 
 
@@ -157,38 +167,33 @@ void Board::doContinue() {
     computerMakeMove();
 }
 
-
 /// adjusts the size
 void Board::adjustSize() {
   // do only resize if size has really change to avoid a flickering display
   if(sizeHint().width() != oldsizehint) {
     loadPixmaps();
     resize(sizeHint());
-    emit sizeChange();
     oldsizehint = sizeHint().width();
+    emit sizeChange();
   }
 }
-
 
 /// returns which color the human plays
 int  Board::humanIs() {
   return human;
 }
 
-
 /// returns which color the computer plays
 int  Board::computerIs() {
   if(human == Score::BLACK)
     return Score::WHITE;
-  else
-    return Score::BLACK;
+  return Score::BLACK;
 }
-
 
 /// starts a new game
 void Board::newGame() {  
   //  return;
-  g.Reset();
+  game->Reset();
   updateBoard(TRUE);
   setState(READY);
 
@@ -199,9 +204,12 @@ void Board::newGame() {
     computerMakeMove();
 }
 
-
 /// handles mouse clicks
 void Board::mousePressEvent(QMouseEvent *e) {
+  if(interrupted()){
+    emit illegalMove();
+    return;
+  }
   if(getState() == READY) {
     int px = (e->pos().x()-1) / _zoomed_size;
     int py = (e->pos().y()-1) / _zoomed_size;
@@ -216,16 +224,16 @@ void Board::mousePressEvent(QMouseEvent *e) {
 /// handles piece settings
 void Board::slotFieldClicked(int row, int col) {
   if(getState() == READY) {
-    int color = g.GetWhoseTurn();
+    int color = game->GetWhoseTurn();
 
     /// makes a human move
     Move m(col + 1, row + 1, color);
-    if(g.MoveIsLegal(m)) {
+    if(game->MoveIsLegal(m)) {
       //      playSound("click.wav");
-      g.MakeMove(m);
+      game->MakeMove(m);
       animateChanged(m);
 
-      if(!g.MoveIsAtAllPossible()) {
+      if(!game->MoveIsAtAllPossible()) {
 	updateBoard();
 	setState(READY);
 	gameEnded();
@@ -234,7 +242,7 @@ void Board::slotFieldClicked(int row, int col) {
 
       updateBoard();
 
-      if(color != g.GetWhoseTurn())
+      if(color != game->GetWhoseTurn())
 	computerMakeMove();
     } else 
       emit illegalMove();
@@ -245,38 +253,40 @@ void Board::slotFieldClicked(int row, int col) {
 /// makes a computer move
 void Board::computerMakeMove() {
   // check if the computer can move
-  int color = g.GetWhoseTurn();
-  int opponent = g.GetWhoseTurnOpponent();
+  int color = game->GetWhoseTurn();
+  int opponent = game->GetWhoseTurnOpponent();
 
   emit turn(color);
 
-  if(g.MoveIsPossible(color)) {
+  if(game->MoveIsPossible(color)) {
     setState(THINKING);
     do {
       Move m;
 
-      if(!g.MoveIsAtAllPossible()) {
+      if(!game->MoveIsAtAllPossible()) {
 	setState(READY);
 	gameEnded();
 	return;
       }
 
-      m = e.ComputeMove(g);
+      m = engine->ComputeMove(*game);
       if(m.GetX() == -1) {
 	setState(READY);
 	return;
       }
-      sleep(1); // Pretend we have to think hard.
-
+      usleep(300000); // Pretend we have to think hard.
+      
       //playSound("click.wav");
-      g.MakeMove(m);
+      game->MakeMove(m);
       animateChanged(m);
       updateBoard();
-    } while(!g.MoveIsPossible(opponent));
+    } while(!game->MoveIsPossible(opponent));
+    
+    
     emit turn(opponent);
     setState(READY);
 
-    if(!g.MoveIsAtAllPossible()) {
+    if(!game->MoveIsAtAllPossible()) {
       setState(READY);
       gameEnded();
       return;
@@ -287,8 +297,8 @@ void Board::computerMakeMove() {
 
 /// returns the current score
 void Board::getScore(int &black, int &white) {
-  black = g.GetScore(Score::BLACK);
-  white = g.GetScore(Score::WHITE);
+  black = game->GetScore(Score::BLACK);
+  white = game->GetScore(Score::WHITE);
 } 
 
 
@@ -314,6 +324,7 @@ void Board::switchSides() {
     else
       human = Score::WHITE;
     emit score();
+    kapp->processEvents();
     computerMakeMove();
   }
 }
@@ -328,31 +339,28 @@ void Board::setState(int nstatus) {
   emit statusChange(_status);
 }
 
-
 void Board::setStrength(int st) {
-  if((st > 1) && (st <= 10)) {
-    e.SetStrength(st);
-    emit strengthChanged(e.GetStrength());
+  if((st >= 1) && (st <= 8)) {
+    engine->SetStrength(st);
+    emit strengthChanged(engine->GetStrength());
   }
 }
 
-
 int Board::getStrength() {
-  return e.GetStrength();
+  return engine->GetStrength();
 }
-
 
 void Board::hint() {
   if(getState() == READY) {
     setState(THINKING);
-    Move m = e.ComputeMove(g);
+    Move m = engine->ComputeMove(*game);
     setState(HINT);
     if(m.GetX() != -1) {
       for(int flash = 0; (flash < 100) && (getState() != READY); flash++) {
 	if(flash & 1)
 	  drawOnePiece(m.GetY() - 1, m.GetX() - 1, Score::NOBODY);
 	else
-	  drawOnePiece(m.GetY() - 1, m.GetX() - 1, g.GetWhoseTurn());
+	  drawOnePiece(m.GetY() - 1, m.GetX() - 1, game->GetWhoseTurn());
 
 	// keep GUI alive while waiting
 	for(int dummy = 0; dummy < 5; dummy++) {
@@ -362,7 +370,7 @@ void Board::hint() {
       }
       
       drawOnePiece(m.GetY() - 1, m.GetX() - 1, 
-		   g.GetSquare(m.GetX(), m.GetY()));
+		   game->GetSquare(m.GetX(), m.GetY()));
     }
     setState(READY);
   }
@@ -378,7 +386,7 @@ void Board::hint() {
 // ********************************************************
 
 // flash all pieces which are turned
-// NOTE: this code is white a hack. Should make it better
+// NOTE: this code is quite a hack. Should make it better
 void Board::animateChanged(Move m) {
   if(animationSpeed() <= 0)
     return;
@@ -404,7 +412,7 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
   row = row + dy;
   col = col + dx;
   while(isField(row, col)) {
-    if(g.wasTurned(col+1, row+1)) {
+    if(game->wasTurned(col+1, row+1)) {
       playSound("reversi-click.wav");
       rotateChip(row, col);
       soundSync();
@@ -421,7 +429,7 @@ void Board::rotateChip(int row, int col) {
   // check which direction the chip has to be rotated
   // if the new chip is white, the chip was black first,
   // so lets begin at index 1, otherwise it was white
-  int color = g.GetSquare(col+1, row+1);
+  int color = game->GetSquare(col+1, row+1);
   int from, end, delta;
   if(color == Score::WHITE) {
     from = CHIP_BLACK + 2;
@@ -480,7 +488,6 @@ void Board::setZoom(int _new) {
       _zoom = _new;
       _zoomed_size = (_size * _zoom) / 100 + 2;
       adjustSize();
-      emit sizeChange();
     }
   }
 }
@@ -559,8 +566,8 @@ void Board::drawOnePiece(int row, int col, int color) {
 
 
 void Board::drawPiece(int row, int col, bool force) {
-  if(g.squareModified(col+1, row+1) || force) {
-    int color = g.GetSquare(col + 1, row + 1);
+  if(game->squareModified(col+1, row+1) || force) {
+    int color = game->GetSquare(col + 1, row + 1);
     drawOnePiece(row, col, color);
   }
 }
@@ -622,12 +629,13 @@ void Board::setColor(const QColor &c) {
 // saves the game. Only one game at a time can be saved
 void Board::saveGame(KConfig *config) {
   interrupt(); // stop thinking
-  config->writeEntry("NumberOfMoves", g.GetMoveNumber());
-  int nmoves = g.GetMoveNumber();
+  config->writeEntry("NumberOfMoves", game->GetMoveNumber());
+  int nmoves = game->GetMoveNumber();
   config->writeEntry("State", getState());
+  config->writeEntry("Strength", getStrength());
   for(int i = nmoves; i > 0; i--) {    
-    Move m = g.GetLastMove();
-    g.TakeBackMove();
+    Move m = game->GetLastMove();
+    game->TakeBackMove();
     QString s, idx;
     s.sprintf("%d %d %d", m.GetX(), m.GetY(), m.GetPlayer());
     idx.sprintf("Move_%d", i);
@@ -647,7 +655,7 @@ void Board::loadGame(KConfig *config, bool noupdate) {
   interrupt(); // stop thinking
   int nmoves = config->readNumEntry("NumberOfMoves", -1);
   if(nmoves > 0) {
-    g.Reset();
+    game->Reset();
     int movenumber = 1;
     while(nmoves--) {
       // read one move
@@ -658,7 +666,7 @@ void Board::loadGame(KConfig *config, bool noupdate) {
       int y = (*s.at(1)).toInt();
       int pl = (*s.at(2)).toInt();
       Move m(x, y, pl);
-      g.MakeMove(m);
+      game->MakeMove(m);
     }
 
     if(noupdate)
@@ -668,7 +676,8 @@ void Board::loadGame(KConfig *config, bool noupdate) {
   
     updateBoard(TRUE);
     setState(config->readNumEntry("State"));
-
+    setStrength(config->readNumEntry("Strength", 10));
+    
     if(interrupted())
       doContinue();
     else {      
@@ -685,4 +694,58 @@ bool Board::canLoad(KConfig *config) {
   return (bool)(nmoves > 0);
 }
 
+void Board::loadSettings(){
+  KConfig *config = kapp->config();
+  config->setGroup("Game");
+  if(config->readBoolEntry("Grayscale", false)){
+    if(chipname != "chips_mono.png")
+      loadChips("chips_mono.png");
+  }
+  else{
+    if(chipname != "chips.png") loadChips("chips.png");
+  }
+
+  if(config->readBoolEntry("Animation", true) == false)
+    setAnimationSpeed(-1);
+  else
+    setAnimationSpeed(10-config->readNumEntry("AnimationSpeed", DEFAULT_ANIMATION_DELAY));
+  setZoom(config->readNumEntry("Zoom", 100));
+  setFixedSize(sizeHint());
+  setStrength(config->readNumEntry("Skill", 1));
+
+
+  if(config->readBoolEntry("BackgroundColorChoice", false))
+    setColor(config->readColorEntry("BackgroundColor"));
+  else{
+    QPixmap pm(config->readEntry("Background", PICDATA("background/Light_Wood.png")));
+    if(!pm.isNull())
+      setPixmap(pm);
+  }
+  /*
+  // This should be changed...
+  setColor(paletteBackgroundColor());
+  if(config->readNumEntry("Background", -1) != -1) {
+    int i = config->readNumEntry("Background");
+    if(i == 1) {
+      QColor s = config->readColorEntry("BackgroundColor");
+      setColor(s);
+    } else if(i == 2) {
+      QString s = locate("appdata", config->readEntry("BackgroundPixmap"));
+      if(!s.isEmpty()) {
+        QPixmap bg(s);
+        if(bg.width())
+          setPixmap(bg);
+      }
+    }
+  }
+  else
+  {
+    QPixmap bg(locate("appdata", "pics/background/Light_Wood.png"));
+    if (bg.width())
+      setPixmap(bg);
+  }
+  */
+}
+
 #include "board.moc"
+

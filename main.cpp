@@ -44,10 +44,8 @@
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 
-#include "misc.h"
 #include "version.h"
-#include "app.h"
-
+#include "kreversi.h"
 
 static const char *description = I18N_NOOP("KDE Board Game");
 
@@ -57,17 +55,27 @@ int main(int argc, char **argv)
     KREVERSI_VERSION, description, KAboutData::License_GPL, 
     "(c) 1997-2000, Mario Weilguni");
   aboutData.addAuthor("Mario Weilguni",0, "mweilguni@sime.com");
+  aboutData.addAuthor("Benjamin Meyer",0, "ben@meyerhome.net");
+  aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
+  aboutData.addCredit("Stephan Kulow", I18N_NOOP("Comments and bugfixes."), 0);
+  aboutData.addCredit("Arne Klaassen", I18N_NOOP("Raytraced chips."), 0);
+
   KCmdLineArgs::init( argc, argv, &aboutData );
 
   KApplication a;
+  KGlobal::locale()->insertCatalogue("libkdegames");
 
+  // used for loading background pixmaps
   KImageIO::registerFormats();
   
-  App *app = new App;
-
-  app->show();
-  a.setMainWidget(app);
-  a.setTopWidget(app);
-
+  if(a.isRestored()){
+     RESTORE(KReversi)
+  }
+  else {
+    KReversi *kreversi = new KReversi();
+    a.setMainWidget(kreversi);
+    kreversi->show();
+  }
   return a.exec();
 }
+

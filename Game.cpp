@@ -99,7 +99,6 @@
 
 #include <qobject.h>
 #include "Game.h"
-#include "misc.h"
 
 Game::Game()
 {

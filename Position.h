@@ -80,7 +80,6 @@
 #ifndef __POSITION__H__
 #define __POSITION__H__
 
-#include "misc.h"
 #include "Move.h"
 #include "Score.h"
 
