@@ -44,7 +44,7 @@
                 </property>
                 <widget class="QButtonGroup" row="3" column="0" rowspan="1" colspan="2">
                     <property name="name">
-                        <cstring>BackgroundGroup</cstring>
+                        <cstring>kcfg_BackgroundImageChoice</cstring>
                     </property>
                     <property name="title">
                         <string>Background</string>
@@ -63,7 +63,7 @@
                         </widget>
                         <widget class="KURLRequester" row="1" column="1">
                             <property name="name">
-                                <cstring>BackgroundImage</cstring>
+                                <cstring>kcfg_BackgroundImage</cstring>
                             </property>
                         </widget>
                         <widget class="QRadioButton" row="1" column="0">
@@ -79,7 +79,7 @@
                         </widget>
                         <widget class="KColorButton" row="0" column="1">
                             <property name="name">
-                                <cstring>BackgroundColor</cstring>
+                                <cstring>kcfg_BackgroundColor</cstring>
                             </property>
                             <property name="enabled">
                                 <bool>false</bool>
@@ -116,7 +116,7 @@
                 </spacer>
                 <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
                     <property name="name">
-                        <cstring>Grayscale</cstring>
+                        <cstring>kcfg_Grayscale</cstring>
                     </property>
                     <property name="text">
                         <string>Grayscale chips</string>
@@ -124,7 +124,7 @@
                 </widget>
                 <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="2">
                     <property name="name">
-                        <cstring>Animation</cstring>
+                        <cstring>kcfg_Animation</cstring>
                     </property>
                     <property name="text">
                         <string>Animation</string>
@@ -168,7 +168,7 @@
                         </widget>
                         <widget class="QSlider" row="0" column="0" rowspan="1" colspan="2">
                             <property name="name">
-                                <cstring>AnimationSpeed</cstring>
+                                <cstring>kcfg_AnimationSpeed</cstring>
                             </property>
                             <property name="minValue">
                                 <number>1</number>
@@ -181,9 +181,6 @@
                             </property>
                             <property name="pageStep">
                                 <number>1</number>
-                            </property>
-                            <property name="value">
-                                <number>5</number>
                             </property>
                             <property name="orientation">
                                 <enum>Horizontal</enum>
@@ -207,7 +204,7 @@
                         </property>
                         <widget class="QSlider" row="0" column="0" rowspan="1" colspan="3">
                             <property name="name">
-                                <cstring>skill</cstring>
+                                <cstring>kcfg_skill</cstring>
                             </property>
                             <property name="minValue">
                                 <number>1</number>
@@ -216,9 +213,6 @@
                                 <number>7</number>
                             </property>
                             <property name="pageStep">
-                                <number>1</number>
-                            </property>
-                            <property name="value">
                                 <number>1</number>
                             </property>
                             <property name="orientation">
@@ -271,7 +265,7 @@
 </customwidgets>
 <connections>
     <connection>
-        <sender>Animation</sender>
+        <sender>kcfg_Animation</sender>
         <signal>toggled(bool)</signal>
         <receiver>groupBox2</receiver>
         <slot>setEnabled(bool)</slot>
@@ -279,13 +273,13 @@
     <connection>
         <sender>BackgroundColorChoice</sender>
         <signal>toggled(bool)</signal>
-        <receiver>BackgroundColor</receiver>
+        <receiver>kcfg_BackgroundColor</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
     <connection>
         <sender>BackgroundImageChoice</sender>
         <signal>toggled(bool)</signal>
-        <receiver>BackgroundImage</receiver>
+        <receiver>kcfg_BackgroundImage</receiver>
         <slot>setEnabled(bool)</slot>
     </connection>
 </connections>

@@ -5,7 +5,7 @@ bin_PROGRAMS = kreversi
 
 kreversi_SOURCES = main.cpp kreversi.cpp board.cpp Game.cpp \
 		Score.cpp SuperEngine.cpp settings.ui \
-		Engine.cpp Position.cpp Move.cpp
+		Engine.cpp Position.cpp Move.cpp prefs.kcfgc
 kreversi_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 kreversi_LDADD = $(LIB_KDEGAMES) $(LIB_KIO)
 
@@ -20,6 +20,8 @@ noinst_HEADERS = Engine.h Game.h kreversi.h Move.h board.h Position.h \
 SUBDIRS = . pics sounds icons
 
 xdg_apps_DATA = kreversi.desktop
+kde_kcfg_DATA = kreversi.kcfg
+
 
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/kreversi.pot

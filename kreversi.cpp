@@ -49,10 +49,11 @@
 #include <kaction.h>
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
-#include <kautoconfigdialog.h>
+#include <kconfigdialog.h>
 #include <kscoredialog.h>
 #include <kurlrequester.h>
 
+#include "prefs.h"
 #include "Score.h"
 #include "kreversi.h"
 #include "kreversi.moc"
@@ -161,9 +162,8 @@ bool KReversi::eventFilter(QObject *o, QEvent *e)
 
 void KReversi::zoomIn(){
   board->zoomIn();
-  KConfig *config = kapp->config();
-  config->setGroup("Game");
-  config->writeEntry("Zoom", board->zoom());
+  Prefs::setZoom(board->zoom());
+  Prefs::writeConfig();
 
   if(!board->canZoomIn())
     zoomInAction->setEnabled(false);
@@ -173,9 +173,9 @@ void KReversi::zoomIn(){
 
 void KReversi::zoomOut(){
   board->zoomOut();
-  KConfig *config = kapp->config();
-  config->setGroup("Game");
-  config->writeEntry("Zoom", board->zoom());
+  Prefs::setZoom(board->zoom());
+  Prefs::writeConfig();
+
   if(board->canZoomIn())
     zoomInAction->setEnabled(true);
   if(!board->canZoomOut())
@@ -311,13 +311,12 @@ void KReversi::showHighScoreDialog() {
  * Show Configure dialog.
  */
 void KReversi::showSettings(){
-  if(KAutoConfigDialog::showDialog("settings"))
+  if(KConfigDialog::showDialog("settings"))
     return;
 
-  KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings", KDialogBase::Swallow);
+  KConfigDialog *dialog = new KConfigDialog(this, "settings", Prefs::self(), KDialogBase::Swallow);
   Settings *general = new Settings(0, "General");
-  general->BackgroundImage->setURL(PICDATA("background/Light_Wood.png"));
-  dialog->addPage(general, i18n("General"), "Game", "package_settings");
+  dialog->addPage(general, i18n("General"), "package_settings");
   connect(dialog, SIGNAL(settingsChanged()), board, SLOT(loadSettings()));
   dialog->show();
 }

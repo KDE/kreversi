@@ -47,6 +47,7 @@
 #include <kconfig.h>
 #include <kaudioplayer.h>
 
+#include "prefs.h"
 #include "Engine.h"
 
 #include <config.h>
@@ -399,7 +400,9 @@ void Board::rotateChip(int row, int col) {
   // if the new chip is white, the chip was black first,
   // so lets begin at index 1, otherwise it was white
   Player player = game->GetSquare(col+1, row+1);
-  int from, end, delta;
+  int from = 0;
+  int end = 0;
+  int delta = 0;
   switch (player) {
   case White:
     from = CHIP_BLACK + 1;
@@ -555,6 +558,7 @@ void Board::saveGame(KConfig *config) {
 
   // save whose turn it is
   config->writeEntry("WhoseTurn", (int)human);
+  config->sync();
 
   // all moves must be redone
   loadGame(config, TRUE);
@@ -608,30 +612,31 @@ bool Board::canLoad(KConfig *config) {
 void Board::loadSettings(){
   KConfig *config = kapp->config();
   config->setGroup("Game");
-  if(config->readBoolEntry("Grayscale", false)) {
+  if( Prefs::grayscale() ) {
     if(chiptype != Grayscale)
-        loadChips(Grayscale);
+      loadChips(Grayscale);
   }
   else {
-    if(chiptype != Colored) loadChips(Colored);
+    if(chiptype != Colored)
+      loadChips(Colored);
   }
 
-  if(config->readBoolEntry("Animation", true) == false)
+  if( !Prefs::animation() )
     setAnimationSpeed(-1);
   else
-    setAnimationSpeed(10-config->readNumEntry("AnimationSpeed", DEFAULT_ANIMATION_DELAY));
-  setZoom(config->readNumEntry("Zoom", 100));
+    setAnimationSpeed(10 - Prefs::animationSpeed());
+  setZoom(Prefs::zoom());
   setFixedSize(sizeHint());
-  setStrength(config->readNumEntry("skill", 1));
+  setStrength(Prefs::skill());
 
-
-  if(config->readBoolEntry("BackgroundColorChoice", false))
-    setColor(config->readColorEntry("BackgroundColor"));
-  else{
-    QPixmap pm(config->readEntry("Background", PICDATA("background/Light_Wood.png")));
+  if ( Prefs::backgroundImageChoice() ) {
+    QPixmap pm( Prefs::backgroundImage() );
     if(!pm.isNull())
       setPixmap(pm);
+  } else {
+    setColor( Prefs::backgroundColor() );
   }
+
   /*
   // This should be changed...
   setColor(paletteBackgroundColor());

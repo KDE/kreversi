@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<kcfg>
+  <kcfgfile name="kreversirc"/>
+  <include>kstandarddirs.h</include>
+  <include>kglobal.h</include>
+  <group name="Game">
+    <entry name="Grayscale" type="bool">
+      <desc>Whether to use a gray board instead of colors.</desc>
+      <default>false</default>
+    </entry>
+    <entry name="Animation" type="bool">
+      <desc>Whether to use animations.</desc>
+      <default>true</default>
+    </entry>
+    <entry name="AnimationSpeed" type="int" min="1" max="10">
+      <desc>The speed of the animations.</desc>
+      <default>4</default>
+    </entry>
+    <entry name="Zoom" type="int" min="10" max="1000">
+      <desc>The zoom factor of the board.</desc>
+      <default>100</default>
+    </entry>
+    <entry name="skill" type="int" min="1" max="7">
+      <desc>The strength of the computer player.</desc>
+      <default>1</default>
+    </entry>
+    <entry name="BackgroundImageChoice" type="bool">
+      <desc>Whether to use a background image.</desc>
+      <default>true</default>
+    </entry>
+    <entry name="BackgroundColor" type="QColor">
+      <desc>The background color to use.</desc>
+      <default>#ffffff</default>
+    </entry>
+    <entry name="BackgroundImage" type="Path">
+      <desc>Image to use as background.</desc>
+      <code>#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)</code>
+      <default code="true">PICDATA("background/Light_Wood.png")</default>
+    </entry>
+  </group>
+</kcfg>
