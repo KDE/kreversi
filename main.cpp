@@ -54,9 +54,7 @@ int main(int argc, char **argv) {
 
   app->show();
   a.setMainWidget(app);
-
-  // session managment
-  a.enableSessionManagement(FALSE);
+  a.setTopWidget(app);
 
   return a.exec();
 }

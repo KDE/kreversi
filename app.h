@@ -82,7 +82,7 @@ private:
   void writeHighscore();
   int  insertHighscore(HighScore &);
   bool isBetter(HighScore &, HighScore &);
-  void showHighscore(int focusItem = -1);
+  void showHighscore(int focusitem = -1);
   QString getPlayerName();
   void lookupBackgroundPixmaps();
 

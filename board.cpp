@@ -173,7 +173,7 @@ void Board::interrupt() {
 }
 
 bool Board::interrupted() {
-  return ((g.GetWhoseTurn() == computerIs()) && (getState() != THINKING));
+  return ((g.GetWhoseTurn() == computerIs()) && (getState() == THINKING));
 }
 
 
@@ -680,9 +680,10 @@ void Board::setColor(const QColor &c) {
 
 // saves the game. Only one game at a time can be saved
 void Board::saveGame(KConfig *config) {
-  interrupt(); // stop thinking  
+  interrupt(); // stop thinking
   config->writeEntry("NumberOfMoves", g.GetMoveNumber());
   int nmoves = g.GetMoveNumber();
+  config->writeEntry("State", getState());
   for(int i = nmoves; i > 0; i--) {    
     Move m = g.GetLastMove();
     g.TakeBackMove();
@@ -725,13 +726,16 @@ void Board::loadGame(KConfig *config, bool noupdate) {
     human = config->readNumEntry("WhoseTurn");
   
     updateBoard(TRUE);
-    setState(READY);
-    
-    emit turn(Score::BLACK);
-    
-    // computer makes first move
-    if(human == Score::WHITE)
-      computerMakeMove();
+    setState(config->readNumEntry("State"));
+
+    if(interrupted())
+      doContinue();
+    else {      
+      emit turn(Score::BLACK);
+      // computer makes first move
+      if(human == Score::WHITE)
+	computerMakeMove();
+    }
   }
 }
 

@@ -39,7 +39,7 @@
 #ifndef __ABOUT__H__
 #define __ABOUT__H__
 
-#define VERSION_STR "0.6"
+#define VERSION_STR "0.6.1"
 
 #include "misc.h"
 #include <qdialog.h>

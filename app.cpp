@@ -50,6 +50,7 @@
 #include <qdatetm.h>
 #include <qlabel.h>
 #include <qlined.h>
+#include <kconfig.h>
 #include <kcolordlg.h>
 #include <qregexp.h>
 #include <qtimer.h>
@@ -226,7 +227,7 @@ App::App() : KTopLevelWidget() {
   updateRects();
   
   if(kapp->isRestored())
-    restore(1);    
+    restore(1);
 }
 
 
@@ -811,11 +812,11 @@ void App::readHighscore() {
   i = 0;
   bool eol = FALSE;
   grp = conf->group();
-  conf->setGroup(QString("Hall of Fame"));
+  conf->setGroup("Hall of Fame");
   while ((i < HIGHSCORE_MAX) && !eol) {
     s.sprintf("Highscore_%d", i);
     if(conf->hasKey(s)) {
-      e = conf->readEntry(s);
+      e = conf->readEntry(s.data());
       highscore.resize(i+1);
 
       HighScore hs;
@@ -829,7 +830,7 @@ void App::readHighscore() {
   }
 
   // restore old group
-  conf->setGroup(grp);
+  conf->setGroup(grp.data());
 }
 
 
@@ -839,7 +840,7 @@ void App::writeHighscore() {
   KConfig *conf = kapp->getConfig();
 
   grp = conf->group();
-  conf->setGroup(QString("Hall of Fame"));
+  conf->setGroup("Hall of Fame");
   for(i = 0; i < (int)highscore.size(); i++) {
     s.sprintf("Highscore_%d", i);
     HighScore hs = highscore[i];
@@ -850,7 +851,7 @@ void App::writeHighscore() {
   }
   
   // restore old group
-  conf->setGroup(grp);
+  conf->setGroup(grp.data());
 }
 
 int MAX(int a, int b) {
@@ -860,7 +861,7 @@ int MAX(int a, int b) {
     return b;
 }
 
-void App::showHighscore(int focusItem = -1) {
+void App::showHighscore(int focusitem = -1) {
   // this may look a little bit confusing...
   QDialog *dlg = new QDialog(0, locale->translate("Hall of Fame"), TRUE);
   dlg->setCaption(locale->translate("KReversi: Hall Of Fame"));
@@ -878,7 +879,7 @@ void App::showHighscore(int focusItem = -1) {
   tl->addWidget(l);
 
   // insert highscores in a gridlayout
-  QGridLayout *table = new QGridLayout(highscore.size()+2, 5, 5);
+  QGridLayout *table = new QGridLayout(12, 5, 5);
   tl->addLayout(table, 1);
 
   // add a separator line
@@ -911,47 +912,61 @@ void App::showHighscore(int focusItem = -1) {
   
   QString s;
   QLabel *e[10][5];
-  for(int i = 0; i < (int)highscore.size(); i++) {
-    HighScore hs = highscore[i];
-    const char *color;
+  unsigned i, j;
 
-    if(hs.color == Score::BLACK)
-      color = locale->translate("blue");
-    else
-      color = locale->translate("red");
+  for(i = 0; i < 10; i++) {
+    const char *color = 0;
+    HighScore hs;
+    if(i < highscore.size()) {
+      hs = highscore[i];
+      if(hs.color == Score::BLACK)
+	color = locale->translate("blue");
+      else
+	color = locale->translate("red");
+    }
     
-    // insert rank
+    // insert rank    
     s.sprintf("%d", i+1);
     e[i][0] = new QLabel(s.data(), dlg);
 
     // insert name
-    e[i][1] = new QLabel(hs.name, dlg);
+    if(i < highscore.size())
+      e[i][1] = new QLabel(hs.name, dlg);
+    else
+      e[i][1] = new QLabel("", dlg);
 
     // insert color
-    e[i][2] = new QLabel(color, dlg);
+    if(i < highscore.size())
+      e[i][2] = new QLabel(color, dlg);
+    else
+      e[i][2] = new QLabel("", dlg);
 
     // insert score
-    s.sprintf("%d/%d", hs.winner, hs.loser);
+    if(i < highscore.size())
+      s.sprintf("%d/%d", hs.winner, hs.loser);
+    else
+      s = "";
     e[i][3] = new QLabel(s.data(), dlg);
     
     // insert rating
-    s.sprintf("%3.0f", hs.rating);
+    if(i < highscore.size())
+      s.sprintf("%3.0f", hs.rating);
+    else
+      s = "";
     e[i][4] = new QLabel(s.data(), dlg);
   }
 
   f = font();
   f.setBold(TRUE);
   f.setItalic(TRUE);
-  int i, j;
   for(i = 0; i < 10; i++)
     for(j = 0; j < 5; j++) {
       e[i][j]->setMinimumSize(e[i][j]->sizeHint());
-      if(i == focusItem) {
+      if((int)i == focusitem)
 	e[i][j]->setFont(f);
-      }
-      table->addWidget(e[i][j], i+2, j, AlignCenter);
+      table->addWidget(e[i][j], i+2, j, AlignCenter);	
     }
-
+    
   QPushButton *b = new QPushButton(locale->translate("Close"), dlg);
   if(style() == MotifStyle)
     b->setFixedSize(b->sizeHint().width() + 10,
@@ -1030,10 +1045,8 @@ QString App::getPlayerName() {
 void App::slotBarChanged() {
   KConfig *conf = kapp->getConfig();
   if(conf) {
-    conf->writeEntry(QString("Menubar_Pos"),
-		     (int)(menu->menuBarPos()));
-    conf->writeEntry(QString("Toolbar_1_Pos"),
-		     (int)(tb->barPos()));
+    conf->writeEntry("Menubar_Pos", (int)(menu->menuBarPos()));
+    conf->writeEntry("Toolbar_1_Pos", (int)(tb->barPos()));
   }
 }
 
