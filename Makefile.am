@@ -11,7 +11,7 @@ BUILTSOURCES =	app.moc board.moc about.moc
 
 DISTCLEANFILES = $(BUILTSOURCES)
 
-SUBDIRS = html pics sounds
+SUBDIRS = html pics sounds icons
 
 applnk_DATA = kreversi.kdelnk
 applnkdir = $(kde_appsdir)/Games

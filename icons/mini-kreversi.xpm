@@ -12,7 +12,7 @@ static char*kreversi[]={
 "e c #0000ff",
 "b c #ffc0c0",
 "f c #c0c0ff",
-". c None",
+". c #000000",
 "................",
 ".#####abc##abc#.",
 ".#####bad##bad#.",
