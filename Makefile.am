@@ -21,7 +21,5 @@ SUBDIRS = . pics sounds icons
 
 xdg_apps_DATA = kreversi.desktop
 
-EXTRA_DIST = $(xdg_apps_DATA)
-
 messages: rc.cpp
 	$(XGETTEXT) *.cpp -o $(podir)/kreversi.pot
