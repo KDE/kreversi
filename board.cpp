@@ -245,9 +245,6 @@ void Board::mousePressEvent(QMouseEvent *e) {
 }
 
 
-void Board::mouseDoublePressEvent(QMouseEvent *) {
-}
-
 /// handles piece settings
 void Board::slotFieldClicked(int row, int col) {
   if(getState() == READY) {
