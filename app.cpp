@@ -59,6 +59,7 @@
 #include <kstddirs.h>
 #include <kglobal.h>
 #include <kiconloader.h>
+#include <khelpmenu.h>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -600,7 +601,10 @@ void App::processEvent(int itemid) {
   break;
 
   case ID_HABOUTKDE:
-    aboutKDE();
+    {
+	KHelpMenu hm;
+	hm.aboutKDE();
+    }
     break;
 
   default:
