@@ -11,6 +11,7 @@ Type=Application
 DocPath=kreversi/index.html
 Comment=Play Reversi against the computer
 Comment[cs]=Hraj reversi proti poèítaèi
+Comment[da]=Spil Reversi mod maskinen
 Comment[de]=Spiel Reversi gegen den Rechner
 Comment[es]=Juege al Reversi contra la computadora
 Comment[fi]=Pelaa Reversiä tietokonetta vastaan
