@@ -1,4 +1,4 @@
-2004-09-26  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+2004-09-26  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 90195: KReversi: Changing the skill level late in a game
 	doesn't count as cheating:
@@ -6,8 +6,6 @@
 	* board.cpp (Board::newGame): set m_lowestStrength
 	* board.cpp (Board::setStrength): update m_lowestStrength and
 	update highscore type.
-
-2004-09-26  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix Bug 90190: KReversi: Switch sides and then Undo gets the
 	program out of sync.
