@@ -9,6 +9,7 @@ Comment[tg]=KРеверсия
 
 [click]
 Name=Click
+Name[ar]=النقر
 Name[bg]=Щракване
 Name[br]=Klik
 Name[bs]=Klikni
@@ -39,6 +40,7 @@ Name[tr]=Tık
 Name[uk]=Клац
 Name[zh_CN]=单击
 Comment=Click
+Comment[ar]=النقر
 Comment[bg]=Щракване
 Comment[br]=Klik
 Comment[bs]=Klik
@@ -164,6 +166,7 @@ Name=Game lost
 Name[ar]=خسرت اللعبة
 Name[bg]=Загубихте
 Name[bn]=খেলায় হেরে গিয়েছেন
+Name[br]=Kollet eo ar c'hoari
 Name[bs]=Poraz
 Name[ca]=Partida perduda
 Name[cs]=Prohraná hra
@@ -206,6 +209,7 @@ Comment=Game lost
 Comment[ar]=خسرت اللعبة
 Comment[bg]=Загубихте
 Comment[bn]=খেলায় হেরে গিয়েছেন
+Comment[br]=Koll eo ar c'hoari
 Comment[bs]=Poraz
 Comment[ca]=Partida perduda
 Comment[cs]=Prohraná hra
@@ -248,6 +252,7 @@ default_presentation=0
 
 [draw]
 Name=Draw
+Name[ar]=السحب
 Name[bg]=Равенство
 Name[br]=Tresañ
 Name[bs]=Crtaj
@@ -280,6 +285,7 @@ Name[tr]=Berabere
 Name[uk]=Нічия
 Name[zh_CN]=平局
 Comment=Draw
+Comment[ar]=السحب
 Comment[bg]=Равенство
 Comment[br]=Tresañ
 Comment[bs]=Crtaj
@@ -315,6 +321,7 @@ default_presentation=0
 
 [illegal_move]
 Name=Illegal Move
+Name[ar]=حركة غير قانونية
 Name[bg]=Невалиден ход
 Name[bs]=Nedozvoljen potez
 Name[ca]=Moviment il·legal
@@ -346,6 +353,7 @@ Name[tr]=Gecersiz Hamle
 Name[uk]=Недозволений хід
 Name[zh_CN]=无效移动
 Comment=Illegal move
+Comment[ar]=حركة غير قانونية
 Comment[bg]=Невалиден ход
 Comment[bs]=Nedozvoljen potez
 Comment[ca]=Moviment il·legal
