@@ -12,7 +12,7 @@ METASOURCES =	app.moc board.moc about.moc
 noinst_HEADERS = Engine.h about.h Game.h app.h Move.h board.h Position.h \
 	misc.h Random.h playsound.h Score.h version.h SuperEngine.h           
 
-SUBDIRS = html pics sounds icons
+SUBDIRS = . pics sounds icons
 
 applnk_DATA = kreversi.kdelnk
 applnkdir = $(kde_appsdir)/Games
