@@ -67,16 +67,19 @@ class KReversi : public KMainWindow {
 
 public:
   KReversi();
+  
+  bool isPlaying() const;
 
 private:
   void createKActions();
   void createStatusBar();
   QString getPlayerName();
-  bool eventFilter(QObject *, QEvent *e);
   void updateColors();
 
+  virtual bool eventFilter(QObject *, QEvent *e);
   virtual void saveProperties(KConfig *);
   virtual void readProperties(KConfig *);
+  virtual bool queryExit();
 
 private slots:
   void slotScore();
@@ -103,8 +106,7 @@ private:
   StatusWidget *_humanStatus, *_computerStatus;
 
   Board *board;
-  bool gameOver;
-
+  bool gameOver, cheating;
 };
 
 #endif

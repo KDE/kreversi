@@ -115,7 +115,6 @@ signals:
   void score();
   void gameWon(Player);
   void statusChange(Board::State);
-  void strengthChanged(int);
   void sizeChange();
   void turn(Player);
 

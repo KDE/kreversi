@@ -40,14 +40,18 @@
 #include <kimageio.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
+#include <khighscore.h>
 
 #include "version.h"
 #include "kreversi.h"
+#include "highscores.h"
 
 static const char description[] = I18N_NOOP("KDE Board Game");
 
 int main(int argc, char **argv)
 {
+  KHighscore::init("kreversi");
+
   KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
     KREVERSI_VERSION, description, KAboutData::License_GPL,
     "(c) 1997-2000, Mario Weilguni");
@@ -64,6 +68,7 @@ int main(int argc, char **argv)
 
   // used for loading background pixmaps
   KImageIO::registerFormats();
+  KExtHighscore::ExtManager highscores;
 
   if(a.isRestored()){
      RESTORE(KReversi)

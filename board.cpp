@@ -47,6 +47,7 @@
 #include <kconfig.h>
 #include <knotifyclient.h>
 #include <klocale.h>
+#include <kexthighscore.h>
 
 #include "prefs.h"
 #include "Engine.h"
@@ -146,7 +147,6 @@ void Board::adjustSize() {
 
 /// starts a new game
 void Board::newGame() {
-  //  return;
   game->Reset();
   updateBoard(TRUE);
   setState(Ready);
@@ -280,10 +280,10 @@ void Board::setState(State nstatus) {
 }
 
 void Board::setStrength(uint st) {
-  if((st >= 1) && (st <= 8)) {
-    engine->setStrength(st);
-    emit strengthChanged(strength());
-  }
+  Q_ASSERT( st>=1 && st<=7 );
+  st = QMAX(QMIN(st, 7), 1);
+  engine->setStrength(st);
+  KExtHighscore::setGameType(st-1);
 }
 
 uint Board::strength() const {
@@ -404,11 +404,9 @@ bool Board::canZoomOut() const {
 void Board::setZoom(uint _new) {
   if(((_new < _zoom) && canZoomOut()) ||
      ((_new > _zoom) && canZoomIn())) {
-    if(_new != _zoom) {
-      _zoom = _new;
-      _zoomed_size = qRound(float(CHIP_SIZE) * _zoom / 100);
-      adjustSize();
-    }
+    _zoom = _new;
+    _zoomed_size = qRound(float(CHIP_SIZE) * _zoom / 100);
+    adjustSize();
   }
 }
 
@@ -517,6 +515,8 @@ void Board::saveGame(KConfig *config) {
   config->sync();
 
   // all moves must be redone
+  
+  
   loadGame(config, TRUE);
   doContinue(); // continue possible move
 }
@@ -547,7 +547,7 @@ bool Board::loadGame(KConfig *config, bool noupdate) {
 
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));
-  setStrength(config->readNumEntry("Strength", 10));
+  setStrength(config->readNumEntry("Strength", 1));
     
   if(interrupted())
     doContinue();

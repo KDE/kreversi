@@ -121,6 +121,7 @@ public:
   
   void setInterrupt(bool intr) { m_interrupt = intr; }
   bool interrupt() const { return m_interrupt; }
+  enum Strength { MinStrength = 1, MaxStrength = 7, NbStrengths = MaxStrength };
   void setStrength(uint st) { m_strength = st; }
   uint strength() const { return m_strength; }
   void setSeed(int sd);

@@ -48,10 +48,9 @@
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
 #include <kconfigdialog.h>
-#include <kscoredialog.h>
-#include <kurlrequester.h>
 #include <knotifyclient.h>
 #include <knotifydialog.h>
+#include <kexthighscore.h>
 
 #include "prefs.h"
 #include "Score.h"
@@ -87,11 +86,9 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
 
 KReversi::KReversi()
-    : KMainWindow(0, "kreversi")
+  : KMainWindow(0, "kreversi"), gameOver(false), cheating(false)
 {
   KNotifyClient::startDaemon();
-
-  gameOver = false;
 
   // create reversi board
   QWidget *w = new QWidget(this);
@@ -133,9 +130,7 @@ void KReversi::createKActions() {
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection(), "zoomIn");
   zoomOutAction = KStdAction::zoomOut(this, SLOT(zoomOut()), actionCollection(), "zoomOut");
-  #ifdef HAVE_MEDIATOOL
-  soundAction = new KToggleAction(i18n("&Play Sounds"), 0, 0, 0, actionCollection(), "game_sound");
-  #endif
+  
   // Settings
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
@@ -150,7 +145,10 @@ void KReversi::createStatusBar() {
 }
 
 void KReversi::newGame(){
+  if ( isPlaying() )
+    KExtHighscore::submitScore(KExtHighscore::Lost, this);
   gameOver = false;
+  cheating = false;
   board->newGame();
 }
 
@@ -204,47 +202,36 @@ void KReversi::slotScore() {
 }
 
 void KReversi::slotGameEnded(Player player) {
-  QString s;
-
+  if (gameOver) return;
   statusBar()->message(i18n("End of game"));
 
   // get the scores
   uint human = board->score(board->humanPlayer());
   uint computer = board->score(board->computerPlayer());
 
-  if(player == Nobody) {
+  KExtHighscore::Score score;
+  score.setScore(board->score(board->humanPlayer()));
+  
+  if( player==Nobody ) {
     KNotifyClient::event(winId(), "draw", i18n("Draw!"));
-    s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(human).arg(computer);
+    QString s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
-  } else if(board->humanPlayer() == player) {
-    // calculate score
-    int  st = board->strength();
-    int sum = human + computer;
-    // 8 is the highest level so it is the bases for the scale.
-    float score= (float)human / sum * ((100/8)*st);
-
+    score.setType(KExtHighscore::Draw);
+  } else if( board->humanPlayer()==player ) {
     KNotifyClient::event(winId(), "won", i18n("Game won!"));
-    s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
-          .arg(human).arg(computer).arg(score,1);
+    QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2")
+                .arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
-
-    if (!gameOver){
-      KScoreDialog highscore(KScoreDialog::Name | KScoreDialog::Date, this);
-      highscore.addField(KScoreDialog::Score, i18n("Rating"), "Rating");
-      highscore.addField(KScoreDialog::Custom1, i18n("Score"), "NumChips");
-      KScoreDialog::FieldInfo scoreInfo;
-
-      scoreInfo.insert(KScoreDialog::Date, QDateTime::currentDateTime().toString());
-      scoreInfo[KScoreDialog::Custom1].setNum(human);
-      if (highscore.addScore((int)score, scoreInfo))
-        highscore.exec();
-    }
+    score.setType(KExtHighscore::Won);
   } else {
     KNotifyClient::event(winId(), "lost", i18n("Game lost!"));
-    s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
-	      .arg(human).arg(computer);
+    QString s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
+                .arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
+    score.setType(KExtHighscore::Lost);
   }
+  
+  if ( !cheating ) KExtHighscore::submitScore(score, this);
   gameOver = true;
 }
 
@@ -279,13 +266,11 @@ void KReversi::saveProperties(KConfig *c) {
 void KReversi::readProperties(KConfig *c) {
   board->loadGame(c);
   gameOver = false;
+  cheating = false;
 }
 
 void KReversi::showHighScoreDialog() {
-  KScoreDialog highscore(KScoreDialog::Name | KScoreDialog::Date, this);
-  highscore.addField(KScoreDialog::Score, i18n("Rating"), "Rating");
-  highscore.addField(KScoreDialog::Custom1, i18n("Score"), "NumChips");
-  highscore.exec();
+  KExtHighscore::show(this);
 }
 
 void KReversi::showSettings(){
@@ -318,6 +303,23 @@ void KReversi::loadSettings()
 
 void KReversi::switchSides()
 {
+  int res = KMessageBox::warningContinueCancel(this,
+         i18n("If you switch side, your score will not be added to the highscores."),
+         QString::null, QString::null, "switch_side_warning");
+  if ( res==KMessageBox::Cancel ) return;
+  cheating = true;
   board->switchSides();
   updateColors();
+}
+
+bool KReversi::isPlaying() const
+{
+  return ( board->moveNumber()!=0 && !gameOver );
+}
+
+bool KReversi::queryExit()
+{
+  if ( isPlaying() )
+    KExtHighscore::submitScore(KExtHighscore::Lost, this);
+  return true;
 }
