@@ -36,10 +36,10 @@ DONE
 	ported a JAVA applet with good strategy from Mats Luthman
 
 * end-of-game
-	shown via KMsgBox
+	shown via KMessageBox
 
 * help
-	via KDEHELP
+	via khelpcenter
 
 * save options
 	options are saved whenever they change
