@@ -64,6 +64,7 @@ const int ANIMATION_DELAY = 3000;
 const int CHIP_BLACK	  = 1;
 const int CHIP_WHITE      = 24;
 const int CHIP_MAX	  = 25;
+const int CHIP_SIZE       = 36;
 
 Board::Board(QWidget *parent) : QWidget(parent) {
   setAnimationSpeed(DEFAULT_ANIMATION_DELAY);
@@ -73,13 +74,9 @@ Board::Board(QWidget *parent) : QWidget(parent) {
   // pixmap loading
   oldsizehint = -1;
 
-  for(int i = 0; i < CHIP_MAX; i++)
-    chip[i] = 0;
-
   _size = 32;
   _zoom = 100;
-
-  loadChips("chips.xpm");
+  _zoomed_size = (_size * _zoom) / 100 + 2;
 
   nopaint = FALSE;
   human = Score::BLACK;
@@ -87,15 +84,10 @@ Board::Board(QWidget *parent) : QWidget(parent) {
 
   connect(this, SIGNAL(signalFieldClicked(int, int)),
 	  this, SLOT(slotFieldClicked(int, int)));
-  
-  scaleTimerID = -1;
 }
 
 
 Board::~Board() {
-  for(int i = 0; i < CHIP_MAX; i++) 
-    if(chip[i])
-      delete chip[i];
 }
 
 void Board::start() {
@@ -109,7 +101,11 @@ void Board::start() {
 void Board::loadChips(const char *filename) {
   allchips.load(PICDATA(filename));
   chipname = filename;
-  loadPixmaps();
+  if(scaled_allchips.width())
+  {
+    loadPixmaps(); // Reload
+    update();
+  }
 }
 
 QString Board::chipsName() {
@@ -132,35 +128,13 @@ int Board::animationSpeed() {
   return anim_speed;
 }
 
-// ensure that signals at the beginning are emited if
-// the parent has already setup it's connecions
-void Board::timerEvent(QTimerEvent *t) {
-  if(t->timerId() == initTimerID) {
-    killTimer(t->timerId());
-    initTimerID = -1;
-
-  }
-
-  // check if all chips are already scaled,
-  // if not scale them. If all chips are
-  // already scaled, kill the timer
-  if(t->timerId() == scaleTimerID) {
-    for(int i = 0; i < CHIP_MAX; i++)
-      if(chip[i] == 0) {
-	scaleOneChip(i);
-	return;
-      }
-
-    killTimer(t->timerId());
-    scaleTimerID = -1;
-  }
-}
-
-
-/// takes back on move
+/// takes back last set of moves
 void Board::undo() {
-  if((getState() == READY) && (g.GetMoveNumber() != 0)) {
-    g.TakeBackMove();
+  if((getState() == READY)) {
+    int last_player = g.GetLastMove().GetPlayer();
+    while ((g.GetMoveNumber() != 0) && 
+           (last_player == g.GetLastMove().GetPlayer()))
+       g.TakeBackMove();
     g.TakeBackMove();
     update();
   }
@@ -229,8 +203,8 @@ void Board::newGame() {
 /// handles mouse clicks
 void Board::mousePressEvent(QMouseEvent *e) {
   if(getState() == READY) {
-    int px = (e->pos().x()-2) / ((_size *5 / 4) * _zoom / 100);
-    int py = (e->pos().y()-2) / ((_size *5 / 4) * _zoom / 100);
+    int px = (e->pos().x()-1) / _zoomed_size;
+    int py = (e->pos().y()-1) / _zoomed_size;
     emit signalFieldClicked(py, px);
   } else if(getState() == HINT)
     setState(READY);
@@ -292,6 +266,7 @@ void Board::computerMakeMove() {
 	setState(READY);
 	return;
       }
+      sleep(1); // Pretend we have to think hard.
 
       //playSound("click.wav");
       g.MakeMove(m);
@@ -408,12 +383,6 @@ void Board::animateChanged(Move m) {
   if(animationSpeed() <= 0)
     return;
 
-  // since now all chips are needed, ensure that all of them
-  // are loaded
-  for(int i = 0; i < CHIP_MAX; i++) 
-    if(chip[i] == 0)
-      scaleOneChip(i);
-
   // draw the new piece
 
   drawOnePiece(m.GetY()-1, m.GetX()-1, m.GetPlayer());
@@ -465,39 +434,32 @@ void Board::rotateChip(int row, int col) {
   } else
     return;
 
-  int px = (col * (_size / 4) + col * _size + 3) * _zoom / 100 + 2;
-  int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100 + 2;
+  int px = col * _zoomed_size + 2;
+  int py = row * _zoomed_size + 2;
+
+  int w = scaled_allchips.width()/5;
+  int h = scaled_allchips.height()/5;
+
+  QPainter p;
   
-  // copy the background of an empty square
-  drawOnePiece(row, col, Score::NOBODY);
-  QPixmap saveunder;
-  int p_width = (sizeHint().width())/8;
-  int p_height = (sizeHint().height())/8;
-  saveunder.resize(p_width, p_height);
-  bitBlt(&saveunder, 0, 0, this, p_width * col, p_height * row,
-	 p_width, p_height, CopyROP);
-
   for(int i = from; i != end; i += delta) {
-    // copy the piece over a copy of the saveunder, this will reduce flicker
-    QPixmap tmp = saveunder;
-    bitBlt(&tmp, px % p_width, py % p_height, chip[i], 0, 0, 
-	   chip[i]->width(), chip[i]->height(), CopyROP);
+    QPixmap pix(_zoomed_size-2, _zoomed_size-2);
 
-    QPainter p;
-    p.begin(this);
-    p.drawPixmap(p_width * col, p_height * row, tmp);
-    //p.drawPixmap(p_width * col, p_height * row, saveunder);
-    //p.drawPixmap(px, py, *chip[i]);    
+    p.begin(&pix);
+    if (bg.width())
+       p.drawTiledPixmap(0, 0, _zoomed_size-2, _zoomed_size-2, bg, px, py);
+    else
+       p.fillRect(0, 0, _zoomed_size-2, _zoomed_size-2, eraseColor());
+    p.drawPixmap(0, 0, scaled_allchips, (i % 5) * w + 10, (i / 5) * h + 10,
+	   _zoomed_size-2, _zoomed_size-2);
     p.flush();
     p.end();
+
+    bitBlt(this, px, py, &pix, 0, 0, _zoomed_size-2, _zoomed_size-2, CopyROP);
+    kapp->flushX();
     usleep(ANIMATION_DELAY * anim_speed);
   }
   
-  QPainter p;
-  p.begin(this);
-  p.drawPixmap(p_width * col, p_height * row, saveunder);  
-  p.flush();
-  p.end();
   drawOnePiece(row, col, color);
 }
 
@@ -516,6 +478,7 @@ void Board::setZoom(int _new) {
      ((_new > _zoom) && canZoomIn())) {
     if(_new != _zoom) {
       _zoom = _new;
+      _zoomed_size = (_size * _zoom) / 100 + 2;
       adjustSize();
       emit sizeChange();
     }
@@ -537,59 +500,17 @@ void Board::zoomOut() {
   setZoom(_zoom - 20);
 }
 
-
-void Board::scaleOneChip(int i) {
-  if((i >= 0) && (i < CHIP_MAX)) {
-    // free pixmap if any
-    if(chip[i] != 0)
-      delete chip[i];
-
-    int w = allchips.width()/5;
-    int h = allchips.height()/5;
-    
-    // make new pixmap
-    chip[i] = new QPixmap;
-    chip[i]->resize(30, 30);
-    chip[i]->fill();		// thanks to Stephan Kulow
-    
-    // easy to understand, isn't it :-)
-    bitBlt(chip[i], 0, 0, &allchips, (i % 5) * w + 10, (i / 5) * h + 10, 
-	   30, 30, CopyROP);
-
-    // scale to final size
-    chip[i]->setMask(chip[i]->createHeuristicMask());
-    QWMatrix wm;
-    wm.scale((float)(0.01 * _zoom * _size) / 30,
- 	     (float)(0.01 * _zoom * _size) / 30);
-    *chip[i] = chip[i]->xForm(wm);    
-  }
-}
-
-
 void Board::loadPixmaps() {
-  // the chips CHIP_BLACK and CHIP_WHITE
-  // are needed immidiatly, so scale them. All other chips
-  // are scaled in the background (timerEvent) to make the
-  // program react faster to size events
-  for(int i = 0; i < CHIP_MAX; i++)
-    if(chip[i] != 0) {
-      delete chip[i];
-      chip[i] = 0;
-    }
-  scaleOneChip(CHIP_WHITE);
-  scaleOneChip(CHIP_BLACK);  
-  
-  // scale background (if any)
-  if(bg.width() != 0) {
+  if (scaled_allchips.width() != (_zoomed_size*5))
+  {
+    scaled_allchips = QPixmap(_zoomed_size*5, _zoomed_size*5);
     QWMatrix wm3;
-    wm3.scale((float)(sizeHint().width()-4)/8.0/bg.width(),
-	      (float)(sizeHint().height()-4)/8.0/bg.height());
-    setBackgroundPixmap(bg.xForm(wm3));
+    wm3.scale((float)(_zoomed_size*5)/(CHIP_SIZE * 5),
+              (float)(_zoomed_size*5)/(CHIP_SIZE * 5));
+    scaled_allchips = allchips.xForm(wm3);
   }
-
-  // start the timer to begin scaling of pixmaps (if needed)
-  if(scaleTimerID == -1)
-    scaleTimerID = startTimer(0);
+  if (bg.width())
+    setErasePixmap(bg);
 }
 
 
@@ -603,25 +524,37 @@ void Board::updateBoard(bool force) {
 
 
 void Board::drawOnePiece(int row, int col, int color) {
-  int px = (col * (_size / 4) + col * _size + 3) * _zoom / 100 + 2;
-  int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100 + 2;
+  int px = col * _zoomed_size + 2;
+  int py = row * _zoomed_size + 2;
 
-  // ensure that the chips are loaded
-  if((chip[CHIP_BLACK] == 0) || (chip[CHIP_WHITE] == 0))
-    loadPixmaps();
-  
+  int w = scaled_allchips.width()/5;
+  int h = scaled_allchips.height()/5;
+
+  QPixmap tmp(_zoomed_size-2, _zoomed_size-2);
+
   QPainter p;
-  p.begin(this);
-  if(color == Score::NOBODY) {
-    nopaint = TRUE;
-    repaint(px, py, chip[CHIP_BLACK]->width(), chip[CHIP_BLACK]->height());
-    nopaint = FALSE;
-  } else if(color == Score::BLACK)
-    p.drawPixmap(px, py, *chip[CHIP_BLACK]);
-  else if(color == Score::WHITE)
-    p.drawPixmap(px, py, *chip[CHIP_WHITE]);
+  p.begin(&tmp);
+  if (bg.width())
+    p.drawTiledPixmap(0, 0, _zoomed_size-2, _zoomed_size-2, bg, px, py);
+  else
+    p.fillRect(0, 0, _zoomed_size-2, _zoomed_size-2, eraseColor());
+  
+  if(color == Score::BLACK) {
+    // easy to understand, isn't it :-)
+    int i = CHIP_BLACK;
+    p.drawPixmap(0, 0, scaled_allchips, (i % 5) * w + 10, (i / 5) * h + 10,
+	   _zoomed_size-2, _zoomed_size-2);
+  }
+  else if(color == Score::WHITE) {
+    // easy to understand, isn't it :-)
+    int i = CHIP_WHITE;
+    p.drawPixmap(0, 0, scaled_allchips, (i % 5) * w + 10, (i / 5) * h + 10,
+	   _zoomed_size-2, _zoomed_size-2);
+  }
   p.flush();
   p.end();  
+  bitBlt(this, px, py, &tmp, 0, 0, _zoomed_size-2, _zoomed_size-2, CopyROP);
+  kapp->flushX();
 }
 
 
@@ -634,7 +567,7 @@ void Board::drawPiece(int row, int col, bool force) {
 
 
 void Board::paintEvent(QPaintEvent *) {
-  int i, w = sizeHint().width() - 2;
+  int w = sizeHint().width() - 2;
   
   if(!nopaint) {
     QPainter p;
@@ -643,15 +576,15 @@ void Board::paintEvent(QPaintEvent *) {
     p.setPen(QPen(QColor("black"), 2));
     
     // draw vertical lines
-    for(i = 1; i < 8; i++) {
-      int x = (i*(5 * _size / 4)) * _zoom / 100 + 2;
-      p.drawLine(x, 0, x, w);
+    for(int i = 1; i < 8; i++) {
+      int x = i * _zoomed_size;
+      p.drawLine(x+1, 0, x+1, w);
     }
     
     // draw horizontal lines
-    for(i = 1; i < 8; i++) {
-      int y = (i*(5 * _size / 4)) * _zoom / 100 + 2;
-      p.drawLine(0, y, w, y);
+    for(int i = 1; i < 8; i++) {
+      int y = i * _zoomed_size;
+      p.drawLine(0, y+1, w, y+1);
     }
 
     p.drawRect(1, 1, w+1, w+1);
@@ -663,24 +596,27 @@ void Board::paintEvent(QPaintEvent *) {
 
 
 QSize Board::sizeHint() const {
-  int w = (8 * (_size/4) + 8 * _size) * _zoom / 100;
+  int w = 8 * _zoomed_size;
   return QSize(w+2, w+2);
 }
 
 void Board::setPixmap(QPixmap &pm) {
   bg = pm;
-  // scale background (if any)
-  if(bg.width() != 0) {
-    QWMatrix wm3;
-    wm3.scale((float)(sizeHint().width()-4)/8.0/bg.width(),
-	      (float)(sizeHint().height()-4)/8.0/bg.height());
-    setBackgroundPixmap(bg.xForm(wm3));
+  if(scaled_allchips.width())
+  {
+    loadPixmaps(); // Reload
+    update();
   }
 }
 
 void Board::setColor(const QColor &c) {
   setBackgroundColor(c);
   bg.resize(0, 0);
+  if(scaled_allchips.width())
+  {
+    loadPixmaps(); // Reload
+    update();
+  }
 } 
 
 // saves the game. Only one game at a time can be saved

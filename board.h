@@ -76,7 +76,6 @@ public:
   // event stuff
   void paintEvent(QPaintEvent *);
   void mousePressEvent(QMouseEvent *);
-  void timerEvent(QTimerEvent *);
   QSize sizeHint() const;  
 
   /// stuff for zooming
@@ -131,7 +130,6 @@ private:
   void animateChangedRow(int row, int col, int dy, int dx);
   void rotateChip(int row, int col);
   bool isField(int row, int col);
-  void scaleOneChip(int i);
 
 private:
   QString chipname;
@@ -141,15 +139,15 @@ private:
   int _size;
   int oldsizehint;
   int _zoom;
+  int _zoomed_size;
   int human;
-  int initTimerID, scaleTimerID;
   bool nopaint;
   
   QPixmap bg;
 
   // the chips
-  QPixmap *chip[25];
   QPixmap allchips;
+  QPixmap scaled_allchips;
 
   int anim_speed;
 };

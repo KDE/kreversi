@@ -129,6 +129,7 @@ App::App() : KMainWindow(0) {
   highscore.resize(0);
   readHighscore();
   setCaption("");
+  gameOver = false;
 
   // create reversi board
   b = new Board(this);
@@ -137,10 +138,6 @@ App::App() : KMainWindow(0) {
   createStatusBar();
 
   b->setFixedSize(b->sizeHint());
-  b->show();
-  tb->show();
-  sb->show();
-  menu->show();
   setCentralWidget(b);
 
   connect(b, SIGNAL(score()), this, SLOT(slotScore()));
@@ -150,65 +147,74 @@ App::App() : KMainWindow(0) {
   connect(b, SIGNAL(statusChange(int)), this, SLOT(slotStatusChange(int)));
   connect(b, SIGNAL(illegalMove()), this, SLOT(slotIllegalMove()));
 
-  b->start();
-
   connect(tb, SIGNAL(moved(BarPosition)), this, SLOT(slotBarChanged()));
 
   KConfig *conf = kapp->config();
-  if(conf != 0) {
-    if(conf->readNumEntry("Background", -1) != -1) {
-      int i = conf->readNumEntry("Background");
-      if(i == 1) {
-	QColor s = conf->readColorEntry("BackgroundColor");
-	b->setColor(s);
-      } else if(i == 2) {
-	QString s = conf->readEntry("BackgroundPixmap");
-	if(s.length() > 0) {
-	  QPixmap bg(s);
-	  if(bg.width())
-	    b->setPixmap(bg);
-	}
+  b->setColor(b->paletteBackgroundColor());
+  if(conf->readNumEntry("Background", -1) != -1) {
+    int i = conf->readNumEntry("Background");
+    if(i == 1) {
+      QColor s = conf->readColorEntry("BackgroundColor");
+      b->setColor(s);
+    } else if(i == 2) {
+      QString s = locate("appdata", conf->readEntry("BackgroundPixmap"));
+      if(!s.isEmpty()) {
+        QPixmap bg(s);
+        if(bg.width())
+          b->setPixmap(bg);
       }
     }
+  }
+  else
+  {
+    QPixmap bg(locate("appdata", "pics/background/Light_Wood.xpm"));
+    if (bg.width())
+      b->setPixmap(bg);
+  }
 
-    if(conf->readNumEntry("Skill", -1) != -1)
-      b->setStrength(conf->readNumEntry("Skill", -1));
+  if(conf->readNumEntry("Skill", -1) != -1)
+    b->setStrength(conf->readNumEntry("Skill", -1));
 
-    if(conf->readNumEntry("Zoom", -1) != -1) {
-      b->setZoom(conf->readNumEntry("Zoom", -1));
-      b->setFixedSize(b->sizeHint());
-    }
+  if(conf->readNumEntry("Zoom", -1) != -1) {
+    b->setZoom(conf->readNumEntry("Zoom", -1));
+    b->setFixedSize(b->sizeHint());
+  }
 
-    // set toolbar position
-    int tbpos = conf->readNumEntry("Toolbar_1_Pos",
-				   (int)(KToolBar::Top));
-    tb->setBarPos((KToolBar::BarPosition)tbpos);
+  // set toolbar position
+  int tbpos = conf->readNumEntry("Toolbar_1_Pos",
+			   (int)(KToolBar::Top));
+  tb->setBarPos((KToolBar::BarPosition)tbpos);
 
-    if(conf->readNumEntry("AnimationSpeed", -1000) != -1000)
-      b->setAnimationSpeed(conf->readNumEntry("AnimationSpeed", 0));
+  if(conf->readNumEntry("AnimationSpeed", -1000) != -1000)
+    b->setAnimationSpeed(conf->readNumEntry("AnimationSpeed", 0));
 
-    if(conf->readNumEntry("Grayscale", 0)) {
-      b->loadChips("chips_mono.xpm");
-      menu->setItemChecked(ID_OGSCALE, TRUE);
-    }
+  if(conf->readNumEntry("Grayscale", 0)) {
+    b->loadChips("chips_mono.png");
+    menu->setItemChecked(ID_OGSCALE, TRUE);
+  }
+  else {
+    b->loadChips("chips.png");
+  }
 
 #ifdef HAVE_MEDIATOOL
-    if(conf->readNumEntry("Sound", 0) != 0) {
-      initAudio();
-      if(!audioOK()) {
-	show();
-	kapp->processEvents();
-	KMessageBox::error(this,
+  if(conf->readNumEntry("Sound", 0) != 0) {
+    initAudio();
+    if(!audioOK()) {
+      show();
+      kapp->processEvents();
+      KMessageBox::error(this,
 			   i18n("A problem with the sound server occured!\n"
 				"Cannot enable sound support."));
-      }
-    } else
-      doneAudio(); // just to be sure
-#endif
+    }
+  } else {
+    doneAudio(); // just to be sure
   }
+#endif
 
   if(kapp->isRestored())
     restore(1);
+
+  b->start();
 }
 
 
@@ -279,7 +285,12 @@ void App::createMenuBar() {
     for(unsigned i = 0; i < backgroundPixmaps.count(); i++) {
       // since the filename may contain underscore, they
       // are replaced with spaces in the menu entry
-      QString s(backgroundPixmaps.at(i)->baseName());
+      QString s(backgroundPixmaps[i]);
+      int x = s.findRev('/');
+      if (x != -1)
+         s = s.mid(x+1);
+      x = s.findRev('.');
+         s = s.left(x);
       s = s.replace(QRegExp("_"), " ");
 
       // avoid too longish menus
@@ -394,30 +405,11 @@ void App::createStatusBar() {
 
 
 void App::lookupBackgroundPixmaps() {
-  QString PICDIR = KGlobal::dirs()->findResourceDir("data", "kreversi/pics/background/");
-
-  QDir dir(PICDIR+"kreversi/pics/background/", "*.xpm");
-  if(!dir.exists())
-    return;
-
-  const QFileInfoList *fl = dir.entryInfoList();
-
-  // sanity check, maybe the directory is unreadable
-  if(fl == 0)
-    return;
-
-  QFileInfoListIterator it( *fl );
-  QFileInfo *fi;
-
-  while((fi = it.current())) {
-    backgroundPixmaps.append(new QFileInfo(*fi));
-    ++it;
-  }
+  KGlobal::dirs()->findAllResources("appdata", "pics/background/*.xpm", false, true, backgroundPixmaps);
 }
 
 void App::processEvent(int itemid) {
   QString s;
-  QColor c;
 
   switch(itemid) {
 
@@ -461,6 +453,7 @@ void App::processEvent(int itemid) {
     break;
 
   case ID_GNEW:
+    gameOver = false;
     b->newGame();
     break;
 
@@ -519,11 +512,11 @@ void App::processEvent(int itemid) {
     {
       bool gs;
 
-      if(b->chipsName() == "chips.xpm") {
-	b->loadChips("chips_mono.xpm");
+      if(b->chipsName() == "chips.png") {
+	b->loadChips("chips_mono.png");
 	gs = TRUE;
       } else {
-	b->loadChips("chips.xpm");
+	b->loadChips("chips.png");
 	gs = FALSE;
       }
       menu->setItemChecked(ID_OGSCALE, gs);
@@ -543,6 +536,7 @@ void App::processEvent(int itemid) {
 
   case ID_COLOR:
     {
+      QColor c = b->eraseColor();
       if(KColorDialog::getColor(c,this)) {
 	b->setColor(c);
 	kapp->config()->writeEntry("Background", 1);
@@ -577,12 +571,11 @@ void App::processEvent(int itemid) {
   default:
     {
       if((itemid >= ID_PIXMAP) && (itemid < ID_PIXMAP + (int)backgroundPixmaps.count())) {
-	QPixmap pm(backgroundPixmaps.at(itemid - ID_PIXMAP)->filePath());
+	QPixmap pm(locate("appdata", backgroundPixmaps[itemid - ID_PIXMAP]));
 	b->setPixmap(pm);
 	kapp->config()->writeEntry("Background", 2);
-	s = QString("%1 %2 %3").arg(c.red()).arg(c.green()).arg(c.blue());
 	kapp->config()->writeEntry("BackgroundPixmap",
-				      backgroundPixmaps.at(itemid - ID_PIXMAP)->filePath());
+				    backgroundPixmaps[itemid - ID_PIXMAP]);
       } else if((itemid >= ID_OSPEED) && (itemid <= ID_OSPEED + 10)) {
 	b->setAnimationSpeed(itemid - ID_OSPEED);
 	kapp->config()->writeEntry("AnimationSpeed", b->animationSpeed());
@@ -601,12 +594,23 @@ void App::slotScore() {
   QString s1, s2;
 
   b->getScore(black, white);
-  if(b->humanIs() == Score::BLACK) {
-    s1 = i18n("You (blue): %1").arg(black);
-    s2 = i18n("Computer (red): %1").arg(white);
+  
+  if(b->chipsName() == "chips.png") {
+    if(b->humanIs() == Score::BLACK) {
+      s1 = i18n("You (blue): %1").arg(black);
+      s2 = i18n("Computer (red): %1").arg(white);
+    } else {
+      s2 = i18n("You (red): %1").arg(white);
+      s1 = i18n("Computer (blue): %1").arg(black);
+    }
   } else {
-    s2 = i18n("You (red): %1").arg(white);
-    s1 = i18n("Computer (blue): %1").arg(black);
+    if(b->humanIs() == Score::BLACK) {
+      s1 = i18n("You (black): %1").arg(black);
+      s2 = i18n("Computer (white): %1").arg(white);
+    } else {
+      s2 = i18n("You (white): %1").arg(white);
+      s1 = i18n("Computer (black): %1").arg(black);
+    }
   }
 
   sb->changeItem(s1, SB_SCOREH);
@@ -675,19 +679,22 @@ void App::slotGameEnded(int color) {
 	      .arg(winner).arg(loser).arg(score,1);
     KMessageBox::information(this, s, i18n("Game Ended"));
 
-    // create highscore entry
-    HighScore hs;
-    QString name = getPlayerName();
-    strncpy(hs.name, name.utf8(), sizeof(hs.name) - 1);
-    hs.color = b->humanIs();
-    hs.winner = winner;
-    hs.loser = loser;
-    hs.rating = score;
-    hs.date = time((time_t*)0);
+    if (!gameOver)
+    {
+      // create highscore entry
+      HighScore hs;
+      QString name = getPlayerName();
+      strncpy(hs.name, name.utf8(), sizeof(hs.name) - 1);
+      hs.color = b->humanIs();
+      hs.winner = winner;
+      hs.loser = loser;
+      hs.rating = score;
+      hs.date = time((time_t*)0);
 
-    int rank = insertHighscore(hs);
-    if(rank != -1) {
-      showHighscore(rank);
+      int rank = insertHighscore(hs);
+      if(rank != -1) {
+        showHighscore(rank);
+      }
     }
   } else {
     playSound("reversi-lost.wav");
@@ -695,18 +702,33 @@ void App::slotGameEnded(int color) {
 	      .arg(loser).arg(winner);
     KMessageBox::information(this, s, i18n("Game Ended"));
   }
+  gameOver = true;
 }
 
 
 void App::slotTurn(int color) {
+  if (gameOver)
+    return;
+
   QString s;
 
-  if(color == Score::WHITE)
-    s = i18n("Red's turn");
-  else if(color == Score::BLACK)
-    s = i18n("Blue's turn");
+  if(b->humanIs() == Score::WHITE) {
+    if(color == Score::WHITE)
+      s = i18n("Your turn");
+    else if(color == Score::BLACK)
+      s = i18n("Computer's turn");
+    else
+      s = "";
+  }
   else
-    s = "";
+  {
+    if(color == Score::WHITE)
+      s = i18n("Computer's turn");
+    else if(color == Score::BLACK)
+      s = i18n("Your turn");
+    else
+      s = "";
+  }
   sb->changeItem(s, SB_TURN);
 }
 

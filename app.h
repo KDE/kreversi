@@ -105,9 +105,10 @@ private:
   KToolBar *tb;
   KStatusBar *sb;
   QMemArray<HighScore> highscore;
-  QPtrList<QFileInfo> backgroundPixmaps;
+  QStringList backgroundPixmaps;
   QPixmap wpm, bpm;
   KLocale *locale;
+  bool gameOver;
 };
 
 #endif
