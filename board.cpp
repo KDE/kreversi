@@ -42,6 +42,7 @@
 #include <qimage.h>
 #include <qbitmap.h>
 #include <kapp.h>
+#include <kmisc.h>
 #include "Score.h"
 #include "playsound.h"
 
