@@ -1,9 +1,13 @@
 This file describes the overall design of KReversi.  Some of the
 classes have different names at this point, but that is indicated by a
-(now: XXX) tag.  Almost all of the classes hold more members than are
-mentioned here, but those are implementation details and would only
-obscure the overall picture.  This file is only to give a helicopter
-view of the program, not to serve as detailed documentation.
+(now: XXX) tag.  These names will be changed when the KDE project has
+converted from CVS to Subversion since Subversion has so much better
+support for renaming files and directories.
+
+Almost all of the classes hold more members than are mentioned here,
+but those are implementation details and would only obscure the
+overall picture.  This file is only to give a helicopter view of the
+program, not to serve as detailed documentation.
 
 
 Classes
@@ -93,7 +97,8 @@ KReversiGameView (status: PLANNED)
 
 KReversi
     The main class for the KReversi program
-    Contains: *QReversiGame 	 (owner)
+    Contains: KActions
+	      *QReversiGame 	 (owner)
 	      *KReversiBoardView (owner) (now)
 	      *KReversiGameView  (owner) (Planned)
 	      *Engine            (owner)

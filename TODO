@@ -4,33 +4,35 @@ TODO-list for KREVERSI
 Next
 ----
 
-* (from step 4 below)
-
-* Investigate if there is something wrong with the highscore handling.
-  It seems as if a game is finished before all squares are covered
-  that the highscore code is never engaged.
+* Create QReversiGameView
 
 
 ================================================================
 
 
-* More cleaning / refactoring
-  + class Kreversi is still a bit of a mess.  Separate it more		----
+* Implement the plans in DESIGN
+  + Implement the QReversiGameView class				----
   + Move all handling of possible moves into the BoardView class	----
+  + Implement the QEngineView class					----
+
+* More cleaning / refactoring
+  + class KReversi is still a bit of a mess.  Separate it more		----
 
 * Enhancements to the view
   + Letters A-H and figures 1-8 on the board view.			DONE
-  + Show possible moves in the current position				----
+
+  + Show possible moves in the current position				DONE
     - Actually show them on the board					done
     - Create a toggle action to toggle it on/off			done
     - Make an icon for the toggle action				--
     - Bug: legal moves don't get updated if one side has to pass 	--
-    - Bug: legal moves don't work together with hint.
+    - Bug: legal moves don't work together with hint.			--
   + Show moves made during the game					DONE
 
   + Navigate in the list of moves					----
 
   + Wish 102813: Should be able to show last move			DONE
+    - Make an icon for the toggle action				--
     - Bug: When turned on, should show last move immediately		--
     - Bug: When turned off, should unshow ast move immediately		--
 
