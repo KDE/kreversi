@@ -53,7 +53,7 @@ KAudio *audio = NULL;
 bool initAudio() {
   if(audio == NULL) {
     audio = new KAudio();
-    SOUNDDIR = kapp->kdedir() + "/lib/sounds/Reversi/";
+    SOUNDDIR = kapp->kdedir() + "/share/apps/Reversi/sounds/";
 
     if(audio == NULL)
       return FALSE;
