@@ -11,7 +11,6 @@ File1:	        kreversi-0.2.1.tar.gz
 FileSize1:      259Kb
 Alternate-site: 
 Original-site:  
-Platform:       Linux and other Unices, needs Qt (v 1.2 or newer available at
-http://www.troll.no), KDE libraries libkdecore, libkdeui, libmediatool
+Platform:       Unix, Qt
 Copying-policy: GPL V2
 End
