@@ -597,7 +597,7 @@ void Board::loadPixmaps() {
 }
 
 
-void Board::updateBoard(bool force = FALSE) {
+void Board::updateBoard(bool force) {
   for(int row = 0; row < 8; row++)
     for(int col = 0; col < 8; col++) 
       drawPiece(row, col, force);
@@ -629,7 +629,7 @@ void Board::drawOnePiece(int row, int col, int color) {
 }
 
 
-void Board::drawPiece(int row, int col, bool force = FALSE) {
+void Board::drawPiece(int row, int col, bool force) {
   if(g.squareModified(col+1, row+1) || force) {
     int color = g.GetSquare(col + 1, row + 1);
     drawOnePiece(row, col, color);
