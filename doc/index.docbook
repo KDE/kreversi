@@ -34,11 +34,11 @@ There is only one type of piece - one side of it is black, the other white. If a
 a piece on the board, that piece is turned and belongs to that player. The winner is the person 
 that has more pieces of his own color on the board and if there are no more moves
 possible.</para>
-<sect1>
+<sect1 id="object-of-the-game">
 <title>Object of the game</title>
 <para>The object of the game is to have the majority of your color discs on the board at the end of the game.</para>
 </sect1>
-<sect1>
+<sect1 id="a-minute-to-learn">
 <title>A Minute to Learn</title>
 <para>A move consists of "outflanking" your opponent's disc(s), then flipping the 
 outflanked disc(s) to your color.</para>
@@ -119,17 +119,17 @@ you are absolutly sure that your opponent will not be able to put a piece on an 
 </chapter>
 <chapter id="Epilogue">
 <title>Epilogue</title>
-<sect1>
+<sect1 id="developers">
 <title>Developers</title>
 <para><literal remap="tt">Mario Weilguni</literal></para>
 <para><literal remap="tt">Mats Luthman</literal> - Designer of the move engine</para>
 </sect1>
-<sect1>
+<sect1 id="authors">
 <title>Authors</title>
 <para><literal remap="tt">Mario Weilguni</literal></para>
 <para><literal remap="tt"><ulink url="mailto:rwilliams@kde.org">Robert Williams</ulink></literal> - Editor</para>
 </sect1>
-<sect1>
+<sect1 id="copyright">
 <title>Copyright</title>
 <para>kreversi is released under the GPL License.</para>
 </sect1>
