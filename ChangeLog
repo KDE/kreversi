@@ -1,3 +1,10 @@
+2004-10-15  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+
+	Fix bug 90472: KReversi: When you interrupt the computers move and
+	then switch sides, the program gets confused
+	* kreversi.cpp (slotSwitchSides): Don't allow the user to switch
+	sides if the computers move is interrupted.
+
 2004-10-11  Inge Wallin  <inge@lysator.liu.se>
 
 	Code cleaning

@@ -411,6 +411,12 @@ void KReversi::slotSwitchSides()
   if (state() != Ready) 
     return;
 
+  if (interrupted()) {
+    KMessageBox::information(this, i18n("You cannot switch sides in the middle of the computers move."),
+			     i18n("Notice"));
+    return;
+  }
+
   // It's ok to change sides before the first move.
   if (m_krgame->moveNumber() != 0) {
     int res = KMessageBox::warningContinueCancel(this,
