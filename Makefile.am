@@ -15,7 +15,7 @@ noinst_HEADERS = Engine.h Game.h app.h Move.h board.h Position.h \
 SUBDIRS = . pics sounds icons
 
 applnk_DATA = kreversi.desktop
-applnkdir   = $(kde_appsdir)/Games
+applnkdir   = $(kde_appsdir)/Games/Board
 
 EXTRA_DIST = $(applnk_DATA)
 
