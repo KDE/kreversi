@@ -325,7 +325,7 @@ void App::createMenuBar() {
   help = new QPopupMenu;
   help->insertItem(i18n("&Contents"), ID_HCONTENTS);
   help->insertSeparator();
-  help->insertItem(i18n("&About")+" "+kapp->name() + "...", ID_HABOUT);
+  help->insertItem(i18n("&About %1...").arg(kapp->name()), ID_HABOUT);
   help->insertItem(i18n("About &KDE..."), ID_HABOUTKDE);
 
   menu->insertItem(i18n("&File"), fm);
