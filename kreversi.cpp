@@ -412,7 +412,7 @@ void KReversi::slotSwitchSides()
     return;
 
   if (interrupted()) {
-    KMessageBox::information(this, i18n("You cannot switch sides in the middle of the computers move."),
+    KMessageBox::information(this, i18n("You cannot switch sides in the middle of the computer's move."),
 			     i18n("Notice"));
     return;
   }
