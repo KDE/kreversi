@@ -429,7 +429,7 @@ void App::processEvent(int itemid) {
 
   case ID_HCONTENTS:
   {
-      KApplication::kApplication()->invokeHTMLHelp("", "");  
+      KApplication::kApplication()->invokeHelp();  
       break;
   }
   case ID_FSAVE:
