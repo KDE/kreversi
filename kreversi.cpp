@@ -133,6 +133,7 @@ void KReversi::createKActions() {
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
+  resize(290,374);
   setupGUI();
 }
 
