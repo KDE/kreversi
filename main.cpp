@@ -36,8 +36,8 @@
  *******************************************************************
  */
 
-#include <kapp.h>
-#include <kstddirs.h>
+#include <kapplication.h>
+#include <kstandarddirs.h>
 #include <kglobal.h>
 #include <kimageio.h>
 #include <klocale.h>

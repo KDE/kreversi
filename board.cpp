@@ -42,10 +42,10 @@
 #include <qimage.h>
 #include <qbitmap.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kglobal.h>
 #include <kiconloader.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include "Score.h"
 #include "playsound.h"

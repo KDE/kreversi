@@ -38,8 +38,8 @@
 
 #include "playsound.h"
 #include <stdlib.h>
-#include <kapp.h>
-#include <kstddirs.h>
+#include <kapplication.h>
+#include <kstandarddirs.h>
 
 
 #ifdef HAVE_CONFIG_H

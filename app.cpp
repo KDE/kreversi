@@ -52,13 +52,13 @@
 #include <qtimer.h>
 #include <qlayout.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kcolordlg.h>
 #include <kseparator.h>
 #include <kmessagebox.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <khelpmenu.h>
