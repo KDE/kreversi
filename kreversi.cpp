@@ -118,18 +118,13 @@ KReversi::KReversi()
   // in the game view.
   connect(m_game, SIGNAL(sig_newGame()),  this, SLOT(showTurn()));
   connect(m_game, SIGNAL(sig_move(uint, Move&)), 
-	  this,   SLOT(showMove(uint, Move&)));
+	  this,   SLOT(handleMove(uint, Move&))); // Calls showTurn().
   connect(m_game, SIGNAL(sig_update()),   this, SLOT(showTurn()));
   connect(m_game, SIGNAL(sig_gameOver()), this, SLOT(slotGameOver()));
 
-  // Internal signal
-  // FIXME: Remove it.  This could as well be a function call.
-  connect(this, SIGNAL(stateChange(State)),
-          this, SLOT(slotStateChange(State)));
-
   // Signal that is sent when the user clicks on the board.
   connect(m_gameView, SIGNAL(signalSquareClicked(int, int)),
-	  this,        SLOT(slotSquareClicked(int, int)));
+	  this,       SLOT(slotSquareClicked(int, int)));
 
   loadSettings();
 
@@ -337,9 +332,10 @@ void KReversi::slotUndo()
 
   // Take back one more move.
   if (m_game->moveNumber() > 0) {
-    m_gameView->removeMove(m_game->moveNumber() - 1);
     m_game->undoMove();
 
+    // FIXME: Call some method in m_gameView.
+    m_gameView->removeMove(m_game->moveNumber() - 1);
     m_gameView->setCurrentMove(m_game->moveNumber() - 1);
     m_gameView->ensureCurrentMoveVisible();
   }
@@ -470,21 +466,8 @@ void KReversi::slotSquareClicked(int row, int col)
 // Show the move in the move view.
 // FIXME: Move this to the gameview.
 
-void  KReversi::showMove(uint moveno, Move &move)
+void KReversi::handleMove(uint /*moveno*/, Move& /*move*/)
 {
-  //FIXME: Error checks.
-  QString colors[] = {
-    i18n("White"),
-    i18n("Black")
-  };
-
-  m_gameView->insertMove(QString("%1. %2 %3").arg(moveno)
-			 .arg(colors[move.color()]).arg(move.asString()));
-
-  // Mark the current move in the listbox.
-  m_gameView->setCurrentMove(moveno - 1);
-  m_gameView->ensureCurrentMoveVisible();
-
   showTurn();
 }
 
@@ -538,75 +521,6 @@ void KReversi::slotGameOver()
 
   // FIXME: Remove
   m_gameView->quitShowLegalMoves();
-}
-
-
-// Show things when the game is over.
-//
-
-void KReversi::showGameOver(Color color) 
-{
-  // If the game already was over, do nothing.
-  if (m_gameOver)
-    return;
-
-  statusBar()->message(i18n("End of game"));
-
-  // Get the scores.
-  uint human    = m_game->score(humanColor());
-  uint computer = m_game->score(computerColor());
-
-  KExtHighscore::Score score;
-  score.setScore(m_game->score(humanColor()));
-  
-  // Show the winner in a messagebox.
-  if ( color == Nobody ) {
-    KNotifyClient::event(winId(), "draw", i18n("Draw!"));
-    QString s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2")
-                .arg(human).arg(computer);
-    KMessageBox::information(this, s, i18n("Game Ended"));
-    score.setType(KExtHighscore::Draw);
-  }
-  else if ( humanColor() == color ) {
-    KNotifyClient::event(winId(), "won", i18n("Game won!"));
-    QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2")
-                .arg(human).arg(computer);
-    KMessageBox::information(this, s, i18n("Game Ended"));
-    score.setType(KExtHighscore::Won);
-  } 
-  else {
-    KNotifyClient::event(winId(), "lost", i18n("Game lost!"));
-    QString s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
-                .arg(human).arg(computer);
-    KMessageBox::information(this, s, i18n("Game Ended"));
-    score.setType(KExtHighscore::Lost);
-  }
-  
-  // Store the result in the highscore file if no cheating was done,
-  // and only if the game was competitive.
-  if ( !m_cheating && m_competitiveGame) {
-    KExtHighscore::submitScore(score, this);
-  }
-
-  m_gameOver = true;
-}
-
-
-// A slot that is called when the state of the program changes.
-//
-
-void KReversi::slotStateChange(State state)
-{
-  if (state == Thinking){
-    kapp->setOverrideCursor(waitCursor);
-    stopAction->setEnabled(true);
-  }
-  else {
-    kapp->restoreOverrideCursor();
-    stopAction->setEnabled(false);
-  }
-
-  continueAction->setEnabled(interrupted());
 }
 
 
@@ -707,6 +621,57 @@ void KReversi::computerMakeMove()
 void KReversi::illegalMove()
 {
   KNotifyClient::event(winId(), "illegal_move", i18n("Illegal move"));
+}
+
+
+// Show things when the game is over.
+//
+
+void KReversi::showGameOver(Color color) 
+{
+  // If the game already was over, do nothing.
+  if (m_gameOver)
+    return;
+
+  statusBar()->message(i18n("End of game"));
+
+  // Get the scores.
+  uint human    = m_game->score(humanColor());
+  uint computer = m_game->score(computerColor());
+
+  KExtHighscore::Score score;
+  score.setScore(m_game->score(humanColor()));
+  
+  // Show the winner in a messagebox.
+  if ( color == Nobody ) {
+    KNotifyClient::event(winId(), "draw", i18n("Draw!"));
+    QString s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2")
+                .arg(human).arg(computer);
+    KMessageBox::information(this, s, i18n("Game Ended"));
+    score.setType(KExtHighscore::Draw);
+  }
+  else if ( humanColor() == color ) {
+    KNotifyClient::event(winId(), "won", i18n("Game won!"));
+    QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2")
+                .arg(human).arg(computer);
+    KMessageBox::information(this, s, i18n("Game Ended"));
+    score.setType(KExtHighscore::Won);
+  } 
+  else {
+    KNotifyClient::event(winId(), "lost", i18n("Game lost!"));
+    QString s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
+                .arg(human).arg(computer);
+    KMessageBox::information(this, s, i18n("Game Ended"));
+    score.setType(KExtHighscore::Lost);
+  }
+  
+  // Store the result in the highscore file if no cheating was done,
+  // and only if the game was competitive.
+  if (!m_cheating && m_competitiveGame) {
+    KExtHighscore::submitScore(score, this);
+  }
+
+  m_gameOver = true;
 }
 
 
@@ -864,7 +829,17 @@ bool KReversi::isPlaying() const
 void KReversi::setState(State newState)
 {
   m_state = newState;
-  emit stateChange(m_state);
+
+  if (m_state == Thinking){
+    kapp->setOverrideCursor(waitCursor);
+    stopAction->setEnabled(true);
+  }
+  else {
+    kapp->restoreOverrideCursor();
+    stopAction->setEnabled(false);
+  }
+
+  continueAction->setEnabled(interrupted());
 }
 
 

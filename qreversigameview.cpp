@@ -205,13 +205,23 @@ void QReversiGameView::slotNewGame()
 }
 
 
-
 void QReversiGameView::moveMade(uint moveNum, Move &move)
 {
+  //FIXME: Error checks.
+  QString colors[] = {
+    i18n("White"),
+    i18n("Black")
+  };
+
+  // Insert the new move in the listbox and mark it as the current one.
+  m_movesView->insertItem(QString("%1. %2 %3").arg(moveNum)
+			  .arg(colors[move.color()]).arg(move.asString()));
+  m_movesView->setCurrentItem(moveNum - 1);
+  m_movesView->ensureCurrentVisible();
+
+  // Animate all changed pieces.
   m_boardView->animateChanged(move);
   m_boardView->updateBoard();
-
-  // FIXME: Insert update of the movelist here.
 
   // Update the score.
   updateStatus();
@@ -221,7 +231,9 @@ void QReversiGameView::moveMade(uint moveNum, Move &move)
 void QReversiGameView::updateView()
 {
   m_boardView->updateBoard(true);
-  //updateMovelist();
+
+  // FIXME: updateMovelist();
+
   updateStatus();
 }
 

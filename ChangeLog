@@ -1,5 +1,12 @@
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
+	* kreversi.cpp (showMove): Renamed into handleMove, most of it
+	moved to the view
+	(slotStateChange): removed slot
+	(turn(Color), score, stateChange): removed signals
+	(setState): Do the job of slotStateChange.
+	* qreversigameview.cpp (moveMade): do the job of showMove
+
 	More control of the view by signals
 	* kreversi.cpp (showTurn): now catches sig_newGame and sig_update
 	from the game

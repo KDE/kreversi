@@ -101,10 +101,6 @@ private:
   virtual void  readProperties(KConfig *);
   virtual bool  queryExit();
 
- signals:
-  void turn(Color);
-  void score();
-  void stateChange(State);
 
 private slots:
 
@@ -126,7 +122,6 @@ private slots:
   void  slotSquareClicked(int, int);
 
   // Misc slots.
-  void  slotStateChange(State);
   void  configureNotifications();
 
   // Some dialogs and other misc stuff.
@@ -136,11 +131,10 @@ private slots:
 
  public slots: 
   // Slots for the view.
-  void  showMove(uint moveno, Move &move);
+  void  handleMove(uint moveno, Move &move);
   void  showTurn();
   void  showTurn(Color color);
   void  slotGameOver();
-  void  showGameOver(Color);
 
 private:
 
@@ -148,6 +142,7 @@ private:
   void  humanMakeMove(int row, int col);
   void  computerMakeMove();
   void  illegalMove();
+  void  showGameOver(Color);
 
   void  saveGame(KConfig *);
   bool  loadGame(KConfig *);
