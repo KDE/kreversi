@@ -6,10 +6,26 @@ Now
 
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.
-     1. Make Game the Model.
+     1. Fix a ReversiGame (formerly known as Game)
         - Clean it up. (Only store the moves).
         - Add a few necessary methods.
-  II. Introduce a class Player
+     2. Create a new class KReversiGame, that stores a ReversiGame and
+	sends a lot of signals.
+        - Split out a lot of methods from the current class Board.
+     3. Create KReversiBoard from the rest of the current Board
+     4. Create a new class KReversiGameView, that will be the main view.
+        - Store a KReversiGame, a KReversiBoard and some other widgets.
+
+  II. Introduce a class ReversiPlayer
+
+  III. Convert everything to KGame
+     1. Let KReversiGame inherit from KGame
+     2. Let ReversiPlayer inherit from KPlayer.
+
+  IV. ...
+
+  V.  Profit!
+
 
 Later
 -----

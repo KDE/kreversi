@@ -1,3 +1,25 @@
+2004-09-22  Inge Wallin  <ing@lysator.liu.se>
+
+	Fix bug 89829: "KReversi: When you save a game, the color for
+	Human and Computer is not saved" again.  See the discussion on the
+	KDE bugzilla for details
+	(http://bugs.kde.org/show_bug.cgi?id=89829).
+	* board.cpp (Board::saveGame): Save m_humanColor as HumanColor.  
+	* Remove saving of the side to move since this is implicit
+	anyway.
+	* (Board::loadGame): Fix loading of m_humanColor and
+	m_competitiveGame
+	* Fix emit of signal turn, and the condition to call
+	computerMakeMove().
+	* prefs_addons.h: Removed
+	
+	
+2004-09-18  Anne-Marie Mahfouf  (ChangeLog entry by Inge Wallin)
+
+	Fix bug 89829.  (See above, though)
+	* prefs_addons.h: New file 
+	* board.cpp (saveGame): Some changes
+	
 2004-09-18  Inge Wallin  <inge@lysator.liu.se>
 
 	Some cleaning: remove unused members, add m_ to members and some

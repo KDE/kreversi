@@ -601,7 +601,9 @@ void Board::setColor(const QColor &c)
 }
 
 
-// Saves the game.  Only one game at a time can be saved.
+// Saves the game in the config file.  
+//
+// Only one game at a time can be saved.
 //
 
 void Board::saveGame(KConfig *config)
@@ -614,7 +616,9 @@ void Board::saveGame(KConfig *config)
   config->writeEntry("State", state());
   config->writeEntry("Strength", strength());
 
-  // Write the game itself to the file.
+  // Write the moves of the game to the config object.  This object
+  // saves itself all at once so we don't have to write the moves
+  // to the file ourselves.
   for (uint i = moveNumber(); i > 0; i--) {
     Move  move = m_game->lastMove();
     m_game->TakeBackMove();
@@ -625,9 +629,9 @@ void Board::saveGame(KConfig *config)
     config->writeEntry(idx, s);
   }
 
-  // save whose turn it is and if the game is casual.
-  config->writeEntry("WhoseTurn",   (int) m_humanColor);
+  // Save whose turn it is and if the game is competitive.
   config->writeEntry("Competitive", (int) m_competitiveGame);
+  config->writeEntry("HumanColor",  (int) m_humanColor);
   config->sync();
 
   // All moves must be redone.
@@ -665,23 +669,28 @@ bool Board::loadGame(KConfig *config, bool noupdate)
     m_game->MakeMove(move);
   }
 
+  m_humanColor      = (Color) config->readNumEntry("HumanColor");
+  m_competitiveGame = (bool)  config->readNumEntry("Competitive");
+
   if (noupdate)
     return true;
 
-  m_humanColor = (Color)config->readNumEntry("WhoseTurn");
-  Prefs::setHumanColor((int) m_humanColor);
-  Prefs::setComputerColor((int) opponent(m_humanColor));
-  Prefs::writeConfig();
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));
   setStrength(config->readNumEntry("Strength", 1));
-  m_competitiveGame = (bool) config->readNumEntry("Competitive");
   //kdDebug() << "Competitive set to: " << m_competitiveGame << endl;
 
   if (interrupted())
     doContinue();
-  //it's always the human's turn to play in a load game as you cannot save a game while playing
-  emit turn(m_humanColor);
+  else {
+    // Make the view show who is to move.
+    emit turn(m_game->toMove());
+
+    // Computer makes first move.
+    if (m_humanColor != m_game->toMove())
+      computerMakeMove();
+  }
+
   return true;
 }
 
