@@ -210,6 +210,7 @@ Name[pt_BR]=Jogada Inválida
 Name[sv]=Felaktigt drag
 Name[ta]=நிகழ்ச்சியை வெளிப்படுத்து
 Comment=Illegal Move
+Comment[ca]=Moviment il·legal
 Comment[da]=Ulovligt træk
 Comment[et]=Lubamatu käik
 Comment[hu]=Szabálytalan lépés
