@@ -22,14 +22,14 @@
 
 
 #include <kexthighscore.h>
-
+#include <kdemacros.h>
 #include "SuperEngine.h"
 
 
 namespace KExtHighscore
 {
 
-class ExtManager : public Manager
+class KDE_EXPORT ExtManager : public Manager
 {
  public:
   ExtManager();
