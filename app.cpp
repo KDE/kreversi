@@ -235,7 +235,7 @@ void App::createMenuBar() {
   gm->insertItem(i18n("&Undo Move"), ID_GUNDO);
   gm->insertItem(i18n("Switch Si&des"), ID_GSWITCH);
   gm->insertSeparator();
-  gm->insertItem(i18n("Hall Of &Fame..."), ID_GHIGHSCORES);
+  gm->insertItem(i18n("Hall of &Fame..."), ID_GHIGHSCORES);
 
   QPopupMenu *om = new QPopupMenu;
   om->setCheckable(TRUE);
