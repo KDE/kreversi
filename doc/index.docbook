@@ -111,40 +111,44 @@ in the center four squares of the board in the following pattern:</para>
 <variablelist>
 <varlistentry>
 <term><interface>Menu Bar</interface></term>
-<listitem><para>The <interface>Menu Bar</interface> contains four choices of
-drop-down menus. These are <link linkend="file-menu">File</link>, <link
-linkend="game-menu">Game</link>, <link linkend="settings-menu">Setting</link>,
-and <link linkend="help-menu">Help</link>. &LMB; click or <keycombo
-action="simul"><keycap>Alt</keycap><keycap>the underlined letter</keycap></keycombo> to
-show the drop-down menu.</para></listitem>
+<listitem>
+<para>The <interface>Menu Bar</interface> contains four choices of
+drop-down menus. These are <link
+linkend="file-menu"><guimenu>File</guimenu></link>, <link
+linkend="game-menu"><guimenu>Game</guimenu></link>, <link
+linkend="settings-menu"><guimenu>Settings</guimenu></link>, and <link
+linkend="help-menu"><guimenu>Help</guimenu></link>. &LMB; click or
+<keycombo action="simul">&Alt;<keycap>the underlined
+letter</keycap></keycombo> to show the drop-down menu.</para>
+</listitem>
 </varlistentry>
 </variablelist>
 
 <variablelist>
 <varlistentry>
-<term><interface>Tool Menu</interface></term>
-<listitem><para>Provides the player with icon shortcuts for commonly used
-actions. These are <guiicon>Stop Thinking</guiicon>, <guiicon>Undo
-Move</guiicon>, <guiicon>Shrink Board</guiicon>, <guiicon>Enlarge
-Board</guiicon>, <guiicon>Get Hint</guiicon>, and <guiicon>Get
-Help</guiicon>. Place the mouse pointer over any of these icons and &LMB; click
-to activate.</para></listitem>
+<term>The <interface>toolbar</interface></term>
+<listitem><para>Provides the player with icon shortcuts for commonly
+used actions. These are <guiicon>Stop Thinking</guiicon>,
+<guiicon>Undo Move</guiicon>, <guiicon>Shrink Board</guiicon>,
+<guiicon>Enlarge Board</guiicon>, <guiicon>Get Hint</guiicon>, and
+<guiicon>Get Help</guiicon>. Place the mouse pointer over any of these
+icons and &LMB; click to activate.</para></listitem>
 </varlistentry>
 </variablelist>
 
 <variablelist>
 <varlistentry>
 <term><interface>Game Board</interface></term>
-<listitem><para>The game board consists of a 8 by 8 square board divided into 
-64 squares.</para></listitem>
+<listitem><para>The game board consists of a 8 by 8 square board
+divided into 64 squares.</para></listitem>
 </varlistentry>
 </variablelist>
 
 <variablelist>
 <varlistentry>
 <term><interface>Status Bar</interface></term>
-<listitem><para>The status bar contains useful information 
-such as whose turn it is, whicn color represents each player and the number of 
+<listitem><para>The status bar contains useful information such as
+whose turn it is, whicn color represents each player and the number of
 squares each player controls on the board.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -156,29 +160,31 @@ squares each player controls on the board.</para></listitem>
 
 <para>Blue always moves first.</para>
 
-<para>If on your turn you cannot outflank and flip at least one opposing disc,
-your turn is forfeited and your opponent moves again. However, if a move is 
-available to you, you may not forfeit your turn.</para>
+<para>If on your turn you cannot outflank and flip at least one
+opposing disc, your turn is forfeited and your opponent moves
+again. However, if a move is available to you, you may not forfeit
+your turn.</para>
 
-<para>A disc may outflank any number of discs in one or more rows in any number
-of directions at the same time - horizontally, vertically or diagonally. A row
-is defined as one or more discs in a continuous straight line. </para>
+<para>A disc may outflank any number of discs in one or more rows in
+any number of directions at the same time - horizontally, vertically
+or diagonally. A row is defined as one or more discs in a continuous
+straight line. </para>
 
-<para>You may not skip over your own color disc to outflank an opposing
-disc.</para>
+<para>You may not skip over your own color disc to outflank an
+opposing disc.</para>
 
-<para>Discs may only be outflanked as a direct result of a move and must fall in
-the direct line of the disc placed down.</para>
+<para>Discs may only be outflanked as a direct result of a move and
+must fall in the direct line of the disc placed down.</para>
 
-<para>All discs outflanked in any one move must be flipped, even if it is to the
-player's advantage not to flip them.</para>
+<para>All discs outflanked in any one move must be flipped, even if it
+is to the player's advantage not to flip them.</para>
 
-<para>Once a disc is placed on a square, it can never be moved to another square
-later in the game.</para>
+<para>Once a disc is placed on a square, it can never be moved to
+another square later in the game.</para>
 
-<para>When it is no longer possible for either player to move, the game is
-over. Discs are then counted and the player with the majority of his or her
-color discs on the board is declared the winner.</para>
+<para>When it is no longer possible for either player to move, the
+game is over. Discs are then counted and the player with the majority
+of his or her color discs on the board is declared the winner.</para>
 
 <note><para>It is possible for a game to end before all 64 squares are
 filled.</para></note>
@@ -188,19 +194,21 @@ filled.</para></note>
 <sect1 id="tips">
 <title>Tips</title>
 
-<para>Try to place pieces on the edges whenever possible. Your opponent cannot
-outflank these pieces.</para>
+<para>Try to place pieces on the edges whenever possible. Your
+opponent cannot outflank these pieces.</para>
 
-<para>Avoid placing pieces on one of the three neighbor fields of a corner
-unless you are absolutely sure that your opponent will not be able to put a
-piece on a corner.</para>
+<para>Avoid placing pieces on one of the three neighbor fields of a
+corner unless you are absolutely sure that your opponent will not be
+able to put a piece on a corner.</para>
 
-<para>Sometimes it is better to offer some pieces to your opponent</para>
+<para>Sometimes it is better to offer some pieces to your
+opponent</para>
 
-<para>Try to put pieces on fields which prevent your opponent from moving.</para>
+<para>Try to put pieces on fields which prevent your opponent from
+moving.</para>
 
-<para>Try to force your opponent to put a piece in a neighboring field of a
-corner.</para>
+<para>Try to force your opponent to put a piece in a neighboring field
+of a corner.</para>
 
 </sect1>
 
@@ -252,7 +260,7 @@ action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
 <variablelist>
 <varlistentry>
 <term><menuchoice><guimenu>Game</guimenu><guimenuitem>Get 
-hint</guimenuitem></menuchoice></term>
+Hint</guimenuitem></menuchoice></term>
 <listitem><para><action>The computer will provide a hint for your next 
 move.</action>
 </para></listitem>
@@ -319,7 +327,7 @@ action="simul">&Ctrl;<keycap>1-7</keycap></keycombo></shortcut>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
 <guimenu>Settings</guimenu><guimenuitem>Shrink 
-board</guimenuitem></menuchoice></term>
+Board</guimenuitem></menuchoice></term>
 <listitem><para><action>Reduces the game board by twenty percent.</action>
 </para></listitem>
 </varlistentry>
@@ -328,7 +336,7 @@ board</guimenuitem></menuchoice></term>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut>
 <guimenu>Settings</guimenu><guimenuitem>Enlarge 
-board</guimenuitem></menuchoice></term>
+Board</guimenuitem></menuchoice></term>
 <listitem><para><action>Enlarges the game board by twenty percent.</action>
 </para></listitem>
 </varlistentry>
@@ -342,15 +350,15 @@ board.</action></para></listitem>
 
 <varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Select background
-color...</guimenuitem></menuchoice></term>
+<guimenuitem>Select Background
+Color...</guimenuitem></menuchoice></term>
 <listitem><para><action>Allows you to change the background
 color.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guisubmenu>Select background image</guisubmenu></menuchoice></term>
+<guisubmenu>Select Background Image</guisubmenu></menuchoice></term>
 <listitem><para><action>Allows you to select a background image.</action>
 </para></listitem>
 </varlistentry>
@@ -398,7 +406,7 @@ speed,</action> <guimenuitem>1</guimenuitem> being the fastest and
 <para>Original documentation by Mario Weilguni</para>
 <para>Edited by Robert Williams</para>
 
-<para>Documentation re-written and updated for KDE 2.0 by Clay Pradarits
+<para>Documentation re-written and updated for &kde; 2.0 by Clay Pradarits
 <email>gasky@winfire.com</email></para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
