@@ -10,8 +10,8 @@ TODO-list for KREVERSI
    - Game.h							DONE
    - highscores.cpp
    - highscores.h
-   - kreversi.cpp
-   - kreversi.h
+   - kreversi.cpp						DONE
+   - kreversi.h							DONE
    - kzoommainwindow.cpp
    - kzoommainwindow.h
    - main.cpp							DONE

@@ -45,20 +45,26 @@
 
 class QLabel;
 
+
+// A status widget that shows how many pieces one side has.
+
 class StatusWidget : public QWidget
 {
   Q_OBJECT
 public:
   StatusWidget(const QString &text, QWidget *parent);
   
-  void setPixmap(const QPixmap &pixmap);
-  void setScore(uint score);
+  void  setPixmap(const QPixmap &pixmap);
+  void  setScore(uint score);
   
 private:
-  QLabel *_pixLabel, *_label;
+  QLabel  *m_pixLabel;
+  QLabel  *m_label;
 };
 
+
 class KAction;
+
 
 class KReversi : public KZoomMainWindow {
   Q_OBJECT
@@ -69,41 +75,48 @@ public:
   bool isPlaying() const;
 
 private:
-  void createKActions();
-  void createStatusBar();
-  QString getPlayerName();
-  void updateColors();
-  virtual void writeZoomSetting(uint zoom);
-  virtual uint readZoomSetting() const;
-  virtual void writeMenubarVisibleSetting(bool visible);
-  virtual bool menubarVisibleSetting() const;
+  void     createStatusBar();
+  void     createKActions();
+  QString  getPlayerName();
+  void     updateColors();
 
-  virtual void saveProperties(KConfig *);
-  virtual void readProperties(KConfig *);
-  virtual bool queryExit();
+  virtual void  writeZoomSetting(uint zoom);
+  virtual uint  readZoomSetting() const;
+  virtual void  writeMenubarVisibleSetting(bool visible);
+  virtual bool  menubarVisibleSetting() const;
+
+  virtual void  saveProperties(KConfig *);
+  virtual void  readProperties(KConfig *);
+  virtual bool  queryExit();
 
 private slots:
-  void slotScore();
-  void slotGameEnded(Color);
-  void slotTurn(Color);
-  void slotStatusChange(Board::State);
-  void switchSides();
+  void  slotScore();
+  void  slotGameEnded(Color);
+  void  slotTurn(Color);
+  void  slotStatusChange(Board::State);
+  void  switchSides();
 
-  void newGame();
-  void openGame();
-  void save();
-  void configureNotifications();
+  // Slots for KActions.
+  void  newGame();
+  void  openGame();
+  void  save();
+  void  configureNotifications();
 
-  void showHighScoreDialog();
-  void showSettings();
-  void loadSettings();
+  void  showHighScoreDialog();
+  void  showSettings();
+  void  loadSettings();
 
 private:
-  KAction *undoAction, *stopAction, *continueAction;
-  StatusWidget *_humanStatus, *_computerStatus;
+  KAction  *undoAction;
+  KAction  *stopAction;
+  KAction  *continueAction;
 
-  Board *board;
-  bool gameOver, cheating;
+  StatusWidget  *m_humanStatus;
+  StatusWidget  *m_computerStatus;
+
+  Board         *board;
+  bool           gameOver;
+  bool           cheating;
 };
 
 #endif

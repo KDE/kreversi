@@ -2,6 +2,7 @@
 
 	Continue the big code cleanup:
 	* Engine.h, Engine.cpp
+	* kreversi.h kreversi.cpp
 
 
 2004-08-15  Inge Wallin  <inge@lysator.liu.se>
