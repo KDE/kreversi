@@ -159,6 +159,9 @@ QReversiGameView::~QReversiGameView()
 {
 }
 
+
+// Create the entire view.  Only called once from the constructor.
+
 void QReversiGameView::createView()
 {
   QGridLayout  *layout = new QGridLayout(this, 4, 2);

@@ -1,5 +1,10 @@
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
+	More control of the view by signals
+	* kreversi.cpp (showTurn): now catches sig_newGame and sig_update
+	from the game
+	(showTurn): new slot
+	
 	Let the game view be updated by signals from the game instead of
 	by explicit calls.
 	* kreversi.cpp (misc): Don't call updateboard et al.

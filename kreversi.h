@@ -137,7 +137,8 @@ private slots:
  public slots: 
   // Slots for the view.
   void  showMove(uint moveno, Move &move);
-  void  showTurn(Color);
+  void  showTurn();
+  void  showTurn(Color color);
   void  slotGameOver();
   void  showGameOver(Color);
 

@@ -111,11 +111,16 @@ KReversi::KReversi()
   createKActions();
   addWidget(m_gameView);
 
-  // Connect some signals from the game with slots of the view
+  // Connect the signals from the game with slots of the view
+  //
+  // The only part of the view that is left in this class is the
+  // indicator of whose turn it is in the status bar.  The rest is
+  // in the game view.
+  connect(m_game, SIGNAL(sig_newGame()),  this, SLOT(showTurn()));
   connect(m_game, SIGNAL(sig_move(uint, Move&)), 
 	  this,   SLOT(showMove(uint, Move&)));
+  connect(m_game, SIGNAL(sig_update()),   this, SLOT(showTurn()));
   connect(m_game, SIGNAL(sig_gameOver()), this, SLOT(slotGameOver()));
-  connect(m_game, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
 
   // Internal signal
   // FIXME: Remove it.  This could as well be a function call.
@@ -248,9 +253,8 @@ void KReversi::slotNewGame()
   m_lowestStrength  = strength();
   //kdDebug() << "Competitive: " << m_competitiveGame << endl;
 
-  // Show some data
+  // Set the state to waiting for the humans move.
   setState(Ready);
-  showTurn(Black);
 
   if (showLegalMovesAction->isChecked()) {
     MoveList  moves = m_game->position().generateMoves(Black);
@@ -364,10 +368,8 @@ void KReversi::slotInterrupt()
 {
   m_engine->setInterrupt(TRUE);
 
-  // At this point the engine has not returned yet and State has not
-  // yet been set to Ready, so the interrupted() test does not work
-  // here.
-  showTurn(m_game->toMove());
+  // Indicate that the computer was interrupted.
+  showTurn();
 }
 
 
@@ -466,6 +468,7 @@ void KReversi::slotSquareClicked(int row, int col)
 
 
 // Show the move in the move view.
+// FIXME: Move this to the gameview.
 
 void  KReversi::showMove(uint moveno, Move &move)
 {
@@ -481,11 +484,18 @@ void  KReversi::showMove(uint moveno, Move &move)
   // Mark the current move in the listbox.
   m_gameView->setCurrentMove(moveno - 1);
   m_gameView->ensureCurrentMoveVisible();
+
+  showTurn();
 }
 
 
 // A slot that is called when it is time to show whose turn it is.
 //
+
+void KReversi::showTurn()
+{
+  showTurn(m_game->toMove());
+}
 
 void KReversi::showTurn(Color color)
 {
@@ -525,6 +535,8 @@ void KReversi::slotGameOver()
     showGameOver(Nobody);
 
   showTurn(Nobody);
+
+  // FIXME: Remove
   m_gameView->quitShowLegalMoves();
 }
 
@@ -643,8 +655,6 @@ void KReversi::computerMakeMove()
   Color color    = m_game->toMove();
   Color opponent = ::opponent(color);
 
-  showTurn(color);
-
   // Show legal moves for the computer.
   if (showLegalMovesAction->isChecked()) {
     moves = m_game->position().generateMoves(color);
@@ -677,8 +687,6 @@ void KReversi::computerMakeMove()
     m_game->doMove(move);
   } while (!m_game->moveIsPossible(opponent));
 
-  // FIXME: Update from the game.
-  showTurn(opponent);
   setState(Ready);
 
   if (!m_game->moveIsAtAllPossible()) {
@@ -777,9 +785,6 @@ bool KReversi::loadGame(KConfig *config)
   if (interrupted())
     slotContinue();
   else {
-    // Make the view show who is to move.
-    showTurn(m_game->toMove());
-
     // Computer makes first move.
     if (m_humanColor != m_game->toMove())
       computerMakeMove();
