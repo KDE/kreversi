@@ -7,11 +7,10 @@ bin_PROGRAMS = kreversi
 
 kreversi_SOURCES = main.cpp misc.cpp app.cpp board.cpp Game.cpp Score.cpp SuperEngine.cpp \
 		Engine.cpp Position.cpp Move.cpp Random.cpp about.cpp playsound.cpp
-BUILTSOURCES =	app.moc board.moc about.moc
+METASOURCES =	app.moc board.moc about.moc
 
 noinst_HEADERS = Engine.h about.h Game.h app.h Move.h board.h Position.h \
-			     misc.h Random.h playsound.h Score.h version.h SuperEngine.h           
-DISTCLEANFILES = $(BUILTSOURCES)
+	misc.h Random.h playsound.h Score.h version.h SuperEngine.h           
 
 SUBDIRS = html pics sounds icons
 
@@ -22,18 +21,4 @@ EXTRA_DIST = $(applnk_DATA)
 
 messages:	
 	$(XGETTEXT) -C -ktranslate -ki18n -x $(includedir)/kde.pot $(kreversi_SOURCES) && mv messages.po ../po/kreversi.pot
-
-# Dependencies
-about.cpp:about.moc
-about.moc: about.h
-	$(MOC) about.h -o about.moc
-
-app.cpp:app.moc
-app.moc: app.h
-	$(MOC) app.h -o app.moc
-
-board.cpp:board.moc
-board.moc: board.h
-	$(MOC) board.h -o board.moc
-
 
