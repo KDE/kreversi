@@ -41,8 +41,8 @@ lauri@kde.org
 
 </authorgroup>
 
-<date>2000-12-16</date>
-<releaseinfo>1.02.01</releaseinfo>
+<date>2003-09-18</date>
+<releaseinfo>1.3</releaseinfo>
 
 <abstract><para>&kreversi; is a simple one player strategy game.</para>
 </abstract>
@@ -114,8 +114,9 @@ in the center four squares of the board in the following pattern:</para>
 <listitem>
 <para>The <interface>Menu Bar</interface> contains four choices of
 drop-down menus. These are <link
-linkend="file-menu"><guimenu>File</guimenu></link>, <link
 linkend="game-menu"><guimenu>Game</guimenu></link>, <link
+linkend="move-menu"><guimenu>Move</guimenu></link>, <link
+linkend="view-menu"><guimenu>View</guimenu></link>, <link
 linkend="settings-menu"><guimenu>Settings</guimenu></link>, and <link
 linkend="help-menu"><guimenu>Help</guimenu></link>. &LMB; click or
 <keycombo action="simul">&Alt;<keycap>the underlined
@@ -128,11 +129,11 @@ letter</keycap></keycombo> to show the drop-down menu.</para>
 <varlistentry>
 <term>The <interface>toolbar</interface></term>
 <listitem><para>Provides the player with icon shortcuts for commonly
-used actions. These are <guiicon>Stop Thinking</guiicon>,
-<guiicon>Undo Move</guiicon>, <guiicon>Shrink Board</guiicon>,
-<guiicon>Enlarge Board</guiicon>, <guiicon>Get Hint</guiicon>, and
-<guiicon>Get Help</guiicon>. Place the mouse pointer over any of these
-icons and &LMB; click to activate.</para></listitem>
+used actions. These are <guiicon>New Game</guiicon>,
+<guiicon>Stop Thinking</guiicon>, <guiicon>Continue Thinking</guiicon>,
+<guiicon>Undo Move</guiicon>, and <guiicon>Get Hint</guiicon>.
+Place the mouse pointer over any of these icons and &LMB; click to
+activate.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -217,31 +218,39 @@ of a corner.</para>
 <chapter id="user-interface">
 <title>User Interface</title>
 
-<sect1 id="file-menu">
-<title><guimenu>File</guimenu> Menu</title>
+<sect1 id="game-menu">
+<title><guimenu>Game</guimenu> Menu</title>
 
 <variablelist>
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
-<guimenu>File</guimenu><guimenuitem>New Game</guimenuitem></menuchoice></term>
-<listitem><para><action>Starts a new game.</action>
+<guimenu>Game</guimenu><guimenuitem>New</guimenuitem></menuchoice></term>
+<listitem><para>Starts a new game.
 </para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>L</keycap></keycombo></shortcut>
-<guimenu>File</guimenu><guimenuitem>Load Game</guimenuitem></menuchoice></term>
-<listitem><para><action>Loads a saved game.</action>
+action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
+<guimenu>Game</guimenu><guimenuitem>Load...</guimenuitem></menuchoice></term>
+<listitem><para>Loads a saved game.
 </para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
-<guimenu>File</guimenu><guimenuitem>Save Game</guimenuitem></menuchoice></term>
-<listitem><para><action>Saves the current game.</action>
+<guimenu>Game</guimenu><guimenuitem>Save</guimenuitem></menuchoice></term>
+<listitem><para>Saves the current game.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
+<guimenu>Game</guimenu><guimenuitem>Show Highscores</guimenuitem></menuchoice></term>
+<listitem><para>Shows the highscore table.
 </para></listitem>
 </varlistentry>
 
@@ -249,63 +258,76 @@ action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
 <guimenu>File</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para><action>Quits</action> &kreversi;.</para></listitem>
+<listitem><para>Quits &kreversi;.</para></listitem>
 </varlistentry>
 </variablelist>
 </sect1>
 
-<sect1 id="game-menu">
-<title><guimenu>Game</guimenu> menu</title>
+<sect1 id="move-menu">
+<title><guimenu>Move</guimenu> Menu</title>
 
 <variablelist>
 <varlistentry>
-<term><menuchoice><guimenu>Game</guimenu><guimenuitem>Get 
-Hint</guimenuitem></menuchoice></term>
-<listitem><para><action>The computer will provide a hint for your next 
-move.</action>
+<term><menuchoice><shortcut><keycombo 
+action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+<guimenu>Move</guimenu><guimenuitem>Undo</guimenuitem></menuchoice></term>
+<listitem><para>Removes your last move as well as the computer's last 
+move from the board.
 </para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycap>H</keycap></shortcut><guimenu>Move</guimenu><guimenuitem>Hint</guimenuitem>
+</menuchoice></term>
+<listitem><para>The computer will provide a hint for your next 
+move.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu>Move</guimenu><guimenuitem>Switch 
+Sides</guimenuitem></menuchoice></term>
+<listitem><para>Will make you the opposite color.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><shortcut>&Esc;</shortcut>
-<guimenu>Game</guimenu><guimenuitem>Stop
-thinking</guimenuitem></menuchoice></term>
-<listitem><para><action>Stops the computer's depth search, then you choose the 
-computer's next move.</action></para></listitem>
+<guimenu>Move</guimenu><guimenuitem>Stop
+Thinking</guimenuitem></menuchoice></term>
+<listitem><para>Stops the computer's depth search, then you choose the 
+computer's next move, or select the <guimenuitem>Continue Thinking</guimenuitem>
+menu item to continue the computer's thinking process.</para>
+</listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice><guimenu>Game</guimenu>
-<guimenuitem>Continue</guimenuitem></menuchoice></term>
-<listitem><para><action>Continues play.</action>
+<term><menuchoice><guimenu>Move</guimenu>
+<guimenuitem>Continue Thinking</guimenuitem></menuchoice></term>
+<listitem><para>Continue the computer's thinking process if it was
+previously stopped using the <guimenuitem>Stop Thinking</guimenuitem> menu
+item.
 </para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>U</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Undo
-Move</guimenuitem></menuchoice></term>
-<listitem><para><action>Removes your last move as well as the computer's last 
-move from the board.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Game</guimenu><guimenuitem>Switch 
-Sides</guimenuitem></menuchoice></term>
-<listitem><para><action>Will make you the opposite color.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Game</guimenu><guimenuitem>Hall of 
-Fame...</guimenuitem></menuchoice></term>
-<listitem><para><action>A new window will appear with a list of the top ten 
-scores.</action></para></listitem>
 </varlistentry>
 </variablelist>
+</sect1>
 
+<sect1 id="view-menu">
+<title><guimenu>View</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo
+action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut>
+<guimenu>View</guimenu><guimenuitem>Zoom In</guimenuitem></menuchoice></term>
+<listitem><para>Enlarges the game board.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo
+action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
+<guimenu>View</guimenu><guimenuitem>Zoom Out</guimenuitem></menuchoice></term>
+<listitem><para>Shrinks the game board.</para></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
 
 <sect1 id="settings-menu">
@@ -313,79 +335,33 @@ scores.</action></para></listitem>
 
 <variablelist>
 <varlistentry>
-<term><menuchoice><shortcut><keycombo
-action="simul">&Ctrl;<keycap>1-7</keycap></keycombo></shortcut>
-<guimenu>Settings</guimenu>
-<guisubmenu>Skill</guisubmenu></menuchoice></term>
-<listitem><para><action>Sets the difficulty</action> from
-<guimenuitem>1</guimenuitem>, being the easiest, to
-<guimenuitem>7</guimenuitem>, being the most difficult.
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
-<guimenu>Settings</guimenu><guimenuitem>Shrink 
-Board</guimenuitem></menuchoice></term>
-<listitem><para><action>Reduces the game board by twenty percent.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut>
-<guimenu>Settings</guimenu><guimenuitem>Enlarge 
-Board</guimenuitem></menuchoice></term>
-<listitem><para><action>Enlarges the game board by twenty percent.</action>
-</para></listitem>
+<term><menuchoice><guimenu>Settings</guimenu>
+<guimenuitem>Show Toolbar</guimenuitem></menuchoice></term>
+<listitem><para>Toggles whether the toolbar is visible.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guisubmenu>Set Size</guisubmenu></menuchoice></term>
-<listitem><para><action>Allows you to shrink or enlarge the game
-board.</action></para></listitem>
+<guimenuitem>Show Statusbar</guimenuitem></menuchoice></term>
+<listitem><para>Toggles whether the statusbar at the bottom of the window
+is visible.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Select Background
-Color...</guimenuitem></menuchoice></term>
-<listitem><para><action>Allows you to change the background
-color.</action></para></listitem>
+<guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice></term>
+<listitem><para>Opens a dialog which lets you configure all the hotkeys which
+are available in &kreversi;.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guisubmenu>Select Background Image</guisubmenu></menuchoice></term>
-<listitem><para><action>Allows you to select a background image.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Grayscale</guimenuitem></menuchoice></term>
-<listitem><para><action>Sets the color settings to grayscale.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Animations</guimenuitem></menuchoice></term>
-<listitem><para><action>Animates the discs as their being flipped.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Settings</guimenu>
-<guisubmenu>Animation Speed</guisubmenu></menuchoice></term>
-<listitem><para><action>Allows you to set the animation
-speed,</action> <guimenuitem>1</guimenuitem> being the fastest and
-<guimenuitem>10</guimenuitem> being the slowest.</para></listitem>
+<guimenuitem>Configure &kreversi;...</guimenuitem></menuchoice></term>
+<listitem><para>Opens the <link linkend="configuration">configuration
+dialog</link> which lets you tweak a lot of &kreversi;'s
+options.</para></listitem>
 </varlistentry>
 </variablelist>
-
 </sect1>
 
 <sect1 id="help-menu">
@@ -394,7 +370,56 @@ speed,</action> <guimenuitem>1</guimenuitem> being the fastest and
 &help.menu.documentation;
 
 </sect1>
+</chapter>
 
+<chapter id="configuration">
+<title>Configuration</title>
+
+<para>Selecting the <menuchoice><guimenu>Settings</guimenu>
+<guimenuitem>Configure &kreversi;...</guimenuitem></menuchoice> menu item will
+open a configuration dialog which lets you adjust many of &kreversi;'s
+options.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Grayscale Chips</guilabel></term>
+<listitem><para>Check this box to use grayscale chips instead of blue and
+red ones; this might improve the look on very low color
+displays.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Animation</guilabel></term>
+<listitem><para>If this option is checked, a short animation will be shown
+when a die changes it's color.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Animation Speed</guilabel></term>
+<listitem><para>If the <guilabel>Animation</guilabel> optio is enabled, you
+can use this slider to define how fast the animation should be played; move the
+slider to the left for a slower animation, moving the slider to the right will
+play the animation faster.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Computer Skill</guilabel></term>
+<listitem><para>This slider lets you define the skill level of the computer
+player. There are seven different skill levels available, ranging from beginner
+to expert. Move the slider to the left for an easier opponent, or to the right
+to get a more difficult opponent.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Background</guilabel></term>
+<listitem><para>Here you can define the appearance of the playground. Select
+the <guilabel>Color</guilabel> option and press the colored button at the right
+if you want the background to have a single color. Select the
+<guilabel>Image</guilabel> option and enter the path to a picture in the input
+field at the right in case you want to use a specific image as the background
+wallpaper.</para></listitem>
+</varlistentry>
+</variablelist>
 </chapter>
 
 <chapter id="credits-and-license">
