@@ -1,3 +1,9 @@
+2004-08-17  Inge Wallin  <inge@lysator.liu.se>
+
+	Continue the big code cleanup:
+	* board.h, board.cpp
+
+
 2004-08-16  Inge Wallin  <inge@lysator.liu.se>
 
 	Continue the big code cleanup:

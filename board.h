@@ -44,12 +44,18 @@
 
 #include "Move.h"
 
+
 class KConfig;
 class Engine;
 class Game;
 
+
+// The class Board is the visible Reversi Board widget.
+//
+
 class Board : public QWidget {
   Q_OBJECT
+
 public:
 
   enum State { Ready, Thinking, Hint};
@@ -57,91 +63,92 @@ public:
   Board(QWidget *parent = 0);
   ~Board();
 
-  void newGame();
-  Color whoseTurn() const;
-  Color humanColor() const { return human; }
-  Color computerColor() const { return opponent(human); }
-  uint score(Color) const;
-  void setStrength(uint);
-  uint strength() const;
-  bool interrupted() const;
+  void   newGame();
+  Color  whoseTurn() const;
+  Color  humanColor() const    { return human; }
+  Color  computerColor() const { return opponent(human); }
+
+  uint   score(Color) const;
+  void   setStrength(uint);
+  uint   strength() const;
+  bool   interrupted() const;
   
   virtual void adjustSize();
 
   // starts all: emits some signal, so it can't be called from
   // constructor
-  void start();
+  void  start();
 
   // event stuff
-  void paintEvent(QPaintEvent *);
-  void mousePressEvent(QMouseEvent *);
+  void  paintEvent(QPaintEvent *);
+  void  mousePressEvent(QMouseEvent *);
 
-  State state() const { return _status; }
-  void setState(State);
-  void setAnimationSpeed(uint);
+  State  state() const { return m_status; }
+  void   setState(State);
+  void   setAnimationSpeed(uint);
 
-  uint moveNumber() const;
+  uint   moveNumber() const;
 
-  enum ChipType { Unloaded, Colored, Grayscale };
-  void loadChips(ChipType);
-  ChipType chipType() const { return chiptype; }
-  QPixmap chipPixmap(Color color, uint size) const;
-  QPixmap chipPixmap(uint i, uint size) const;
+  // Methods for handling images of pieces.
+  enum      ChipType { Unloaded, Colored, Grayscale };
+  void      loadChips(ChipType);
+  ChipType  chipType() const { return chiptype; }
+  QPixmap   chipPixmap(Color color, uint size) const;
+  QPixmap   chipPixmap(uint i, uint size) const;
 
-  bool loadGame(KConfig *, bool noupdate = FALSE);
-  void saveGame(KConfig *);
+  bool  loadGame(KConfig *, bool noupdate = FALSE);
+  void  saveGame(KConfig *);
 
-  void setColor(const QColor &);
-  QColor color() const { return bgColor; }
-  void setPixmap(QPixmap &);
+  void    setColor(const QColor &);
+  QColor  color() const { return bgColor; }
+  void    setPixmap(QPixmap &);
 
 public slots:
-  void undo();
-  void hint();
-  void interrupt();
-  void doContinue();
-  void switchSides();
-  void loadSettings();
+  void  undo();
+  void  hint();
+  void  interrupt();
+  void  doContinue();
+  void  switchSides();
+  void  loadSettings();
 
 signals:
-  void score();
-  void gameWon(Color);
-  void statusChange(Board::State);
-  void sizeChange();
-  void turn(Color);
+  void  score();
+  void  gameWon(Color);
+  void  statusChange(Board::State);
+  void  sizeChange();
+  void  turn(Color);
 
 private:
-  void fieldClicked(int, int);
-  void gameEnded();
-  void computerMakeMove();
-  void illegalMove();
+  void  fieldClicked(int, int);
+  void  gameEnded();
+  void  computerMakeMove();
+  void  illegalMove();
 
-  void updateBoard(bool force = FALSE);
+  void  updateBoard(bool force = FALSE);
 
-  uint zoomedSize() const;
-  void drawPiece(uint row, uint col, Color);
-  void drawOnePiece(uint row, uint col, int i);
-  void animateChanged(Move m);
-  void animateChangedRow(int row, int col, int dy, int dx);
-  void rotateChip(uint row, uint col);
-  bool isField(int row, int col) const;
+  uint  zoomedSize() const;
+  void  drawPiece(uint row, uint col, Color);
+  void  drawOnePiece(uint row, uint col, int i);
+  void  animateChanged(Move m);
+  void  animateChangedRow(int row, int col, int dy, int dx);
+  void  rotateChip(uint row, uint col);
+  bool  isField(int row, int col) const;
 
 private:
   Engine  *engine;
   Game    *game;
 
-  State _status;
-  Color human;
-  bool nopaint;
+  State    m_status;		// 
+  Color    human;
+  bool     nopaint;
 
-  QColor bgColor;
-  QPixmap bg;
+  QColor   bgColor;
+  QPixmap  bg;
 
-  // the chips
-  ChipType chiptype;
-  QPixmap allchips;
-
-  uint anim_speed;
+  // the pieces
+  ChipType  chiptype;
+  QPixmap   allchips;
+  uint      anim_speed;
 };
 
 #endif
