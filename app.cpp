@@ -661,7 +661,7 @@ void App::slotGameEnded(int color) {
   if(color == Score::NOBODY) {
     playSound("reversi-drawn.wav");
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
-    KMessageBox::information(this, s, i18n("Game ended"));
+    KMessageBox::information(this, s, i18n("Game Ended"));
   } else if(b->humanIs() == color) {
     // calculate score
     int  st = b->getStrength();
@@ -673,7 +673,7 @@ void App::slotGameEnded(int color) {
     playSound("reversi-won.wav");
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
 	      .arg(winner).arg(loser).arg(score,1);
-    KMessageBox::information(this, s, i18n("Game ended"));
+    KMessageBox::information(this, s, i18n("Game Ended"));
 
     // create highscore entry
     HighScore hs;
@@ -693,7 +693,7 @@ void App::slotGameEnded(int color) {
     playSound("reversi-lost.wav");
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
 	      .arg(loser).arg(winner);
-    KMessageBox::information(this, s, i18n("Game ended"));
+    KMessageBox::information(this, s, i18n("Game Ended"));
   }
 }
 
