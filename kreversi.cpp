@@ -113,11 +113,12 @@ KReversi::KReversi()
 
   // Connect some signals from the game with slots of the view
   connect(m_game, SIGNAL(sig_move(uint, Move&)), 
-	  this,     SLOT(showMove(uint, Move&)));
+	  this,   SLOT(showMove(uint, Move&)));
   connect(m_game, SIGNAL(sig_gameOver()), this, SLOT(slotGameOver()));
   connect(m_game, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
 
   // Internal signal
+  // FIXME: Remove it.  This could as well be a function call.
   connect(this, SIGNAL(stateChange(State)),
           this, SLOT(slotStateChange(State)));
 
@@ -130,7 +131,6 @@ KReversi::KReversi()
   setupGUI();
   init("popup");
   m_gameView->start();
-  m_gameView->updateStatus();
 
   slotNewGame();
 
@@ -251,9 +251,6 @@ void KReversi::slotNewGame()
   // Show some data
   setState(Ready);
   showTurn(Black);
-  m_gameView->updateBoard(TRUE);
-  m_gameView->clearMovelist();	// FIXME: Should be done by a signal from the game.
-  m_gameView->updateStatus();
 
   if (showLegalMovesAction->isChecked()) {
     MoveList  moves = m_game->position().generateMoves(Black);
@@ -278,7 +275,7 @@ void KReversi::slotOpenGame()
 
   if (loadGame(config))
     Prefs::setSkill(m_engine->strength());
-  showColors();
+  m_gameView->setHumanColor(humanColor());
 }
 
 
@@ -430,9 +427,9 @@ void KReversi::slotSwitchSides()
 
   m_humanColor = opponent(m_humanColor);
 
-  // Show the new state of things in the window.
-  m_gameView->updateStatus();
-  showColors();
+  // Update the human color in the window.
+  m_gameView->setHumanColor(m_humanColor);
+
   kapp->processEvents();
   computerMakeMove();
 }
@@ -466,12 +463,6 @@ void KReversi::slotSquareClicked(int row, int col)
 
 // ----------------------------------------------------------------
 //                   Slots for the game view
-
-
-void KReversi::showColors()
-{
-  m_gameView->setHumanColor(humanColor());
-}
 
 
 // Show the move in the move view.
@@ -625,19 +616,14 @@ void KReversi::humanMakeMove(int row, int col)
   // If it is, then make a human move.
   Move  move(color, col + 1, row + 1);
   if (m_game->moveIsLegal(move)) {
+    // Do the move. The view is automatically updated.
     m_game->doMove(move);
-    m_gameView->animateChanged(move);
 
     if (!m_game->moveIsAtAllPossible()) {
-      m_gameView->updateBoard();
-      m_gameView->updateStatus();
       setState(Ready);
       slotGameOver();
       return;
     }
-
-    m_gameView->updateBoard();
-    m_gameView->updateStatus();
 
     if (color != m_game->toMove())
       computerMakeMove();
@@ -686,14 +672,12 @@ void KReversi::computerMakeMove()
     }
     usleep(300000); // Pretend we have to think hard.
 
+    // Do the move on the board.  The view is automatically updated.
     //playSound("click.wav");
     m_game->doMove(move);
-    m_gameView->animateChanged(move);
-    m_gameView->updateBoard();
-    m_gameView->updateStatus();
   } while (!m_game->moveIsPossible(opponent));
 
-
+  // FIXME: Update from the game.
   showTurn(opponent);
   setState(Ready);
 
@@ -758,7 +742,6 @@ void KReversi::saveGame(KConfig *config)
 
 
 // Loads the game.  Only one game at a time can be saved.
-//
 
 bool KReversi::loadGame(KConfig *config)
 {
@@ -788,7 +771,6 @@ bool KReversi::loadGame(KConfig *config)
   m_competitiveGame = (bool)  config->readNumEntry("Competitive");
 
   m_gameView->updateBoard(TRUE);
-  m_gameView->updateStatus();
   setState(State(config->readNumEntry("State")));
   setStrength(config->readNumEntry("Strength", 1));
 
@@ -819,7 +801,7 @@ void KReversi::saveProperties(KConfig *c)
 void KReversi::readProperties(KConfig *config) {
   loadGame(config);
   m_gameOver = false;
-  m_cheating = false;		// FIXME: Is this true?
+  m_cheating = false;		// FIXME: Is this true?  It isn't saved.
 }
 
 
@@ -863,8 +845,8 @@ void KReversi::loadSettings()
 
   m_gameView->loadSettings();
 
-  // Show the color of the human and the computer.
-  showColors(); 
+  // Update the color of the human and the computer.
+  m_gameView->setHumanColor(humanColor());
 }
 
 

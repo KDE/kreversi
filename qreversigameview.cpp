@@ -135,8 +135,14 @@ QReversiGameView::QReversiGameView(QWidget *parent, QReversiGame *game)
   m_humanColor = Nobody;
 
   // Connect the game to the view.
-  connect(m_game, SIGNAL(sig_newGame()), this, SLOT(updateView()));
-  connect(m_game, SIGNAL(sig_score()),   this, SLOT(updateStatus()));
+  connect(m_game, SIGNAL(sig_newGame()), this, SLOT(slotNewGame()));
+  connect(m_game, SIGNAL(sig_move(uint, Move&)),
+	  this,   SLOT(moveMade(uint, Move&)));
+  connect(m_game, SIGNAL(sig_update()),  this, SLOT(updateView()));
+  // The sig_gameOver signal is not used by the view.
+
+  // FIXME: These signals will be deprecated.
+  //connect(m_game, SIGNAL(sig_score()),   this, SLOT(updateStatus()));
 
 #if 0
   connect(m_game, SIGNAL(sig_move(uint, Move&)),
@@ -188,12 +194,34 @@ void QReversiGameView::createView()
 //                              Slots
 
 
+void QReversiGameView::slotNewGame()
+{
+  m_boardView->updateBoard(true);
+  m_movesView->clear();
+  updateStatus();
+}
+
+
+
+void QReversiGameView::moveMade(uint moveNum, Move &move)
+{
+  m_boardView->animateChanged(move);
+  m_boardView->updateBoard();
+
+  // FIXME: Insert update of the movelist here.
+
+  // Update the score.
+  updateStatus();
+}
+
+
 void QReversiGameView::updateView()
 {
   m_boardView->updateBoard(true);
   //updateMovelist();
   updateStatus();
 }
+
 
 void QReversiGameView::updateStatus()
 {
@@ -202,6 +230,10 @@ void QReversiGameView::updateStatus()
 }
 
 
+// This special slot is just because the external program doesn't have
+// access to the internal board view.
+//
+
 void QReversiGameView::squareClicked(int row, int col)
 {
   emit signalSquareClicked(row, col);
@@ -209,6 +241,7 @@ void QReversiGameView::squareClicked(int row, int col)
 
 
 // ----------------------------------------------------------------
+//                   Other public methods.
 
 
 void QReversiGameView::setHumanColor(Color color)
@@ -225,21 +258,6 @@ void QReversiGameView::setHumanColor(Color color)
   }
 }
 
-
-#if 0
-void setStatusPixmap(Color color, QPixmap pixmap)
-{
-  if (color == Black) 
-    m_blackStatus->setPixmap(pixmap);
-  else
-    m_whiteStatus->setPixmap(pixmap);
-}
-
-
-void QReversiGameView::updateMovelist()
-{
-}
-#endif
 
 #include "qreversigameview.moc"
 

@@ -1,5 +1,14 @@
-2005-04-03  Inge Wallin  <inge@lysator.liu.se>
+2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
+	Let the game view be updated by signals from the game instead of
+	by explicit calls.
+	* kreversi.cpp (misc): Don't call updateboard et al.
+	(showColor): Removed
+	* qreversigame.cpp (sig_score): Removed.
+	* qreversigameview.{h,cpp} (slotNewGame, moveMade): new slots
+	
+2005-04-03  Inge Wallin  <inge@lysator.liu.se>
+	
 	Clean up the signals from the game and change some explicit calls
 	to update the view into signal/slots instead.
 	* kreversi.{h, cpp} (showScore): removed

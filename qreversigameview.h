@@ -138,8 +138,11 @@ public:
 
 
 public slots:
-  void  updateView();
-  void  updateStatus();
+  void  slotNewGame();
+  void  moveMade(uint moveNum, Move &move);
+
+  void  updateView();		// Update the entire view.
+  void  updateStatus();		// Update the status widgets (score)
 
 
 signals:

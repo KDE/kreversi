@@ -89,7 +89,7 @@ class QReversiGame : public QObject, public Game {
 
   // FIXME: To be removed:
   void  updateBoard();
-  void  sig_score();
+  //void  sig_score();
   void  turn(Color);
 
 private:
