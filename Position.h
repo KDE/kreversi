@@ -92,19 +92,24 @@ public:
   void constrInit();
   void constrCopy(Position &p, Move &m);
 
-  Color color(uint x, uint y) const;
-  uint score(Color color) const;
+  Color  color(uint x, uint y) const;
+  uint   score(Color color)    const;
+
   Move   lastMove() const { return m_last_move; }
-  Color  toMove() const   { return m_to_move; }
-  bool moveIsLegal(Move m) const;
-  bool moveIsPossible(Color color) const;
-  bool moveIsAtAllPossible() const;
+  Color  toMove()   const { return m_to_move; }
+
+  bool   moveIsLegal(Move m)         const;
+  bool   moveIsPossible(Color color) const;
+  bool   moveIsAtAllPossible()       const;
 
 private:
+  // The actual position itself
   Color  m_board[10][10];
   Color  m_to_move;
-  Move   m_last_move;
-  Score  m_score;
+
+  // Some extra data
+  Move   m_last_move;		// The last move in the game so far
+  Score  m_score;		// The number of pieces for each side.
 };
 
 #endif

@@ -36,6 +36,7 @@
  *******************************************************************
  */
 
+
 #include <kapplication.h>
 #include <kimageio.h>
 #include <kcmdlineargs.h>
@@ -45,6 +46,7 @@
 #include "version.h"
 #include "kreversi.h"
 #include "highscores.h"
+
 
 static const char description[] = I18N_NOOP("KDE Board Game");
 
@@ -78,6 +80,7 @@ int main(int argc, char **argv)
     a.setMainWidget(kreversi);
     kreversi->show();
   }
+
   return a.exec();
 }
 

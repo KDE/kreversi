@@ -76,72 +76,10 @@
 //  public boolean MoveIsAtAllPossible()
 //     Checks if there are any legal moves at all.
 
+
 #include "Position.h"
 #include <stdlib.h>
 
-void Position::constrInit()
-{
-  m_score.set(White, 2);
-  m_score.set(Black, 2);
-
-  for (uint i=0; i<10; i++)
-    for (uint j=0; j<10; j++)
-      m_board[i][j] = Nobody;
-
-  m_board[4][4] = White;
-  m_board[5][5] = White;
-  m_board[5][4] = Black;
-  m_board[4][5] = Black;
-
-  m_to_move = Black;
-}
-
-void Position::constrCopy(Position &p, Move &m) {
-  // Start by copying the position
-  for(uint r = 0; r < 10; r++)
-    for(uint c = 0; c < 10; c++)
-      m_board[r][c] = p.m_board[r][c];
-
-  m_to_move = p.m_to_move;
-  m_score   = p.m_score;
-
-  // Now make the move.
-  Color  color    = m.color();
-  Color  opponent = ::opponent(color);
-
-  // Put the piece on the board
-  m_board[m.x()][m.y()] = color;
-  m_score.inc(color);
-
-  // Turn pieces.
-  for (int xinc=-1; xinc<=1; xinc++)
-    for (int yinc=-1; yinc<=1; yinc++)
-      if (xinc != 0 || yinc != 0) {
-	int x, y;
-
-	for (x = m.x()+xinc, y = m.y()+yinc; m_board[x][y] == opponent;
-	     x += xinc, y += yinc)
-	  ;
-
-	if (m_board[x][y] == color)
-	  for (x -= xinc, y -= yinc; x != m.x() || y != m.y();
-	       x -= xinc, y -= yinc) {
-	    m_board[x][y] = color;
-	    m_score.inc(color);
-	    m_score.dec(opponent);
-	  }
-      }
-
-  m_last_move = m;
-
-  // Set the next color to move.
-  if (moveIsPossible(opponent))
-    m_to_move = opponent;
-  else if (moveIsPossible(color))
-    m_to_move = color;
-  else
-    m_to_move = Nobody;
-}
 
 Position::Position()
 {
@@ -155,10 +93,108 @@ Position::Position(Position &p, Move &m)
 }
 
 
+// ----------------------------------------------------------------
+//                Helpers to the constructors
+
+
+// Construct a Position by setting it to the initial Reversi position.
+
+void Position::constrInit()
+{
+  // Each side starts out with two pieces.
+  m_score.set(White, 2);
+  m_score.set(Black, 2);
+
+  // Initialize the real board
+  for (uint i = 0; i < 10; i++)
+    for (uint j = 0; j < 10; j++)
+      m_board[i][j] = Nobody;
+
+  // The initial position
+  m_board[4][4] = White;
+  m_board[5][5] = White;
+  m_board[5][4] = Black;
+  m_board[4][5] = Black;
+
+  // Black always starts the game in Reversi.
+  m_to_move = Black;
+}
+
+
+// Construct a Position by copying another one and then make a move.
+//
+
+void Position::constrCopy(Position &pos, Move &move)
+{
+  // Start by copying the position itself
+  for (uint row = 0; row < 10; row++)
+    for (uint col = 0; col < 10; col++)
+      m_board[row][col] = pos.m_board[row][col];
+  m_to_move = pos.m_to_move;
+
+  m_score   = pos.m_score;
+
+  // Now make the move.
+  Color  color    = move.color();
+  Color  opponent = ::opponent(color);
+
+  // Put the piece on the board
+  m_board[move.x()][move.y()] = color;
+  m_score.inc(color);
+
+  // Turn pieces.
+  for (int xinc = -1; xinc <= 1; xinc++) {
+    for (int yinc = -1; yinc <= 1; yinc++) {
+      int x, y;
+
+      // Skip the case where both xinc and yinc == 0, since then we
+      // won't move in any direction at all.
+      if (xinc == 0 && yinc == 0)
+	continue;
+
+      // Find the end point (x, y) of a possible row of turnable pieces.
+      for (x = move.x()+xinc, y = move.y()+yinc; m_board[x][y] == opponent;
+	   x += xinc, y += yinc)
+	;
+
+      // If the row was indeed turnable, then do it.
+      if (m_board[x][y] == color) {
+	for (x -= xinc, y -= yinc; x != move.x() || y != move.y();
+	     x -= xinc, y -= yinc) {
+	  // Turn the piece.
+	  m_board[x][y] = color;
+
+	  // Make the piece count correct again.
+	  m_score.inc(color);
+	  m_score.dec(opponent);
+	}
+      }
+    }
+  }
+
+  // Store the last move that lead to the position.
+  m_last_move = move;
+
+  // Set the next color to move.
+  if (moveIsPossible(opponent))
+    m_to_move = opponent;
+  else if (moveIsPossible(color))
+    m_to_move = color;
+  else
+    m_to_move = Nobody;
+}
+
+
+// ----------------------------------------------------------------
+//                          Access methods
+
+
+
 Color Position::color(uint x, uint y) const
 {
   return m_board[x][y];
 }
+
 
 uint Position::score(Color color) const 
 {
@@ -172,42 +208,59 @@ uint Position::score(Color color) const
 //       by the color to move.  That must be checked separately.
 //
 
-bool Position::moveIsLegal(Move m) const
+bool Position::moveIsLegal(Move move) const
 {
-  if (m_board[m.x()][m.y()] != Nobody) 
+  if (m_board[move.x()][move.y()] != Nobody) 
     return false;
 
-  Color  color    = m.color();
+  Color  color    = move.color();
   Color  opponent = ::opponent(color);
 
-  for (int xinc=-1; xinc<=1; xinc++)
-    for (int yinc=-1; yinc<=1; yinc++)
-      if (xinc != 0 || yinc != 0)
-	{
-	  int x, y;
+  // Check in all directions and see if there is a turnable row of
+  // opponent pieces.  If there is at least one such row, then the
+  // move is legal.
+  for (int xinc = -1; xinc <= 1; xinc++) {
+    for (int yinc = -1; yinc <= 1; yinc++) {
+      int  x, y;
 
-	  for (x = m.x()+xinc, y = m.y()+yinc; m_board[x][y] == opponent;
-	       x += xinc, y += yinc)
-	    ;
+      if (xinc == 0 && yinc == 0)
+	continue;
 
-	  if (m_board[x][y] == color &&
-	      (x - xinc != m.x() || y - yinc != m.y()))
-	    return true;
-	}
+      // Find the end of such a row of pieces.
+      for (x = move.x()+xinc, y = move.y()+yinc; m_board[x][y] == opponent;
+	   x += xinc, y += yinc)
+	;
+
+      // If the row ends with a piece of our own and there was at
+      // least one opponent piece between it and the move point, then
+      // we have found a turnable row.
+      if (m_board[x][y] == color 
+	  && (x - xinc != move.x() || y - yinc != move.y()))
+	return true;
+    }
+  }
 
   return false;
 }
 
+
+// See if 'color' can make a move in the current position.  This is
+// independent of wether it is 'color's turn to move or not.
 
 bool Position::moveIsPossible(Color color) const
 {
-  for (uint i=1; i<9; i++)
-    for (uint j=1; j<9; j++)
-      if (moveIsLegal(Move(color, i, j))) return true;
+  // Make it simple: Step through all squares and see if it is a legal move.
+  for (uint i = 1; i < 9; i++)
+    for (uint j = 1; j < 9; j++) {
+      if (moveIsLegal(Move(color, i, j))) 
+	return true;
+    }
 
   return false;
 }
 
+
+// Return true if any side can move.  (If not, the game is over.)
 
 bool Position::moveIsAtAllPossible() const
 {

@@ -14,13 +14,13 @@ TODO-list for KREVERSI
    - kreversi.h
    - kzoommainwindow.cpp
    - kzoommainwindow.h
-   - main.cpp
+   - main.cpp							DONE
    - Move.cpp							DONE
    - Move.h							DONE
-   - Position.cpp
-   - Position.h
-   - prefs.h
-   - prefs.kcfgc
+   - Position.cpp						DONE
+   - Position.h							DONE
+   - prefs.kcfgc						Not code
+   - prefs.h							Generated
    - Score.cpp							DONE
    - Score.h							DONE
    - settings.cpp						Generated
