@@ -2,7 +2,7 @@
 Encoding=UTF-8
 Exec=kreversi %i %m -caption "%c"
 Name=KReversi
-Name[af]=kreversi
+Name[af]=Kreversi
 Name[bg]=КРеверси
 Name[eo]=Renverso
 Name[pl]=Odwracanka
@@ -17,7 +17,7 @@ Name[zu]=I Reversi ka K
 Type=Application
 DocPath=kreversi/index.html
 GenericName=Board Game
-GenericName[af]=bord speletjie
+GenericName[af]=Bord Speletjie
 GenericName[ar]=لعبة لوحة
 GenericName[bg]=Игра на дъска
 GenericName[bs]=Igra s pločom
