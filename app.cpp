@@ -806,8 +806,8 @@ void App::readHighscore() {
       highscore.resize(i+1);
 
       HighScore hs;
-      sscanf((const char *)e.utf8(), "%s %d %d %d %f %ld",
-	     (char *)&hs.name, &hs.color, &hs.winner,
+      sscanf( e.utf8(), "%31s %d %d %d %f %ld",
+	     hs.name, &hs.color, &hs.winner,
 	     &hs.loser, &hs.rating, &hs.date);
       highscore[i] = hs;
     } else
