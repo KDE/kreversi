@@ -39,7 +39,7 @@
 #include <kapp.h>
 #include <kstddirs.h>
 #include <kglobal.h>
-#include <kimgio.h>
+#include <kimageio.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 
   KApplication a;
 
-  kimgioRegister();
+  KImageIO::registerFormats();
   
   App *app = new App;
 
