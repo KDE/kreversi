@@ -1,13 +1,13 @@
 
 INCLUDES = -I$(top_srcdir)/libkdegames -I$(top_srcdir)/libkdegames/highscore $(all_includes)
-LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD =   $(LIB_KDEGAMES) $(LIB_KSYCOCA) $(LIB_KDEUI) 
 
 bin_PROGRAMS = kreversi
 
 kreversi_SOURCES = main.cpp kreversi.cpp board.cpp Game.cpp \
 		Score.cpp SuperEngine.cpp settings.ui \
 		Engine.cpp Position.cpp Move.cpp
+kreversi_LDFLAGS = $(all_libraries) $(KDE_RPATH)
+kreversi_LDADD = $(LIB_KDEGAMES) $(LIB_KIO)
 
 METASOURCES =	AUTO
 
