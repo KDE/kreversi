@@ -54,7 +54,7 @@ static const char *description = I18N_NOOP("KDE Board Game");
 int main(int argc, char **argv)
 {
   KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"), 
-    KREVERSI_VERSION, description, KAboutData::GPL, 
+    KREVERSI_VERSION, description, KAboutData::License_GPL, 
     "(c) 1997-2000, Mario Weilguni");
   aboutData.addAuthor("Mario Weilguni",0, "mweilguni@sime.com");
   KCmdLineArgs::init( argc, argv, &aboutData );
