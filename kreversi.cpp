@@ -107,8 +107,10 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
 //                     class KReversi
 
 
+#ifndef PICDATA
 #define PICDATA(x)  \
     KGlobal::dirs()->findResource("appdata", QString("pics/") + x)
+#endif
 
 
 KReversi::KReversi()

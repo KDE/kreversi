@@ -55,7 +55,9 @@
 #include "Engine.h"
 
 
+#ifndef PICDATA
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
+#endif
 
 const uint  HINT_BLINKRATE        = 250000;
 const uint  ANIMATION_DELAY       = 3000;
