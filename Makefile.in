@@ -31,7 +31,7 @@ INSTALL_DIR_PRIVATE = $(install) -d -m 0700
 
 prefix = @prefix@
 BINDIR = $(prefix)/bin
-DOCDIR = $(prefix)/share/doc/HTML/default/Reversi
+DOCDIR = $(prefix)/share/doc/HTML/en/Reversi
 PICSDIR = $(prefix)/share/apps/Reversi/pics
 BGDIR	= $(PICSDIR)/background
 SOUNDDIR= $(prefix)/share/apps/Reversi/sounds
