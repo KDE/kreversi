@@ -149,6 +149,7 @@ void Board::newGame()
 {
   m_game->Reset();
   m_competitiveGame = Prefs::competitiveGameChoice();
+  m_lowestStrength  = strength();
   //kdDebug() << "Competitive: " << m_competitiveGame << endl;
 
   updateBoard(TRUE);
@@ -321,7 +322,9 @@ void Board::setStrength(uint st)
 
   st = QMAX(QMIN(st, 7), 1);
   m_engine->setStrength(st);
-  KExtHighscore::setGameType(st-1);
+  if (m_lowestStrength < st)
+    m_lowestStrength = st;
+  KExtHighscore::setGameType(m_lowestStrength-1);
 }
 
 

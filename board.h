@@ -145,6 +145,7 @@ private:
   Game    *m_game;		// Stores the moves of the game
 
   State    m_status;		// Ready, Thinking, Hint
+  bool     m_lowestStrength;	// Lowest strength during the game.
   bool     m_competitiveGame;	// True if the game has been
 				// competitive during all moves so far.
   Color    m_humanColor;	// The Color of the human player.
