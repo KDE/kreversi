@@ -113,8 +113,9 @@ public:
   void   reset();
   
   Color  color(uint x, uint y) const;
-  uint   score(Color color) const;
-  Move   lastMove() const;
+  uint   score(Color color)    const;
+  Move   lastMove()            const;
+  Move   move(uint moveNo)     const;
 
   bool   moveIsLegal(Move &move) const;
   bool   moveIsPossible(Color color) const;
@@ -123,11 +124,11 @@ public:
   bool   takeBackMove();
 
   uint   moveNumber() const  { return m_moveNumber;        }
-  Color  toMove() const      { return m_position.toMove(); }
+  Color  toMove()     const  { return m_position.toMove(); }
 
   // Reversi specific methods
   bool   squareModified(uint x, uint y) const;
-  bool   wasTurned(uint x, uint y) const;
+  bool   wasTurned(uint x, uint y)      const;
 
 private:
   Move      m_moves[64];

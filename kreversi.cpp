@@ -631,30 +631,28 @@ void KReversi::saveGame(KConfig *config)
   slotInterrupt(); 
 
   // Write the data to the config file.
-  config->writeEntry("NumberOfMoves", moveNumber());
-  config->writeEntry("State", state());
-  config->writeEntry("Strength", strength());
+  config->writeEntry("State",         state());
+  config->writeEntry("Strength",      strength());
+  config->writeEntry("Competitive",   (int) m_competitiveGame);
+  config->writeEntry("HumanColor",    (int) m_humanColor);
 
   // Write the moves of the game to the config object.  This object
   // saves itself all at once so we don't have to write the moves
   // to the file ourselves.
-  for (uint i = moveNumber(); i > 0; i--) {
-    Move  move = m_game->lastMove();
-    m_game->takeBackMove();
+  config->writeEntry("NumberOfMoves", moveNumber());
+  for (uint i = 0; i < moveNumber(); i++) {
+    Move  move = m_game->move(i);
 
-    QString s, idx;
-    s.sprintf("%d %d %d", move.x(), move.y(), (int)move.color());
-    idx.sprintf("Move_%d", i);
-    config->writeEntry(idx, s);
+    QString  moveString;
+    QString  idx;
+
+    moveString.sprintf("%d %d %d", move.x(), move.y(), (int) move.color());
+    idx.sprintf("Move_%d", i + 1);
+    config->writeEntry(idx, moveString);
   }
 
-  // Save whose turn it is and if the game is competitive.
-  config->writeEntry("Competitive", (int) m_competitiveGame);
-  config->writeEntry("HumanColor",  (int) m_humanColor);
+  // Actually write the data to file.
   config->sync();
-
-  // All moves must be redone.
-  loadGame(config, TRUE);
 
   // Continue with the move if applicable.
   slotContinue(); 

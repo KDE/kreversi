@@ -97,7 +97,10 @@
 //     for faster updates of a graphical board).
 
 
+#include <assert.h>
+
 #include "Game.h"
+
 
 
 Game::Game()
@@ -148,6 +151,16 @@ Move Game::lastMove() const
 
   return m_moves[m_moveNumber - 1];
 }
+
+
+Move
+Game::move(uint moveNo) const
+{
+  assert(moveNo < m_moveNumber);
+
+  return m_moves[moveNo];
+}
+
 
 
 // Return true if the move is legal in the current position.

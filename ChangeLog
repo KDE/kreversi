@@ -1,3 +1,10 @@
+2004-10-03  Inge Wallin  <inge@lysator.liu.se>
+
+	Simplify saving of the game
+	* Game.{h,cpp} (move(uint)): New method.
+	* kreversi.cpp (saveGame): Use the new method, and don't call
+	loadGame to restore the Game object.
+
 2004-09-29  Inge Wallin  <inge@lysator.liu.se>
 
 	Continue to make KReversi a proper model/view program:
