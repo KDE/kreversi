@@ -46,8 +46,13 @@
 #include "Score.h"
 #include "playsound.h"
 
-// for usleep()
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#ifdef HAVE_USLEEP
 #include <unistd.h>
+#endif
 
 extern QString PICDIR;
 extern QString SOUNDDIR;
@@ -68,9 +73,9 @@ Board::Board(QWidget *parent) : QWidget(parent) {
   oldsizehint = -1;
 
   for(int i = 0; i < CHIP_MAX; i++)
-    chip[i] = NULL;
+    chip[i] = 0;
 
-  allchips = NULL;
+  allchips = 0;
   loadChips("chips.xpm");
 
   nopaint = FALSE;
@@ -105,7 +110,7 @@ void Board::loadChips(const char *filename) {
   // create the chips
   if(allchips) {
     delete allchips;
-    allchips = NULL; // just to be sure
+    allchips = 0; // just to be sure
   }
 
   allchips = new QPixmap((const char *)(PICDIR + filename));
@@ -147,7 +152,7 @@ void Board::timerEvent(QTimerEvent *t) {
   // already scaled, kill the timer
   if(t->timerId() == scaleTimerID) {
     for(int i = 0; i < CHIP_MAX; i++)
-      if(chip[i] == NULL) {
+      if(chip[i] == 0) {
 	scaleOneChip(i);
 	return;
       }
@@ -239,6 +244,9 @@ void Board::mousePressEvent(QMouseEvent *e) {
     emit illegalMove();
 }
 
+
+void Board::mouseDoublePressEvent(QMouseEvent *) {
+}
 
 /// handles piece settings
 void Board::slotFieldClicked(int row, int col) {
@@ -384,7 +392,9 @@ void Board::hint() {
 	  qApp->processEvents();
 	}
       }
-      drawOnePiece(m.GetY() - 1, m.GetX() - 1, Score::NOBODY);
+      
+      drawOnePiece(m.GetY() - 1, m.GetX() - 1, 
+		   g.GetSquare(m.GetX(), m.GetY()));
     }
     setState(READY);
   }
@@ -408,7 +418,7 @@ void Board::animateChanged(Move m) {
   // since now all chips are needed, ensure that all of them
   // are loaded
   for(int i = 0; i < CHIP_MAX; i++) 
-    if(chip[i] == NULL)
+    if(chip[i] == 0)
       scaleOneChip(i);
 
   // draw the new piece
@@ -538,7 +548,7 @@ void Board::zoomOut() {
 void Board::scaleOneChip(int i) {
   if((i >= 0) && (i < CHIP_MAX)) {
     // free pixmap if any
-    if(chip[i] != NULL)
+    if(chip[i] != 0)
       delete chip[i];
 
     int w = allchips->width()/5;
@@ -569,9 +579,9 @@ void Board::loadPixmaps() {
   // are scaled in the background (timerEvent) to make the
   // program react faster to size events
   for(int i = 0; i < CHIP_MAX; i++)
-    if(chip[i] != NULL) {
+    if(chip[i] != 0) {
       delete chip[i];
-      chip[i] = NULL;
+      chip[i] = 0;
     }
   scaleOneChip(CHIP_WHITE);
   scaleOneChip(CHIP_BLACK);  
@@ -604,7 +614,7 @@ void Board::drawOnePiece(int row, int col, int color) {
   int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100 + 2;
 
   // ensure that the chips are loaded
-  if((chip[CHIP_BLACK] == NULL) || (chip[CHIP_WHITE] == NULL))
+  if((chip[CHIP_BLACK] == 0) || (chip[CHIP_WHITE] == 0))
     loadPixmaps();
   
   QPainter p;

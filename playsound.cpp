@@ -48,18 +48,18 @@ QString SOUNDDIR;
 
 #ifdef HAVE_MEDIATOOL
 
-KAudio *audio = NULL;
+KAudio *audio = 0;
 
 bool initAudio() {
-  if(audio == NULL) {
+  if(audio == 0) {
     audio = new KAudio();
     SOUNDDIR = kapp->kdedir() + "/share/apps/Reversi/sounds/";
 
-    if(audio == NULL)
+    if(audio == 0)
       return FALSE;
 
     if(audio->serverStatus() != 0) {
-      audio = NULL;
+      audio = 0;
       return FALSE;
     }
 
@@ -89,13 +89,13 @@ bool soundSync() {
 }
 
 bool audioOK() {
-  return (bool)(audio != NULL);
+  return (bool)(audio != 0);
 }
 
 bool doneAudio() {
   if(audio) {
     delete audio;
-    audio = NULL;
+    audio = 0;
     return TRUE;
   } else
     return FALSE;

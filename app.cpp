@@ -163,7 +163,7 @@ App::App() : KTopLevelWidget() {
 #undef BarPosition
 
   KConfig *conf = kapp->getConfig();
-  if(conf != NULL) {
+  if(conf != 0) {
     if(conf->readNumEntry("Background", -1) != -1) {
       int i = conf->readNumEntry("Background");
       if(i == 1) {
@@ -398,7 +398,7 @@ void App::lookupBackgroundPixmaps() {
   const QFileInfoList *fl = dir.entryInfoList();
 
   // sanity check, maybe the directory is unreadable
-  if(fl == NULL)
+  if(fl == 0)
     return;
 
   QFileInfoListIterator it( *fl );
@@ -697,7 +697,7 @@ void App::slotGameEnded(int color) {
     hs.winner = winner;
     hs.loser = loser;
     hs.rating = score;   
-    hs.date = time(NULL);
+    hs.date = time((time_t*)0);
 
     int rank = insertHighscore(hs);
     if(rank != -1) {
