@@ -45,20 +45,13 @@
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
-#include <kaudioplayer.h>
+#include <knotifyclient.h>
+#include <klocale.h>
 
 #include "prefs.h"
 #include "Engine.h"
 
-#include <config.h>
-#include <unistd.h>
-
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
-
-const char * const Board::SOUND[Nb_Sounds] = {
-    "reversi-click.wav", "reversi-drawn.wav", "reversi-won.wav",
-    "reversi-lost.wav", "reversi-hof.wav", "reversi-illegalmove.wav"
-};
 
 const uint HINT_BLINKRATE = 250000;
 const uint ANIMATION_DELAY = 3000;
@@ -167,8 +160,8 @@ void Board::newGame() {
 
 /// handles mouse clicks
 void Board::mousePressEvent(QMouseEvent *e) {
-  if(interrupted()){
-    emit illegalMove();
+  if ( interrupted() ) {
+    illegalMove();
     return;
   }
   if(state() == Ready) {
@@ -177,10 +170,13 @@ void Board::mousePressEvent(QMouseEvent *e) {
     fieldClicked(py, px);
   } else if(state() == Hint)
     setState(Ready);
-  else
-    emit illegalMove();
+  else illegalMove();
 }
 
+void Board::illegalMove()
+{
+  KNotifyClient::event(winId(), "illegal_move", i18n("Illegal move"));
+}
 
 /// handles piece settings
 void Board::fieldClicked(int row, int col) {
@@ -206,7 +202,7 @@ void Board::fieldClicked(int row, int col) {
       if(player != game->whoseTurn())
 	computerMakeMove();
     } else
-      emit illegalMove();
+      illegalMove();
   }
 }
 
@@ -333,13 +329,6 @@ void Board::hint() {
   }
 }
 
-void Board::playSound(SoundType type)
-{
-    QString s("kreversi/sounds/");
-    s += SOUND[type];
-    KAudioPlayer::play( locate("data", s) );
-}
-
 // ********************************************************
 // ********************************************************
 //
@@ -374,7 +363,7 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
   col = col + dx;
   while(isField(row, col)) {
     if(game->wasTurned(col+1, row+1)) {
-      playSound(ClickSound);
+      KNotifyClient::event(winId(), "click", i18n("Click"));
       rotateChip(row, col);
    } else
       return;

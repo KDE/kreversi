@@ -1,0 +1,30 @@
+[!Global!]
+IconName=kreversi
+Comment=KReversi
+
+[click]
+Name=Click
+Comment=Click
+default_presentation=1
+default_sound=kreversi-click.wav
+
+[won]
+Name=Game won
+Comment=Game won
+default_presentation=1
+default_sound=kreversi-won.wav
+
+[lost]
+Name=Game lost
+Comment=Game lost
+default_presentation=0
+
+[draw]
+Name=Draw
+Comment=Draw
+default_presentation=0
+
+[illegal_move]
+Name=Illegal Move
+Comment=Illegal Move
+default_presentation=0

@@ -83,13 +83,13 @@ private slots:
   void slotGameEnded(Player);
   void slotTurn(Player);
   void slotStatusChange(Board::State);
-  void slotIllegalMove();
   void switchSides();
 
   void newGame();
   void openGame();
   void save();
   void configureKeyBindings();
+  void configureNotifications();
   void zoomIn();
   void zoomOut();
 

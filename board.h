@@ -103,11 +103,6 @@ public:
   QColor color() const { return bgColor; }
   void setPixmap(QPixmap &);
 
-  enum SoundType { ClickSound = 0, DrawSound, WonSound, LostSound,
-                   HallOfFameSound, IllegalMoveSound, Nb_Sounds };
-  static const char * const SOUND[Nb_Sounds];
-  void playSound(SoundType);
-
 public slots:
   void undo();
   void hint();
@@ -120,7 +115,6 @@ signals:
   void score();
   void gameWon(Player);
   void statusChange(Board::State);
-  void illegalMove();
   void strengthChanged(int);
   void sizeChange();
   void turn(Player);
@@ -129,6 +123,7 @@ private:
   void fieldClicked(int, int);
   void gameEnded();
   void computerMakeMove();
+  void illegalMove();
 
   void updateBoard(bool force = FALSE);
 

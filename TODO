@@ -1,6 +1,5 @@
 TODO-list for KREVERSI
 ======================
-* get audio code to use notification framework
 * network-play against human
 * implement ULONG64 as a class instead of using gcc "long long int"
 

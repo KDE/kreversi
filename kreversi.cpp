@@ -36,8 +36,6 @@
  *******************************************************************
  */
 
-#include "config.h"
-
 #include <qlayout.h>
 
 #include <kapplication.h>
@@ -52,6 +50,8 @@
 #include <kconfigdialog.h>
 #include <kscoredialog.h>
 #include <kurlrequester.h>
+#include <knotifyclient.h>
+#include <knotifydialog.h>
 
 #include "prefs.h"
 #include "Score.h"
@@ -89,6 +89,8 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
 KReversi::KReversi()
     : KMainWindow(0, "kreversi")
 {
+  KNotifyClient::startDaemon();
+
   gameOver = false;
 
   // create reversi board
@@ -108,7 +110,6 @@ KReversi::KReversi()
   connect(board, SIGNAL(turn(Player)), this, SLOT(slotTurn(Player)));
   connect(board, SIGNAL(statusChange(Board::State)),
           this, SLOT(slotStatusChange(Board::State)));
-  connect(board, SIGNAL(illegalMove()), this, SLOT(slotIllegalMove()));
   setAutoSaveSettings();
 
   loadSettings();
@@ -130,6 +131,8 @@ void KReversi::createKActions() {
   new KAction(i18n("S&witch Sides"), 0,
 	0, this, SLOT(switchSides()), actionCollection(), "game_switch_sides");
 
+  KStdAction::configureNotifications(this, SLOT(configureNotifications()),
+                                     actionCollection());
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection(), "zoomIn");
   zoomOutAction = KStdAction::zoomOut(this, SLOT(zoomOut()), actionCollection(), "zoomOut");
@@ -220,7 +223,7 @@ void KReversi::slotGameEnded(Player player) {
   uint computer = board->score(board->computerPlayer());
 
   if(player == Nobody) {
-    board->playSound(Board::DrawSound);
+    KNotifyClient::event(winId(), "draw", i18n("Draw!"));
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
   } else if(board->humanPlayer() == player) {
@@ -230,9 +233,9 @@ void KReversi::slotGameEnded(Player player) {
     // 8 is the highest level so it is the bases for the scale.
     float score= (float)human / sum * ((100/8)*st);
 
-    board->playSound(Board::WonSound);
+    KNotifyClient::event(winId(), "won", i18n("Game won!"));
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
-	      .arg(human).arg(computer).arg(score,1);
+          .arg(human).arg(computer).arg(score,1);
     KMessageBox::information(this, s, i18n("Game Ended"));
 
     if (!gameOver){
@@ -247,7 +250,7 @@ void KReversi::slotGameEnded(Player player) {
         highscore.exec();
     }
   } else {
-    board->playSound(Board::LostSound);
+    KNotifyClient::event(winId(), "lost", i18n("Game lost!"));
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
 	      .arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
@@ -279,10 +282,6 @@ void KReversi::slotStatusChange(Board::State status) {
   continueAction->setEnabled(board->interrupted());
 }
 
-void KReversi::slotIllegalMove() {
-    board->playSound(Board::IllegalMoveSound);
-}
-
 void KReversi::saveProperties(KConfig *c) {
   board->saveGame(c);
 }
@@ -308,6 +307,11 @@ void KReversi::showSettings(){
   dialog->addPage(general, i18n("General"), "package_settings");
   connect(dialog, SIGNAL(settingsChanged()), this, SLOT(loadSettings()));
   dialog->show();
+}
+
+void KReversi::configureNotifications()
+{
+    KNotifyDialog::configure(this);
 }
 
 void KReversi::updateColors()
