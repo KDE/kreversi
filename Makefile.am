@@ -1,7 +1,7 @@
 
 INCLUDES = $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD = -lkdeui -lkdecore -lmediatool  -lXext  $(LIB_QT) $(LIBCOMPAT)
+LDADD =   -lmediatool     $(LIB_KDEUI) $(LIBCOMPAT)
 
 bin_PROGRAMS = kreversi
 
