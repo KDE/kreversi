@@ -1,3 +1,7 @@
+2005-02-18  Inge Wallin  <ingwa@dhcp-254-182.lkpg.cendio.se>
+
+	* version.h (KREVERSI_VERSION): Bumped version to 1.6
+
 2004-10-31  Inge Wallin  <inge@lysator.liu.se>
 
 	Better fix for bug 91055.
