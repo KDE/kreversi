@@ -62,4 +62,11 @@
 0.6.3	sound fix: when the animation is finished, the correct piece gets
 	redrawn before doing a sound-sync (how could I ever believe 0.6.2
 	would be the last change :-)
+
+0.6.4	fixed that get-hit-and-then-doubleclick bug
+
+	fixed a bug that caused the computer to switch sides if no
+	computer move is possible instead of getting another human move
+
+	
 	

@@ -265,7 +265,9 @@ void Board::slotFieldClicked(int row, int col) {
       }
 
       updateBoard();
-      computerMakeMove();
+
+      if(color != g.GetWhoseTurn())
+	computerMakeMove();
     } else 
       emit illegalMove();
   }
@@ -475,8 +477,8 @@ void Board::rotateChip(int row, int col) {
   // copy the background of an empty square
   drawOnePiece(row, col, Score::NOBODY);
   QPixmap saveunder;
-  int p_width = (sizeHint().width()-4)/8;
-  int p_height = (sizeHint().height()-4)/8;
+  int p_width = (sizeHint().width())/8;
+  int p_height = (sizeHint().height())/8;
   saveunder.resize(p_width, p_height);
   bitBlt(&saveunder, 0, 0, this, p_width * col, p_height * row,
 	 p_width, p_height, CopyROP);
