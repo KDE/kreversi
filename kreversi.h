@@ -60,7 +60,6 @@ private:
   virtual void readProperties(KConfig *);
 
 private slots:
-  void processEvent(int itemid);
   void slotScore();
   void slotGameEnded(int);
   void slotTurn(int);

@@ -347,7 +347,10 @@ void Board::hint() {
     Move m = engine->ComputeMove(*game);
     setState(HINT);
     if(m.GetX() != -1) {
-      for(int flash = 0; (flash < 100) && (getState() != READY); flash++) {
+      // the isVisible condition has been added so that when the player was viewing
+      // a hint and quits the game window, the game doesn't still have to do all this looping
+      // and directly ends
+      for(int flash = 0; (flash < 100) && (getState() != READY) && isVisible(); flash++) {
 	if(flash & 1)
 	  drawOnePiece(m.GetY() - 1, m.GetX() - 1, Score::NOBODY);
 	else

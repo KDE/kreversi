@@ -189,24 +189,6 @@ void KReversi::zoomOut(){
     zoomOutAction->setEnabled(false);
 }
 
-void KReversi::processEvent(int itemid) {
-#ifdef HAVE_MEDIATOOL
-    if(!audioOK()) {
-      initAudio();
-      if(!audioOK()) {
-	KMessageBox::error(this,
-			   i18n("A problem with the sound server occured!\n"
-				"Cannot enable sound support."));
-	kapp->config()->writeEntry("Sound", 0);
-      } else
-	kapp->config()->writeEntry("Sound", 1);
-    } else {
-      doneAudio();
-      kapp->config()->writeEntry("Sound", 0);
-    }
-#endif
-}
-
 void KReversi::slotScore() {
   int black, white;
   QString s1, s2;
@@ -308,8 +290,8 @@ void KReversi::slotTurn(int color) {
   statusBar()->changeItem(s, SB_TURN);
 }
 
-void KReversi::slotStatusChange(int) {
-  if(board->getState() == Board::THINKING){
+void KReversi::slotStatusChange(int status) {
+  if(status == Board::THINKING){
     kapp->setOverrideCursor(waitCursor);
     stopAction->setEnabled(true);
   }
