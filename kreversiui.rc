@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui>
-<kpartgui name="kreversi" version="1">
+<kpartgui name="kreversi" version="2">
 
 <ActionProperties>
   <Action name="game_stop" icon="stop"/>
@@ -17,10 +17,6 @@
     <Action name="game_stop"/>
     <Action name="game_continue"/>
   </Menu>
-  <Menu name="view"><text>&amp;View</text>
-    <Action name="zoomIn"/>
-    <Action name="zoomOut"/>
-  </Menu>
 </MenuBar>
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
@@ -29,6 +25,16 @@
   <Action name="game_continue"/>
   <Action name="game_undo"/>
   <Action name="game_hint"/>
+  <Action name="options_show_menubar"/>
 </ToolBar>
+
+<Menu name="popup">
+  <Action name="options_show_menubar"/>
+  <Separator/>
+  <Action name="game_new"/>
+  <Action name="game_highscores"/>
+  <Separator/>
+  <Action name="game_quit"/>
+</Menu>
 
 </kpartgui>

@@ -22,7 +22,7 @@
     <entry name="Zoom" type="Int">
       <label>The zoom factor of the board.</label>
       <min>10</min>
-      <max>1000</max>
+      <max>300</max>
       <default>100</default>
     </entry>
     <entry name="skill" type="Int">
@@ -43,6 +43,10 @@
       <label>Image to use as background.</label>
       <code>#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)</code>
       <default code="true">PICDATA("background/Light_Wood.png")</default>
+    </entry>
+    <entry name="MenubarVisible" type="Bool" key="menubar visible">
+      <label>Whether the menubar is visible.</label>
+      <default>true</default>
     </entry>
   </group>
 </kcfg>

@@ -4,4 +4,4 @@ File=kreversi.kcfg
 ClassName=Prefs
 Singleton=true
 #CustomAdditions=true
-Mutators=skill,Zoom
+Mutators=skill,Zoom,MenubarVisible

@@ -59,26 +59,23 @@ const uint ANIMATION_DELAY = 3000;
 const uint CHIP_OFFSET[NbPlayers] = { 24, 1 };
 const uint CHIP_SIZE       = 36;
 
+//-----------------------------------------------------------------------------
 Board::Board(QWidget *parent)
     : QWidget(parent, "board"),
-  // ensure that the first time adjustsize does
-  // pixmap loading
-  oldsizehint(-1),
-  _zoom(100),
-  _zoomed_size(CHIP_SIZE),
-  human(Black),
-  nopaint(false),
-  chiptype(Unloaded)
+  human(Black), nopaint(false), chiptype(Unloaded)
 {
   engine = new Engine();
   game = new Game();
   setStrength(1);
 }
 
-
 Board::~Board() {
   delete engine;
   delete game;
+}
+
+uint Board::zoomedSize() const {
+  return qRound(float(CHIP_SIZE) * Prefs::zoom() / 100);
 }
 
 void Board::start() {
@@ -135,16 +132,6 @@ void Board::doContinue() {
     computerMakeMove();
 }
 
-/// adjusts the size
-void Board::adjustSize() {
-  // do only resize if size has really change to avoid a flickering display
-  if(sizeHint().width() != oldsizehint) {
-    setFixedSize(sizeHint());
-    oldsizehint = sizeHint().width();
-    update();
-  }
-}
-
 /// starts a new game
 void Board::newGame() {
   game->Reset();
@@ -160,13 +147,18 @@ void Board::newGame() {
 
 /// handles mouse clicks
 void Board::mousePressEvent(QMouseEvent *e) {
+  if ( e->button()!=LeftButton ) {
+    e->ignore();
+    return;
+  }
+
   if ( interrupted() ) {
     illegalMove();
     return;
   }
   if(state() == Ready) {
-    int px = (e->pos().x()-1) / _zoomed_size;
-    int py = (e->pos().y()-1) / _zoomed_size;
+    int px = (e->pos().x()-1) / zoomedSize();
+    int py = (e->pos().y()-1) / zoomedSize();
     fieldClicked(py, px);
   } else if(state() == Hint)
     setState(Ready);
@@ -186,7 +178,6 @@ void Board::fieldClicked(int row, int col) {
     /// makes a human move
     Move m(col + 1, row + 1, player);
     if(game->moveIsLegal(m)) {
-      //      playSound("click.wav");
       game->MakeMove(m);
       animateChanged(m);
 
@@ -391,34 +382,6 @@ void Board::rotateChip(uint row, uint col) {
   }
 }
 
-bool Board::canZoomIn() const {
-  return (width() < 640);
-}
-
-
-bool Board::canZoomOut() const {
-  return (width() > 200);
-}
-
-
-void Board::setZoom(uint _new) {
-  if(((_new < _zoom) && canZoomOut()) ||
-     ((_new > _zoom) && canZoomIn())) {
-    _zoom = _new;
-    _zoomed_size = qRound(float(CHIP_SIZE) * _zoom / 100);
-    adjustSize();
-  }
-}
-
-void Board::zoomIn() {
-  setZoom(_zoom + 20);
-}
-
-
-void Board::zoomOut() {
-  setZoom(_zoom - 20);
-}
-
 
 void Board::updateBoard(bool force) {
   for(uint row = 0; row < 8; row++)
@@ -429,7 +392,7 @@ void Board::updateBoard(bool force) {
         }
   QPainter p(this);
   p.setPen(black);
-  p.drawRect(0, 0, 8 * _zoomed_size + 2, 8 * _zoomed_size + 2);
+  p.drawRect(0, 0, 8 * zoomedSize() + 2, 8 * zoomedSize() + 2);
 
   emit score();
 }
@@ -450,19 +413,19 @@ QPixmap Board::chipPixmap(uint i, uint size) const
 }
 
 void Board::drawOnePiece(uint row, uint col, int i) {
-  int px = col * _zoomed_size + 1;
-  int py = row * _zoomed_size + 1;
+  int px = col * zoomedSize() + 1;
+  int py = row * zoomedSize() + 1;
 
   QPainter p(this);
   if (bg.width())
-      p.drawTiledPixmap(px, py, _zoomed_size, _zoomed_size, bg, px, py);
-  else p.fillRect(px, py, _zoomed_size, _zoomed_size, bgColor);
+      p.drawTiledPixmap(px, py, zoomedSize(), zoomedSize(), bg, px, py);
+  else p.fillRect(px, py, zoomedSize(), zoomedSize(), bgColor);
 
   p.setPen(black);
-  p.drawRect(px, py, _zoomed_size, _zoomed_size);
+  p.drawRect(px, py, zoomedSize(), zoomedSize());
 
   if ( i==-1 ) return;
-  p.drawPixmap(px, py, chipPixmap(i, _zoomed_size));
+  p.drawPixmap(px, py, chipPixmap(i, zoomedSize()));
 }
 
 void Board::drawPiece(uint row, uint col, Player player) {
@@ -475,10 +438,9 @@ void Board::paintEvent(QPaintEvent *) {
   updateBoard(true);
 }
 
-
-QSize Board::sizeHint() const {
-  int w = 8 * _zoomed_size;
-  return QSize(w+2, w+2);
+void Board::adjustSize() {
+  int w = 8 * zoomedSize();
+  setFixedSize(w+2, w+2);
 }
 
 void Board::setPixmap(QPixmap &pm) {
@@ -574,8 +536,6 @@ void Board::loadSettings(){
     setAnimationSpeed(0);
   else
     setAnimationSpeed(10 - Prefs::animationSpeed());
-  setZoom(Prefs::zoom());
-  setFixedSize(sizeHint());
   setStrength(Prefs::skill());
 
   if ( Prefs::backgroundImageChoice() ) {

@@ -59,6 +59,7 @@
 #include "board.h"
 #include "settings.h"
 
+//-----------------------------------------------------------------------------
 StatusWidget::StatusWidget(const QString &text, QWidget *parent)
   : QWidget(parent, "status_widget")
 {
@@ -83,14 +84,14 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
   _pixLabel->setPixmap(pixmap);
 }
 
+//-----------------------------------------------------------------------------
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
 
 KReversi::KReversi()
-  : KMainWindow(0, "kreversi"), gameOver(false), cheating(false)
+  : KZoomMainWindow(10, 300, 5, "kreversi"), gameOver(false), cheating(false)
 {
   KNotifyClient::startDaemon();
 
-  // create reversi board
   QWidget *w = new QWidget(this);
   setCentralWidget(w);
   QHBoxLayout *top = new QHBoxLayout(w);
@@ -98,9 +99,11 @@ KReversi::KReversi()
   board = new Board(w);
   top->addWidget(board);
   top->addStretch(1);
-
+  
   createStatusBar();
   createKActions();
+  init("popup");
+  addWidget(board);
 
   connect(board, SIGNAL(score()), this, SLOT(slotScore()));
   connect(board, SIGNAL(gameWon(Player)), this, SLOT(slotGameEnded(Player)));
@@ -128,10 +131,6 @@ void KReversi::createKActions() {
 	0, this, SLOT(switchSides()), actionCollection(), "game_switch_sides");
 
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
-  zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection(), "zoomIn");
-  zoomOutAction = KStdAction::zoomOut(this, SLOT(zoomOut()), actionCollection(), "zoomOut");
-  
-  // Settings
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
   setupGUI();
@@ -166,35 +165,6 @@ void KReversi::save(){
   KMessageBox::information(this, i18n("Game saved."));
 }
 
-bool KReversi::eventFilter(QObject *o, QEvent *e)
-{
-    if ( e->type()==QEvent::LayoutHint )
-        setFixedSize(minimumSize()); // because QMainWindow and KMainWindow
-                                     // do not manage fixed central widget
-    return KMainWindow::eventFilter(o, e);
-}
-
-void KReversi::zoomIn(){
-  board->zoomIn();
-  Prefs::setZoom(board->zoom());
-  Prefs::writeConfig();
-
-  if(!board->canZoomIn())
-    zoomInAction->setEnabled(false);
-  if(board->canZoomOut())
-    zoomOutAction->setEnabled(true);
-}
-
-void KReversi::zoomOut(){
-  board->zoomOut();
-  Prefs::setZoom(board->zoom());
-  Prefs::writeConfig();
-
-  if(board->canZoomIn())
-    zoomInAction->setEnabled(true);
-  if(!board->canZoomOut())
-    zoomOutAction->setEnabled(false);
-}
 
 void KReversi::slotScore() {
   _humanStatus->setScore(board->score(board->humanPlayer()));
@@ -321,5 +291,27 @@ bool KReversi::queryExit()
 {
   if ( isPlaying() )
     KExtHighscore::submitScore(KExtHighscore::Lost, this);
-  return true;
+  return KZoomMainWindow::queryExit();
+}
+
+void KReversi::writeZoomSetting(uint zoom)
+{
+  Prefs::setZoom(zoom);
+  Prefs::writeConfig();
+}
+
+uint KReversi::readZoomSetting() const
+{
+  return Prefs::zoom();
+}
+
+void KReversi::writeMenubarVisibleSetting(bool visible)
+{
+  Prefs::setMenubarVisible(visible);
+  Prefs::writeConfig();
+}
+
+bool KReversi::menubarVisibleSetting() const
+{
+  return Prefs::menubarVisible();
 }

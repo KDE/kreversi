@@ -39,7 +39,7 @@
 #ifndef KREVERSI_H
 #define KREVERSI_H
 
-#include <kmainwindow.h>
+#include "kzoommainwindow.h"
 
 #include "board.h"
 
@@ -58,11 +58,9 @@ private:
   QLabel *_pixLabel, *_label;
 };
 
-class Board;
 class KAction;
-class KToggleAction;
 
-class KReversi : public KMainWindow {
+class KReversi : public KZoomMainWindow {
   Q_OBJECT
 
 public:
@@ -75,8 +73,11 @@ private:
   void createStatusBar();
   QString getPlayerName();
   void updateColors();
+  virtual void writeZoomSetting(uint zoom);
+  virtual uint readZoomSetting() const;
+  virtual void writeMenubarVisibleSetting(bool visible);
+  virtual bool menubarVisibleSetting() const;
 
-  virtual bool eventFilter(QObject *, QEvent *e);
   virtual void saveProperties(KConfig *);
   virtual void readProperties(KConfig *);
   virtual bool queryExit();
@@ -92,17 +93,13 @@ private slots:
   void openGame();
   void save();
   void configureNotifications();
-  void zoomIn();
-  void zoomOut();
 
   void showHighScoreDialog();
   void showSettings();
   void loadSettings();
 
 private:
-  KAction *undoAction, *zoomInAction, *zoomOutAction;
-  KAction *stopAction, *continueAction;
-  KToggleAction *soundAction;
+  KAction *undoAction, *stopAction, *continueAction;
   StatusWidget *_humanStatus, *_computerStatus;
 
   Board *board;

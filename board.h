@@ -48,7 +48,6 @@ class KConfig;
 class Engine;
 class Game;
 
-
 class Board : public QWidget {
   Q_OBJECT
 public:
@@ -66,6 +65,8 @@ public:
   void setStrength(uint);
   uint strength() const;
   bool interrupted() const;
+  
+  virtual void adjustSize();
 
   // starts all: emits some signal, so it can't be called from
   // constructor
@@ -74,15 +75,6 @@ public:
   // event stuff
   void paintEvent(QPaintEvent *);
   void mousePressEvent(QMouseEvent *);
-  QSize sizeHint() const;
-
-  /// stuff for zooming
-  bool canZoomIn() const;
-  bool canZoomOut() const;
-  void zoomIn();
-  void zoomOut();
-  void setZoom(uint);
-  uint zoom() const { return _zoom; }
 
   State state() const { return _status; }
   void setState(State);
@@ -126,9 +118,9 @@ private:
 
   void updateBoard(bool force = FALSE);
 
+  uint zoomedSize() const;
   void drawPiece(uint row, uint col, Player);
   void drawOnePiece(uint row, uint col, int i);
-  void adjustSize();
   void animateChanged(Move m);
   void animateChangedRow(int row, int col, int dy, int dx);
   void rotateChip(uint row, uint col);
@@ -139,9 +131,6 @@ private:
   Game *game;
 
   State _status;
-  int oldsizehint;
-  uint _zoom;
-  uint _zoomed_size;
   Player human;
   bool nopaint;
 

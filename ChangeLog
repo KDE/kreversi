@@ -1,10 +1,11 @@
-2004-05-29 (1.4) Nicolas Hadacek <hadacek@kde.org>
+2004-06-29 (1.5) Nicolas Hadacek <hadacek@kde.org>
+  * use KZoomMainWindow
 
+2004-05-29 (1.4) Nicolas Hadacek <hadacek@kde.org>
   * fix statusbar + cleanup code
   * use notify framework for sounds
 
 1999-06-20 Mario Weilguni <mweilguni@kde.org>
-
 	* fixed bugs with those damned KStdDirs
 	* removed the private wallpapers and use the KDE ones instead
 	* use kimgio
@@ -12,11 +13,9 @@
 	* compiles now with --enable-final
 
 1999-06-16 Mario Weilguni <mweilguni@kde.org>
-
 	* adapted to the upcoming KDE-2
 
 1999-02-01 Mario Weilguni <mweilguni@kde.org>
-
 	* fixed a warning (egcs)
 
 1.0
