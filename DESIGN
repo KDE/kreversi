@@ -1,0 +1,71 @@
+This file describes the overall design of KReversi.  Some of the
+classes have different names at this point, but that is indicated by a
+(now: XXX) tag.  Almost all of the classes hold more members than are
+mentioned here, but those are implementation details and would only
+obscure the overall picture.  This file is only to give a helicopter
+view of the program, not to serve as detailed documentation.
+
+
+Classes
+=======
+
+ReversiPosition (now: Position)
+    Holds a Reversi position.  This is the object that implements the
+    Reversi rules.
+
+
+ReversiMove (now: Move)
+    A move in a Reversi game.  
+
+
+ReversiGame (now: Game)
+    Holds all the moves of the game being played.  
+    Contains: ReversiPosition	Holds the current position.
+              Move[60]
+    FIXME: Remove the ReversiPosition and let it be implicit?
+    FIXME: Implement variations (later)
+
+
+Engine
+    Can generate a move, given a ReversiPosition.
+
+
+KReversiGame (status: PLANNED)
+    The "document" for KReversi.
+    Handles a game being played and sends signals to all its views
+    when something changes.  Basically, the only difference between
+    this class and the more basic ReversiGame is that it sends signals
+    to the views.
+    Contains: ReversiGame	The actual game being played
+
+
+KReversiBoardView (currently class Board)
+    A view for a Reversi board.
+    Contains: *KReversiGame	(not owner)
+              Widgets		(owner)
+    FIXME: Part of the game view is implemented in the class kreversi,
+	   among other things the current score and side to move.
+    FIXME: Enhance the view with timing information, move list, clock,
+	   etc.
+
+
+KReversiGameView (status: PLANNED)
+
+    Shows a view of a complete game.  This will, among other things,
+    consist of a list of moves, the current score, etc.
+    Contains: *KReversiBoardView
+              Other widgets.
+
+
+KReversi
+    The main class for the KReversi program
+    Contains: *KReversiGame 	(owner)
+	      *KReversiGameView (owner)
+	      *Engine           (owner)
+              View widgets - some of the part of the view, e.g. the score.
+    FIXME: Let the class also own two players.
+
+
+EngineView (status: PLANNED)
+    View of the internal thought processes of an Engine (trace, etc).
+    
