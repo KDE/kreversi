@@ -100,3 +100,19 @@ Move::Move(const SimpleMove &move)
   m_turnedPieces.clear();
 }
 
+
+// ----------------------------------------------------------------
+
+
+bool Move::squareModified(uint x, uint y) const
+{
+  return (m_x == (int) x && m_y == (int) y) || wasTurned(x, y);
+}
+
+
+bool Move::wasTurned(uint x, uint y) const
+{
+  // findIndex returns the first index where the item is found, or -1
+  // if not found.
+  return (m_turnedPieces.findIndex(10 * x + y) != -1);
+}

@@ -246,7 +246,7 @@ bool Position::doMove(SimpleMove &move, QValueList<char> *turned)
 	  // Turn the piece.
 	  m_board[x][y] = color;
 	  if (turned)
-	    turned->append(x * 10 + y);
+	    turned->append(10 * x + y);
 
 	  // Make the piece count correct again.
 	  m_score.inc(color);

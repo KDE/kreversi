@@ -120,8 +120,6 @@ void Game::newGame()
 {
   m_position.setupStartPosition();
   m_moveNumber = 0;
-
-  m_lastPosition.setupStartPosition();
 }
 
 
@@ -195,7 +193,6 @@ bool Game::doMove(Move &move)
     return false;
   m_moves[m_moveNumber++] = move;
 
-  m_lastPosition = lastPos;
   return true;
 }
 
@@ -220,10 +217,8 @@ bool Game::undoMove()
 
   m_position.setupStartPosition();
   m_moveNumber--;
-  for (uint i = 0; i < m_moveNumber; i++) {
-    m_lastPosition = m_position;
+  for (uint i = 0; i < m_moveNumber; i++)
     m_position.doMove(m_moves[i]);
-  }
 
   return true;
 }
@@ -243,7 +238,7 @@ bool Game::squareModified(uint x, uint y) const
   if (m_moveNumber == 0)
     return true;
 
-  return m_position.color(x, y) != m_lastPosition.color(x, y);
+  return m_moves[m_moveNumber - 1].squareModified(x, y);
 }
 
 
@@ -261,5 +256,5 @@ bool Game::wasTurned(uint x, uint y) const
   if (color == Nobody)
     return false;
 
-  return color != m_lastPosition.color(x, y);
+  return m_moves[m_moveNumber - 1].wasTurned(x, y);
 }

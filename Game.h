@@ -136,9 +136,6 @@ protected:
   Move      m_moves[64];
   Position  m_position;		// The current position in the game
   uint      m_moveNumber;
-
-  Position  m_lastPosition;	// The last position in the game
-                                // So that we can compare and see turned pieces
 };
 
 

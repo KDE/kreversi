@@ -110,6 +110,9 @@ public:
   Move(const Move &move);
   Move(const SimpleMove &move);
 
+  bool   squareModified(uint x, uint y) const;
+  bool   wasTurned(uint x, uint y)      const;
+
 private:
   QValueList<char>  m_turnedPieces;
 };
