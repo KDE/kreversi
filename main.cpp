@@ -52,7 +52,7 @@ int main(int argc, char **argv)
     KREVERSI_VERSION, description, KAboutData::License_GPL,
     "(c) 1997-2000, Mario Weilguni");
   aboutData.addAuthor("Mario Weilguni",0, "mweilguni@sime.com");
-  aboutData.addAuthor("Benjamin Meyer",0, "ben@meyerhome.net");
+  aboutData.addAuthor("Benjamin Meyer",0, "ben+kreversi@meyerhome.net");
   aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
   aboutData.addCredit("Stephan Kulow", I18N_NOOP("Comments and bugfixes."), 0);
   aboutData.addCredit("Arne Klaassen", I18N_NOOP("Raytraced chips."), 0);
