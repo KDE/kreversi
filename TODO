@@ -1,6 +1,6 @@
 TODO-list for KREVERSI
 ======================
-
+* get audio code to actually work using the arts system
 * network-play against human
 * commenting the code
 * implement ULONG64 as a class instead of using gcc "long long int"
