@@ -107,24 +107,25 @@
 class Game {
 public:
   Game();
+  
   void Reset();
   bool MakeMove(Move m);
   bool TakeBackMove();
-  Player GetSquare(int x, int y);
-  int GetScore(Player player);
-  Move GetLastMove();
-  bool MoveIsLegal(Move m);
-  bool MoveIsPossible(Player player);
-  bool MoveIsAtAllPossible();
-  int GetMoveNumber();
-  Player GetWhoseTurn();
-  Player GetWhoseTurnOpponent();
-  bool squareModified(int x, int y);
-  bool wasTurned(int x, int y);
+  
+  Player player(uint x, uint y) const;
+  uint score(Player player) const;
+  Move lastMove() const;
+  bool moveIsLegal(Move m) const;
+  bool moveIsPossible(Player player) const;
+  bool moveIsAtAllPossible() const;
+  uint moveNumber() const { return m_movenumber; }
+  Player whoseTurn() const;
+  bool squareModified(uint x, uint y) const;
+  bool wasTurned(uint x, uint y) const;
 
 private:
   Position m_positions[64];
-  int m_movenumber;
+  uint m_movenumber;
 };
 
 #endif

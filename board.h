@@ -53,17 +53,18 @@ class Board : public QWidget {
   Q_OBJECT
 public:
 
-  enum { READY = 1, THINKING = 2, HINT = 3};
+  enum State { Ready, Thinking, Hint};
 
   Board(QWidget *parent = 0);
   ~Board();
 
   void newGame();
+  Player whoseTurn() const;
   Player humanPlayer() const { return human; }
   Player computerPlayer() const { return opponent(human); }
-  void getScore(int&, int&) const;
-  void setStrength(int);
-  int  strength() const;
+  uint score(Player) const;
+  void setStrength(uint);
+  uint strength() const;
   bool interrupted() const;
 
   // starts all: emits some signal, so it can't be called from
@@ -80,23 +81,23 @@ public:
   bool canZoomOut() const;
   void zoomIn();
   void zoomOut();
-  void setZoom(int);
-  int  zoom() const { return _zoom; }
+  void setZoom(uint);
+  uint zoom() const { return _zoom; }
 
-  int  state() const { return _status; }
-  void setState(int);
-  void setAnimationSpeed(int);
-  int  animationSpeed() const { return anim_speed; }
+  State state() const { return _status; }
+  void setState(State);
+  void setAnimationSpeed(uint);
 
-  int  moveNumber() const;
+  uint moveNumber() const;
 
   enum ChipType { Unloaded, Colored, Grayscale };
   void loadChips(ChipType);
   ChipType chipType() const { return chiptype; }
+  QPixmap chipPixmap(Player player, uint size) const;
+  QPixmap chipPixmap(uint i, uint size) const;
 
-  void loadGame(KConfig *, bool noupdate = FALSE);
+  bool loadGame(KConfig *, bool noupdate = FALSE);
   void saveGame(KConfig *);
-  bool canLoad(KConfig *);
 
   void setColor(const QColor &);
   QColor color() const { return bgColor; }
@@ -118,7 +119,7 @@ public slots:
 signals:
   void score();
   void gameWon(Player);
-  void statusChange(int);
+  void statusChange(Board::State);
   void illegalMove();
   void strengthChanged(int);
   void sizeChange();
@@ -131,23 +132,22 @@ private:
 
   void updateBoard(bool force = FALSE);
 
-  void drawPiece(int row, int col, Player);
-  void drawOnePiece(int row, int col, int i);
-  void loadPixmaps();
+  void drawPiece(uint row, uint col, Player);
+  void drawOnePiece(uint row, uint col, int i);
   void adjustSize();
   void animateChanged(Move m);
   void animateChangedRow(int row, int col, int dy, int dx);
-  void rotateChip(int row, int col);
+  void rotateChip(uint row, uint col);
   bool isField(int row, int col) const;
 
 private:
   Engine *engine;
   Game *game;
 
-  int  _status;
+  State _status;
   int oldsizehint;
-  int _zoom;
-  int _zoomed_size;
+  uint _zoom;
+  uint _zoomed_size;
   Player human;
   bool nopaint;
 
@@ -157,9 +157,8 @@ private:
   // the chips
   ChipType chiptype;
   QPixmap allchips;
-  QPixmap scaled_allchips;
 
-  int anim_speed;
+  uint anim_speed;
 };
 
 #endif

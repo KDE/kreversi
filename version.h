@@ -1,1 +1,1 @@
-#define KREVERSI_VERSION	"1.3"
+#define KREVERSI_VERSION	"1.4

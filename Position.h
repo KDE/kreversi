@@ -88,17 +88,16 @@ class Position
 public:
   Position();
   Position(Position &p, Move &m);
-  ~Position();
 
   void constrInit();
   void constrCopy(Position &p, Move &m);
 
-  Player GetSquare(int x, int y);
-  int GetScore(Player player);
-  Move GetLastMove();
-  bool MoveIsLegal(Move m);
-  bool MoveIsPossible(Player player);
-  bool MoveIsAtAllPossible();
+  Player player(uint x, uint y) const;
+  uint score(Player player) const;
+  Move lastMove() const { return m_last_move; }
+  bool moveIsLegal(Move m) const;
+  bool moveIsPossible(Player player) const;
+  bool moveIsAtAllPossible() const;
 
 private:
   Player m_board[10][10];

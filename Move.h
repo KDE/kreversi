@@ -56,13 +56,11 @@ class Move
 {
 public:
   Move() { m_x = -1; m_y = -1; m_player = Nobody; }
-  Move(const Move &m);
   Move(int x, int y, Player player);
-  void copy(const Move &m);
 
-  int GetX();
-  int GetY();
-  Player GetPlayer();
+  int x() const { return m_x; }
+  int y() const { return m_y; }
+  Player player() const { return m_player; }
 
 private:
   int m_x, m_y;

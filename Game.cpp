@@ -101,16 +101,12 @@
 
 Game::Game()
 {
-  // JAVA m_positions = new Position[61];
-  // JAVA m_positions[0] = new Position();
   m_positions[0].constrInit();
   m_movenumber = 0;
 }
 
 void Game::Reset()
 {
-  // JAVA m_positions = new Position[61];
-  // JAVA m_positions[0] = new Position();
   m_positions[0].constrInit();
   m_movenumber = 0;
 }
@@ -118,9 +114,9 @@ void Game::Reset()
 
 bool Game::MakeMove(Move m)
 {
-  if (m.GetPlayer() == Nobody) return false;
-  if (GetWhoseTurn() != m.GetPlayer()) return false;
-  if (! m_positions[m_movenumber].MoveIsLegal(m)) return false;
+  if (m.player() == Nobody) return false;
+  if (whoseTurn() != m.player()) return false;
+  if (! m_positions[m_movenumber].moveIsLegal(m)) return false;
 
   m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], m);
   m_movenumber++;
@@ -131,82 +127,72 @@ bool Game::MakeMove(Move m)
 
 bool Game::TakeBackMove()
 {
-  if (m_movenumber <= 0) return false;
+  if (m_movenumber == 0) return false;
 
-  // JAVA m_positions[m_movenumber--] = null;
   m_movenumber--;
 
   return true;
 }
 
 
-Player Game::GetSquare(int x, int y)
+Player Game::player(uint x, uint y) const
 {
-  return m_positions[m_movenumber].GetSquare(x, y);
+  return m_positions[m_movenumber].player(x, y);
 }
 
 
-int Game::GetScore(Player player)
+uint Game::score(Player player) const
 {
-  return m_positions[m_movenumber].GetScore(player);
+  return m_positions[m_movenumber].score(player);
 }
 
 
-Move Game::GetLastMove() { return m_positions[m_movenumber].GetLastMove(); }
+Move Game::lastMove() const { return m_positions[m_movenumber].lastMove(); }
 
 
-bool Game::MoveIsLegal(Move m)
+bool Game::moveIsLegal(Move m) const
 {
-  return m_positions[m_movenumber].MoveIsLegal(m);
+  return m_positions[m_movenumber].moveIsLegal(m);
 }
 
 
-bool Game::MoveIsPossible(Player player)
+bool Game::moveIsPossible(Player player) const
 {
-  return m_positions[m_movenumber].MoveIsPossible(player);
+  return m_positions[m_movenumber].moveIsPossible(player);
 }
 
 
-bool Game::MoveIsAtAllPossible()
+bool Game::moveIsAtAllPossible() const
 {
-  return m_positions[m_movenumber].MoveIsAtAllPossible();
+  return m_positions[m_movenumber].moveIsAtAllPossible();
 }
 
 
-int Game::GetMoveNumber() { return m_movenumber; }
-
-
-Player Game::GetWhoseTurn()
+Player Game::whoseTurn() const
 {
-  if (m_movenumber <= 0) return Black;
+  if (m_movenumber == 0) return Black;
 
-  Player player = GetLastMove().GetPlayer();
+  Player player = lastMove().player();
   Player opponent = ::opponent(player);
 
-  if (MoveIsPossible(opponent)) return opponent;
-
-  if (MoveIsPossible(player)) return player;
-
+  if (moveIsPossible(opponent)) return opponent;
+  if (moveIsPossible(player)) return player;
   return Nobody;
 }
 
-Player Game::GetWhoseTurnOpponent() {
-  return opponent( GetWhoseTurn() );
-}
-
-bool Game::squareModified(int x, int y) {
-  if(GetMoveNumber() == 1)
+bool Game::squareModified(uint x, uint y) const {
+  if(moveNumber() == 0)
     return true;
   else
-    return (bool)(m_positions[m_movenumber].GetSquare(x, y) != m_positions[m_movenumber-1].GetSquare(x, y));
+    return (m_positions[m_movenumber].player(x, y) != m_positions[m_movenumber-1].player(x, y));
 }
 
-bool Game::wasTurned(int x, int y) {
-  if(GetMoveNumber() == 0)
+bool Game::wasTurned(uint x, uint y) const {
+  if(moveNumber() == 0)
     return false;
   else {
-    Player c1 = m_positions[m_movenumber-1].GetSquare(x, y);
-    Player c2 = m_positions[m_movenumber].GetSquare(x, y);
+    Player c1 = m_positions[m_movenumber-1].player(x, y);
+    Player c2 = m_positions[m_movenumber].player(x, y);
 
     if(c1 == Nobody)
       return false;

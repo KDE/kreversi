@@ -110,41 +110,17 @@
 
 SuperEngine::SuperEngine(int st) {
   m_strength = st;
-  // JAVA m_random = new Random();
   m_random.setSeed(0);
   m_interrupt = false;
 }
 
-
 SuperEngine::SuperEngine(int st, int sd) {
   m_strength = st;
-  // JAVA m_random = new Random(sd);
   m_random.setSeed(sd);
   m_interrupt = false;
 }
 
-SuperEngine::~SuperEngine() {
-}
-
-void SuperEngine::SetInterrupt(bool intr)
-{
-  m_interrupt =intr;
-}
-
-
-bool SuperEngine::GetInterrupt() { 
-  return m_interrupt; 
-}
-
-void SuperEngine::SetStrength(int st) { 
-  m_strength = st; 
-}
-
-int SuperEngine::GetStrength() { 
-  return m_strength; 
-}
-
-void SuperEngine::SetSeed(int sd) { 
+void SuperEngine::setSeed(int sd) { 
   m_random.setSeed(sd); 
 }
 

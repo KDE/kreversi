@@ -44,12 +44,6 @@
  *******************************************************************
  */
 
-// The class Score maintains the score for two players. The constants
-// BLACK and WHITE are used to access the scores for each player. The constant
-// NOBODY can be used in any context where a value other than WHITE and BLACK
-// is meaningful. The function GetOpponent() transforms WHITE to BLACK and
-// vice versa. The other funcions are self explanatory.
-
 #include "Score.h"
 
 Score::Score()
@@ -58,43 +52,12 @@ Score::Score()
   m_score[Black] = 0;
 }
 
-Score::Score(int whitescore, int blackscore)
-{
-  m_score[White] = whitescore;
-  m_score[Black] = blackscore;
-}
-
-
 Player opponent(Player player)
 {
   switch (player) {
-  case Nobody: break;
   case White: return Black;
   case Black: return White;
+  case Nobody: break;
   }
   return Nobody;
-}
-
-void Score::ScoreCopy(Score &s)
-{
-  m_score[White] = s.m_score[White];
-  m_score[Black] = s.m_score[Black];
-}
-
-
-int Score::GetScore(Player player) { return m_score[player]; }
-
-
-void Score::SetScore(Player player, int score) { m_score[player] = score; }
-
-
-void Score::ScoreAdd(Player player, int amount)
-{
-  m_score[player] += amount;
-}
-
-
-void Score::ScoreSubtract(Player player, int amount)
-{
-  m_score[player] -= amount;
 }

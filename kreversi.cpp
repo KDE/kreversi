@@ -60,9 +60,29 @@
 #include "board.h"
 #include "settings.h"
 
-const int SB_SCOREH	= 2;
-const int SB_SCOREC	= 3;
-const int SB_TURN       = 4;
+StatusWidget::StatusWidget(const QString &text, QWidget *parent)
+  : QWidget(parent, "status_widget")
+{
+  QHBoxLayout *hbox = new QHBoxLayout(this, 0, KDialog::spacingHint());
+  QLabel *label = new QLabel(text, this);
+  hbox->addWidget(label);
+  _pixLabel = new QLabel(this);
+  hbox->addWidget(_pixLabel);
+  label = new QLabel(":", this);
+  hbox->addWidget(label);
+  _label = new QLabel(this);
+  hbox->addWidget(_label);
+}
+
+void StatusWidget::setScore(uint s)
+{
+  _label->setText(QString::number(s));
+}
+
+void StatusWidget::setPixmap(const QPixmap &pixmap)
+{
+  _pixLabel->setPixmap(pixmap);
+}
 
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
 
@@ -86,10 +106,12 @@ KReversi::KReversi()
   connect(board, SIGNAL(score()), this, SLOT(slotScore()));
   connect(board, SIGNAL(gameWon(Player)), this, SLOT(slotGameEnded(Player)));
   connect(board, SIGNAL(turn(Player)), this, SLOT(slotTurn(Player)));
-  connect(board, SIGNAL(statusChange(int)), this, SLOT(slotStatusChange(int)));
+  connect(board, SIGNAL(statusChange(Board::State)),
+          this, SLOT(slotStatusChange(Board::State)));
   connect(board, SIGNAL(illegalMove()), this, SLOT(slotIllegalMove()));
   setAutoSaveSettings();
 
+  loadSettings();
   board->start();
 }
 
@@ -106,7 +128,7 @@ void KReversi::createKActions() {
   continueAction = new KAction(i18n("&Continue Thinking"), "reload",
 	0, board, SLOT(doContinue()), actionCollection(), "game_continue");
   new KAction(i18n("S&witch Sides"), 0,
-	0, board, SLOT(switchSides()), actionCollection(), "game_switch_sides");
+	0, this, SLOT(switchSides()), actionCollection(), "game_switch_sides");
 
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection(), "zoomIn");
@@ -124,9 +146,10 @@ void KReversi::createKActions() {
 }
 
 void KReversi::createStatusBar() {
-  statusBar()->insertItem(i18n("XXXXX's turn"), SB_TURN,1);
-  statusBar()->insertItem(i18n("You (XXXXX): 88"), SB_SCOREH,2);
-  statusBar()->insertItem(i18n("Computer (XXXXX): 88"), SB_SCOREC,2);
+  _humanStatus = new StatusWidget(i18n("You"), this);
+  statusBar()->addWidget(_humanStatus, 0, true);
+  _computerStatus = new StatusWidget(QString::null, this);
+  statusBar()->addWidget(_computerStatus, 0, true);
 }
 
 void KReversi::newGame(){
@@ -137,10 +160,8 @@ void KReversi::newGame(){
 void KReversi::openGame(){
   KConfig *config = kapp->config();
   config->setGroup("Savegame");
-  if(board->canLoad(config)){
-    board->loadGame(config);
+  if(board->loadGame(config))
     Prefs::setSkill(board->strength());
-  }
 }
 
 void KReversi::save(){
@@ -185,59 +206,33 @@ void KReversi::zoomOut(){
 }
 
 void KReversi::slotScore() {
-  int black, white;
-  QString s1, s2;
-
-  board->getScore(black, white);
-
-  if(board->chipType() == Board::Colored) {
-    if(board->humanPlayer() == Black) {
-      s1 = i18n("You (blue): %1").arg(black);
-      s2 = i18n("Computer (red): %1").arg(white);
-    } else {
-      s2 = i18n("You (red): %1").arg(white);
-      s1 = i18n("Computer (blue): %1").arg(black);
-    }
-  } else {
-    if(board->humanPlayer() == Black) {
-      s1 = i18n("You (black): %1").arg(black);
-      s2 = i18n("Computer (white): %1").arg(white);
-    } else {
-      s2 = i18n("You (white): %1").arg(white);
-      s1 = i18n("Computer (black): %1").arg(black);
-    }
-  }
-
-  statusBar()->changeItem(s1, SB_SCOREH);
-  statusBar()->changeItem(s2, SB_SCOREC);
+  _humanStatus->setScore(board->score(board->humanPlayer()));
+  _computerStatus->setScore(board->score(board->computerPlayer()));
 }
 
 void KReversi::slotGameEnded(Player player) {
   QString s;
-  int winner, loser;
 
-  statusBar()->changeItem(i18n("End of game"), SB_TURN);
+  statusBar()->message(i18n("End of game"));
 
-  // get the score
-  if(player == Black)
-    board->getScore(winner, loser);
-  else
-    board->getScore(loser, winner);
+  // get the scores
+  uint human = board->score(board->humanPlayer());
+  uint computer = board->score(board->computerPlayer());
 
   if(player == Nobody) {
     board->playSound(Board::DrawSound);
-    s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
+    s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
   } else if(board->humanPlayer() == player) {
     // calculate score
     int  st = board->strength();
-    int sum = winner + loser;
+    int sum = human + computer;
     // 8 is the highest level so it is the bases for the scale.
-    float score= (float)winner / sum * ((100/8)*st);
+    float score= (float)human / sum * ((100/8)*st);
 
     board->playSound(Board::WonSound);
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
-	      .arg(winner).arg(loser).arg(score,1);
+	      .arg(human).arg(computer).arg(score,1);
     KMessageBox::information(this, s, i18n("Game Ended"));
 
     if (!gameOver){
@@ -247,14 +242,14 @@ void KReversi::slotGameEnded(Player player) {
       KScoreDialog::FieldInfo scoreInfo;
 
       scoreInfo.insert(KScoreDialog::Date, QDateTime::currentDateTime().toString());
-      scoreInfo[KScoreDialog::Custom1].setNum(winner);
+      scoreInfo[KScoreDialog::Custom1].setNum(human);
       if (highscore.addScore((int)score, scoreInfo))
         highscore.exec();
     }
   } else {
     board->playSound(Board::LostSound);
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
-	      .arg(loser).arg(winner);
+	      .arg(human).arg(computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
   }
   gameOver = true;
@@ -264,19 +259,14 @@ void KReversi::slotTurn(Player player) {
   if (gameOver)
     return;
 
-  QString s;
-
   if(player == board->humanPlayer())
-      s = i18n("Your turn");
-  else if(player == board->computerPlayer())
-      s = i18n("Computer's turn");
+    statusBar()->message(i18n("Your turn"));
   else
-      s = "";
-  statusBar()->changeItem(s, SB_TURN);
+    statusBar()->message(i18n("Computer's turn"));
 }
 
-void KReversi::slotStatusChange(int status) {
-  if(status == Board::THINKING){
+void KReversi::slotStatusChange(Board::State status) {
+  if(status == Board::Thinking){
     kapp->setOverrideCursor(waitCursor);
     stopAction->setEnabled(true);
   }
@@ -300,9 +290,6 @@ void KReversi::readProperties(KConfig *c) {
   gameOver = false;
 }
 
-/**
- * Bring up the standard kde high score dialog.
- */
 void KReversi::showHighScoreDialog() {
   KScoreDialog highscore(KScoreDialog::Name | KScoreDialog::Date, this);
   highscore.addField(KScoreDialog::Score, i18n("Rating"), "Rating");
@@ -310,9 +297,6 @@ void KReversi::showHighScoreDialog() {
   highscore.exec();
 }
 
-/**
- * Show Configure dialog.
- */
 void KReversi::showSettings(){
   if(KConfigDialog::showDialog("settings"))
     return;
@@ -320,7 +304,24 @@ void KReversi::showSettings(){
   KConfigDialog *dialog = new KConfigDialog(this, "settings", Prefs::self(), KDialogBase::Swallow);
   Settings *general = new Settings(0, "General");
   dialog->addPage(general, i18n("General"), "package_settings");
-  connect(dialog, SIGNAL(settingsChanged()), board, SLOT(loadSettings()));
+  connect(dialog, SIGNAL(settingsChanged()), this, SLOT(loadSettings()));
   dialog->show();
 }
 
+void KReversi::updateColors()
+{
+  _humanStatus->setPixmap(board->chipPixmap(board->humanPlayer(), 20));
+  _computerStatus->setPixmap(board->chipPixmap(board->computerPlayer(), 20));
+}
+
+void KReversi::loadSettings()
+{
+  board->loadSettings();
+  updateColors(); 
+}
+
+void KReversi::switchSides()
+{
+  board->switchSides();
+  updateColors();
+}

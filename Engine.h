@@ -140,7 +140,6 @@ public:
 #endif
 
 
-
 class SquareStackEntry
 {
 public:
@@ -187,9 +186,8 @@ public:
   Engine(int st, int sd);
   Engine(int st);
   Engine();
-  virtual ~Engine() {};
 
-  Move ComputeMove(Game g);
+  Move computeMove(Game g);
   Move ComputeFirstMove(Game g);
   int ComputeMove2(int xplay, int yplay, Player player, int level,
     int cutoffval, ULONG64 playerbits, ULONG64 opponentbits);

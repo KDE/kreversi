@@ -44,31 +44,26 @@
  *******************************************************************
  */
 
-// The class Score maintains the score for two players. The constants
-// BLACK and WHITE are used to access the scores for each player. The constant
-// NOBODY can be used in any context where a value other than WHITE and BLACK
-// is meaningful. The function GetOpponent() transforms WHITE to BLACK and
-// vice versa. The other funcions are self explanatory.
-
 #ifndef __SCORE__H__
 #define __SCORE__H__
 
-enum Player { Nobody = -1, White = 0, Black = 1 };
+#include <qglobal.h>
+
+enum Player { White = 0, Black = 1, NbPlayers = 2, Nobody = NbPlayers };
 Player opponent(Player player);
 
 class Score {
 public:
   Score();
-  Score(int whitescore, int blackscore);
-  void ScoreCopy(Score &s);
-  void InitScore(int w, int b) { SetScore(Black, b); SetScore(White, w); }
-  int GetScore(Player player);
-  void SetScore(Player player, int score);
-  void ScoreAdd(Player player, int amount);
-  void ScoreSubtract(Player player, int amount);
-
+  uint score(Player player) const { return m_score[player]; }
+  void set(Player player, uint score) { m_score[player] = score; }
+  void inc(Player player) { m_score[player]++; }
+  void dec(Player player) { m_score[player]--; }
+  void add(Player player, uint s) { m_score[player] += s; }
+  void sub(Player player, uint s) { m_score[player] -= s; }
+  
 private:
-  int m_score[2];
+  uint m_score[NbPlayers];
 };
 
 #endif

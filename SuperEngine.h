@@ -117,16 +117,17 @@ class SuperEngine {
 public:
   SuperEngine(int st);
   SuperEngine(int st, int sd);
-  virtual ~SuperEngine();
-  void SetInterrupt(bool intr);
-  bool GetInterrupt();
-  void SetStrength(int st);
-  int GetStrength();
-  void SetSeed(int sd);
-  virtual Move ComputeMove(Game g) = 0;
+  virtual ~SuperEngine() {}
+  
+  void setInterrupt(bool intr) { m_interrupt = intr; }
+  bool interrupt() const { return m_interrupt; }
+  void setStrength(uint st) { m_strength = st; }
+  uint strength() const { return m_strength; }
+  void setSeed(int sd);
+  virtual Move computeMove(Game g) = 0;
 
 protected:
-  int m_strength;
+  uint m_strength;
   KRandomSequence m_random;
 
 private:

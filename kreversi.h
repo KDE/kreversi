@@ -41,7 +41,22 @@
 
 #include <kmainwindow.h>
 
-#include "Score.h"
+#include "board.h"
+
+class QLabel;
+
+class StatusWidget : public QWidget
+{
+  Q_OBJECT
+public:
+  StatusWidget(const QString &text, QWidget *parent);
+  
+  void setPixmap(const QPixmap &pixmap);
+  void setScore(uint score);
+  
+private:
+  QLabel *_pixLabel, *_label;
+};
 
 class Board;
 class KAction;
@@ -58,6 +73,7 @@ private:
   void createStatusBar();
   QString getPlayerName();
   bool eventFilter(QObject *, QEvent *e);
+  void updateColors();
 
   virtual void saveProperties(KConfig *);
   virtual void readProperties(KConfig *);
@@ -66,8 +82,9 @@ private slots:
   void slotScore();
   void slotGameEnded(Player);
   void slotTurn(Player);
-  void slotStatusChange(int);
+  void slotStatusChange(Board::State);
   void slotIllegalMove();
+  void switchSides();
 
   void newGame();
   void openGame();
@@ -78,11 +95,13 @@ private slots:
 
   void showHighScoreDialog();
   void showSettings();
+  void loadSettings();
 
 private:
   KAction *undoAction, *zoomInAction, *zoomOutAction;
   KAction *stopAction, *continueAction;
   KToggleAction *soundAction;
+  StatusWidget *_turn, *_humanStatus, *_computerStatus;
 
   Board *board;
   bool gameOver;

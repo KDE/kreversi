@@ -80,10 +80,11 @@
 #include <stdlib.h>
 
 void Position::constrInit() {
-  m_score.InitScore(2,2);
+  m_score.set(White, 2);
+  m_score.set(Black, 2);
 
-  for (int i=0; i<10; i++)
-    for (int j=0; j<10; j++)
+  for (uint i=0; i<10; i++)
+    for (uint j=0; j<10; j++)
       m_board[i][j] = Nobody;
 
   m_board[4][4] = White;
@@ -93,23 +94,17 @@ void Position::constrInit() {
 }
 
 void Position::constrCopy(Position &p, Move &m) {
-  m_score.InitScore(0, 0);
-
-  // JAVA m_board = new int[10][10];
-
-  /* JAVA for (int i=0; i<10; i++)
-     System.arraycopy(p.m_board[i], 0, m_board[i], 0, 10); */
-  for(int r = 0; r < 10; r++)
-    for(int c = 0; c < 10; c++)
+  for(uint r = 0; r < 10; r++)
+    for(uint c = 0; c < 10; c++)
       m_board[r][c] = p.m_board[r][c];
 
-  m_score.ScoreCopy(p.m_score);
+  m_score = p.m_score;
 
-  Player player = m.GetPlayer();
+  Player player = m.player();
   Player opponent = ::opponent(player);
 
-  m_board[m.GetX()][m.GetY()] = player;
-  m_score.ScoreAdd(player, 1);
+  m_board[m.x()][m.y()] = player;
+  m_score.inc(player);
 
   for (int xinc=-1; xinc<=1; xinc++)
     for (int yinc=-1; yinc<=1; yinc++)
@@ -117,21 +112,21 @@ void Position::constrCopy(Position &p, Move &m) {
 	{
       int x, y;
 
-      for (x = m.GetX()+xinc, y = m.GetY()+yinc; m_board[x][y] == opponent;
+      for (x = m.x()+xinc, y = m.y()+yinc; m_board[x][y] == opponent;
 	   x += xinc, y += yinc)
 	;
 
       if (m_board[x][y] == player)
-	for (x -= xinc, y -= yinc; x != m.GetX() || y != m.GetY();
+	for (x -= xinc, y -= yinc; x != m.x() || y != m.y();
 	     x -= xinc, y -= yinc)
 	  {
 	    m_board[x][y] = player;
-	    m_score.ScoreAdd(player, 1);
-	    m_score.ScoreSubtract(opponent, 1);
+	    m_score.inc(player);
+	    m_score.dec(opponent);
 	  }
 	}
 
-  m_last_move.copy(m);
+  m_last_move = m;
 }
 
 Position::Position()
@@ -145,22 +140,18 @@ Position::Position(Position &p, Move &m)
   constrCopy(p,m);
 }
 
-Position::~Position() {
-}
 
-Player Position::GetSquare(int x, int y) {
+Player Position::player(uint x, uint y) const {
   return m_board[x][y];
 }
 
-int Position::GetScore(Player player) { return m_score.GetScore(player); }
+uint Position::score(Player player) const { return m_score.score(player); }
 
-Move Position::GetLastMove() { return m_last_move; }
-
-bool Position::MoveIsLegal(Move m)
+bool Position::moveIsLegal(Move m) const
 {
-  if (m_board[m.GetX()][m.GetY()] != Nobody) return false;
+  if (m_board[m.x()][m.y()] != Nobody) return false;
 
-  Player player = m.GetPlayer();
+  Player player = m.player();
   Player opponent = ::opponent(player);
 
   for (int xinc=-1; xinc<=1; xinc++)
@@ -169,12 +160,12 @@ bool Position::MoveIsLegal(Move m)
 	{
 	  int x, y;
 
-	  for (x = m.GetX()+xinc, y = m.GetY()+yinc; m_board[x][y] == opponent;
+	  for (x = m.x()+xinc, y = m.y()+yinc; m_board[x][y] == opponent;
 	       x += xinc, y += yinc)
 	    ;
 
 	  if (m_board[x][y] == player &&
-	      (x - xinc != m.GetX() || y - yinc != m.GetY()))
+	      (x - xinc != m.x() || y - yinc != m.y()))
 	    return true;
 	}
 
@@ -182,17 +173,17 @@ bool Position::MoveIsLegal(Move m)
 }
 
 
-bool Position::MoveIsPossible(Player player)
+bool Position::moveIsPossible(Player player) const
 {
-  for (int i=1; i<9; i++)
-    for (int j=1; j<9; j++)
-      if (MoveIsLegal(Move(i, j, player))) return true;
+  for (uint i=1; i<9; i++)
+    for (uint j=1; j<9; j++)
+      if (moveIsLegal(Move(i, j, player))) return true;
 
   return false;
 }
 
 
-bool Position::MoveIsAtAllPossible()
+bool Position::moveIsAtAllPossible() const
 {
-  return (bool)(MoveIsPossible(White) || MoveIsPossible(Black));
+  return (moveIsPossible(White) || moveIsPossible(Black));
 }

@@ -44,28 +44,10 @@
  *******************************************************************
  */
 
-// The class Move is used to represent an Othello move with a player value
-// (see class Score) and a pair of coordinates on an 8x8 Othello board.
-
 #include "Move.h"
-
-Move::Move(const Move &m)
-{
-  copy(m);
-}
-
-void Move::copy(const Move &m) {
-  m_x = m.m_x;
-  m_y = m.m_y;
-  m_player = m.m_player;
-}
 
 Move::Move(int x, int y, Player player) {
   m_x = x;
   m_y = y;
-  m_player =player;
+  m_player = player;
 }
-
-int Move::GetX() { return m_x; }
-int Move::GetY() { return m_y; }
-Player Move::GetPlayer() { return m_player; }

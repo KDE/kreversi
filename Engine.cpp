@@ -231,18 +231,19 @@ void Engine::yield() {
   qApp->processEvents();
 }
 
-Move Engine::ComputeMove(Game g) {
+Move Engine::computeMove(Game g) {
   m_exhaustive = false;
 
-  Player player = g.GetWhoseTurn();
+  Player player = g.whoseTurn();
 
   if (player == Nobody)
     return Move(-1, -1, Nobody);
 
   // Figure out the current score
-  m_score.InitScore(g.GetScore(White), g.GetScore(Black));
+  m_score.set(White, g.score(White));
+  m_score.set(Black, g.score(Black));
   // If the game just started...
-  if (m_score.GetScore(White) + m_score.GetScore(Black) == 4)
+  if (m_score.score(White) + m_score.score(Black) == 4)
     return ComputeFirstMove(g);
 
   // JAVA m_board = new int[10][10];
@@ -250,36 +251,37 @@ Move Engine::ComputeMove(Game g) {
   m_squarestack.init(3000);
   m_depth = m_strength;
 
-  if (m_score.GetScore(White) + m_score.GetScore(Black) +
+  if (m_score.score(White) + m_score.score(Black) +
       m_depth + 3 >= 64)
     m_depth =
-      64 - m_score.GetScore(White) - m_score.GetScore(Black);
-  else if (m_score.GetScore(White) + m_score.GetScore(Black) +
+      64 - m_score.score(White) - m_score.score(Black);
+  else if (m_score.score(White) + m_score.score(Black) +
 	   m_depth + 4 >= 64)
     m_depth += 2;
-  else if (m_score.GetScore(White) + m_score.GetScore(Black) +
+  else if (m_score.score(White) + m_score.score(Black) +
 	   m_depth + 5 >= 64)
     m_depth++;
 
-  if (m_score.GetScore(White) + m_score.GetScore(Black) +
+  if (m_score.score(White) + m_score.score(Black) +
       m_depth >= 64) m_exhaustive = true;
 
   m_coeff =
     100 - (100*
-	   (m_score.GetScore(White) + m_score.GetScore(Black) +
+	   (m_score.score(White) + m_score.score(Black) +
 	    m_depth - 4))/60;
 
   m_nodes_searched = 0;
 
-  for (int x=0; x<10; x++)
-    for (int y=0; y<10; y++)
+  for (uint x=0; x<10; x++)
+    for (uint y=0; y<10; y++)
       m_board[x][y] = Nobody;
 
-  for (int x=1; x<9; x++)
-    for (int y=1; y<9; y++)
-      m_board[x][y] = g.GetSquare(x, y);
+  for (uint x=1; x<9; x++)
+    for (uint y=1; y<9; y++)
+      m_board[x][y] = g.player(x, y);
 
-  m_bc_score.InitScore(CalcBcScore(White), CalcBcScore(Black));
+  m_bc_score.set(White, CalcBcScore(White));
+  m_bc_score.set(Black, CalcBcScore(Black));
 
   ULONG64 playerbits = ComputeOccupiedBits(player);
   ULONG64 opponentbits = ComputeOccupiedBits(opponent(player));
@@ -292,7 +294,7 @@ Move Engine::ComputeMove(Game g) {
   int number_of_moves = 0;
   int number_of_maxval = 0;
 
-  SetInterrupt(false);
+  setInterrupt(false);
 
   ULONG64 null_bits;
   null_bits = 0;
@@ -300,7 +302,7 @@ Move Engine::ComputeMove(Game g) {
   //struct tms tmsdummy;
   //long starttime = times(&tmsdummy);
   // Compute this once at the start of the loops.
-  int high = 20 - m_strength;
+//  int high = 20 - m_strength;
 
   for (int x=1; x<9; x++)
     for (int y=1; y<9; y++)
@@ -321,7 +323,7 @@ Move Engine::ComputeMove(Game g) {
 		  // i.e. more relistic.  Also makes m_strength mean more.
 	          int randi = m_random.getLong(7);
 		  if(maxval == -LARGEINT ||
-                    randi < m_strength ){
+                    randi < (int)m_strength ){
 	            maxval = val;
 		    max_x = x;
 		    max_y = y;
@@ -331,7 +333,7 @@ Move Engine::ComputeMove(Game g) {
 	      else if (val == maxval) number_of_maxval++;
 	    }
 
-	  if (GetInterrupt()) break;
+	  if (interrupt()) break;
 	}
 
   // long endtime = times(&tmsdummy);
@@ -349,7 +351,7 @@ Move Engine::ComputeMove(Game g) {
       max_y = moves[i].m_y;
     }
 
-  if (GetInterrupt()) {
+  if (interrupt()) {
     return Move(-1, -1, Nobody);
   } else if (maxval != -LARGEINT) {
     return Move(max_x, max_y, player);
@@ -361,7 +363,7 @@ Move Engine::ComputeMove(Game g) {
 
 Move Engine::ComputeFirstMove(Game g) {
   int r;
-  Player player = g.GetWhoseTurn();
+  Player player = g.whoseTurn();
 
   r = m_random.getLong(4) + 1;
 
@@ -394,8 +396,8 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 
   m_board[xplay][yplay] = player;
   playerbits |= m_coord_bit[xplay][yplay];
-  m_score.ScoreAdd(player, 1);
-  m_bc_score.ScoreAdd(player, m_bc_board[xplay][yplay]);
+  m_score.inc(player);
+  m_bc_score.add(player, m_bc_board[xplay][yplay]);
 
   ///////////////////
   // Turn all pieces:
@@ -419,8 +421,8 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 		playerbits |= m_coord_bit[x][y];
 		opponentbits &= ~m_coord_bit[x][y];
 		m_squarestack.Push(x, y);
-		m_bc_score.ScoreAdd(player, m_bc_board[x][y]);
-		m_bc_score.ScoreSubtract(opponent, m_bc_board[x][y]);
+		m_bc_score.add(player, m_bc_board[x][y]);
+		m_bc_score.sub(opponent, m_bc_board[x][y]);
 		number_of_turned++;
 	      }
 	}
@@ -433,8 +435,8 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
       // Legal move:
       //////////////
 
-      m_score.ScoreAdd(player, number_of_turned);
-      m_score.ScoreSubtract(opponent, number_of_turned);
+      m_score.add(player, number_of_turned);
+      m_score.sub(opponent, number_of_turned);
 
       if (level >= m_depth) retval = EvaluatePosition(player); // Terminal node
       else
@@ -458,7 +460,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 		  ///////////////////////////////////////////////
 
 		  int finalscore =
-		    m_score.GetScore(player) - m_score.GetScore(opponent);
+		    m_score.score(player) - m_score.score(opponent);
 
 		  if (m_exhaustive) retval = finalscore;
 		  else
@@ -473,8 +475,8 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
 	    }
 	}
 
-      m_score.ScoreAdd(opponent, number_of_turned);
-      m_score.ScoreSubtract(player, number_of_turned);
+      m_score.add(opponent, number_of_turned);
+      m_score.sub(player, number_of_turned);
     }
 
   /////////////////
@@ -484,16 +486,16 @@ int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
   for (int i = number_of_turned; i > 0; i--)
     {
       mse = m_squarestack.Pop();
-      m_bc_score.ScoreAdd(opponent, m_bc_board[mse.m_x][mse.m_y]);
-      m_bc_score.ScoreSubtract(player, m_bc_board[mse.m_x][mse.m_y]);
+      m_bc_score.add(opponent, m_bc_board[mse.m_x][mse.m_y]);
+      m_bc_score.sub(player, m_bc_board[mse.m_x][mse.m_y]);
       m_board[mse.m_x][mse.m_y] = opponent;
     }
 
   m_board[xplay][yplay] = Nobody;
-  m_score.ScoreSubtract(player, 1);
-  m_bc_score.ScoreSubtract(player, m_bc_board[xplay][yplay]);
+  m_score.sub(player, 1);
+  m_bc_score.sub(player, m_bc_board[xplay][yplay]);
 
-  if (number_of_turned < 1 || GetInterrupt()) return ILLEGAL_VALUE;
+  if (number_of_turned < 1 || interrupt()) return ILLEGAL_VALUE;
   else return retval;
 }
 
@@ -521,14 +523,14 @@ int Engine::TryAllMoves(Player opponent, int level, int cutoffval,
 	    if (val != ILLEGAL_VALUE && val > maxval)
 	      {
 		maxval = val;
-		if (maxval > -cutoffval || GetInterrupt()) break;
+		if (maxval > -cutoffval || interrupt()) break;
 	      }
 	  }
 
-      if (maxval > -cutoffval || GetInterrupt()) break;
+      if (maxval > -cutoffval || interrupt()) break;
     }
 
-  if (GetInterrupt()) return -LARGEINT;
+  if (interrupt()) return -LARGEINT;
   return maxval;
 }
 
@@ -538,16 +540,16 @@ int Engine::EvaluatePosition(Player player)
   int retval;
 
   Player opponent = ::opponent(player);
-  int score_player = m_score.GetScore(player);
-  int score_opponent = m_score.GetScore(opponent);
+  int score_player = m_score.score(player);
+  int score_opponent = m_score.score(opponent);
 
   if (m_exhaustive) retval = score_player - score_opponent;
   else
     {
       retval = (100-m_coeff) *
-	(m_score.GetScore(player) - m_score.GetScore(opponent)) +
+	(m_score.score(player) - m_score.score(opponent)) +
 	m_coeff * BC_WEIGHT *
-	(m_bc_score.GetScore(player)-m_bc_score.GetScore(opponent));
+	(m_bc_score.score(player)-m_bc_score.score(opponent));
     }
 
   return retval;
