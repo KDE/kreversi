@@ -41,15 +41,13 @@
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qpixmap.h>
-#include <klocale.h>
 #include <kapp.h>
 #include <qlayout.h>
 
 extern QString PICDIR;
 
 About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
-  KLocale *locale = kapp->getLocale();
-  setCaption(locale->translate("About kreversi"));
+  setCaption(i18n("About kreversi"));
 
   QPixmap pm((PICDIR + "logo.xpm").data());
   QLabel *logo = new QLabel(this);
@@ -62,9 +60,9 @@ About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
   l->setFixedSize(l->sizeHint());
 
   QString s;
-  s = locale->translate("Version ");
+  s = i18n("Version ");
   s += KREVERSI_VERSION;
-  s += locale->translate("\n(c) 1997 Mario Weilguni <mweilguni@sime.com>\n\n" \
+  s += i18n("\n(c) 1997 Mario Weilguni <mweilguni@sime.com>\n\n" \
     "This program is free software\npublished under the GNU General\n" \
     "Public License (take a look\ninto help for details)\n\n" \
     "Thanks to:\n" \
@@ -79,7 +77,7 @@ About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
   l1->setFixedSize(l1->sizeHint());
   l1->show();
 
-  QPushButton *b_ok = new QPushButton(locale->translate("Close"), this);
+  QPushButton *b_ok = new QPushButton(i18n("Close"), this);
   b_ok->setDefault(TRUE);
   if(style() == MotifStyle) 
     b_ok->setFixedSize(b_ok->sizeHint().width() + 10, // for 

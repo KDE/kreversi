@@ -120,9 +120,6 @@ const int SB_TURN       = 4;
 extern QString PICDIR;
 
 App::App() : KTopLevelWidget() {
-  // create locale
-  locale = kapp->getLocale();
-
   highscore.resize(0);
   readHighscore();
   setCaption( kapp->getCaption() );
@@ -214,8 +211,8 @@ App::App() : KTopLevelWidget() {
       if(!audioOK()) {
 	show();
 	kapp->processEvents();
-	KMsgBox::message(this, locale->translate("Error"),
-			 locale->translate("A problem with the sound server "
+	KMsgBox::message(this, i18n("Error"),
+			 i18n("A problem with the sound server "
 			 "occured!\nCannot enable sound "
 			 "support."), KMsgBox::STOP);	
       }
@@ -242,60 +239,60 @@ void App::createMenuBar() {
   menu = new KMenuBar(this);
 
   QPopupMenu *fm = new QPopupMenu;
-  fm->insertItem(locale->translate("&New game"), ID_GNEW);
-  fm->insertItem(locale->translate("&Load game"), ID_FLOAD);
-  fm->insertItem(locale->translate("&Save game"), ID_FSAVE);
+  fm->insertItem(i18n("&New game"), ID_GNEW);
+  fm->insertItem(i18n("&Load game"), ID_FLOAD);
+  fm->insertItem(i18n("&Save game"), ID_FSAVE);
   fm->insertSeparator();
-  fm->insertItem(locale->translate("&Quit"), ID_FQUIT);
+  fm->insertItem(i18n("&Quit"), ID_FQUIT);
 
   QPopupMenu *gm = new QPopupMenu;
-  gm->insertItem(locale->translate("Get &hint"), ID_HHINT);
+  gm->insertItem(i18n("Get &hint"), ID_HHINT);
   gm->insertSeparator();  
-  gm->insertItem(locale->translate("&Stop thinking"), ID_GSTOP);
-  gm->insertItem(locale->translate("&Continue"), ID_GCONTINUE);
+  gm->insertItem(i18n("&Stop thinking"), ID_GSTOP);
+  gm->insertItem(i18n("&Continue"), ID_GCONTINUE);
   gm->insertSeparator();
-  gm->insertItem(locale->translate("&Undo move"), ID_GUNDO);
-  gm->insertItem(locale->translate("Switch si&des"), ID_GSWITCH);
+  gm->insertItem(i18n("&Undo move"), ID_GUNDO);
+  gm->insertItem(i18n("Switch si&des"), ID_GSWITCH);
   gm->insertSeparator();
-  gm->insertItem(locale->translate("Hall Of &Fame..."), ID_GHIGHSCORES);
+  gm->insertItem(i18n("Hall Of &Fame..."), ID_GHIGHSCORES);
   
   QPopupMenu *om = new QPopupMenu;
   om->setCheckable(TRUE);
   QPopupMenu *om_s = new QPopupMenu;  
   om_s->setCheckable(TRUE);
-  om_s->insertItem(locale->translate("Level 1 (Wimp)"), ID_O2);
-  om_s->insertItem(locale->translate("Level 2 (Beginner)"), ID_O3);
-  om_s->insertItem(locale->translate("Level 3 (Novice)"),  ID_O4);
-  om_s->insertItem(locale->translate("Level 4 (Average)"),  ID_O5);
-  om_s->insertItem(locale->translate("Level 5 (Good)"),  ID_O6);
-  om_s->insertItem(locale->translate("Level 6 (Expert)"),  ID_O7);
-  om_s->insertItem(locale->translate("Level 7 (Master)"),  ID_O8);
-  om->insertItem(locale->translate("Skill"), om_s);
+  om_s->insertItem(i18n("Level 1 (Wimp)"), ID_O2);
+  om_s->insertItem(i18n("Level 2 (Beginner)"), ID_O3);
+  om_s->insertItem(i18n("Level 3 (Novice)"),  ID_O4);
+  om_s->insertItem(i18n("Level 4 (Average)"),  ID_O5);
+  om_s->insertItem(i18n("Level 5 (Good)"),  ID_O6);
+  om_s->insertItem(i18n("Level 6 (Expert)"),  ID_O7);
+  om_s->insertItem(i18n("Level 7 (Master)"),  ID_O8);
+  om->insertItem(i18n("Skill"), om_s);
   om->insertSeparator();
-  om->insertItem(locale->translate("&Shrink board"), ID_VZOOMOUT);
-  om->insertItem(locale->translate("&Enlarge board"), ID_VZOOMIN);
+  om->insertItem(i18n("&Shrink board"), ID_VZOOMOUT);
+  om->insertItem(i18n("&Enlarge board"), ID_VZOOMIN);
 
   QPopupMenu *zm = new QPopupMenu;
   zm->setCheckable(TRUE);
-  zm->insertItem(locale->translate("&Half size"), ID_VZOOM50);
-  zm->insertItem(locale->translate("60%"), ID_VZOOM60);
-  zm->insertItem(locale->translate("80%"), ID_VZOOM80);
-  zm->insertItem(locale->translate("D&efault size"), ID_VZOOM100);
-  zm->insertItem(locale->translate("120%"), ID_VZOOM120);
-  zm->insertItem(locale->translate("140%"), ID_VZOOM140);
-  zm->insertItem(locale->translate("160%"), ID_VZOOM160);
-  zm->insertItem(locale->translate("180%"), ID_VZOOM180);
-  zm->insertItem(locale->translate("&Double size"), ID_VZOOM200);
-  om->insertItem(locale->translate("Set size"), zm);
+  zm->insertItem(i18n("&Half size"), ID_VZOOM50);
+  zm->insertItem(i18n("60%"), ID_VZOOM60);
+  zm->insertItem(i18n("80%"), ID_VZOOM80);
+  zm->insertItem(i18n("D&efault size"), ID_VZOOM100);
+  zm->insertItem(i18n("120%"), ID_VZOOM120);
+  zm->insertItem(i18n("140%"), ID_VZOOM140);
+  zm->insertItem(i18n("160%"), ID_VZOOM160);
+  zm->insertItem(i18n("180%"), ID_VZOOM180);
+  zm->insertItem(i18n("&Double size"), ID_VZOOM200);
+  om->insertItem(i18n("Set size"), zm);
 
   om->insertSeparator();
-  om->insertItem(locale->translate("Select &background color..."), ID_COLOR);
+  om->insertItem(i18n("Select &background color..."), ID_COLOR);
   
   QPopupMenu *om_bg = new QPopupMenu;
   lookupBackgroundPixmaps();
 
   if(backgroundPixmaps.count() == 0)
-    om_bg->insertItem(locale->translate("none"), ID_PIXMAP);
+    om_bg->insertItem(i18n("none"), ID_PIXMAP);
   else
     for(unsigned i = 0; i < backgroundPixmaps.count(); i++) {
       // since the filename may contain underscore, they
@@ -305,33 +302,33 @@ void App::createMenuBar() {
       om_bg->insertItem((const char *)s, ID_PIXMAP + i);
     }
   
-  om->insertItem(locale->translate("Select background image"), om_bg);
-  om->insertItem(locale->translate("&Grayscale"), ID_OGSCALE);
+  om->insertItem(i18n("Select background image"), om_bg);
+  om->insertItem(i18n("&Grayscale"), ID_OGSCALE);
   om->insertSeparator();
-  om->insertItem(locale->translate("&Animations"), ID_OANIMATION);
+  om->insertItem(i18n("&Animations"), ID_OANIMATION);
 
   QPopupMenu *om_sp = new QPopupMenu;
   om_sp->setCheckable(TRUE);
-  om_sp->insertItem(locale->translate("1 (fastest)"), ID_OSPEED+1);
+  om_sp->insertItem(i18n("1 (fastest)"), ID_OSPEED+1);
   for(int i = ID_OSPEED+2; i < ID_OSPEED + 10; i++) {
     QString txt;
     txt.setNum(i - ID_OSPEED);
     om_sp->insertItem((const char *)txt, i);
   }
-  om_sp->insertItem(locale->translate("10 (slowest)"), ID_OSPEED+10);
-  om->insertItem(locale->translate("Animation speed"), om_sp, ID_OSPEED);
+  om_sp->insertItem(i18n("10 (slowest)"), ID_OSPEED+10);
+  om->insertItem(i18n("Animation speed"), om_sp, ID_OSPEED);
 #ifdef HAVE_MEDIATOOL
   om->insertSeparator();
-  om->insertItem(locale->translate("S&ound"), ID_OSOUND);
+  om->insertItem(i18n("S&ound"), ID_OSOUND);
 #endif
 
   QPopupMenu *help = kapp->getHelpMenu(true, QString::null);  // Use our own About box
 
-  menu->insertItem(locale->translate("&File"), fm);
-  menu->insertItem(locale->translate("&Game"), gm);
-  menu->insertItem(locale->translate("&Options"), om);
+  menu->insertItem(i18n("&File"), fm);
+  menu->insertItem(i18n("&Game"), gm);
+  menu->insertItem(i18n("&Options"), om);
   menu->insertSeparator();
-  menu->insertItem(locale->translate("&Help"), help);
+  menu->insertItem(i18n("&Help"), help);
   connect(menu, SIGNAL(activated(int)), this, SLOT(processEvent(int)));
 
   menu->setAccel(CTRL+Key_S, ID_FSAVE);
@@ -366,21 +363,21 @@ void App::createToolBar() {
   QPixmap p4((const char *)(PICDIR + "undo.xpm"));
   QPixmap p5((const char *)(PICDIR + "hint.xpm"));
   QPixmap p6((const char *)(PICDIR + "help.xpm"));
-  tb->insertButton(p1, ID_GSTOP, TRUE, locale->translate("Stop thinking"));
-  tb->insertButton(p4, ID_GUNDO, TRUE, locale->translate("Undo move"));
-  tb->insertButton(p3, ID_VZOOMOUT, TRUE, locale->translate("Shrink board"));
-  tb->insertButton(p2, ID_VZOOMIN, TRUE, locale->translate("Enlarge board"));  
-  tb->insertButton(p5, ID_HHINT, TRUE, locale->translate("Get hint"));
-  tb->insertButton(p6, ID_HCONTENTS, TRUE, locale->translate("Get help"));
+  tb->insertButton(p1, ID_GSTOP, TRUE, i18n("Stop thinking"));
+  tb->insertButton(p4, ID_GUNDO, TRUE, i18n("Undo move"));
+  tb->insertButton(p3, ID_VZOOMOUT, TRUE, i18n("Shrink board"));
+  tb->insertButton(p2, ID_VZOOMIN, TRUE, i18n("Enlarge board"));  
+  tb->insertButton(p5, ID_HHINT, TRUE, i18n("Get hint"));
+  tb->insertButton(p6, ID_HCONTENTS, TRUE, i18n("Get help"));
   connect(tb, SIGNAL(clicked(int)), this, SLOT(processEvent(int)));  
 }
 
 
 void App::createStatusBar() {
   sb = new KStatusBar(this);
-  sb->insertItem(locale->translate("XXXXX's turn"), SB_TURN);
-  sb->insertItem(locale->translate("You (XXXXX): 88"), SB_SCOREH);
-  sb->insertItem(locale->translate("Computer (XXXXX): 88"), SB_SCOREC);
+  sb->insertItem(i18n("XXXXX's turn"), SB_TURN);
+  sb->insertItem(i18n("You (XXXXX): 88"), SB_SCOREH);
+  sb->insertItem(i18n("Computer (XXXXX): 88"), SB_SCOREC);
 }
 
 
@@ -426,7 +423,7 @@ void App::processEvent(int itemid) {
       config->setGroup("Savegame");
       b->saveGame(config);
       KMsgBox::message(this, "Information", 
-		       locale->translate("Game saved"));
+		       i18n("Game saved"));
     }
     break;
 
@@ -549,8 +546,8 @@ void App::processEvent(int itemid) {
     if(!audioOK()) {
       initAudio();
       if(!audioOK()) {
-	KMsgBox::message(this, locale->translate("Error"), 
-			 locale->translate("A problem with the sound server "
+	KMsgBox::message(this, i18n("Error"), 
+			 i18n("A problem with the sound server "
 			 "occured!\nCannot enable sound "
 			 "support."), KMsgBox::STOP);
 	kapp->getConfig()->writeEntry("Sound", 0);
@@ -588,7 +585,7 @@ void App::processEvent(int itemid) {
 	b->setAnimationSpeed(itemid - ID_OSPEED);
 	kapp->getConfig()->writeEntry("AnimationSpeed", b->animationSpeed());
       } else
-	KMsgBox::message(this, locale->translate("Information"), locale->translate("not yet implemented"));
+	KMsgBox::message(this, i18n("Information"), i18n("not yet implemented"));
     }
   }
   enableItems();
@@ -601,11 +598,11 @@ void App::slotScore() {
 
   b->getScore(black, white);
   if(b->humanIs() == Score::BLACK) {
-    s1.sprintf(locale->translate("You (blue): %d"), black);
-    s2.sprintf(locale->translate("Computer (red): %d"), white);
+    s1.sprintf(i18n("You (blue): %d"), black);
+    s2.sprintf(i18n("Computer (red): %d"), white);
   } else {
-    s2.sprintf(locale->translate("You (red): %d"), white);
-    s1.sprintf(locale->translate("Computer (blue): %d"), black);
+    s2.sprintf(i18n("You (red): %d"), white);
+    s1.sprintf(i18n("Computer (blue): %d"), black);
   }
 
   sb->changeItem(s1, SB_SCOREH);
@@ -649,7 +646,7 @@ void App::slotGameEnded(int color) {
   QString s;
   int winner, loser;
 
-  sb->changeItem(locale->translate("End of game"), SB_TURN);
+  sb->changeItem(i18n("End of game"), SB_TURN);
     
   // get the score
   if(color == Score::BLACK) 
@@ -659,8 +656,8 @@ void App::slotGameEnded(int color) {
   
   if(color == Score::NOBODY) {
     playSound("drawn.wav");
-    s.sprintf(locale->translate("Game is drawn!\n\nYou     : %d\nComputer: %d"), winner, loser);
-    KMsgBox::message(this, locale->translate("Game ended"), (const char *)s);
+    s.sprintf(i18n("Game is drawn!\n\nYou     : %d\nComputer: %d"), winner, loser);
+    KMsgBox::message(this, i18n("Game ended"), (const char *)s);
   } else if(b->humanIs() == color) {
     // calculate score
     int  st = b->getStrength();
@@ -670,9 +667,9 @@ void App::slotGameEnded(int color) {
                  100.0;
 
     playSound("won.wav");
-    s.sprintf(locale->translate("Congratulations, you have won!\n\nYou     : %d\nComputer: %d\nYour rating %4.1f%%"), 
+    s.sprintf(i18n("Congratulations, you have won!\n\nYou     : %d\nComputer: %d\nYour rating %4.1f%%"), 
 	      winner, loser, score);
-    KMsgBox::message(this, locale->translate("Game ended"), (const char *)s);
+    KMsgBox::message(this, i18n("Game ended"), (const char *)s);
 
     // create highscore entry
     HighScore hs;
@@ -690,9 +687,9 @@ void App::slotGameEnded(int color) {
     }
   } else {
     playSound("lost.wav");
-    s.sprintf(locale->translate("You have lost the game!\n\nYou     : %d\nComputer: %d"), 
+    s.sprintf(i18n("You have lost the game!\n\nYou     : %d\nComputer: %d"), 
 	      loser, winner);
-    KMsgBox::message(this, locale->translate("Game ended"), (const char *)s);
+    KMsgBox::message(this, i18n("Game ended"), (const char *)s);
   }
 }
 
@@ -848,12 +845,12 @@ int MAX(int a, int b) {
 
 void App::showHighscore(int focusitem) {
   // this may look a little bit confusing...
-  QDialog *dlg = new QDialog(0, locale->translate("Hall of Fame"), TRUE);
-  dlg->setCaption(locale->translate("KReversi: Hall Of Fame"));
+  QDialog *dlg = new QDialog(0, i18n("Hall of Fame"), TRUE);
+  dlg->setCaption(i18n("KReversi: Hall Of Fame"));
 
   QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
   
-  QLabel *l = new QLabel(locale->translate("KReversi: Hall Of Fame"), dlg);
+  QLabel *l = new QLabel(i18n("KReversi: Hall Of Fame"), dlg);
   QFont f = font();
   f.setPointSize(24);
   f.setBold(TRUE);
@@ -874,23 +871,23 @@ void App::showHighscore(int focusitem) {
   // add titles
   f = font();
   f.setBold(TRUE);
-  l = new QLabel(locale->translate("Rank"), dlg);
+  l = new QLabel(i18n("Rank"), dlg);
   l->setFont(f);
   l->setMinimumSize(l->sizeHint());
   table->addWidget(l, 0, 0);
-  l = new QLabel(locale->translate("Name"), dlg);
+  l = new QLabel(i18n("Name"), dlg);
   l->setFont(f);
   l->setMinimumSize(l->sizeHint());
   table->addWidget(l, 0, 1);
-  l = new QLabel(locale->translate("Color"), dlg);
+  l = new QLabel(i18n("Color"), dlg);
   l->setFont(f);
   l->setMinimumSize(l->sizeHint());
   table->addWidget(l, 0, 2);
-  l = new QLabel(locale->translate("Score"), dlg);
+  l = new QLabel(i18n("Score"), dlg);
   l->setFont(f);
   l->setMinimumSize(l->sizeHint());
   table->addWidget(l, 0, 3);
-  l = new QLabel(locale->translate("Rating"), dlg);
+  l = new QLabel(i18n("Rating"), dlg);
   l->setFont(f);
   l->setMinimumSize(l->sizeHint());
   table->addWidget(l, 0, 4);
@@ -905,9 +902,9 @@ void App::showHighscore(int focusitem) {
     if(i < highscore.size()) {
       hs = highscore[i];
       if(hs.color == Score::BLACK)
-	color = locale->translate("blue");
+	color = i18n("blue");
       else
-	color = locale->translate("red");
+	color = i18n("red");
     }
     
     // insert rank    
@@ -952,7 +949,7 @@ void App::showHighscore(int focusitem) {
       table->addWidget(e[i][j], i+2, j, AlignCenter);	
     }
     
-  QPushButton *b = new QPushButton(locale->translate("Close"), dlg);
+  QPushButton *b = new QPushButton(i18n("Close"), dlg);
   if(style() == MotifStyle)
     b->setFixedSize(b->sizeHint().width() + 10,
 		    b->sizeHint().height() + 10);
@@ -980,10 +977,10 @@ void App::showHighscore(int focusitem) {
 QString App::getPlayerName() {
   QDialog *dlg = new QDialog(this, "Hall Of Fame", TRUE);
 
-  QLabel  *l1  = new QLabel(locale->translate("You've made in into the \"Hall Of Fame\".Type in\nyour name so mankind will always remember\nyour cool rating."), dlg);
+  QLabel  *l1  = new QLabel(i18n("You've made in into the \"Hall Of Fame\".Type in\nyour name so mankind will always remember\nyour cool rating."), dlg);
   l1->setFixedSize(l1->sizeHint());
 
-  QLabel *l2 = new QLabel(locale->translate("Your name:"), dlg);
+  QLabel *l2 = new QLabel(i18n("Your name:"), dlg);
   l2->setFixedSize(l2->sizeHint());
 
   QLineEdit *e = new QLineEdit(dlg);
