@@ -4,8 +4,8 @@ TODO-list for KREVERSI
 * A big cleanup of the code (comments, indentation, complexity):
    - board.cpp
    - board.h
-   - Engine.cpp
-   - Engine.h
+   - Engine.cpp							DONE
+   - Engine.h							DONE
    - Game.cpp							DONE
    - Game.h							DONE
    - highscores.cpp

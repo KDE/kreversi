@@ -128,6 +128,9 @@
 #include <sys/times.h>
 #include <qbitarray.h>
 
+
+// Class ULONG64 is used as a bitmap for the squares.
+
 #if defined(__GNUC__)
 #define ULONG64 unsigned long long int
 #else
@@ -140,6 +143,9 @@ public:
 #endif
 
 
+// SquareStackEntry and SquareStack are used during search to keep
+// track of turned pieces.
+
 class SquareStackEntry
 {
 public:
@@ -148,7 +154,8 @@ public:
   void setXY(int x, int y);
 
 public:
-  int m_x, m_y;
+  int  m_x;
+  int  m_y;
 };
 
 
@@ -158,67 +165,82 @@ public:
   SquareStack();
   SquareStack(int size);
 
-  void resize(int size);
-  void init(int size);
-  SquareStackEntry Pop();
-  void Push(int x, int y);
+  void              resize(int size);
+  void              init(int size);
+  SquareStackEntry  Pop();
+  void              Push(int x, int y);
 
 private:
-  QMemArray<SquareStackEntry> m_squarestack;
-  int m_top;
+  QMemArray<SquareStackEntry>  m_squarestack;
+  int                          m_top;
 };
 
+
+// Connect a move with its value.
 
 class MoveAndValue
 {
 public:
   MoveAndValue();
   MoveAndValue(int x, int y, int value);
-  void setXYV(int x, int y, int value);
+
+  void  setXYV(int x, int y, int value);
 
 public:
-  int m_x, m_y, m_value;
+  int  m_x;
+  int  m_y;
+  int  m_value;
 };
 
 
+// The real beef of this program: the engine that finds good moves for
+// the computer player.
+//
 class Engine : public SuperEngine {
 public:
   Engine(int st, int sd);
   Engine(int st);
   Engine();
 
-  Move computeMove(Game g);
-  Move ComputeFirstMove(Game g);
-  int ComputeMove2(int xplay, int yplay, Color color, int level,
-    int cutoffval, ULONG64 colorbits, ULONG64 opponentbits);
+  Move     computeMove(Game g);
 
-  int TryAllMoves(Color opponent, int level, int cutoffval,
-		  ULONG64 opponentbits, ULONG64 colorbits);
+private:
+  Move     ComputeFirstMove(Game g);
+  int      ComputeMove2(int xplay, int yplay, Color color, int level,
+			int cutoffval,
+			ULONG64 colorbits, ULONG64 opponentbits);
 
-  int EvaluatePosition(Color color);
-  void SetupBcBoard();
-  void SetupBits();
-  int CalcBcScore(Color color);
-  ULONG64 ComputeOccupiedBits(Color color);
+  int      TryAllMoves(Color opponent, int level, int cutoffval,
+		       ULONG64 opponentbits, ULONG64 colorbits);
+
+  int      EvaluatePosition(Color color);
+  void     SetupBcBoard();
+  void     SetupBits();
+  int      CalcBcScore(Color color);
+  ULONG64  ComputeOccupiedBits(Color color);
 
   void yield();
 
 private:
-  static const int LARGEINT;
-  static const int ILLEGAL_VALUE;
-  static const int BC_WEIGHT;
-  Color m_board[10][10];
-  int m_bc_board[9][9];
-  Score m_score;
-  Score m_bc_score;
-  SquareStack m_squarestack;
-  int  m_depth;
-  int  m_coeff;
-  int  m_nodes_searched;
-  bool m_exhaustive;
-  ULONG64 m_coord_bit[9][9];
-  ULONG64 m_neighbor_bits[9][9];
-  long lastYield;
+  static const int  LARGEINT;
+  static const int  ILLEGAL_VALUE;
+  static const int  BC_WEIGHT;
+
+  Color        m_board[10][10];
+  int          m_bc_board[9][9];
+  Score        m_score;
+  Score        m_bc_score;
+  SquareStack  m_squarestack;
+  
+  int          m_depth;
+  int          m_coeff;
+  int          m_nodes_searched;
+  bool         m_exhaustive;
+
+  ULONG64      m_coord_bit[9][9];
+  ULONG64      m_neighbor_bits[9][9];
+
+  long         lastYield;
 };
 
 #endif

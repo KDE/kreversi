@@ -1,3 +1,9 @@
+2004-08-16  Inge Wallin  <inge@lysator.liu.se>
+
+	Continue the big code cleanup:
+	* Engine.h, Engine.cpp
+
+
 2004-08-15  Inge Wallin  <inge@lysator.liu.se>
 
 	Continue the big code cleanup:

@@ -120,22 +120,25 @@
 #include "Engine.h"
 #include <qapplication.h>
 
-const int Engine::LARGEINT = 99999;
-const int Engine::ILLEGAL_VALUE = 8888888;
-const int Engine::BC_WEIGHT = 3;
 
-inline void SquareStackEntry::setXY(int x, int y) {
-  m_x = x;
-  m_y = y;
-}
+// ================================================================
+//                          Class ULONG64
+
 
 #if !defined(__GNUC__)
 
-ULONG64::ULONG64() : QBitArray(64) {
+
+ULONG64::ULONG64() : QBitArray(64) 
+{
   fill(0);
 }
 
-ULONG64::ULONG64( unsigned int value ) : QBitArray(64) {
+
+// Initialize an ULONG64 from a 32 bit value.
+//
+
+ULONG64::ULONG64( unsigned int value ) : QBitArray(64) 
+{
   fill(0);
   for(int i = 0; i < 32; i++) {
     setBit(i, (bool)(value & 1));
@@ -143,18 +146,41 @@ ULONG64::ULONG64( unsigned int value ) : QBitArray(64) {
   }
 }
 
-void ULONG64::shl() {
+
+// Shift an ULONG64 left one bit.
+//
+
+void ULONG64::shl() 
+{
   for(int i = 63; i > 0; i--)
-    setBit(i, testBit(i-1));
+    setBit(i, testBit(i - 1));
   setBit(0, 0);
 }
 
 #endif
 
 
-SquareStackEntry::SquareStackEntry() {
+// ================================================================
+//           Classes SquareStackEntry and SquareStack
+
+
+// A SquareStack is used to store changes to the squares on the board
+// during search.
+
+
+inline void SquareStackEntry::setXY(int x, int y) {
+  m_x = x;
+  m_y = y;
+}
+
+
+SquareStackEntry::SquareStackEntry()
+{
   setXY(0,0);
 }
+
+
+// ----------------------------------------------------------------
 
 
 SquareStack::SquareStack() {
@@ -167,123 +193,179 @@ SquareStack::SquareStack(int size) {
 }
 
 
-void SquareStack::resize(int size) {
+void SquareStack::resize(int size) 
+{
   m_squarestack.resize(size);
 }
 
 
-void SquareStack::init(int size) {
+// (Re)initialize the stack so that is empty, and at the same time
+// resize it to 'size'.
+//
+
+void SquareStack::init(int size) 
+{
   resize(size);
+
   m_top = 0;
-  for (int i=0; i<size; i++)
+  for (int i = 0; i < size; i++)
     m_squarestack[i].setXY(0,0);
 }
 
 
-inline SquareStackEntry SquareStack::Pop() {
+
+inline SquareStackEntry SquareStack::Pop() 
+{
   return m_squarestack[--m_top];
 }
 
 
-inline void SquareStack::Push(int x, int y) {
+inline void SquareStack::Push(int x, int y)
+{
   m_squarestack[m_top].m_x = x;
   m_squarestack[m_top++].m_y = y;
 }
 
 
-inline void MoveAndValue::setXYV(int x, int y, int value) {
-  m_x = x;
-  m_y = y;
+// ================================================================
+//                       Class MoveAndValue
+
+
+// Class MoveAndValue aggregates a move with its value.
+//
+
+
+inline void MoveAndValue::setXYV(int x, int y, int value) 
+{
+  m_x     = x;
+  m_y     = y;
   m_value = value;
 }
 
 
-MoveAndValue::MoveAndValue() {
+MoveAndValue::MoveAndValue() 
+{
   setXYV(0,0,0);
 }
 
 
-MoveAndValue::MoveAndValue(int x, int y, int value) {
+MoveAndValue::MoveAndValue(int x, int y, int value) 
+{
   setXYV(x, y, value);
 }
 
 
-Engine::Engine(int st, int sd) : SuperEngine(st, sd) {
+// ================================================================
+//                        The Engine itself
+
+
+// Some special values used in the search.
+const int Engine::LARGEINT      = 99999;
+const int Engine::ILLEGAL_VALUE = 8888888;
+const int Engine::BC_WEIGHT     = 3;
+
+
+Engine::Engine(int st, int sd) : SuperEngine(st, sd) 
+{
   SetupBcBoard();
   SetupBits();
 }
 
 
-Engine::Engine(int st) : SuperEngine(st) {
+Engine::Engine(int st) : SuperEngine(st) 
+{
   SetupBcBoard();
   SetupBits();
 }
 
 
-Engine::Engine() : SuperEngine(1) {
+Engine::Engine() : SuperEngine(1) 
+{
   SetupBcBoard();
   SetupBits();
 }
 
 
 // keep GUI alive
-void Engine::yield() {
+void Engine::yield() 
+{
   qApp->processEvents();
 }
 
-Move Engine::computeMove(Game g) {
+
+// Calculate the best move from the current position, and return it.
+
+Move Engine::computeMove(Game game) 
+{
+  Color color;
+
+  // Suppose that we should give a heuristic evaluation.  If we are
+  // close to the end of the game we can make an exhaustive search,
+  // but that case is determined further down.
   m_exhaustive = false;
 
-  Color color = g.toMove();
-
+  // Get the color to calculate the move for.
+  color = game.toMove();
   if (color == Nobody)
     return Move(Nobody, -1, -1);
 
   // Figure out the current score
-  m_score.set(White, g.score(White));
-  m_score.set(Black, g.score(Black));
-  // If the game just started...
+  m_score.set(White, game.score(White));
+  m_score.set(Black, game.score(Black));
+
+  // Treat the first move as a special case (we can basically just
+  // pick a move at random).
   if (m_score.score(White) + m_score.score(Black) == 4)
-    return ComputeFirstMove(g);
+    return ComputeFirstMove(game);
 
-  // JAVA m_board = new int[10][10];
-  //m_squarestack = new SquareStack(3000); // More than enough...
+  // Let there be room for 3000 changes during the recursive search.
+  // This is more than will ever be needed.
   m_squarestack.init(3000);
-  m_depth = m_strength;
 
-  if (m_score.score(White) + m_score.score(Black) +
-      m_depth + 3 >= 64)
-    m_depth =
-      64 - m_score.score(White) - m_score.score(Black);
-  else if (m_score.score(White) + m_score.score(Black) +
-	   m_depth + 4 >= 64)
+  // Get the search depth.  If we are close to the end of the game,
+  // the number of possible moves goes down, so we can search deeper
+  // without using more time.  
+  m_depth = m_strength;
+  if (m_score.score(White) + m_score.score(Black) + m_depth + 3 >= 64)
+    m_depth = 64 - m_score.score(White) - m_score.score(Black);
+  else if (m_score.score(White) + m_score.score(Black) + m_depth + 4 >= 64)
     m_depth += 2;
-  else if (m_score.score(White) + m_score.score(Black) +
-	   m_depth + 5 >= 64)
+  else if (m_score.score(White) + m_score.score(Black) + m_depth + 5 >= 64)
     m_depth++;
 
-  if (m_score.score(White) + m_score.score(Black) +
-      m_depth >= 64) m_exhaustive = true;
+  // If we are very close to the end, we can even make the search
+  // exhaustive.
+  if (m_score.score(White) + m_score.score(Black) + m_depth >= 64)
+    m_exhaustive = true;
 
-  m_coeff =
-    100 - (100*
-	   (m_score.score(White) + m_score.score(Black) +
-	    m_depth - 4))/60;
+  // The evaluation is a linear combination of the score (number of
+  // pieces) and the sum of the scores for the squares (given by
+  // m_bc_score).  The earlier in the game, the more we use the square
+  // values and the later in the game the more we use the number of
+  // pieces.
+  m_coeff = 100 - (100*
+		   (m_score.score(White) + m_score.score(Black) 
+		    + m_depth - 4)) / 60;
 
-  m_nodes_searched = 0;
+  // Initialize the board that we use for the search.
+  for (uint x = 0; x < 10; x++)
+    for (uint y = 0; y < 10; y++) {
+      if (1 <= x && x <= 8
+	  && 1 <= y && y <= 8)
+	m_board[x][y] = game.color(x, y);
+      else
+	m_board[x][y] = Nobody;
+    }
 
-  for (uint x=0; x<10; x++)
-    for (uint y=0; y<10; y++)
-      m_board[x][y] = Nobody;
+  // Initialize a lot of stuff that we will use in the search.
 
-  for (uint x=1; x<9; x++)
-    for (uint y=1; y<9; y++)
-      m_board[x][y] = g.color(x, y);
-
+  // Initialize m_bc_score to the current bc score.  This is kept
+  // up-to-date incrementally so that way we won't have to calculate
+  // it from scratch for each evaluation.
   m_bc_score.set(White, CalcBcScore(White));
   m_bc_score.set(Black, CalcBcScore(Black));
 
-  ULONG64 colorbits = ComputeOccupiedBits(color);
+  ULONG64 colorbits    = ComputeOccupiedBits(color);
   ULONG64 opponentbits = ComputeOccupiedBits(opponent(color));
 
   int maxval = -LARGEINT;
@@ -299,262 +381,301 @@ Move Engine::computeMove(Game g) {
   ULONG64 null_bits;
   null_bits = 0;
 
-  //struct tms tmsdummy;
-  //long starttime = times(&tmsdummy);
-  // Compute this once at the start of the loops.
-//  int high = 20 - m_strength;
+  // The main search loop.  Step through all possible moves and keep
+  // track of the most valuable one.  This move is stored in 
+  // (max_x, max_y) and the value is stored in maxval.
+  m_nodes_searched = 0;
+  for (int x = 1; x < 9; x++) {
+    for (int y = 1; y < 9; y++) {
+      // Don't bother with non-empty squares and squares that aren't
+      // neighbors to opponent pieces.
+      if (m_board[x][y] != Nobody
+	  || (m_neighbor_bits[x][y] & opponentbits) == null_bits)
+	continue;
 
-  for (int x=1; x<9; x++)
-    for (int y=1; y<9; y++)
-      if (m_board[x][y] == Nobody &&
-	  (m_neighbor_bits[x][y] & opponentbits) != null_bits)
-	{
 
-	  int val = ComputeMove2(x, y, color, 1, maxval,
-				 colorbits, opponentbits);
+      int val = ComputeMove2(x, y, color, 1, maxval,
+			     colorbits, opponentbits);
 
-	  if (val != ILLEGAL_VALUE)
-	    {
-	      moves[number_of_moves++].setXYV(x, y, val);
+      if (val != ILLEGAL_VALUE) {
+	moves[number_of_moves++].setXYV(x, y, val);
 
-	      if (val > maxval)
-		{
-		  // Make it so it is easy for us to "miss" something.
-		  // i.e. more relistic.  Also makes m_strength mean more.
-	          int randi = m_random.getLong(7);
-		  if(maxval == -LARGEINT ||
-                    randi < (int)m_strength ){
-	            maxval = val;
-		    max_x = x;
-		    max_y = y;
-		    number_of_maxval = 1;
-		  }
-		}
-	      else if (val == maxval) number_of_maxval++;
-	    }
+	// If the move is better than all previous moves, then record
+	// this fact...
+	if (val > maxval) {
 
-	  if (interrupt()) break;
+	  // ...except that we want to make the computer miss some
+	  // good moves so that beginners can play against the program
+	  // and not always lose.
+	  //
+	  // FIXME: Should be a way to disable this "feature".
+	  //
+	  int randi = m_random.getLong(7);
+	  if (maxval == -LARGEINT || randi < (int) m_strength) {
+	    maxval = val;
+	    max_x  = x;
+	    max_y  = y;
+
+	    number_of_maxval = 1;
+	  }
 	}
+	else if (val == maxval)
+	  number_of_maxval++;
+      }
+
+      // Jump out prematurely if interrupt is set.
+      if (interrupt()) 
+	break;
+    }
+  }
 
   // long endtime = times(&tmsdummy);
 
-  if (number_of_maxval > 1)
-    {
-      int r = m_random.getLong(number_of_maxval) + 1;
+  // If there are more than one best move, the pick one randomly.
+  if (number_of_maxval > 1) {
+    int  r = m_random.getLong(number_of_maxval) + 1;
+    int  i;
 
-      int i;
-
-      for (i=0; i < number_of_moves; i++)
-	if (moves[i].m_value == maxval && --r <= 0) break;
-
-      max_x = moves[i].m_x;
-      max_y = moves[i].m_y;
+    for (i = 0; i < number_of_moves; i++) {
+      if (moves[i].m_value == maxval && --r <= 0) 
+	break;
     }
 
-  if (interrupt()) {
+    max_x = moves[i].m_x;
+    max_y = moves[i].m_y;
+  }
+
+  // Return a suitable move.
+  if (interrupt())
     return Move(Nobody, -1, -1);
-  } else if (maxval != -LARGEINT) {
+  else if (maxval != -LARGEINT)
     return Move(color, max_x, max_y);
-  } else {
+  else
     return Move(Nobody, -1, -1);
+}
+
+
+// Get the first move.  We can pick any move at random.
+//
+
+Move Engine::ComputeFirstMove(Game game) 
+{
+  int    r;
+  Color  color = game.toMove();
+
+  r = m_random.getLong(4) + 1;
+
+  if (color == White) {
+    if (r == 1)      return  Move(color, 3, 5);
+    else if (r == 2) return  Move(color, 4, 6);
+    else if (r == 3) return  Move(color, 5, 3);
+    else             return  Move(color, 6, 4);
+  }
+  else {
+    if (r == 1)      return  Move(color, 3, 4);
+    else if (r == 2) return  Move(color, 5, 6);
+    else if (r == 3) return  Move(color, 4, 3);
+    else             return  Move(color, 6, 5);
   }
 }
 
 
-Move Engine::ComputeFirstMove(Game g) {
-  int r;
-  Color color = g.toMove();
-
-  r = m_random.getLong(4) + 1;
-
-  if (color == White)
-    {
-      if (r == 1) return Move(color, 3, 5);
-      else if (r == 2) return  Move(color, 4, 6);
-      else if (r == 3) return  Move(color, 5, 3);
-      else return  Move(color, 6, 4);
-    }
-  else
-    {
-      if (r == 1) return  Move(color, 3, 4);
-      else if (r == 2) return  Move(color, 5, 6);
-      else if (r == 3) return  Move(color, 4, 3);
-      else return  Move(color, 6, 5);
-    }
-}
-
+// Play a move at (xplay, yplay) and generate a value for it.  If we
+// are at the maximum search depth, we get the value by calling
+// EvaluatePosition(), otherwise we get it by performing an alphabeta
+// search.
+//
 
 int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
 			 int cutoffval, ULONG64 colorbits,
 			 ULONG64 opponentbits)
 {
-  int number_of_turned = 0;
-  SquareStackEntry mse;
-  Color opponent = ::opponent(color);
+  int               number_of_turned = 0;
+  SquareStackEntry  mse;
+  Color             opponent = ::opponent(color);
 
   m_nodes_searched++;
 
+  // Put the piece on the board and incrementally update scores and bitmaps.
   m_board[xplay][yplay] = color;
   colorbits |= m_coord_bit[xplay][yplay];
   m_score.inc(color);
   m_bc_score.add(color, m_bc_board[xplay][yplay]);
 
-  ///////////////////
-  // Turn all pieces:
-  ///////////////////
+  // Loop through all 8 directions and turn the pieces that can be turned.
+  for (int xinc = -1; xinc <= 1; xinc++)
+    for (int yinc = -1; yinc <= 1; yinc++) {
+      if (xinc == 0 && yinc == 0) 
+	continue;
 
-  for (int xinc=-1; xinc<=1; xinc++)
-    for (int yinc=-1; yinc<=1; yinc++)
-      if (xinc != 0 || yinc != 0)
-	{
-	  int x, y;
+      int x, y;
 
-	  for (x = xplay+xinc, y = yplay+yinc; m_board[x][y] == opponent;
-	       x += xinc, y += yinc)
-	    ;
+      for (x = xplay + xinc, y = yplay + yinc; m_board[x][y] == opponent;
+	   x += xinc, y += yinc)
+	;
 
-	  if (m_board[x][y] == color)
-	    for (x -= xinc, y -= yinc; x != xplay || y != yplay;
-		 x -= xinc, y -= yinc)
-	      {
-		m_board[x][y] = color;
-		colorbits |= m_coord_bit[x][y];
-		opponentbits &= ~m_coord_bit[x][y];
-		m_squarestack.Push(x, y);
-		m_bc_score.add(color, m_bc_board[x][y]);
-		m_bc_score.sub(opponent, m_bc_board[x][y]);
-		number_of_turned++;
-	      }
+      // If we found the end of a turnable row, then go back and turn
+      // all pieces on the way back.  Also push the squares with
+      // turned pieces on the squarestack so that we can undo the move
+      // later.
+      if (m_board[x][y] == color)
+	for (x -= xinc, y -= yinc; x != xplay || y != yplay;
+	     x -= xinc, y -= yinc) {
+	  m_board[x][y] = color;
+	  colorbits |= m_coord_bit[x][y];
+	  opponentbits &= ~m_coord_bit[x][y];
+
+	  m_squarestack.Push(x, y);
+
+	  m_bc_score.add(color, m_bc_board[x][y]);
+	  m_bc_score.sub(opponent, m_bc_board[x][y]);
+	  number_of_turned++;
 	}
+    }
 
   int retval = -LARGEINT;
 
-  if (number_of_turned > 0)
-    {
-      //////////////
-      // Legal move:
-      //////////////
+  // If we managed to turn at least one piece, then (xplay, yplay) was
+  // a legal move.  Now find out the value of the move.
+  if (number_of_turned > 0) {
 
-      m_score.add(color, number_of_turned);
-      m_score.sub(opponent, number_of_turned);
+    // First adjust the number of pieces for each side.
+    m_score.add(color, number_of_turned);
+    m_score.sub(opponent, number_of_turned);
 
-      if (level >= m_depth) retval = EvaluatePosition(color); // Terminal node
-      else
-	{
-	  int maxval = TryAllMoves(opponent, level, cutoffval, opponentbits,
-				   colorbits);
+    // If we are at the bottom of the search, get the evaluation.
+    if (level >= m_depth)
+      retval = EvaluatePosition(color); // Terminal node
+    else {
+      int maxval = TryAllMoves(opponent, level, cutoffval, opponentbits,
+			       colorbits);
 
-	  if (maxval != -LARGEINT) retval = -maxval;
-	  else
-	    {
-	      ///////////////////////////////////////////////////////////////
-	      // No possible move for the opponent, it is colors turn again:
-	      ///////////////////////////////////////////////////////////////
-	      retval= TryAllMoves(color, level, -LARGEINT, colorbits,
-				  opponentbits);
+      if (maxval != -LARGEINT)
+	retval = -maxval;
+      else {
 
-	      if (retval == -LARGEINT)
-		{
-		  ///////////////////////////////////////////////
-		  // No possible move for anybody => end of game:
-		  ///////////////////////////////////////////////
+	// No possible move for the opponent, it is colors turn again:
+	retval = TryAllMoves(color, level, -LARGEINT, colorbits, opponentbits);
 
-		  int finalscore =
-		    m_score.score(color) - m_score.score(opponent);
+	if (retval == -LARGEINT) {
 
-		  if (m_exhaustive) retval = finalscore;
-		  else
-		    {
-		      // Take a sure win and avoid a sure loss (may not be optimal):
+	  // No possible move for anybody => end of game:
+	  int finalscore = m_score.score(color) - m_score.score(opponent);
 
-		      if (finalscore > 0) retval = LARGEINT - 65 + finalscore;
-		      else if (finalscore < 0) retval = -(LARGEINT - 65 + finalscore);
-		      else retval = 0;
-		    }
-		}
-	    }
+	  if (m_exhaustive)
+	    retval = finalscore;
+	  else {
+	    // Take a sure win and avoid a sure loss (may not be optimal):
+
+	    if (finalscore > 0) 
+	      retval = LARGEINT - 65 + finalscore;
+	    else if (finalscore < 0)
+	      retval = -(LARGEINT - 65 + finalscore);
+	    else
+	      retval = 0;
+	  }
 	}
-
-      m_score.add(opponent, number_of_turned);
-      m_score.sub(color, number_of_turned);
+      }
     }
 
-  /////////////////
-  // Restore board:
-  /////////////////
+    m_score.add(opponent, number_of_turned);
+    m_score.sub(color, number_of_turned);
+  }
 
-  for (int i = number_of_turned; i > 0; i--)
-    {
-      mse = m_squarestack.Pop();
-      m_bc_score.add(opponent, m_bc_board[mse.m_x][mse.m_y]);
-      m_bc_score.sub(color, m_bc_board[mse.m_x][mse.m_y]);
-      m_board[mse.m_x][mse.m_y] = opponent;
-    }
+  // Undo the move.  Start by unturning the turned pieces.
+  for (int i = number_of_turned; i > 0; i--) {
+    mse = m_squarestack.Pop();
+    m_bc_score.add(opponent, m_bc_board[mse.m_x][mse.m_y]);
+    m_bc_score.sub(color, m_bc_board[mse.m_x][mse.m_y]);
+    m_board[mse.m_x][mse.m_y] = opponent;
+  }
 
+  // Now remove the new piece that we put down.
   m_board[xplay][yplay] = Nobody;
   m_score.sub(color, 1);
   m_bc_score.sub(color, m_bc_board[xplay][yplay]);
 
-  if (number_of_turned < 1 || interrupt()) return ILLEGAL_VALUE;
-  else return retval;
+  // Return a suitable value.
+  if (number_of_turned < 1 || interrupt())
+    return ILLEGAL_VALUE;
+  else
+    return retval;
 }
 
+
+// Generate all legal moves from the current position, and do a search
+// to see the value of them.  This function returns the value of the
+// most valuable move, but not the move itself.
+//
 
 int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
 			ULONG64 opponentbits, ULONG64 colorbits)
 {
   int maxval = -LARGEINT;
 
-  // keep GUI alive
+  // Keep GUI alive by calling the event loop.
   yield();
 
-  ULONG64 null_bits;
+  ULONG64  null_bits;
   null_bits = 0;
 
-  for (int x=1; x<9; x++)
-    {
-      for (int y=1; y<9; y++)
-	if (m_board[x][y] == Nobody &&
-	    (m_neighbor_bits[x][y] & colorbits) != null_bits)
-	  {
-	    int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
-				   colorbits);
+  for (int x = 1; x < 9; x++) {
+    for (int y = 1; y < 9; y++) {
+      if (m_board[x][y] == Nobody 
+	  && (m_neighbor_bits[x][y] & colorbits) != null_bits) {
+	int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
+			       colorbits);
 
-	    if (val != ILLEGAL_VALUE && val > maxval)
-	      {
-		maxval = val;
-		if (maxval > -cutoffval || interrupt()) break;
-	      }
-	  }
-
-      if (maxval > -cutoffval || interrupt()) break;
+	if (val != ILLEGAL_VALUE && val > maxval) {
+	  maxval = val;
+	  if (maxval > -cutoffval || interrupt()) 
+	    break;
+	}
+      }
     }
 
-  if (interrupt()) return -LARGEINT;
+    if (maxval > -cutoffval || interrupt())
+      break;
+  }
+
+  if (interrupt()) 
+    return -LARGEINT;
+
   return maxval;
 }
 
+
+// Calculate a heuristic value for the current position.  If we are at
+// the end of the game, do this by counting the pieces.  Otherwise do
+// it by combining the score using the number of pieces, and the score
+// using the board control values.
+//
 
 int Engine::EvaluatePosition(Color color)
 {
   int retval;
 
-  Color opponent = ::opponent(color);
-  int score_color = m_score.score(color);
-  int score_opponent = m_score.score(opponent);
+  Color  opponent = ::opponent(color);
 
-  if (m_exhaustive) retval = score_color - score_opponent;
-  else
-    {
-      retval = (100-m_coeff) *
-	(m_score.score(color) - m_score.score(opponent)) +
-	m_coeff * BC_WEIGHT *
-	(m_bc_score.score(color)-m_bc_score.score(opponent));
-    }
+  int    score_color    = m_score.score(color);
+  int    score_opponent = m_score.score(opponent);
+
+  if (m_exhaustive)
+    retval = score_color - score_opponent;
+  else {
+    retval = (100-m_coeff) *
+      (m_score.score(color) - m_score.score(opponent)) 
+      + m_coeff * BC_WEIGHT * (m_bc_score.score(color)
+			       - m_bc_score.score(opponent));
+  }
 
   return retval;
 }
 
+
+// Calculate bitmaps for each square, and also for neighbors of each
+// square.
+//
 
 void Engine::SetupBits()
 {
@@ -563,41 +684,51 @@ void Engine::SetupBits()
 
   ULONG64 bits = 1;
 
+  // Store a 64 bit unsigned it with the corresponding bit set for
+  // each square.
   for (int i=1; i < 9; i++)
-    for (int j=1; j < 9; j++)
-      {
-	m_coord_bit[i][j] = bits;
+    for (int j=1; j < 9; j++) {
+      m_coord_bit[i][j] = bits;
 #if !defined(__GNUC__)
-	bits.shl();
+      bits.shl();
 #else
-	bits *= 2;
+      bits *= 2;
 #endif
-      }
+    }
 
+  // Store a bitmap consisting of all neighbors for each square.
   for (int i=1; i < 9; i++)
-    for (int j=1; j < 9; j++)
-      {
-	m_neighbor_bits[i][j] = 0;
+    for (int j=1; j < 9; j++) {
+      m_neighbor_bits[i][j] = 0;
 
-	for (int xinc=-1; xinc<=1; xinc++)
-	  for (int yinc=-1; yinc<=1; yinc++)
-	    if (xinc != 0 || yinc != 0)
-	      if (i + xinc > 0 && i + xinc < 9 && j + yinc > 0 && j + yinc < 9)
-		m_neighbor_bits[i][j] |= m_coord_bit[i + xinc][j + yinc];
-      }
+      for (int xinc=-1; xinc<=1; xinc++)
+	for (int yinc=-1; yinc<=1; yinc++) {
+	  if (xinc != 0 || yinc != 0)
+	    if (i + xinc > 0 && i + xinc < 9 && j + yinc > 0 && j + yinc < 9)
+	      m_neighbor_bits[i][j] |= m_coord_bit[i + xinc][j + yinc];
+	}
+    }
 }
 
+
+// Set up the board control values that will be used in evaluation of
+// the position.
+//
 
 void Engine::SetupBcBoard()
 {
   // JAVA m_bc_board = new int[9][9];
 
   for (int i=1; i < 9; i++)
-    for (int j=1; j < 9; j++)
-      {
-	if (i == 2 || i == 7) m_bc_board[i][j] = -1; else m_bc_board[i][j] = 0;
-	if (j == 2 || j == 7) m_bc_board[i][j] -= 1;
-      }
+    for (int j=1; j < 9; j++) {
+      if (i == 2 || i == 7)
+	m_bc_board[i][j] = -1;
+      else
+	m_bc_board[i][j] = 0;
+
+      if (j == 2 || j == 7)
+	m_bc_board[i][j] -= 1;
+    }
 
   m_bc_board[1][1] = 2;
   m_bc_board[8][1] = 2;
@@ -615,6 +746,9 @@ void Engine::SetupBcBoard()
 }
 
 
+// Calculate the board control score.
+//
+
 int Engine::CalcBcScore(Color color)
 {
   int sum = 0;
@@ -627,6 +761,9 @@ int Engine::CalcBcScore(Color color)
   return sum;
 }
 
+
+// Calculate a bitmap of the occupied squares for a certain color.
+//
 
 ULONG64 Engine::ComputeOccupiedBits(Color color)
 {
