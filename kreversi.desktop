@@ -1,6 +1,5 @@
-# KDE Config File
-[KDE Desktop Entry]
-Exec=kreversi -caption "%c"
+[Desktop Entry]
+Exec=kreversi %i %m -caption "%c"
 Name=Reversi
 Name[eo]=Renverso
 Name[fr]=Othello
@@ -14,6 +13,7 @@ Comment=Play Reversi against the computer
 Comment[ca]=Jugueu Reversi contra l'ordinador
 Comment[cs]=Hraj reversi proti poèítaèi
 Comment[da]=Spil Reversi mod maskinen
+Comment[de]=Spielen Sie Reversi gegen den Rechner
 Comment[eo]=Ludu Renverson kontraý la komputilo
 Comment[es]=Juege al Reversi contra la computadora
 Comment[fi]=Pelaa Reversiä tietokonetta vastaan
