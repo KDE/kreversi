@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
 <kcfg>
-  <kcfgfile name="kreversirc"/>
   <include>kstandarddirs.h</include>
   <include>kglobal.h</include>
+  <kcfgfile name="kreversirc"/>
   <group name="Game">
     <entry name="Grayscale" type="Bool">
       <label>Whether to use a grayscale board instead of colored.</label>
@@ -23,15 +23,15 @@
     </entry>
     <entry name="AnimationSpeed" type="Int">
       <label>The speed of the animations.</label>
+       <default>4</default>
       <min>1</min>
       <max>10</max>
-      <default>4</default>
     </entry>
     <entry name="Zoom" type="Int">
       <label>The zoom factor of the board.</label>
+      <default>100</default>
       <min>10</min>
       <max>300</max>
-      <default>100</default>
     </entry>
     <entry name="CompetitiveGameChoice" type="Bool">
       <label>Whether to play competitively in contrast to casually.</label>
@@ -39,9 +39,9 @@
     </entry>
     <entry name="skill" type="Int">
       <label>The strength of the computer player.</label>
+      <default>1</default>
       <min>1</min>
       <max>7</max>
-      <default>1</default>
     </entry>
     <entry name="BackgroundImageChoice" type="Bool">
       <label>Whether to use a background image.</label>
