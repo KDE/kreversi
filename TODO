@@ -15,10 +15,22 @@ Next
 
 
 * More cleaning / refactoring
-  + class Kreversi is still a bit of a mess.
+  + class Kreversi is still a bit of a mess.  Separate it more		----
+  + Move all handling of possible moves into the BoardView class	----
 
 * Enhancements to the view
-  + Letters A-H and figures 1-8 on the board view.
+  + Letters A-H and figures 1-8 on the board view.			DONE
+  + Show possible moves in the current position				----
+    - Actually show them on the board					done
+    - Create a toggle action to toggle it on/off			--
+    - Bug: the available moves don't get updated if one side has to 	--
+	   pass
+  + Show moves made during the game					DONE
+
+  + Navigate in the list of moves					----
+
+  + Create a new class QReversiGameView that contains the view		----
+    classes currently in kreversi.cpp
 
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.

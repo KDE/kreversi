@@ -18,7 +18,7 @@
 	* kreversi.{h,cpp} (m_movesView): new member
 	(showMove): new slot
 
-	----------------------------------------------------------------
+2005-03-29  Inge Wallin  <inge@lysator.liu.se>
 
 	Implement wish 82519: Label the board with A-H, 1-8
 	* board.cpp (OFFSET): new macro
@@ -47,6 +47,12 @@
 2005-03-28  Inge Wallin  <inge@lysator.liu.se>
 
 	* kreversi.cpp (KReversi): Fix faulty connect().
+
+
+================================================================
+	              KDE 3.4 released
+================================================================
+
 
 2005-02-18  Inge Wallin  <ingwa@dhcp-254-182.lkpg.cendio.se>
 
