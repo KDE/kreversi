@@ -99,11 +99,16 @@
 
 #include "Game.h"
 
+
 Game::Game()
 {
   m_positions[0].constrInit();
   m_movenumber = 0;
 }
+
+
+// Reset the Game to before the first move, i.e. a new game.
+//
 
 void Game::Reset()
 {
@@ -112,22 +117,36 @@ void Game::Reset()
 }
 
 
-bool Game::MakeMove(Move m)
-{
-  if (m.color() == Nobody) return false;
-  if (toMove() != m.color()) return false;
-  if (! m_positions[m_movenumber].moveIsLegal(m)) return false;
+// Make a move in the game, resulting in a new position.
+//
 
-  m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], m);
+bool Game::MakeMove(Move move)
+{
+  // Some sanity checks.
+  if (move.color() == Nobody)   return false;
+  if (toMove() != move.color()) return false;
+
+  // Don't allow illegal moves.
+  if (! m_positions[m_movenumber].moveIsLegal(move))
+    return false;
+
+  // Construct a new position from the previous position and the move.
+  m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], move);
   m_movenumber++;
 
   return true;
 }
 
 
+// Take back the last move.  
+//
+// Note: The removed move is not remembered, so a redo is not possible.
+//
+
 bool Game::TakeBackMove()
 {
-  if (m_movenumber == 0) return false;
+  if (m_movenumber == 0) 
+    return false;
 
   m_movenumber--;
 
@@ -135,11 +154,18 @@ bool Game::TakeBackMove()
 }
 
 
+// Return the color of the square at (x, y)
+//
+
 Color Game::color(uint x, uint y) const
 {
   return m_positions[m_movenumber].color(x, y);
 }
 
+
+// Return the score, i.e. the number of pieces, for color at the
+// current position.
+//
 
 uint Game::score(Color color) const
 {
@@ -147,17 +173,25 @@ uint Game::score(Color color) const
 }
 
 
+// Return the last move made in the game.
+//
+
 Move Game::lastMove() const 
 {
   return m_positions[m_movenumber].lastMove();
 }
 
 
-bool Game::moveIsLegal(Move m) const
+// Return true if the move is legal in the current position.
+//
+
+bool Game::moveIsLegal(Move move) const
 {
-  return m_positions[m_movenumber].moveIsLegal(m);
+  return m_positions[m_movenumber].moveIsLegal(move);
 }
 
+
+// Return true if the color can make a move in the current position.
 
 bool Game::moveIsPossible(Color color) const
 {
@@ -165,11 +199,20 @@ bool Game::moveIsPossible(Color color) const
 }
 
 
+// Return true if any side can make a move in the current position.
+//
+
 bool Game::moveIsAtAllPossible() const
 {
   return m_positions[m_movenumber].moveIsAtAllPossible();
 }
 
+
+// Return the color to move in the current position.  This will be the
+// same color that moved last time if the opponent can't make a move.
+//
+// If no side can move, then return Nobody.
+//
 
 Color Game::toMove() const
 {
@@ -181,27 +224,38 @@ Color Game::toMove() const
 
   if (moveIsPossible(opponent)) return opponent;
   if (moveIsPossible(color))    return color;
+
   return Nobody;
 }
 
 
-bool Game::squareModified(uint x, uint y) const {
-  if(moveNumber() == 0)
+// Return true if the square at (x, y) was changed during the last move.
+//
+
+bool Game::squareModified(uint x, uint y) const 
+{
+  if (moveNumber() == 0)
     return true;
   else
-    return (m_positions[m_movenumber].color(x, y) != m_positions[m_movenumber-1].color(x, y));
+    return (m_positions[m_movenumber].color(x, y) 
+	    != m_positions[m_movenumber - 1].color(x, y));
 }
 
-bool Game::wasTurned(uint x, uint y) const {
-  if(moveNumber() == 0)
+
+// Return true if the piece at square (x, y) was turned during the last move.
+//
+
+bool Game::wasTurned(uint x, uint y) const 
+{
+  if (moveNumber() == 0)
     return false;
   else {
-    Color c1 = m_positions[m_movenumber-1].color(x, y);
+    Color c1 = m_positions[m_movenumber - 1].color(x, y);
     Color c2 = m_positions[m_movenumber].color(x, y);
 
-    if(c1 == Nobody)
+    if (c1 == Nobody)
       return false;
-    else if(c1 == c2)
+    else if (c1 == c2)
       return false;
     else
       return true;

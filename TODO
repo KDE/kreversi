@@ -6,8 +6,8 @@ TODO-list for KREVERSI
    - board.h
    - Engine.cpp
    - Engine.h
-   - Game.cpp
-   - Game.h
+   - Game.cpp							DONE
+   - Game.h							DONE
    - highscores.cpp
    - highscores.h
    - kreversi.cpp

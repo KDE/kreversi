@@ -100,29 +100,33 @@
 #ifndef __GAME__H__
 #define __GAME__H__
 
+
 #include "Score.h"
 #include "Move.h"
 #include "Position.h"
+
 
 class Game {
 public:
   Game();
   
-  void Reset();
-  bool MakeMove(Move m);
-  bool TakeBackMove();
+  void  Reset();
+  bool  MakeMove(Move m);
+  bool  TakeBackMove();
   
-  Color color(uint x, uint y) const;
-  uint score(Color color) const;
-  Move lastMove() const;
-  bool moveIsLegal(Move m) const;
-  bool moveIsPossible(Color color) const;
-  bool moveIsAtAllPossible() const;
-  uint moveNumber() const { return m_movenumber; }
-  //Color whoseTurn() const;
-  Color  toMove() const;	// Instead of whoseTurn()
-  bool squareModified(uint x, uint y) const;
-  bool wasTurned(uint x, uint y) const;
+  Color  color(uint x, uint y) const;
+  uint   score(Color color) const;
+  Move   lastMove() const;
+
+  bool   moveIsLegal(Move m) const;
+  bool   moveIsPossible(Color color) const;
+  bool   moveIsAtAllPossible() const;
+
+  uint   moveNumber() const { return m_movenumber; }
+  Color  toMove() const;
+
+  bool   squareModified(uint x, uint y) const;
+  bool   wasTurned(uint x, uint y) const;
 
 private:
   Position  m_positions[64];

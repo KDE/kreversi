@@ -2,6 +2,7 @@
 
 	Continue the big code cleanup:
 	* SuperEngine.h, SuperEngine.cpp
+	* Game.h Game.cpp
 
 2004-08-14  Inge Wallin  <inge@lysator.liu.se>
 
