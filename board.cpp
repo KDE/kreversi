@@ -332,6 +332,9 @@ void Board::switchSides()
     return;
 
   m_humanColor = opponent(m_humanColor);
+  Prefs::setHumanColor((int) m_humanColor);
+  Prefs::setComputerColor((int) opponent(m_humanColor));
+  Prefs::writeConfig();
   emit score();
   kapp->processEvents();
   computerMakeMove();
@@ -666,7 +669,9 @@ bool Board::loadGame(KConfig *config, bool noupdate)
     return true;
 
   m_humanColor = (Color)config->readNumEntry("WhoseTurn");
-
+  Prefs::setHumanColor((int) m_humanColor);
+  Prefs::setComputerColor((int) opponent(m_humanColor));
+  Prefs::writeConfig();
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));
   setStrength(config->readNumEntry("Strength", 1));
@@ -675,20 +680,15 @@ bool Board::loadGame(KConfig *config, bool noupdate)
 
   if (interrupted())
     doContinue();
-  else {
-    emit turn(Black);
-
-    // Computer makes first move.
-    if (m_humanColor == White)
-      computerMakeMove();
-  }
-
+  //it's always the human's turn to play in a load game as you cannot save a game while playing
+  emit turn(m_humanColor);
   return true;
 }
 
 
 void Board::loadSettings()
 {
+  m_humanColor = (Color) Prefs::humanColor();
   if ( Prefs::grayscale() ) {
     if (chiptype != Grayscale)
       loadChips(Grayscale);

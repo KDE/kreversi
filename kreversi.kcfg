@@ -9,6 +9,14 @@
       <label>Whether to use a grayscale board instead of colored.</label>
       <default>false</default>
     </entry>
+      <entry name="HumanColor" type="Int">
+      <label>The human color.</label>
+      <default>1</default>
+    </entry>
+      <entry name="ComputerColor" type="Int">
+      <label>The computer color.</label>
+      <default>0</default>
+    </entry>
     <entry name="Animation" type="Bool">
       <label>Whether to use animations.</label>
       <default>true</default>

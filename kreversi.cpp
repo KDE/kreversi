@@ -225,6 +225,7 @@ void KReversi::openGame()
 
   if (m_board->loadGame(config))
     Prefs::setSkill(m_board->strength());
+  updateColors();
 }
 
 
