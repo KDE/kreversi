@@ -125,7 +125,7 @@
 #include "Game.h"
 #include "Move.h"
 #include "Score.h"
-#include "qarray.h"
+#include <qarray.h>
 #include <sys/times.h>
 #include "misc.h"
 #include <qbitarray.h>
