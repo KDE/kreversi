@@ -55,15 +55,15 @@ Color opponent(Color color);
 class Score {
 public:
   Score();
-  uint score(Color color) const { return m_score[color]; }
+  uint score(Color color) const     { return m_score[color]; }
   void set(Color color, uint score) { m_score[color] = score; }
-  void inc(Color color) { m_score[color]++; }
-  void dec(Color color) { m_score[color]--; }
-  void add(Color color, uint s) { m_score[color] += s; }
-  void sub(Color color, uint s) { m_score[color] -= s; }
+  void inc(Color color)             { m_score[color]++; }
+  void dec(Color color)             { m_score[color]--; }
+  void add(Color color, uint s)     { m_score[color] += s; }
+  void sub(Color color, uint s)     { m_score[color] -= s; }
   
 private:
-  uint m_score[NbColors];
+  uint  m_score[NbColors];
 };
 
 #endif

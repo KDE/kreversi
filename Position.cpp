@@ -79,7 +79,8 @@
 #include "Position.h"
 #include <stdlib.h>
 
-void Position::constrInit() {
+void Position::constrInit()
+{
   m_score.set(White, 2);
   m_score.set(Black, 2);
 
@@ -91,42 +92,55 @@ void Position::constrInit() {
   m_board[5][5] = White;
   m_board[5][4] = Black;
   m_board[4][5] = Black;
+
+  m_to_move = Black;
 }
 
 void Position::constrCopy(Position &p, Move &m) {
+  // Start by copying the position
   for(uint r = 0; r < 10; r++)
     for(uint c = 0; c < 10; c++)
       m_board[r][c] = p.m_board[r][c];
 
-  m_score = p.m_score;
+  m_to_move = p.m_to_move;
+  m_score   = p.m_score;
 
-  Color color = m.color();
-  Color opponent = ::opponent(color);
+  // Now make the move.
+  Color  color    = m.color();
+  Color  opponent = ::opponent(color);
 
+  // Put the piece on the board
   m_board[m.x()][m.y()] = color;
   m_score.inc(color);
 
+  // Turn pieces.
   for (int xinc=-1; xinc<=1; xinc++)
     for (int yinc=-1; yinc<=1; yinc++)
-      if (xinc != 0 || yinc != 0)
-	{
-      int x, y;
+      if (xinc != 0 || yinc != 0) {
+	int x, y;
 
-      for (x = m.x()+xinc, y = m.y()+yinc; m_board[x][y] == opponent;
-	   x += xinc, y += yinc)
-	;
+	for (x = m.x()+xinc, y = m.y()+yinc; m_board[x][y] == opponent;
+	     x += xinc, y += yinc)
+	  ;
 
-      if (m_board[x][y] == color)
-	for (x -= xinc, y -= yinc; x != m.x() || y != m.y();
-	     x -= xinc, y -= yinc)
-	  {
+	if (m_board[x][y] == color)
+	  for (x -= xinc, y -= yinc; x != m.x() || y != m.y();
+	       x -= xinc, y -= yinc) {
 	    m_board[x][y] = color;
 	    m_score.inc(color);
 	    m_score.dec(opponent);
 	  }
-	}
+      }
 
   m_last_move = m;
+
+  // Set the next color to move.
+  if (moveIsPossible(opponent))
+    m_to_move = opponent;
+  else if (moveIsPossible(color))
+    m_to_move = color;
+  else
+    m_to_move = Nobody;
 }
 
 Position::Position()
@@ -141,18 +155,30 @@ Position::Position(Position &p, Move &m)
 }
 
 
-Color Position::color(uint x, uint y) const {
+Color Position::color(uint x, uint y) const
+{
   return m_board[x][y];
 }
 
-uint Position::score(Color color) const { return m_score.score(color); }
+uint Position::score(Color color) const 
+{
+  return m_score.score(color);
+}
+
+
+// Return TRUE if the move is legal.
+//
+// NOTE: This function does *NOT* test wether the move is done
+//       by the color to move.  That must be checked separately.
+//
 
 bool Position::moveIsLegal(Move m) const
 {
-  if (m_board[m.x()][m.y()] != Nobody) return false;
+  if (m_board[m.x()][m.y()] != Nobody) 
+    return false;
 
-  Color color = m.color();
-  Color opponent = ::opponent(color);
+  Color  color    = m.color();
+  Color  opponent = ::opponent(color);
 
   for (int xinc=-1; xinc<=1; xinc++)
     for (int yinc=-1; yinc<=1; yinc++)

@@ -119,13 +119,14 @@ public:
   bool moveIsPossible(Color color) const;
   bool moveIsAtAllPossible() const;
   uint moveNumber() const { return m_movenumber; }
-  Color whoseTurn() const;
+  //Color whoseTurn() const;
+  Color  toMove() const;	// Instead of whoseTurn()
   bool squareModified(uint x, uint y) const;
   bool wasTurned(uint x, uint y) const;
 
 private:
-  Position m_positions[64];
-  uint m_movenumber;
+  Position  m_positions[64];
+  uint      m_movenumber;
 };
 
 #endif

@@ -122,7 +122,7 @@ void Board::interrupt() {
 }
 
 bool Board::interrupted() const {
-  return ((game->whoseTurn() == computerColor()) && (state() == Ready));
+  return ((game->toMove() == computerColor()) && (state() == Ready));
 }
 
 
@@ -173,7 +173,7 @@ void Board::illegalMove()
 /// handles piece settings
 void Board::fieldClicked(int row, int col) {
   if(state() == Ready) {
-    Color color = game->whoseTurn();
+    Color color = game->toMove();
 
     /// makes a human move
     Move m(col + 1, row + 1, color);
@@ -190,7 +190,7 @@ void Board::fieldClicked(int row, int col) {
 
       updateBoard();
 
-      if(color != game->whoseTurn())
+      if(color != game->toMove())
 	computerMakeMove();
     } else
       illegalMove();
@@ -201,7 +201,7 @@ void Board::fieldClicked(int row, int col) {
 /// makes a computer move
 void Board::computerMakeMove() {
   // check if the computer can move
-  Color color = game->whoseTurn();
+  Color color = game->toMove();
   Color opponent = ::opponent(color);
 
   emit turn(color);
@@ -290,7 +290,7 @@ uint Board::score(Color color) const {
 }
 
 Color Board::whoseTurn() const {
-  return game->whoseTurn();
+  return game->toMove();
 }
 
 void Board::hint() {
@@ -306,7 +306,7 @@ void Board::hint() {
 	if(flash & 1)
 	  drawPiece(m.y() - 1, m.x() - 1, Nobody);
 	else
-	  drawPiece(m.y() - 1, m.x() - 1, game->whoseTurn());
+	  drawPiece(m.y() - 1, m.x() - 1, game->toMove());
 
 	// keep GUI alive while waiting
 	for(int dummy = 0; dummy < 5; dummy++) {

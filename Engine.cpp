@@ -234,7 +234,7 @@ void Engine::yield() {
 Move Engine::computeMove(Game g) {
   m_exhaustive = false;
 
-  Color color = g.whoseTurn();
+  Color color = g.toMove();
 
   if (color == Nobody)
     return Move(-1, -1, Nobody);
@@ -363,7 +363,7 @@ Move Engine::computeMove(Game g) {
 
 Move Engine::ComputeFirstMove(Game g) {
   int r;
-  Color color = g.whoseTurn();
+  Color color = g.toMove();
 
   r = m_random.getLong(4) + 1;
 

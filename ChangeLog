@@ -1,7 +1,13 @@
 2004-08-14  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
 
+	Step 2 in the plan to use KGame from libkdegames:
+	* Code cleaning: Add some comments, reduce complexity, improve
+	indentation 
+	* Add m_to_move to class Position.
+
+
 	Step 1 in the plan to use KGame from libkdegames:
-	* Code cleaning: Change "enum Player" to "enum Color", since that
+	* Code cleaning: Change "enum Player" into "enum Color", since that
 	is really what it describes.
 
 2004-06-29 (1.5) Nicolas Hadacek <hadacek@kde.org>

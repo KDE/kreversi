@@ -127,8 +127,8 @@ private:
   bool isField(int row, int col) const;
 
 private:
-  Engine *engine;
-  Game *game;
+  Engine  *engine;
+  Game    *game;
 
   State _status;
   Color human;

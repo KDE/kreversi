@@ -115,7 +115,7 @@ void Game::Reset()
 bool Game::MakeMove(Move m)
 {
   if (m.color() == Nobody) return false;
-  if (whoseTurn() != m.color()) return false;
+  if (toMove() != m.color()) return false;
   if (! m_positions[m_movenumber].moveIsLegal(m)) return false;
 
   m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], m);
@@ -147,7 +147,10 @@ uint Game::score(Color color) const
 }
 
 
-Move Game::lastMove() const { return m_positions[m_movenumber].lastMove(); }
+Move Game::lastMove() const 
+{
+  return m_positions[m_movenumber].lastMove();
+}
 
 
 bool Game::moveIsLegal(Move m) const
@@ -168,17 +171,19 @@ bool Game::moveIsAtAllPossible() const
 }
 
 
-Color Game::whoseTurn() const
+Color Game::toMove() const
 {
-  if (m_movenumber == 0) return Black;
+  if (m_movenumber == 0)
+    return Black;
 
-  Color color = lastMove().color();
-  Color opponent = ::opponent(color);
+  Color  color    = lastMove().color();
+  Color  opponent = ::opponent(color);
 
   if (moveIsPossible(opponent)) return opponent;
-  if (moveIsPossible(color)) return color;
+  if (moveIsPossible(color))    return color;
   return Nobody;
 }
+
 
 bool Game::squareModified(uint x, uint y) const {
   if(moveNumber() == 0)
