@@ -23,5 +23,5 @@ xdg_apps_DATA = kreversi.desktop
 
 EXTRA_DIST = $(xdg_apps_DATA)
 
-messages:	
-	$(XGETTEXT) $(kreversi_SOURCES) -o $(podir)/kreversi.pot
+messages: rc.cpp
+	$(XGETTEXT) *.cpp -o $(podir)/kreversi.pot
