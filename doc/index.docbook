@@ -1,135 +1,480 @@
-<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN">
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN"[
+  <!ENTITY kappname "&krev;" -- this only *seems* redundant-->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"--change language only here-->
+  <!ENTITY % ents PUBLIC "-//KDE//ENTITIES Documentation V1.0//EN">
+  %ents;
+]>
 
 <book lang="en">
 <bookinfo>
-<title>The KReversi Handbook</title>
+<title>The &kreversi; Handbook</title>
+
 <authorgroup>
+
 <author>
+<firstname>Clay</firstname>
+<surname>Pradarits</surname>
+<affiliation>
+<address><email>gasky@winfire.com</email></address>
+</affiliation>
+</author>
+
+<othercredit role="developer">
 <firstname>Mario</firstname>
 <surname>Weilguni</surname>
-</author>
+<affiliation>
+<address><email>mweilguni@sime.com</email></address></affiliation>
+<contrib>Developer</contrib>
+</othercredit>
+
+<othercredit role="reviewer">
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+<contrib>Reviewer</contrib>
+<affiliation><address><email>
+vampyr@atconnex.net
+</email></address></affiliation>
+</othercredit>
+
 </authorgroup>
-<date>06/06/1998</date>
-<releaseinfo>0.06.05</releaseinfo>
-<abstract>
-<para>This documentation was last updated for kreversi version 0.6.5.
-Please make any comments and additions to the author.</para>
+
+<date>14/11/2000</date>
+<releaseinfo>1.02.01</releaseinfo>
+
+<abstract><para>&kreversi; is a simple one player strategy game.</para>
 </abstract>
+
 <keywordset>
 <keyword>KDE</keyword>
-<keyword>linux</keyword>
+<keyword>kdegames</keyword>
 <keyword>game</keyword>
-<keyword>reversi</keyword>
+<keyword>KReversi</keyword>
 </keywordset>
 </bookinfo>
 
 <chapter id="Introduction">
 <title>Introduction</title>
-<para>Reversi is a simple strategy game that is played by two players. 
-There is only one type of piece - one side of it is black, the other white. If a player captures 
-a piece on the board, that piece is turned and belongs to that player. The winner is the person 
-that has more pieces of his own color on the board and if there are no more moves
-possible.</para>
+
+<sect1 id="what-is-kreversi">
+<title>What is &kreversi;?</title>
+
+<para>&kreversi; is a simple one player strategy game played against the
+computer. The playing field is an 8 by 8 square board divided into 64
+squares. The game piece used is a colored stone - one side of it is red, the
+other blue. If a piece is captured by an opposing player, that piece is turned
+to reveal the color of that player. A winner is declared when one player has
+more pieces of his own color on the board and if there are no more possible
+moves.</para>
+
+</sect1>
+
 <sect1 id="object-of-the-game">
 <title>Object of the game</title>
-<para>The object of the game is to have the majority of your color discs on the board at the end of the game.</para>
-</sect1>
-<sect1 id="a-minute-to-learn">
-<title>A Minute to Learn</title>
-<para>A move consists of "outflanking" your opponent's disc(s), then flipping the 
-outflanked disc(s) to your color.</para>
-<para>To outflank means to place a disc on the board so that your opponent's row (or rows) of 
-disc(s) is bordered at each end by a disc of your color. </para>
-</sect1>
-</chapter>
-<chapter id="Rulesofthegame">
-<title>Rules of the game</title>
-<para><itemizedlist>
-<listitem>
-<para>Black always moves first.</para>
-</listitem>
-<listitem>
-<para>If on your turn you cannot outflank and flip at least one opposing disc, your turn is 
-forfeited and your opponent moves again. However, if a move is available to you, 
-you may not forfeit your turn.</para>
-</listitem>
-<listitem>
-<para>A disc may outflank any number of discs in one or more rows in any number of 
-directions at the same time - horizontally, vertically or diagonally. 
-(A row is defined as one or more discs in a continuous straight line). </para>
-</listitem>
-<listitem>
-<para>You may not skip over your own color disc to outflank an opposing disc.</para>
-</listitem>
-<listitem>
-<para>Discs may only be outflanked as a direct result of a move and must fall 
-in the direct line of the disc placed down.</para>
-</listitem>
-<listitem>
-<para>All discs outflanked in any one move must be flipped, even if it is to the 
-player's advantage not to flip them.</para>
-</listitem>
-<listitem>
-<para>A player who flips a disc which should not have been turned may correct the 
-mistake as long as the opponent has not made a subsequent move. If the opponent has 
-already moved, it is too late to change and the disc(s) remain as is.</para>
-</listitem>
-<listitem>
-<para>Once a disc is placed on a square, it can never be moved to another square later in the game.</para>
-</listitem>
-<listitem>
-<para>If a player runs out of discs, but still has an opportunity to outflank an opposing 
-disc on his or her turn, the opponent must give the player a disc to use. 
-(This can happen as many times as the player needs and can use a disc).</para>
-</listitem>
-<listitem>
-<para>When it is no longer possible for either player to move, the game is over. 
-Discs are counted and the player with the majority of his or her color disc's on 
-the board is the winner. </para>
-</listitem>
-</itemizedlist>
 
-<emphasis remap="bf">NOTE</emphasis>: It is possible for a game to end before all 64 squares are filled.</para>
+<para>The object of the game is to control the majority of squares on the
+board.</para>
+
+</sect1>
 </chapter>
-<chapter id="StrategyHints">
-<title>Strategy Hints</title>
-<para><itemizedlist>
-<listitem>
-<para>Try to put pieces on the edges whenever possible. Your opponent can not outflank these pieces. </para>
-</listitem>
-<listitem>
-<para>Avoid putting pieces on one of the three neighbor fields of an corner unless 
-you are absolutly sure that your opponent will not be able to put a piece on an corner.</para>
-</listitem>
-<listitem>
-<para>Sometimes it is better to offer some pieces to your opponent. </para>
-</listitem>
-<listitem>
+
+<chapter id="Installation">
+<title>Installation</title>
+
+<para>&kreversi; is part of the KDE project <ulink
+url="http://www.kde.org">http://www.kde.org</ulink>.  &kreversi; can be found in
+the kdegames package on <ulink
+url="ftp://ftp.kde.org/pub/kde/">ftp://ftp.kde.org/pub/kde/</ulink>, the main
+ftp site of the KDE project. </para>
+
+<sect1 id="compilation-and-installation">
+<title>Compilation and Installation</title>
+
+<para>To compile and install &kreversi; on your system, type the
+following in the base directory of the KDE distribution:</para>
+<screen width="40">
+<prompt>%</prompt> <userinput><command>./configure</command></userinput>
+<prompt>%</prompt> <userinput><command>make</command></userinput>
+<prompt>%</prompt> <userinput><command>make</command> <option>install</option></userinput></screen>
+
+<para>Since &kreversi; uses <application>autoconf</application> and
+<application>automake</application> you should have no trouble compiling
+it. Should you run into problems please report them to the KDE mailing
+lists.</para>
+ 
+</sect1>
+</chapter>
+
+<chapter id="Playing">
+<title>Playing</title>
+
+<sect1 id="basics">                 
+<title>Basics</title>
+
+<para>A move consists  of outflanking your opponents disc(s),  then flipping the
+outflanked disc(s)  to reveal  your color.  A move is  performed by  placing the
+mouse pointer over the desired square then &LMB; click.</para> 
+
+<para>To outflank means to place a disc on the board so that your opponent's
+row(s) of disc(s) is bordered at each end by a disc of your color. A row may be
+made up of one or more discs.</para>
+
+<para>The game starts with each player having two discs automatically placed
+in the center four squares of the board in the following pattern:</para>
+
+<screenshot>
+<screeninfo>&kreversi; opening position</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="kreversi1.png" format="PNG"></imageobject>
+<textobject><phrase>&kreversi; opening position</phrase></textobject>
+<caption><para>Board Layout</para></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><interface>Menu Bar</interface></term>
+<listitem><para>The <interface>Menu Bar</interface> contains four choices of
+drop-down menus. These are <link linkend="file-menu">File</link>, <link
+linkend="game-menu">Game</link>, <link linkend="settings-menu">Setting</link>,
+and <link linkend="help-menu">Help</link>. &LMB; click or <keycombo
+action="simul"><keycap>Alt</keycap><keycap>the underlined letter</keycap></keycombo> to
+show the drop-down menu.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><interface>Tool Menu</interface></term>
+<listitem><para>Provides the player with icon shortcuts for commonly used
+actions. These are <guiicon>Stop Thinking</guiicon>, <guiicon>Undo
+Move</guiicon>, <guiicon>Shrink Board</guiicon>, <guiicon>Enlarge
+Board</guiicon>, <guiicon>Get Hint</guiicon>, and <guiicon>Get
+Help</guiicon>. Place the mouse pointer over any of these icons and &LMB; click
+to activate.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><interface>Game Board</interface></term>
+<listitem><para>The game board consists of a 8 by 8 square board divided into 
+64 squares.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><interface>Status Bar</interface></term>
+<listitem><para>The status bar contains useful information 
+such as whose turn it is, whicn color represents each player and the number of 
+squares each player controls on the board.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
+<sect1 id="Rules">
+<title>Rules</title>
+
+<para>Blue always moves first.</para>
+
+<para>If on your turn you cannot outflank and flip at least one opposing disc,
+your turn is forfeited and your opponent moves again. However, if a move is 
+available to you, you may not forfeit your turn.</para>
+
+<para>A disc may outflank any number of discs in one or more rows in any number
+of directions at the same time - horizontally, vertically or diagonally. A row
+is defined as one or more discs in a continuous straight line. </para>
+
+<para>You may not skip over your own color disc to outflank an opposing
+disc.</para>
+
+<para>Discs may only be outflanked as a direct result of a move and must fall in
+the direct line of the disc placed down.</para>
+
+<para>All discs outflanked in any one move must be flipped, even if it is to the
+player's advantage not to flip them.</para>
+
+<para>Once a disc is placed on a square, it can never be moved to another square
+later in the game.</para>
+
+<para>When it is no longer possible for either player to move, the game is
+over. Discs are then counted and the player with the majority of his or her
+color discs on the board is declared the winner.</para>
+
+<note><para>It is possible for a game to end before all 64 squares are
+filled.</para></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title>Tips</title>
+
+<para>Try to place pieces on the edges whenever possible. Your opponent cannot
+outflank these pieces.</para>
+
+<para>Avoid placing pieces on one of the three neighbor fields of a corner
+unless you are absolutely sure that your opponent will not be able to put a
+piece on a corner.</para>
+
+<para>Sometimes it is better to offer some pieces to your opponent</para>
+
 <para>Try to put pieces on fields which prevent your opponent from moving.</para>
-</listitem>
-<listitem>
-<para>Try to force your opponent to put a piece in a neighbor field of an corner. </para>
-</listitem>
-</itemizedlist>
-</para>
+
+<para>Try to force your opponent to put a piece in a neighboring field of a
+corner.</para>
+
+</sect1>
+
 </chapter>
-<chapter id="Epilogue">
-<title>Epilogue</title>
-<sect1 id="developers">
-<title>Developers</title>
-<para><literal remap="tt">Mario Weilguni</literal></para>
-<para><literal remap="tt">Mats Luthman</literal> - Designer of the move engine</para>
+
+<chapter id="user-interface">
+<title>User Interface</title>
+
+<sect1 id="file-menu">
+<title><guimenu>File</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>N</keycap></keycombo></shortcut>
+<guimenu><accel>F</accel>ile</guimenu><guimenuitem><accel>N</accel>ew Game</guimenuitem></menuchoice></term>
+<listitem><para><action>Starts a new game.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>L</keycap></keycombo></shortcut>
+<guimenu><accel>F</accel>ile</guimenu><guimenuitem><accel>L</accel>oad Game</guimenuitem></menuchoice></term>
+<listitem><para><action>Loads a saved game.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>S</keycap></keycombo></shortcut>
+<guimenu><accel>F</accel>ile</guimenu><guimenuitem><accel>S</accel>ave Game</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the current game.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>Q</keycap></keycombo></shortcut>
+<guimenu><accel>F</accel>ile</guimenu><guimenuitem><accel>Q</accel>uit</guimenuitem></menuchoice></term>
+<listitem><para><action>Quits</action> &kreversi;.</para></listitem>
+</varlistentry>
+</variablelist>
 </sect1>
-<sect1 id="authors">
-<title>Authors</title>
-<para><literal remap="tt">Mario Weilguni</literal></para>
-<para><literal remap="tt"><ulink url="mailto:rwilliams@kde.org">Robert Williams</ulink></literal> - Editor</para>
+
+<sect1 id="game-menu">
+<title><guimenu>Game</guimenu> menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><guimenu><accel>G</accel>ame</guimenu><guimenuitem>Get 
+<accel>h</accel>int</guimenuitem></menuchoice></term>
+<listitem><para><action>The computer will provide a hint for your next 
+move.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycap>Esc</keycap></shortcut>
+<guimenu><accel>G</accel>ame</guimenu><guimenuitem><accel>S</accel>top
+thinking</guimenuitem></menuchoice></term>
+<listitem><para><action>Stops the computer's depth search, then you choose the 
+computer's next move.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>G</accel>ame</guimenu>
+<guimenuitem><accel>C</accel>ontinue</guimenuitem></menuchoice></term>
+<listitem><para><action>Continues play.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>U</keycap></keycombo></shortcut>
+<guimenu><accel>G</accel>ame</guimenu><guimenuitem><accel>U</accel>ndo
+Move</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes your last move as well as the computer's last 
+move from the board.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>G</accel>ame</guimenu><guimenuitem>Switch 
+Si<accel>d</accel>es</guimenuitem></menuchoice></term>
+<listitem><para><action>Will make you the opposite color.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>G</accel>ame</guimenu><guimenuitem>Hall of 
+<accel>F</accel>ame...</guimenuitem></menuchoice></term>
+<listitem><para><action>A new window will appear with a list of the top ten 
+scores.</action></para></listitem>
+</varlistentry>
+</variablelist>
+
 </sect1>
-<sect1 id="copyright">
-<title>Copyright</title>
-<para>kreversi is released under the GPL License.</para>
+
+<sect1 id="settings-menu">
+<title><guimenu>Settings</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><shortcut><keycombo
+action="simul"><keycap>Ctrl</keycap><keycap>1-7</keycap></keycombo></shortcut>
+<guimenu><accel>S</accel>ettings</guimenu>
+<guisubmenu>Skill</guisubmenu></menuchoice></term>
+<listitem><para><action>Sets the difficulty</action> from
+<guimenuitem>1</guimenuitem>, being the easiest, to
+<guimenuitem>7</guimenuitem>, being the most difficult.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>-</keycap></keycombo></shortcut>
+<guimenu><accel>S</accel>ettings</guimenu><guimenuitem><accel>S</accel>hrink 
+board</guimenuitem></menuchoice></term>
+<listitem><para><action>Reduces the game board by twenty percent.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Ctrl</keycap><keycap>+</keycap></keycombo></shortcut>
+<guimenu><accel>S</accel>ettings</guimenu><guimenuitem><accel>E</accel>nlarge 
+board</guimenuitem></menuchoice></term>
+<listitem><para><action>Enlarges the game board by twenty percent.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>S</accel>ettings</guimenu>
+<guisubmenu>Set Size</guisubmenu></menuchoice></term>
+<listitem><para><action>Allows you to shrink or enlarge the game
+board.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>S</accel>ettings</guimenu>
+<guimenuitem>Select <accel>b</accel>ackground
+color...</guimenuitem></menuchoice></term>
+<listitem><para><action>Allows you to change the background
+color.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>S</accel>ettings</guimenu>
+<guisubmenu>Select background image</guisubmenu></menuchoice></term>
+<listitem><para><action>Allows you to select a background image.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>S</accel>ettings</guimenu>
+<guimenuitem><accel>G</accel>rayscale</guimenuitem></menuchoice></term>
+<listitem><para><action>Sets the color settings to grayscale.</action>
+</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><guimenu><accel>S</accel>ettings</guimenu>
+<guimenuitem><accel>A</accel>nimations</guimenuitem></menuchoice></term>
+<listitem><para><action>Animates the discs as their being flipped.</action>
+</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><guimenu><accel>S</accel>ettings</guimenu>
+<guisubmenu>Animation Speed</guisubmenu></menuchoice></term>
+<listitem><para><action>Allows you to set the animation
+speed,</action> <guimenuitem>1</guimenuitem> being the fastest and
+<guimenuitem>10</guimenuitem> being the slowest.</para></listitem>
+</varlistentry>
+</variablelist>
+
 </sect1>
+
+<sect1 id="help-menu">
+<title><guimenu>Help</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><shortcut><keycap>F1</keycap></shortcut>
+<guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem><accel>C</accel>ontents</guimenuitem></menuchoice></term>
+<listitem><para><action>Displays the help documentation</action> for &kreversi;
+(this document.)</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><shortcut><keycombo 
+action="simul"><keycap>Shift</keycap><keycap>F1</keycap></keycombo></shortcut>
+<guimenu><accel>H</accel>elp</guimenu><guimenuitem>What's 
+<accel>T</accel>his</guimenuitem></menuchoice></term>
+<listitem><para>When the mouse pointer is placed over an item and &LMB; 
+clicked, a <action>help window will open explaining the item's function.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice><guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem><accel>R</accel>eport Bug</guimenuitem></menuchoice></term>
+<listitem><para><action>Report a bug to the author.</action>
+</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><guimenu><accel>H</accel>elp</guimenu>
+<guimenuitem><accel>A</accel>bout KReversi</guimenuitem></menuchoice></term>
+<listitem><para><action>Displays author and version information.</action>
+</para></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice><guimenu><accel>H</accel>elp</guimenu><guimenuitem>About 
+<accel>K</accel>DE</guimenuitem></menuchoice></term>
+<listitem><para><action>Displays information about the KDE version.</action>
+</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect1>
+
 </chapter>
+
+<chapter id="credits-and-license">
+<title>Credits and License</title>
+
+<para>Program Copyright 1998-2000 Mario Weilguni</para>
+<para>Mats Luthman - Designer of the move engine.</para>
+
+<para>Original documentation by Mario Weilguni</para>
+<para>Edited by Robert Williams</para>
+
+<para>Documentation re-written and updated for KDE 2.0 by Clay Pradarits
+<email>gasky@winfire.com</email></para>
+
+&underFDL;
+&underGPL;
+</chapter>
+&kdedocindex;
 </book>
 <!--
 Local Variables:
@@ -138,3 +483,11 @@ sgml-omittag: nil
 sgml-shorttag: t
 End:
 -->
+
+
+
+
+
+
+
+
