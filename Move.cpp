@@ -49,12 +49,12 @@
 
 #include "Move.h"
 
-Move::Move(Move &m) 
+Move::Move(const Move &m) 
 { 
   copy(m);
 }
 
-void Move::copy(Move &m) {
+void Move::copy(const Move &m) {
   m_x = m.m_x; 
   m_y = m.m_y; 
   m_player = m.m_player; 

@@ -56,9 +56,9 @@ class Move
 {
 public:
   Move() { m_x = -1; m_y = -1; m_player = -1; }
-  Move(Move &m);
+  Move(const Move &m);
   Move(int x, int y, int player);
-  void copy(Move &m);
+  void copy(const Move &m);
 
   int GetX();
   int GetY();
