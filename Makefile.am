@@ -11,6 +11,9 @@ kreversi_SOURCES = main.cpp kreversi.cpp board.cpp Game.cpp \
 
 METASOURCES =	AUTO
 
+rcdir = $(kde_datadir)/kreversi
+rc_DATA = kreversiui.rc
+
 noinst_HEADERS = Engine.h Game.h kreversi.h Move.h board.h Position.h \
 	playsound.h Score.h version.h SuperEngine.h           
 
