@@ -1,3 +1,14 @@
+2004-09-26  Inge Wallin  <inge@lysator.liu.se>
+
+	Backport of fix for bug 89829: KReversi: When you save a game, the
+	color for Human and Computer is not saved
+	* board.cpp (Board::saveGame): Save m_humanColor as HumanColor.  
+	* (Board::loadGame): Fix loading of m_humanColor.
+	* Remove(!) saving of the side to move since this is implicit
+	anyway.
+	* (Board::loadgame): Fix emit of signal turn, and the condition to
+	call computerMakeMove().
+
 2004-06-29 (1.5) Nicolas Hadacek <hadacek@kde.org>
   * use KZoomMainWindow
 

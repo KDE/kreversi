@@ -457,12 +457,20 @@ void Board::setColor(const QColor &c) {
   setEraseColor(c);
 }
 
-// saves the game. Only one game at a time can be saved
+// Saves the game in the config file.
+//
+// Only one game at a time can be saved.
+//
+
 void Board::saveGame(KConfig *config) {
   interrupt(); // stop thinking
   config->writeEntry("NumberOfMoves", moveNumber());
   config->writeEntry("State", state());
   config->writeEntry("Strength", strength());
+
+  // Write the moves of the game to the config object.  This object
+  // saves itself all at once so we don't have to write the moves
+  // to the file ourselves.
   for(uint i = moveNumber(); i > 0; i--) {
     Move m = game->lastMove();
     game->TakeBackMove();
@@ -472,13 +480,11 @@ void Board::saveGame(KConfig *config) {
     config->writeEntry(idx, s);
   }
 
-  // save whose turn it is
-  config->writeEntry("WhoseTurn", (int)human);
+  // Save the color of the human player .
+  config->writeEntry("HumanColor",  (int) human);
   config->sync();
 
   // all moves must be redone
-  
-  
   loadGame(config, TRUE);
   doContinue(); // continue possible move
 }
@@ -502,10 +508,11 @@ bool Board::loadGame(KConfig *config, bool noupdate) {
     game->MakeMove(m);
   }
 
+  human = (Player) config->readNumEntry("HumanColor");
+
+
   if(noupdate)
     return true;
-
-  human = (Player)config->readNumEntry("WhoseTurn");
 
   updateBoard(TRUE);
   setState(State(config->readNumEntry("State")));
@@ -514,9 +521,9 @@ bool Board::loadGame(KConfig *config, bool noupdate) {
   if(interrupted())
     doContinue();
   else {
-    emit turn(Black);
+    emit turn(whoseTurn());
     // computer makes first move
-    if(human == White)
+    if(computerPlayer() == whoseTurn())
       computerMakeMove();
   }
   return true;
