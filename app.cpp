@@ -838,13 +838,6 @@ void App::writeHighscore() {
   conf->setGroup(grp);
 }
 
-int MAX(int a, int b) {
-  if(a > b)
-    return a;
-  else
-    return b;
-}
-
 void App::showHighscore(int focusitem) {
   // this may look a little bit confusing...
   QDialog *dlg = new QDialog(this, "hall_of_fame", TRUE);
