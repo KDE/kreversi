@@ -435,7 +435,7 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
   col = col + dx;
   while(isField(row, col)) {
     if(g.wasTurned(col+1, row+1)) {
-      playSound(KGlobal::dirs()->findResource("sound", "reversi-click.wav"));
+      playSound("reversi-click.wav");
       rotateChip(row, col);
       soundSync();
    } else

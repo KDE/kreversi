@@ -678,7 +678,7 @@ void App::slotGameEnded(int color) {
     b->getScore(loser, winner);
   
   if(color == Score::NOBODY) {
-    playSound(KGlobal::dirs()->findResource("sound", "reversi-drawn.wav"));
+    playSound("reversi-drawn.wav");
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
     QMessageBox::information(this, i18n("Game ended"), s, i18n("OK"));
   } else if(b->humanIs() == color) {
@@ -689,7 +689,7 @@ void App::slotGameEnded(int color) {
                  (st - (ID_O2 - ID_OBASE) + 1) / (ID_O8 - ID_O2 + 1) * 
                  100.0;
 
-    playSound(KGlobal::dirs()->findResource("sound", "reversi-won.wav"));
+    playSound("reversi-won.wav");
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%%")
 	      .arg(winner).arg(loser).arg(score,1);
     QMessageBox::information(this, i18n("Game ended"), s, i18n("OK"));
@@ -709,7 +709,7 @@ void App::slotGameEnded(int color) {
       showHighscore(rank);
     }
   } else {
-    playSound(KGlobal::dirs()->findResource("sound", "reversi-lost.wav"));
+    playSound("reversi-lost.wav");
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
 	      .arg(loser).arg(winner);
     QMessageBox::information(this, i18n("Game ended"), s, i18n("OK"));
@@ -754,7 +754,7 @@ void App::slotIllegalMove() {
   if(!audioOK())
     kapp->beep();
   else
-    playSound(KGlobal::dirs()->findResource("sound", "reversi-illegalmove.wav"));
+    playSound("reversi-illegalmove.wav");
 }
 
 
@@ -991,7 +991,7 @@ void App::showHighscore(int focusitem) {
   tl->activate();
   tl->freeze();
 
-  playSound(KGlobal::dirs()->findResource("sound", "reversi-hof.wav"));
+  playSound("reversi-hof.wav");
   dlg->exec();
   delete dlg;
 }

@@ -1,4 +1,4 @@
-/* Yo Emacs, this -*- C++ -*-
+/* Yo Emacs, this -*- C++ -*-ud
  *******************************************************************
  *******************************************************************
  *
@@ -39,51 +39,31 @@
 #include "playsound.h"
 #include <stdlib.h>
 #include <kapp.h>
+#include <kstddirs.h>
 
-QString SOUNDDIR;
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
-#ifdef HAVE_MEDIATOOL
 
-KAudio *audio = 0;
+bool audio = 0;
+
 
 bool initAudio() {
-  if(audio == 0) {
-    audio = new KAudio();
-
-    if(audio == 0)
-      return FALSE;
-
-    if(audio->serverStatus() != 0) {
-      audio = 0;
-      return FALSE;
-    }
-
+    audio = true;
     return TRUE;
-  } else
-    return FALSE;
 }
 
 bool playSound(const char *s) {
-  if(!audio)
-    return FALSE;
-  
   // look in SOUNDDIR
-  if(audio->play(SOUNDDIR + s)) {
+ 
 
-    return TRUE;
-  }
-    
-  return FALSE;
+  KAudioPlayer::play(locate("data", QString("kreversi/sounds/")+s));
+  return TRUE;
 }
 
 bool soundSync() {
-//   if(audio)
-//     audio->sync();
-
   return (bool)(audio != 0);
 }
 
@@ -92,12 +72,8 @@ bool audioOK() {
 }
 
 bool doneAudio() {
-  if(audio) {
-    delete audio;
     audio = 0;
     return TRUE;
-  } else
-    return FALSE;
 }
 
 bool syncPlaySound(const char *s) {
@@ -105,14 +81,3 @@ bool syncPlaySound(const char *s) {
   return playSound(s);
 }
 
-#else
-bool initAudio() {return FALSE;}
-bool doneAudio() {return FALSE;}
-bool playSound(const char *) {return FALSE;}
-bool syncPlaySound(const char *) {return FALSE;}
-bool soundSync() {return FALSE;}
-bool audioOK() {
-  return FALSE;
-}
-
-#endif

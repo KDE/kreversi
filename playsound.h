@@ -45,14 +45,7 @@
 #include <config.h>
 #endif
 
-// Configure now does not set this #define anymore, as libmediatool
-// is on any KDE system. So I fake it here
-#define HAVE_MEDIATOOL
-
-#ifdef HAVE_MEDIATOOL
-#include <mediatool.h>
-#include <kaudio.h>
-#endif
+#include <kaudioplayer.h>
 
 #include <qglobal.h>
 
