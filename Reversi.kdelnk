@@ -8,4 +8,5 @@ DocPath=Reversi.html
 Comment=Play Reversi against the computer
 Comment[de]=Spiel Reversi gegen den Rechner
 Comment[pl]=Zagraj w Reversi z komputerem.
+Comment[fi]=Pelaa Reversiä tietokonetta vastaan
 Terminal=0
