@@ -184,6 +184,8 @@ KReversi::KReversi()
   m_boardView->start();
   showScore();
 
+  slotNewGame();
+
   // Show legal moves for black.
   if (showLegalMovesAction->isChecked()) {
     MoveList  moves = m_krgame->position().generateMoves(Black);
