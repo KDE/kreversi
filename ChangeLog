@@ -1,3 +1,10 @@
+2004-10-11  Inge Wallin  <inge@lysator.liu.se>
+
+	Fix bug 91055 - KReversi: If you start a new game when a game is
+	playing, the user is never asked for confirmation.
+	* kreversi.cpp (slotNewGame): Show a dialog that asks for
+	confirmation from the user.
+
 2004-10-09  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 90203: KReversi: It should be visible when the user

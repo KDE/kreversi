@@ -42,6 +42,7 @@
 #include <qlayout.h>
 
 #include <kapplication.h>
+#include <kdebug.h>
 #include <kconfig.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
@@ -127,6 +128,7 @@ KReversi::KReversi()
   // The game.
   m_krgame     = new KReversiGame();
   cheating     = false;
+  gameOver     = false;
   m_humanColor = Black;
 
   w = new QWidget(this);
@@ -253,9 +255,30 @@ void KReversi::setStrength(uint strength)
 
 void KReversi::slotNewGame()
 {
-  // If we are already playing, treat this as a loss.
-  if ( isPlaying() )
+  // If already playing, ask the player if he wants to abort the old game.
+  if ( isPlaying() ) {
+    KDialogBase *checkDlg = new KDialogBase(i18n("Abort current game?"),
+					    KDialogBase::Yes|KDialogBase::Cancel,
+					    KDialogBase::Cancel);
+    checkDlg->setButtonText(KDialogBase::Yes,    i18n("Abort the old game"));
+    checkDlg->setButtonText(KDialogBase::Cancel, i18n("Continue the old game"));
+
+    QLabel *lbl = new QLabel(i18n("You are already running an unfinished game.\n"
+			      "If you abort the old game to start a new one,\n"
+			      "the old game will be registered as a loss in\n"
+			      "the highscore file.\n\n"
+			      "What do you want to do?\n\n"), checkDlg);
+    checkDlg->setMainWidget(lbl);
+
+    int  dialogResult = checkDlg->exec();
+    delete checkDlg;
+
+    //kdDebug() << "Returned from dialog: " << ok << endl;
+    if (dialogResult == KDialogBase::Cancel)
+      return;
+
     KExtHighscore::submitScore(KExtHighscore::Lost, this);
+  }
 
   gameOver = false;
   cheating = false;
@@ -264,7 +287,6 @@ void KReversi::slotNewGame()
   m_competitiveGame = Prefs::competitiveGameChoice();
   m_lowestStrength  = strength();
   //kdDebug() << "Competitive: " << m_competitiveGame << endl;
-
 
   // Show some data
   setState(Ready);
