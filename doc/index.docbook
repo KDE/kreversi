@@ -1,0 +1,144 @@
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN">
+<book lang="en">
+<bookinfo>
+<title>The KReversi Handbook</title>
+<authorgroup>
+<author>
+<firstname>Mario</firstname>
+<surname>Weilguni</surname>
+</author>
+</authorgroup>
+<date>Version 0.6.5, 6 June 1998</date>
+<releaseinfo><!-- information about this particular version --></releaseinfo>
+<revhistory>
+<revision>
+<revnumber></revnumber>
+<date></date>
+</revision>
+</revhistory>
+<abstract>
+<para>This documentation was last updated for kreversi version 0.6.5. Please make any comments and additions to the author.</para>
+<para>KDE Reversi</para><!-- Merge this with the previous paragraph; it comes from <META NAME="description" CONTENT="..."> --></abstract>
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>linux</keyword>
+<keyword>game</keyword>
+<keyword>reversi</keyword>
+<keyword>othello</keyword>
+</keywordset>
+</bookinfo>
+<chapter id="Introduction">
+<title>Introduction</title>
+<para>Reversi is a simple strategy game that is played by two players. 
+There is only one type of piece - one side of it is black, the other white. If a player captures 
+a piece on the board, that piece is turned and belongs to that player. The winner is the person 
+that has more pieces of his own color on the board and if there are no more moves
+possible.</para>
+<sect1>
+<title>Object of the game</title>
+<para>The object of the game is to have the majority of your color discs on the board at the end of the game.</para>
+</sect1>
+<sect1>
+<title>A Minute to Learn</title>
+<para>A move consists of "outflanking" your opponent's disc(s), then flipping the 
+outflanked disc(s) to your color.</para>
+<para>To outflank means to place a disc on the board so that your opponent's row (or rows) of 
+disc(s) is bordered at each end by a disc of your color. </para>
+</sect1>
+</chapter>
+<chapter id="Rulesofthegame">
+<title>Rules of the game</title>
+<para><itemizedlist>
+<listitem>
+<para>Black always moves first.</para>
+</listitem>
+<listitem>
+<para>If on your turn you cannot outflank and flip at least one opposing disc, your turn is 
+forfeited and your opponent moves again. However, if a move is available to you, 
+you may not forfeit your turn.</para>
+</listitem>
+<listitem>
+<para>A disc may outflank any number of discs in one or more rows in any number of 
+directions at the same time - horizontally, vertically or diagonally. 
+(A row is defined as one or more discs in a continuous straight line). </para>
+</listitem>
+<listitem>
+<para>You may not skip over your own color disc to outflank an opposing disc.</para>
+</listitem>
+<listitem>
+<para>Discs may only be outflanked as a direct result of a move and must fall 
+in the direct line of the disc placed down.</para>
+</listitem>
+<listitem>
+<para>All discs outflanked in any one move must be flipped, even if it is to the 
+player's advantage not to flip them.</para>
+</listitem>
+<listitem>
+<para>A player who flips a disc which should not have been turned may correct the 
+mistake as long as the opponent has not made a subsequent move. If the opponent has 
+already moved, it is too late to change and the disc(s) remain as is.</para>
+</listitem>
+<listitem>
+<para>Once a disc is placed on a square, it can never be moved to another square later in the game.</para>
+</listitem>
+<listitem>
+<para>If a player runs out of discs, but still has an opportunity to outflank an opposing 
+disc on his or her turn, the opponent must give the player a disc to use. 
+(This can happen as many times as the player needs and can use a disc).</para>
+</listitem>
+<listitem>
+<para>When it is no longer possible for either player to move, the game is over. 
+Discs are counted and the player with the majority of his or her color disc's on 
+the board is the winner. </para>
+</listitem>
+</itemizedlist>
+
+<emphasis remap="bf">NOTE</emphasis>: It is possible for a game to end before all 64 squares are filled.</para>
+</chapter>
+<chapter id="StrategyHints">
+<title>Strategy Hints</title>
+<para><itemizedlist>
+<listitem>
+<para>Try to put pieces on the edges whenever possible. Your opponent can not outflank these pieces. </para>
+</listitem>
+<listitem>
+<para>Avoid putting pieces on one of the three neighbor fields of an corner unless 
+you are absolutly sure that your opponent will not be able to put a piece on an corner.</para>
+</listitem>
+<listitem>
+<para>Sometimes it is better to offer some pieces to your opponent. </para>
+</listitem>
+<listitem>
+<para>Try to put pieces on fields which prevent your opponent from moving.</para>
+</listitem>
+<listitem>
+<para>Try to force your opponent to put a piece in a neighbor field of an corner. </para>
+</listitem>
+</itemizedlist>
+</para>
+</chapter>
+<chapter id="Epilogue">
+<title>Epilogue</title>
+<sect1>
+<title>Developers</title>
+<para><literal remap="tt">Mario Weilguni</literal></para>
+<para><literal remap="tt">Mats Luthman</literal> - Designer of the move engine</para>
+</sect1>
+<sect1>
+<title>Authors</title>
+<para><literal remap="tt">Mario Weilguni</literal></para>
+<para><literal remap="tt"><ulink url="mailto:rwilliams@kde.org">Robert Williams</ulink></literal> - Editor</para>
+</sect1>
+<sect1>
+<title>Copyright</title>
+<para>kreversi is released under the GPL License.</para>
+</sect1>
+</chapter>
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+End:
+-->

@@ -1,0 +1,18 @@
+=== LinuxDoc conversion errors ===================
+Mario Weilguni, Mario, , Weilguni, 
+-> Check if any important attributes have been left behind.
+    INPUT                     OUTPUT
+Line Tag                  Line Tag
+  11 `TOC'                   0 `'
+  58 `BF'                    0 `<emphasis remap="bf">'
+! Check and correct manually
+  78 `TT'                    0 `<literal remap="tt">'
+! Check and correct manually
+  80 `TT'                    0 `<literal remap="tt">'
+! Check and correct manually
+  84 `TT'                    0 `<literal remap="tt">'
+! Check and correct manually
+  86 `TT'                    0 `<literal remap="tt">'
+! Check and correct manually
+  86 `HTMLURL'               0 `<ulink>'
+=== NIF conversion errors ========================
