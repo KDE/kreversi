@@ -39,6 +39,8 @@ Next
     - Bug: When turned on, should show last move immediately		done
     - Bug: When turned off, should unshow last move immediately		done
 
+  + Save settings of toggleactions in config file.			----
+
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.
      1. Fix a ReversiGame (formerly known as Game)			DONE
