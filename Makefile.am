@@ -1,7 +1,7 @@
 
 INCLUDES = $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD =   -ljpeg -lkimgio -lmediatool     $(LIB_KDEUI) $(LIBCOMPAT)
+LDADD =   -lkimgio -lmediatool $(LIB_KDEUI) 
 
 bin_PROGRAMS = kreversi
 
