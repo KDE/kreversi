@@ -14,13 +14,9 @@ noinst_HEADERS = Engine.h Game.h app.h Move.h board.h Position.h \
 
 SUBDIRS = . pics sounds icons
 
-applnk_DATA = kreversi.desktop
-applnkdir   = $(kde_appsdir)/Games/Board
+xdg_apps_DATA = kreversi.desktop
 
-EXTRA_DIST = $(applnk_DATA)
+EXTRA_DIST = $(xdg_apps_DATA)
 
 messages:	
 	$(XGETTEXT) $(kreversi_SOURCES) -o $(podir)/kreversi.pot
-
-install-data-local:
-	rm -rf $(DESTDIR)$(kde_appsdir)/Games/kreversi.desktop
