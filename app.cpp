@@ -535,8 +535,8 @@ void App::processEvent(int itemid) {
       if(KColorDialog::getColor(c)) {
 	b->setColor(c);
 	kapp->getConfig()->writeEntry("Background", 1);
-	s.sprintf("%d %d %d", c.red(), c.green(), c.blue());
-	kapp->getConfig()->writeEntry("BackgroundColor", (const char *)s);
+	s = QString("%1 %2 %3").arg(c.red()).arg(c.green()).arg(c.blue());
+	kapp->getConfig()->writeEntry("BackgroundColor", s);
       }
     };
     break;
@@ -578,7 +578,7 @@ void App::processEvent(int itemid) {
 	QPixmap pm(backgroundPixmaps.at(itemid - ID_PIXMAP)->filePath());
 	b->setPixmap(pm);
 	kapp->getConfig()->writeEntry("Background", 2);
-	s.sprintf("%d %d %d", c.red(), c.green(), c.blue());
+	s = QString("%1 %2 %3").arg(c.red()).arg(c.green()).arg(c.blue());
 	kapp->getConfig()->writeEntry("BackgroundPixmap",
 				      backgroundPixmaps.at(itemid - ID_PIXMAP)->filePath());
       } else if((itemid >= ID_OSPEED) && (itemid <= ID_OSPEED + 10)) {
@@ -667,9 +667,9 @@ void App::slotGameEnded(int color) {
                  100.0;
 
     playSound("won.wav");
-    s.sprintf(i18n("Congratulations, you have won!\n\nYou     : %d\nComputer: %d\nYour rating %4.1f%%"), 
-	      winner, loser, score);
-    KMsgBox::message(this, i18n("Game ended"), (const char *)s);
+    s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%%")
+	      .arg(winner).arg(loser).arg(score,1);
+    KMsgBox::message(this, i18n("Game ended"), s);
 
     // create highscore entry
     HighScore hs;
@@ -796,7 +796,7 @@ void App::readHighscore() {
   grp = conf->group();
   conf->setGroup("Hall of Fame");
   while ((i < HIGHSCORE_MAX) && !eol) {
-    s.sprintf("Highscore_%d", i);
+    s = QString("Highscore_%1").arg(i);
     if(conf->hasKey(s)) {
       e = conf->readEntry(s);
       highscore.resize(i+1);
@@ -824,11 +824,11 @@ void App::writeHighscore() {
   grp = conf->group();
   conf->setGroup("Hall of Fame");
   for(i = 0; i < (int)highscore.size(); i++) {
-    s.sprintf("Highscore_%d", i);
+    s = QString("Highscore_%1").arg(i);
     HighScore hs = highscore[i];
-    e.sprintf("%s %d %d %d %f %ld", 
-	      hs.name, hs.color, hs.winner,
-	      hs.loser, hs.rating, hs.date);
+    e = QString("%1 %2 %3 %4 %5 %6")
+	      .arg(hs.name).arg(hs.color).arg(hs.winner)
+	      .arg(hs.loser).arg(hs.rating).arg(hs.date);
     conf->writeEntry(s, e);
   }
   
@@ -908,7 +908,7 @@ void App::showHighscore(int focusitem) {
     }
     
     // insert rank    
-    s.sprintf("%d", i+1);
+    s.setNum(i+1);
     e[i][0] = new QLabel(s, dlg);
 
     // insert name
@@ -925,7 +925,7 @@ void App::showHighscore(int focusitem) {
 
     // insert score
     if(i < highscore.size())
-      s.sprintf("%d/%d", hs.winner, hs.loser);
+      s = QString("%1/%2").arg(hs.winner).arg(hs.loser);
     else
       s = "";
     e[i][3] = new QLabel(s, dlg);
