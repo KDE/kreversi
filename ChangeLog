@@ -56,3 +56,5 @@
 
 0.6.1   fixed that newly introduced highscore bug
 	computer continues now if a game was saved while thinking
+
+0.6.2   animation fixed (hope this will be the last change)	

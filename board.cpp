@@ -450,11 +450,11 @@ void Board::rotateChip(int row, int col) {
   // so lets begin at index 1, otherwise it was white
   int color = g.GetSquare(col+1, row+1);
   int from, end, delta;
-  if(color == Score::BLACK) {
+  if(color == Score::WHITE) {
     from = CHIP_BLACK + 2;
     end  = CHIP_WHITE - 2;
     delta = 1;
-  } else if(color == Score::WHITE) {
+  } else if(color == Score::BLACK) {
     from = CHIP_WHITE -2;
     end  = CHIP_BLACK + 2;
     delta = -1;
@@ -491,7 +491,7 @@ void Board::rotateChip(int row, int col) {
   
   QPainter p;
   p.begin(this);
-  p.drawPixmap(p_width * col, p_height * row, saveunder);
+  p.drawPixmap(p_width * col, p_height * row, saveunder);  
   p.flush();
   p.end();
   drawOnePiece(row, col, color);
