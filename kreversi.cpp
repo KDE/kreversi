@@ -273,11 +273,14 @@ void KReversi::loadSettings()
 
 void KReversi::switchSides()
 {
-  int res = KMessageBox::warningContinueCancel(this,
-         i18n("If you switch side, your score will not be added to the highscores."),
-         QString::null, QString::null, "switch_side_warning");
-  if ( res==KMessageBox::Cancel ) return;
-  cheating = true;
+  if (board->moveNumber()!=0)
+  {
+     int res = KMessageBox::warningContinueCancel(this,
+            i18n("If you switch side, your score will not be added to the highscores."),
+            QString::null, QString::null, "switch_side_warning");
+     if ( res==KMessageBox::Cancel ) return;
+     cheating = true;
+  }
   board->switchSides();
   updateColors();
 }
