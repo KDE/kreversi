@@ -411,9 +411,9 @@ void Board::animateChanged(Move m) {
       scaleOneChip(i);
 
   // draw the new piece
-  //playSound("click.wav");
+
   drawOnePiece(m.GetY()-1, m.GetX()-1, m.GetPlayer());
-  //soundSync();
+  soundSync();
 
   for(int dx = -1; dx < 2; dx++)
     for(int dy = -1; dy < 2; dy++)
@@ -616,6 +616,7 @@ void Board::drawOnePiece(int row, int col, int color) {
     p.drawPixmap(px, py, *chip[CHIP_BLACK]);
   else if(color == Score::WHITE)
     p.drawPixmap(px, py, *chip[CHIP_WHITE]);
+  p.flush();
   p.end();  
 }
 

@@ -1,7 +1,7 @@
 Begin
 Title:          kreversi
-Version:        0.6.1
-Entered-date:   101297
+Version:        0.6.2
+Entered-date:   101397
 Description:    Reversi (or Othello) game
 Keywords:       Reversi Game KDE X11 Qt
 Author:         Mario Weilguni <mweilguni@sime.com>
