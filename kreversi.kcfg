@@ -13,16 +13,22 @@
       <label>Whether to use animations.</label>
       <default>true</default>
     </entry>
-    <entry name="AnimationSpeed" type="Int" min="1" max="10">
+    <entry name="AnimationSpeed" type="Int">
       <label>The speed of the animations.</label>
+      <min>1</min>
+      <max>10</max>
       <default>4</default>
     </entry>
-    <entry name="Zoom" type="Int" min="10" max="1000">
+    <entry name="Zoom" type="Int">
       <label>The zoom factor of the board.</label>
+      <min>10</min>
+      <max>1000</max>
       <default>100</default>
     </entry>
-    <entry name="skill" type="Int" min="1" max="7">
+    <entry name="skill" type="Int">
       <label>The strength of the computer player.</label>
+      <min>1</min>
+      <max>7</max>
       <default>1</default>
     </entry>
     <entry name="BackgroundImageChoice" type="Bool">
