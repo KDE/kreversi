@@ -54,7 +54,7 @@
 #include <qtimer.h>
 #include <qlayout.h>
 #include <kseparator.h>
-#include <kwm.h>
+//#include <kwm.h>
 #include <qmessagebox.h>
 #include <kstddirs.h>
 #include <kglobal.h>
