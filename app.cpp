@@ -235,7 +235,7 @@ void App::createMenuBar() {
   gm->insertItem(i18n("&Undo Move"), ID_GUNDO);
   gm->insertItem(i18n("Switch Si&des"), ID_GSWITCH);
   gm->insertSeparator();
-  gm->insertItem(i18n("Hall of &Fame..."), ID_GHIGHSCORES);
+  gm->insertItem(i18n("Hall of &Fame"), ID_GHIGHSCORES);
 
   QPopupMenu *om = new QPopupMenu;
   om->setCheckable(TRUE);
@@ -847,7 +847,7 @@ void App::showHighscore(int focusitem) {
 
   QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
 
-  QLabel *l = new QLabel(i18n("KReversi: Hall Of Fame"), dlg);
+  QLabel *l = new QLabel(i18n("KReversi: Hall of Fame"), dlg);
   QFont f = font();
   f.setPointSize(24);
   f.setBold(TRUE);
@@ -974,7 +974,7 @@ void App::showHighscore(int focusitem) {
 
 
 QString App::getPlayerName() {
-  QDialog *dlg = new QDialog(this, "Hall Of Fame", TRUE);
+  QDialog *dlg = new QDialog(this, "Hall of Fame", TRUE);
 
   QLabel  *l1  = new QLabel(i18n("You've made it into the \"Hall Of Fame\". Type in\nyour name so mankind will always remember\nyour cool rating."), dlg);
   l1->setFixedSize(l1->sizeHint());
