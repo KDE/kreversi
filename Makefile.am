@@ -1,7 +1,7 @@
 
 INCLUDES = $(all_includes)
 LDFLAGS = $(all_libraries) $(KDE_RPATH)
-LDADD =   -lkimgio $(LIB_KDEUI) 
+LDADD =   $(LIB_KSYCOCA) $(LIB_KDEUI) 
 
 bin_PROGRAMS = kreversi
 
