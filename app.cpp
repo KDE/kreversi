@@ -126,7 +126,7 @@ const int SB_TURN       = 4;
 App::App() : KTMainWindow() {
   highscore.resize(0);
   readHighscore();
-  setCaption( kapp->getCaption() );
+  setCaption( kapp->caption() );
 
   // create reversi board
   b = new Board(this);
@@ -163,7 +163,7 @@ App::App() : KTMainWindow() {
 	  this, SLOT(slotBarChanged()));
 #undef BarPosition
 
-  KConfig *conf = kapp->getConfig();
+  KConfig *conf = kapp->config();
   if(conf != 0) {
     if(conf->readNumEntry("Background", -1) != -1) {
       int i = conf->readNumEntry("Background");
@@ -336,7 +336,7 @@ void App::createMenuBar() {
   om->insertItem(i18n("S&ound"), ID_OSOUND);
 #endif
 
-  QPopupMenu *help = kapp->getHelpMenu(true, QString::null);  // Use our own About box
+  QPopupMenu *help = kapp->helpMenu(true, QString::null);  // Use our own About box
   help = new QPopupMenu;
   help->insertItem(i18n("&Contents"), ID_HCONTENTS);
   help->insertSeparator();
@@ -441,22 +441,22 @@ void App::processEvent(int itemid) {
 
   case ID_HCONTENTS:
   {
-      KApplication::getKApplication()->invokeHTMLHelp("", "");  
+      KApplication::kApplication()->invokeHTMLHelp("", "");  
       break;
   }
   case ID_FSAVE:
     {
-      KConfig *config = kapp->getConfig();
+      KConfig *config = kapp->config();
       config->setGroup("Savegame");
       b->saveGame(config);
-      QMessageBox::information(this, kapp->getCaption(),
-			       i18n("Game saved"), i18n("OK"));
+      QMessageBox::information(this, kapp->caption(),
+                               i18n("Game saved"), i18n("OK"));
     }
     break;
 
   case ID_FLOAD: 
     {
-      KConfig *config = kapp->getConfig();
+      KConfig *config = kapp->config();
       config->setGroup("Savegame");
 
       if(b->canLoad(config))
@@ -501,14 +501,14 @@ void App::processEvent(int itemid) {
     b->zoomIn();
     b->setFixedSize(b->sizeHint());
     updateRects();
-    kapp->getConfig()->writeEntry("Zoom", b->getZoom());
+    kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
     
   case ID_VZOOMOUT:
     b->zoomOut();
     b->setFixedSize(b->sizeHint());
     updateRects();
-    kapp->getConfig()->writeEntry("Zoom", b->getZoom());
+    kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
 
   case ID_VZOOM50:
@@ -523,12 +523,12 @@ void App::processEvent(int itemid) {
     b->setZoom(itemid - ID_VZOOMBASE);
     b->setFixedSize(b->sizeHint());
     updateRects();
-    kapp->getConfig()->writeEntry("Zoom", b->getZoom());
+    kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
 
   case ID_OANIMATION:
     b->setAnimationSpeed(-b->animationSpeed());
-    kapp->getConfig()->writeEntry("AnimationSpeed", b->animationSpeed());
+    kapp->config()->writeEntry("AnimationSpeed", b->animationSpeed());
     break;
 
   case ID_OGSCALE:
@@ -543,7 +543,7 @@ void App::processEvent(int itemid) {
 	gs = FALSE;
       }
       menu->setItemChecked(ID_OGSCALE, gs);
-      kapp->getConfig()->writeEntry("Grayscale", gs);
+      kapp->config()->writeEntry("Grayscale", gs);
     }
 
   case ID_O2:
@@ -554,16 +554,16 @@ void App::processEvent(int itemid) {
   case ID_O7:
   case ID_O8:
     b->setStrength(itemid - ID_OBASE);
-    kapp->getConfig()->writeEntry("Skill", itemid - ID_OBASE);
+    kapp->config()->writeEntry("Skill", itemid - ID_OBASE);
     break;
 
   case ID_COLOR:
     {
       if(KColorDialog::getColor(c)) {
 	b->setColor(c);
-	kapp->getConfig()->writeEntry("Background", 1);
+	kapp->config()->writeEntry("Background", 1);
 	s = QString("%1 %2 %3").arg(c.red()).arg(c.green()).arg(c.blue());
-	kapp->getConfig()->writeEntry("BackgroundColor", s);
+	kapp->config()->writeEntry("BackgroundColor", s);
       }
     };
     break;
@@ -577,12 +577,12 @@ void App::processEvent(int itemid) {
 			     i18n("A problem with the sound server "
 				  "occured!\nCannot enable sound "
 				  "support."), i18n("OK"));
-	kapp->getConfig()->writeEntry("Sound", 0);
+	kapp->config()->writeEntry("Sound", 0);
       } else 
-	kapp->getConfig()->writeEntry("Sound", 1);  
+	kapp->config()->writeEntry("Sound", 1);  
     } else {
       doneAudio();
-      kapp->getConfig()->writeEntry("Sound", 0);
+      kapp->config()->writeEntry("Sound", 0);
     }
     break;
 #endif
@@ -608,13 +608,13 @@ void App::processEvent(int itemid) {
       if((itemid >= ID_PIXMAP) && (itemid < ID_PIXMAP + (int)backgroundPixmaps.count())) {
 	QPixmap pm(backgroundPixmaps.at(itemid - ID_PIXMAP)->filePath());
 	b->setPixmap(pm);
-	kapp->getConfig()->writeEntry("Background", 2);
+	kapp->config()->writeEntry("Background", 2);
 	s = QString("%1 %2 %3").arg(c.red()).arg(c.green()).arg(c.blue());
-	kapp->getConfig()->writeEntry("BackgroundPixmap",
+	kapp->config()->writeEntry("BackgroundPixmap",
 				      backgroundPixmaps.at(itemid - ID_PIXMAP)->filePath());
       } else if((itemid >= ID_OSPEED) && (itemid <= ID_OSPEED + 10)) {
 	b->setAnimationSpeed(itemid - ID_OSPEED);
-	kapp->getConfig()->writeEntry("AnimationSpeed", b->animationSpeed());
+	kapp->config()->writeEntry("AnimationSpeed", b->animationSpeed());
       } else
 	QMessageBox::information(this, i18n("Information"), 
 				 i18n("not yet implemented"), i18n("Then do it!"));
@@ -820,7 +820,7 @@ int App::insertHighscore(HighScore &hs) {
 void App::readHighscore() {
   int i;
   QString s, e, grp;
-  KConfig *conf = kapp->getConfig();
+  KConfig *conf = kapp->config();
 
   highscore.resize(0);
   i = 0;
@@ -851,7 +851,7 @@ void App::readHighscore() {
 void App::writeHighscore() {
   int i;
   QString s, e, grp;
-  KConfig *conf = kapp->getConfig();
+  KConfig *conf = kapp->config();
 
   grp = conf->group();
   conf->setGroup("Hall of Fame");
@@ -1057,7 +1057,7 @@ QString App::getPlayerName() {
 }
 
 void App::slotBarChanged() {
-  KConfig *conf = kapp->getConfig();
+  KConfig *conf = kapp->config();
   if(conf) {
     conf->writeEntry("Menubar_Pos", (int)(menu->menuBarPos()));
     conf->writeEntry("Toolbar_1_Pos", (int)(tb->barPos()));
@@ -1066,7 +1066,7 @@ void App::slotBarChanged() {
 
 void App::saveProperties(KConfig *c) {  
   // make sure options are written
-  kapp->getConfig()->sync();
+  kapp->config()->sync();
   b->saveGame(c);
 }
 
