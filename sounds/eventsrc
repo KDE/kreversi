@@ -4,7 +4,7 @@ Comment=KReversi
 Comment[ca]=Reversi
 Comment[is]=Viðsnúningur
 Comment[ru]=Реверси
-Comment[sv]=Kreversi
+Comment[sv]=Othello
 Comment[xx]=xxKReversixx
 
 [click]
@@ -35,7 +35,7 @@ Name[sk]=Kliknutie
 Name[sl]=Klik
 Name[sr]=Кликни
 Name[sr@Latn]=Кликни
-Name[sv]=Klicka
+Name[sv]=Klick
 Name[ta]=சொடுக்கு
 Name[tg]=Ангуштзанӣ
 Name[tr]=Tık
