@@ -1,3 +1,7 @@
+2005-03-28  Inge Wallin  <inge@lysator.liu.se>
+
+	* kreversi.cpp (KReversi): Fix faulty connect().
+
 2005-02-18  Inge Wallin  <ingwa@dhcp-254-182.lkpg.cendio.se>
 
 	* version.h (KREVERSI_VERSION): Bumped version to 1.6
