@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
 
   // locate the picture directory
   PICDIR.setStr(KApplication::kdedir());
-  PICDIR.append("/share/apps/Reversi/pics/");
+  PICDIR.append("/share/apps/kreversi/pics/");
 
   App *app = new App;
 

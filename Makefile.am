@@ -13,7 +13,7 @@ DISTCLEANFILES = $(BUILTSOURCES)
 
 SUBDIRS = html pics sounds
 
-applnk_DATA = Reversi.kdelnk
+applnk_DATA = kreversi.kdelnk
 applnkdir = $(kde_appsdir)/Games
 
 messages:	

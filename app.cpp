@@ -106,8 +106,8 @@ const int ID_PIXMAP	= 550;
 const int ID_OSOUND	= 580;
 const int ID_OGSCALE	= 581;
 
-const int ID_HHELP	= 901;
-const int ID_HABOUT	= 902;
+const int ID_HCONTENTS	= 900;
+const int ID_HABOUT	= 2;
 const int ID_HHINT	= 903;
 const int ID_HRULES	= 904;
 const int ID_HSTRATEGY	= 905;
@@ -125,7 +125,7 @@ App::App() : KTopLevelWidget() {
 
   highscore.resize(0);
   readHighscore();
-  setCaption("KReversi");
+  setCaption( kapp->getCaption() );
 
   // create reversi board
   b = new Board(this);
@@ -325,23 +325,19 @@ void App::createMenuBar() {
   om->insertItem(locale->translate("S&ound"), ID_OSOUND);
 #endif
 
-  QPopupMenu *hm = new QPopupMenu;
-  hm->insertItem(locale->translate("&Contents"), ID_HHELP);
-  hm->insertSeparator();
-  hm->insertItem(locale->translate("About &Qt..."), ID_HABOUTQT);
-  hm->insertItem(locale->translate("&About..."), ID_HABOUT);
+  QPopupMenu *help = kapp->getHelpMenu(true, 0);  // Use our own About box
 
   menu->insertItem(locale->translate("&File"), fm);
   menu->insertItem(locale->translate("&Game"), gm);
   menu->insertItem(locale->translate("&Options"), om);
   menu->insertSeparator();
-  menu->insertItem(locale->translate("&Help"), hm);
+  menu->insertItem(locale->translate("&Help"), help);
   connect(menu, SIGNAL(activated(int)), this, SLOT(processEvent(int)));
 
   menu->setAccel(CTRL+Key_S, ID_FSAVE);
   menu->setAccel(CTRL+Key_L, ID_FLOAD);
   menu->setAccel(CTRL+Key_Q, ID_FQUIT);
-  menu->setAccel(Key_F1, ID_HHELP);
+  menu->setAccel(Key_F1, ID_HCONTENTS);
   menu->setAccel(Key_Escape, ID_GSTOP);
   menu->setAccel(CTRL+Key_N, ID_GNEW);
   menu->setAccel(CTRL+Key_U, ID_GUNDO);
@@ -375,7 +371,7 @@ void App::createToolBar() {
   tb->insertButton(p3, ID_VZOOMOUT, TRUE, locale->translate("Shrink board"));
   tb->insertButton(p2, ID_VZOOMIN, TRUE, locale->translate("Enlarge board"));  
   tb->insertButton(p5, ID_HHINT, TRUE, locale->translate("Get hint"));
-  tb->insertButton(p6, ID_HHELP, TRUE, locale->translate("Get help"));
+  tb->insertButton(p6, ID_HCONTENTS, TRUE, locale->translate("Get help"));
   connect(tb, SIGNAL(clicked(int)), this, SLOT(processEvent(int)));  
 }
 
@@ -413,6 +409,17 @@ void App::processEvent(int itemid) {
   QColor c;
 
   switch(itemid) {
+
+  case 0:
+      break;        // Built in help 
+  case 3:
+      break;        // About KDE  
+
+  case ID_HCONTENTS:
+  {
+      KApplication::getKApplication()->invokeHTMLHelp("", "");  
+      break;
+  }
   case ID_FSAVE:
     {
       KConfig *config = kapp->getConfig();
@@ -560,10 +567,6 @@ void App::processEvent(int itemid) {
     b->hint();
     break;
 
-  case ID_HHELP:
-    KApplication::getKApplication()->invokeHTMLHelp("", "");
-    break;
-
   case ID_HABOUT:
     {
       QDialog *dlg = new About(0);
@@ -571,10 +574,6 @@ void App::processEvent(int itemid) {
       delete dlg;
     }
   break;
-
-  case ID_HABOUTQT:
-    QMessageBox::aboutQt(0);
-    break;
 
   default:
     {

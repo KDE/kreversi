@@ -46,9 +46,9 @@
 
 extern QString PICDIR;
 
-About::About(QWidget *parent) : QDialog(parent, "About KReversi", TRUE) {
+About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
   KLocale *locale = kapp->getLocale();
-  setCaption(locale->translate("About KReversi"));
+  setCaption(locale->translate("About kreversi"));
 
   QPixmap pm((PICDIR + "logo.xpm").data());
   QLabel *logo = new QLabel(this);
@@ -56,7 +56,7 @@ About::About(QWidget *parent) : QDialog(parent, "About KReversi", TRUE) {
   logo->setFixedSize(logo->sizeHint());  
 
   QLabel *l;
-  l = new QLabel("KReversi", this);
+  l = new QLabel("kreversi", this);
   l->setFont(QFont("Times", 25, QFont::Bold));
   l->setFixedSize(l->sizeHint());
 

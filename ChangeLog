@@ -1,3 +1,10 @@
+0.6.6
+    * [Robert Williams]  Changed Reversi.kdelnk to kreversi.kdelnk
+    * [Robert Williams]  Add -caption "%c" to kreversi.kdelnk
+    * [Robert Williams]  Added kapp->getCaption()
+    * [Robert Williams]  getHelpMenu(true, 0) -> Uses own About dialog
+
+
 0.1 : First release
 	
 0.1.1: now pixmaps are installed
