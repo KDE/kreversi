@@ -1,8 +1,8 @@
 /* $Id$
  * A multi column listbox. Requires the Qt widget set.
  */
-#ifndef KTabListBox_h
-#define KTabListBox_h
+#ifndef KOldTabListBox_h
+#define KOldTabListBox_h
 
 #undef del_item
 #include <qdict.h>
@@ -13,22 +13,22 @@
 
 #define MAX_SEP_CHARS 16
 
-class KTabListBoxColumn;
-class KTabListBoxTable;
-class KTabListBoxItem;
-class KTabListBox;
+class KOldTabListBoxColumn;
+class KOldTabListBoxTable;
+class KOldTabListBoxItem;
+class KOldTabListBox;
 
-typedef QDict<QPixmap> KTabListBoxDict;
+typedef QDict<QPixmap> KOldTabListBoxDict;
 
 //--------------------------------------------------
-#define KTabListBoxTableInherited QTableView
-class KTabListBoxTable: public QTableView
+#define KOldTabListBoxTableInherited QTableView
+class KOldTabListBoxTable: public QTableView
 {
   Q_OBJECT;
-  friend KTabListBox;
+  friend KOldTabListBox;
 public:
-  KTabListBoxTable(KTabListBox *owner=0);
-  virtual ~KTabListBoxTable();
+  KOldTabListBoxTable(KOldTabListBox *owner=0);
+  virtual ~KOldTabListBoxTable();
 
 protected:
   virtual void focusInEvent(QFocusEvent*);
@@ -52,19 +52,19 @@ protected:
 
 
 //--------------------------------------------------
-#define KTabListBoxInherited KDNDWidget
-class KTabListBox : public KDNDWidget
+#define KOldTabListBoxInherited KDNDWidget
+class KOldTabListBox : public KDNDWidget
 {
   Q_OBJECT;
-  friend KTabListBoxTable;
-  friend KTabListBoxColumn;
+  friend KOldTabListBoxTable;
+  friend KOldTabListBoxColumn;
 
 public:
   enum ColumnType { TextColumn, PixmapColumn, MixedColumn };
 
-  KTabListBox (QWidget *parent=0, const char *name=0, 
+  KOldTabListBox (QWidget *parent=0, const char *name=0, 
 	       int columns=1, WFlags f=0);
-  virtual ~KTabListBox();
+  virtual ~KOldTabListBox();
 
   uint count (void) const { return numRows(); }
 
@@ -94,7 +94,7 @@ public:
    contents of the whole row is returned, seperated with the current 
    seperation character. In this case the string returned is a 
    temporary string that will change on the next text() call on any
-   KTabListBox object. */
+   KOldTabListBox object. */
   const QString& text(int idx, int col=-1) const;
 
   /** Remove one item from the list. */
@@ -168,7 +168,7 @@ public:
 
   /** For convenient access to the dictionary of pictures that this
    listbox understands. */
-  KTabListBoxDict& dict (void) { return pixDict; }
+  KOldTabListBoxDict& dict (void) { return pixDict; }
 
   void repaint (void) { QWidget::repaint(); lbox.repaint(); }
 
@@ -198,8 +198,8 @@ protected:
   void updateItem (int idx, bool clear = TRUE);
   bool needsUpdate (int id) { return (lbox.autoUpdate() && itemVisible(id)); }
 
-  KTabListBoxItem* getItem (int idx);
-  const KTabListBoxItem* getItem (int idx) const;
+  KOldTabListBoxItem* getItem (int idx);
+  const KOldTabListBoxItem* getItem (int idx) const;
 
   virtual void resizeEvent (QResizeEvent*);
   virtual void paintEvent (QPaintEvent*);
@@ -212,13 +212,13 @@ protected:
   virtual bool prepareForDrag (int col, int row, char** data, int* size, 
 			       int* type);
 
-  KTabListBoxColumn*	colList;
-  KTabListBoxItem*	itemList;
+  KOldTabListBoxColumn*	colList;
+  KOldTabListBoxItem*	itemList;
   int			maxItems, numColumns;
   int			current;
   char			sepChar;
-  KTabListBoxDict	pixDict;
-  KTabListBoxTable	lbox;
+  KOldTabListBoxDict	pixDict;
+  KOldTabListBoxTable	lbox;
   int			labelHeight;
   QPixmap		dndDefaultPixmap;
   int			columnPadding;
@@ -226,24 +226,24 @@ protected:
   int			tabPixels;
 
 private:  // Disabled copy constructor and operator=
-  KTabListBox (const KTabListBox &) {}
-  KTabListBox& operator= (const KTabListBox&) { return *this; }
+  KOldTabListBox (const KOldTabListBox &) {}
+  KOldTabListBox& operator= (const KOldTabListBox&) { return *this; }
 };
 
 
 //--------------------------------------------------
-class KTabListBoxItem
+class KOldTabListBoxItem
 {
 public:
-  KTabListBoxItem(int numColumns=1);
-  virtual ~KTabListBoxItem();
+  KOldTabListBoxItem(int numColumns=1);
+  virtual ~KOldTabListBoxItem();
 
   virtual const QString& text(int column) const { return txt[column]; }
   void setText (int column, const char *text) { txt[column] = text; }
   virtual void setForeground (const QColor& color);
   const QColor& foreground (void) { return fgColor; }
 
-  KTabListBoxItem& operator= (const KTabListBoxItem&);
+  KOldTabListBoxItem& operator= (const KOldTabListBoxItem&);
 
   int marked (void) const { return mark; }
   bool isMarked (void) const { return (mark >= -1); }
@@ -255,46 +255,46 @@ private:
   QColor fgColor;
   int mark;
 
-  friend class KTabListBox;
+  friend class KOldTabListBox;
 };
 
-typedef KTabListBoxItem* KTabListBoxItemPtr;
+typedef KOldTabListBoxItem* KOldTabListBoxItemPtr;
 
 
 //--------------------------------------------------
-class KTabListBoxColumn: public QObject
+class KOldTabListBoxColumn: public QObject
 {
   Q_OBJECT;
 
 public:
-  KTabListBoxColumn (KTabListBox* parent, int w=0);
-  virtual ~KTabListBoxColumn();
+  KOldTabListBoxColumn (KOldTabListBox* parent, int w=0);
+  virtual ~KOldTabListBoxColumn();
 
   int width (void) const { return iwidth; }
   virtual void setWidth (int w);
 
-  virtual void setType (KTabListBox::ColumnType);
-  KTabListBox::ColumnType type (void) const { return colType; }
+  virtual void setType (KOldTabListBox::ColumnType);
+  KOldTabListBox::ColumnType type (void) const { return colType; }
 
   virtual void paintCell (QPainter*, int row, const QString& string, 
 			  bool marked);
   virtual void paint (QPainter*);
 protected:
   int iwidth;
-  KTabListBox::ColumnType colType;
-  KTabListBox* parent;
+  KOldTabListBox::ColumnType colType;
+  KOldTabListBox* parent;
 };
 
 
 
-inline KTabListBoxItem* KTabListBox :: getItem (int idx)
+inline KOldTabListBoxItem* KOldTabListBox :: getItem (int idx)
 {
-  return ((idx>=0 && idx<maxItems) ? &itemList[idx] : (KTabListBoxItem*)NULL);
+  return ((idx>=0 && idx<maxItems) ? &itemList[idx] : (KOldTabListBoxItem*)NULL);
 }
 
-inline const KTabListBoxItem* KTabListBox :: getItem (int idx) const
+inline const KOldTabListBoxItem* KOldTabListBox :: getItem (int idx) const
 {
-  return ((idx>=0 && idx<maxItems) ? &itemList[idx] : (KTabListBoxItem*)NULL);
+  return ((idx>=0 && idx<maxItems) ? &itemList[idx] : (KOldTabListBoxItem*)NULL);
 }
 
-#endif /*KTabListBox_h*/
+#endif /*KOldTabListBox_h*/

@@ -833,7 +833,7 @@ void App::showHighscore(int focusItem = -1) {
 
   // insert listbox
   //QListBox *lb = new QListBox(dlg);
-  KTabListBox *lb = new KTabListBox(dlg);
+  KOldTabListBox *lb = new KOldTabListBox(dlg);
   lb->setNumCols(5);  
   lb->setColumn(0, "Rank");
   lb->setColumn(1, "Name");
