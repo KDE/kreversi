@@ -101,7 +101,7 @@ private:
   KAction *undoAction, *zoomInAction, *zoomOutAction;
   KAction *stopAction, *continueAction;
   KToggleAction *soundAction;
-  StatusWidget *_turn, *_humanStatus, *_computerStatus;
+  StatusWidget *_humanStatus, *_computerStatus;
 
   Board *board;
   bool gameOver;

@@ -1,5 +1,5 @@
 
-sounds_DATA = reversi-click.wav reversi-lost.wav reversi-won.wav
+sounds_DATA = reversi-click.wav reversi-won.wav
 
 soundsdir = $(kde_datadir)/kreversi/sounds
 

@@ -261,8 +261,10 @@ void KReversi::slotTurn(Player player) {
 
   if(player == board->humanPlayer())
     statusBar()->message(i18n("Your turn"));
-  else
+  else if(player == board->computerPlayer())
     statusBar()->message(i18n("Computer's turn"));
+  else
+    statusBar()->clear();
 }
 
 void KReversi::slotStatusChange(Board::State status) {
