@@ -269,6 +269,7 @@ Name[xx]=xxIllegal Movexx
 Name[zh_CN]=无效移动
 Comment=Illegal move
 Comment[bg]=Невалиден ход
+Comment[da]=Ulovligt træk
 Comment[et]=Lubamatu käik
 Comment[nl]=Foutieve zet
 Comment[pt]=Jogada inválida
