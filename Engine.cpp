@@ -129,6 +129,28 @@ inline void SquareStackEntry::setXY(int x, int y) {
   m_y = y; 
 }
 
+#if !defined(__GNUC__)
+
+ULONG64::ULONG64() : QBitArray(64) {
+  fill(0);
+}
+
+ULONG64::ULONG64( unsigned int value ) : QBitArray(64) {
+  fill(0);
+  for(int i = 0; i < 32; i++) {
+    setBit(i, (bool)(value & 1));
+    value >>= 1;
+  }
+}
+
+void ULONG64::shl() {
+  for(int i = 63; i > 0; i--)
+    setBit(i, testBit(i-1));
+  setBit(0, 0);
+}
+
+#endif
+
 
 SquareStackEntry::SquareStackEntry() { 
   setXY(0,0); 
@@ -283,7 +305,8 @@ Move Engine::ComputeMove(Game g) {
 	  (m_neighbor_bits[x][y] & opponentbits) != 0)
 	{
 
-	  int val = ComputeMove2(x, y, player, 1, maxval, playerbits,opponentbits);
+	  int val = ComputeMove2(x, y, player, 1, maxval, 
+				 playerbits, opponentbits);
 
 	  if (val != ILLEGAL_VALUE)
 	    {
@@ -351,7 +374,8 @@ Move Engine::ComputeFirstMove(Game g) {
 
 
 int Engine::ComputeMove2(int xplay, int yplay, int player, int level,
-			 int cutoffval, ULONG64 playerbits, ULONG64 opponentbits)
+			 int cutoffval, ULONG64 playerbits, 
+			 ULONG64 opponentbits)
 {
   int number_of_turned = 0;
   SquareStackEntry mse;
@@ -530,7 +554,11 @@ void Engine::SetupBits()
     for (int j=1; j < 9; j++)
       {
 	m_coord_bit[i][j] = bits;
-	bits *= 2;	
+#if !defined(__GNUC__)
+	bits.shl();
+#else
+	bits *= 2;
+#endif
       }
 
   for (int i=1; i < 9; i++)

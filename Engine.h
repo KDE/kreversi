@@ -128,13 +128,20 @@
 #include "qarray.h"
 #include <sys/times.h>
 #include "misc.h"
+#include <qbitarry.h>
 
 #if defined(__GNUC__)
 #define ULONG64 unsigned long long int
 #else
-#error GNU-C++ is currently required to compile this code. If your machine supports \
-64 bits integers, remove this line in Engine.h and use this integer type here
+class ULONG64 : public QBitArray {
+public:
+  ULONG64();
+  ULONG64( unsigned int );
+  void shl();
+};
 #endif
+
+
 
 class SquareStackEntry
 {
@@ -182,7 +189,7 @@ public:
   Engine(int st, int sd);
   Engine(int st);
   Engine();
-  ~Engine() {};
+  virtual ~Engine() {};
 
   Move ComputeMove(Game g);
   Move ComputeFirstMove(Game g);
