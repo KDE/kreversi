@@ -47,7 +47,7 @@
 #ifdef DODEBUG
 extern void DBG(char *msg, ...);
 #else
-#define DBG(msg, args...) ((void)0)
+inline void DBG(char *, ...) {}
 #endif
 
 #endif
