@@ -90,24 +90,28 @@ private:
   virtual bool  queryExit();
 
 private slots:
-  void  slotScore();
-  void  slotGameEnded(Color);
-  void  slotTurn(Color);
-  void  slotStatusChange(Board::State);
-  void  switchSides();
 
   // Slots for KActions.
-  void  newGame();
-  void  openGame();
-  void  save();
+  void  slotNewGame();
+  void  slotOpenGame();
+  void  slotSave();
+  void  slotHint();
+  void  slotUndo();
+
   void  configureNotifications();
 
   void  showHighScoreDialog();
   void  showSettings();
   void  loadSettings();
 
+  // Slots for the game view.
+  void  slotScore();
+  void  slotGameEnded(Color);
+  void  slotTurn(Color);
+  void  slotStatusChange(Board::State);
+  void  switchSides();
+
 private:
-  KAction  *undoAction;
   KAction  *stopAction;
   KAction  *continueAction;
 

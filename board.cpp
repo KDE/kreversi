@@ -132,36 +132,12 @@ void Board::setAnimationSpeed(uint speed)
 }
 
 
-// Takes back last set of moves
-//
-
-void Board::undo()
-{
-  if (state() != Ready) 
-    return;
-
-  Color last_color = m_game->lastMove().color();
-  while (m_game->moveNumber() != 0
-	 && last_color == m_game->lastMove().color())
-    m_game->TakeBackMove();
-
-  m_game->TakeBackMove();
-  update();
-}
-
-
 // Interrupt thinking of game engine.
 //
 
 void Board::interrupt()
 {
   m_engine->setInterrupt(TRUE);
-}
-
-
-bool Board::interrupted() const 
-{
-  return ((m_game->toMove() == computerColor()) && (state() == Ready));
 }
 
 
@@ -358,61 +334,58 @@ void Board::setStrength(uint st)
 }
 
 
-uint Board::strength() const
+void Board::showHint()
 {
-  return m_engine->strength();
+  Move  move;
+
+  setState(Board::Thinking);
+  move = m_engine->computeMove(*m_game, m_competitiveGame);
+  setState(Board::Hint);
+
+  // Only show a hint if there is a move to show.
+  if (move.x() == -1)
+    return;
+
+  // Blink with a piece at the location where the hint move points.
+  //
+  // The isVisible condition has been added so that when the player
+  // was viewing a hint and quits the game window, the game doesn't
+  // still have to do all this looping and directly ends
+  for (int flash = 0;
+       flash < 100 && state() != Ready && isVisible(); 
+       flash++)
+  {
+    if (flash & 1)
+      drawPiece(move.y() - 1, move.x() - 1, Nobody);
+    else
+      drawPiece(move.y() - 1, move.x() - 1, m_game->toMove());
+
+    // keep GUI alive while waiting
+    for (int dummy = 0; dummy < 5; dummy++) {
+      usleep(HINT_BLINKRATE / 5);
+      qApp->processEvents();
+    }
+  }
+
+  drawPiece(move.y() - 1, move.x() - 1, m_game->color(move.x(), move.y()));
 }
 
 
-uint Board::moveNumber() const
-{
-  return m_game->moveNumber();
-}
+// Takes back last set of moves
+//
 
-
-uint Board::score(Color color) const
-{
-  return m_game->score(color);
-}
-
-
-Color Board::whoseTurn() const
-{
-  return m_game->toMove();
-}
-
-
-void Board::hint()
+void Board::doUndo()
 {
   if (state() != Ready) 
     return;
 
-  setState(Thinking);
-  Move  move = m_engine->computeMove(*m_game, m_competitiveGame);
+  Color last_color = m_game->lastMove().color();
+  while (m_game->moveNumber() != 0
+	 && last_color == m_game->lastMove().color())
+    m_game->TakeBackMove();
 
-  setState(Hint);
-  if (move.x() != -1) {
-    // The isVisible condition has been added so that when the player
-    // was viewing a hint and quits the game window, the game doesn't
-    // still have to do all this looping and directly ends
-    for (int flash = 0;
-	 (flash < 100) && (state() != Ready) && isVisible(); flash++) {
-
-      if (flash & 1)
-	drawPiece(move.y() - 1, move.x() - 1, Nobody);
-      else
-	drawPiece(move.y() - 1, move.x() - 1, m_game->toMove());
-
-      // keep GUI alive while waiting
-      for (int dummy = 0; dummy < 5; dummy++) {
-	usleep(HINT_BLINKRATE / 5);
-	qApp->processEvents();
-      }
-    }
-    drawPiece(move.y() - 1, move.x() - 1, m_game->color(move.x(), move.y()));
-  }
-
-  setState(Ready);
+  m_game->TakeBackMove();
+  update();
 }
 
 

@@ -1,8 +1,30 @@
+2004-09-24  Inge Wallin  <inge@lysator.liu.se>
+
+	Start the work to port KReversi to KGame/Kplayer:
+
+	Transfer the slots for most KActions to kreversi.cpp 
+	* Board::undo() -> KReversi::slotUndo()
+	(Board::doUndo()): Do the real work of undoing.
+	* Board->hint() -> KReversi::slotHint()
+	(Board::showHint): do the actual work of showing the hint.
+
+	Rename some slots for clarity
+	* KReversi::newGame  -> KReversi::slotNewGame
+	* KReversi::openGame -> KReversi::slotOpenGame
+	* KReversi::save     -> KReversi::slotSave
+	
+	Make some trivial functions inline:
+	* Board::whoseTurn()
+	* Board::moveNumber()
+	* Board::score(Color)
+	* Board::interrupted()
+	* Board::strength()
+
 2004-09-23 Anne-Marie Mahfouf <annemarie.mahfouf@free.fr>
 
 	Cleaned some previously left lines of code in board.cpp  
 	Change CustomAdditions=false back in prefs.kcfg to fix compilation
-	Tested Inge fix and found it works well.
+	Tested Inges fix and found it works well.
 	
 2004-09-22  Inge Wallin  <ing@lysator.liu.se>
 

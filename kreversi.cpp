@@ -140,9 +140,9 @@ KReversi::KReversi()
   addWidget(m_board);
 
   // Connect some signals on the board with slots of the application
-  connect(m_board, SIGNAL(score()), this, SLOT(slotScore()));
+  connect(m_board, SIGNAL(score()),        this, SLOT(slotScore()));
   connect(m_board, SIGNAL(gameWon(Color)), this, SLOT(slotGameEnded(Color)));
-  connect(m_board, SIGNAL(turn(Color)), this, SLOT(slotTurn(Color)));
+  connect(m_board, SIGNAL(turn(Color)),    this, SLOT(slotTurn(Color)));
   connect(m_board, SIGNAL(statusChange(Board::State)),
           this, SLOT(slotStatusChange(Board::State)));
 
@@ -173,12 +173,15 @@ void KReversi::createStatusBar()
 void KReversi::createKActions()
 {
   // Standard Game Actions.
-  KStdGameAction::gameNew(this, SLOT(newGame()), actionCollection(), "game_new");
-  KStdGameAction::load(this,  SLOT(openGame()), actionCollection());
-  KStdGameAction::save(this,  SLOT(save()),     actionCollection());
-  KStdGameAction::quit(this,  SLOT(close()),    actionCollection());
-  KStdGameAction::hint(m_board, SLOT(hint()),     actionCollection(), "game_hint");
-  undoAction = KStdGameAction::undo(m_board, SLOT(undo()), actionCollection(), "game_undo");
+  KStdGameAction::gameNew(this, SLOT(slotNewGame()),  actionCollection(), 
+			  "game_new");
+  KStdGameAction::load(this,    SLOT(slotOpenGame()), actionCollection());
+  KStdGameAction::save(this,    SLOT(slotSave()),     actionCollection());
+  KStdGameAction::quit(this,    SLOT(close()),        actionCollection());
+  KStdGameAction::hint(this,    SLOT(slotHint()),     actionCollection(),
+		       "game_hint");
+  KStdGameAction::undo(this,    SLOT(slotUndo()),     actionCollection(),
+		       "game_undo");
 
   // Non-standard Game Actions: Stop, Continue, Switch sides
   stopAction = new KAction(i18n("&Stop Thinking"), "game_stop",
@@ -196,13 +199,13 @@ void KReversi::createKActions()
 
 
 // ----------------------------------------------------------------
-//                              Slots
+//                        Slots for KActions
 
 
 // A slot that is called when the user wants a new game.
 //
 
-void KReversi::newGame()
+void KReversi::slotNewGame()
 {
   // If we are already playing, treat this as a loss.
   if ( isPlaying() )
@@ -220,7 +223,7 @@ void KReversi::newGame()
 // FIXME: Should give a choice to load from an ordinary file (SGF?)
 //
 
-void KReversi::openGame()
+void KReversi::slotOpenGame()
 {
   KConfig *config = kapp->config();
   config->setGroup("Savegame");
@@ -236,7 +239,7 @@ void KReversi::openGame()
 // FIXME: Should give a choice to save as an ordinary file (SGF?)
 //
 
-void KReversi::save()
+void KReversi::slotSave()
 {
   KConfig *config = kapp->config();
   config->setGroup("Savegame");
@@ -244,6 +247,32 @@ void KReversi::save()
 
   KMessageBox::information(this, i18n("Game saved."));
 }
+
+
+void KReversi::slotHint()
+{
+  if (m_board->state() != Board::Ready) 
+    return;
+
+  m_board->showHint();
+  m_board->setState(Board::Ready);
+}
+
+
+// Takes back last set of moves
+//
+
+void KReversi::slotUndo()
+{
+  if (m_board->state() != Board::Ready)
+    return;
+
+  m_board->doUndo();
+}
+
+
+// ----------------------------------------------------------------
+//                   Slots for the game view
 
 
 // Show the number of pieces for each side.

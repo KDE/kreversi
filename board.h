@@ -43,11 +43,11 @@
 #include <qpixmap.h>
 
 #include "Move.h"
+#include "Game.h"
+#include "Engine.h"
 
 
 class KConfig;
-class Engine;
-class Game;
 
 
 // The class Board is the visible Reversi Board widget.
@@ -63,18 +63,27 @@ public:
   Board(QWidget *parent = 0);
   ~Board();
 
+  // Methods that deal with the game.
   void   newGame();
-  Color  whoseTurn() const;
-  Color  humanColor() const    { return m_humanColor; }
-  Color  computerColor() const { return opponent(m_humanColor); }
+  Color  whoseTurn() const        { return m_game->toMove();       }
+  Color  humanColor() const       { return m_humanColor;           }
+  Color  computerColor() const    { return opponent(m_humanColor); }
+  uint   score(Color color) const { return m_game->score(color);   }
+  uint   moveNumber() const       { return m_game->moveNumber();   }
 
-  uint   score(Color) const;
+
+  // Methods that deal with the engine.
   void   setStrength(uint);
-  uint   strength() const;
-  bool   competitive() const   { return m_competitiveGame; }
-  bool   interrupted() const;
+  uint   strength() const         { return m_engine->strength();   }
+  bool   competitive() const      { return m_competitiveGame;      }
+  bool   interrupted() const      { return (m_game->toMove() == computerColor()
+					    && state() == Ready);  }
   
   virtual void adjustSize();
+
+  // Helper functions for actions in the main program.
+  void    showHint();
+  void    doUndo();  
 
   // starts all: emits some signal, so it can't be called from
   // constructor
@@ -87,8 +96,6 @@ public:
   State  state() const { return m_status; }
   void   setState(State);
   void   setAnimationSpeed(uint);
-
-  uint   moveNumber() const;
 
   // Methods for handling images of pieces.
   enum      ChipType { Unloaded, Colored, Grayscale };
@@ -105,8 +112,6 @@ public:
   void    setPixmap(QPixmap &);
 
 public slots:
-  void  undo();
-  void  hint();
   void  interrupt();
   void  doContinue();
   void  switchSides();
