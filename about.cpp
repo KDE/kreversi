@@ -43,6 +43,7 @@
 #include <qpixmap.h>
 #include <kapp.h>
 #include <qlayout.h>
+#include <klocale.h>
 
 extern QString PICDIR;
 
