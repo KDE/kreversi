@@ -319,10 +319,10 @@ Move Engine::ComputeMove(Game g) {
 		{
 		  // Make it so it is easy for us to "miss" something.
 		  // i.e. more relistic.  Also makes m_strength mean more.
+	          int randi = m_random.getLong(7);
 		  if(maxval == -LARGEINT ||
-		   m_random.getLong(number_of_maxval) %
-		      high - ((maxval-val)/2) == 0){
-		    maxval = val;
+                    randi < m_strength ){
+	            maxval = val;
 		    max_x = x;
 		    max_y = y;
 		    number_of_maxval = 1;
