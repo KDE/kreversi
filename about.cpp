@@ -37,6 +37,7 @@
  */
 
 #include "about.h"
+#include "version.h"
 #include <qpushbt.h>
 #include <qlabel.h>
 #include <qpixmap.h>
@@ -62,7 +63,7 @@ About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
 
   QString s;
   s = locale->translate("Version ");
-  s += VERSION_STR;
+  s += KREVERSI_VERSION;
   s += locale->translate("\n(c) 1997 Mario Weilguni <mweilguni@sime.com>\n\n" \
     "This program is free software\npublished under the GNU General\n" \
     "Public License (take a look\ninto help for details)\n\n" \
