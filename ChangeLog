@@ -1,4 +1,10 @@
-2005-02-18  Inge Wallin  <ingwa@dhcp-254-182.lkpg.cendio.se>
+2005-04-01  Inge Wallin  <inge@lysator.liu.se>
+
+	Fix bug 102297: I am playing in KReversi as "expert" but it saves
+	statistics to the "beginner" records
+	* kreversi.h (m_lowestStrength): uint instead of bool
+
+2005-02-18  Inge Wallin  <inge@lysator.liu.se>
 
 	* version.h (KREVERSI_VERSION): Bumped version to 1.6
 
