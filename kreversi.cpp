@@ -102,15 +102,14 @@ KReversi::KReversi()
   top->addWidget(board);
   top->addStretch(1);
 
-  createKActions();
   createStatusBar();
+  createKActions();
 
   connect(board, SIGNAL(score()), this, SLOT(slotScore()));
   connect(board, SIGNAL(gameWon(Player)), this, SLOT(slotGameEnded(Player)));
   connect(board, SIGNAL(turn(Player)), this, SLOT(slotTurn(Player)));
   connect(board, SIGNAL(statusChange(Board::State)),
           this, SLOT(slotStatusChange(Board::State)));
-  setAutoSaveSettings();
 
   loadSettings();
   board->start();
@@ -131,8 +130,6 @@ void KReversi::createKActions() {
   new KAction(i18n("S&witch Sides"), 0,
 	0, this, SLOT(switchSides()), actionCollection(), "game_switch_sides");
 
-  KStdAction::configureNotifications(this, SLOT(configureNotifications()),
-                                     actionCollection());
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection(), "zoomIn");
   zoomOutAction = KStdAction::zoomOut(this, SLOT(zoomOut()), actionCollection(), "zoomOut");
@@ -140,13 +137,9 @@ void KReversi::createKActions() {
   soundAction = new KToggleAction(i18n("&Play Sounds"), 0, 0, 0, actionCollection(), "game_sound");
   #endif
   // Settings
-  createStandardStatusBarAction();
-  setStandardToolBarMenuEnabled(true);
-  KStdAction::keyBindings(guiFactory(), SLOT(configureShortcuts()), 
-actionCollection());
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
-  createGUI();
+  setupGUI();
 }
 
 void KReversi::createStatusBar() {
