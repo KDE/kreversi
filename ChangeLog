@@ -1,6 +1,7 @@
 2005-03-31  Inge Wallin  <inge@lysator.liu.se>
 
 	Some consecutive small, but important changes.
+	* Position::undoMove(): new method.
 	* Remove m_lastPosition from class Game.
 	* Rename makeMove() to doMove() and takeBackMove() to undoMove().
 	

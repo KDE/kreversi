@@ -80,8 +80,11 @@ public:
   bool   moveIsLegal(SimpleMove &move)     const;
   bool   doMove(SimpleMove &move, QValueList<char> *turned = 0);
   bool   doMove(Move &move);
+  bool   undoMove(Move &move);
 
   MoveList  generateMoves(Color color) const;
+
+  QString   asString() const;
 
 private:
   // The actual position itself.  Use the simplest representation possible.

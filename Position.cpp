@@ -48,6 +48,8 @@
 // black pieces and empty squares (see class Score) on an 8x8 Othello board.
 
 
+#include "kdebug.h"
+
 #include "Position.h"
 #include <stdlib.h>
 
@@ -283,6 +285,49 @@ bool Position::doMove(Move &move)
 }
 
 
+bool Position::undoMove(Move &move)
+{
+  Color  color = move.color();
+  Color  other = opponent(color);
+
+  // Sanity checks
+  // 1. The move must be on the board and be of the right color.
+  if (color != m_board[move.x()][move.y()]) {
+    //kdDebug() << "move on the board is wrong color: " << (int) color << "["
+    //      << move.x() << "," << move.y() << "]" << endl;
+    return false;
+  }
+
+  // 2. All turned pieces must be on the board anb be of the right color.
+  QValueList<char>::iterator  it;
+  for (it = move.m_turnedPieces.begin(); 
+       it != move.m_turnedPieces.end(); 
+       ++it) {
+    int  sq = *it;
+
+    if (m_board[sq / 10][sq % 10] != color) {
+      //kdDebug() << "turned piece the board is wrong color: [" 
+      //	<< sq / 10 << "," << sq % 10 << "]" << endl;
+      return false;
+    }
+  }
+
+  // Ok, everything seems allright.  Let's do it!
+  // 1. Unturn all the turned pieces.
+  for (it = move.m_turnedPieces.begin(); 
+       it != move.m_turnedPieces.end(); 
+       ++it) {
+    int  sq = *it;
+
+    m_board[sq / 10][sq % 10] = other;
+  }
+
+  // 2. Remove the move itself.
+  m_board[move.x()][move.y()] = Nobody;
+
+  return true;
+}
+
 
 MoveList  Position::generateMoves(Color color) const
 {
@@ -299,4 +344,25 @@ MoveList  Position::generateMoves(Color color) const
   }
 
   return moves;
+}
+
+
+QString Position::asString() const
+{
+  QString  result;
+
+  for (uint y = 1; y < 9; ++y) {
+    for (uint x = 1; x < 9; ++x) {
+      switch (m_board[x][y]) {
+      case Nobody:  result.append(' ');  break;
+      case Black:   result.append('*');  break;
+      case White:   result.append('o');  break;
+      default:      result.append('?');  break;
+      }
+    }
+
+    result.append('\n');
+  }
+
+  return result;
 }

@@ -191,6 +191,7 @@ bool Game::doMove(Move &move)
   // Make the move in the position and store it.  Don't allow illegal moves.
   if (!m_position.doMove(move))
     return false;
+
   m_moves[m_moveNumber++] = move;
 
   return true;
@@ -215,10 +216,14 @@ bool Game::undoMove()
   if (m_moveNumber == 0) 
     return false;
 
+#if 0
   m_position.setupStartPosition();
   m_moveNumber--;
   for (uint i = 0; i < m_moveNumber; i++)
     m_position.doMove(m_moves[i]);
+#else
+  m_position.undoMove(m_moves[--m_moveNumber]);
+#endif
 
   return true;
 }

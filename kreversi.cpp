@@ -856,7 +856,6 @@ bool KReversi::loadGame(KConfig *config)
   showScore();
   setState(State(config->readNumEntry("State")));
   setStrength(config->readNumEntry("Strength", 1));
-  //kdDebug() << "Competitive set to: " << m_competitiveGame << endl;
 
   if (interrupted())
     slotContinue();

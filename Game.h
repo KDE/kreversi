@@ -125,15 +125,16 @@ public:
   bool   doMove(SimpleMove &move);
   bool   undoMove();
 
-  uint   moveNumber() const  { return m_moveNumber;        }
-  Color  toMove()     const  { return m_position.toMove(); }
+  const Position &position() const { return m_position; }
+  uint   moveNumber() const        { return m_moveNumber;        }
+  Color  toMove()     const        { return m_position.toMove(); }
 
   // Reversi specific methods
   bool   squareModified(uint x, uint y) const;
   bool   wasTurned(uint x, uint y)      const;
 
 protected:
-  Move      m_moves[64];
+  Move      m_moves[60];
   Position  m_position;		// The current position in the game
   uint      m_moveNumber;
 };
