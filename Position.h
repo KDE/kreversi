@@ -78,8 +78,8 @@ public:
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
   bool   moveIsLegal(SimpleMove &move)     const;
-  bool   makeMove(SimpleMove &move, QValueList<char> *turned = 0);
-  bool   makeMove(Move &move);
+  bool   doMove(SimpleMove &move, QValueList<char> *turned = 0);
+  bool   doMove(Move &move);
 
   MoveList  generateMoves(Color color) const;
 

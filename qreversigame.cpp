@@ -65,9 +65,9 @@ void QReversiGame::newGame()
 }
 
 
-bool QReversiGame::makeMove(Move move)
+bool QReversiGame::doMove(Move move)
 {
-  bool  retval = Game::makeMove(move);
+  bool  retval = Game::doMove(move);
   if (!retval)
       return false;
 
@@ -83,9 +83,9 @@ bool QReversiGame::makeMove(Move move)
 }
 
 
-bool QReversiGame::takeBackMove()
+bool QReversiGame::undoMove()
 {
-  bool  retval = Game::takeBackMove();
+  bool  retval = Game::undoMove();
 
   // Update all views.
   emit updateBoard();

@@ -121,9 +121,9 @@ public:
   bool   moveIsLegal(SimpleMove &move)     const;
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
-  bool   makeMove(Move &move);
-  bool   makeMove(SimpleMove &move);
-  bool   takeBackMove();
+  bool   doMove(Move &move);
+  bool   doMove(SimpleMove &move);
+  bool   undoMove();
 
   uint   moveNumber() const  { return m_moveNumber;        }
   Color  toMove()     const  { return m_position.toMove(); }
@@ -135,10 +135,11 @@ public:
 protected:
   Move      m_moves[64];
   Position  m_position;		// The current position in the game
-                                // So that we can compare and see turned pieces
   uint      m_moveNumber;
 
   Position  m_lastPosition;	// The last position in the game
+                                // So that we can compare and see turned pieces
 };
+
 
 #endif

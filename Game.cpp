@@ -179,7 +179,7 @@ bool Game::moveIsAtAllPossible() const
 // If everything went well, return true.  Otherwise return false and
 // do nothing.
 
-bool Game::makeMove(Move &move)
+bool Game::doMove(Move &move)
 {
   Position  lastPos = m_position;
 
@@ -191,7 +191,7 @@ bool Game::makeMove(Move &move)
     return false;
 
   // Make the move in the position and store it.  Don't allow illegal moves.
-  if (!m_position.makeMove(move))
+  if (!m_position.doMove(move))
     return false;
   m_moves[m_moveNumber++] = move;
 
@@ -200,11 +200,11 @@ bool Game::makeMove(Move &move)
 }
 
 
-bool Game::makeMove(SimpleMove &smove)
+bool Game::doMove(SimpleMove &smove)
 {
   Move  move(smove);
 
-  return makeMove(move);
+  return doMove(move);
 }
 
 
@@ -213,7 +213,7 @@ bool Game::makeMove(SimpleMove &smove)
 // Note: The removed move is not remembered, so a redo is not possible.
 //
 
-bool Game::takeBackMove()
+bool Game::undoMove()
 {
   if (m_moveNumber == 0) 
     return false;
@@ -222,7 +222,7 @@ bool Game::takeBackMove()
   m_moveNumber--;
   for (uint i = 0; i < m_moveNumber; i++) {
     m_lastPosition = m_position;
-    m_position.makeMove(m_moves[i]);
+    m_position.doMove(m_moves[i]);
   }
 
   return true;

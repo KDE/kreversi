@@ -390,13 +390,13 @@ void KReversi::slotUndo()
   while (m_krgame->moveNumber() != 0
 	 && last_color == m_krgame->lastMove().color()) {
     m_movesView->removeItem(m_krgame->moveNumber() - 1);
-    m_krgame->takeBackMove();
+    m_krgame->undoMove();
   }
 
   // Take back one more move.
   if (m_krgame->moveNumber() > 0) {
     m_movesView->removeItem(m_krgame->moveNumber() - 1);
-    m_krgame->takeBackMove();
+    m_krgame->undoMove();
 
     m_movesView->setCurrentItem(m_krgame->moveNumber() - 1);
     m_movesView->ensureCurrentVisible();
@@ -687,7 +687,7 @@ void KReversi::humanMakeMove(int row, int col)
   // If it is, then make a human move.
   Move  move(color, col + 1, row + 1);
   if (m_krgame->moveIsLegal(move)) {
-    m_krgame->makeMove(move);
+    m_krgame->doMove(move);
     m_boardView->animateChanged(move);
 
     if (!m_krgame->moveIsAtAllPossible()) {
@@ -751,7 +751,7 @@ void KReversi::computerMakeMove()
     usleep(300000); // Pretend we have to think hard.
 
     //playSound("click.wav");
-    m_krgame->makeMove(move);
+    m_krgame->doMove(move);
     m_boardView->animateChanged(move);
     m_boardView->updateBoard();
     showScore();
@@ -846,7 +846,7 @@ bool KReversi::loadGame(KConfig *config)
     Color        color = (Color)(*s.at(2)).toInt();
 
     Move  move(color, x, y);
-    m_krgame->makeMove(move);
+    m_krgame->doMove(move);
   }
 
   m_humanColor      = (Color) config->readNumEntry("HumanColor");

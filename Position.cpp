@@ -88,7 +88,7 @@ Position &Position::operator=(Position &pos)
 void Position::constrCopy(Position &pos, SimpleMove &move)
 {
   *this = pos;
-  makeMove(move);
+  doMove(move);
 }
 
 
@@ -211,7 +211,7 @@ bool Position::moveIsAtAllPossible() const
 //
 // Return true if the move was legal, otherwise return false.
 //
-bool Position::makeMove(SimpleMove &move, QValueList<char> *turned)
+bool Position::doMove(SimpleMove &move, QValueList<char> *turned)
 {
   if (move.color() == Nobody)
     return false;
@@ -276,10 +276,10 @@ bool Position::makeMove(SimpleMove &move, QValueList<char> *turned)
 }
 
 
-bool Position::makeMove(Move &move)
+bool Position::doMove(Move &move)
 {
   move.m_turnedPieces.clear();
-  return makeMove((SimpleMove &) move, &move.m_turnedPieces);
+  return doMove((SimpleMove &) move, &move.m_turnedPieces);
 }
 
 

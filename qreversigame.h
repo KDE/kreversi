@@ -70,9 +70,9 @@ class QReversiGame : public QObject, public Game {
   ~QReversiGame();
 
   // Methods dealing with the game
-  void   newGame();
-  bool   makeMove(Move move);
-  bool   takeBackMove();
+  void  newGame();
+  bool  doMove(Move move);
+  bool  undoMove();
   void  loadSettings();
 
   bool  loadGame(KConfig *, bool noupdate = FALSE);
