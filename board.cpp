@@ -41,6 +41,9 @@
 #include <qpainter.h>
 #include <qimage.h>
 #include <qbitmap.h>
+
+#include <kapp.h>
+
 #include "Score.h"
 #include "playsound.h"
 
