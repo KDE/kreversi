@@ -44,7 +44,9 @@
  *******************************************************************
  */
 
+
 #include "Score.h"
+
 
 Score::Score()
 {
@@ -52,12 +54,17 @@ Score::Score()
   m_score[Black] = 0;
 }
 
+
+/* Return the opponent color for 'color'.
+ */
+
 Color opponent(Color color)
 {
   switch (color) {
-  case White: return Black;
-  case Black: return White;
+  case White:  return Black;
+  case Black:  return White;
   case Nobody: break;
   }
+
   return Nobody;
 }

@@ -21,10 +21,10 @@ TODO-list for KREVERSI
    - Position.h
    - prefs.h
    - prefs.kcfgc
-   - Score.cpp
-   - Score.h
-   - settings.cpp
-   - settings.h
+   - Score.cpp							DONE
+   - Score.h							DONE
+   - settings.cpp						Generated
+   - settings.h							Generated
    - SuperEngine.cpp
    - SuperEngine.h
    - version.h							DONE

@@ -2,6 +2,7 @@
 
 	Start of the big code cleanup:
 	* Move.h, Move.cpp
+	* Score.h, Score.cpp
 
 	Step 2 in the plan to use KGame from libkdegames:
 	* Code cleaning: Add some comments, reduce complexity, improve

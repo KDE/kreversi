@@ -50,12 +50,21 @@
 #include <qglobal.h>
 
 enum Color { White = 0, Black = 1, NbColors = 2, Nobody = NbColors };
+
 Color opponent(Color color);
+
+
+/* This class keeps track of the score for both colors.  Such a score
+ * could be either the number of pieces, the score from the evaluation
+ * function or anything similar.
+ */
 
 class Score {
 public:
   Score();
+
   uint score(Color color) const     { return m_score[color]; }
+
   void set(Color color, uint score) { m_score[color] = score; }
   void inc(Color color)             { m_score[color]++; }
   void dec(Color color)             { m_score[color]--; }
