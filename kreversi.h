@@ -56,25 +56,6 @@ class QLabel;
 class KAction;
 
 
-
-// A status widget that shows how many pieces one side has.
-
-class StatusWidget : public QWidget
-{
-  Q_OBJECT
-
-public:
-  StatusWidget(const QString &text, QWidget *parent);
-  
-  void  setPixmap(const QPixmap &pixmap);
-  void  setScore(uint score);
-  
-private:
-  QLabel  *m_pixLabel;
-  QLabel  *m_label;
-};
-
-
 class KReversi : public KZoomMainWindow 
 {
   Q_OBJECT
@@ -89,7 +70,7 @@ public:
   bool isPlaying() const;
 
   // Methods that deal with the game
-  Color  toMove() const           { return m_krgame->toMove();       }
+  Color  toMove() const           { return m_game->toMove();       }
   Color  humanColor() const       { return m_humanColor;           }
   Color  computerColor() const    { return opponent(m_humanColor); }
 
@@ -97,7 +78,7 @@ public:
   void   setStrength(uint);
   uint   strength() const         { return m_engine->strength();   }
   void   interrupt()              { m_engine->setInterrupt(TRUE);  }
-  bool   interrupted() const      { return (m_krgame->toMove() == computerColor()
+  bool   interrupted() const      { return (m_game->toMove() == computerColor()
 					    && m_state == Ready);  }
 
   // State of the program (Hint, Ready, Thinking, etc).
@@ -106,7 +87,6 @@ public:
 
 private:
   // Initialisation
-  void     createStatusBar();
   void     createKActions();
 
   // View functions.
@@ -183,7 +163,8 @@ private:
   KToggleAction  *showLegalMovesAction;
 
   // The game itself and game properties
-  QReversiGame  *m_krgame;	   // Stores the moves of the game
+  QReversiGame  *m_game;	   // The main document - the game
+
   Color          m_humanColor;	   // The Color of the human player.
   bool           m_gameOver;	   // True if the game is over
   bool           m_cheating;	   // True if the user has changed sides
@@ -195,12 +176,7 @@ private:
   Engine        *m_engine;         // The AI that creates the computers moves.
 
   // Widgets
-  QReversiGameView   *m_gameView;          // The board widget.
-#if 0
-  QListBox           *m_movesView;
-#endif
-  StatusWidget       *m_humanStatus;
-  StatusWidget       *m_computerStatus;
+  QReversiGameView  *m_gameView;   // The board widget.
 };
 
 

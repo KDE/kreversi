@@ -50,11 +50,30 @@
 class KConfig;
 
 
+class QLabel;
+
 class QReversiGame;
+class StatusWidget;
 
 
-// The class Board is the visible Reversi Board widget.
-//
+
+class StatusWidget : public QWidget
+{
+  Q_OBJECT
+
+public:
+  StatusWidget(const QString &text, QWidget *parent);
+  
+  void  setPixmap(const QPixmap &pixmap);
+  void  setScore(uint score);
+  
+private:
+  QLabel  *m_pixLabel;
+  QLabel  *m_label;
+};
+
+
+// The main game view
 
 class QReversiGameView : public QWidget {
   Q_OBJECT
@@ -95,6 +114,22 @@ public:
   void setCurrentMove(int moveNum) { m_movesView->setCurrentItem(moveNum); }
   void ensureCurrentMoveVisible()  { m_movesView->ensureCurrentVisible(); }
 
+  // Proxy methods for the status widgets.
+  void setStatusPixmap(int index, QPixmap pixmap)
+    {
+      if (index == 0) 
+	m_humanStatus->setPixmap(pixmap);
+      else
+	m_computerStatus->setPixmap(pixmap);
+    }
+
+  void setStatusScore(int index, int score)
+    {
+      if (index == 0) 
+	m_humanStatus->setScore(score);
+      else
+	m_computerStatus->setScore(score);
+    }
 
   // starts all: emits some signal, so it can't be called from
   // constructor
@@ -120,6 +155,8 @@ private:
   // Widgets in the view.
   QReversiBoardView  *m_boardView;
   QListBox           *m_movesView;
+  StatusWidget       *m_humanStatus;
+  StatusWidget       *m_computerStatus;
 };
 
 

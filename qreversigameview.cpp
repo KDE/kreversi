@@ -41,6 +41,9 @@
 #include <qwidget.h>
 #include <qlabel.h>
 
+#include <klocale.h>
+#include <kdialog.h>
+
 #if 0
 #include <unistd.h>
 
@@ -59,8 +62,51 @@
 #include "prefs.h"
 #include "Engine.h"
 #endif
+
 #include "qreversigame.h"
 #include "qreversigameview.h"
+
+
+// ================================================================
+//                     class StatusWidget
+
+
+StatusWidget::StatusWidget(const QString &text, QWidget *parent)
+  : QWidget(parent, "status_widget")
+{
+  QHBoxLayout  *hbox  = new QHBoxLayout(this, 0, KDialog::spacingHint());
+  QLabel       *label;
+
+  label = new QLabel(text, this);
+  hbox->addWidget(label);
+
+  m_pixLabel = new QLabel(this);
+  hbox->addWidget(m_pixLabel);
+
+  label = new QLabel(":", this);
+  hbox->addWidget(label);
+
+  m_label = new QLabel(this);
+  hbox->addWidget(m_label);
+}
+
+
+// Set the text label - used to write the number of pieces.
+//
+
+void StatusWidget::setScore(uint s)
+{
+  m_label->setText(QString::number(s));
+}
+
+
+// Set the pixel label - used to show the color.
+//
+
+void StatusWidget::setPixmap(const QPixmap &pixmap)
+{
+  m_pixLabel->setPixmap(pixmap);
+}
 
 
 // ================================================================
@@ -76,19 +122,25 @@ QReversiGameView::QReversiGameView(QWidget *parent, QReversiGame *game)
   m_qrgame = game;
 
   // The widget stuff
-  layout      = new QGridLayout(this, 2, 2);
+  layout      = new QGridLayout(this, 4, 2);
   m_boardView = new QReversiBoardView(this, game);
-  layout->addMultiCellWidget(m_boardView, 0, 1, 0, 0);
+  layout->addMultiCellWidget(m_boardView, 0, 3, 0, 0);
+
+  // The status widgets
+  m_humanStatus = new StatusWidget(i18n("You"), this);
+  layout->addWidget(m_humanStatus, 0, 1);
+  m_computerStatus = new StatusWidget(QString::null, this);
+  layout->addWidget(m_computerStatus, 1, 1);
 
   // The "Moves" label
   QLabel  *movesLabel = new QLabel( "Moves", this);
   movesLabel->setAlignment(AlignCenter);
-  layout->addWidget(movesLabel, 0, 1);
+  layout->addWidget(movesLabel, 2, 1);
 
   // The list of moves.
   m_movesView = new QListBox(this, "moves");
   m_movesView->setMinimumWidth(150);
-  layout->addWidget(m_movesView, 1, 1);
+  layout->addWidget(m_movesView, 3, 1);
 
   // FIXME: More view widgets will come here.
 

@@ -1,5 +1,11 @@
 2005-04-03  Inge Wallin  <inge@lysator.liu.se>
 
+	Move the status info from the toolbar to the gameview.
+	* kreversi.{h,cpp} (StatusWidget): Removed class
+	(createStatusBar): Removed.
+	(m_krgame): renamed into m_game
+	* qreversigameview.{h,cpp} (StatusWidget): Added class
+
 	Move the movelist to the gameview.
 
 	Refactor: Create a new class QReversiGameView that will comprise
