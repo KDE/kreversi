@@ -124,7 +124,7 @@ const int SB_SCOREH	= 2;
 const int SB_SCOREC	= 3;
 const int SB_TURN       = 4;
 
-App::App() : KTMainWindow() {
+App::App() : KMainWindow(0) {
   highscore.resize(0);
   readHighscore();
   setCaption( kapp->caption() );
@@ -140,10 +140,7 @@ App::App() : KTMainWindow() {
   tb->show();
   sb->show();
   menu->show();
-  setView(b);
-  addToolBar(tb);
-  setStatusBar(sb);
-  setMenu(menu);
+  setCentralWidget(b);
 
   connect(b, SIGNAL(score()), this, SLOT(slotScore()));
   connect(b, SIGNAL(gameWon(int)), this, SLOT(slotGameEnded(int)));
@@ -179,7 +176,6 @@ App::App() : KTMainWindow() {
     if(conf->readNumEntry("Zoom", -1) != -1) {      
       b->setZoom(conf->readNumEntry("Zoom", -1)); 
       b->setFixedSize(b->sizeHint());
-      updateRects();
     }
 
     // set toolbar position
@@ -210,8 +206,6 @@ App::App() : KTMainWindow() {
 #endif
   }
     
-  updateRects();
-  
   if(kapp->isRestored())
     restore(1);
 }
@@ -485,14 +479,12 @@ void App::processEvent(int itemid) {
   case ID_VZOOMIN:
     b->zoomIn();
     b->setFixedSize(b->sizeHint());
-    updateRects();
     kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
     
   case ID_VZOOMOUT:
     b->zoomOut();
     b->setFixedSize(b->sizeHint());
-    updateRects();
     kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
 
@@ -507,7 +499,6 @@ void App::processEvent(int itemid) {
   case ID_VZOOM200:
     b->setZoom(itemid - ID_VZOOMBASE);
     b->setFixedSize(b->sizeHint());
-    updateRects();
     kapp->config()->writeEntry("Zoom", b->getZoom());
     break;
 

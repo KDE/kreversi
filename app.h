@@ -42,7 +42,7 @@
 #include "misc.h"
 #include <kstatusbar.h>
 #include <ktoolbar.h>
-#include <ktmainwindow.h>
+#include <kmainwindow.h>
 #include <kmenubar.h>
 #include <qarray.h>
 #include <time.h>
@@ -65,7 +65,7 @@ struct HighScore {
 };
 
 
-class App : public KTMainWindow {
+class App : public KMainWindow {
   Q_OBJECT
 public:
   App();
