@@ -53,8 +53,6 @@ class KConfig;
 class QLabel;
 
 class QReversiGame;
-class StatusWidget;
-
 
 
 class StatusWidget : public QWidget
@@ -64,12 +62,14 @@ class StatusWidget : public QWidget
 public:
   StatusWidget(const QString &text, QWidget *parent);
   
+  void  setText(const QString &string);
   void  setPixmap(const QPixmap &pixmap);
   void  setScore(uint score);
   
 private:
+  QLabel  *m_textLabel;
   QLabel  *m_pixLabel;
-  QLabel  *m_label;
+  QLabel  *m_scoreLabel;
 };
 
 
@@ -114,22 +114,18 @@ public:
   void setCurrentMove(int moveNum) { m_movesView->setCurrentItem(moveNum); }
   void ensureCurrentMoveVisible()  { m_movesView->ensureCurrentVisible(); }
 
-  // Proxy methods for the status widgets.
-  void setStatusPixmap(int index, QPixmap pixmap)
+  // The status widgets.
+  void  setHumanColor(Color color);
+  void  setStatusPixmap(Color color, QPixmap pixmap);
+
+  void  setStatusScore(int index, int score)
     {
       if (index == 0) 
-	m_humanStatus->setPixmap(pixmap);
+	m_blackStatus->setScore(score);
       else
-	m_computerStatus->setPixmap(pixmap);
+	m_whiteStatus->setScore(score);
     }
 
-  void setStatusScore(int index, int score)
-    {
-      if (index == 0) 
-	m_humanStatus->setScore(score);
-      else
-	m_computerStatus->setScore(score);
-    }
 
   // starts all: emits some signal, so it can't be called from
   // constructor
@@ -140,6 +136,12 @@ public:
 
   void  loadSettings() { m_boardView->loadSettings(); }
 
+
+public slots:
+  void  updateView();
+  void  updateStatus();
+
+
 signals:
   void  signalSquareClicked(int, int);
 
@@ -148,15 +150,20 @@ private slots:
   void  squareClicked(int, int);
 
 private:
+  void  createView(); 
+
+private:
 
   // Pointer to the game we are displaying
-  QReversiGame       *m_qrgame; // Pointer to the game object (not owner).
+  QReversiGame       *m_game; // Pointer to the game object (not owner).
+
+  Color               m_humanColor;
 
   // Widgets in the view.
   QReversiBoardView  *m_boardView;
   QListBox           *m_movesView;
-  StatusWidget       *m_humanStatus;
-  StatusWidget       *m_computerStatus;
+  StatusWidget       *m_blackStatus;
+  StatusWidget       *m_whiteStatus;
 };
 
 

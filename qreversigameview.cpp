@@ -77,8 +77,8 @@ StatusWidget::StatusWidget(const QString &text, QWidget *parent)
   QHBoxLayout  *hbox  = new QHBoxLayout(this, 0, KDialog::spacingHint());
   QLabel       *label;
 
-  label = new QLabel(text, this);
-  hbox->addWidget(label);
+  m_textLabel = new QLabel(text, this);
+  hbox->addWidget(m_textLabel);
 
   m_pixLabel = new QLabel(this);
   hbox->addWidget(m_pixLabel);
@@ -86,17 +86,17 @@ StatusWidget::StatusWidget(const QString &text, QWidget *parent)
   label = new QLabel(":", this);
   hbox->addWidget(label);
 
-  m_label = new QLabel(this);
-  hbox->addWidget(m_label);
+  m_scoreLabel = new QLabel(this);
+  hbox->addWidget(m_scoreLabel);
 }
 
 
-// Set the text label - used to write the number of pieces.
+// Set the text label
 //
 
-void StatusWidget::setScore(uint s)
+void StatusWidget::setText(const QString &string)
 {
-  m_label->setText(QString::number(s));
+  m_textLabel->setText(string);
 }
 
 
@@ -109,28 +109,66 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
 }
 
 
+// Set the score label - used to write the number of pieces.
+//
+
+void StatusWidget::setScore(uint s)
+{
+  m_scoreLabel->setText(QString::number(s));
+}
+
+
 // ================================================================
-//                class KReversiBoardView
+//                  class QReversiGameView
 
 
 QReversiGameView::QReversiGameView(QWidget *parent, QReversiGame *game)
   : QWidget(parent, "gameview")
 {
-  QGridLayout *layout;
-
   // Store a pointer to the game.
-  m_qrgame = game;
+  m_game = game;
 
   // The widget stuff
-  layout      = new QGridLayout(this, 4, 2);
-  m_boardView = new QReversiBoardView(this, game);
+  createView();
+
+  // Other initializations.
+  m_humanColor = Nobody;
+
+  // Connect the game to the view.
+  connect(m_game, SIGNAL(sig_newGame()), this, SLOT(updateView()));
+  connect(m_game, SIGNAL(sig_score()),   this, SLOT(updateStatus()));
+
+#if 0
+  connect(m_game, SIGNAL(sig_move(uint, Move&)),
+	  this,   SLOT(showMove(uint, Move&)));
+#endif
+
+  // Reemit the signal from the board.
+  connect(m_boardView, SIGNAL(signalSquareClicked(int, int)),
+	  this,        SLOT(squareClicked(int, int)));
+}
+
+
+QReversiGameView::~QReversiGameView()
+{
+}
+
+void QReversiGameView::createView()
+{
+  QGridLayout  *layout = new QGridLayout(this, 4, 2);
+
+  // The board
+  m_boardView = new QReversiBoardView(this, m_game);
+  m_boardView->loadSettings();	// Load the pixmaps used in the status widgets.
   layout->addMultiCellWidget(m_boardView, 0, 3, 0, 0);
 
   // The status widgets
-  m_humanStatus = new StatusWidget(i18n("You"), this);
-  layout->addWidget(m_humanStatus, 0, 1);
-  m_computerStatus = new StatusWidget(QString::null, this);
-  layout->addWidget(m_computerStatus, 1, 1);
+  m_blackStatus = new StatusWidget(QString::null, this);
+  m_blackStatus->setPixmap(m_boardView->chipPixmap(Black, 20));
+  layout->addWidget(m_blackStatus, 0, 1);
+  m_whiteStatus = new StatusWidget(QString::null, this);
+  m_whiteStatus->setPixmap(m_boardView->chipPixmap(White, 20));
+  layout->addWidget(m_whiteStatus, 1, 1);
 
   // The "Moves" label
   QLabel  *movesLabel = new QLabel( "Moves", this);
@@ -143,19 +181,25 @@ QReversiGameView::QReversiGameView(QWidget *parent, QReversiGame *game)
   layout->addWidget(m_movesView, 3, 1);
 
   // FIXME: More view widgets will come here.
-
-  // Reemit the signal from the board..
-  connect(m_boardView, SIGNAL(signalSquareClicked(int, int)),
-	  this,        SLOT(squareClicked(int, int)));
-}
-
-
-QReversiGameView::~QReversiGameView()
-{
 }
 
 
 // ----------------------------------------------------------------
+//                              Slots
+
+
+void QReversiGameView::updateView()
+{
+  m_boardView->updateBoard(true);
+  //updateMovelist();
+  updateStatus();
+}
+
+void QReversiGameView::updateStatus()
+{
+  m_blackStatus->setScore(m_game->score(Black));
+  m_whiteStatus->setScore(m_game->score(White));
+}
 
 
 void QReversiGameView::squareClicked(int row, int col)
@@ -167,6 +211,35 @@ void QReversiGameView::squareClicked(int row, int col)
 // ----------------------------------------------------------------
 
 
+void QReversiGameView::setHumanColor(Color color)
+{
+  m_humanColor = color;
+
+  if (color == Black) {
+    m_blackStatus->setText(i18n("You"));
+    m_whiteStatus->setText("");
+  }
+  else {
+    m_blackStatus->setText("");
+    m_whiteStatus->setText(i18n("You"));
+  }
+}
+
+
+#if 0
+void setStatusPixmap(Color color, QPixmap pixmap)
+{
+  if (color == Black) 
+    m_blackStatus->setPixmap(pixmap);
+  else
+    m_whiteStatus->setPixmap(pixmap);
+}
+
+
+void QReversiGameView::updateMovelist()
+{
+}
+#endif
 
 #include "qreversigameview.moc"
 

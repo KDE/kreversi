@@ -59,6 +59,9 @@ void QReversiGame::newGame()
 {
   Game::newGame();
 
+  emit sig_newGame();
+
+  // FIXME: To be removed
   emit updateBoard();
   emit sig_score();
   emit turn(Game::toMove());
@@ -72,12 +75,14 @@ bool QReversiGame::doMove(Move move)
       return false;
 
   emit sig_move(m_moveNumber, move);
+
+  // FIXME: to be removed
   emit updateBoard();
   emit sig_score();
   emit turn(Game::toMove());
 
   if (!Game::moveIsAtAllPossible())
-    emit gameOver();
+    emit sig_gameOver();
 
   return retval;
 }
@@ -88,6 +93,9 @@ bool QReversiGame::undoMove()
   bool  retval = Game::undoMove();
 
   // Update all views.
+  emit sig_update();
+
+  // FIXME: to be removed
   emit updateBoard();
   emit sig_score();
   emit turn(Game::toMove());

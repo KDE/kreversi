@@ -73,19 +73,24 @@ class QReversiGame : public QObject, public Game {
   void  newGame();
   bool  doMove(Move move);
   bool  undoMove();
+#if 0
   void  loadSettings();
 
   bool  loadGame(KConfig *, bool noupdate = FALSE);
   void  saveGame(KConfig *);
+#endif
 
  signals:
-  void  sig_move(uint, Move&);
+  void  sig_newGame();
+  void  sig_move(uint, Move&);	// A move has just been done.
+  void  sig_update();		// Some other change than a move has been done
+                                // Example: loadFile(), undoMove();
+  void  sig_gameOver();		// The game is over.
+
+  // FIXME: To be removed:
   void  updateBoard();
   void  sig_score();
   void  turn(Color);
-  void  gameOver();
-
-  void  sizeChange();
 
 private:
   // No members.

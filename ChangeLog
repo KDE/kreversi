@@ -1,5 +1,17 @@
 2005-04-03  Inge Wallin  <inge@lysator.liu.se>
 
+	Clean up the signals from the game and change some explicit calls
+	to update the view into signal/slots instead.
+	* kreversi.{h, cpp} (showScore): removed
+	* qreversigame.{h,cpp} (sig_newGame, sig_update): new signals
+	(gameOver): signal renamed into sig_gameOver
+	* qreversigameview.{h,cpp} (StatusWidget::setText): new method
+	(createView): New private method.
+	(updateView): new slot
+	(updateStatus): new slot
+	(setHumanColor): new method.
+	
+
 	Move the status info from the toolbar to the gameview.
 	* kreversi.{h,cpp} (StatusWidget): Removed class
 	(createStatusBar): Removed.
