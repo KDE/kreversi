@@ -128,7 +128,7 @@
 #include "qarray.h"
 #include <sys/times.h>
 #include "misc.h"
-#include <qbitarry.h>
+#include <qbitarray.h>
 
 #if defined(__GNUC__)
 #define ULONG64 unsigned long long int

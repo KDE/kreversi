@@ -118,7 +118,7 @@
 
 
 #include "Engine.h"
-#include <qapp.h>
+#include <qapplication.h>
 
 const int Engine::LARGEINT = 99999;
 const int Engine::ILLEGAL_VALUE = 8888888;

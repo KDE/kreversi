@@ -47,9 +47,9 @@
 #include <qarray.h>
 #include <time.h>
 #include <qlist.h>
-#include <qfileinf.h>
+#include <qfileinfo.h>
 #include <qdialog.h>
-#include <qlined.h>
+#include <qlineedit.h>
 #include "board.h"
 #include <klocale.h>
 

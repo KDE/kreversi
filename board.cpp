@@ -45,13 +45,8 @@
 #include "Score.h"
 #include "playsound.h"
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
-
-#ifdef HAVE_USLEEP
 #include <unistd.h>
-#endif
 
 extern QString PICDIR;
 extern QString SOUNDDIR;

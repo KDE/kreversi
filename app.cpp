@@ -41,15 +41,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <qaccel.h>
-#include <qpopmenu.h>
+#include <qpopupmenu.h>
 #include <kmsgbox.h>
 #include <kapp.h>
 #include <kmsgbox.h>
-#include <qpushbt.h>
+#include <qpushbutton.h>
 #include <qlistbox.h>
-#include <qdatetm.h>
+#include <qdatetime.h>
 #include <qlabel.h>
-#include <qlined.h>
+#include <qlineedit.h>
 #include <kconfig.h>
 #include <kcolordlg.h>
 #include <qregexp.h>
@@ -61,7 +61,7 @@
 #include "playsound.h"
 #include <kseparator.h>
 #include <kwm.h>
-#include <qmsgbox.h>
+#include <qmessagebox.h>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -325,7 +325,7 @@ void App::createMenuBar() {
   om->insertItem(locale->translate("S&ound"), ID_OSOUND);
 #endif
 
-  QPopupMenu *help = kapp->getHelpMenu(true, 0);  // Use our own About box
+  QPopupMenu *help = kapp->getHelpMenu(true, QString::null);  // Use our own About box
 
   menu->insertItem(locale->translate("&File"), fm);
   menu->insertItem(locale->translate("&Game"), gm);
@@ -601,19 +601,15 @@ void App::slotScore() {
 
   b->getScore(black, white);
   if(b->humanIs() == Score::BLACK) {
-    s1.sprintf(locale->translate("You (%s): %d"), 
-	       locale->translate("blue"), black);
-    s2.sprintf(locale->translate("Computer (%s): %d"), 
-	       locale->translate("red"), white);
+    s1.sprintf(locale->translate("You (blue): %d"), black);
+    s2.sprintf(locale->translate("Computer (red): %d"), white);
   } else {
-    s2.sprintf(locale->translate("You (%s): %d"), 
-	       locale->translate("red"), white);
-    s1.sprintf(locale->translate("Computer (%s): %d"), 
-	       locale->translate("blue"), black);
+    s2.sprintf(locale->translate("You (red): %d"), white);
+    s1.sprintf(locale->translate("Computer (blue): %d"), black);
   }
 
-  sb->changeItem((char *)(const char *)s1, SB_SCOREH);
-  sb->changeItem((char *)(const char *)s2, SB_SCOREC);
+  sb->changeItem(s1, SB_SCOREH);
+  sb->changeItem(s2, SB_SCOREC);
   enableItems();
 }
 
@@ -705,12 +701,12 @@ void App::slotTurn(int color) {
   QString s;
 
   if(color == Score::WHITE)
-    s.sprintf("%s %s", locale->translate("Red's"), locale->translate("turn"));
+    s = i18n("Red's turn");
   else if(color == Score::BLACK)
-    s.sprintf("%s %s", locale->translate("Blue's"), locale->translate("turn"));
+    s = i18n("Blue's turn");
   else
     s = "";
-  sb->changeItem(s.data(), SB_TURN);
+  sb->changeItem(s, SB_TURN);
 }
 
 
