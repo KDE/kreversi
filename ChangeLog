@@ -1,3 +1,9 @@
+2005-04-02  Inge Wallin  <inge@lysator.liu.se>
+
+	Fix bug 102890: The result is not put into the higscore if not all
+	squares are filled at the end of the game
+	* kreversi.cpp (KReversi): call slotNewGame
+
 2005-04-01  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 102297: I am playing in KReversi as "expert" but it saves

@@ -170,6 +170,8 @@ KReversi::KReversi()
   init("popup");
   m_boardView->start();
   showScore();
+
+  slotNewGame();
 }
 
 
