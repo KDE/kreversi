@@ -80,36 +80,41 @@
 #ifndef __POSITION__H__
 #define __POSITION__H__
 
+
 #include "Move.h"
 #include "Score.h"
+
 
 class Position
 {
 public:
   Position();
-  Position(Position &p, Move &m);
+  Position(Position &pos, Move &move);
 
-  void constrInit();
-  void constrCopy(Position &p, Move &m);
+  Position &operator=(Position &pos);
+
+  void   constrInit();
+  void   constrCopy(Position &pos, Move &move);
 
   Color  color(uint x, uint y) const;
   uint   score(Color color)    const;
 
-  Move   lastMove() const { return m_last_move; }
-  Color  toMove()   const { return m_to_move; }
+  Move   lastMove() const { return m_lastMove; }
+  Color  toMove()   const { return m_toMove; }
 
   // Moves in the current position.
-  bool   moveIsLegal(Move m)         const;
+  bool   moveIsLegal(Move &move)     const;
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
+  bool   makeMove(Move &move);
 
 private:
   // The actual position itself.  Use the simplest representation possible.
   Color  m_board[10][10];
-  Color  m_to_move;
+  Color  m_toMove;
 
   // Some extra data
-  Move   m_last_move;		// The last move in the game so far
+  Move   m_lastMove;		// The last move in the game so far
   Score  m_score;		// The number of pieces for each side.
 };
 

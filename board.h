@@ -43,9 +43,9 @@
 #include <qpixmap.h>
 
 #include "Move.h"
-#include "Game.h"
-#include "Engine.h"
 
+
+class Game;
 
 class KConfig;
 
@@ -110,8 +110,6 @@ signals:
   void  turn(Color);
 
 private:
-  void  fieldClicked(int, int);
-
   uint  zoomedSize() const;
   void  drawPiece(uint row, uint col, Color);
   void  drawOnePiece(uint row, uint col, int i);

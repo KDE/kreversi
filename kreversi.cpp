@@ -258,7 +258,7 @@ void KReversi::slotNewGame()
   gameOver = false;
   cheating = false;
 
-  m_game->Reset();
+  m_game->reset();
   m_competitiveGame = Prefs::competitiveGameChoice();
   m_lowestStrength  = strength();
   //kdDebug() << "Competitive: " << m_competitiveGame << endl;
@@ -340,10 +340,10 @@ void KReversi::slotUndo()
   Color  last_color = m_game->lastMove().color();
   while (m_game->moveNumber() != 0
 	 && last_color == m_game->lastMove().color())
-    m_game->TakeBackMove();
+    m_game->takeBackMove();
 
   // Take back one more move.
-  m_game->TakeBackMove();
+  m_game->takeBackMove();
 
   if (m_game->toMove() == computerColor()) {
     // Must repaint so that the new move is not shown before the old
@@ -544,7 +544,7 @@ void KReversi::humanMakeMove(int row, int col)
   // If it is, then make a human move.
   Move  move(color, col + 1, row + 1);
   if (m_game->moveIsLegal(move)) {
-    m_game->MakeMove(move);
+    m_game->makeMove(move);
     m_board->animateChanged(move);
 
     if (!m_game->moveIsAtAllPossible()) {
@@ -596,7 +596,7 @@ void KReversi::computerMakeMove()
     usleep(300000); // Pretend we have to think hard.
 
     //playSound("click.wav");
-    m_game->MakeMove(move);
+    m_game->makeMove(move);
     m_board->animateChanged(move);
     m_board->updateBoard();
   } while (!m_game->moveIsPossible(opponent));
@@ -640,7 +640,7 @@ void KReversi::saveGame(KConfig *config)
   // to the file ourselves.
   for (uint i = moveNumber(); i > 0; i--) {
     Move  move = m_game->lastMove();
-    m_game->TakeBackMove();
+    m_game->takeBackMove();
 
     QString s, idx;
     s.sprintf("%d %d %d", move.x(), move.y(), (int)move.color());
@@ -672,7 +672,7 @@ bool KReversi::loadGame(KConfig *config, bool noupdate)
   if (nmoves==0) 
     return false;
 
-  m_game->Reset();
+  m_game->reset();
   uint movenumber = 1;
   while (nmoves--) {
     // Read one move.
@@ -684,8 +684,8 @@ bool KReversi::loadGame(KConfig *config, bool noupdate)
     uint         y = (*s.at(1)).toUInt();
     Color        color = (Color)(*s.at(2)).toInt();
 
-    Move move(color, x, y);
-    m_game->MakeMove(move);
+    Move  move(color, x, y);
+    m_game->makeMove(move);
   }
 
   m_humanColor      = (Color) config->readNumEntry("HumanColor");

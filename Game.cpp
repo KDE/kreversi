@@ -57,7 +57,7 @@
 //  public void Reset()
 //     Resets to the initial position.
 
-//  public boolean MakeMove(Move m)
+//  public boolean makeMove(Move &move)
 //     Makes the move m. Returns false if the move is not legal or when called
 //     with a move where the player is Score.NOBODY.
 
@@ -102,57 +102,19 @@
 
 Game::Game()
 {
-  m_positions[0].constrInit();
-  m_movenumber = 0;
+  reset();
 }
 
 
 // Reset the Game to before the first move, i.e. a new game.
 //
 
-void Game::Reset()
+void Game::reset()
 {
-  m_positions[0].constrInit();
-  m_movenumber = 0;
-}
+  m_position.constrInit();
+  m_lastPosition.constrInit();
 
-
-// Make a move in the game, resulting in a new position.  
-//
-// If everything went well, return true.  Otherwise return false and
-// do nothing.
-
-bool Game::MakeMove(Move move)
-{
-  // Some sanity checks.
-  if (move.color() == Nobody)   return false;
-  if (toMove() != move.color()) return false;
-
-  // Don't allow illegal moves.
-  if (! m_positions[m_movenumber].moveIsLegal(move))
-    return false;
-
-  // Construct a new position from the previous position and the move.
-  m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], move);
-  m_movenumber++;
-
-  return true;
-}
-
-
-// Take back the last move.  
-//
-// Note: The removed move is not remembered, so a redo is not possible.
-//
-
-bool Game::TakeBackMove()
-{
-  if (m_movenumber == 0) 
-    return false;
-
-  m_movenumber--;
-
-  return true;
+  m_moveNumber = 0;
 }
 
 
@@ -161,7 +123,7 @@ bool Game::TakeBackMove()
 
 Color Game::color(uint x, uint y) const
 {
-  return m_positions[m_movenumber].color(x, y);
+  return m_position.color(x, y);
 }
 
 
@@ -171,7 +133,7 @@ Color Game::color(uint x, uint y) const
 
 uint Game::score(Color color) const
 {
-  return m_positions[m_movenumber].score(color);
+  return m_position.score(color);
 }
 
 
@@ -180,16 +142,20 @@ uint Game::score(Color color) const
 
 Move Game::lastMove() const 
 {
-  return m_positions[m_movenumber].lastMove();
+  // If no moves where made, return a NULL move.
+  if (m_moveNumber == 0)
+    return Move();
+
+  return m_moves[m_moveNumber - 1];
 }
 
 
 // Return true if the move is legal in the current position.
 //
 
-bool Game::moveIsLegal(Move move) const
+bool Game::moveIsLegal(Move &move) const
 {
-  return m_positions[m_movenumber].moveIsLegal(move);
+  return m_position.moveIsLegal(move);
 }
 
 
@@ -197,7 +163,7 @@ bool Game::moveIsLegal(Move move) const
 
 bool Game::moveIsPossible(Color color) const
 {
-  return m_positions[m_movenumber].moveIsPossible(color);
+  return m_position.moveIsPossible(color);
 }
 
 
@@ -206,29 +172,62 @@ bool Game::moveIsPossible(Color color) const
 
 bool Game::moveIsAtAllPossible() const
 {
-  return m_positions[m_movenumber].moveIsAtAllPossible();
+  return m_position.moveIsAtAllPossible();
 }
 
 
-// Return the color to move in the current position.  This will be the
-// same color that moved last time if the opponent can't make a move.
+// Make a move in the game, resulting in a new position.  
 //
-// If no side can move, then return Nobody.
-//
+// If everything went well, return true.  Otherwise return false and
+// do nothing.
 
-Color Game::toMove() const
+bool Game::makeMove(Move &move)
 {
-  if (m_movenumber == 0)
-    return Black;
+  Position  lastPos = m_position;
 
-  Color  color    = lastMove().color();
-  Color  opponent = ::opponent(color);
+  // Some sanity checks.
+  if (move.color() == Nobody)
+    return false;
 
-  if (moveIsPossible(opponent)) return opponent;
-  if (moveIsPossible(color))    return color;
+  if (toMove() != move.color())
+    return false;
 
-  return Nobody;
+  // Don't allow illegal moves.
+  if (! m_position.moveIsLegal(move))
+    return false;
+
+  // Make the move in the position.
+  m_position.makeMove(move);
+  m_moves[m_moveNumber++] = move;
+
+  m_lastPosition = lastPos;
+  return true;
 }
+
+
+// Take back the last move.  
+//
+// Note: The removed move is not remembered, so a redo is not possible.
+//
+
+bool Game::takeBackMove()
+{
+  if (m_moveNumber == 0) 
+    return false;
+
+  m_position.constrInit();
+  m_moveNumber--;
+  for (uint i = 0; i < m_moveNumber; i++) {
+    m_lastPosition = m_position;
+    m_position.makeMove(m_moves[i]);
+  }
+
+  return true;
+}
+
+
+// ----------------------------------------------------------------
+//                    Reversi specific methods
 
 
 // Return true if the square at (x, y) was changed during the last move.
@@ -236,11 +235,12 @@ Color Game::toMove() const
 
 bool Game::squareModified(uint x, uint y) const 
 {
-  if (moveNumber() == 0)
+  // If the move number is zero, we want to redraw all squares.
+  // That's why we return true here.
+  if (m_moveNumber == 0)
     return true;
-  else
-    return (m_positions[m_movenumber].color(x, y) 
-	    != m_positions[m_movenumber - 1].color(x, y));
+
+  return m_position.color(x, y) != m_lastPosition.color(x, y);
 }
 
 
@@ -249,17 +249,14 @@ bool Game::squareModified(uint x, uint y) const
 
 bool Game::wasTurned(uint x, uint y) const 
 {
-  if (moveNumber() == 0)
+  // Nothing turned before the first move.
+  if (m_moveNumber == 0)
     return false;
-  else {
-    Color c1 = m_positions[m_movenumber - 1].color(x, y);
-    Color c2 = m_positions[m_movenumber].color(x, y);
 
-    if (c1 == Nobody)
-      return false;
-    else if (c1 == c2)
-      return false;
-    else
-      return true;
-  }
+  Color color = m_position.color(x, y);
+
+  if (color == Nobody)
+    return false;
+
+  return color != m_lastPosition.color(x, y);
 }

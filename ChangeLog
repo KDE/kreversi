@@ -1,7 +1,23 @@
+2004-09-29  Inge Wallin  <inge@lysator.liu.se>
+
+	Continue to make KReversi a proper model/view program:
+	Step I.1 of the plan (see TODO): Fix the class Game
+	* Game.h (Game): Convert to store moves instead of positions.
+	* Game.cpp (Game): Code cleanup and convert as above.
+	* Game.{h,cpp}: Follow naming conventions from the rest of the
+	program.
+	* Position.{h,cpp}: Follow naming conventions from the rest of the
+	program.
+	* Position.{h,cpp} (Position::operator=): new method.
+	(Position::makeMove): new method.
+
+	Added myself in the credits in the about window.
+	(Will add myself to the real authors when we have KGame and
+	network play ready. :-) )
+	
 2004-09-27  Inge Wallin  <inge@lysator.liu.se>
 
 	Continue to make KReversi a proper model/view program:
-
 	* Transfer ownership of Game and Engine to kreversi from Board.
 	board.h, board.cpp, kreversi.h, kreversi.cpp: lots of changes.
 

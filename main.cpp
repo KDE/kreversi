@@ -62,6 +62,7 @@ int main(int argc, char **argv)
   aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
   aboutData.addCredit("Stephan Kulow", I18N_NOOP("Comments and bugfixes."), 0);
   aboutData.addCredit("Arne Klaassen", I18N_NOOP("Raytraced chips."), 0);
+  aboutData.addCredit("Inge Wallin", I18N_NOOP("Cleaning, bugfixes, some enhancements."), 0);
 
   KCmdLineArgs::init( argc, argv, &aboutData );
 

@@ -110,27 +110,31 @@ class Game {
 public:
   Game();
   
-  void  Reset();
-  bool  MakeMove(Move m);
-  bool  TakeBackMove();
+  void   reset();
   
   Color  color(uint x, uint y) const;
   uint   score(Color color) const;
   Move   lastMove() const;
 
-  bool   moveIsLegal(Move m) const;
+  bool   moveIsLegal(Move &move) const;
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible() const;
+  bool   makeMove(Move &move);
+  bool   takeBackMove();
 
-  uint   moveNumber() const { return m_movenumber; }
-  Color  toMove() const;
+  uint   moveNumber() const  { return m_moveNumber;        }
+  Color  toMove() const      { return m_position.toMove(); }
 
+  // Reversi specific methods
   bool   squareModified(uint x, uint y) const;
   bool   wasTurned(uint x, uint y) const;
 
 private:
-  Position  m_positions[64];
-  uint      m_movenumber;
+  Move      m_moves[64];
+  Position  m_position;		// The current position in the game
+  Position  m_lastPosition;	// The last position in the game
+                                // So that we can compare and see turned pieces
+  uint      m_moveNumber;
 };
 
 #endif

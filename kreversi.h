@@ -36,14 +36,21 @@
  *******************************************************************
  */
 
+
 #ifndef KREVERSI_H
 #define KREVERSI_H
 
+
 #include "kzoommainwindow.h"
 
+#include "Game.h"
+#include "Engine.h"
 #include "board.h"
 
+
 class QLabel;
+
+class KAction;
 
 
 // A status widget that shows how many pieces one side has.
@@ -51,6 +58,7 @@ class QLabel;
 class StatusWidget : public QWidget
 {
   Q_OBJECT
+
 public:
   StatusWidget(const QString &text, QWidget *parent);
   
@@ -61,9 +69,6 @@ private:
   QLabel  *m_pixLabel;
   QLabel  *m_label;
 };
-
-
-class KAction;
 
 
 class KReversi : public KZoomMainWindow {
@@ -89,16 +94,19 @@ public:
   void   setStrength(uint);
   uint   strength() const         { return m_engine->strength();   }
   void   interrupt()              { m_engine->setInterrupt(TRUE);  }
-  bool   interrupted() const      { return (m_game->toMove() == opponent(m_humanColor)
+  bool   interrupted() const      { return (m_game->toMove() == computerColor()
 					    && m_state == Ready);  }
 
   // State of the program (Hint, Ready, Thinking, etc).
-  State  state() const { return m_state; }
-  void   setState(State);
+  void     setState(State);
+  State    state() const          { return m_state;                }
 
 private:
+  // Initialisation
   void     createStatusBar();
   void     createKActions();
+
+  // View functions.
   QString  getPlayerName();
   void     updateColors();
 
@@ -160,29 +168,30 @@ private:
 
 private:
   // Member fields
-  KAction  *stopAction;
-  KAction  *continueAction;
+  KAction       *stopAction;
+  KAction       *continueAction;
+
+  // The game itself and game properties
+  Game          *m_game;           // Stores the moves of the game
+  Color          m_humanColor;	   // The Color of the human player.
+  bool           m_lowestStrength; // Lowest strength during the game.
+  bool           m_competitiveGame;// True if the game has been
+				   // competitive during all moves so far.
 
   State          m_state;	// Ready, Thinking, Hint
   Engine        *m_engine;      // The AI that creates the computers moves.
-
-  Game          *m_game;	// Stores the moves of the game
-  Color          m_humanColor;	// The Color of the human player.
-  bool           m_lowestStrength; // Lowest strength during the game.
-  bool           m_competitiveGame;// True if the game has been
-				// competitive during all moves so far.
-
-  Board         *m_board;       // The board widget.
-
 
   // Some status values.
   bool           gameOver;
   bool           cheating;
 
-  // Score widgets
+  // Widgets
+  Board         *m_board;          // The board widget.
+
   StatusWidget  *m_humanStatus;
   StatusWidget  *m_computerStatus;
 };
+
 
 #endif
 

@@ -67,13 +67,13 @@
 //  public Move GetLastMove()
 //     Returns the last move.
 
-//  public boolean MoveIsLegal(Move m)
+//  public boolean moveIsLegal(Move move)
 //     Checks if a move is legal.
 
-//  public boolean MoveIsPossible(int player)
+//  public boolean moveIsPossible(int player)
 //     Checks if there is a legal move for player.
 
-//  public boolean MoveIsAtAllPossible()
+//  public boolean moveIsAtAllPossible()
 //     Checks if there are any legal moves at all.
 
 
@@ -87,9 +87,24 @@ Position::Position()
 }
 
 
-Position::Position(Position &p, Move &m)
+Position::Position(Position &pos, Move &move)
 {
-  constrCopy(p,m);
+  constrCopy(pos, move);
+}
+
+
+Position &Position::operator=(Position &pos)
+{
+  // Copy the position itself.
+  for (uint row = 0; row < 10; row++)
+    for (uint col = 0; col < 10; col++)
+      m_board[row][col] = pos.m_board[row][col];
+  m_toMove = pos.m_toMove;
+
+  m_lastMove = pos.m_lastMove;
+  m_score    = pos.m_score;
+
+  return *this;
 }
 
 
@@ -101,10 +116,6 @@ Position::Position(Position &p, Move &m)
 
 void Position::constrInit()
 {
-  // Each side starts out with two pieces.
-  m_score.set(White, 2);
-  m_score.set(Black, 2);
-
   // Initialize the real board
   for (uint i = 0; i < 10; i++)
     for (uint j = 0; j < 10; j++)
@@ -117,7 +128,14 @@ void Position::constrInit()
   m_board[4][5] = Black;
 
   // Black always starts the game in Reversi.
-  m_to_move = Black;
+  m_toMove = Black;
+
+  // Empty move;
+  m_lastMove = Move();
+
+  // Each side starts out with two pieces.
+  m_score.set(White, 2);
+  m_score.set(Black, 2);
 }
 
 
@@ -126,62 +144,8 @@ void Position::constrInit()
 
 void Position::constrCopy(Position &pos, Move &move)
 {
-  // Start by copying the position itself
-  for (uint row = 0; row < 10; row++)
-    for (uint col = 0; col < 10; col++)
-      m_board[row][col] = pos.m_board[row][col];
-  m_to_move = pos.m_to_move;
-
-  m_score   = pos.m_score;
-
-  // Now make the move.
-  Color  color    = move.color();
-  Color  opponent = ::opponent(color);
-
-  // Put the piece on the board
-  m_board[move.x()][move.y()] = color;
-  m_score.inc(color);
-
-  // Turn pieces.
-  for (int xinc = -1; xinc <= 1; xinc++) {
-    for (int yinc = -1; yinc <= 1; yinc++) {
-      int x, y;
-
-      // Skip the case where both xinc and yinc == 0, since then we
-      // won't move in any direction at all.
-      if (xinc == 0 && yinc == 0)
-	continue;
-
-      // Find the end point (x, y) of a possible row of turnable pieces.
-      for (x = move.x()+xinc, y = move.y()+yinc; m_board[x][y] == opponent;
-	   x += xinc, y += yinc)
-	;
-
-      // If the row was indeed turnable, then do it.
-      if (m_board[x][y] == color) {
-	for (x -= xinc, y -= yinc; x != move.x() || y != move.y();
-	     x -= xinc, y -= yinc) {
-	  // Turn the piece.
-	  m_board[x][y] = color;
-
-	  // Make the piece count correct again.
-	  m_score.inc(color);
-	  m_score.dec(opponent);
-	}
-      }
-    }
-  }
-
-  // Store the last move that lead to the position.
-  m_last_move = move;
-
-  // Set the next color to move.
-  if (moveIsPossible(opponent))
-    m_to_move = opponent;
-  else if (moveIsPossible(color))
-    m_to_move = color;
-  else
-    m_to_move = Nobody;
+  *this = pos;
+  makeMove(move);
 }
 
 
@@ -208,7 +172,7 @@ uint Position::score(Color color) const
 //       by the color to move.  That must be checked separately.
 //
 
-bool Position::moveIsLegal(Move move) const
+bool Position::moveIsLegal(Move &move) const
 {
   if (m_board[move.x()][move.y()] != Nobody) 
     return false;
@@ -252,7 +216,9 @@ bool Position::moveIsPossible(Color color) const
   // Make it simple: Step through all squares and see if it is a legal move.
   for (uint i = 1; i < 9; i++)
     for (uint j = 1; j < 9; j++) {
-      if (moveIsLegal(Move(color, i, j))) 
+      Move  move(color, i, j);
+
+      if (moveIsLegal(move)) 
 	return true;
     }
 
@@ -265,4 +231,73 @@ bool Position::moveIsPossible(Color color) const
 bool Position::moveIsAtAllPossible() const
 {
   return (moveIsPossible(White) || moveIsPossible(Black));
+}
+
+
+// Make a move in the position.  
+//
+// Return true if the move was legal, otherwise return false.
+bool Position::makeMove(Move &move)
+{
+  if (move.color() == Nobody)
+    return false;
+
+  Color  color    = move.color();
+  Color  opponent = ::opponent(color);
+
+  // Put the piece on the board
+  m_board[move.x()][move.y()] = color;
+  m_score.inc(color);
+
+  // Turn pieces.
+  uint  scoreBefore = m_score.score(color);
+  for (int xinc = -1; xinc <= 1; xinc++) {
+    for (int yinc = -1; yinc <= 1; yinc++) {
+      int x, y;
+
+      // Skip the case where both xinc and yinc == 0, since then we
+      // won't move in any direction at all.
+      if (xinc == 0 && yinc == 0)
+	continue;
+
+      // Find the end point (x, y) of a possible row of turnable pieces.
+      for (x = move.x()+xinc, y = move.y()+yinc; m_board[x][y] == opponent;
+	   x += xinc, y += yinc)
+	;
+
+      // If the row was indeed turnable, then do it.
+      if (m_board[x][y] == color) {
+	for (x -= xinc, y -= yinc; x != move.x() || y != move.y();
+	     x -= xinc, y -= yinc) {
+	  // Turn the piece.
+	  m_board[x][y] = color;
+
+	  // Make the piece count correct again.
+	  m_score.inc(color);
+	  m_score.dec(opponent);
+	}
+      }
+    }
+  }
+
+  // If nothing was turned, the move wasn't legal.
+  if (m_score.score(color) == scoreBefore) {
+    m_board[move.x()][move.y()] = Nobody;
+    m_score.dec(color);
+
+    return false;
+  }
+
+  // Store the last move that lead to the position.
+  m_lastMove = move;
+
+  // Set the next color to move.
+  if (moveIsPossible(opponent))
+    m_toMove = opponent;
+  else if (moveIsPossible(color))
+    m_toMove = color;
+  else
+    m_toMove = Nobody;
+
+  return true;
 }
