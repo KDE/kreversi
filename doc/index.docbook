@@ -37,6 +37,8 @@ vampyr@atconnex.net
 </email></address></affiliation>
 </othercredit>
 
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
 </authorgroup>
 
 <date>16/12/2000</date>
@@ -445,6 +447,8 @@ clicked, a <action>help window will open explaining the item's function.</action
 
 <para>Documentation re-written and updated for KDE 2.0 by Clay Pradarits
 <email>gasky@winfire.com</email></para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 
 &underFDL;
 &underGPL;
