@@ -37,8 +37,6 @@
  */
 
 
-#include "board.h"
-
 #include <unistd.h>
 
 #include <qpainter.h>
@@ -51,8 +49,10 @@
 #include <kexthighscore.h>
 #include <kdebug.h>
 
+#include "board.h"
 #include "prefs.h"
 #include "Engine.h"
+#include "qreversigame.h"
 
 
 #ifndef PICDATA
@@ -66,66 +66,10 @@ const uint  CHIP_SIZE             = 36;
 
 
 // ================================================================
-//                      class KReversiGame
-
-
-KReversiGame::KReversiGame(QObject *parent)
-  : QObject(parent)
-{
-  m_game = new Game();
-  m_game->newGame();
-}
-
-
-KReversiGame::~KReversiGame()
-{
-  delete m_game;
-}
-
-
-void KReversiGame::newGame()
-{
-  m_game->newGame();
-
-  emit updateBoard();
-  emit score();
-  emit turn(m_game->toMove());
-}
-
-
-bool KReversiGame::makeMove(Move move)
-{
-  bool  retval = m_game->makeMove(move);
-
-  emit updateBoard();
-  emit score();
-  emit turn(m_game->toMove());
-
-  if (!m_game->moveIsAtAllPossible())
-    emit gameOver();
-
-  return retval;
-}
-
-
-bool KReversiGame::takeBackMove()
-{ 
-  bool  retval = m_game->takeBackMove();
-
-  // Update all views.
-  emit updateBoard();
-  emit score();
-  emit turn(m_game->toMove());
-
-  return retval;
-}
-
-
-// ================================================================
 //                class KReversiBoardView
 
 
-KReversiBoardView::KReversiBoardView(QWidget *parent, KReversiGame *krgame)
+KReversiBoardView::KReversiBoardView(QWidget *parent, QReversiGame *krgame)
     : QWidget(parent, "board"),
       chiptype(Unloaded)
 {
@@ -146,11 +90,6 @@ KReversiBoardView::~KReversiBoardView()
 
 void KReversiBoardView::start()
 {
-#if 0
-  // make sure a signal is emitted
-  // FIXME: why?  /iw
-  setStrength(strength());
-#endif
   updateBoard(TRUE);
   adjustSize();
 }
@@ -193,8 +132,7 @@ void KReversiBoardView::mousePressEvent(QMouseEvent *e)
     return;
   }
 
-  if (e->pos().x() == 0 || e->pos().y() == 0)
-  {
+  if (e->pos().x() == 0 || e->pos().y() == 0) {
     e->ignore();
     return;
   }

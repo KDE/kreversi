@@ -126,7 +126,7 @@ KReversi::KReversi()
   KNotifyClient::startDaemon();
 
   // The game.
-  m_krgame     = new KReversiGame();
+  m_krgame     = new QReversiGame();
   m_cheating   = false;
   m_gameOver   = false;
   m_humanColor = Black;
@@ -152,7 +152,7 @@ KReversi::KReversi()
   addWidget(m_boardView);
 
   // Connect some signals on the board with slots of the application
-  connect(m_krgame, SIGNAL(score()),        this, SLOT(showScore()));
+  connect(m_krgame, SIGNAL(sig_score()),    this, SLOT(showScore()));
   connect(m_krgame, SIGNAL(gameOver()),     this, SLOT(slotGameOver()));
   connect(m_krgame, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
 
@@ -333,7 +333,7 @@ void KReversi::slotHint()
     return;
 
   setState(Thinking);
-  move = m_engine->computeMove(m_krgame->game(), m_competitiveGame);
+  move = m_engine->computeMove(m_krgame, m_competitiveGame);
 
   setState(Hint);
   m_boardView->showHint(move);
@@ -653,7 +653,7 @@ void KReversi::computerMakeMove()
       return;
     }
 
-    move = m_engine->computeMove(m_krgame->game(), m_competitiveGame);
+    move = m_engine->computeMove(m_krgame, m_competitiveGame);
     if (move.x() == -1) {
       setState(Ready);
       return;

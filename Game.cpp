@@ -108,6 +108,10 @@ Game::Game()
   newGame();
 }
 
+Game::~Game()
+{
+}
+
 
 // Start a new game and reset the position to before the first move.
 //

@@ -17,9 +17,10 @@ KReversi----------------------------------------------+
   | +-----------------+                |              |
   |                   |                |              |
   v                   v                v              v
-KReversiGame     KReversiBoardView   Engine    Other view widgets
-  |      ^            |                        (score, to move, etc)
-  v      +- - - - - - +
+QReversiGame     KReversiBoardView   Engine    Other view widgets
+  X      ^            |                        (score, to move, etc)
+  X      +- - - - - - +
+  v
 Game
  I +=========+
  I           I
@@ -28,6 +29,7 @@ Position   Move[]
 
 
 Legend: 
+XXXXXXXX>  Inherits
 ========>  Contains
 -------->  Ownership pointer
 - - - - >  Reference pointer
@@ -57,13 +59,13 @@ Engine
     Can generate a move, given a ReversiPosition.
 
 
-KReversiGame
+QReversiGame
     The "document" for KReversi.
     Handles a game being played and sends signals to all its views
     when something changes.  Basically, the only difference between
     this class and the more basic ReversiGame is that it sends signals
     to the views.
-    Contains: ReversiGame	The actual game being played
+    Inherits: ReversiGame	The actual game being played
 
 
 KReversiBoardView
@@ -72,7 +74,7 @@ KReversiBoardView
     implemented in the class kreversi, among other things the current
     score and side to move.
 
-    Contains: *KReversiGame	(not owner)
+    Contains: *QReversiGame	(not owner)
               Other widgets	(owner)
 
     FIXME: Enhance the view with timing information, move list, clock,
@@ -91,7 +93,7 @@ KReversiGameView (status: PLANNED)
 
 KReversi
     The main class for the KReversi program
-    Contains: *KReversiGame 	 (owner)
+    Contains: *QReversiGame 	 (owner)
 	      *KReversiBoardView (owner) (now)
 	      *KReversiGameView  (owner) (Planned)
 	      *Engine            (owner)

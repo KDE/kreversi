@@ -43,14 +43,17 @@
 
 #include "kzoommainwindow.h"
 
+#include "Score.h"
 #include "Game.h"
 #include "Engine.h"
 #include "board.h"
+#include "qreversigame.h"
 
 
 class QLabel;
 
 class KAction;
+
 
 
 // A status widget that shows how many pieces one side has.
@@ -87,7 +90,9 @@ public:
   Color  toMove() const           { return m_krgame->toMove();       }
   Color  humanColor() const       { return m_humanColor;           }
   Color  computerColor() const    { return opponent(m_humanColor); }
+#if 0
   uint   score(Color color) const { return m_krgame->score(color);   }
+#endif
   uint   moveNumber() const       { return m_krgame->moveNumber();   }
 
   // Methods that deal with the engine.
@@ -174,7 +179,7 @@ private:
   KAction       *continueAction;
 
   // The game itself and game properties
-  KReversiGame  *m_krgame;	   // Stores the moves of the game
+  QReversiGame  *m_krgame;	   // Stores the moves of the game
   Color          m_humanColor;	   // The Color of the human player.
   bool           m_gameOver;	   // True if the game is over
   bool           m_cheating;	   // True if the user has changed sides

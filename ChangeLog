@@ -1,3 +1,16 @@
+2005-03-30  Inge Wallin  <ingwa@dhcp-254-182.lkpg.cendio.se>
+
+	Move KReversiGame out to its own file, and remove it.
+	* qreversigame.{h,cpp}: new files.
+	(class): Inherit from Game instead of containing it.
+	(signal score): Rename into sig_score().
+	* Makefile.am: include new files.
+	* board.cpp: Remove class KReversiGame
+	(all methods): Rename to QReversiGame
+	
+	Code cleaning
+	* Game.{h,cpp} (~Game): new method
+
 2005-03-28  Inge Wallin  <inge@lysator.liu.se>
 
 	* kreversi.cpp (KReversi): Fix faulty connect().
