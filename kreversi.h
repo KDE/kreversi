@@ -88,7 +88,6 @@ private slots:
   void newGame();
   void openGame();
   void save();
-  void configureKeyBindings();
   void configureNotifications();
   void zoomIn();
   void zoomOut();

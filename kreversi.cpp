@@ -142,7 +142,8 @@ void KReversi::createKActions() {
   // Settings
   createStandardStatusBarAction();
   setStandardToolBarMenuEnabled(true);
-  KStdAction::keyBindings(this, SLOT(configureKeyBindings()), actionCollection());
+  KStdAction::keyBindings(guiFactory(), SLOT(configureShortcuts()), 
+actionCollection());
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
 
   createGUI();
@@ -172,10 +173,6 @@ void KReversi::save(){
   config->setGroup("Savegame");
   board->saveGame(config);
   KMessageBox::information(this, i18n("Game saved."));
-}
-
-void KReversi::configureKeyBindings(){
-  KKeyDialog::configure(actionCollection(), this);
 }
 
 bool KReversi::eventFilter(QObject *o, QEvent *e)
