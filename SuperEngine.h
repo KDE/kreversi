@@ -120,7 +120,7 @@ public:
   virtual ~SuperEngine() {}
   
   void  setInterrupt(bool intr) { m_interrupt = intr; }
-  bool  interrupt() const       { return m_interrupt; }
+  bool  interrupted() const     { return m_interrupt; }
 
   enum Strength             { MinStrength = 1, MaxStrength = 7, 
 			      NbStrengths = MaxStrength };

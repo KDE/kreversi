@@ -1,3 +1,13 @@
+2004-09-27  Inge Wallin  <inge@lysator.liu.se>
+
+	Continue to make KReversi a proper model/view program:
+
+	* Transfer ownership of Game and Engine to kreversi from Board.
+	board.h, board.cpp, kreversi.h, kreversi.cpp: lots of changes.
+
+	Some other cleanup:
+	* SuperEngine.h (interrupt): renamed to interrupted()
+
 2004-09-26  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 90195: KReversi: Changing the skill level late in a game

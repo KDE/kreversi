@@ -433,7 +433,7 @@ Move Engine::computeMove(Game game, bool competitive)
       }
 
       // Jump out prematurely if interrupt is set.
-      if (interrupt()) 
+      if (interrupted()) 
 	break;
     }
   }
@@ -455,7 +455,7 @@ Move Engine::computeMove(Game game, bool competitive)
   }
 
   // Return a suitable move.
-  if (interrupt())
+  if (interrupted())
     return Move(Nobody, -1, -1);
   else if (maxval != -LARGEINT)
     return Move(color, max_x, max_y);
@@ -605,7 +605,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
   m_bc_score.sub(color, m_bc_board[xplay][yplay]);
 
   // Return a suitable value.
-  if (number_of_turned < 1 || interrupt())
+  if (number_of_turned < 1 || interrupted())
     return ILLEGAL_VALUE;
   else
     return retval;
@@ -637,17 +637,17 @@ int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
 
 	if (val != ILLEGAL_VALUE && val > maxval) {
 	  maxval = val;
-	  if (maxval > -cutoffval || interrupt()) 
+	  if (maxval > -cutoffval || interrupted()) 
 	    break;
 	}
       }
     }
 
-    if (maxval > -cutoffval || interrupt())
+    if (maxval > -cutoffval || interrupted())
       break;
   }
 
-  if (interrupt()) 
+  if (interrupted()) 
     return -LARGEINT;
 
   return maxval;

@@ -70,9 +70,31 @@ class KReversi : public KZoomMainWindow {
   Q_OBJECT
 
 public:
+
+  enum State { Ready, Thinking, Hint};
+
   KReversi();
+  ~KReversi();
   
   bool isPlaying() const;
+
+  // Methods that deal with the game
+  Color  toMove() const           { return m_game->toMove();       }
+  Color  humanColor() const       { return m_humanColor;           }
+  Color  computerColor() const    { return opponent(m_humanColor); }
+  uint   score(Color color) const { return m_game->score(color);   }
+  uint   moveNumber() const       { return m_game->moveNumber();   }
+
+  // Methods that deal with the engine.
+  void   setStrength(uint);
+  uint   strength() const         { return m_engine->strength();   }
+  void   interrupt()              { m_engine->setInterrupt(TRUE);  }
+  bool   interrupted() const      { return (m_game->toMove() == opponent(m_humanColor)
+					    && m_state == Ready);  }
+
+  // State of the program (Hint, Ready, Thinking, etc).
+  State  state() const { return m_state; }
+  void   setState(State);
 
 private:
   void     createStatusBar();
@@ -89,6 +111,11 @@ private:
   virtual void  readProperties(KConfig *);
   virtual bool  queryExit();
 
+ signals:
+  void turn(Color);
+  void score();
+  void stateChange(State);
+
 private slots:
 
   // Slots for KActions.
@@ -99,9 +126,13 @@ private slots:
   void  slotUndo();
   void  slotSwitchSides();
 
-  // Interrupt and continue the engines thinking.
+  // Interrupt and continue the engines thinking (also KActions).
   void  slotInterrupt();
   void  slotContinue();
+
+  // Slots for game IO
+  void slotSquareClicked(int, int);
+
 
   void  configureNotifications();
 
@@ -110,18 +141,39 @@ private slots:
   void  slotEditSettings();
   void  loadSettings();
 
-  // Slots for the game view.
+  // Slots for the view.
   void  slotScore();
   void  slotGameEnded(Color);
   void  slotTurn(Color);
-  void  slotStatusChange(Board::State);
+  void  slotStateChange(State);
 
 private:
+
+  // Private methods
+  void  humanMakeMove(int row, int col);
+  void  computerMakeMove();
+  void  illegalMove();
+
+  void  saveGame(KConfig *);
+  bool  loadGame(KConfig *, bool noupdate = FALSE);
+
+
+private:
+  // Member fields
   KAction  *stopAction;
   KAction  *continueAction;
 
-  // The board widget.  FIXME: Should be split into m_game and m_gameView.
-  Board         *m_board;
+  State          m_state;	// Ready, Thinking, Hint
+  Engine        *m_engine;      // The AI that creates the computers moves.
+
+  Game          *m_game;	// Stores the moves of the game
+  Color          m_humanColor;	// The Color of the human player.
+  bool           m_lowestStrength; // Lowest strength during the game.
+  bool           m_competitiveGame;// True if the game has been
+				// competitive during all moves so far.
+
+  Board         *m_board;       // The board widget.
+
 
   // Some status values.
   bool           gameOver;

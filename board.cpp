@@ -68,20 +68,16 @@ const uint  CHIP_SIZE             = 36;
 //-----------------------------------------------------------------
 
 
-Board::Board(QWidget *parent)
+Board::Board(QWidget *parent, Game *game)
     : QWidget(parent, "board"),
-      m_humanColor(Black), chiptype(Unloaded)
+      chiptype(Unloaded)
 {
-  m_engine = new Engine();
-  m_game   = new Game();
-
-  setStrength(1);
+  m_game = game;
 }
 
 
-Board::~Board() {
-  delete m_engine;
-  delete m_game;
+Board::~Board()
+{
 }
 
 
@@ -99,9 +95,12 @@ uint Board::zoomedSize() const
 
 void Board::start()
 {
+#if 0
   // make sure a signal is emitted
+  // FIXME: why?  /iw
   setStrength(strength());
-  newGame();
+#endif
+  updateBoard(TRUE);
   adjustSize();
 }
 
@@ -132,159 +131,32 @@ void Board::setAnimationSpeed(uint speed)
 }
 
 
-// Continues a move if it was interrupted earlier.
-//
-
-void Board::doContinue()
-{
-  if (interrupted())
-    computerMakeMove();
-}
-
-
-// Starts a new game.
-//
-
-void Board::newGame()
-{
-  m_game->Reset();
-  m_competitiveGame = Prefs::competitiveGameChoice();
-  m_lowestStrength  = strength();
-  //kdDebug() << "Competitive: " << m_competitiveGame << endl;
-
-  updateBoard(TRUE);
-  setState(Ready);
-
-  emit turn(Black);
-
-  // Black always makes first move.
-  if (m_humanColor == White)
-    computerMakeMove();
-}
-
-
 // Handle mouse clicks.
 //
 
 void Board::mousePressEvent(QMouseEvent *e)
 {
+  // Only handle left button.  No context menu.
   if ( e->button() != LeftButton ) {
     e->ignore();
     return;
   }
 
-  if ( interrupted() ) {
-    illegalMove();
-    return;
-  }
-
-  if (state() == Ready) {
-    int px = (e->pos().x()-1) / zoomedSize();
-    int py = (e->pos().y()-1) / zoomedSize();
-    fieldClicked(py, px);
-  } 
-  else if (state() == Hint)
-    setState(Ready);
-  else
-    illegalMove();
-}
-
-
-void Board::illegalMove()
-{
-  KNotifyClient::event(winId(), "illegal_move", i18n("Illegal move"));
-}
-
-
-// Handle piece settings.
-//
-
-void Board::fieldClicked(int row, int col)
-{
-  if (state() != Ready) 
-    return;
-
-  Color color = m_game->toMove();
-
-  // Create a move from the mouse click and see if it is legal.
-  // If it is, then make a human move.
-  Move  m(color, col + 1, row + 1);
-  if (m_game->moveIsLegal(m)) {
-    m_game->MakeMove(m);
-    animateChanged(m);
-
-    if (!m_game->moveIsAtAllPossible()) {
-      updateBoard();
-      setState(Ready);
-      gameEnded();
-      return;
-    }
-
-    updateBoard();
-
-    if (color != m_game->toMove())
-      computerMakeMove();
-  } else
-    illegalMove();
-}
-
-
-// Makes a computer move.
-//
-
-void Board::computerMakeMove()
-{
-  // Check if the computer can move.
-  Color color    = m_game->toMove();
-  Color opponent = ::opponent(color);
-
-  emit turn(color);
-
-  if (!m_game->moveIsPossible(color))
-    return;
- 
-  // Make computer moves until the human can play or until the game is over.
-  setState(Thinking);
-  do {
-    Move  move;
-
-    if (!m_game->moveIsAtAllPossible()) {
-      setState(Ready);
-      gameEnded();
-      return;
-    }
-
-    move = m_engine->computeMove(*m_game, m_competitiveGame);
-    if (move.x() == -1) {
-      setState(Ready);
-      return;
-    }
-    usleep(300000); // Pretend we have to think hard.
-
-    //playSound("click.wav");
-    m_game->MakeMove(move);
-    animateChanged(move);
-    updateBoard();
-  } while (!m_game->moveIsPossible(opponent));
-
-
-  emit turn(opponent);
-  setState(Ready);
-
-  if (!m_game->moveIsAtAllPossible()) {
-    gameEnded();
-    return;
-  }
+  int px = (e->pos().x()-1) / zoomedSize();
+  int py = (e->pos().y()-1) / zoomedSize();
+  emit signalSquareClicked(py, px);
 }
 
 
 // Calculate the final score.
 //
+// FIXME: Move this to kreversi.h?
 
 void Board::gameEnded()
 {
-  uint  black = score(Black);
-  uint  white = score(White);
+  uint  black = m_game->score(Black);
+  uint  white = m_game->score(White);
+
   if (black > white)
     emit gameWon(Black);
   else if (black < white)
@@ -296,46 +168,8 @@ void Board::gameEnded()
 }
 
 
-void Board::switchSides()
+void Board::showHint(Move move)
 {
-  if (state() != Ready) 
-    return;
-
-  m_humanColor = opponent(m_humanColor);
-  emit score();
-  kapp->processEvents();
-  computerMakeMove();
-}
-
-
-void Board::setState(State nstatus)
-{
-  m_status = nstatus;
-  emit statusChange(m_status);
-}
-
-
-void Board::setStrength(uint st)
-{
-  // FIXME: 7 should be MAXSTRENGTH or something similar.
-  Q_ASSERT( 1 <= st && st <= 7 );
-
-  st = QMAX(QMIN(st, 7), 1);
-  m_engine->setStrength(st);
-  if (m_lowestStrength < st)
-    m_lowestStrength = st;
-  KExtHighscore::setGameType(m_lowestStrength-1);
-}
-
-
-void Board::showHint()
-{
-  Move  move;
-
-  setState(Board::Thinking);
-  move = m_engine->computeMove(*m_game, m_competitiveGame);
-  setState(Board::Hint);
-
   // Only show a hint if there is a move to show.
   if (move.x() == -1)
     return;
@@ -345,8 +179,9 @@ void Board::showHint()
   // The isVisible condition has been added so that when the player
   // was viewing a hint and quits the game window, the game doesn't
   // still have to do all this looping and directly ends
+  m_hintShowing = true;
   for (int flash = 0;
-       flash < 100 && state() != Ready && isVisible(); 
+       flash < 100 && m_hintShowing && isVisible(); 
        flash++)
   {
     if (flash & 1)
@@ -365,38 +200,13 @@ void Board::showHint()
 }
 
 
-// Takes back last set of moves
+// Set the member m_hintShowing to false.  This will make showHint()
+// end, if it is running.
 //
 
-void Board::doUndo()
+void Board::quitHint()
 {
-  if (state() != Ready) 
-    return;
-
-  // Can't undo anything if no moves are made.
-  if (m_game->moveNumber() == 0)
-    return;
-
-  // Get the color of the last move.  
-  Color last_color = m_game->lastMove().color();
-
-  // Undo all moves of the same color as the last one.
-  while (m_game->moveNumber() != 0
-	 && last_color == m_game->lastMove().color())
-    m_game->TakeBackMove();
-
-  // Take back one move more.
-  m_game->TakeBackMove();
-
-
-  if (m_game->toMove() == computerColor()) {
-    // Must repaint so that the new move is not shown before the old
-    // one is removed on the screen.
-    repaint();
-    computerMakeMove();
-  }
-  else
-    update();
+  m_hintShowing = false;
 }
 
 
@@ -475,6 +285,7 @@ void Board::rotateChip(uint row, uint col)
 
 void Board::updateBoard(bool force)
 {
+  // Draw the squares of the board.
   for (uint row = 0; row < 8; row++)
     for (uint col = 0; col < 8; col++)
       if ( force || m_game->squareModified(col + 1, row + 1) ) {
@@ -482,10 +293,12 @@ void Board::updateBoard(bool force)
 	drawPiece(row, col, color);
       }
 
+  // Draw a border around the board.
   QPainter  p(this);
   p.setPen(black);
   p.drawRect(0, 0, 8 * zoomedSize() + 2, 8 * zoomedSize() + 2);
 
+  // FIXME: It can't be right to have this signal here.
   emit score();
 }
 
@@ -584,103 +397,8 @@ void Board::setColor(const QColor &c)
 }
 
 
-// Saves the game in the config file.  
-//
-// Only one game at a time can be saved.
-//
-
-void Board::saveGame(KConfig *config)
-{
-  // Stop thinking.
-  interrupt(); 
-
-  // Write the data to the config file.
-  config->writeEntry("NumberOfMoves", moveNumber());
-  config->writeEntry("State", state());
-  config->writeEntry("Strength", strength());
-
-  // Write the moves of the game to the config object.  This object
-  // saves itself all at once so we don't have to write the moves
-  // to the file ourselves.
-  for (uint i = moveNumber(); i > 0; i--) {
-    Move  move = m_game->lastMove();
-    m_game->TakeBackMove();
-
-    QString s, idx;
-    s.sprintf("%d %d %d", move.x(), move.y(), (int)move.color());
-    idx.sprintf("Move_%d", i);
-    config->writeEntry(idx, s);
-  }
-
-  // Save whose turn it is and if the game is competitive.
-  config->writeEntry("Competitive", (int) m_competitiveGame);
-  config->writeEntry("HumanColor",  (int) m_humanColor);
-  config->sync();
-
-  // All moves must be redone.
-  loadGame(config, TRUE);
-
-  // Continue with the move if applicable.
-  doContinue(); 
-}
-
-
-// Loads the game.  Only one game at a time can be saved.
-//
-
-bool Board::loadGame(KConfig *config, bool noupdate)
-{
-  interrupt(); // stop thinking
-
-  uint  nmoves = config->readNumEntry("NumberOfMoves", 0);
-  if (nmoves==0) 
-    return false;
-
-  m_game->Reset();
-  uint movenumber = 1;
-  while (nmoves--) {
-    // Read one move.
-    QString  idx;
-    idx.sprintf("Move_%d", movenumber++);
-
-    QStringList  s = config->readListEntry(idx, ' ');
-    uint         x = (*s.at(0)).toUInt();
-    uint         y = (*s.at(1)).toUInt();
-    Color        color = (Color)(*s.at(2)).toInt();
-
-    Move move(color, x, y);
-    m_game->MakeMove(move);
-  }
-
-  m_humanColor      = (Color) config->readNumEntry("HumanColor");
-  m_competitiveGame = (bool)  config->readNumEntry("Competitive");
-
-  if (noupdate)
-    return true;
-
-  updateBoard(TRUE);
-  setState(State(config->readNumEntry("State")));
-  setStrength(config->readNumEntry("Strength", 1));
-  //kdDebug() << "Competitive set to: " << m_competitiveGame << endl;
-
-  if (interrupted())
-    doContinue();
-  else {
-    // Make the view show who is to move.
-    emit turn(m_game->toMove());
-
-    // Computer makes first move.
-    if (m_humanColor != m_game->toMove())
-      computerMakeMove();
-  }
-
-  return true;
-}
-
-
 void Board::loadSettings()
 {
-  m_humanColor = (Color) Prefs::humanColor();
   if ( Prefs::grayscale() ) {
     if (chiptype != Grayscale)
       loadChips(Grayscale);
@@ -694,12 +412,6 @@ void Board::loadSettings()
     setAnimationSpeed(0);
   else
     setAnimationSpeed(10 - Prefs::animationSpeed());
-  setStrength(Prefs::skill());
-
-  // This is set at the start of a game and can only be downgraded
-  // during the game.
-  if ( !Prefs::competitiveGameChoice() )
-    m_competitiveGame = false;
 
   if ( Prefs::backgroundImageChoice() ) {
     QPixmap pm( Prefs::backgroundImage() );

@@ -4,17 +4,22 @@ TODO-list for KREVERSI
 Now
 ---
 
+* Transfer ownership of the Engine, the Game and m_competitiveGame	DONE
+  from Board to KReversi.
+
+--------  Commit here  --------
+
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.
      1. Fix a ReversiGame (formerly known as Game)
         - Clean it up. (Only store the moves).
         - Add a few necessary methods.
-     2. Create a new class KReversiGame, that stores a ReversiGame and
-	sends a lot of signals.
+     2. Move all the slots for KActions to kreversi.cpp			DONE
+     3. Move the ownership of the engine and the game to kreversi.
+     4. Create a new class KReversiGame, that stores a ReversiGame
+	and sends a lot of signals.
         - Split out a lot of methods from the current class Board.
-     3. Create KReversiBoard from the rest of the current Board
-     4. Create a new class KReversiGameView, that will be the main view.
-        - Store a KReversiGame, a KReversiBoard and some other widgets.
+     5. Create KReversiBoard from the rest of the current Board
 
   II. Introduce a class ReversiPlayer
 
