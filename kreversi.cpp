@@ -259,24 +259,16 @@ void KReversi::slotNewGame()
 {
   // If already playing, ask the player if he wants to abort the old game.
   if ( isPlaying() ) {
-    KDialogBase *checkDlg = new KDialogBase(i18n("Abort current game?"),
-					    KDialogBase::Yes|KDialogBase::Cancel,
-					    KDialogBase::Cancel);
-    checkDlg->setButtonText(KDialogBase::Yes,    i18n("Abort the old game"));
-    checkDlg->setButtonText(KDialogBase::Cancel, i18n("Continue the old game"));
-
-    QLabel *lbl = new QLabel(i18n("You are already running an unfinished game.\n"
-			      "If you abort the old game to start a new one,\n"
-			      "the old game will be registered as a loss in\n"
-			      "the highscore file.\n\n"
-			      "What do you want to do?\n\n"), checkDlg);
-    checkDlg->setMainWidget(lbl);
-
-    int  dialogResult = checkDlg->exec();
-    delete checkDlg;
-
-    //kdDebug() << "Returned from dialog: " << ok << endl;
-    if (dialogResult == KDialogBase::Cancel)
+    if (KMessageBox
+	::warningYesNo(0,
+		       i18n("You are already running an unfinished game.  "
+			    "If you abort the old game to start a new one, "
+			    "the old game will be registered as a loss in "
+			    "the highscore file.\n"
+			    "What do you want to do?"),
+		       i18n("Abort current game?"),
+		       i18n("Abort the old game"),
+		       i18n("Continue the old game")) == KMessageBox::No)
       return;
 
     KExtHighscore::submitScore(KExtHighscore::Lost, this);

@@ -1,4 +1,10 @@
-2004-10-15  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+2004-10-31  Inge Wallin  <inge@lysator.liu.se>
+
+	Better fix for bug 91055.
+	* kreversi.cpp (slotNewGame): Reimplement dialog using
+	KMessageBox::warningYesNo().  This solves the FIXME in the header.
+
+2004-10-15  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 90472: KReversi: When you interrupt the computers move and
 	then switch sides, the program gets confused
