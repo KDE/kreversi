@@ -6,7 +6,7 @@
   <include>kglobal.h</include>
   <group name="Game">
     <entry name="Grayscale" type="Bool">
-      <label>Whether to use a gray board instead of colors.</label>
+      <label>Whether to use a grayscale board instead of colored.</label>
       <default>false</default>
     </entry>
     <entry name="Animation" type="Bool">
