@@ -65,7 +65,7 @@ struct HighScore {
 };
 
 
-class App : public KTopLevelWidget {
+class App : public KTMainWindow {
   Q_OBJECT
 public:
   App();

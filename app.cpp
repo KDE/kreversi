@@ -123,7 +123,7 @@ const int SB_SCOREH	= 2;
 const int SB_SCOREC	= 3;
 const int SB_TURN       = 4;
 
-App::App() : KTopLevelWidget() {
+App::App() : KTMainWindow() {
   highscore.resize(0);
   readHighscore();
   setCaption( kapp->getCaption() );
