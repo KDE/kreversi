@@ -701,7 +701,7 @@ void App::slotGameEnded(int color) {
     playSound(KGlobal::dirs()->findResource("sound", "reversi-won.wav"));
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%%")
 	      .arg(winner).arg(loser).arg(score,1);
-    QMessageBox::information(this, i18n("Game ended"), s);
+    QMessageBox::information(this, i18n("Game ended"), s, i18n("OK"));
 
     // create highscore entry
     HighScore hs;
