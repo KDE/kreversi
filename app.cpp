@@ -670,7 +670,7 @@ void App::slotGameEnded(int color) {
                  100.0;
 
     playSound("reversi-won.wav");
-    s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%%")
+    s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
 	      .arg(winner).arg(loser).arg(score,1);
     KMessageBox::information(this, s, i18n("Game ended"));
 
