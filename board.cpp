@@ -79,6 +79,7 @@ KReversiBoardView::KReversiBoardView(QWidget *parent, QReversiGame *krgame)
   m_krgame = krgame;
 
   m_marksShowing = true;
+  m_legalMoves.clear();
 }
 
 
@@ -194,6 +195,22 @@ void KReversiBoardView::quitHint()
 }
 
 
+// Mark the list of squares as legal moves.
+
+void KReversiBoardView::showLegalMoves(MoveList moves)
+{
+  m_legalMoves = moves;
+  updateBoard(true);
+}
+
+
+void KReversiBoardView::quitShowLegalMoves()
+{
+  m_legalMoves.clear();
+  updateBoard(true);
+}
+
+
 void KReversiBoardView::setMarks(bool marks)
 {
   m_marksShowing = marks;
@@ -292,35 +309,48 @@ void KReversiBoardView::updateBoard (bool force)
 	     8 * zoomedSize() + 2, 8 * zoomedSize() + 2);
 
   // Draw letters and numbers if appropriate.
-  if (!m_marksShowing)
-    return;
+  if (m_marksShowing) {
+    QFont         font("Helvetica", zoomedSize() / 2 - 6);
+    font.setWeight(QFont::DemiBold);
+    QFontMetrics  metrics(font);
 
-  QFont         font("Helvetica", zoomedSize() / 2 - 6);
-  font.setWeight(QFont::DemiBold);
-  QFontMetrics  metrics(font);
+    p.setFont(font);
+    uint  charHeight = metrics.ascent();
+    for (uint i = 0; i < 8; i++) {
+      QChar  letter = "ABCDEFGH"[i];
+      QChar  number = "12345678"[i];
+      uint   charWidth = metrics.charWidth("ABCDEFGH", i);
 
-  p.setFont(font);
-  uint  charHeight = metrics.ascent();
-  for (uint i = 0; i < 8; i++) {
-    QChar  letter = "ABCDEFGH"[i];
-    QChar  number = "12345678"[i];
-    uint   charWidth = metrics.charWidth("ABCDEFGH", i);
+      // The horizontal letters
+      p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
+		 offset - charHeight / 2 + 2,
+		 QString(letter));
+      p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
+		 offset + 8 * zoomedSize() + offset - charHeight / 2 + 2,
+		 QString(letter));
 
-    // The horizontal letters
-    p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
-	       offset - charHeight / 2 + 2,
-	       QString(letter));
-    p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
-	       offset + 8 * zoomedSize() + offset - charHeight / 2 + 2,
-	       QString(letter));
+      // The vertical numbers
+      p.drawText((offset - charWidth) / 2 + 2, 
+		 offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
+		 QString(number));
+      p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2 + 2, 
+		 offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
+		 QString(number));
+    }
+  }
 
-    // The vertical numbers
-    p.drawText((offset - charWidth) / 2 + 2, 
-	       offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
-	       QString(number));
-    p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2 + 2, 
-	       offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
-	       QString(number));
+  // Mark all legal moves.
+  MoveList::iterator  it;
+  int ellipseSize = zoomedSize() / 3;
+  for (it = m_legalMoves.begin(); it != m_legalMoves.end(); ++it) {
+    int  px = offset + ((*it).x() - 1) * zoomedSize() + zoomedSize() / 2;
+    int  py = offset + ((*it).y() - 1) * zoomedSize() + zoomedSize() / 2;
+
+    //kdDebug() << "Showing legal move at [" 
+    //      << (*it).x() << ", " << (*it).y() << "]" << endl;
+
+    p.drawEllipse(px - ellipseSize / 2, py - ellipseSize / 2,
+		  ellipseSize, ellipseSize);
   }
 }
 

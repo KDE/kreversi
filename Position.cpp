@@ -301,3 +301,21 @@ bool Position::makeMove(Move &move)
 
   return true;
 }
+
+
+MoveList  Position::generateMoves(Color color) const
+{
+  MoveList  moves;
+
+  // Make it simple: Step through all squares and see if it is a legal move.
+  for (uint i = 1; i < 9; i++) {
+    for (uint j = 1; j < 9; j++) {
+      Move  move(color, i, j);
+
+      if (moveIsLegal(move)) 
+	moves.append(move);
+    }
+  }
+
+  return moves;
+}

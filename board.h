@@ -42,7 +42,7 @@
 #include <qwidget.h>
 #include <qpixmap.h>
 
-//#include "Position.h"
+#include "Position.h"
 //#include "Game.h"
 #include "Move.h"
 
@@ -72,6 +72,10 @@ public:
   // Show a hint to the user.
   void    showHint(Move move);
   void    quitHint();
+
+  // Show all possible moves
+  void    showLegalMoves(MoveList moves);
+  void    quitShowLegalMoves();
 
   // Show letters and numbers on the board
   void    setMarks(bool);
@@ -131,6 +135,7 @@ private:
 
   // Special stuff used only in smaller areas.
   bool      m_hintShowing;
+  MoveList  m_legalMoves;
   bool      m_marksShowing;
 };
 

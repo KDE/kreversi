@@ -50,6 +50,8 @@
 #ifndef __MOVE__H__
 #define __MOVE__H__
 
+
+#include "qvaluelist.h"
 #include "qstring.h"
 
 #include "Score.h"
@@ -60,6 +62,9 @@ class Move
 public:
   Move()   { m_color = Nobody; m_x = -1; m_y = -1; }
   Move(Color color, int x, int y);
+  Move(const Move &move);
+
+  //Move &operator=(Move &move);
 
   Color color() const { return m_color; }
   int   x()     const { return m_x; }
@@ -72,6 +77,10 @@ private:
   int    m_x;
   int    m_y;
 };
+
+
+typedef QValueList<Move>            MoveList;
+
 
 
 #endif

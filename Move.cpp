@@ -55,6 +55,12 @@ Move::Move(Color color, int x, int y)
 }
 
 
+Move::Move(const Move &move)
+{
+  *this = move;
+}
+
+
 QString Move::asString() const
 {
   if (m_x == -1)

@@ -107,6 +107,7 @@ public:
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
   bool   makeMove(Move &move);
+  MoveList  generateMoves(Color color) const;
 
 private:
   // The actual position itself.  Use the simplest representation possible.

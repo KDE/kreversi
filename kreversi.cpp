@@ -183,6 +183,10 @@ KReversi::KReversi()
   init("popup");
   m_boardView->start();
   showScore();
+
+  // Show legal moves for black.
+  MoveList  moves = m_krgame->position().generateMoves(Black);
+  m_boardView->showLegalMoves(moves);
 }
 
 
@@ -302,6 +306,10 @@ void KReversi::slotNewGame()
   m_movesView->clear();
   showScore();
 
+  MoveList  moves = m_krgame->position().generateMoves(Black);
+  m_boardView->showLegalMoves(moves);
+  kdDebug() << "Showing legal moves on a new game" << endl;
+
   // Black always makes first move.
   if (m_humanColor == White)
     computerMakeMove();
@@ -393,6 +401,10 @@ void KReversi::slotUndo()
   }
   else
     m_boardView->update();
+
+  // Show legal moves.
+  MoveList  moves = m_krgame->position().generateMoves(Black);
+  m_boardView->showLegalMoves(moves);
 }
 
 
@@ -560,6 +572,7 @@ void KReversi::slotGameOver()
     showGameOver(Nobody);
 
   showTurn(Nobody);
+  m_boardView->quitShowLegalMoves();
 }
 
 
@@ -681,6 +694,12 @@ void KReversi::computerMakeMove()
 
   showTurn(color);
 
+  // Show legal moves for the computer.
+  // FIXME: This shall be dependent on a KToggleAction later.
+  //        Or perhaps never show legal moves for the computer.
+  MoveList  moves = m_krgame->position().generateMoves(color);
+  m_boardView->showLegalMoves(moves);
+
   if (!m_krgame->moveIsPossible(color))
     return;
  
@@ -717,6 +736,11 @@ void KReversi::computerMakeMove()
     slotGameOver();
     return;
   }
+
+  // Show legal moves for the human.
+  // FIXME: This shall be dependent on a KToggleAction later.
+  moves = m_krgame->position().generateMoves(m_humanColor);
+  m_boardView->showLegalMoves(moves);
 }
 
 

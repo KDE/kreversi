@@ -78,6 +78,8 @@ class QReversiGame : public QObject, public Game {
   bool  loadGame(KConfig *, bool noupdate = FALSE);
   void  saveGame(KConfig *);
 
+  const Position &position() const {return m_position; }
+
  signals:
   void  sig_move(uint, Move&);
   void  updateBoard();

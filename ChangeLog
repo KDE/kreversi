@@ -1,5 +1,16 @@
 2005-03-30  Inge Wallin  <inge@lysator.liu.se>
 
+	Start on wish 82900: Show possible moves in the current position
+	* Move.{h,cpp} (Move): new copy constructor
+	* Move.h (MoveList): new type
+	* qreversigame.h (position): new method.
+	* Position.{h,cpp} (generateMoves): new method
+	* board.{h,cc} (showLegalMoves, quitShowLegalMoves): new methods
+	(setMarks): Show also legal moves.
+	* kreversi.cpp: call showLegalMoves() in various places.
+
+	----------------------------------------------------------------
+
 	Implement wish 82517: show moves of the game in a view
 	* Game.h (Game): Make members protected.
 	(asString): new method
