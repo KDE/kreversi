@@ -61,7 +61,6 @@ const char * const Board::SOUND[Nb_Sounds] = {
 };
 
 const uint HINT_BLINKRATE = 250000;
-const uint DEFAULT_ANIMATION_DELAY = 4;
 const uint ANIMATION_DELAY = 3000;
 const uint CHIP_BLACK	   = 1;
 const uint CHIP_WHITE      = 24;
@@ -78,8 +77,6 @@ Board::Board(QWidget *parent)
   nopaint(false),
   chiptype(Unloaded)
 {
-
-  setAnimationSpeed(DEFAULT_ANIMATION_DELAY);
   engine = new Engine();
   game = new Game();
   setStrength(1);
@@ -610,8 +607,6 @@ bool Board::canLoad(KConfig *config) {
 }
 
 void Board::loadSettings(){
-  KConfig *config = kapp->config();
-  config->setGroup("Game");
   if( Prefs::grayscale() ) {
     if(chiptype != Grayscale)
       loadChips(Grayscale);
