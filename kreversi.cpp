@@ -102,7 +102,6 @@ KReversi::KReversi()
   
   createStatusBar();
   createKActions();
-  init("popup");
   addWidget(board);
 
   connect(board, SIGNAL(score()), this, SLOT(slotScore()));
@@ -112,6 +111,9 @@ KReversi::KReversi()
           this, SLOT(slotStatusChange(Board::State)));
 
   loadSettings();
+
+  setupGUI();
+  init("popup");
   board->start();
 }
 
@@ -132,9 +134,6 @@ void KReversi::createKActions() {
 
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
-
-  resize(290,374);
-  setupGUI();
 }
 
 void KReversi::createStatusBar() {
