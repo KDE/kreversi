@@ -169,27 +169,24 @@ private:
 
 
 private:
-  // Member fields
+  // Some Actions that need to be manipulated.
   KAction       *stopAction;
   KAction       *continueAction;
 
   // The game itself and game properties
   KReversiGame  *m_krgame;	   // Stores the moves of the game
   Color          m_humanColor;	   // The Color of the human player.
+  bool           m_gameOver;	   // True if the game is over
+  bool           m_cheating;	   // True if the user has changed sides
   bool           m_lowestStrength; // Lowest strength during the game.
   bool           m_competitiveGame;// True if the game has been
 				   // competitive during all moves so far.
 
-  State          m_state;	// Ready, Thinking, Hint
-  Engine        *m_engine;      // The AI that creates the computers moves.
-
-  // Some status values.
-  bool           gameOver;
-  bool           cheating;
+  State          m_state;          // Ready, Thinking, Hint
+  Engine        *m_engine;         // The AI that creates the computers moves.
 
   // Widgets
   KReversiBoardView  *m_boardView;          // The board widget.
-
   StatusWidget       *m_humanStatus;
   StatusWidget       *m_computerStatus;
 };

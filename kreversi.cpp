@@ -107,7 +107,7 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
 
 
 // ================================================================
-//                     class KReversi
+//                         class KReversi
 
 
 #ifndef PICDATA
@@ -118,7 +118,7 @@ void StatusWidget::setPixmap(const QPixmap &pixmap)
 
 KReversi::KReversi()
   : KZoomMainWindow(10, 300, 5, "kreversi"), 
-    gameOver(false)
+    m_gameOver(false)
 {
   QWidget     *w;
   QHBoxLayout *top;
@@ -127,8 +127,8 @@ KReversi::KReversi()
 
   // The game.
   m_krgame     = new KReversiGame();
-  cheating     = false;
-  gameOver     = false;
+  m_cheating   = false;
+  m_gameOver   = false;
   m_humanColor = Black;
 
   w = new QWidget(this);
@@ -152,8 +152,6 @@ KReversi::KReversi()
   addWidget(m_boardView);
 
   // Connect some signals on the board with slots of the application
-  // FIXME: Look through all signals and see if they make sense,
-  //        both from this class and from Board.
   connect(m_krgame, SIGNAL(score()),        this, SLOT(showScore()));
   connect(m_krgame, SIGNAL(gameOver()),     this, SLOT(slotGameOver(Color)));
   connect(m_krgame, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
@@ -233,6 +231,10 @@ void KReversi::createKActions()
 //                    Methods for the engine
 
 
+// Set the strength for the engine.  We keep track of the lowest
+// strength that was used during a game and if the user wins, this is
+// the strength that we will store in the highscore file.
+
 void KReversi::setStrength(uint strength)
 {
   // FIXME: 7 should be MAXSTRENGTH or something similar.
@@ -280,8 +282,8 @@ void KReversi::slotNewGame()
     KExtHighscore::submitScore(KExtHighscore::Lost, this);
   }
 
-  gameOver = false;
-  cheating = false;
+  m_gameOver = false;
+  m_cheating = false;
 
   m_krgame->newGame();
   m_competitiveGame = Prefs::competitiveGameChoice();
@@ -417,7 +419,7 @@ void KReversi::slotSwitchSides()
     if ( res==KMessageBox::Cancel ) 
       return;
 
-    cheating = true;
+    m_cheating = true;
   }
 
   m_humanColor = opponent(m_humanColor);
@@ -483,7 +485,7 @@ void KReversi::showScore()
 void KReversi::showTurn(Color color)
 {
   // If we are not playing, do nothing. 
-  if (gameOver)
+  if (m_gameOver)
     return;
 
   if (color == humanColor())
@@ -527,7 +529,7 @@ void KReversi::slotGameOver()
 void KReversi::showGameOver(Color color) 
 {
   // If the game already was over, do nothing.
-  if (gameOver)
+  if (m_gameOver)
     return;
 
   statusBar()->message(i18n("End of game"));
@@ -564,10 +566,10 @@ void KReversi::showGameOver(Color color)
   
   // Store the result in the highscore file if no cheating was done,
   // and only if the game was competitive.
-  if ( !cheating && m_competitiveGame) {
+  if ( !m_cheating && m_competitiveGame) {
     KExtHighscore::submitScore(score, this);
   }
-  gameOver = true;
+  m_gameOver = true;
 }
 
 
@@ -787,8 +789,8 @@ void KReversi::saveProperties(KConfig *c)
 
 void KReversi::readProperties(KConfig *config) {
   loadGame(config);
-  gameOver = false;
-  cheating = false;		// FIXME: Is this true?
+  m_gameOver = false;
+  m_cheating = false;		// FIXME: Is this true?
 }
 
 
@@ -839,7 +841,7 @@ void KReversi::loadSettings()
 
 bool KReversi::isPlaying() const
 {
-  return ( m_krgame->moveNumber() != 0 && !gameOver );
+  return ( m_krgame->moveNumber() != 0 && !m_gameOver );
 }
 
 
