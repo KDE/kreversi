@@ -4,3 +4,5 @@ bg_DATA = Dark_Wood.xpm Earth.xpm Granite.xpm Hexagon.xpm \
 
 bgdir = $(kde_datadir)/kreversi/pics/background
 
+EXTRA_DIST = $(bg_DATA)
+

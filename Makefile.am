@@ -9,12 +9,16 @@ kreversi_SOURCES = main.cpp misc.cpp app.cpp board.cpp Game.cpp Score.cpp SuperE
 		Engine.cpp Position.cpp Move.cpp Random.cpp about.cpp playsound.cpp
 BUILTSOURCES =	app.moc board.moc about.moc
 
+noinst_HEADERS = Engine.h about.h Game.h app.h Move.h board.h Position.h \
+			     misc.h Random.h playsound.h Score.h version.h SuperEngine.h           
 DISTCLEANFILES = $(BUILTSOURCES)
 
 SUBDIRS = html pics sounds icons
 
 applnk_DATA = kreversi.kdelnk
 applnkdir = $(kde_appsdir)/Games
+
+EXTRA_DIST = $(applnk_DATA)
 
 messages:	
 	@XGETTEXT@ -C -ktranslate -x../../kdelibs/po/kde.pot *.cpp && mv messages.po ../po/kreversi.pot

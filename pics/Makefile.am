@@ -6,3 +6,5 @@ picsdir = $(kde_datadir)/kreversi/pics
 
 SUBDIRS = background
 
+EXTRA_DIST = $(pics_DATA)
+
