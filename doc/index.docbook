@@ -149,7 +149,7 @@ divided into 64 squares.</para></listitem>
 <varlistentry>
 <term><interface>Status Bar</interface></term>
 <listitem><para>The status bar contains useful information such as
-whose turn it is, whicn color represents each player and the number of
+whose turn it is, which color represents each player and the number of
 squares each player controls on the board.</para></listitem>
 </varlistentry>
 </variablelist>
