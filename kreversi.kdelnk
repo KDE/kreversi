@@ -15,7 +15,6 @@ Name[sk]=Reversi
 Name[cs]=Reversi
 Name[hr]=Reversi
 Name[ro]=Reversi
-Name[pl]=Reversi
 Type=Application
 DocPath=kreversi/index.html
 Comment=Play Reversi against the computer
