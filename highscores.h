@@ -16,12 +16,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+
 #ifndef HIGHSCORES_H
 #define HIGHSCORES_H
+
 
 #include <kexthighscore.h>
 
 #include "SuperEngine.h"
+
 
 namespace KExtHighscore
 {
@@ -29,16 +32,17 @@ namespace KExtHighscore
 class ExtManager : public Manager
 {
  public:
-    ExtManager();
+  ExtManager();
 
  private:
-    QString gameTypeLabel(uint gameTye, LabelType) const;
-    void convertLegacy(uint gameType);
+  QString gameTypeLabel(uint gameTye, LabelType) const;
+  void convertLegacy(uint gameType);
     
-    struct Data {
-      const char *label, *icon;
-    };
-    static const Data DATA[SuperEngine::NbStrengths];
+  struct Data {
+    const char  *label;
+    const char  *icon;
+  };
+  static const Data  DATA[SuperEngine::NbStrengths];
 };
 
 }
