@@ -87,10 +87,8 @@ public:
   void    showHint(Move move)       { m_boardView->showHint(move);            }
   void    quitHint()                { m_boardView->quitHint();                }
 
-  void    showLegalMoves(MoveList moves)
-                                    { m_boardView->showLegalMoves(moves);     }
-  void    quitShowLegalMoves()      { m_boardView->quitShowLegalMoves();      }
-  void    setMarks(bool show)       { m_boardView->setMarks(show);            }
+  void    setShowLegalMoves(bool show){ m_boardView->setShowLegalMoves(show); }
+  void    setShowMarks(bool show)   { m_boardView->setShowMarks(show);        }
   bool    marks()        const      { return m_boardView->marks();            }
   void    setShowLastMove(bool show){ m_boardView->setShowLastMove(show);     }
   bool    showLastMove() const      { return m_boardView->showLastMove();     }

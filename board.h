@@ -73,12 +73,11 @@ public:
   void    showHint(Move move);
   void    quitHint();
 
-  // Show all possible moves
-  void    showLegalMoves(MoveList moves);
-  void    quitShowLegalMoves();
+  // Show all legal moves
+  void    setShowLegalMoves(bool show);
 
   // Show letters and numbers on the board
-  void    setMarks(bool);
+  void    setShowMarks(bool show);
   bool    marks()                          const { return m_marksShowing; }
 
   // Show last move on the board
@@ -125,6 +124,9 @@ private:
   ChipType  chipType()                          const { return chiptype; }
   QPixmap   chipPixmap(uint i, uint size)       const;
 
+  // Private drawing methods.
+  void    showLegalMoves();
+
 
 private:
   QReversiGame    *m_krgame; // Pointer to the game object (not owner).
@@ -141,6 +143,7 @@ private:
   // Special stuff used only in smaller areas.
   bool      m_hintShowing;
   MoveList  m_legalMoves;
+  bool      m_legalMovesShowing;
   bool      m_marksShowing;
 
   bool        m_showLastMove;

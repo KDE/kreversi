@@ -11,8 +11,11 @@ Next
 
 
 * Implement the plans in DESIGN
-  + Implement the QReversiGameView class				----
-  + Move all handling of possible moves into the BoardView class	----
+  + Implement the QReversiGameView class				DONE
+    - Move board view to it						done
+    - Move movelist to it						done
+    - Move status widgets to it						done
+  + Move all showing of legal moves into the BoardView class		DONE
   + Implement the QEngineView class					----
 
 * More cleaning / refactoring
@@ -36,9 +39,6 @@ Next
     - Bug: When turned on, should show last move immediately		--
     - Bug: When turned off, should unshow ast move immediately		--
 
-  + Create a new class QReversiGameView that contains the view		----
-    classes currently in kreversi.cpp
-
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.
      1. Fix a ReversiGame (formerly known as Game)			DONE
@@ -49,7 +49,7 @@ Next
      4. Create a new class QReversiGame, that inherits ReversiGame	DONE
 	and sends a lot of signals.
         - Split out a lot of methods from the current class Board.	done
-     5. Create KReversiBoardView from the rest of the current Board	DONE
+     5. Create QReversiBoardView from the rest of the current Board	DONE
         - Clean it							--
 
   II. Introduce a class ReversiPlayer

@@ -1,5 +1,13 @@
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
+	Refactoring: make showing of legal moves simpler
+	* board.cpp (showLegalMoves): Take bool for on/off instead of Movelist
+	(quitShowLegalMoves): removed
+	(m_legalMovesShowing): new bool member instead of m_legalMoves
+	* kreversi.cpp (misc): don't call showLegalMoves were not necessary
+	Fix a bug with 'show legal moves': old ones were never erased.
+	* board.cpp (showLegalMoves): new method broken out of updateBoard
+	
 	Some code cleaning and documentation
 	* DESIGN: Made documentation up-to-date
 	* qreversigame.{h,cpp} (updateBoard,turn): removed signals

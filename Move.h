@@ -121,5 +121,4 @@ private:
 typedef QValueList<Move>            MoveList;
 
 
-
 #endif

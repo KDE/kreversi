@@ -78,7 +78,8 @@ QReversiBoardView::QReversiBoardView(QWidget *parent, QReversiGame *krgame)
 {
   m_krgame = krgame;
 
-  m_marksShowing = true;
+  m_marksShowing      = true;
+  m_legalMovesShowing = false;
   m_legalMoves.clear();
 
   m_showLastMove  = false;
@@ -198,25 +199,15 @@ void QReversiBoardView::quitHint()
 }
 
 
-// Mark the list of squares as legal moves.
-
-void QReversiBoardView::showLegalMoves(MoveList moves)
-{
-  m_legalMoves = moves;
+void QReversiBoardView::setShowLegalMoves(bool show)
+{ 
+  m_legalMovesShowing = show;
   updateBoard(true);
 }
 
-
-void QReversiBoardView::quitShowLegalMoves()
+void QReversiBoardView::setShowMarks(bool show)
 {
-  m_legalMoves.clear();
-  updateBoard(true);
-}
-
-
-void QReversiBoardView::setMarks(bool marks)
-{
-  m_marksShowing = marks;
+  m_marksShowing = show;
 }
 
 
@@ -299,6 +290,15 @@ void QReversiBoardView::updateBoard (bool force)
   QPainter  p(this);
   p.setPen(black);
 
+  // If we are showing legal moves, we have to erase the old ones
+  // before we can show the new ones.  The easiest way to do that is
+  // to repaint everything.
+  //
+  // FIXME: A better way, perhaps, is to do the repainting in
+  //        drawPiece (which should be renamed drawSquare).
+  if (m_legalMovesShowing)
+    force = true;
+
   // Draw the squares of the board.
   for (uint row = 0; row < 8; row++)
     for (uint col = 0; col < 8; col++)
@@ -344,17 +344,11 @@ void QReversiBoardView::updateBoard (bool force)
   }
 
   // Show legal moves.
-  MoveList::iterator  it;
-  int ellipseSize = zoomedSize() / 3;
-  for (it = m_legalMoves.begin(); it != m_legalMoves.end(); ++it) {
-    int  px = offset + ((*it).x() - 1) * zoomedSize() + zoomedSize() / 2;
-    int  py = offset + ((*it).y() - 1) * zoomedSize() + zoomedSize() / 2;
-
-    p.drawEllipse(px - ellipseSize / 2, py - ellipseSize / 2,
-		  ellipseSize, ellipseSize);
-  }
+  if (m_legalMovesShowing)
+    showLegalMoves();
 
   // Show last move
+  int         ellipseSize = zoomedSize() / 3;
   SimpleMove  lastMove = m_krgame->lastMove();
   if (m_showLastMove && lastMove.x() != -1) {
     // Remove the last shown last move.
@@ -386,6 +380,31 @@ void QReversiBoardView::updateBoard (bool force)
     p.setPen(black);
     p.setBackgroundColor(black);
     p.setBrush(NoBrush);
+  }
+}
+
+
+// Show legal moves on the board.
+
+void QReversiBoardView::showLegalMoves()
+{
+  QPainter  p(this);
+  p.setPen(black);
+
+  // Get the legal moves in the current position.
+  Color     toMove = m_krgame->toMove();
+  MoveList  moves  = m_krgame->position().generateMoves(toMove);
+
+  // Show the moves on the board.
+  int offset = m_marksShowing ? OFFSET() : 0;
+  MoveList::iterator  it;
+  int ellipseSize = zoomedSize() / 3;
+  for (it = moves.begin(); it != moves.end(); ++it) {
+    int  px = offset + ((*it).x() - 1) * zoomedSize() + zoomedSize() / 2;
+    int  py = offset + ((*it).y() - 1) * zoomedSize() + zoomedSize() / 2;
+
+    p.drawEllipse(px - ellipseSize / 2, py - ellipseSize / 2,
+		  ellipseSize, ellipseSize);
   }
 }
 

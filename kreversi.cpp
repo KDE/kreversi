@@ -133,12 +133,6 @@ KReversi::KReversi()
   m_gameView->start();
 
   slotNewGame();
-
-  // Show legal moves for black.
-  if (showLegalMovesAction->isChecked()) {
-    MoveList  moves = m_game->position().generateMoves(Black);
-    m_gameView->showLegalMoves(moves);
-  }
 }
 
 
@@ -251,11 +245,6 @@ void KReversi::slotNewGame()
   // Set the state to waiting for the humans move.
   setState(Ready);
 
-  if (showLegalMovesAction->isChecked()) {
-    MoveList  moves = m_game->position().generateMoves(Black);
-    m_gameView->showLegalMoves(moves);
-  }
-
   // Black always makes first move.
   if (m_humanColor == White)
     computerMakeMove();
@@ -347,12 +336,6 @@ void KReversi::slotUndo()
   }
   else
     m_gameView->update();
-
-  // Show legal moves.
-  if (showLegalMovesAction->isChecked()) {
-    MoveList  moves = m_game->position().generateMoves(Black);
-    m_gameView->showLegalMoves(moves);
-  }
 }
 
 
@@ -390,13 +373,7 @@ void KReversi::slotShowLastMove()
 
 void KReversi::slotShowLegalMoves() 
 {
-  if (showLegalMovesAction->isChecked()) {
-    Color     toMove = m_game->toMove();
-    MoveList  moves  = m_game->position().generateMoves(toMove);
-    m_gameView->showLegalMoves(moves);
-  }
-  else
-    m_gameView->quitShowLegalMoves();
+  m_gameView->setShowLegalMoves(showLegalMovesAction->isChecked());
 }
 
 
@@ -517,9 +494,6 @@ void KReversi::slotGameOver()
     showGameOver(Nobody);
 
   showTurn(Nobody);
-
-  // FIXME: Remove
-  m_gameView->quitShowLegalMoves();
 }
 
 
@@ -568,12 +542,6 @@ void KReversi::computerMakeMove()
   Color color    = m_game->toMove();
   Color opponent = ::opponent(color);
 
-  // Show legal moves for the computer.
-  if (showLegalMovesAction->isChecked()) {
-    moves = m_game->position().generateMoves(color);
-    m_gameView->showLegalMoves(moves);
-  }
-
   if (!m_game->moveIsPossible(color))
     return;
  
@@ -605,12 +573,6 @@ void KReversi::computerMakeMove()
   if (!m_game->moveIsAtAllPossible()) {
     slotGameOver();
     return;
-  }
-
-  // Show legal moves for the human.
-  if (showLegalMovesAction->isChecked()) {
-    moves = m_game->position().generateMoves(m_humanColor);
-    m_gameView->showLegalMoves(moves);
   }
 }
 
