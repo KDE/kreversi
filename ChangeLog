@@ -45,13 +45,13 @@
 
 0.6:	better integration into new FSSTND
 	fixes for new kdecore
-	layout managment for all dialogs
+	layout management for all dialogs
 	mini-icon and icon
 	locale-strings changed - partial translation required for
 	other languages than english and german
 	removed both the kfixedtopwidget and ktablistbox
 	drawing a border around the reversi board
-	session-managment - what an overkill for kreversi :-))
+	session-management - what an overkill for kreversi :-))
 	you can save (and load) exactly ONE game
 
 
