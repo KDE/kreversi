@@ -1,3 +1,9 @@
+2005-04-01  Inge Wallin  <inge@lysator.liu.se>
+
+	Fix bug 102297: I am playing in KReversi as "expert" but it saves
+	statistics to the "beginner" records
+	* kreversi.h (m_lowestStrength): Should be uint instead of bool.
+
 2005-03-31  Inge Wallin  <inge@lysator.liu.se>
 
 	Implement wish 102813: Should be able to show last move 

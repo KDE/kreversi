@@ -185,7 +185,7 @@ private:
   Color          m_humanColor;	   // The Color of the human player.
   bool           m_gameOver;	   // True if the game is over
   bool           m_cheating;	   // True if the user has changed sides
-  bool           m_lowestStrength; // Lowest strength during the game.
+  uint           m_lowestStrength; // Lowest strength during the game.
   bool           m_competitiveGame;// True if the game has been
 				   // competitive during all moves so far.
 
