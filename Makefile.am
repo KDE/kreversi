@@ -23,4 +23,4 @@ messages:
 	$(XGETTEXT) $(kreversi_SOURCES) -o $(podir)/kreversi.pot
 
 install-data-local:
-	rm -rf $(kde_appsdir)/Games/kreversi.desktop
+	rm -rf $(DESTDIR)$(kde_appsdir)/Games/kreversi.desktop
