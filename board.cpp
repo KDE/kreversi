@@ -148,6 +148,8 @@ void Board::doContinue() {
 /// starts a new game
 void Board::newGame() {
   game->Reset();
+  lowestStrength  = strength();
+
   updateBoard(TRUE);
   setState(Ready);
 
@@ -287,7 +289,9 @@ void Board::setStrength(uint st) {
   Q_ASSERT( st>=1 && st<=7 );
   st = QMAX(QMIN(st, 7), 1);
   engine->setStrength(st);
-  KExtHighscore::setGameType(st-1);
+  if (lowestStrength < st)
+    lowestStrength = st;
+  KExtHighscore::setGameType(lowestStrength-1);
 }
 
 uint Board::strength() const {

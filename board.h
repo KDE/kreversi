@@ -128,10 +128,12 @@ private:
 
 private:
   Engine *engine;
-  Game *game;
+  Game   *game;
+  bool    lowestStrength;	// Lowest strength during the game.
 
-  State _status;
-  Player human;
+  State   _status;
+
+  Player  human;
   bool nopaint;
 
   QColor bgColor;

@@ -1,5 +1,12 @@
 2004-09-26  Inge Wallin  <inge@lysator.liu.se>
 
+	Backport of fix for bug 90195: KReversi: Changing the skill level
+	late in a game doesn't count as cheating.
+	* board.h (Board::lowestStrength): new member
+	* board.cpp (Board::newGame): set lowestStrength
+	* board.cpp (Board::setStrength): update lowestStrength and
+	update highscore type.
+
 	Backport of fix for Bug 90190: KReversi: Switch sides and then
 	Undo gets the program out of sync.
 	* board.cpp (undo): If it is the computers turn to move after an
