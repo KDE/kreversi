@@ -41,10 +41,8 @@
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qpixmap.h>
-#include <kapp.h>
 #include <klocale.h>
 #include <qlayout.h>
-#include <klocale.h>
 
 extern QString PICDIR;
 
