@@ -128,9 +128,10 @@ void KReversi::createKActions() {
   soundAction = new KToggleAction(i18n("&Play Sounds"), 0, 0, 0, actionCollection(), "game_sound");
   #endif 
   // Settings
+  createStandardStatusBarAction();
+  setStandardToolBarMenuEnabled(true);
   KStdAction::keyBindings(this, SLOT(configureKeyBindings()), actionCollection());
-  
-  (void)new KAction(i18n("&Configure KReversi..."), 0, this, SLOT(showSettings()), actionCollection(), "configure_kreversi" );
+  KStdAction::preferences(this, SLOT(showSettings()), actionCollection());
    
   createGUI();
 }

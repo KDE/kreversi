@@ -2,7 +2,6 @@
 <kpartgui name="kreversi" version="1">
 
 <ActionProperties>
-  <Action name="configure_kreversi" icon="configure"/>
   <Action name="game_stop" icon="stop"/>
 </ActionProperties>
 
@@ -21,9 +20,6 @@
   <Menu name="view"><text>&amp;View</text>
     <Action name="zoomIn"/>
     <Action name="zoomOut"/>
-  </Menu>
-  <Menu name="settings"><text>&amp;Settings</text>
-    <Action name="configure_kreversi"/>
   </Menu>
 </MenuBar>
 
