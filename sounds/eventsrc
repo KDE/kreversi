@@ -9,10 +9,12 @@ Name=Click
 Name[da]=Klik
 Name[is]=Smella
 Name[sv]=Klicka
+Name[ta]=சொடுக்கு
 Comment=Click
 Comment[da]=Klik
 Comment[is]=Smella
 Comment[sv]=Klick
+Comment[ta]=சொடுக்கு
 default_presentation=1
 default_sound=kreversi-click.wav
 
@@ -164,10 +166,12 @@ Name=Draw
 Name[da]=Træk
 Name[is]=Jafntefli
 Name[sv]=Oavgjort
+Name[ta]=வரை
 Comment=Draw
 Comment[da]=Træk
 Comment[is]=Jafntefli
 Comment[sv]=Oavgjort
+Comment[ta]=வரை
 default_presentation=0
 
 [illegal_move]
@@ -175,8 +179,10 @@ Name=Illegal Move
 Name[da]=Ulovligt træk
 Name[is]=Ógildur leikur
 Name[sv]=Felaktigt drag
+Name[ta]=நிகழ்ச்சியை வெளிப்படுத்து
 Comment=Illegal Move
 Comment[da]=Ulovligt træk
 Comment[is]=Ógildur leikur
 Comment[sv]=Felaktigt drag
+Comment[ta]=நிகழ்ச்சியை வெளிப்படுத்து
 default_presentation=0
