@@ -17,12 +17,16 @@
     Boston, MA 02111-1307, USA.
 */
 
+
 #ifndef KZOOMMAINWINDOW_H
 #define KZOOMMAINWINDOW_H
 
+
 #include <kmainwindow.h>
 
+
 class KToggleAction;
+
 
 /**
  * KZoomMainWindow is a main window of fixed size. Its size can be
@@ -39,6 +43,7 @@ class KToggleAction;
  * This class also has a "show/hide menubar" action and allows the use
  * of a context popup menu (useful to restore the menubar when hidden).
  */
+
 class KZoomMainWindow : public KMainWindow
 {
   Q_OBJECT
@@ -51,14 +56,14 @@ public:
    * widget is called whenever the zoom is changed.
    * This function assumes that the topLevelWidget() is the KZoomMainWindow.
    */
-  static void addWidget(QWidget *widget);
+  static void  addWidget(QWidget *widget);
                   
-  uint zoom() const { return _zoom; }
+  uint  zoom() const { return m_zoom; }
   
 public slots:
-  void zoomIn();
-  void zoomOut();
-  void toggleMenubar();
+  void  zoomIn();
+  void  zoomOut();
+  void  toggleMenubar();
 
 protected:
   /** You need to call this after the createGUI or setupGUI method
@@ -66,11 +71,11 @@ protected:
    * @param popupName is the name of the context popup menu as defined in
    * the ui.rc file.
    */
-  void init(const char *popupName = 0);
+  void  init(const char *popupName = 0);
     
-  virtual void setZoom(uint zoom);
-  virtual bool eventFilter(QObject *o, QEvent *e);
-  virtual bool queryExit();
+  virtual void  setZoom(uint zoom);
+  virtual bool  eventFilter(QObject *o, QEvent *e);
+  virtual bool  queryExit();
   
   /** You need to implement this method since different application
    * use different setting class names and keys.
@@ -80,7 +85,7 @@ protected:
    * Settings::writeConfig();
    * /endcode
    */
-  virtual void writeZoomSetting(uint zoom) = 0;
+  virtual void  writeZoomSetting(uint zoom) = 0;
   
   /** Youneed to implement this method since different application
    * use different setting class names and keys.
@@ -89,7 +94,7 @@ protected:
    * return Settings::zoom();
    * /endcode
    */
-  virtual uint readZoomSetting() const = 0;
+  virtual uint  readZoomSetting() const = 0;
   
   /** You need to implement this method since different application
    * use different setting class names and keys.
@@ -99,7 +104,7 @@ protected:
    * Settings::writeConfig();
    * /endcode
    */
-  virtual void writeMenubarVisibleSetting(bool visible) = 0;
+  virtual void  writeMenubarVisibleSetting(bool visible) = 0;
   
   /** You need to implement this method since different application
    * use different setting class names and keys.
@@ -108,19 +113,26 @@ protected:
    * Settings::menubarVisible();
    * /endcode
    */
-  virtual bool menubarVisibleSetting() const = 0;
+  virtual bool  menubarVisibleSetting() const = 0;
 
 private slots:
   void widgetDestroyed();
   
 private:
-  uint _zoom, _zoomStep, _minZoom, _maxZoom;
-  QPtrList<QWidget> _widgets;
-  KAction *_zoomInAction, *_zoomOutAction;
-  KToggleAction *_menu;
+  uint  m_zoom;
+  uint  m_zoomStep;
+  uint  m_minZoom;
+  uint  m_maxZoom;
+
+  QPtrList<QWidget>  m_widgets;
+
+  KAction        *m_zoomInAction;
+  KAction        *m_zoomOutAction;
+  KToggleAction  *m_menu;
   
-  class KZoomMainWindowPrivate;
-  KZoomMainWindowPrivate *d;
+  class  KZoomMainWindowPrivate;
+  KZoomMainWindowPrivate  *d;
 };
+
 
 #endif

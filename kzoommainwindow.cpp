@@ -17,6 +17,7 @@
     Boston, MA 02111-1307, USA.
 */
 
+
 #include "kzoommainwindow.h"
 #include "kzoommainwindow.moc"
 
@@ -25,17 +26,21 @@
 #include <kmenubar.h>
 #include <kcmenumngr.h>
 
-KZoomMainWindow::KZoomMainWindow(uint min, uint max, uint step, const char *name)
-  : KMainWindow(0, name), _zoomStep(step), _minZoom(min), _maxZoom(max)
+
+KZoomMainWindow::KZoomMainWindow(uint min, uint max, uint step, 
+				 const char *name)
+  : KMainWindow(0, name), m_zoomStep(step), m_minZoom(min), m_maxZoom(max)
 {
   installEventFilter(this);
   
-  _zoomInAction = KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection());
-  _zoomOutAction =
+  m_zoomInAction = 
+    KStdAction::zoomIn(this, SLOT(zoomIn()), actionCollection());
+  m_zoomOutAction =
     KStdAction::zoomOut(this, SLOT(zoomOut()), actionCollection());
-  _menu =
+  m_menu =
     KStdAction::showMenubar(this, SLOT(toggleMenubar()), actionCollection());
 }
+
 
 void KZoomMainWindow::init(const char *popupName)
 {
@@ -43,7 +48,7 @@ void KZoomMainWindow::init(const char *popupName)
   setZoom(readZoomSetting());
 
   // menubar
-  _menu->setChecked( menubarVisibleSetting() );  
+  m_menu->setChecked( menubarVisibleSetting() );  
   toggleMenubar();
   
   // context popup
@@ -51,25 +56,30 @@ void KZoomMainWindow::init(const char *popupName)
     QPopupMenu *popup =
       static_cast<QPopupMenu *>(factory()->container(popupName, this));
     Q_ASSERT(popup);
-    if (popup) KContextMenuManager::insert(this, popup);
+    if (popup)
+      KContextMenuManager::insert(this, popup);
   }
 }
 
 void KZoomMainWindow::addWidget(QWidget *widget)
 {
   widget->adjustSize();
-  QWidget *tlw = widget->topLevelWidget();
-  KZoomMainWindow *zm = 
+
+  QWidget          *tlw = widget->topLevelWidget();
+  KZoomMainWindow  *zm = 
     static_cast<KZoomMainWindow *>(tlw->qt_cast("KZoomMainWindow"));
+
   Q_ASSERT(zm);
-  zm->_widgets.append(widget);
+  zm->m_widgets.append(widget);
   connect(widget, SIGNAL(destroyed()), zm, SLOT(widgetDestroyed()));
 }
 
+
 void KZoomMainWindow::widgetDestroyed()
 {
-  _widgets.remove(static_cast<const QWidget *>(sender()));
+  m_widgets.remove(static_cast<const QWidget *>(sender()));
 }
+
 
 bool KZoomMainWindow::eventFilter(QObject *o, QEvent *e)
 {
@@ -80,36 +90,46 @@ bool KZoomMainWindow::eventFilter(QObject *o, QEvent *e)
   return KMainWindow::eventFilter(o, e);
 }
 
+
 void KZoomMainWindow::setZoom(uint zoom)
 {
-  _zoom = zoom;
-  writeZoomSetting(_zoom);
-  QPtrListIterator<QWidget> it(_widgets);
+  m_zoom = zoom;
+  writeZoomSetting(m_zoom);
+
+  QPtrListIterator<QWidget>  it(m_widgets);
   for (; it.current(); ++it)
-    (*it)->adjustSize();; 
-  _zoomOutAction->setEnabled( _zoom>_minZoom );
-  _zoomInAction->setEnabled( _zoom<_maxZoom );
+    (*it)->adjustSize();
+
+  m_zoomOutAction->setEnabled( m_zoom > m_minZoom );
+  m_zoomInAction->setEnabled( m_zoom < m_maxZoom );
 }
+
 
 void KZoomMainWindow::zoomIn()
 {
-  setZoom(_zoom + _zoomStep);
+  setZoom(m_zoom + m_zoomStep);
 }
+
 
 void KZoomMainWindow::zoomOut()
 {
-  Q_ASSERT( _zoom>=_zoomStep );
-  setZoom(_zoom - _zoomStep);
+  Q_ASSERT( m_zoom >= m_zoomStep );
+  setZoom(m_zoom - m_zoomStep);
 }
+
 
 void KZoomMainWindow::toggleMenubar()
 {
-  if ( _menu->isChecked() ) menuBar()->show();
-  else menuBar()->hide();
+  if ( m_menu->isChecked() )
+    menuBar()->show();
+  else
+    menuBar()->hide();
 }
+
 
 bool KZoomMainWindow::queryExit()
 {
-  writeMenubarVisibleSetting(_menu->isChecked());
+  writeMenubarVisibleSetting(m_menu->isChecked());
+
   return KMainWindow::queryExit();
 }

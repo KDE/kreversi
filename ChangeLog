@@ -1,9 +1,10 @@
 2004-08-17  Inge Wallin  <inge@lysator.liu.se>
 
-	Continue the big code cleanup:
-	* board.h, board.cpp
-	* highscores.h, highscores.c (converted to same coding style as
-	rest of kreversi.)
+	Finish the big code cleanup:
+	* board.h, board.cpp: cleaned up
+	* highscores.h, highscores.cpp,
+	* kzoommainwindow.h, kzoommainwindow.cpp:
+	Converted to same coding style as rest of kreversi.
 
 
 2004-08-16  Inge Wallin  <inge@lysator.liu.se>

@@ -1,40 +1,13 @@
 TODO-list for KREVERSI
 ======================
 
-* A big cleanup of the code (comments, indentation, complexity):
-   - board.cpp							DONE
-   - board.h							DONE
-   - Engine.cpp							DONE
-   - Engine.h							DONE
-   - Game.cpp							DONE
-   - Game.h							DONE
-   - highscores.cpp						DONE
-   - highscores.h						DONE
-   - kreversi.cpp						DONE
-   - kreversi.h							DONE
-   - kzoommainwindow.cpp
-   - kzoommainwindow.h
-   - main.cpp							DONE
-   - Move.cpp							DONE
-   - Move.h							DONE
-   - Position.cpp						DONE
-   - Position.h							DONE
-   - prefs.kcfgc						Not code
-   - prefs.h							Generated
-   - Score.cpp							DONE
-   - Score.h							DONE
-   - settings.cpp						Generated
-   - settings.h							Generated
-   - SuperEngine.cpp						DONE
-   - SuperEngine.h						DONE
-   - version.h							DONE
-
 * network-play against human
 * implement ULONG64 as a class instead of using gcc "long long int"
 
 
 PARTIALLY DONE/NOT DONE
 =======================
+
 * undo/redo
 	undo works, but I'll probably do not make a redo function
 
@@ -52,6 +25,9 @@ PARTIALLY DONE/NOT DONE
 
 DONE
 ====
+
+* Complete code cleanup.
+
 * better strategy
 	ported a JAVA applet with good strategy from Mats Luthman
 
