@@ -42,6 +42,7 @@
 #include <kimgio.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
+#include <kaboutdata.h>
 
 #include "misc.h"
 #include "version.h"
@@ -50,8 +51,13 @@
 
 static const char *description = I18N_NOOP("KDE Board Game");
 
-int main(int argc, char **argv) {
-  KCmdLineArgs::init(argc, argv, "kreversi", description, KREVERSI_VERSION );
+int main(int argc, char **argv)
+{
+  KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"), 
+    KREVERSI_VERSION, description, KAboutData::GPL, 
+    "(c) 1997-2000, Mario Weilguni");
+  aboutData.addAuthor("Mario Weilguni",0, "mweilguni@sime.com");
+  KCmdLineArgs::init( argc, argv, &aboutData );
 
   KApplication a;
 
