@@ -153,7 +153,7 @@ KReversi::KReversi()
 
   // Connect some signals on the board with slots of the application
   connect(m_krgame, SIGNAL(score()),        this, SLOT(showScore()));
-  connect(m_krgame, SIGNAL(gameOver()),     this, SLOT(slotGameOver(Color)));
+  connect(m_krgame, SIGNAL(gameOver()),     this, SLOT(slotGameOver()));
   connect(m_krgame, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
 
   // Internal signal
