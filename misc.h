@@ -39,6 +39,10 @@
 #ifndef __MISC__H__
 #define __MISC__H__
 
+// for 64-bit UNIX
+#include <stdio.h>
+#include <stdlib.h>
+
 // for debugging only
 #ifdef DODEBUG
 extern void DBG(char *msg, ...);

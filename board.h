@@ -39,6 +39,7 @@
 #ifndef __BOARD__H__
 #define __BOARD__H__
 
+#include "misc.h"
 #include <qwidget.h>
 #include <qpixmap.h>
 #include "Engine.h"

@@ -400,7 +400,11 @@ void App::processEvent(int itemid) {
   switch(itemid) {
   case ID_FQUIT:
     b->interrupt();
+
+    // interesting, without this kreversi seems to segfault
+    delete this;
     kapp->quit();
+    return;
     break;
 
   case ID_GNEW:

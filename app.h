@@ -39,6 +39,7 @@
 #ifndef __APP__H__
 #define __APP__H__
 
+#include "misc.h"
 #include <kstatusbar.h>
 #include <ktoolbar.h>
 #include <ktopwidget.h>

@@ -1,6 +1,8 @@
 //-*- C++ -*-
 #ifndef _KFWIDGET_H
 #define _KFWIDGET_H
+
+#include "misc.h"
 #include <stdlib.h>
 #include <qwidget.h>
 #include <qlist.h>

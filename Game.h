@@ -59,6 +59,7 @@
 #ifndef __GAME__H__
 #define __GAME__H__
 
+#include "misc.h"
 #include "Score.h"
 #include "Move.h"
 #include "Position.h"

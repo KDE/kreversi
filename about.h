@@ -41,6 +41,7 @@
 
 #define VERSION_STR "0.5"
 
+#include "misc.h"
 #include <qdialog.h>
 
 class About : public QDialog {

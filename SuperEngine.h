@@ -68,6 +68,7 @@
 #ifndef __SUPERENGINE__H__
 #define __SUPERENGINE__H__
 
+#include "misc.h"
 #include "Random.h"
 #include "Game.h"
 

@@ -41,3 +41,6 @@
 	fixed those CPU busy bug
 	removed the -finline-functions optimize flag (not portable)
 	ported to new KDE file system standards (well, mostly)
+
+
+	fixed segfaulting on exit

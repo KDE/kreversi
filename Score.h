@@ -12,6 +12,8 @@
 #ifndef __SCORE__H__
 #define __SCORE__H__
 
+#include "misc.h"
+
 class Score {
 public:
   Score();

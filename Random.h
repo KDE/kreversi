@@ -39,6 +39,8 @@
 #ifndef __RANDOM__H__
 #define __RANDOM__H__
 
+#include "misc.h"
+
 class Random {
 public:
   Random();

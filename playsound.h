@@ -39,6 +39,8 @@
 #ifndef __PLAYSOUND__H__
 #define __PLAYSOUND__H__
 
+#include "misc.h"
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
