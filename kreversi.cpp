@@ -38,18 +38,14 @@
 
 #include <config.h>
 
-#include <qregexp.h>
 #include <kapplication.h>
 #include <kconfig.h>
 #include <kstandarddirs.h>
-#include <kglobal.h>
-#include <kiconloader.h>
 #include <kstatusbar.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
 #include <kaction.h>
-#include <kstdaction.h>
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
 #include <kautoconfig.h>
@@ -59,7 +55,6 @@
 #include "Score.h"
 #include "kreversi.h"
 #include "playsound.h"
-#include "version.h"
 #include "board.h"
 #include "settings.h"
 

@@ -37,10 +37,7 @@
  */
 
 #include <kapplication.h>
-#include <kstandarddirs.h>
-#include <kglobal.h>
 #include <kimageio.h>
-#include <klocale.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 

@@ -38,22 +38,13 @@
 
 #include "board.h"
 #include <qpainter.h>
-#include <qimage.h>
-#include <qbitmap.h>
 
 #include <kapplication.h>
-#include <kglobal.h>
-#include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
 
-#include "Score.h"
 #include "playsound.h"
-#include "Score.h"
-#include "Move.h"
-#include "Position.h"
 #include "Engine.h"
-#include "Game.h"
 
 #include <config.h>
 #include <unistd.h>

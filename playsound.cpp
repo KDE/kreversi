@@ -38,7 +38,6 @@
 
 #include "playsound.h"
 #include <stdlib.h>
-#include <kapplication.h>
 #include <kstandarddirs.h>
 
 
