@@ -3,5 +3,5 @@ File=kreversi.kcfg
 #IncludeFiles=defines.h
 ClassName=Prefs
 Singleton=true
-CustomAdditions=true
+CustomAdditions=false
 Mutators=skill,Zoom,MenubarVisible

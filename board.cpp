@@ -332,9 +332,6 @@ void Board::switchSides()
     return;
 
   m_humanColor = opponent(m_humanColor);
-  Prefs::setHumanColor((int) m_humanColor);
-  Prefs::setComputerColor((int) opponent(m_humanColor));
-  Prefs::writeConfig();
   emit score();
   kapp->processEvents();
   computerMakeMove();
