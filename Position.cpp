@@ -203,7 +203,7 @@ bool Position::moveIsPossible(Color color) const
 {
   for (uint i=1; i<9; i++)
     for (uint j=1; j<9; j++)
-      if (moveIsLegal(Move(i, j, color))) return true;
+      if (moveIsLegal(Move(color, i, j))) return true;
 
   return false;
 }

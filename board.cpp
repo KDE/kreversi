@@ -176,7 +176,7 @@ void Board::fieldClicked(int row, int col) {
     Color color = game->toMove();
 
     /// makes a human move
-    Move m(col + 1, row + 1, color);
+    Move m(color, col + 1, row + 1);
     if(game->moveIsLegal(m)) {
       game->MakeMove(m);
       animateChanged(m);
@@ -498,7 +498,7 @@ bool Board::loadGame(KConfig *config, bool noupdate) {
     uint x = (*s.at(0)).toUInt();
     uint y = (*s.at(1)).toUInt();
     Color color = (Color)(*s.at(2)).toInt();
-    Move m(x, y, color);
+    Move m(color, x, y);
     game->MakeMove(m);
   }
 

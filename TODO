@@ -15,8 +15,8 @@ TODO-list for KREVERSI
    - kzoommainwindow.cpp
    - kzoommainwindow.h
    - main.cpp
-   - Move.cpp
-   - Move.h
+   - Move.cpp							DONE
+   - Move.h							DONE
    - Position.cpp
    - Position.h
    - prefs.h
@@ -27,7 +27,7 @@ TODO-list for KREVERSI
    - settings.h
    - SuperEngine.cpp
    - SuperEngine.h
-   - version.h
+   - version.h							DONE
 
 * network-play against human
 * implement ULONG64 as a class instead of using gcc "long long int"

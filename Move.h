@@ -52,19 +52,22 @@
 
 #include "Score.h"
 
+
 class Move
 {
 public:
-  Move() { m_x = -1; m_y = -1; m_color = Nobody; }
-  Move(int x, int y, Color color);
+  Move()   { m_color = Nobody; m_x = -1; m_y = -1; }
+  Move(Color color, int x, int y);
 
-  int x() const { return m_x; }
-  int y() const { return m_y; }
   Color color() const { return m_color; }
+  int   x()     const { return m_x; }
+  int   y()     const { return m_y; }
 
 private:
-  int m_x, m_y;
-  Color m_color;
+  Color  m_color;
+  int    m_x;
+  int    m_y;
 };
+
 
 #endif

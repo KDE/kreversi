@@ -237,7 +237,7 @@ Move Engine::computeMove(Game g) {
   Color color = g.toMove();
 
   if (color == Nobody)
-    return Move(-1, -1, Nobody);
+    return Move(Nobody, -1, -1);
 
   // Figure out the current score
   m_score.set(White, g.score(White));
@@ -352,11 +352,11 @@ Move Engine::computeMove(Game g) {
     }
 
   if (interrupt()) {
-    return Move(-1, -1, Nobody);
+    return Move(Nobody, -1, -1);
   } else if (maxval != -LARGEINT) {
-    return Move(max_x, max_y, color);
+    return Move(color, max_x, max_y);
   } else {
-    return Move(-1, -1, Nobody);
+    return Move(Nobody, -1, -1);
   }
 }
 
@@ -369,17 +369,17 @@ Move Engine::ComputeFirstMove(Game g) {
 
   if (color == White)
     {
-      if (r == 1) return Move(3, 5, color);
-      else if (r == 2) return  Move(4, 6, color);
-      else if (r == 3) return  Move(5, 3, color);
-      else return  Move(6, 4, color);
+      if (r == 1) return Move(color, 3, 5);
+      else if (r == 2) return  Move(color, 4, 6);
+      else if (r == 3) return  Move(color, 5, 3);
+      else return  Move(color, 6, 4);
     }
   else
     {
-      if (r == 1) return  Move(3, 4, color);
-      else if (r == 2) return  Move(5, 6, color);
-      else if (r == 3) return  Move(4, 3, color);
-      else return  Move(6, 5, color);
+      if (r == 1) return  Move(color, 3, 4);
+      else if (r == 2) return  Move(color, 5, 6);
+      else if (r == 3) return  Move(color, 4, 3);
+      else return  Move(color, 6, 5);
     }
 }
 
