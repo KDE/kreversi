@@ -336,7 +336,7 @@ void App::createMenuBar() {
   om->insertItem(i18n("S&ound"), ID_OSOUND);
 #endif
 
-  QPopupMenu *help = kapp->helpMenu(true, QString::null);  // Use our own About box
+  QPopupMenu *help = helpMenu(QString::null);  // Use our own About box
   help = new QPopupMenu;
   help->insertItem(i18n("&Contents"), ID_HCONTENTS);
   help->insertSeparator();
@@ -600,7 +600,7 @@ void App::processEvent(int itemid) {
   break;
 
   case ID_HABOUTKDE:
-    kapp->aboutKDE();
+    aboutKDE();
     break;
 
   default:
