@@ -705,8 +705,8 @@ void KReversi::saveGame(KConfig *config)
   // Write the moves of the game to the config object.  This object
   // saves itself all at once so we don't have to write the moves
   // to the file ourselves.
-  config->writeEntry("NumberOfMoves", moveNumber());
-  for (uint i = 0; i < moveNumber(); i++) {
+  config->writeEntry("NumberOfMoves", m_krgame->moveNumber());
+  for (uint i = 0; i < m_krgame->moveNumber(); i++) {
     Move  move = m_krgame->move(i);
 
     QString  moveString;

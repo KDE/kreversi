@@ -69,30 +69,26 @@ public:
   // Used by the outer KZoomMainWindow class.
   virtual void adjustSize();
 
-  void   setAnimationSpeed(uint);
-
-  // Helper functions for actions in the main program.
+  // Show a hint to the user.
   void    showHint(Move move);
   void    quitHint();
 
-  // Methods for handling images of pieces.
-  enum      ChipType { Unloaded, Colored, Grayscale };
-  void      loadChips(ChipType);
-  ChipType  chipType()                          const { return chiptype; }
-  QPixmap   chipPixmap(Color color, uint size)  const;
-  QPixmap   chipPixmap(uint i, uint size)       const;
+  // Show letters and numbers on the board
+  void    setMarks(bool);
+  bool    marks()                              const { return m_marksShowing; }
 
   void    setColor(const QColor &);
-  QColor  color()                               const { return bgColor; }
+  QColor  color()                              const { return bgColor; }
   void    setPixmap(QPixmap &);
 
   // View methods called from the outside.
   void    updateBoard(bool force = FALSE);
   void    animateChanged(Move move);
-
-  void    gameEnded();
+  void    setAnimationSpeed(uint);
 
   void    loadSettings();
+
+  QPixmap   chipPixmap(Color color, uint size)  const;
 
 
 signals:
@@ -114,6 +110,13 @@ private:
   void  rotateChip(uint row, uint col);
   bool  isField(int row, int col) const;
 
+  // Methods for handling images of pieces.
+  enum      ChipType { Unloaded, Colored, Grayscale };
+  void      loadChips(ChipType);
+  ChipType  chipType()                          const { return chiptype; }
+  QPixmap   chipPixmap(uint i, uint size)       const;
+
+
 private:
   QReversiGame    *m_krgame; // Pointer to the game object (not owner).
 
@@ -128,6 +131,7 @@ private:
 
   // Special stuff used only in smaller areas.
   bool      m_hintShowing;
+  bool      m_marksShowing;
 };
 
 

@@ -40,6 +40,7 @@
 #include <unistd.h>
 
 #include <qpainter.h>
+#include <qfont.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -64,6 +65,8 @@ const uint  ANIMATION_DELAY       = 3000;
 const uint  CHIP_OFFSET[NbColors] = { 24, 1 };
 const uint  CHIP_SIZE             = 36;
 
+#define OFFSET()  (zoomedSize() * 3 / 4)
+
 
 // ================================================================
 //                class KReversiBoardView
@@ -74,6 +77,8 @@ KReversiBoardView::KReversiBoardView(QWidget *parent, QReversiGame *krgame)
       chiptype(Unloaded)
 {
   m_krgame = krgame;
+
+  m_marksShowing = true;
 }
 
 
@@ -132,14 +137,17 @@ void KReversiBoardView::mousePressEvent(QMouseEvent *e)
     return;
   }
 
-  if (e->pos().x() == 0 || e->pos().y() == 0) {
+  int offset = m_marksShowing ? OFFSET() : 0;
+  int px = e->pos().x()- 1 - offset;
+  int py = e->pos().y()- 1 - offset;
+
+  if (px < 0 || px >= 8 * (int) zoomedSize() 
+      || py < 0 || py >= 8 * (int) zoomedSize()) {
     e->ignore();
     return;
   }
 
-  int px = (e->pos().x()-1) / zoomedSize();
-  int py = (e->pos().y()-1) / zoomedSize();
-  emit signalSquareClicked(py, px);
+  emit signalSquareClicked(py / zoomedSize(), px / zoomedSize());
 }
 
 
@@ -183,6 +191,12 @@ void KReversiBoardView::showHint(Move move)
 void KReversiBoardView::quitHint()
 {
   m_hintShowing = false;
+}
+
+
+void KReversiBoardView::setMarks(bool marks)
+{
+  m_marksShowing = marks;
 }
 
 
@@ -271,9 +285,41 @@ void KReversiBoardView::updateBoard (bool force)
       }
 
   // Draw a border around the board.
+  int offset = m_marksShowing ? OFFSET() : 0;
   QPainter  p(this);
   p.setPen(black);
-  p.drawRect(0, 0, 8 * zoomedSize() + 2, 8 * zoomedSize() + 2);
+  p.drawRect(0 + offset, 0 + offset,
+	     8 * zoomedSize() + 2, 8 * zoomedSize() + 2);
+
+  // Draw letters and numbers if appropriate.
+  if (!m_marksShowing)
+    return;
+
+  QFont         font("Helvetica", zoomedSize() / 2 - 6);
+  font.setWeight(QFont::DemiBold);
+  QFontMetrics  metrics(font);
+
+  p.setFont(font);
+  uint  charHeight = metrics.ascent();
+  for (uint i = 0; i < 8; i++) {
+    QChar  letter = "ABCDEFGH"[i];
+    QChar  number = "12345678"[i];
+    uint   charWidth = metrics.charWidth("ABCDEFGH", i);
+
+    p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
+	       offset - charHeight / 2 + 2,
+	       QString(letter));
+    p.drawText(offset + i * zoomedSize() + (offset - charWidth) / 2, 
+	       offset + 8 * zoomedSize() + offset - charHeight / 2 + 2,
+	       QString(letter));
+
+    p.drawText((offset - charWidth) / 2 + 2, 
+	       offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
+	       QString(number));
+    p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2, 
+	       offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
+	       QString(number));
+  }
 }
 
 
@@ -322,21 +368,24 @@ void KReversiBoardView::drawOnePiece(uint row, uint col, int i)
   QPainter  p(this);
 
   // Draw either a background pixmap or a background color to the square.
+  int offset = m_marksShowing ? OFFSET() : 0;
   if (bg.width())
-    p.drawTiledPixmap(px, py, zoomedSize(), zoomedSize(), bg, px, py);
+    p.drawTiledPixmap(px + offset, py + offset,
+		      zoomedSize(), zoomedSize(), bg, px, py);
   else
-    p.fillRect(px, py, zoomedSize(), zoomedSize(), bgColor);
+    p.fillRect(px + offset, py + offset, 
+	       zoomedSize(), zoomedSize(), bgColor);
 
   // Draw a black border around the square.
   p.setPen(black);
-  p.drawRect(px, py, zoomedSize(), zoomedSize());
+  p.drawRect(px + offset, py + offset, zoomedSize(), zoomedSize());
 
   // If no piece on the square, i.e. only the background, then return here...
   if ( i == -1 )
     return;
 
   // ...otherwise finally draw the piece on the square.
-  p.drawPixmap(px, py, chipPixmap(i, zoomedSize()));
+  p.drawPixmap(px + offset, py + offset, chipPixmap(i, zoomedSize()));
 }
 
 
@@ -353,6 +402,10 @@ void KReversiBoardView::paintEvent(QPaintEvent *)
 void KReversiBoardView::adjustSize()
 {
   int w = 8 * zoomedSize();
+
+  if (m_marksShowing)
+    w += 2 * OFFSET();
+
   setFixedSize(w + 2, w + 2);
 }
 

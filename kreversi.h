@@ -90,10 +90,6 @@ public:
   Color  toMove() const           { return m_krgame->toMove();       }
   Color  humanColor() const       { return m_humanColor;           }
   Color  computerColor() const    { return opponent(m_humanColor); }
-#if 0
-  uint   score(Color color) const { return m_krgame->score(color);   }
-#endif
-  uint   moveNumber() const       { return m_krgame->moveNumber();   }
 
   // Methods that deal with the engine.
   void   setStrength(uint);

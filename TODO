@@ -5,16 +5,20 @@ Next
 ----
 
 * (from step 4 below)
-  Create a new class KReversiGame, that stores a ReversiGame		DONE
-  and sends a lot of signals.
-    - Split out a lot of methods from the current class Board.		DONE
 
 * Investigate if there is something wrong with the highscore handling.
   It seems as if a game is finished before all squares are covered
   that the highscore code is never engaged.
 
 
---------  Commit here  --------
+================================================================
+
+
+* More cleaning / refactoring
+  + class Kreversi is still a bit of a mess.
+
+* Enhancements to the view
+  + Letters A-H and figures 1-8 on the board view.
 
 * Convert KReversi to use KGame / KPlayer
   I. Convert KReversi to a proper Model/View program.
@@ -23,10 +27,11 @@ Next
         - Add a few necessary methods.
      2. Move all the slots for KActions to kreversi.cpp			DONE
      3. Move the ownership of the engine and the game to kreversi.	DONE
-     4. Create a new class KReversiGame, that stores a ReversiGame	DONE
+     4. Create a new class QReversiGame, that inherits ReversiGame	DONE
 	and sends a lot of signals.
-        - Split out a lot of methods from the current class Board.
+        - Split out a lot of methods from the current class Board.	done
      5. Create KReversiBoardView from the rest of the current Board	DONE
+        - Clean it							--
 
   II. Introduce a class ReversiPlayer
 
@@ -39,11 +44,6 @@ Next
   V.  Profit!
 
 
-Later
------
-
-* network-play against human
-* implement ULONG64 as a class instead of using gcc "long long int"
 
 
 PARTIALLY DONE/NOT DONE
@@ -64,26 +64,3 @@ PARTIALLY DONE/NOT DONE
 	- putting a piece
 	- something for the hall of fame (trumpets???)
 
-DONE
-====
-
-* Complete code cleanup.
-
-* better strategy
-	ported a JAVA applet with good strategy from Mats Luthman
-
-* end-of-game
-	shown via KMessageBox
-
-* help
-	via khelpcenter
-
-* save options
-	options are saved whenever they change
-
-* highscores
-
-* pieces should be drawn instead of bitmaps. Will allow other 
-  colors than black/white.
-
-* animated drawing of pieces

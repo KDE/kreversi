@@ -1,4 +1,17 @@
-2005-03-30  Inge Wallin  <ingwa@dhcp-254-182.lkpg.cendio.se>
+2005-03-30  Inge Wallin  <inge@lysator.liu.se>
+
+	Implement wish 82519: Label the board with A-H, 1-8
+	* board.cpp (OFFSET): new macro
+	(m_marksShowing): new member
+	(setMarks): new method
+	(mousePressEvent): take into account offset.
+	(updateBoard): draw markings if m_marksShowing is true
+	(drawOnePiece): take into account offset.
+	(adjustSize): take into account markings
+
+	Some cleaning
+	
+	----------------------------------------------------------------
 
 	Move KReversiGame out to its own file, and remove it.
 	* qreversigame.{h,cpp}: new files.
