@@ -88,9 +88,9 @@ class QReversiGame : public QObject, public Game {
   void  sig_gameOver();		// The game is over.
 
   // FIXME: To be removed:
-  void  updateBoard();
+  //void  updateBoard();
   //void  sig_score();
-  void  turn(Color);
+  //void  turn(Color);
 
 private:
   // No members.

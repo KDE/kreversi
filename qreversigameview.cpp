@@ -135,19 +135,11 @@ QReversiGameView::QReversiGameView(QWidget *parent, QReversiGame *game)
   m_humanColor = Nobody;
 
   // Connect the game to the view.
-  connect(m_game, SIGNAL(sig_newGame()), this, SLOT(slotNewGame()));
+  connect(m_game, SIGNAL(sig_newGame()), this, SLOT(newGame()));
   connect(m_game, SIGNAL(sig_move(uint, Move&)),
 	  this,   SLOT(moveMade(uint, Move&)));
   connect(m_game, SIGNAL(sig_update()),  this, SLOT(updateView()));
   // The sig_gameOver signal is not used by the view.
-
-  // FIXME: These signals will be deprecated.
-  //connect(m_game, SIGNAL(sig_score()),   this, SLOT(updateStatus()));
-
-#if 0
-  connect(m_game, SIGNAL(sig_move(uint, Move&)),
-	  this,   SLOT(showMove(uint, Move&)));
-#endif
 
   // Reemit the signal from the board.
   connect(m_boardView, SIGNAL(signalSquareClicked(int, int)),
@@ -188,8 +180,6 @@ void QReversiGameView::createView()
   m_movesView = new QListBox(this, "moves");
   m_movesView->setMinimumWidth(150);
   layout->addWidget(m_movesView, 3, 1);
-
-  // FIXME: More view widgets will come here.
 }
 
 
@@ -197,13 +187,17 @@ void QReversiGameView::createView()
 //                              Slots
 
 
-void QReversiGameView::slotNewGame()
+// Recieves the sig_newGame signal from the game.
+
+void QReversiGameView::newGame()
 {
   m_boardView->updateBoard(true);
   m_movesView->clear();
   updateStatus();
 }
 
+
+// Recieves the sig_move signal from the game.
 
 void QReversiGameView::moveMade(uint moveNum, Move &move)
 {
@@ -228,20 +222,40 @@ void QReversiGameView::moveMade(uint moveNum, Move &move)
 }
 
 
+// Recieves the sig_update signal from the game, and can be called
+// whenever a total update of the view is required.
+
 void QReversiGameView::updateView()
 {
   m_boardView->updateBoard(true);
-
-  // FIXME: updateMovelist();
-
+  updateMovelist();
   updateStatus();
 }
 
+
+// Only updates the status widgets (score).
 
 void QReversiGameView::updateStatus()
 {
   m_blackStatus->setScore(m_game->score(Black));
   m_whiteStatus->setScore(m_game->score(White));
+}
+
+
+// Only updates the status board.
+
+void QReversiGameView::updateBoard(bool force)
+{
+  m_boardView->updateBoard(force);
+}
+
+
+// Only updates the movelist.  This method regenerates the list from
+// scratch.
+
+void QReversiGameView::updateMovelist()
+{
+  // FIXME: NYI
 }
 
 

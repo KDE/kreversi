@@ -95,10 +95,6 @@ public:
   void    setShowLastMove(bool show){ m_boardView->setShowLastMove(show);     }
   bool    showLastMove() const      { return m_boardView->showLastMove();     }
 
-  // FIXME: These should not be called from the outside (used signals instead).
-  void    updateBoard(bool force = FALSE) { m_boardView->updateBoard(force);  }
-  void    animateChanged(Move move)       { m_boardView->animateChanged(move);}
-
   void    setAnimationSpeed(uint speed){m_boardView->setAnimationSpeed(speed);}
 
   // To get the pixmap for the status view
@@ -110,39 +106,32 @@ public:
   //        example: ensureCurrentVisible().
   void insertMove(QString moveString) { m_movesView->insertItem(moveString); }
   void removeMove(int moveNum) { m_movesView->removeItem(moveNum); }
-  void setCurrentMove(int moveNum) { m_movesView->setCurrentItem(moveNum); }
-  void ensureCurrentMoveVisible()  { m_movesView->ensureCurrentVisible(); }
+  void setCurrentMove(int moveNum) { 
+    m_movesView->setCurrentItem(moveNum); 
+    m_movesView->ensureCurrentVisible();
+  }
 
   // The status widgets.
   void  setHumanColor(Color color);
-  void  setStatusPixmap(Color color, QPixmap pixmap);
 
-  void  setStatusScore(int index, int score)
-    {
-      if (index == 0) 
-	m_blackStatus->setScore(score);
-      else
-	m_whiteStatus->setScore(score);
-    }
-
-
-  // starts all: emits some signal, so it can't be called from
+  // Starts all: emits some signal, so it can't be called from
   // constructor
   void  start() { m_boardView->start(); }
 
   // Used by the outer KZoomMainWindow class.
-  void  adjustSize() { m_boardView->adjustSize(); }
+  void  adjustSize()   { m_boardView->adjustSize(); }
 
   void  loadSettings() { m_boardView->loadSettings(); }
 
 
 public slots:
-  void  slotNewGame();
+  void  newGame();
   void  moveMade(uint moveNum, Move &move);
 
   void  updateView();		// Update the entire view.
   void  updateStatus();		// Update the status widgets (score)
-
+  void  updateBoard(bool force = FALSE); // Update the board.
+  void  updateMovelist();	// Update the move list.
 
 signals:
   void  signalSquareClicked(int, int);

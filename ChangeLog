@@ -1,5 +1,14 @@
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
+	Some code cleaning and documentation
+	* DESIGN: Made documentation up-to-date
+	* qreversigame.{h,cpp} (updateBoard,turn): removed signals
+	* qreversigameview.{cpp} (slotNewGame): renamed into newGame
+	(updateBoard): new method
+	(updateMovelist): new method (empty yet)
+	(misc proxy methods): simplified.
+
+	Move over more view stuff to the gameview.
 	* kreversi.cpp (showMove): Renamed into handleMove, most of it
 	moved to the view
 	(slotStateChange): removed slot

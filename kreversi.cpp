@@ -326,18 +326,17 @@ void KReversi::slotUndo()
   Color  last_color = m_game->lastMove().color();
   while (m_game->moveNumber() != 0
 	 && last_color == m_game->lastMove().color()) {
-    m_gameView->removeMove(m_game->moveNumber() - 1);
     m_game->undoMove();
+    m_gameView->removeMove(m_game->moveNumber());
   }
 
   // Take back one more move.
   if (m_game->moveNumber() > 0) {
     m_game->undoMove();
+    m_gameView->removeMove(m_game->moveNumber());
 
     // FIXME: Call some method in m_gameView.
-    m_gameView->removeMove(m_game->moveNumber() - 1);
     m_gameView->setCurrentMove(m_game->moveNumber() - 1);
-    m_gameView->ensureCurrentMoveVisible();
   }
 
   if (m_game->toMove() == computerColor()) {
