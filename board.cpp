@@ -345,7 +345,6 @@ void Board::hint() {
 
 void Board::playSound(SoundType type)
 {
-    if ( !sound ) return;
     QString s("kreversi/sounds/");
     s += SOUND[type];
     KAudioPlayer::play( locate("data", s) );

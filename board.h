@@ -150,7 +150,6 @@ private:
   int _zoomed_size;
   Player human;
   bool nopaint;
-  bool sound;
 
   QColor bgColor;
   QPixmap bg;
