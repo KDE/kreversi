@@ -296,7 +296,7 @@ Move Engine::ComputeMove(Game g) {
 
   SetInterrupt(false);
 
-  QBitArray null_bits;
+  ULONG64 null_bits;
   null_bits = 0;
 
   //struct tms tmsdummy; 
@@ -442,7 +442,6 @@ int Engine::ComputeMove2(int xplay, int yplay, int player, int level,
 	      ///////////////////////////////////////////////////////////////
 	      // No possible move for the opponent, it is players turn again:
 	      ///////////////////////////////////////////////////////////////
-
 	      retval= TryAllMoves(player, level, -LARGEINT, playerbits,
 				  opponentbits);
 
@@ -501,7 +500,7 @@ int Engine::TryAllMoves(int opponent, int level, int cutoffval,
   // keep GUI alive
   yield();
 
-  QBitArray null_bits;
+  ULONG64 null_bits;
   null_bits = 0;
 
   for (int x=1; x<9; x++)

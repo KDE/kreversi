@@ -1,3 +1,8 @@
+1999-02-08 Mario Weilguni <mweilguni@kde.org>
+
+	* fixed a bug (trap). I´m not sure when I commited this faulty
+	stuff, but it must have been a while ago
+
 1999-02-01 Mario Weilguni <mweilguni@kde.org>
 
 	* fixed a warning (egcs)
