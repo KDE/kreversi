@@ -20,5 +20,5 @@ applnkdir   = $(kde_appsdir)/Games
 EXTRA_DIST = $(applnk_DATA)
 
 messages:	
-	$(XGETTEXT) -C -kI18N_NOOP -ki18n -x $(includedir)/kde.pot $(kreversi_SOURCES) && mv messages.po $(podir)/kreversi.pot
+	$(XGETTEXT) $(kreversi_SOURCES) -o $(podir)/kreversi.pot
 
