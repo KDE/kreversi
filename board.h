@@ -48,108 +48,115 @@ class KConfig;
 class Engine;
 class Game;
 
+
 class Board : public QWidget {
   Q_OBJECT
 public:
 
   enum { READY = 1, THINKING = 2, HINT = 3};
 
-  Board(QWidget *parent = 0, const char *name=0);
+  Board(QWidget *parent = 0);
   ~Board();
 
   void newGame();
-  int humanIs();
-  int computerIs();
-  void getScore(int&, int&);
+  Player humanPlayer() const { return human; }
+  Player computerPlayer() const { return opponent(human); }
+  void getScore(int&, int&) const;
   void setStrength(int);
-  int  getStrength();
-  bool interrupted();
-  
-  // starts all: emits some signal, so it can't be called from 
+  int  strength() const;
+  bool interrupted() const;
+
+  // starts all: emits some signal, so it can't be called from
   // constructor
   void start();
 
   // event stuff
   void paintEvent(QPaintEvent *);
   void mousePressEvent(QMouseEvent *);
-  QSize sizeHint() const;  
+  QSize sizeHint() const;
 
   /// stuff for zooming
-  bool canZoomIn();
-  bool canZoomOut();
+  bool canZoomIn() const;
+  bool canZoomOut() const;
   void zoomIn();
   void zoomOut();
   void setZoom(int);
-  int  getZoom() const;
+  int  zoom() const { return _zoom; }
 
-  int  getState();
+  int  state() const { return _status; }
   void setState(int);
   void setAnimationSpeed(int);
-  int  animationSpeed();
+  int  animationSpeed() const { return anim_speed; }
 
-  int  getMoveNumber();
-  void loadChips(const char *);
-  QString chipsName();
+  int  moveNumber() const;
+
+  enum ChipType { Unloaded, Colored, Grayscale };
+  void loadChips(ChipType);
+  ChipType chipType() const { return chiptype; }
 
   void loadGame(KConfig *, bool noupdate = FALSE);
   void saveGame(KConfig *);
   bool canLoad(KConfig *);
 
-public slots:
   void setColor(const QColor &);
+  QColor color() const { return bgColor; }
   void setPixmap(QPixmap &);
 
+  enum SoundType { ClickSound = 0, DrawSound, WonSound, LostSound,
+                   HallOfFameSound, IllegalMoveSound, Nb_Sounds };
+  static const char * const SOUND[Nb_Sounds];
+  void playSound(SoundType);
+
+public slots:
   void undo();
   void hint();
   void interrupt();
   void doContinue();
   void switchSides();
-
   void loadSettings();
-  
-protected slots:
-  void slotFieldClicked(int, int);  
 
 signals:
-  void signalFieldClicked(int, int);
   void score();
-  void sizeChange();
-  void gameWon(int);
+  void gameWon(Player);
   void statusChange(int);
   void illegalMove();
-  void turn(int);
   void strengthChanged(int);
+  void sizeChange();
+  void turn(Player);
 
-private:  
+private:
+  void fieldClicked(int, int);
   void gameEnded();
   void computerMakeMove();
-  
+
   void updateBoard(bool force = FALSE);
-  void drawPiece(int row, int col, bool force = FALSE);
-  void drawOnePiece(int row, int col, int color);
+
+  void drawPiece(int row, int col, Player);
+  void drawOnePiece(int row, int col, int i);
   void loadPixmaps();
   void adjustSize();
   void animateChanged(Move m);
   void animateChangedRow(int row, int col, int dy, int dx);
   void rotateChip(int row, int col);
-  bool isField(int row, int col);
+  bool isField(int row, int col) const;
 
 private:
   Engine *engine;
   Game *game;
-  
-  QString chipname;
+
   int  _status;
   int oldsizehint;
-  int _size;
   int _zoom;
   int _zoomed_size;
-  int human;
+  Player human;
   bool nopaint;
-  
+  bool sound;
+
+  QColor bgColor;
   QPixmap bg;
 
   // the chips
+  ChipType chiptype;
   QPixmap allchips;
   QPixmap scaled_allchips;
 

@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -93,15 +93,15 @@ public:
   void constrInit();
   void constrCopy(Position &p, Move &m);
 
-  int GetSquare(int x, int y);
-  int GetScore(int player);
+  Player GetSquare(int x, int y);
+  int GetScore(Player player);
   Move GetLastMove();
   bool MoveIsLegal(Move m);
-  bool MoveIsPossible(int player);
+  bool MoveIsPossible(Player player);
   bool MoveIsAtAllPossible();
 
 private:
-  int m_board[10][10];
+  Player m_board[10][10];
   Move m_last_move;
   Score m_score;
 };

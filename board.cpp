@@ -37,51 +37,52 @@
  */
 
 #include "board.h"
+
+#include <unistd.h>
+
 #include <qpainter.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
+#include <kaudioplayer.h>
 
-#include "playsound.h"
 #include "Engine.h"
 
 #include <config.h>
 #include <unistd.h>
 
-#define APPDATA(x) KGlobal::dirs()->findResource("appdata", x)
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
 
-extern QString SOUNDDIR;
+const char * const Board::SOUND[Nb_Sounds] = {
+    "reversi-click.wav", "reversi-drawn.wav", "reversi-won.wav",
+    "reversi-lost.wav", "reversi-hof.wav", "reversi-illegalmove.wav"
+};
 
-const int HINT_BLINKRATE = 250000;
-const int DEFAULT_ANIMATION_DELAY = 4;
-const int ANIMATION_DELAY = 3000;
-const int CHIP_BLACK	  = 1;
-const int CHIP_WHITE      = 24;
-const int CHIP_MAX	  = 25;
-const int CHIP_SIZE       = 36;
+const uint HINT_BLINKRATE = 250000;
+const uint DEFAULT_ANIMATION_DELAY = 4;
+const uint ANIMATION_DELAY = 3000;
+const uint CHIP_BLACK	   = 1;
+const uint CHIP_WHITE      = 24;
+const uint CHIP_SIZE       = 36;
 
-Board::Board(QWidget *parent, const char *name) : QWidget(parent, name), 
-  chipname(""),
+Board::Board(QWidget *parent)
+    : QWidget(parent, "board"),
   // ensure that the first time adjustsize does
   // pixmap loading
   oldsizehint(-1),
-  _size(32),
   _zoom(100),
-  _zoomed_size((_size * _zoom) / 100 + 2),
+  _zoomed_size(CHIP_SIZE),
+  human(Black),
+  nopaint(false),
+  chiptype(Unloaded)
+{
 
-  human(Score::BLACK),
-  nopaint(FALSE){
-  
   setAnimationSpeed(DEFAULT_ANIMATION_DELAY);
-  setUpdatesEnabled(FALSE);
   engine = new Engine();
   game = new Game();
   setStrength(1);
 
-  connect(this, SIGNAL(signalFieldClicked(int, int)),
-	  this, SLOT(slotFieldClicked(int, int)));
   loadSettings();
 }
 
@@ -92,29 +93,26 @@ Board::~Board() {
 }
 
 void Board::start() {
-  // make sure a signal is emitted  
-  setStrength(engine->GetStrength());
+  // make sure a signal is emitted
+  setStrength(strength());
   newGame();
   adjustSize();
-  setUpdatesEnabled(TRUE);
 }
 
-void Board::loadChips(const char *filename) {
-  allchips.load(PICDATA(filename));
-  chipname = filename;
-  if(scaled_allchips.width())
-  {
-    loadPixmaps(); // Reload
-    update();
-  }
+void Board::loadChips(ChipType type) {
+  QString name("pics/");
+  name += (type==Colored ? "chips.png" : "chips_mono.png");
+  QString s = KGlobal::dirs()->findResource("appdata", name);
+  bool ok = allchips.load(s);
+  Q_ASSERT( ok && allchips.width()==CHIP_SIZE*5
+            && allchips.height()==CHIP_SIZE*5 );
+  chiptype = type;
+  scaled_allchips = QPixmap();
+  loadPixmaps();
+  update();
 }
 
-QString Board::chipsName() {
-  return chipname;
-}
-
-
-int Board::getMoveNumber() {
+int Board::moveNumber() const {
   return game->GetMoveNumber();
 }
 
@@ -125,15 +123,11 @@ void Board::setAnimationSpeed(int speed) {
     anim_speed = speed;
 }
 
-int Board::animationSpeed() {
-  return anim_speed;
-}
-
 /// takes back last set of moves
 void Board::undo() {
-  if((getState() == READY)) {
+  if(state() == READY) {
     int last_player = game->GetLastMove().GetPlayer();
-    while ((game->GetMoveNumber() != 0) && 
+    while ((game->GetMoveNumber() != 0) &&
            (last_player == game->GetLastMove().GetPlayer()))
        game->TakeBackMove();
     game->TakeBackMove();
@@ -147,8 +141,8 @@ void Board::interrupt() {
   engine->SetInterrupt(TRUE);
 }
 
-bool Board::interrupted() {
-  return ((game->GetWhoseTurn() == computerIs()) && (getState() == READY));
+bool Board::interrupted() const {
+  return ((game->GetWhoseTurn() == computerPlayer()) && (state() == READY));
 }
 
 
@@ -163,35 +157,23 @@ void Board::adjustSize() {
   // do only resize if size has really change to avoid a flickering display
   if(sizeHint().width() != oldsizehint) {
     loadPixmaps();
-    resize(sizeHint());
+    setFixedSize(sizeHint());
     oldsizehint = sizeHint().width();
-    emit sizeChange();
+    update();
   }
 }
 
-/// returns which color the human plays
-int  Board::humanIs() {
-  return human;
-}
-
-/// returns which color the computer plays
-int  Board::computerIs() {
-  if(human == Score::BLACK)
-    return Score::WHITE;
-  return Score::BLACK;
-}
-
 /// starts a new game
-void Board::newGame() {  
+void Board::newGame() {
   //  return;
   game->Reset();
   updateBoard(TRUE);
   setState(READY);
 
-  emit turn(Score::BLACK);
-  
+  emit turn(Black);
+
   // computer makes first move
-  if(human == Score::WHITE)
+  if(human == White)
     computerMakeMove();
 }
 
@@ -201,11 +183,11 @@ void Board::mousePressEvent(QMouseEvent *e) {
     emit illegalMove();
     return;
   }
-  if(getState() == READY) {
+  if(state() == READY) {
     int px = (e->pos().x()-1) / _zoomed_size;
     int py = (e->pos().y()-1) / _zoomed_size;
-    emit signalFieldClicked(py, px);
-  } else if(getState() == HINT)
+    fieldClicked(py, px);
+  } else if(state() == HINT)
     setState(READY);
   else
     emit illegalMove();
@@ -213,12 +195,12 @@ void Board::mousePressEvent(QMouseEvent *e) {
 
 
 /// handles piece settings
-void Board::slotFieldClicked(int row, int col) {
-  if(getState() == READY) {
-    int color = game->GetWhoseTurn();
+void Board::fieldClicked(int row, int col) {
+  if(state() == READY) {
+    Player player = game->GetWhoseTurn();
 
     /// makes a human move
-    Move m(col + 1, row + 1, color);
+    Move m(col + 1, row + 1, player);
     if(game->MoveIsLegal(m)) {
       //      playSound("click.wav");
       game->MakeMove(m);
@@ -233,9 +215,9 @@ void Board::slotFieldClicked(int row, int col) {
 
       updateBoard();
 
-      if(color != game->GetWhoseTurn())
+      if(player != game->GetWhoseTurn())
 	computerMakeMove();
-    } else 
+    } else
       emit illegalMove();
   }
 }
@@ -244,12 +226,12 @@ void Board::slotFieldClicked(int row, int col) {
 /// makes a computer move
 void Board::computerMakeMove() {
   // check if the computer can move
-  int color = game->GetWhoseTurn();
-  int opponent = game->GetWhoseTurnOpponent();
+  Player player = game->GetWhoseTurn();
+  Player opponent = game->GetWhoseTurnOpponent();
 
-  emit turn(color);
+  emit turn(player);
 
-  if(game->MoveIsPossible(color)) {
+  if(game->MoveIsPossible(player)) {
     setState(THINKING);
     do {
       Move m;
@@ -266,14 +248,14 @@ void Board::computerMakeMove() {
 	return;
       }
       usleep(300000); // Pretend we have to think hard.
-      
+
       //playSound("click.wav");
       game->MakeMove(m);
       animateChanged(m);
       updateBoard();
     } while(!game->MoveIsPossible(opponent));
-    
-    
+
+
     emit turn(opponent);
     setState(READY);
 
@@ -287,10 +269,10 @@ void Board::computerMakeMove() {
 
 
 /// returns the current score
-void Board::getScore(int &black, int &white) {
-  black = game->GetScore(Score::BLACK);
-  white = game->GetScore(Score::WHITE);
-} 
+void Board::getScore(int &black, int &white) const {
+  black = game->GetScore(Black);
+  white = game->GetScore(White);
+}
 
 
 /// calculate final score
@@ -299,30 +281,22 @@ void Board::gameEnded() {
 
   getScore(b, w);
   if(b > w)
-    emit gameWon(Score::BLACK);
+    emit gameWon(Black);
   else if(b < w)
-    emit gameWon(Score::WHITE);
+    emit gameWon(White);
   else
-    emit gameWon(Score::NOBODY);
-  emit turn(Score::NOBODY);
+    emit gameWon(Nobody);
+  emit turn(Nobody);
 }
 
 
 void Board::switchSides() {
-  if(getState() == READY) {
-    if(human == Score::WHITE)
-      human = Score::BLACK;
-    else
-      human = Score::WHITE;
+  if(state() == READY) {
+    human = opponent(human);
     emit score();
     kapp->processEvents();
     computerMakeMove();
   }
-}
-
-
-int  Board::getState() {
-  return _status;
 }
 
 void Board::setState(int nstatus) {
@@ -333,16 +307,16 @@ void Board::setState(int nstatus) {
 void Board::setStrength(int st) {
   if((st >= 1) && (st <= 8)) {
     engine->SetStrength(st);
-    emit strengthChanged(engine->GetStrength());
+    emit strengthChanged(strength());
   }
 }
 
-int Board::getStrength() {
+int Board::strength() const {
   return engine->GetStrength();
 }
 
 void Board::hint() {
-  if(getState() == READY) {
+  if(state() == READY) {
     setState(THINKING);
     Move m = engine->ComputeMove(*game);
     setState(HINT);
@@ -350,11 +324,11 @@ void Board::hint() {
       // the isVisible condition has been added so that when the player was viewing
       // a hint and quits the game window, the game doesn't still have to do all this looping
       // and directly ends
-      for(int flash = 0; (flash < 100) && (getState() != READY) && isVisible(); flash++) {
+      for(int flash = 0; (flash < 100) && (state() != READY) && isVisible(); flash++) {
 	if(flash & 1)
-	  drawOnePiece(m.GetY() - 1, m.GetX() - 1, Score::NOBODY);
+	  drawPiece(m.GetY() - 1, m.GetX() - 1, Nobody);
 	else
-	  drawOnePiece(m.GetY() - 1, m.GetX() - 1, game->GetWhoseTurn());
+	  drawPiece(m.GetY() - 1, m.GetX() - 1, game->GetWhoseTurn());
 
 	// keep GUI alive while waiting
 	for(int dummy = 0; dummy < 5; dummy++) {
@@ -362,14 +336,20 @@ void Board::hint() {
 	  qApp->processEvents();
 	}
       }
-      
-      drawOnePiece(m.GetY() - 1, m.GetX() - 1, 
-		   game->GetSquare(m.GetX(), m.GetY()));
+      drawPiece(m.GetY() - 1, m.GetX() - 1,
+                game->GetSquare(m.GetX(), m.GetY()));
     }
     setState(READY);
   }
 }
 
+void Board::playSound(SoundType type)
+{
+    if ( !sound ) return;
+    QString s("kreversi/sounds/");
+    s += SOUND[type];
+    KAudioPlayer::play( locate("data", s) );
+}
 
 // ********************************************************
 // ********************************************************
@@ -386,9 +366,7 @@ void Board::animateChanged(Move m) {
     return;
 
   // draw the new piece
-
-  drawOnePiece(m.GetY()-1, m.GetX()-1, m.GetPlayer());
-  soundSync();
+  drawPiece(m.GetY()-1, m.GetX()-1, m.GetPlayer());
 
   for(int dx = -1; dx < 2; dx++)
     for(int dy = -1; dy < 2; dy++)
@@ -397,7 +375,7 @@ void Board::animateChanged(Move m) {
 }
 
 
-bool Board::isField(int row, int col) {
+bool Board::isField(int row, int col) const {
   return (bool)((row > -1) && (row < 8) && (col > -1) && (col < 8));
 }
 
@@ -407,9 +385,8 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
   col = col + dx;
   while(isField(row, col)) {
     if(game->wasTurned(col+1, row+1)) {
-      playSound("reversi-click.wav");
+      playSound(ClickSound);
       rotateChip(row, col);
-      soundSync();
    } else
       return;
 
@@ -418,59 +395,40 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
   }
 }
 
-// NOTE: this code is S**T
 void Board::rotateChip(int row, int col) {
   // check which direction the chip has to be rotated
   // if the new chip is white, the chip was black first,
   // so lets begin at index 1, otherwise it was white
-  int color = game->GetSquare(col+1, row+1);
+  Player player = game->GetSquare(col+1, row+1);
   int from, end, delta;
-  if(color == Score::WHITE) {
-    from = CHIP_BLACK + 2;
-    end  = CHIP_WHITE - 2;
+  switch (player) {
+  case White:
+    from = CHIP_BLACK + 1;
+    end  = CHIP_WHITE - 1;
     delta = 1;
-  } else if(color == Score::BLACK) {
-    from = CHIP_WHITE -2;
-    end  = CHIP_BLACK + 2;
+    break;
+  case Black:
+    from = CHIP_WHITE - 1;
+    end  = CHIP_BLACK + 1;
     delta = -1;
-  } else
+    break;
+  case Nobody:
     return;
+  }
 
-  int px = col * _zoomed_size + 2;
-  int py = row * _zoomed_size + 2;
-
-  int w = scaled_allchips.width()/5;
-  int h = scaled_allchips.height()/5;
-
-  QPainter p;
-  
   for(int i = from; i != end; i += delta) {
-    QPixmap pix(_zoomed_size-2, _zoomed_size-2);
-
-    p.begin(&pix);
-    if (bg.width())
-       p.drawTiledPixmap(0, 0, _zoomed_size-2, _zoomed_size-2, bg, px, py);
-    else
-       p.fillRect(0, 0, _zoomed_size-2, _zoomed_size-2, eraseColor());
-    p.drawPixmap(0, 0, scaled_allchips, (i % 5) * w + 10, (i / 5) * h + 10,
-	   _zoomed_size-2, _zoomed_size-2);
-    p.flush();
-    p.end();
-
-    bitBlt(this, px, py, &pix, 0, 0, _zoomed_size-2, _zoomed_size-2, CopyROP);
-    kapp->flushX();
+    drawOnePiece(row, col, i);
+    kapp->flushX(); // use QCanvas to avoid flicker...
     usleep(ANIMATION_DELAY * anim_speed);
   }
-  
-  drawOnePiece(row, col, color);
 }
 
-bool Board::canZoomIn() {
+bool Board::canZoomIn() const {
   return (bool)(width() < 640);
 }
 
 
-bool Board::canZoomOut() {
+bool Board::canZoomOut() const {
   return (bool)(width() > 200);
 }
 
@@ -480,17 +438,11 @@ void Board::setZoom(int _new) {
      ((_new > _zoom) && canZoomIn())) {
     if(_new != _zoom) {
       _zoom = _new;
-      _zoomed_size = (_size * _zoom) / 100 + 2;
+      _zoomed_size = qRound(float(CHIP_SIZE) * _zoom / 100);
       adjustSize();
     }
   }
 }
-
-
-int Board::getZoom() const {
-  return _zoom;
-}
-
 
 void Board::zoomIn() {
   setZoom(_zoom + 20);
@@ -501,98 +453,70 @@ void Board::zoomOut() {
   setZoom(_zoom - 20);
 }
 
+
 void Board::loadPixmaps() {
   if (scaled_allchips.width() != (_zoomed_size*5))
   {
     scaled_allchips = QPixmap(_zoomed_size*5, _zoomed_size*5);
     QWMatrix wm3;
-    wm3.scale((float)(_zoomed_size*5)/(CHIP_SIZE * 5),
-              (float)(_zoomed_size*5)/(CHIP_SIZE * 5));
+    wm3.scale(float(_zoomed_size)/CHIP_SIZE, float(_zoomed_size)/CHIP_SIZE);
     scaled_allchips = allchips.xForm(wm3);
   }
-  if (bg.width())
-    setErasePixmap(bg);
 }
 
 
 void Board::updateBoard(bool force) {
   for(int row = 0; row < 8; row++)
-    for(int col = 0; col < 8; col++) 
-      drawPiece(row, col, force);
+    for(int col = 0; col < 8; col++)
+        if ( force || game->squareModified(col+1, row+1) ) {
+            Player player = game->GetSquare(col + 1, row + 1);
+            drawPiece(row, col, player);
+        }
+  QPainter p(this);
+  p.setPen(black);
+  p.drawRect(0, 0, 8 * _zoomed_size + 2, 8 * _zoomed_size + 2);
 
   emit score();
 }
 
 
-void Board::drawOnePiece(int row, int col, int color) {
-  int px = col * _zoomed_size + 2;
-  int py = row * _zoomed_size + 2;
+void Board::drawOnePiece(int row, int col, int i) {
+  int px = col * _zoomed_size + 1;
+  int py = row * _zoomed_size + 1;
 
-  int w = scaled_allchips.width()/5;
-  int h = scaled_allchips.height()/5;
-
-  QPixmap tmp(_zoomed_size-2, _zoomed_size-2);
-
-  QPainter p;
-  p.begin(&tmp);
+  QPainter p(this);
   if (bg.width())
-    p.drawTiledPixmap(0, 0, _zoomed_size-2, _zoomed_size-2, bg, px, py);
-  else
-    p.fillRect(0, 0, _zoomed_size-2, _zoomed_size-2, eraseColor());
-  
-  if(color == Score::BLACK) {
-    // easy to understand, isn't it :-)
-    int i = CHIP_BLACK;
-    p.drawPixmap(0, 0, scaled_allchips, (i % 5) * w + 10, (i / 5) * h + 10,
-	   _zoomed_size-2, _zoomed_size-2);
-  }
-  else if(color == Score::WHITE) {
-    // easy to understand, isn't it :-)
-    int i = CHIP_WHITE;
-    p.drawPixmap(0, 0, scaled_allchips, (i % 5) * w + 10, (i / 5) * h + 10,
-	   _zoomed_size-2, _zoomed_size-2);
-  }
-  p.flush();
-  p.end();  
-  bitBlt(this, px, py, &tmp, 0, 0, _zoomed_size-2, _zoomed_size-2, CopyROP);
-  kapp->flushX();
+      p.drawTiledPixmap(px, py, _zoomed_size, _zoomed_size, bg, px, py);
+  else p.fillRect(px, py, _zoomed_size, _zoomed_size, bgColor);
+
+  p.setPen(black);
+  p.drawRect(px, py, _zoomed_size, _zoomed_size);
+
+  if ( i==-1 ) return;
+  p.drawPixmap(px, py, scaled_allchips,
+               (i%5) * _zoomed_size, (i/5) * _zoomed_size,
+               _zoomed_size, _zoomed_size);
 }
 
 
-void Board::drawPiece(int row, int col, bool force) {
-  if(game->squareModified(col+1, row+1) || force) {
-    int color = game->GetSquare(col + 1, row + 1);
-    drawOnePiece(row, col, color);
+void Board::drawPiece(int row, int col, Player player) {
+  int i = -1;
+  switch (player) {
+  case Black:
+    i = CHIP_BLACK;
+    break;
+  case White:
+    i = CHIP_WHITE;
+    break;
+  case Nobody:
+    break;
   }
+  drawOnePiece(row, col, i);
 }
 
 
 void Board::paintEvent(QPaintEvent *) {
-  int w = sizeHint().width() - 2;
-  
-  if(!nopaint) {
-    QPainter p;
-    
-    p.begin(this);
-    p.setPen(QPen(QColor("black"), 2));
-    
-    // draw vertical lines
-    for(int i = 1; i < 8; i++) {
-      int x = i * _zoomed_size;
-      p.drawLine(x+1, 0, x+1, w);
-    }
-    
-    // draw horizontal lines
-    for(int i = 1; i < 8; i++) {
-      int y = i * _zoomed_size;
-      p.drawLine(0, y+1, w, y+1);
-    }
-
-    p.drawRect(1, 1, w+1, w+1);
-    
-    p.end();
-    updateBoard(TRUE);
-  }
+  updateBoard(true);
 }
 
 
@@ -602,42 +526,36 @@ QSize Board::sizeHint() const {
 }
 
 void Board::setPixmap(QPixmap &pm) {
+  if ( pm.width()==0 ) return;
   bg = pm;
-  if(scaled_allchips.width())
-  {
-    loadPixmaps(); // Reload
-    update();
-  }
+  update();
+  setErasePixmap(pm);
 }
 
 void Board::setColor(const QColor &c) {
-  setBackgroundColor(c);
-  bg.resize(0, 0);
-  if(scaled_allchips.width())
-  {
-    loadPixmaps(); // Reload
-    update();
-  }
-} 
+  bgColor = c;
+  bg = QPixmap();
+  update();
+  setEraseColor(c);
+}
 
 // saves the game. Only one game at a time can be saved
 void Board::saveGame(KConfig *config) {
   interrupt(); // stop thinking
-  config->writeEntry("NumberOfMoves", game->GetMoveNumber());
-  int nmoves = game->GetMoveNumber();
-  config->writeEntry("State", getState());
-  config->writeEntry("Strength", getStrength());
-  for(int i = nmoves; i > 0; i--) {    
+  config->writeEntry("NumberOfMoves", moveNumber());
+  config->writeEntry("State", state());
+  config->writeEntry("Strength", strength());
+  for(int i = moveNumber(); i > 0; i--) {
     Move m = game->GetLastMove();
     game->TakeBackMove();
     QString s, idx;
-    s.sprintf("%d %d %d", m.GetX(), m.GetY(), m.GetPlayer());
+    s.sprintf("%d %d %d", m.GetX(), m.GetY(), (int)m.GetPlayer());
     idx.sprintf("Move_%d", i);
     config->writeEntry(idx, s);
   }
-  
+
   // save whose turn it is
-  config->writeEntry("WhoseTurn", human);
+  config->writeEntry("WhoseTurn", (int)human);
 
   // all moves must be redone
   loadGame(config, TRUE);
@@ -658,26 +576,26 @@ void Board::loadGame(KConfig *config, bool noupdate) {
       QStringList s = config->readListEntry(idx, ' ');
       int x = (*s.at(0)).toInt();
       int y = (*s.at(1)).toInt();
-      int pl = (*s.at(2)).toInt();
-      Move m(x, y, pl);
+      Player player = (Player)(*s.at(2)).toInt();
+      Move m(x, y, player);
       game->MakeMove(m);
     }
 
     if(noupdate)
       return;
 
-    human = config->readNumEntry("WhoseTurn");
-  
+    human = (Player)config->readNumEntry("WhoseTurn");
+
     updateBoard(TRUE);
     setState(config->readNumEntry("State"));
     setStrength(config->readNumEntry("Strength", 10));
-    
+
     if(interrupted())
       doContinue();
-    else {      
-      emit turn(Score::BLACK);
+    else {
+      emit turn(Black);
       // computer makes first move
-      if(human == Score::WHITE)
+      if(human == White)
 	computerMakeMove();
     }
   }
@@ -691,12 +609,12 @@ bool Board::canLoad(KConfig *config) {
 void Board::loadSettings(){
   KConfig *config = kapp->config();
   config->setGroup("Game");
-  if(config->readBoolEntry("Grayscale", false)){
-    if(chipname != "chips_mono.png")
-      loadChips("chips_mono.png");
+  if(config->readBoolEntry("Grayscale", false)) {
+    if(chiptype != Grayscale)
+        loadChips(Grayscale);
   }
-  else{
-    if(chipname != "chips.png") loadChips("chips.png");
+  else {
+    if(chiptype != Colored) loadChips(Colored);
   }
 
   if(config->readBoolEntry("Animation", true) == false)

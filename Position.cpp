@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -81,15 +81,15 @@
 
 void Position::constrInit() {
   m_score.InitScore(2,2);
-  
+
   for (int i=0; i<10; i++)
     for (int j=0; j<10; j++)
-      m_board[i][j] = Score::NOBODY;
-    
-  m_board[4][4] = Score::WHITE;
-  m_board[5][5] = Score::WHITE;
-  m_board[5][4] = Score::BLACK;
-  m_board[4][5] = Score::BLACK;
+      m_board[i][j] = Nobody;
+
+  m_board[4][4] = White;
+  m_board[5][5] = White;
+  m_board[5][4] = Black;
+  m_board[4][5] = Black;
 }
 
 void Position::constrCopy(Position &p, Move &m) {
@@ -105,8 +105,8 @@ void Position::constrCopy(Position &p, Move &m) {
 
   m_score.ScoreCopy(p.m_score);
 
-  int player = m.GetPlayer();
-  int opponent = Score::GetOpponent(player);
+  Player player = m.GetPlayer();
+  Player opponent = ::opponent(player);
 
   m_board[m.GetX()][m.GetY()] = player;
   m_score.ScoreAdd(player, 1);
@@ -116,11 +116,11 @@ void Position::constrCopy(Position &p, Move &m) {
       if (xinc != 0 || yinc != 0)
 	{
       int x, y;
-      
+
       for (x = m.GetX()+xinc, y = m.GetY()+yinc; m_board[x][y] == opponent;
 	   x += xinc, y += yinc)
 	;
-      
+
       if (m_board[x][y] == player)
 	for (x -= xinc, y -= yinc; x != m.GetX() || y != m.GetY();
 	     x -= xinc, y -= yinc)
@@ -130,7 +130,7 @@ void Position::constrCopy(Position &p, Move &m) {
 	    m_score.ScoreSubtract(opponent, 1);
 	  }
 	}
-  
+
   m_last_move.copy(m);
 }
 
@@ -148,51 +148,51 @@ Position::Position(Position &p, Move &m)
 Position::~Position() {
 }
 
-int Position::GetSquare(int x, int y) { 
-  return m_board[x][y]; 
+Player Position::GetSquare(int x, int y) {
+  return m_board[x][y];
 }
 
-int Position::GetScore(int player) { return m_score.GetScore(player); }
+int Position::GetScore(Player player) { return m_score.GetScore(player); }
 
 Move Position::GetLastMove() { return m_last_move; }
 
 bool Position::MoveIsLegal(Move m)
 {
-  if (m_board[m.GetX()][m.GetY()] != Score::NOBODY) return false;
+  if (m_board[m.GetX()][m.GetY()] != Nobody) return false;
 
-  int player = m.GetPlayer();
-  int opponent = Score::GetOpponent(player);
+  Player player = m.GetPlayer();
+  Player opponent = ::opponent(player);
 
   for (int xinc=-1; xinc<=1; xinc++)
     for (int yinc=-1; yinc<=1; yinc++)
       if (xinc != 0 || yinc != 0)
 	{
 	  int x, y;
-	  
+
 	  for (x = m.GetX()+xinc, y = m.GetY()+yinc; m_board[x][y] == opponent;
 	       x += xinc, y += yinc)
 	    ;
-	  
+
 	  if (m_board[x][y] == player &&
 	      (x - xinc != m.GetX() || y - yinc != m.GetY()))
 	    return true;
 	}
-  
+
   return false;
 }
 
 
-bool Position::MoveIsPossible(int player)
+bool Position::MoveIsPossible(Player player)
 {
   for (int i=1; i<9; i++)
     for (int j=1; j<9; j++)
       if (MoveIsLegal(Move(i, j, player))) return true;
-  
+
   return false;
 }
 
 
 bool Position::MoveIsAtAllPossible()
 {
-  return (bool)(MoveIsPossible(Score::WHITE) || MoveIsPossible(Score::BLACK));
+  return (bool)(MoveIsPossible(White) || MoveIsPossible(Black));
 }

@@ -36,7 +36,9 @@
  *******************************************************************
  */
 
-#include <config.h>
+#include "config.h"
+
+#include <qlayout.h>
 
 #include <kapplication.h>
 #include <kconfig.h>
@@ -44,7 +46,6 @@
 #include <kstatusbar.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-
 #include <kaction.h>
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
@@ -55,7 +56,6 @@
 #include "Score.h"
 #include "kreversi.h"
 #include "kreversi.moc"
-#include "playsound.h"
 #include "board.h"
 #include "settings.h"
 
@@ -65,39 +65,29 @@ const int SB_TURN       = 4;
 
 #define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)
 
-KReversi::KReversi( QWidget* parent, const char *name) : KMainWindow(parent, name) {
+KReversi::KReversi()
+    : KMainWindow(0, "kreversi")
+{
   gameOver = false;
 
   // create reversi board
-  board = new Board(this, "Board");
+  QWidget *w = new QWidget(this);
+  setCentralWidget(w);
+  QHBoxLayout *top = new QHBoxLayout(w);
+  top->addStretch(1);
+  board = new Board(w);
+  top->addWidget(board);
+  top->addStretch(1);
+
   createKActions();
   createStatusBar();
 
-  board->setFixedSize(board->sizeHint());
-  setCentralWidget(board);
-
   connect(board, SIGNAL(score()), this, SLOT(slotScore()));
-  connect(board, SIGNAL(gameWon(int)), this, SLOT(slotGameEnded(int)));
-  connect(board, SIGNAL(turn(int)), this, SLOT(slotTurn(int)));
+  connect(board, SIGNAL(gameWon(Player)), this, SLOT(slotGameEnded(Player)));
+  connect(board, SIGNAL(turn(Player)), this, SLOT(slotTurn(Player)));
   connect(board, SIGNAL(statusChange(int)), this, SLOT(slotStatusChange(int)));
   connect(board, SIGNAL(illegalMove()), this, SLOT(slotIllegalMove()));
-  connect(board, SIGNAL(sizeChange()), this, SLOT(sizeChanged()));
   setAutoSaveSettings();
-
-#ifdef HAVE_MEDIATOOL
-  if(conf->readNumEntry("Sound", 0) != 0) {
-    initAudio();
-    if(!audioOK()) {
-      show();
-      kapp->processEvents();
-      KMessageBox::error(this,
-			   i18n("A problem with the sound server occured!\n"
-				"Cannot enable sound support."));
-    }
-  } else {
-    doneAudio(); // just to be sure
-  }
-#endif
 
   board->start();
 }
@@ -161,16 +151,19 @@ void KReversi::configureKeyBindings(){
   KKeyDialog::configure(actionCollection(), this);
 }
 
-void KReversi::sizeChanged(){
-  resize(sizeHint().width(), sizeHint().height());
+bool KReversi::eventFilter(QObject *o, QEvent *e)
+{
+    if ( e->type()==QEvent::LayoutHint )
+        setFixedSize(minimumSize()); // because QMainWindow and KMainWindow
+                                     // do not manage fixed central widget
+    return KMainWindow::eventFilter(o, e);
 }
 
 void KReversi::zoomIn(){
   board->zoomIn();
-  board->setFixedSize(board->sizeHint());
   KConfig *config = kapp->config();
   config->setGroup("Game");
-  config->writeEntry("Zoom", board->getZoom());
+  config->writeEntry("Zoom", board->zoom());
 
   if(!board->canZoomIn())
     zoomInAction->setEnabled(false);
@@ -180,10 +173,9 @@ void KReversi::zoomIn(){
 
 void KReversi::zoomOut(){
   board->zoomOut();
-  board->setFixedSize(board->sizeHint());
   KConfig *config = kapp->config();
   config->setGroup("Game");
-  config->writeEntry("Zoom", board->getZoom());
+  config->writeEntry("Zoom", board->zoom());
   if(board->canZoomIn())
     zoomInAction->setEnabled(true);
   if(!board->canZoomOut())
@@ -196,8 +188,8 @@ void KReversi::slotScore() {
 
   board->getScore(black, white);
 
-  if(board->chipsName() == "chips.png") {
-    if(board->humanIs() == Score::BLACK) {
+  if(board->chipType() == Board::Colored) {
+    if(board->humanPlayer() == Black) {
       s1 = i18n("You (blue): %1").arg(black);
       s2 = i18n("Computer (red): %1").arg(white);
     } else {
@@ -205,7 +197,7 @@ void KReversi::slotScore() {
       s1 = i18n("Computer (blue): %1").arg(black);
     }
   } else {
-    if(board->humanIs() == Score::BLACK) {
+    if(board->humanPlayer() == Black) {
       s1 = i18n("You (black): %1").arg(black);
       s2 = i18n("Computer (white): %1").arg(white);
     } else {
@@ -218,30 +210,30 @@ void KReversi::slotScore() {
   statusBar()->changeItem(s2, SB_SCOREC);
 }
 
-void KReversi::slotGameEnded(int color) {
+void KReversi::slotGameEnded(Player player) {
   QString s;
   int winner, loser;
 
   statusBar()->changeItem(i18n("End of game"), SB_TURN);
 
   // get the score
-  if(color == Score::BLACK)
+  if(player == Black)
     board->getScore(winner, loser);
   else
     board->getScore(loser, winner);
 
-  if(color == Score::NOBODY) {
-    playSound("reversi-drawn.wav");
+  if(player == Nobody) {
+    board->playSound(Board::DrawSound);
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
     KMessageBox::information(this, s, i18n("Game Ended"));
-  } else if(board->humanIs() == color) {
+  } else if(board->humanPlayer() == player) {
     // calculate score
-    int  st = board->getStrength();
+    int  st = board->strength();
     int sum = winner + loser;
     // 8 is the highest level so it is the bases for the scale.
     float score= (float)winner / sum * ((100/8)*st);
 
-    playSound("reversi-won.wav");
+    board->playSound(Board::WonSound);
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%")
 	      .arg(winner).arg(loser).arg(score,1);
     KMessageBox::information(this, s, i18n("Game Ended"));
@@ -257,7 +249,7 @@ void KReversi::slotGameEnded(int color) {
         highscore.exec();
     }
   } else {
-    playSound("reversi-lost.wav");
+    board->playSound(Board::LostSound);
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
 	      .arg(loser).arg(winner);
     KMessageBox::information(this, s, i18n("Game Ended"));
@@ -265,29 +257,18 @@ void KReversi::slotGameEnded(int color) {
   gameOver = true;
 }
 
-void KReversi::slotTurn(int color) {
+void KReversi::slotTurn(Player player) {
   if (gameOver)
     return;
 
   QString s;
 
-  if(board->humanIs() == Score::WHITE) {
-    if(color == Score::WHITE)
+  if(player == board->humanPlayer())
       s = i18n("Your turn");
-    else if(color == Score::BLACK)
+  else if(player == board->computerPlayer())
       s = i18n("Computer's turn");
-    else
-      s = "";
-  }
   else
-  {
-    if(color == Score::WHITE)
-      s = i18n("Computer's turn");
-    else if(color == Score::BLACK)
-      s = i18n("Your turn");
-    else
       s = "";
-  }
   statusBar()->changeItem(s, SB_TURN);
 }
 
@@ -304,10 +285,7 @@ void KReversi::slotStatusChange(int status) {
 }
 
 void KReversi::slotIllegalMove() {
-  if(!audioOK())
-    kapp->beep();
-  else
-    playSound("reversi-illegalmove.wav");
+    board->playSound(Board::IllegalMoveSound);
 }
 
 void KReversi::saveProperties(KConfig *c) {

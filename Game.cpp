@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -97,7 +97,6 @@
 //     for faster updates of a graphical board).
 
 
-#include <qobject.h>
 #include "Game.h"
 
 Game::Game()
@@ -119,10 +118,10 @@ void Game::Reset()
 
 bool Game::MakeMove(Move m)
 {
-  if (m.GetPlayer() == Score::NOBODY) return false;
+  if (m.GetPlayer() == Nobody) return false;
   if (GetWhoseTurn() != m.GetPlayer()) return false;
   if (! m_positions[m_movenumber].MoveIsLegal(m)) return false;
-  
+
   m_positions[m_movenumber+1].constrCopy(m_positions[m_movenumber], m);
   m_movenumber++;
 
@@ -141,13 +140,13 @@ bool Game::TakeBackMove()
 }
 
 
-int Game::GetSquare(int x, int y)
+Player Game::GetSquare(int x, int y)
 {
   return m_positions[m_movenumber].GetSquare(x, y);
 }
 
 
-int Game::GetScore(int player)
+int Game::GetScore(Player player)
 {
   return m_positions[m_movenumber].GetScore(player);
 }
@@ -162,7 +161,7 @@ bool Game::MoveIsLegal(Move m)
 }
 
 
-bool Game::MoveIsPossible(int player)
+bool Game::MoveIsPossible(Player player)
 {
   return m_positions[m_movenumber].MoveIsPossible(player);
 }
@@ -177,49 +176,43 @@ bool Game::MoveIsAtAllPossible()
 int Game::GetMoveNumber() { return m_movenumber; }
 
 
-int Game::GetWhoseTurn()
+Player Game::GetWhoseTurn()
 {
-  if (m_movenumber <= 0) return Score::BLACK;
-  
-  int player = GetLastMove().GetPlayer();
-  int opponent = Score::GetOpponent(player);
-  
-    if (MoveIsPossible(opponent)) return opponent;
-    
-    if (MoveIsPossible(player)) return player;
-    
-    return Score::NOBODY;
+  if (m_movenumber <= 0) return Black;
+
+  Player player = GetLastMove().GetPlayer();
+  Player opponent = ::opponent(player);
+
+  if (MoveIsPossible(opponent)) return opponent;
+
+  if (MoveIsPossible(player)) return player;
+
+  return Nobody;
 }
 
-int Game::GetWhoseTurnOpponent() {
-  int color = GetWhoseTurn();
-  if(color == Score::NOBODY)
-    return Score::NOBODY;
-  else if(color == Score::BLACK)
-    return Score::WHITE;
-  else
-    return Score::BLACK;
+Player Game::GetWhoseTurnOpponent() {
+  return opponent( GetWhoseTurn() );
 }
 
 bool Game::squareModified(int x, int y) {
   if(GetMoveNumber() == 1)
-    return TRUE;
+    return true;
   else
     return (bool)(m_positions[m_movenumber].GetSquare(x, y) != m_positions[m_movenumber-1].GetSquare(x, y));
 }
 
 bool Game::wasTurned(int x, int y) {
   if(GetMoveNumber() == 0)
-    return FALSE;
+    return false;
   else {
-    int c1 = m_positions[m_movenumber-1].GetSquare(x, y);
-    int c2 = m_positions[m_movenumber].GetSquare(x, y);
-    
-    if(c1 == Score::NOBODY)
-      return FALSE;
+    Player c1 = m_positions[m_movenumber-1].GetSquare(x, y);
+    Player c2 = m_positions[m_movenumber].GetSquare(x, y);
+
+    if(c1 == Nobody)
+      return false;
     else if(c1 == c2)
-      return FALSE;
+      return false;
     else
-      return TRUE;
+      return true;
   }
 }

@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -124,9 +124,9 @@ const int Engine::LARGEINT = 99999;
 const int Engine::ILLEGAL_VALUE = 8888888;
 const int Engine::BC_WEIGHT = 3;
 
-inline void SquareStackEntry::setXY(int x, int y) { 
-  m_x = x; 
-  m_y = y; 
+inline void SquareStackEntry::setXY(int x, int y) {
+  m_x = x;
+  m_y = y;
 }
 
 #if !defined(__GNUC__)
@@ -152,8 +152,8 @@ void ULONG64::shl() {
 #endif
 
 
-SquareStackEntry::SquareStackEntry() { 
-  setXY(0,0); 
+SquareStackEntry::SquareStackEntry() {
+  setXY(0,0);
 }
 
 
@@ -172,16 +172,16 @@ void SquareStack::resize(int size) {
 }
 
 
-void SquareStack::init(int size) { 
-  resize(size); 
-  m_top = 0;     
-  for (int i=0; i<size; i++) 
+void SquareStack::init(int size) {
+  resize(size);
+  m_top = 0;
+  for (int i=0; i<size; i++)
     m_squarestack[i].setXY(0,0);
 }
 
 
-inline SquareStackEntry SquareStack::Pop() { 
-  return m_squarestack[--m_top]; 
+inline SquareStackEntry SquareStack::Pop() {
+  return m_squarestack[--m_top];
 }
 
 
@@ -209,20 +209,20 @@ MoveAndValue::MoveAndValue(int x, int y, int value) {
 
 
 Engine::Engine(int st, int sd) : SuperEngine(st, sd) {
-  SetupBcBoard(); 
-  SetupBits(); 
+  SetupBcBoard();
+  SetupBits();
 }
 
 
-Engine::Engine(int st) : SuperEngine(st) { 
-  SetupBcBoard(); 
-  SetupBits(); 
+Engine::Engine(int st) : SuperEngine(st) {
+  SetupBcBoard();
+  SetupBits();
 }
 
 
-Engine::Engine() : SuperEngine(1) { 
-  SetupBcBoard(); 
-  SetupBits(); 
+Engine::Engine() : SuperEngine(1) {
+  SetupBcBoard();
+  SetupBits();
 }
 
 
@@ -234,15 +234,15 @@ void Engine::yield() {
 Move Engine::ComputeMove(Game g) {
   m_exhaustive = false;
 
-  int player = g.GetWhoseTurn();
+  Player player = g.GetWhoseTurn();
 
-  if (player == Score::NOBODY) 
-    return Move(-1,-1,-1);
+  if (player == Nobody)
+    return Move(-1, -1, Nobody);
 
   // Figure out the current score
-  m_score.InitScore(g.GetScore(Score::WHITE), g.GetScore(Score::BLACK));
+  m_score.InitScore(g.GetScore(White), g.GetScore(Black));
   // If the game just started...
-  if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) == 4)
+  if (m_score.GetScore(White) + m_score.GetScore(Black) == 4)
     return ComputeFirstMove(g);
 
   // JAVA m_board = new int[10][10];
@@ -250,39 +250,39 @@ Move Engine::ComputeMove(Game g) {
   m_squarestack.init(3000);
   m_depth = m_strength;
 
-  if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
+  if (m_score.GetScore(White) + m_score.GetScore(Black) +
       m_depth + 3 >= 64)
     m_depth =
-      64 - m_score.GetScore(Score::WHITE) - m_score.GetScore(Score::BLACK);
-  else if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
+      64 - m_score.GetScore(White) - m_score.GetScore(Black);
+  else if (m_score.GetScore(White) + m_score.GetScore(Black) +
 	   m_depth + 4 >= 64)
     m_depth += 2;
-  else if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
+  else if (m_score.GetScore(White) + m_score.GetScore(Black) +
 	   m_depth + 5 >= 64)
     m_depth++;
 
-  if (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
+  if (m_score.GetScore(White) + m_score.GetScore(Black) +
       m_depth >= 64) m_exhaustive = true;
 
   m_coeff =
     100 - (100*
-	   (m_score.GetScore(Score::WHITE) + m_score.GetScore(Score::BLACK) +
+	   (m_score.GetScore(White) + m_score.GetScore(Black) +
 	    m_depth - 4))/60;
 
   m_nodes_searched = 0;
 
   for (int x=0; x<10; x++)
     for (int y=0; y<10; y++)
-      m_board[x][y] = Score::NOBODY;
+      m_board[x][y] = Nobody;
 
   for (int x=1; x<9; x++)
     for (int y=1; y<9; y++)
       m_board[x][y] = g.GetSquare(x, y);
 
-  m_bc_score.InitScore(CalcBcScore(Score::WHITE), CalcBcScore(Score::BLACK));
+  m_bc_score.InitScore(CalcBcScore(White), CalcBcScore(Black));
 
   ULONG64 playerbits = ComputeOccupiedBits(player);
-  ULONG64 opponentbits = ComputeOccupiedBits(Score::GetOpponent(player));
+  ULONG64 opponentbits = ComputeOccupiedBits(opponent(player));
 
   int maxval = -LARGEINT;
   int max_x = 0;
@@ -297,18 +297,18 @@ Move Engine::ComputeMove(Game g) {
   ULONG64 null_bits;
   null_bits = 0;
 
-  //struct tms tmsdummy; 
+  //struct tms tmsdummy;
   //long starttime = times(&tmsdummy);
   // Compute this once at the start of the loops.
   int high = 20 - m_strength;
 
   for (int x=1; x<9; x++)
     for (int y=1; y<9; y++)
-      if (m_board[x][y] == Score::NOBODY &&
+      if (m_board[x][y] == Nobody &&
 	  (m_neighbor_bits[x][y] & opponentbits) != null_bits)
 	{
 
-	  int val = ComputeMove2(x, y, player, 1, maxval, 
+	  int val = ComputeMove2(x, y, player, 1, maxval,
 				 playerbits, opponentbits);
 
 	  if (val != ILLEGAL_VALUE)
@@ -320,7 +320,7 @@ Move Engine::ComputeMove(Game g) {
 		  // Make it so it is easy for us to "miss" something.
 		  // i.e. more relistic.  Also makes m_strength mean more.
 		  if(maxval == -LARGEINT ||
-		   m_random.getLong(number_of_maxval) % 
+		   m_random.getLong(number_of_maxval) %
 		      high - ((maxval-val)/2) == 0){
 		    maxval = val;
 		    max_x = x;
@@ -349,23 +349,23 @@ Move Engine::ComputeMove(Game g) {
       max_y = moves[i].m_y;
     }
 
-  if (GetInterrupt()) {       
-    return Move(-1, -1, -1);
+  if (GetInterrupt()) {
+    return Move(-1, -1, Nobody);
   } else if (maxval != -LARGEINT) {
     return Move(max_x, max_y, player);
   } else {
-    return Move(-1, -1, -1);
+    return Move(-1, -1, Nobody);
   }
 }
 
 
 Move Engine::ComputeFirstMove(Game g) {
   int r;
-  int player = g.GetWhoseTurn();
+  Player player = g.GetWhoseTurn();
 
   r = m_random.getLong(4) + 1;
 
-  if (player == Score::WHITE)
+  if (player == White)
     {
       if (r == 1) return Move(3, 5, player);
       else if (r == 2) return  Move(4, 6, player);
@@ -382,13 +382,13 @@ Move Engine::ComputeFirstMove(Game g) {
 }
 
 
-int Engine::ComputeMove2(int xplay, int yplay, int player, int level,
-			 int cutoffval, ULONG64 playerbits, 
+int Engine::ComputeMove2(int xplay, int yplay, Player player, int level,
+			 int cutoffval, ULONG64 playerbits,
 			 ULONG64 opponentbits)
 {
   int number_of_turned = 0;
   SquareStackEntry mse;
-  int opponent = Score::GetOpponent(player);
+  Player opponent = ::opponent(player);
 
   m_nodes_searched++;
 
@@ -489,7 +489,7 @@ int Engine::ComputeMove2(int xplay, int yplay, int player, int level,
       m_board[mse.m_x][mse.m_y] = opponent;
     }
 
-  m_board[xplay][yplay] = Score::NOBODY;
+  m_board[xplay][yplay] = Nobody;
   m_score.ScoreSubtract(player, 1);
   m_bc_score.ScoreSubtract(player, m_bc_board[xplay][yplay]);
 
@@ -498,7 +498,7 @@ int Engine::ComputeMove2(int xplay, int yplay, int player, int level,
 }
 
 
-int Engine::TryAllMoves(int opponent, int level, int cutoffval,
+int Engine::TryAllMoves(Player opponent, int level, int cutoffval,
 			ULONG64 opponentbits, ULONG64 playerbits)
 {
   int maxval = -LARGEINT;
@@ -512,7 +512,7 @@ int Engine::TryAllMoves(int opponent, int level, int cutoffval,
   for (int x=1; x<9; x++)
     {
       for (int y=1; y<9; y++)
-	if (m_board[x][y] == Score::NOBODY &&
+	if (m_board[x][y] == Nobody &&
 	    (m_neighbor_bits[x][y] & playerbits) != null_bits)
 	  {
 	    int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
@@ -533,11 +533,11 @@ int Engine::TryAllMoves(int opponent, int level, int cutoffval,
 }
 
 
-int Engine::EvaluatePosition(int player)
+int Engine::EvaluatePosition(Player player)
 {
   int retval;
 
-  int opponent = Score::GetOpponent(player);
+  Player opponent = ::opponent(player);
   int score_player = m_score.GetScore(player);
   int score_opponent = m_score.GetScore(opponent);
 
@@ -613,20 +613,20 @@ void Engine::SetupBcBoard()
 }
 
 
-int Engine::CalcBcScore(int player)
+int Engine::CalcBcScore(Player player)
 {
   int sum = 0;
 
   for (int i=1; i < 9; i++)
     for (int j=1; j < 9; j++)
-      if (m_board[i][j] == player) 
+      if (m_board[i][j] == player)
 	sum += m_bc_board[i][j];
 
   return sum;
 }
 
 
-ULONG64 Engine::ComputeOccupiedBits(int player)
+ULONG64 Engine::ComputeOccupiedBits(Player player)
 {
   ULONG64 retval = 0;
 

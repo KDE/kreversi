@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -49,23 +49,23 @@
 
 #include "Move.h"
 
-Move::Move(const Move &m) 
-{ 
+Move::Move(const Move &m)
+{
   copy(m);
 }
 
 void Move::copy(const Move &m) {
-  m_x = m.m_x; 
-  m_y = m.m_y; 
-  m_player = m.m_player; 
+  m_x = m.m_x;
+  m_y = m.m_y;
+  m_player = m.m_player;
 }
 
-Move::Move(int x, int y, int player) { 
-  m_x = x; 
-  m_y = y; 
-  m_player =player; 
+Move::Move(int x, int y, Player player) {
+  m_x = x;
+  m_y = y;
+  m_player =player;
 }
 
 int Move::GetX() { return m_x; }
 int Move::GetY() { return m_y; }
-int Move::GetPlayer() { return m_player; }
+Player Move::GetPlayer() { return m_player; }

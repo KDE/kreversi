@@ -48,8 +48,8 @@ static const char *description = I18N_NOOP("KDE Board Game");
 
 int main(int argc, char **argv)
 {
-  KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"), 
-    KREVERSI_VERSION, description, KAboutData::License_GPL, 
+  KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
+    KREVERSI_VERSION, description, KAboutData::License_GPL,
     "(c) 1997-2000, Mario Weilguni");
   aboutData.addAuthor("Mario Weilguni",0, "mweilguni@sime.com");
   aboutData.addAuthor("Benjamin Meyer",0, "ben@meyerhome.net");
@@ -64,12 +64,12 @@ int main(int argc, char **argv)
 
   // used for loading background pixmaps
   KImageIO::registerFormats();
-  
+
   if(a.isRestored()){
      RESTORE(KReversi)
   }
   else {
-    KReversi *kreversi = new KReversi();
+    KReversi *kreversi = new KReversi;
     a.setMainWidget(kreversi);
     kreversi->show();
   }

@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -174,10 +174,10 @@ class MoveAndValue
 {
 public:
   MoveAndValue();
-  MoveAndValue(int x, int y, int value);  
+  MoveAndValue(int x, int y, int value);
   void setXYV(int x, int y, int value);
 
-public:  
+public:
   int m_x, m_y, m_value;
 };
 
@@ -191,17 +191,17 @@ public:
 
   Move ComputeMove(Game g);
   Move ComputeFirstMove(Game g);
-  int ComputeMove2(int xplay, int yplay, int player, int level,
+  int ComputeMove2(int xplay, int yplay, Player player, int level,
     int cutoffval, ULONG64 playerbits, ULONG64 opponentbits);
 
-  int TryAllMoves(int opponent, int level, int cutoffval,
+  int TryAllMoves(Player opponent, int level, int cutoffval,
 		  ULONG64 opponentbits, ULONG64 playerbits);
 
-  int EvaluatePosition(int player);
+  int EvaluatePosition(Player player);
   void SetupBcBoard();
   void SetupBits();
-  int CalcBcScore(int player);
-  ULONG64 ComputeOccupiedBits(int player);
+  int CalcBcScore(Player player);
+  ULONG64 ComputeOccupiedBits(Player player);
 
   void yield();
 
@@ -209,8 +209,8 @@ private:
   static const int LARGEINT;
   static const int ILLEGAL_VALUE;
   static const int BC_WEIGHT;
-  int  m_board[10][10];
-  int  m_bc_board[9][9];
+  Player m_board[10][10];
+  int m_bc_board[9][9];
   Score m_score;
   Score m_bc_score;
   SquareStack m_squarestack;

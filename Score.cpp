@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -52,46 +52,49 @@
 
 #include "Score.h"
 
-const int Score::NOBODY=0;
-const int Score::WHITE=1;
-const int Score::BLACK=2;
-
-Score::Score() 
-{ 
-  m_score[0] = 0; 
-  m_score[1] = 0;
-}
-
-Score::Score(int whitescore, int blackscore) 
+Score::Score()
 {
-  m_score[WHITE-1] = whitescore;
-  m_score[BLACK-1] = blackscore;
+  m_score[White] = 0;
+  m_score[Black] = 0;
+}
+
+Score::Score(int whitescore, int blackscore)
+{
+  m_score[White] = whitescore;
+  m_score[Black] = blackscore;
 }
 
 
-int Score::GetOpponent(int player) { return player % 2 + 1; }
-
+Player opponent(Player player)
+{
+  switch (player) {
+  case Nobody: break;
+  case White: return Black;
+  case Black: return White;
+  }
+  return Nobody;
+}
 
 void Score::ScoreCopy(Score &s)
 {
-  m_score[0] = s.m_score[0];
-  m_score[1] = s.m_score[1];
+  m_score[White] = s.m_score[White];
+  m_score[Black] = s.m_score[Black];
 }
 
 
-int Score::GetScore(int player) { return m_score[player-1]; }
+int Score::GetScore(Player player) { return m_score[player]; }
 
 
-void Score::SetScore(int player, int score) { m_score[player-1] = score; }
+void Score::SetScore(Player player, int score) { m_score[player] = score; }
 
 
-void Score::ScoreAdd(int player, int amount)
+void Score::ScoreAdd(Player player, int amount)
 {
-  m_score[player-1] += amount;
+  m_score[player] += amount;
 }
 
 
-void Score::ScoreSubtract(int player, int amount)
+void Score::ScoreSubtract(Player player, int amount)
 {
-  m_score[player-1] -= amount;
+  m_score[player] -= amount;
 }

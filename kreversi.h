@@ -41,6 +41,8 @@
 
 #include <kmainwindow.h>
 
+#include "Score.h"
+
 class Board;
 class KAction;
 class KToggleAction;
@@ -49,20 +51,21 @@ class KReversi : public KMainWindow {
   Q_OBJECT
 
 public:
-  KReversi( QWidget* parent = 0, const char *name = 0 );
+  KReversi();
 
 private:
   void createKActions();
   void createStatusBar();
   QString getPlayerName();
+  bool eventFilter(QObject *, QEvent *e);
 
   virtual void saveProperties(KConfig *);
   virtual void readProperties(KConfig *);
 
 private slots:
   void slotScore();
-  void slotGameEnded(int);
-  void slotTurn(int);
+  void slotGameEnded(Player);
+  void slotTurn(Player);
   void slotStatusChange(int);
   void slotIllegalMove();
 
@@ -72,8 +75,7 @@ private slots:
   void configureKeyBindings();
   void zoomIn();
   void zoomOut();
-  void sizeChanged();
-  
+
   void showHighScoreDialog();
   void showSettings();
 
@@ -81,7 +83,7 @@ private:
   KAction *undoAction, *zoomInAction, *zoomOutAction;
   KAction *stopAction, *continueAction;
   KToggleAction *soundAction;
-  
+
   Board *board;
   bool gameOver;
 

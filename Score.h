@@ -12,11 +12,11 @@
  *
  *******************************************************************
  *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file 
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet. 
- * Many thanks to Mr. Luthman who has allowed me to put this port 
- * under the GNU GPL. Without his wonderful game engine kreversi 
- * would be just another of those Reversi programs a five year old 
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
@@ -53,26 +53,22 @@
 #ifndef __SCORE__H__
 #define __SCORE__H__
 
+enum Player { Nobody = -1, White = 0, Black = 1 };
+Player opponent(Player player);
+
 class Score {
 public:
   Score();
   Score(int whitescore, int blackscore);
   void ScoreCopy(Score &s);
-  void InitScore(int w, int b) { SetScore(Score::BLACK, b); SetScore(Score::WHITE, w); }
-  int  GetScore(int player);
-  void SetScore(int player, int score);
-  void ScoreAdd(int player, int amount);
-  void ScoreSubtract(int player, int amount);
+  void InitScore(int w, int b) { SetScore(Black, b); SetScore(White, w); }
+  int GetScore(Player player);
+  void SetScore(Player player, int score);
+  void ScoreAdd(Player player, int amount);
+  void ScoreSubtract(Player player, int amount);
 
-  static int GetOpponent(int player);
-  
 private:
   int m_score[2];
-
-public:
-  static const int NOBODY;
-  static const int WHITE;
-  static const int BLACK;
 };
 
 #endif

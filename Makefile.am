@@ -7,7 +7,7 @@ bin_PROGRAMS = kreversi
 
 kreversi_SOURCES = main.cpp kreversi.cpp board.cpp Game.cpp \
 		Score.cpp SuperEngine.cpp settings.ui \
-		Engine.cpp Position.cpp Move.cpp playsound.cpp
+		Engine.cpp Position.cpp Move.cpp
 
 METASOURCES =	AUTO
 
@@ -15,7 +15,7 @@ rcdir = $(kde_datadir)/kreversi
 rc_DATA = kreversiui.rc
 
 noinst_HEADERS = Engine.h Game.h kreversi.h Move.h board.h Position.h \
-	playsound.h Score.h version.h SuperEngine.h           
+	Score.h version.h SuperEngine.h           
 
 SUBDIRS = . pics sounds icons
 
