@@ -46,35 +46,6 @@
 
 // The class Position is used to represent an Othello position as white and
 // black pieces and empty squares (see class Score) on an 8x8 Othello board.
-// It also stores information on the move that lead to the position.
-
-//  Public functions:
-
-//  public Position()
-//     Creates an initial position.
-
-//  public Position(Position p, Move m)
-//     Creates the position that arise when the Move m is applied to the
-//     Position p (m must be a legal move).
-
-//  public int GetSquare(int x, int y)
-//     Returns the color of the piece at the square (x, y) (Score.WHITE,
-//     Score.BLACK or Score.NOBODY).
-
-//  public int GetScore(int player) { return m_score.GetScore(player); }
-//     Returns the the current number of pieces of color player.
-
-//  public Move GetLastMove()
-//     Returns the last move.
-
-//  public boolean moveIsLegal(Move move)
-//     Checks if a move is legal.
-
-//  public boolean moveIsPossible(int player)
-//     Checks if there is a legal move for player.
-
-//  public boolean moveIsAtAllPossible()
-//     Checks if there are any legal moves at all.
 
 
 #include "Position.h"
@@ -83,11 +54,11 @@
 
 Position::Position()
 {
-  constrInit();
+  setupStartPosition();
 }
 
 
-Position::Position(Position &pos, Move &move)
+Position::Position(Position &pos, SimpleMove &move)
 {
   constrCopy(pos, move);
 }
@@ -101,7 +72,6 @@ Position &Position::operator=(Position &pos)
       m_board[row][col] = pos.m_board[row][col];
   m_toMove = pos.m_toMove;
 
-  m_lastMove = pos.m_lastMove;
   m_score    = pos.m_score;
 
   return *this;
@@ -112,9 +82,19 @@ Position &Position::operator=(Position &pos)
 //                Helpers to the constructors
 
 
-// Construct a Position by setting it to the initial Reversi position.
+// Construct a Position by copying another one and then make a move.
+//
 
-void Position::constrInit()
+void Position::constrCopy(Position &pos, SimpleMove &move)
+{
+  *this = pos;
+  makeMove(move);
+}
+
+
+// Setup the Position by setting it to the initial Reversi position.
+
+void Position::setupStartPosition()
 {
   // Initialize the real board
   for (uint i = 0; i < 10; i++)
@@ -130,22 +110,9 @@ void Position::constrInit()
   // Black always starts the game in Reversi.
   m_toMove = Black;
 
-  // Empty move;
-  m_lastMove = Move();
-
   // Each side starts out with two pieces.
   m_score.set(White, 2);
   m_score.set(Black, 2);
-}
-
-
-// Construct a Position by copying another one and then make a move.
-//
-
-void Position::constrCopy(Position &pos, Move &move)
-{
-  *this = pos;
-  makeMove(move);
 }
 
 
@@ -153,9 +120,11 @@ void Position::constrCopy(Position &pos, Move &move)
 //                          Access methods
 
 
-
 Color Position::color(uint x, uint y) const
 {
+  if (x < 1 || x > 8 || y < 1 || y > 8)
+    return Nobody;
+
   return m_board[x][y];
 }
 
@@ -166,13 +135,17 @@ uint Position::score(Color color) const
 }
 
 
+// ----------------------------------------------------------------
+//                      Moves in the position
+
+
 // Return TRUE if the move is legal.
 //
 // NOTE: This function does *NOT* test wether the move is done
 //       by the color to move.  That must be checked separately.
 //
 
-bool Position::moveIsLegal(Move &move) const
+bool Position::moveIsLegal(SimpleMove &move) const
 {
   if (m_board[move.x()][move.y()] != Nobody) 
     return false;
@@ -216,7 +189,7 @@ bool Position::moveIsPossible(Color color) const
   // Make it simple: Step through all squares and see if it is a legal move.
   for (uint i = 1; i < 9; i++)
     for (uint j = 1; j < 9; j++) {
-      Move  move(color, i, j);
+      SimpleMove  move(color, i, j);
 
       if (moveIsLegal(move)) 
 	return true;
@@ -237,7 +210,8 @@ bool Position::moveIsAtAllPossible() const
 // Make a move in the position.  
 //
 // Return true if the move was legal, otherwise return false.
-bool Position::makeMove(Move &move)
+//
+bool Position::makeMove(SimpleMove &move, QValueList<char> *turned)
 {
   if (move.color() == Nobody)
     return false;
@@ -271,6 +245,8 @@ bool Position::makeMove(Move &move)
 	     x -= xinc, y -= yinc) {
 	  // Turn the piece.
 	  m_board[x][y] = color;
+	  if (turned)
+	    turned->append(x * 10 + y);
 
 	  // Make the piece count correct again.
 	  m_score.inc(color);
@@ -288,9 +264,6 @@ bool Position::makeMove(Move &move)
     return false;
   }
 
-  // Store the last move that lead to the position.
-  m_lastMove = move;
-
   // Set the next color to move.
   if (moveIsPossible(opponent))
     m_toMove = opponent;
@@ -301,6 +274,14 @@ bool Position::makeMove(Move &move)
 
   return true;
 }
+
+
+bool Position::makeMove(Move &move)
+{
+  move.m_turnedPieces.clear();
+  return makeMove((SimpleMove &) move, &move.m_turnedPieces);
+}
+
 
 
 MoveList  Position::generateMoves(Color color) const

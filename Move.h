@@ -44,8 +44,23 @@
  *******************************************************************
  */
 
+// This file defines the two classes SimpleMove and Move.
+//
 // The class Move is used to represent an Othello move with a player value
 // (see class Score) and a pair of coordinates on an 8x8 Othello board.
+// Each coordinate can have values between 1 and 8, inclusive.
+// 
+// The difference between a Move and a SimpleMove is that a SimpleMove
+// can be done (performed) in a Position, but a Move can be both done
+// and undone.  In addition to the info in SimpleMove, the class Move
+// stores information that is used in undoing the move and visualizing
+// it.
+//
+// The reason for the class SimpleMove is that it saves memory.  The
+// class Game stores an array of Moves, since the BoardView needs
+// information about which pieces were turned by the move.
+//
+
 
 #ifndef __MOVE__H__
 #define __MOVE__H__
@@ -57,12 +72,15 @@
 #include "Score.h"
 
 
-class Move
+class Position;
+
+
+class SimpleMove
 {
 public:
-  Move()   { m_color = Nobody; m_x = -1; m_y = -1; }
-  Move(Color color, int x, int y);
-  Move(const Move &move);
+  SimpleMove()   { m_color = Nobody; m_x = -1; m_y = -1; }
+  SimpleMove(Color color, int x, int y);
+  SimpleMove(const SimpleMove &move);
 
   //Move &operator=(Move &move);
 
@@ -72,10 +90,28 @@ public:
 
   QString  asString() const;
 
-private:
+protected:
   Color  m_color;
   int    m_x;
   int    m_y;
+};
+
+
+// Note: This class is not memory optimized.  The list of turned
+//       pieces can surely be made much smaller.
+
+class Move : public SimpleMove
+{
+  friend class Position;
+
+public:
+  Move();
+  Move(Color color, int x, int y);
+  Move(const Move &move);
+  Move(const SimpleMove &move);
+
+private:
+  QValueList<char>  m_turnedPieces;
 };
 
 

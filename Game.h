@@ -113,15 +113,16 @@ public:
   
   void   newGame();
   
-  Color  color(uint x, uint y) const;
-  uint   score(Color color)    const;
+  Color  color(uint x, uint y) const  { return m_position.color(x, y);  }
+  uint   score(Color color)    const  { return m_position.score(color); }
   Move   lastMove()            const;
   Move   move(uint moveNo)     const;
 
-  bool   moveIsLegal(Move &move) const;
+  bool   moveIsLegal(SimpleMove &move)     const;
   bool   moveIsPossible(Color color) const;
-  bool   moveIsAtAllPossible() const;
+  bool   moveIsAtAllPossible()       const;
   bool   makeMove(Move &move);
+  bool   makeMove(SimpleMove &move);
   bool   takeBackMove();
 
   uint   moveNumber() const  { return m_moveNumber;        }
@@ -134,9 +135,10 @@ public:
 protected:
   Move      m_moves[64];
   Position  m_position;		// The current position in the game
-  Position  m_lastPosition;	// The last position in the game
                                 // So that we can compare and see turned pieces
   uint      m_moveNumber;
+
+  Position  m_lastPosition;	// The last position in the game
 };
 
 #endif

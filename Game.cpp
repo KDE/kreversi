@@ -118,29 +118,10 @@ Game::~Game()
 
 void Game::newGame()
 {
-  m_position.constrInit();
-  m_lastPosition.constrInit();
-
+  m_position.setupStartPosition();
   m_moveNumber = 0;
-}
 
-
-// Return the color of the square at (x, y)
-//
-
-Color Game::color(uint x, uint y) const
-{
-  return m_position.color(x, y);
-}
-
-
-// Return the score, i.e. the number of pieces, for color at the
-// current position.
-//
-
-uint Game::score(Color color) const
-{
-  return m_position.score(color);
+  m_lastPosition.setupStartPosition();
 }
 
 
@@ -170,7 +151,7 @@ Game::move(uint moveNo) const
 // Return true if the move is legal in the current position.
 //
 
-bool Game::moveIsLegal(Move &move) const
+bool Game::moveIsLegal(SimpleMove &move) const
 {
   return m_position.moveIsLegal(move);
 }
@@ -209,16 +190,21 @@ bool Game::makeMove(Move &move)
   if (toMove() != move.color())
     return false;
 
-  // Don't allow illegal moves.
-  if (! m_position.moveIsLegal(move))
+  // Make the move in the position and store it.  Don't allow illegal moves.
+  if (!m_position.makeMove(move))
     return false;
-
-  // Make the move in the position.
-  m_position.makeMove(move);
   m_moves[m_moveNumber++] = move;
 
   m_lastPosition = lastPos;
   return true;
+}
+
+
+bool Game::makeMove(SimpleMove &smove)
+{
+  Move  move(smove);
+
+  return makeMove(move);
 }
 
 
@@ -232,7 +218,7 @@ bool Game::takeBackMove()
   if (m_moveNumber == 0) 
     return false;
 
-  m_position.constrInit();
+  m_position.setupStartPosition();
   m_moveNumber--;
   for (uint i = 0; i < m_moveNumber; i++) {
     m_lastPosition = m_position;

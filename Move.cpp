@@ -47,7 +47,7 @@
 #include "Move.h"
 
 
-Move::Move(Color color, int x, int y)
+SimpleMove::SimpleMove(Color color, int x, int y)
 {
   m_color = color;
   m_x     = x;
@@ -55,16 +55,48 @@ Move::Move(Color color, int x, int y)
 }
 
 
-Move::Move(const Move &move)
+SimpleMove::SimpleMove(const SimpleMove &move)
 {
   *this = move;
 }
 
 
-QString Move::asString() const
+QString SimpleMove::asString() const
 {
   if (m_x == -1)
     return QString("pass");
   else
     return QString("%1%2").arg(" ABCDEFGH"[m_x]).arg(" 12345678"[m_y]);
 }
+
+
+// ================================================================
+
+
+Move::Move()
+  : SimpleMove()
+{
+  m_turnedPieces.clear();
+}
+
+
+Move::Move(Color color, int x, int y)
+  : SimpleMove(color, x, y)
+{
+  m_turnedPieces.clear();
+}
+
+
+Move::Move(const Move &move)
+  : SimpleMove((SimpleMove&) move)
+{
+  m_turnedPieces.clear();
+}
+
+
+Move::Move(const SimpleMove &move)
+  : SimpleMove(move)
+{
+  m_turnedPieces.clear();
+}
+

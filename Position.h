@@ -46,36 +46,6 @@
 
 // The class Position is used to represent an Othello position as white and
 // black pieces and empty squares (see class Score) on an 8x8 Othello board.
-// It also stores information on the move that lead to the position.
-
-//  Public functions:
-
-//  public Position()
-//     Creates an initial position.
-
-//  public Position(Position p, Move m)
-//     Creates the position that arise when the Move m is applied to the
-//     Position p (m must be a legal move).
-
-//  public int GetSquare(int x, int y)
-//     Returns the color of the piece at the square (x, y) (Score.WHITE,
-//     Score.BLACK or Score.NOBODY).
-
-//  public int GetScore(int player) { return m_score.GetScore(player); }
-//     Returns the the current number of pieces of color player.
-
-//  public Move GetLastMove()
-//     Returns the last move.
-
-//  public boolean MoveIsLegal(Move m)
-//     Checks if a move is legal.
-
-//  public boolean MoveIsPossible(int player)
-//     Checks if there is a legal move for player.
-
-//  public boolean MoveIsAtAllPossible()
-//     Checks if there are any legal moves at all.
-
 
 #ifndef __POSITION__H__
 #define __POSITION__H__
@@ -89,24 +59,28 @@ class Position
 {
 public:
   Position();
+  Position(Position &pos, SimpleMove &move);
   Position(Position &pos, Move &move);
 
   Position &operator=(Position &pos);
 
-  void   constrInit();
-  void   constrCopy(Position &pos, Move &move);
+  void   constrCopy(Position &pos, SimpleMove &move);
 
+  void   setupStartPosition();
+
+  // Access methods
+  Color  toMove()              const { return m_toMove; }
   Color  color(uint x, uint y) const;
   uint   score(Color color)    const;
 
-  Move   lastMove() const { return m_lastMove; }
-  Color  toMove()   const { return m_toMove; }
 
   // Moves in the current position.
-  bool   moveIsLegal(Move &move)     const;
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
+  bool   moveIsLegal(SimpleMove &move)     const;
+  bool   makeMove(SimpleMove &move, QValueList<char> *turned = 0);
   bool   makeMove(Move &move);
+
   MoveList  generateMoves(Color color) const;
 
 private:
@@ -115,8 +89,7 @@ private:
   Color  m_toMove;
 
   // Some extra data
-  Move   m_lastMove;		// The last move in the game so far
-  Score  m_score;		// The number of pieces for each side.
+  Score        m_score;		// The number of pieces for each side.
 };
 
 
