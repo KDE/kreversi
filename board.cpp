@@ -193,6 +193,12 @@ void KReversiBoardView::mousePressEvent(QMouseEvent *e)
     return;
   }
 
+  if (e->pos().x() == 0 || e->pos().y() == 0)
+  {
+    e->ignore();
+    return;
+  }
+
   int px = (e->pos().x()-1) / zoomedSize();
   int py = (e->pos().y()-1) / zoomedSize();
   emit signalSquareClicked(py, px);
