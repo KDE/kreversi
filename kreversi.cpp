@@ -137,8 +137,10 @@ void KReversi::newGame(){
 void KReversi::openGame(){
   KConfig *config = kapp->config();
   config->setGroup("Savegame");
-  if(board->canLoad(config))
+  if(board->canLoad(config)){
     board->loadGame(config);
+    Prefs::setSkill(board->strength());
+  }
 }
 
 void KReversi::save(){
