@@ -338,6 +338,7 @@ void App::createMenuBar() {
   menu->setAccel(CTRL+Key_S, ID_FSAVE);
   menu->setAccel(CTRL+Key_L, ID_FLOAD);
   menu->setAccel(CTRL+Key_Q, ID_FQUIT);
+  menu->setAccel(Key_H, ID_HHINT);
   menu->setAccel(Key_F1, ID_HCONTENTS);
   menu->setAccel(Key_Escape, ID_GSTOP);
   menu->setAccel(CTRL+Key_N, ID_GNEW);
@@ -393,9 +394,9 @@ void App::createStatusBar() {
 
 
 void App::lookupBackgroundPixmaps() {
-  QString PICDIR = KGlobal::dirs()->findResourceDir("wallpaper", "chess.jpg");
+  QString PICDIR = KGlobal::dirs()->findResourceDir("data", "kreversi/pics/background/");
 
-  QDir dir(PICDIR, "*.jpg");
+  QDir dir(PICDIR+"kreversi/pics/background/", "*.xpm");
   if(!dir.exists())
     return;
 
