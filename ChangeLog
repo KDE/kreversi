@@ -1,4 +1,11 @@
+2004-10-09  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
+
 2004-10-09  Inge Wallin  <inge@lysator.liu.se>
+
+	Fix a bug that made the score unset at startup.
+	* kreversi.cpp (KReversi): show Score at startup.
+
+	----------------- CVS commit on stuff below --------------------
 
 	Finally make KReversi a proper Model/View program (step I.4 and
 	I.5 from the plan in the TODO file).

@@ -169,6 +169,7 @@ KReversi::KReversi()
   setupGUI();
   init("popup");
   m_boardView->start();
+  showScore();
 }
 
 
