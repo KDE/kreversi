@@ -2,6 +2,7 @@
 [KDE Desktop Entry]
 Exec=kreversi -caption "%c"
 Name=Reversi
+Name[es]=Reversi
 Name[fr]=Othello
 Name[pl]=Odwracanka
 Name[no]=Reversi
@@ -16,6 +17,7 @@ Name[pl]=Reversi
 Type=Application
 DocPath=kreversi/index.html
 Comment=Play Reversi against the computer
+Comment[es]=Juege al Reversi contra la computadora
 Comment[fr]=Disputez une partie d'Othello contre l'ordinateur
 Comment[de]=Spiel Reversi gegen den Rechner
 Comment[no]=Spill Reversi mot datamaskinen
