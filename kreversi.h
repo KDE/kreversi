@@ -137,6 +137,7 @@ private slots:
   // Interrupt and continue the engines thinking (also KActions).
   void  slotInterrupt();
   void  slotContinue();
+  void  slotShowLegalMoves();
 
   // Slots for game IO
   void  slotSquareClicked(int, int);
@@ -174,6 +175,8 @@ private:
   // Some Actions that need to be manipulated.
   KAction       *stopAction;
   KAction       *continueAction;
+
+  KToggleAction  *showLegalMovesAction;
 
   // The game itself and game properties
   QReversiGame  *m_krgame;	   // Stores the moves of the game

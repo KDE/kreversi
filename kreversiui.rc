@@ -17,6 +17,7 @@
     <Action name="game_stop"/>
     <Action name="game_continue"/>
   </Menu>
+
 </MenuBar>
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
@@ -24,8 +25,11 @@
   <Action name="game_stop"/>
   <Action name="game_continue"/>
   <Action name="game_undo"/>
-  <Action name="game_hint"/>
   <Action name="options_show_menubar"/>
+</ToolBar>
+<ToolBar name="viewToolBar"><text>View Toolbar</text>
+  <Action name="game_hint"/>
+  <Action name="show_legal_moves"/>
 </ToolBar>
 
 <Menu name="popup">

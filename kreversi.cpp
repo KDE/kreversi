@@ -185,8 +185,10 @@ KReversi::KReversi()
   showScore();
 
   // Show legal moves for black.
-  MoveList  moves = m_krgame->position().generateMoves(Black);
-  m_boardView->showLegalMoves(moves);
+  if (showLegalMovesAction->isChecked()) {
+    MoveList  moves = m_krgame->position().generateMoves(Black);
+    m_boardView->showLegalMoves(moves);
+  }
 }
 
 
@@ -241,6 +243,12 @@ void KReversi::createKActions()
   // Some more standard game actions: Highscores, Settings.
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
   KStdAction::preferences(this, SLOT(slotEditSettings()), actionCollection());
+
+  // Actions for the view(s).
+  showLegalMovesAction = new KToggleAction(i18n("Show legal moves"), 0, 
+					   this, SLOT(slotShowLegalMoves()),
+					   actionCollection(),
+					   "show_legal_moves");
 }
 
 
@@ -306,9 +314,10 @@ void KReversi::slotNewGame()
   m_movesView->clear();
   showScore();
 
-  MoveList  moves = m_krgame->position().generateMoves(Black);
-  m_boardView->showLegalMoves(moves);
-  kdDebug() << "Showing legal moves on a new game" << endl;
+  if (showLegalMovesAction->isChecked()) {
+    MoveList  moves = m_krgame->position().generateMoves(Black);
+    m_boardView->showLegalMoves(moves);
+  }
 
   // Black always makes first move.
   if (m_humanColor == White)
@@ -403,8 +412,10 @@ void KReversi::slotUndo()
     m_boardView->update();
 
   // Show legal moves.
-  MoveList  moves = m_krgame->position().generateMoves(Black);
-  m_boardView->showLegalMoves(moves);
+  if (showLegalMovesAction->isChecked()) {
+    MoveList  moves = m_krgame->position().generateMoves(Black);
+    m_boardView->showLegalMoves(moves);
+  }
 }
 
 
@@ -429,6 +440,20 @@ void KReversi::slotContinue()
 {
   if (interrupted())
     computerMakeMove();
+}
+
+
+// Turn on or off showing of legal moves in the board view.
+
+void KReversi::slotShowLegalMoves() 
+{
+  if (showLegalMovesAction->isChecked()) {
+    Color     toMove = m_krgame->position().toMove();
+    MoveList  moves  = m_krgame->position().generateMoves(toMove);
+    m_boardView->showLegalMoves(moves);
+  }
+  else
+    m_boardView->quitShowLegalMoves();
 }
 
 
@@ -688,6 +713,8 @@ void KReversi::humanMakeMove(int row, int col)
 
 void KReversi::computerMakeMove()
 {
+  MoveList  moves;
+
   // Check if the computer can move.
   Color color    = m_krgame->toMove();
   Color opponent = ::opponent(color);
@@ -697,8 +724,10 @@ void KReversi::computerMakeMove()
   // Show legal moves for the computer.
   // FIXME: This shall be dependent on a KToggleAction later.
   //        Or perhaps never show legal moves for the computer.
-  MoveList  moves = m_krgame->position().generateMoves(color);
-  m_boardView->showLegalMoves(moves);
+  if (showLegalMovesAction->isChecked()) {
+    moves = m_krgame->position().generateMoves(color);
+    m_boardView->showLegalMoves(moves);
+  }
 
   if (!m_krgame->moveIsPossible(color))
     return;
@@ -739,8 +768,10 @@ void KReversi::computerMakeMove()
 
   // Show legal moves for the human.
   // FIXME: This shall be dependent on a KToggleAction later.
-  moves = m_krgame->position().generateMoves(m_humanColor);
-  m_boardView->showLegalMoves(moves);
+  if (showLegalMovesAction->isChecked()) {
+    moves = m_krgame->position().generateMoves(m_humanColor);
+    m_boardView->showLegalMoves(moves);
+  }
 }
 
 
