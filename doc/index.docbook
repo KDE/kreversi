@@ -1,9 +1,9 @@
-<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook V3.1-Based Variant V1.0//EN"[
+<?xml version="1.0" ?><!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd"[
   <!ENTITY kappname "&kreversi;">
   <!ENTITY % addindex "IGNORE">
-  <!ENTITY % English "INCLUDE" -- change language only here -->
-  <!ENTITY % ents PUBLIC "-//KDE//ENTITIES Documentation V1.0//EN">
-  %ents;
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  
+  
 ]>
 
 <book lang="&language;">
@@ -102,7 +102,7 @@ in the center four squares of the board in the following pattern:</para>
 <screenshot>
 <screeninfo>&kreversi; opening position</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="kreversi1.png" format="PNG"></imageobject>
+<imageobject><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
 <textobject><phrase>&kreversi; opening position</phrase></textobject>
 <caption><para>Board Layout</para></caption>
 </mediaobject>
@@ -490,6 +490,7 @@ sgml-omittag: nil
 sgml-shorttag: t
 End:
 -->
+
 
 
 
