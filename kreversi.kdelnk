@@ -14,3 +14,4 @@ Comment[fi]=Pelaa Reversiä tietokonetta vastaan
 Comment[pt]=Jogue Reversi contra o computador
 Comment[hu]=Játssz Reversit a gép ellen
 Terminal=0
+Icon=kreversi.xpm

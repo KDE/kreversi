@@ -1,0 +1,32 @@
+/* XPM */
+/* Drawn  by Nico Shirwing for the K Desktop Environment */
+/* See http://www.kde.org */
+static char*kreversi[]={
+"16 16 10 1",
+"# c #c0c0c0",
+"c c #800000",
+"g c #000080",
+"d c #c00000",
+"h c #0000c0",
+"a c #ff0000",
+"e c #0000ff",
+"b c #ffc0c0",
+"f c #c0c0ff",
+". c None",
+"................",
+".#####abc##abc#.",
+".#####bad##bad#.",
+".#####cdc##cdc#.",
+".##############.",
+".##############.",
+".abc##abc##efg#.",
+".bad##bad##feh#.",
+".cdc##cdc##ghg#.",
+".##############.",
+".##############.",
+".efg##efg######.",
+".feh##feh######.",
+".ghg##ghg######.",
+".##############.",
+"................"};
+
