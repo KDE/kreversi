@@ -335,14 +335,20 @@ action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
 
 <variablelist>
 <varlistentry>
+<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>M</keycap></keycombo></shortcut><guimenu>Settings</guimenu>
+<guimenuitem>Hide Menubar</guimenuitem></menuchoice></term>
+<listitem><para>Toggles whether the menubar is visible.</para></listitem>
+</varlistentry>
+
+<varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Show Toolbar</guimenuitem></menuchoice></term>
+<guimenuitem>Hide Toolbar</guimenuitem></menuchoice></term>
 <listitem><para>Toggles whether the toolbar is visible.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Show Statusbar</guimenuitem></menuchoice></term>
+<guimenuitem>Hide Statusbar</guimenuitem></menuchoice></term>
 <listitem><para>Toggles whether the statusbar at the bottom of the window
 is visible.</para></listitem>
 </varlistentry>
@@ -419,6 +425,27 @@ if you want the background to have a single color. Select the
 field at the right in case you want to use a specific image as the background
 wallpaper.</para></listitem>
 </varlistentry>
+
+<varlistentry>
+<term><guibutton>Help</guibutton></term>
+<listitem><para>Opens &kreversi; help.</para></listitem></varlistentry>
+
+<varlistentry>
+<term><guibutton>Defaults</guibutton></term>
+<listitem><para>Reverts settings to defaults.</para></listitem></varlistentry>
+
+<varlistentry>
+<term><guibutton>OK</guibutton></term>
+<listitem><para>Saves changes and closes dialog.</para></listitem></varlistentry>
+
+<varlistentry>
+<term><guibutton>Apply</guibutton></term>
+<listitem><para>Saves changes but doesn't close dialog.</para></listitem></varlistentry>
+
+<varlistentry>
+<term><guibutton>Cancel</guibutton></term>
+<listitem><para>Cancels changes and closes dialog.</para></listitem></varlistentry>
+
 </variablelist>
 </chapter>
 
