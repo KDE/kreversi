@@ -1,5 +1,34 @@
 TODO-list for KREVERSI
 ======================
+
+* A big cleanup of the code (comments, indentation, complexity):
+   - board.cpp
+   - board.h
+   - Engine.cpp
+   - Engine.h
+   - Game.cpp
+   - Game.h
+   - highscores.cpp
+   - highscores.h
+   - kreversi.cpp
+   - kreversi.h
+   - kzoommainwindow.cpp
+   - kzoommainwindow.h
+   - main.cpp
+   - Move.cpp
+   - Move.h
+   - Position.cpp
+   - Position.h
+   - prefs.h
+   - prefs.kcfgc
+   - Score.cpp
+   - Score.h
+   - settings.cpp
+   - settings.h
+   - SuperEngine.cpp
+   - SuperEngine.h
+   - version.h
+
 * network-play against human
 * implement ULONG64 as a class instead of using gcc "long long int"
 
