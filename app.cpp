@@ -36,24 +36,26 @@
  *******************************************************************
  */
 
-#include <qdir.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
+#include <qdir.h>
 #include <qaccel.h>
 #include <qpopupmenu.h>
-#include <kapp.h>
 #include <qpushbutton.h>
 #include <qlistbox.h>
 #include <qdatetime.h>
 #include <qlabel.h>
 #include <qlineedit.h>
-#include <kconfig.h>
-#include <kcolordlg.h>
 #include <qregexp.h>
 #include <qtimer.h>
 #include <qlayout.h>
 
+#include <kapp.h>
+#include <kdebug.h>
+#include <kconfig.h>
+#include <kcolordlg.h>
 #include <kseparator.h>
 #include <kmessagebox.h>
 #include <kstddirs.h>
@@ -1044,7 +1046,8 @@ QString App::getPlayerName() {
 }
 
 void App::slotBarChanged() {
-debug("void App::slotBarChanged()");
+  kdDebug() << "void App::slotBarChanged()" << endl;
+
   KConfig *conf = kapp->config();
   if(conf) {
     conf->writeEntry("Toolbar_1_Pos", (int)(tb->barPos()));
