@@ -2,8 +2,10 @@
 [KDE Desktop Entry]
 Exec=kreversi
 Name=Reversi
+Name[pl]=Odwracanka
 Type=Application
 DocPath=Reversi.html
 Comment=Play Reversi against the computer
 Comment[de]=Spiel Reversi gegen den Rechner
+Comment[pl]=Zagraj w Odwracankê z komputerem.
 Terminal=0
