@@ -76,12 +76,13 @@ Board::Board(QWidget *parent) : QWidget(parent) {
   for(int i = 0; i < CHIP_MAX; i++)
     chip[i] = 0;
 
+  _size = 32;
+  _zoom = 100;
+
   loadChips("chips.xpm");
 
   nopaint = FALSE;
   human = Score::BLACK;
-  _size = 32;
-  _zoom = 100;
   setStrength(4);
 
   connect(this, SIGNAL(signalFieldClicked(int, int)),
