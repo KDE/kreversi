@@ -25,11 +25,12 @@ INSTALL_DIR_PRIVATE = $(install) -d -m 0700
 
 prefix = @prefix@
 BINDIR = $(prefix)/bin
-DOCDIR = $(prefix)/share/doc/HTML/Reversi
+DOCDIR = $(prefix)/share/doc/HTML/default/Reversi
 PICSDIR = $(prefix)/share/apps/Reversi/pics
 BGDIR	= $(PICSDIR)/background
 SOUNDDIR= $(prefix)/share/apps/Reversi/sounds
 KDELNKDIR= $(prefix)/share/applnk/Games
+ICONDIR= $(prefix)/share/icons
 
 
 ########### File Formats ###########
@@ -46,10 +47,9 @@ KDELNKDIR= $(prefix)/share/applnk/Games
 
 OBJECTS =	main.o misc.o app.o board.o Game.o Score.o SuperEngine.o \
 		Engine.o Position.o Move.o Random.o about.o \
-		playsound.o kfixedtopwidget.o ktablistbox.o
-SRCMETA =	app.moc board.moc about.moc kfixedtopwidget.moc \
-		ktablistbox.moc
-DOCS    =       html/Reversi.html html/gpl.html
+		playsound.o
+SRCMETA =	app.moc board.moc about.moc
+DOCS    =       html/index.html html/gpl.html
 PICS    =       hint.xpm help.xpm undo.xpm zoomout.xpm zoomin.xpm \
 		stop.xpm chips.xpm logo.xpm chips_mono.xpm
 BGPICS	=	Dark_Wood.xpm \
@@ -104,6 +104,8 @@ install: all
 	echo $(INSTALL_DATA) sounds/$$i $(SOUNDDIR); \
 	$(INSTALL_DATA) sounds/$$i $(SOUNDDIR); \
 	done
+	$(INSTALL_DIR) $(ICONDIR)
+	$(INSTALL_DATA) icons/Reversi.xpm $(ICONDIR)
 
 uninstall:
 	rm -f $(BINDIR)/$(TARGET)

@@ -73,10 +73,19 @@ bool playSound(const char *s) {
     return FALSE;
   
   // look in SOUNDDIR
-  if(audio->play((char *)(SOUNDDIR + s).data()))
+  if(audio->play((char *)(SOUNDDIR + s).data())) {
+
     return TRUE;
+  }
     
   return FALSE;
+}
+
+bool soundSync() {
+  if(audio)
+    audio->sync();
+
+  return (bool)(audio != 0);
 }
 
 bool audioOK() {

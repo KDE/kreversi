@@ -50,11 +50,10 @@
 #include <qfileinf.h>
 #include <qdialog.h>
 #include <qlined.h>
-#include "kfixedtopwidget.h"
 #include "board.h"
 #include <klocale.h>
 
-const int HIGHSCORE_MAX = 20;
+const int HIGHSCORE_MAX = 10;
 
 struct HighScore {
   char name[32];
@@ -66,11 +65,13 @@ struct HighScore {
 };
 
 
-class App : public KFixedTopWidget {
+class App : public KTopLevelWidget {
   Q_OBJECT
 public:
   App();
   ~App();
+
+  void recover();
 
 private:
   void createMenuBar();
@@ -84,6 +85,9 @@ private:
   void showHighscore(int focusItem = -1);
   QString getPlayerName();
   void lookupBackgroundPixmaps();
+
+  virtual void saveProperties(KConfig *);
+  virtual void readProperties(KConfig *);
 
 public slots:
   void processEvent(int itemid);

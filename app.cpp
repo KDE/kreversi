@@ -53,16 +53,21 @@
 #include <kcolordlg.h>
 #include <qregexp.h>
 #include <qtimer.h>
+#include <qlayout.h>
 #include "Score.h"
 #include "app.h"
 #include "about.h"
 #include "playsound.h"
-#include "ktablistbox.h"
+#include <kseparator.h>
+#include <kwm.h>
+#include <qmsgbox.h>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
+const int ID_FSAVE	= 101;
+const int ID_FLOAD	= 102;
 const int ID_FQUIT	= 104;
 
 const int ID_GSTOP	= 200;
@@ -105,6 +110,7 @@ const int ID_HABOUT	= 902;
 const int ID_HHINT	= 903;
 const int ID_HRULES	= 904;
 const int ID_HSTRATEGY	= 905;
+const int ID_HABOUTQT	= 906;
 
 const int SB_SCOREH	= 2;
 const int SB_SCOREC	= 3;
@@ -112,7 +118,7 @@ const int SB_TURN       = 4;
 
 extern QString PICDIR;
 
-App::App() : KFixedTopWidget() {
+App::App() : KTopLevelWidget() {
   // create locale
   locale = kapp->getLocale();
 
@@ -142,6 +148,8 @@ App::App() : KFixedTopWidget() {
   connect(b, SIGNAL(strengthChanged(int)), this, SLOT(slotStrength(int)));
   connect(b, SIGNAL(statusChange(int)), this, SLOT(slotStatusChange(int)));
   connect(b, SIGNAL(illegalMove()), this, SLOT(slotIllegalMove()));
+
+  b->start();
 
 #define menuPosition
   connect(menu, SIGNAL(moved(menuPosition)),
@@ -215,7 +223,10 @@ App::App() : KFixedTopWidget() {
 #endif
   }
     
-    updateRects();
+  updateRects();
+  
+  if(kapp->isRestored())
+    restore(1);    
 }
 
 
@@ -230,6 +241,10 @@ void App::createMenuBar() {
   menu = new KMenuBar(this);
 
   QPopupMenu *fm = new QPopupMenu;
+  fm->insertItem(locale->translate("&New game"), ID_GNEW);
+  fm->insertItem(locale->translate("&Load game"), ID_FLOAD);
+  fm->insertItem(locale->translate("&Save game"), ID_FSAVE);
+  fm->insertSeparator();
   fm->insertItem(locale->translate("&Quit"), ID_FQUIT);
 
   QPopupMenu *gm = new QPopupMenu;
@@ -237,8 +252,6 @@ void App::createMenuBar() {
   gm->insertSeparator();  
   gm->insertItem(locale->translate("&Stop thinking"), ID_GSTOP);
   gm->insertItem(locale->translate("&Continue"), ID_GCONTINUE);
-  gm->insertSeparator();
-  gm->insertItem(locale->translate("&New game"), ID_GNEW);
   gm->insertSeparator();
   gm->insertItem(locale->translate("&Undo move"), ID_GUNDO);
   gm->insertItem(locale->translate("Switch si&des"), ID_GSWITCH);
@@ -316,6 +329,7 @@ void App::createMenuBar() {
   hm->insertItem(locale->translate("&Rules"), ID_HRULES);
   hm->insertItem(locale->translate("&Strategy hints"), ID_HSTRATEGY);
   hm->insertSeparator();
+  hm->insertItem(locale->translate("About &Qt..."), ID_HABOUTQT);
   hm->insertItem(locale->translate("&About..."), ID_HABOUT);
 
   menu->insertItem(locale->translate("&File"), fm);
@@ -325,6 +339,8 @@ void App::createMenuBar() {
   menu->insertItem(locale->translate("&Help"), hm);
   connect(menu, SIGNAL(activated(int)), this, SLOT(processEvent(int)));
 
+  menu->setAccel(CTRL+Key_S, ID_FSAVE);
+  menu->setAccel(CTRL+Key_L, ID_FLOAD);
   menu->setAccel(CTRL+Key_Q, ID_FQUIT);
   menu->setAccel(Key_F1, ID_HHELP);
   menu->setAccel(Key_Escape, ID_GSTOP);
@@ -398,11 +414,31 @@ void App::processEvent(int itemid) {
   QColor c;
 
   switch(itemid) {
-  case ID_FQUIT:
+  case ID_FSAVE:
+    {
+      KConfig *config = kapp->getConfig();
+      config->setGroup("Savegame");
+      b->saveGame(config);
+      KMsgBox::message(this, "Information", 
+		       locale->translate("Game saved"));
+    }
+    break;
+
+  case ID_FLOAD: 
+    {
+      KConfig *config = kapp->getConfig();
+      config->setGroup("Savegame");
+
+      if(b->canLoad(config))
+	b->loadGame(config);
+    }
+    break;
+
+  case ID_FQUIT:    
     b->interrupt();
 
     // interesting, without this kreversi seems to segfault
-    delete this;
+    delete this;    
     kapp->quit();
     return;
     break;
@@ -544,6 +580,10 @@ void App::processEvent(int itemid) {
       delete dlg;
     }
   break;
+
+  case ID_HABOUTQT:
+    QMessageBox::aboutQt(0);
+    break;
 
   default:
     {
@@ -770,7 +810,7 @@ void App::readHighscore() {
   highscore.resize(0);
   i = 0;
   bool eol = FALSE;
-  grp = conf->getGroup();
+  grp = conf->group();
   conf->setGroup(QString("Hall of Fame"));
   while ((i < HIGHSCORE_MAX) && !eol) {
     s.sprintf("Highscore_%d", i);
@@ -798,7 +838,7 @@ void App::writeHighscore() {
   QString s, e, grp;
   KConfig *conf = kapp->getConfig();
 
-  grp = conf->getGroup();
+  grp = conf->group();
   conf->setGroup(QString("Hall of Fame"));
   for(i = 0; i < (int)highscore.size(); i++) {
     s.sprintf("Highscore_%d", i);
@@ -823,64 +863,54 @@ int MAX(int a, int b) {
 void App::showHighscore(int focusItem = -1) {
   // this may look a little bit confusing...
   QDialog *dlg = new QDialog(0, locale->translate("Hall of Fame"), TRUE);
-  QPushButton *b = new QPushButton(locale->translate("Close"), dlg);
-  dlg->resize(550, 400);
   dlg->setCaption(locale->translate("KReversi: Hall Of Fame"));
+
+  QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
   
   QLabel *l = new QLabel(locale->translate("KReversi: Hall Of Fame"), dlg);
-  l->setFont(QFont("Helvetica", 24, QFont::Bold));
+  QFont f = font();
+  f.setPointSize(24);
+  f.setBold(TRUE);
+  l->setFont(f);
+  l->setFixedSize(l->sizeHint());
+  l->setFixedWidth(l->width() + 32);
   l->setAlignment(AlignCenter);
+  tl->addWidget(l);
 
-  // insert listbox
-  //QListBox *lb = new QListBox(dlg);
-  KOldTabListBox *lb = new KOldTabListBox(dlg);
-  lb->setNumCols(5);  
-  lb->setColumn(0, "Rank");
-  lb->setColumn(1, "Name");
-  lb->setColumn(2, "Color");
-  lb->setColumn(3, "Score");
-  lb->setColumn(4, "Rating");
+  // insert highscores in a gridlayout
+  QGridLayout *table = new QGridLayout(highscore.size()+2, 5, 5);
+  tl->addLayout(table, 1);
 
-  // calculate the width of the fields
-  int w = 0;
-  int t;
-  QFontMetrics fm = dlg->fontMetrics();
-#define WIDTH(str) (fm.boundingRect((str)).width() + 24)
+  // add a separator line
+  KSeparator *sep = new KSeparator(dlg);
+  table->addMultiCellWidget(sep, 1, 1, 0, 4);
 
-  t = WIDTH(locale->translate("Rank"));
-  w += t;
-  lb->setColumnWidth(0, t);
-
-  t = WIDTH("XXXXXXXXXXXXXXX");
-  w += t;
-  lb->setColumnWidth(1, t);
-
-  t = MAX(MAX(WIDTH(locale->translate("blue")),
-	  WIDTH(locale->translate("red"))),
-	  WIDTH(locale->translate("Color")));
-  w += t;
-  lb->setColumnWidth(2, t);
+  // add titles
+  f = font();
+  f.setBold(TRUE);
+  l = new QLabel(locale->translate("Rank"), dlg);
+  l->setFont(f);
+  l->setMinimumSize(l->sizeHint());
+  table->addWidget(l, 0, 0);
+  l = new QLabel(locale->translate("Name"), dlg);
+  l->setFont(f);
+  l->setMinimumSize(l->sizeHint());
+  table->addWidget(l, 0, 1);
+  l = new QLabel(locale->translate("Color"), dlg);
+  l->setFont(f);
+  l->setMinimumSize(l->sizeHint());
+  table->addWidget(l, 0, 2);
+  l = new QLabel(locale->translate("Score"), dlg);
+  l->setFont(f);
+  l->setMinimumSize(l->sizeHint());
+  table->addWidget(l, 0, 3);
+  l = new QLabel(locale->translate("Rating"), dlg);
+  l->setFont(f);
+  l->setMinimumSize(l->sizeHint());
+  table->addWidget(l, 0, 4);
   
-  t = WIDTH(locale->translate("Score"));
-  w += t;
-  lb->setColumnWidth(3, t);
-  
-  t = WIDTH(locale->translate("Rating"));
-  w += t;
-  lb->setColumnWidth(4, t);
-
-  dlg->resize(w + 32, w+16);
-  lb->setGeometry(12, 70, w+8, w - 120);
-  
-  // title geometry
-  l->setGeometry(0, 10, w+32, 40);
-
-  // button geometry
-  b->adjustSize();  
-  b->move((w+32 - b->width())/2, dlg->height() - b->height() - 24);
-
-  lb->setSeparator('\t');
   QString s;
+  QLabel *e[10][5];
   for(int i = 0; i < (int)highscore.size(); i++) {
     HighScore hs = highscore[i];
     const char *color;
@@ -889,19 +919,58 @@ void App::showHighscore(int focusItem = -1) {
       color = locale->translate("blue");
     else
       color = locale->translate("red");
+    
+    // insert rank
+    s.sprintf("%d", i+1);
+    e[i][0] = new QLabel(s.data(), dlg);
 
-    s.sprintf("%d.\t%s\t%s\t%d/%d\t%6.1f%%\t",
- 	      i+1, hs.name, color, hs.winner, 
-	      hs.loser, hs.rating);
-    lb->insertItem((const char *)s);
+    // insert name
+    e[i][1] = new QLabel(hs.name, dlg);
+
+    // insert color
+    e[i][2] = new QLabel(color, dlg);
+
+    // insert score
+    s.sprintf("%d/%d", hs.winner, hs.loser);
+    e[i][3] = new QLabel(s.data(), dlg);
+    
+    // insert rating
+    s.sprintf("%3.0f", hs.rating);
+    e[i][4] = new QLabel(s.data(), dlg);
   }
 
+  f = font();
+  f.setBold(TRUE);
+  f.setItalic(TRUE);
+  int i, j;
+  for(i = 0; i < 10; i++)
+    for(j = 0; j < 5; j++) {
+      e[i][j]->setMinimumSize(e[i][j]->sizeHint());
+      if(i == focusItem) {
+	e[i][j]->setFont(f);
+      }
+      table->addWidget(e[i][j], i+2, j, AlignCenter);
+    }
+
+  QPushButton *b = new QPushButton(locale->translate("Close"), dlg);
+  if(style() == MotifStyle)
+    b->setFixedSize(b->sizeHint().width() + 10,
+		    b->sizeHint().height() + 10);
+  else
+    b->setFixedSize(b->sizeHint());
+
   // connect the "Close"-button to done
-  connect(b, SIGNAL(released()), dlg, SLOT(accept()));
-  b->setAutoDefault(TRUE);
+  connect(b, SIGNAL(clicked()),
+	  dlg, SLOT(accept()));
+  b->setDefault(TRUE);
   b->setFocus();
-  if(focusItem != -1)
-    lb->setCurrentItem(focusItem);
+
+  // make layout
+  tl->addSpacing(10);
+  tl->addWidget(b);
+  tl->activate();
+  tl->freeze();
+
   playSound("hof.wav");
   dlg->exec();
   delete dlg;
@@ -910,34 +979,44 @@ void App::showHighscore(int focusItem = -1) {
 
 QString App::getPlayerName() {
   QDialog *dlg = new QDialog(this, "Hall Of Fame", TRUE);
-  dlg->resize(300, 175);
-  QLabel  *l1  = new QLabel(locale->translate("You've made in into the \"Hall Of Fame\". Type in your name so mankind will always remember your cool rating."), dlg);
-  l1->setAlignment(AlignVCenter | AlignLeft | WordBreak);
-  l1->setGeometry(10, 10, 280, 50);
 
-  QFontMetrics fm = dlg->fontMetrics();
+  QLabel  *l1  = new QLabel(locale->translate("You've made in into the \"Hall Of Fame\".Type in\nyour name so mankind will always remember\nyour cool rating."), dlg);
+  l1->setFixedSize(l1->sizeHint());
 
   QLabel *l2 = new QLabel(locale->translate("Your name:"), dlg);
-  l2->setAlignment(AlignRight|AlignVCenter);
-  l2->adjustSize();
+  l2->setFixedSize(l2->sizeHint());
 
   QLineEdit *e = new QLineEdit(dlg);
-  e->adjustSize();
-  e->setGeometry(10 + l2->width() + 10, 80, 
-		 300 - 40 -l2->width(), e->height());
+  e->setText("XXXXXXXXXXXXXXXX");
+  e->setMinimumWidth(e->sizeHint().width());
+  e->setFixedHeight(e->sizeHint().height());
+  e->setText("");
   e->setFocus();
-  l2->setGeometry(10, 80, l2->width(), e->height());
 
-  QPushButton *b = new QPushButton(locale->translate("Ok"), dlg);
-  b->adjustSize();
-  b->setGeometry(110, 125, 80, 32);
+  QPushButton *b = new QPushButton("Ok", dlg);
   b->setDefault(TRUE);
-  b->setAutoDefault(TRUE);
+  if(style() == MotifStyle)
+    b->setFixedSize(b->sizeHint().width() + 10,
+		    b->sizeHint().height() +10);
+  else
+    b->setFixedSize(b->sizeHint());
   connect(b, SIGNAL(released()), dlg, SLOT(accept()));
-  QAccel *accel = new QAccel(dlg);
-  accel->insertItem(ASCII_ACCEL + Key_Enter, 1000);
-  accel->connectItem(1000, dlg, SLOT(accept()));
-  connect(e, SIGNAL(returnPressed()), dlg, SLOT(accept()));
+  connect(e, SIGNAL(returnPressed()), 
+	  dlg, SLOT(accept()));
+
+  // create layout
+  QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
+  QHBoxLayout *tl1 = new QHBoxLayout();
+  tl->addWidget(l1);
+  tl->addSpacing(5);
+  tl->addLayout(tl1);
+  tl1->addWidget(l2);
+  tl1->addWidget(e);
+  tl->addSpacing(5);
+  tl->addWidget(b);
+  tl->activate();
+  tl->freeze();
+
   dlg->exec();
 
   QString s = e->text();
@@ -956,6 +1035,16 @@ void App::slotBarChanged() {
     conf->writeEntry(QString("Toolbar_1_Pos"),
 		     (int)(tb->barPos()));
   }
+}
+
+void App::saveProperties(KConfig *c) {  
+  // make sure options are written
+  kapp->getConfig()->sync();
+  b->saveGame(c);
+}
+
+void App::readProperties(KConfig *c) {
+  b->loadGame(c);
 }
 
 #include "app.moc"

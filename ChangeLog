@@ -41,6 +41,16 @@
 	fixed those CPU busy bug
 	removed the -finline-functions optimize flag (not portable)
 	ported to new KDE file system standards (well, mostly)
-
-
 	fixed segfaulting on exit
+
+0.6:	better integration into new FSSTND
+	fixes for new kdecore
+	layout managment for all dialogs
+	mini-icon and icon
+	locale-strings changed - partial translation required for
+	other languages than english and german
+	removed both the kfixedtopwidget and ktablistbox
+	drawing a border around the reversi board
+	session-managment - what an overkill for kreversi :-))
+	you can save (and load) exactly ONE game
+	

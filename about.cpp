@@ -42,51 +42,65 @@
 #include <qpixmap.h>
 #include <klocale.h>
 #include <kapp.h>
+#include <qlayout.h>
 
 extern QString PICDIR;
 
 About::About(QWidget *parent) : QDialog(parent, "About KReversi", TRUE) {
   KLocale *locale = kapp->getLocale();
-  resize(450, 400);
-  setFixedSize(size());
   setCaption(locale->translate("About KReversi"));
 
   QPixmap pm((PICDIR + "logo.xpm").data());
   QLabel *logo = new QLabel(this);
   logo->setPixmap(pm);
-  logo->setGeometry(20, (height()-pm.height())/2, pm.width(), pm.height());
+  logo->setFixedSize(logo->sizeHint());  
 
   QLabel *l;
   l = new QLabel("KReversi", this);
   l->setFont(QFont("Times", 25, QFont::Bold));
-  l->setGeometry((width() - l->sizeHint().width())/2, 20,
-		 l->sizeHint().width(), 
-		 l->sizeHint().height());
+  l->setFixedSize(l->sizeHint());
 
   QString s;
   s = locale->translate("Version ");
   s += VERSION_STR;
   s += locale->translate("\n(c) 1997 Mario Weilguni <mweilguni@sime.com>\n\n" \
-    "This program is free software published under the GNU General " \
-    "Public License (take a look into help for details)\n\n" \
+    "This program is free software\npublished under the GNU General\n" \
+    "Public License (take a look\ninto help for details)\n\n" \
     "Thanks to:\n" \
-    "\tMats Luthman for the game engine " \
-    "(I've ported it from his JAVA applet)\n\n" \
-    "\tStephan Kulow <coolo@itm.mu-luebeck.de> for comments "\
+    "\tMats Luthman for the game engine\n" \
+    "\t(I've ported it from his JAVA applet)\n\n" \
+    "\tStephan Kulow\n\tfor comments "\
     "and bugfixes\n\n" \
-    "\tArne Klaassen <klaassen@informatik.uni-rostock.de> "\
+    "\tArne Klaassen\n\t "\
     "for the raytraced chips");
-  l = new QLabel(s.data(), this);
-  l->setGeometry(150, 70, 290, 260);
-  l->setAlignment(AlignLeft|WordBreak|ExpandTabs);
+  QLabel *l1 = new QLabel(s.data(), this);
+  l1->setAlignment(AlignLeft|ExpandTabs);
+  l1->setFixedSize(l1->sizeHint());
+  l1->show();
 
   QPushButton *b_ok = new QPushButton(locale->translate("Close"), this);
-  b_ok->setGeometry(width()/2-40, height() - 48, 80, 32);
   b_ok->setDefault(TRUE);
-  b_ok->setAutoDefault(TRUE);
-  connect(b_ok, SIGNAL(released()),
+  if(style() == MotifStyle) 
+    b_ok->setFixedSize(b_ok->sizeHint().width() + 10, // for 
+		       b_ok->sizeHint().height() + 10);
+  else
+    b_ok->setFixedSize(b_ok->sizeHint());
+  connect(b_ok, SIGNAL(clicked()),
 	  this, SLOT(accept()));
   b_ok->setFocus();
+
+  // create layout
+  QVBoxLayout *tl = new QVBoxLayout(this, 10);
+  tl->addWidget(l, 0);
+  QHBoxLayout *tl1 = new QHBoxLayout(0);
+  tl->addLayout(tl1);
+  tl1->addWidget(logo);
+  tl1->addSpacing(15);
+  tl1->addWidget(l1);
+  tl->addSpacing(10);
+  tl->addWidget(b_ok);
+  tl->activate();
+  tl->freeze();
 }
 
 #include "about.moc"

@@ -46,6 +46,7 @@
 #include "Score.h"
 #include "Move.h"
 #include "Position.h"
+#include <kconfig.h>
 
 class Board : public QWidget {
   Q_OBJECT
@@ -67,6 +68,10 @@ public:
   void doContinue();
   void undo();
   void hint();
+  
+  // starts all: emits some signal, so it can't be called from 
+  // constructor
+  void start();
 
   // event stuff
   void paintEvent(QPaintEvent *);
@@ -91,6 +96,10 @@ public:
   int  getMoveNumber();
   void loadChips(const char *);
   QString chipsName();
+
+  void loadGame(KConfig *, bool noupdate = FALSE);
+  void saveGame(KConfig *);
+  bool canLoad(KConfig *);
 
 public slots:
   void setColor(const QColor &);
@@ -129,7 +138,6 @@ private:
   Engine e;
   Game   g;
   int  _status;
-  bool finished;
   int _size;
   int oldsizehint;
   int _zoom;

@@ -56,6 +56,7 @@ bool initAudio();
 bool doneAudio();
 bool audioOK();
 bool playSound(const char *);
+bool soundSync();
 bool syncPlayAudio(const char *);
 
 #endif

@@ -80,7 +80,7 @@ Board::Board(QWidget *parent) : QWidget(parent) {
 
   connect(this, SIGNAL(signalFieldClicked(int, int)),
 	  this, SLOT(slotFieldClicked(int, int)));
-  initTimerID = startTimer(0);
+  
   scaleTimerID = -1;
 }
 
@@ -92,6 +92,13 @@ Board::~Board() {
   delete allchips;
 }
 
+void Board::start() {
+  // make sure a signal is emitted  
+  setStrength(e.GetStrength());
+  newGame();
+  adjustSize();
+  setUpdatesEnabled(TRUE);
+}
 
 void Board::loadChips(const char *filename) {
   // create the chips
@@ -132,11 +139,6 @@ void Board::timerEvent(QTimerEvent *t) {
     killTimer(t->timerId());
     initTimerID = -1;
 
-    // make sure a signal is emitted
-    setStrength(e.GetStrength());
-    adjustSize();
-    newGame();
-    setUpdatesEnabled(TRUE);
   }
 
   // check if all chips are already scaled,
@@ -210,7 +212,8 @@ int  Board::computerIs() {
 
 
 /// starts a new game
-void Board::newGame() {
+void Board::newGame() {  
+  //  return;
   g.Reset();
   updateBoard(TRUE);
   setState(READY);
@@ -226,8 +229,8 @@ void Board::newGame() {
 /// handles mouse clicks
 void Board::mousePressEvent(QMouseEvent *e) {
   if(getState() == READY) {
-    int px = e->pos().x() / ((_size *5 / 4) * _zoom / 100);
-    int py = e->pos().y() / ((_size *5 / 4) * _zoom / 100);
+    int px = (e->pos().x()-2) / ((_size *5 / 4) * _zoom / 100);
+    int py = (e->pos().y()-2) / ((_size *5 / 4) * _zoom / 100);
     emit signalFieldClicked(py, px);
   } else if(getState() == HINT)
     setState(READY);
@@ -244,7 +247,7 @@ void Board::slotFieldClicked(int row, int col) {
     /// makes a human move
     Move m(col + 1, row + 1, color);
     if(g.MoveIsLegal(m)) {
-      playSound("click.wav");
+      //      playSound("click.wav");
       g.MakeMove(m);
       animateChanged(m);
 
@@ -288,7 +291,7 @@ void Board::computerMakeMove() {
 	return;
       }
 
-      playSound("click.wav");
+      //playSound("click.wav");
       g.MakeMove(m);
       animateChanged(m);
       updateBoard();
@@ -408,8 +411,9 @@ void Board::animateChanged(Move m) {
       scaleOneChip(i);
 
   // draw the new piece
-  playSound("click.wav");
+  //playSound("click.wav");
   drawOnePiece(m.GetY()-1, m.GetX()-1, m.GetPlayer());
+  //soundSync();
 
   for(int dx = -1; dx < 2; dx++)
     for(int dy = -1; dy < 2; dy++)
@@ -430,6 +434,7 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
     if(g.wasTurned(col+1, row+1)) {
       playSound("click.wav");
       rotateChip(row, col);
+      soundSync();
    } else
       return;
 
@@ -456,14 +461,14 @@ void Board::rotateChip(int row, int col) {
   } else
     return;
 
-  int px = (col * (_size / 4) + col * _size + 3) * _zoom / 100;
-  int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100;
+  int px = (col * (_size / 4) + col * _size + 3) * _zoom / 100 + 2;
+  int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100 + 2;
   
   // copy the background of an empty square
   drawOnePiece(row, col, Score::NOBODY);
   QPixmap saveunder;
-  int p_width = sizeHint().width()/8;
-  int p_height = sizeHint().height()/8;
+  int p_width = (sizeHint().width()-4)/8;
+  int p_height = (sizeHint().height()-4)/8;
   saveunder.resize(p_width, p_height);
   bitBlt(&saveunder, 0, 0, this, p_width * col, p_height * row,
 	 p_width, p_height, CopyROP);
@@ -573,8 +578,8 @@ void Board::loadPixmaps() {
   // scale background (if any)
   if(bg.width() != 0) {
     QWMatrix wm3;
-    wm3.scale((float)sizeHint().width()/8.0/bg.width(),
-	      (float)sizeHint().height()/8.0/bg.height());
+    wm3.scale((float)(sizeHint().width()-4)/8.0/bg.width(),
+	      (float)(sizeHint().height()-4)/8.0/bg.height());
     setBackgroundPixmap(bg.xForm(wm3));
   }
 
@@ -594,8 +599,8 @@ void Board::updateBoard(bool force = FALSE) {
 
 
 void Board::drawOnePiece(int row, int col, int color) {
-  int px = (col * (_size / 4) + col * _size + 3) * _zoom / 100;
-  int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100;
+  int px = (col * (_size / 4) + col * _size + 3) * _zoom / 100 + 2;
+  int py = (row * (_size / 4) + row * _size + 3) * _zoom / 100 + 2;
 
   // ensure that the chips are loaded
   if((chip[CHIP_BLACK] == NULL) || (chip[CHIP_WHITE] == NULL))
@@ -624,10 +629,7 @@ void Board::drawPiece(int row, int col, bool force = FALSE) {
 
 
 void Board::paintEvent(QPaintEvent *) {
-  int i, w, piece_size;
-
-  w = sizeHint().width();
-  piece_size = _size * _zoom / 100;
+  int i, w = sizeHint().width() - 2;
   
   if(!nopaint) {
     QPainter p;
@@ -637,15 +639,17 @@ void Board::paintEvent(QPaintEvent *) {
     
     // draw vertical lines
     for(i = 1; i < 8; i++) {
-      int x = (i*(5 * _size / 4)) * _zoom / 100;
+      int x = (i*(5 * _size / 4)) * _zoom / 100 + 2;
       p.drawLine(x, 0, x, w);
     }
     
     // draw horizontal lines
     for(i = 1; i < 8; i++) {
-      int y = (i*(5 * _size / 4)) * _zoom / 100;    
+      int y = (i*(5 * _size / 4)) * _zoom / 100 + 2;
       p.drawLine(0, y, w, y);
     }
+
+    p.drawRect(1, 1, w+1, w+1);
     
     p.end();
     updateBoard(TRUE);
@@ -655,7 +659,7 @@ void Board::paintEvent(QPaintEvent *) {
 
 QSize Board::sizeHint() const {
   int w = (8 * (_size/4) + 8 * _size) * _zoom / 100;
-  return QSize(w, w);
+  return QSize(w+2, w+2);
 }
 
 void Board::setPixmap(QPixmap &pm) {
@@ -663,8 +667,8 @@ void Board::setPixmap(QPixmap &pm) {
   // scale background (if any)
   if(bg.width() != 0) {
     QWMatrix wm3;
-    wm3.scale((float)sizeHint().width()/8.0/bg.width(),
-	      (float)sizeHint().height()/8.0/bg.height());
+    wm3.scale((float)(sizeHint().width()-4)/8.0/bg.width(),
+	      (float)(sizeHint().height()-4)/8.0/bg.height());
     setBackgroundPixmap(bg.xForm(wm3));
   }
 }
@@ -673,5 +677,67 @@ void Board::setColor(const QColor &c) {
   setBackgroundColor(c);
   bg.resize(0, 0);
 } 
+
+// saves the game. Only one game at a time can be saved
+void Board::saveGame(KConfig *config) {
+  interrupt(); // stop thinking  
+  config->writeEntry("NumberOfMoves", g.GetMoveNumber());
+  int nmoves = g.GetMoveNumber();
+  for(int i = nmoves; i > 0; i--) {    
+    Move m = g.GetLastMove();
+    g.TakeBackMove();
+    QString s, idx;
+    s.sprintf("%d %d %d", m.GetX(), m.GetY(), m.GetPlayer());
+    idx.sprintf("Move_%d", i);
+    config->writeEntry(idx, s);
+  }
+  
+  // save whose turn it is
+  config->writeEntry("WhoseTurn", human);
+
+  // all moves must be redone
+  loadGame(config, TRUE);
+  doContinue(); // continue possible move
+}
+
+// loads the game. Only one game at a time can be saved
+void Board::loadGame(KConfig *config, bool noupdate) {
+  interrupt(); // stop thinking
+  int nmoves = config->readNumEntry("NumberOfMoves", -1);
+  if(nmoves > 0) {
+    g.Reset();
+    int movenumber = 1;
+    while(nmoves--) {
+      // read one move
+      QString idx;
+      idx.sprintf("Move_%d", movenumber++);
+      QString s = config->readEntry(idx);
+      
+      int x, y, pl;
+      sscanf(s.data(), "%d %d %d", &x, &y, &pl);
+      Move m(x, y, pl);
+      g.MakeMove(m);
+    }
+
+    if(noupdate)
+      return;
+
+    human = config->readNumEntry("WhoseTurn");
+  
+    updateBoard(TRUE);
+    setState(READY);
+    
+    emit turn(Score::BLACK);
+    
+    // computer makes first move
+    if(human == Score::WHITE)
+      computerMakeMove();
+  }
+}
+
+bool Board::canLoad(KConfig *config) {
+  int nmoves = config->readNumEntry("NumberOfMoves", -1);
+  return (bool)(nmoves > 0);
+}
 
 #include "board.moc"

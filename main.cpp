@@ -51,7 +51,12 @@ int main(int argc, char **argv) {
   PICDIR.append("/share/apps/Reversi/pics/");
 
   App *app = new App;
+
   app->show();
   a.setMainWidget(app);
+
+  // session managment
+  a.enableSessionManagement(FALSE);
+
   return a.exec();
 }
