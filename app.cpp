@@ -842,7 +842,7 @@ void App::writeHighscore() {
 void App::showHighscore(int focusitem) {
   // this may look a little bit confusing...
   QDialog *dlg = new QDialog(this, "hall_of_fame", TRUE);
-  dlg->setCaption(i18n("KReversi: Hall Of Fame"));
+  dlg->setCaption(i18n("KReversi: Hall of Fame"));
 
   QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
 
