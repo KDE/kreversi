@@ -148,7 +148,8 @@ private:
   QPixmap bg;
 
   // the chips
-  QPixmap *allchips, *chip[25];
+  QPixmap *chip[25];
+  QPixmap allchips;
 
   int anim_speed;
 };

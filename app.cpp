@@ -55,17 +55,21 @@
 #include <qregexp.h>
 #include <qtimer.h>
 #include <qlayout.h>
-#include "Score.h"
-#include "app.h"
-#include "about.h"
-#include "playsound.h"
 #include <kseparator.h>
 #include <kwm.h>
 #include <qmessagebox.h>
+#include <kstddirs.h>
+#include <kglobal.h>
+#include <kiconloader.h>
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+
+#include "Score.h"
+#include "app.h"
+#include "about.h"
+#include "playsound.h"
 
 const int ID_FSAVE	= 101;
 const int ID_FLOAD	= 102;
@@ -107,17 +111,16 @@ const int ID_OSOUND	= 580;
 const int ID_OGSCALE	= 581;
 
 const int ID_HCONTENTS	= 900;
-const int ID_HABOUT	= 2;
+const int ID_HABOUT	= 902;
 const int ID_HHINT	= 903;
 const int ID_HRULES	= 904;
 const int ID_HSTRATEGY	= 905;
 const int ID_HABOUTQT	= 906;
+const int ID_HABOUTKDE	= 907;
 
 const int SB_SCOREH	= 2;
 const int SB_SCOREC	= 3;
 const int SB_TURN       = 4;
-
-extern QString PICDIR;
 
 App::App() : KTopLevelWidget() {
   highscore.resize(0);
@@ -323,6 +326,11 @@ void App::createMenuBar() {
 #endif
 
   QPopupMenu *help = kapp->getHelpMenu(true, QString::null);  // Use our own About box
+  help = new QPopupMenu;
+  help->insertItem(i18n("&Contents"), ID_HCONTENTS);
+  help->insertSeparator();
+  help->insertItem(i18n("&About")+" "+kapp->appName(), ID_HABOUT);
+  help->insertItem(i18n("About &KDE"), ID_HABOUTKDE);
 
   menu->insertItem(i18n("&File"), fm);
   menu->insertItem(i18n("&Game"), gm);
@@ -357,18 +365,19 @@ void App::createMenuBar() {
 
 void App::createToolBar() {
   tb = new KToolBar(this);
-  QPixmap p1((const char *)(PICDIR + "stop.xpm"));
-  QPixmap p2((const char *)(PICDIR + "zoomin.xpm"));
-  QPixmap p3((const char *)(PICDIR + "zoomout.xpm"));
-  QPixmap p4((const char *)(PICDIR + "undo.xpm"));
-  QPixmap p5((const char *)(PICDIR + "hint.xpm"));
-  QPixmap p6((const char *)(PICDIR + "help.xpm"));
-  tb->insertButton(p1, ID_GSTOP, TRUE, i18n("Stop thinking"));
-  tb->insertButton(p4, ID_GUNDO, TRUE, i18n("Undo move"));
-  tb->insertButton(p3, ID_VZOOMOUT, TRUE, i18n("Shrink board"));
-  tb->insertButton(p2, ID_VZOOMIN, TRUE, i18n("Enlarge board"));  
-  tb->insertButton(p5, ID_HHINT, TRUE, i18n("Get hint"));
-  tb->insertButton(p6, ID_HCONTENTS, TRUE, i18n("Get help"));
+
+  tb->insertButton(ICON("stop.xpm"), 
+		   ID_GSTOP, TRUE, i18n("Stop thinking"));
+  tb->insertButton(ICON("undo.xpm"), 
+		   ID_GUNDO, TRUE, i18n("Undo move"));
+  tb->insertButton(ICON("zoomout.xpm"), 
+		   ID_VZOOMOUT, TRUE, i18n("Shrink board"));
+  tb->insertButton(ICON("zoomin.xpm"),
+		   ID_VZOOMIN, TRUE, i18n("Enlarge board"));  
+  tb->insertButton(ICON("hint.xpm"), 
+		   ID_HHINT, TRUE, i18n("Get hint"));
+  tb->insertButton(ICON("help.xpm"), 
+		   ID_HCONTENTS, TRUE, i18n("Get help"));
   connect(tb, SIGNAL(clicked(int)), this, SLOT(processEvent(int)));  
 }
 
@@ -381,8 +390,11 @@ void App::createStatusBar() {
 }
 
 
-void App::lookupBackgroundPixmaps() {  
-  QDir dir((const char *)(PICDIR + "background/"), "*.xpm");
+void App::lookupBackgroundPixmaps() {
+  QString PICDIR = KGlobal::dirs()->findResourceDir("data",
+						    kapp->appName());
+
+  QDir dir(PICDIR + kapp->appName() + "/pics/background", "*.xpm");
   if(!dir.exists())
     return;
 
@@ -572,6 +584,10 @@ void App::processEvent(int itemid) {
     }
   break;
 
+  case ID_HABOUTKDE:
+    kapp->aboutKDE();
+    break;
+
   default:
     {
       if((itemid >= ID_PIXMAP) && (itemid < ID_PIXMAP + (int)backgroundPixmaps.count())) {
@@ -655,7 +671,7 @@ void App::slotGameEnded(int color) {
     b->getScore(loser, winner);
   
   if(color == Score::NOBODY) {
-    playSound("drawn.wav");
+    playSound(KGlobal::dirs()->findResource("sound", "reversi-drawn.wav"));
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
     KMsgBox::message(this, i18n("Game ended"), (const char *)s);
   } else if(b->humanIs() == color) {
@@ -666,7 +682,7 @@ void App::slotGameEnded(int color) {
                  (st - (ID_O2 - ID_OBASE) + 1) / (ID_O8 - ID_O2 + 1) * 
                  100.0;
 
-    playSound("won.wav");
+    playSound(KGlobal::dirs()->findResource("sound", "reversi-won.wav"));
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%%")
 	      .arg(winner).arg(loser).arg(score,1);
     KMsgBox::message(this, i18n("Game ended"), s);
@@ -686,7 +702,7 @@ void App::slotGameEnded(int color) {
       showHighscore(rank);
     }
   } else {
-    playSound("lost.wav");
+    playSound(KGlobal::dirs()->findResource("sound", "reversi-lost.wav"));
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
 	      .arg(loser).arg(winner);
     KMsgBox::message(this, i18n("Game ended"), (const char *)s);
@@ -731,7 +747,7 @@ void App::slotIllegalMove() {
   if(!audioOK())
     kapp->beep();
   else
-    playSound("illegalmove.wav");
+    playSound(KGlobal::dirs()->findResource("sound", "reversi-illegalmove.wav"));
 }
 
 
@@ -968,7 +984,7 @@ void App::showHighscore(int focusitem) {
   tl->activate();
   tl->freeze();
 
-  playSound("hof.wav");
+  playSound(KGlobal::dirs()->findResource("sound", "reversi-hof.wav"));
   dlg->exec();
   delete dlg;
 }

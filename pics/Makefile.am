@@ -1,6 +1,5 @@
-
-pics_DATA = hint.xpm help.xpm undo.xpm zoomout.xpm zoomin.xpm \
-	stop.xpm chips.xpm logo.xpm chips_mono.xpm
+pics_DATA = chips.xpm logo.xpm chips_mono.xpm hint.xpm zoomout.xpm zoomin.xpm \
+	    help.xpm undo.xpm stop.xpm
 
 picsdir = $(kde_datadir)/kreversi/pics
 

@@ -43,6 +43,9 @@
 #include <qbitmap.h>
 
 #include <kapp.h>
+#include <kglobal.h>
+#include <kiconloader.h>
+#include <kstddirs.h>
 
 #include "Score.h"
 #include "playsound.h"
@@ -50,7 +53,6 @@
 #include <config.h>
 #include <unistd.h>
 
-extern QString PICDIR;
 extern QString SOUNDDIR;
 
 const int HINT_BLINKRATE = 250000;
@@ -71,7 +73,6 @@ Board::Board(QWidget *parent) : QWidget(parent) {
   for(int i = 0; i < CHIP_MAX; i++)
     chip[i] = 0;
 
-  allchips = 0;
   loadChips("chips.xpm");
 
   nopaint = FALSE;
@@ -91,7 +92,6 @@ Board::~Board() {
   for(int i = 0; i < CHIP_MAX; i++) 
     if(chip[i])
       delete chip[i];
-  delete allchips;
 }
 
 void Board::start() {
@@ -103,13 +103,7 @@ void Board::start() {
 }
 
 void Board::loadChips(const char *filename) {
-  // create the chips
-  if(allchips) {
-    delete allchips;
-    allchips = 0; // just to be sure
-  }
-
-  allchips = new QPixmap((const char *)(PICDIR + filename));
+  allchips = ICON(filename);
   chipname = filename;
   loadPixmaps();
 }
@@ -438,7 +432,7 @@ void Board::animateChangedRow(int row, int col, int dy, int dx) {
   col = col + dx;
   while(isField(row, col)) {
     if(g.wasTurned(col+1, row+1)) {
-      playSound("click.wav");
+      playSound(KGlobal::dirs()->findResource("sound", "reversi-click.wav"));
       rotateChip(row, col);
       soundSync();
    } else
@@ -546,8 +540,8 @@ void Board::scaleOneChip(int i) {
     if(chip[i] != 0)
       delete chip[i];
 
-    int w = allchips->width()/5;
-    int h = allchips->height()/5;
+    int w = allchips.width()/5;
+    int h = allchips.height()/5;
     
     // make new pixmap
     chip[i] = new QPixmap;
@@ -555,7 +549,7 @@ void Board::scaleOneChip(int i) {
     chip[i]->fill();		// thanks to Stephan Kulow
     
     // easy to understand, isn't it :-)
-    bitBlt(chip[i], 0, 0, allchips, (i % 5) * w + 10, (i / 5) * h + 10, 
+    bitBlt(chip[i], 0, 0, &allchips, (i % 5) * w + 10, (i / 5) * h + 10, 
 	   30, 30, CopyROP);
 
     // scale to final size

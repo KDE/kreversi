@@ -1,7 +1,7 @@
 
-sounds_DATA = click.wav lost.wav won.wav
+sounds_DATA = reversi-click.wav reversi-lost.wav reversi-won.wav
 
-soundsdir = $(kde_datadir)/kreversi/sounds
+soundsdir = $(kde_sounddir)
 
 EXTRA_DIST = $(sounds_DATA)
 

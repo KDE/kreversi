@@ -39,15 +39,12 @@
 
 #include "misc.h"
 #include <kapp.h>
+#include <kstddirs.h>
+#include <kglobal.h>
 #include "app.h"
-
-QString PICDIR;
 
 int main(int argc, char **argv) {
   KApplication a(argc, argv, "kreversi");
-
-  // locate the picture directory
-  PICDIR = KApplication::kde_datadir() + "/kreversi/pics/";
 
   App *app = new App;
 

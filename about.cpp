@@ -43,13 +43,13 @@
 #include <qpixmap.h>
 #include <klocale.h>
 #include <qlayout.h>
-
-extern QString PICDIR;
+#include <kiconloader.h>
+#include <kglobal.h>
 
 About::About(QWidget *parent) : QDialog(parent, "About kreversi", TRUE) {
   setCaption(i18n("About kreversi"));
 
-  QPixmap pm((PICDIR + "logo.xpm"));
+  QPixmap pm = ICON("logo.xpm");
   QLabel *logo = new QLabel(this);
   logo->setPixmap(pm);
   logo->setFixedSize(logo->sizeHint());  
