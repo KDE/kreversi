@@ -44,11 +44,13 @@ Comment[ro]=Jocul Reversi pentru KDE
 Comment[ru]=Играйте в реверси против компьютера
 Comment[sk]=Hraj reversi proti počítaču
 Comment[sl]=Igra Reversi proti računalniku
+Comment[sr]=Igraj Reversi protiv kompjutera
 Comment[sv]=Spela othello mot datorn
 Comment[ta]=¸½¢É¢ìÌ ±¾¢§Ã Ã¢Å÷¢ iÅ¢¨ÇÂ¡¼×õ
 Comment[tr]=Bilgisayara karşı Reversi oynayın
 Comment[uk]=Зіграйте у реверсі проти комп'ютера
 Comment[zh_CN.GB2312]=和计算机玩翻转棋
+Comment[zh_TW.Big5]=與電腦對打 Reversi
 Terminal=0
 Icon=kreversi
 MapNotify=true
