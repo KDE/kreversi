@@ -44,7 +44,7 @@
 #include "version.h"
 #include "kreversi.h"
 
-static const char *description = I18N_NOOP("KDE Board Game");
+static const char description[] = I18N_NOOP("KDE Board Game");
 
 int main(int argc, char **argv)
 {
