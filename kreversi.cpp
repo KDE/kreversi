@@ -58,12 +58,14 @@
 #include <knotifydialog.h>
 #include <kexthighscore.h>
 
-#include "prefs.h"
 #include "Score.h"
 #include "kreversi.h"
-#include "kreversi.moc"
-#include "board.h"
+
+// Automatically generated headers
+#include "prefs.h"
 #include "settings.h"
+
+#include "kreversi.moc"
 
 
 // ================================================================
@@ -133,6 +135,11 @@ KReversi::KReversi()
   m_gameOver   = false;
   m_humanColor = Black;
 
+  // The Engine
+  m_engine = new Engine();
+  setStrength(1);
+  
+  // The visual stuff
   w = new QWidget(this);
   setCentralWidget(w);
 
@@ -142,6 +149,7 @@ KReversi::KReversi()
   m_gameView = new QReversiGameView(w, m_krgame);
   top->addMultiCellWidget(m_gameView, 0, 1, 0, 0);
 
+#if 0
   // The "Moves" label
   QLabel  *movesLabel = new QLabel( "Moves", w);
   movesLabel->setAlignment(AlignCenter);
@@ -151,12 +159,8 @@ KReversi::KReversi()
   m_movesView = new QListBox(w, "moves");
   m_movesView->setMinimumWidth(150);
   top->addWidget(m_movesView, 1, 1);
+#endif
 
-
-  // The Engine
-  m_engine = new Engine();
-  setStrength(1);
-  
   // Populate the GUI.
   createStatusBar();
   createKActions();
@@ -317,7 +321,7 @@ void KReversi::slotNewGame()
   setState(Ready);
   showTurn(Black);
   m_gameView->updateBoard(TRUE);
-  m_movesView->clear();
+  m_gameView->clearMovelist();	// FIXME: Should be done by a signal from the game.
   showScore();
 
   if (showLegalMovesAction->isChecked()) {
@@ -395,17 +399,17 @@ void KReversi::slotUndo()
   Color  last_color = m_krgame->lastMove().color();
   while (m_krgame->moveNumber() != 0
 	 && last_color == m_krgame->lastMove().color()) {
-    m_movesView->removeItem(m_krgame->moveNumber() - 1);
+    m_gameView->removeMove(m_krgame->moveNumber() - 1);
     m_krgame->undoMove();
   }
 
   // Take back one more move.
   if (m_krgame->moveNumber() > 0) {
-    m_movesView->removeItem(m_krgame->moveNumber() - 1);
+    m_gameView->removeMove(m_krgame->moveNumber() - 1);
     m_krgame->undoMove();
 
-    m_movesView->setCurrentItem(m_krgame->moveNumber() - 1);
-    m_movesView->ensureCurrentVisible();
+    m_gameView->setCurrentMove(m_krgame->moveNumber() - 1);
+    m_gameView->ensureCurrentMoveVisible();
   }
 
   if (m_krgame->toMove() == computerColor()) {
@@ -550,13 +554,12 @@ void  KReversi::showMove(uint moveno, Move &move)
     i18n("Black")
   };
 
-  m_movesView->insertItem(QString("%1. %2 %3")
-			  .arg(moveno)
-			  .arg(colors[move.color()]).arg(move.asString()));
+  m_gameView->insertMove(QString("%1. %2 %3").arg(moveno)
+			 .arg(colors[move.color()]).arg(move.asString()));
 
   // Mark the current move in the listbox.
-  m_movesView->setCurrentItem(moveno - 1);
-  m_movesView->ensureCurrentVisible();
+  m_gameView->setCurrentMove(moveno - 1);
+  m_gameView->ensureCurrentMoveVisible();
 }
 
 

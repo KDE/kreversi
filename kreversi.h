@@ -196,7 +196,9 @@ private:
 
   // Widgets
   QReversiGameView   *m_gameView;          // The board widget.
+#if 0
   QListBox           *m_movesView;
+#endif
   StatusWidget       *m_humanStatus;
   StatusWidget       *m_computerStatus;
 };

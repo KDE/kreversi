@@ -1,3 +1,12 @@
+2005-04-03  Inge Wallin  <inge@lysator.liu.se>
+
+	Move the movelist to the gameview.
+
+	Refactor: Create a new class QReversiGameView that will comprise
+	the entire view.
+	* Unfortunately the details of the change got lost in some stupid
+	mistake of mine.
+	
 2005-04-02  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug 102890: The result is not put into the higscore if not all
