@@ -79,10 +79,14 @@ public:
 
   // Show letters and numbers on the board
   void    setMarks(bool);
-  bool    marks()                              const { return m_marksShowing; }
+  bool    marks()                          const { return m_marksShowing; }
+
+  // Show last move on the board
+  void    setShowLastMove(bool show)             { m_showLastMove = show; }
+  bool    showLastMove()                   const { return m_showLastMove; }
 
   void    setColor(const QColor &);
-  QColor  color()                              const { return bgColor; }
+  QColor  color()                          const { return bgColor;        }
   void    setPixmap(QPixmap &);
 
   // View methods called from the outside.
@@ -137,6 +141,9 @@ private:
   bool      m_hintShowing;
   MoveList  m_legalMoves;
   bool      m_marksShowing;
+
+  bool        m_showLastMove;
+  SimpleMove  m_lastMoveShown;
 };
 
 

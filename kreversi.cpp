@@ -245,6 +245,10 @@ void KReversi::createKActions()
   KStdAction::preferences(this, SLOT(slotEditSettings()), actionCollection());
 
   // Actions for the view(s).
+  showLastMoveAction = new KToggleAction(i18n("Show last move"), 0, 
+					 this, SLOT(slotShowLastMove()),
+					 actionCollection(),
+					 "show_last_move");
   showLegalMovesAction = new KToggleAction(i18n("Show legal moves"), 0, 
 					   this, SLOT(slotShowLegalMoves()),
 					   actionCollection(),
@@ -440,6 +444,14 @@ void KReversi::slotContinue()
 {
   if (interrupted())
     computerMakeMove();
+}
+
+
+// Turn on or off showing of legal moves in the board view.
+
+void KReversi::slotShowLastMove() 
+{
+  m_boardView->setShowLastMove(showLastMoveAction->isChecked());
 }
 
 

@@ -69,10 +69,9 @@ public:
   void   setupStartPosition();
 
   // Access methods
-  Color  toMove()              const { return m_toMove; }
+  Color  toMove()              const { return m_toMove;             }
   Color  color(uint x, uint y) const;
-  uint   score(Color color)    const;
-
+  uint   score(Color color)    const { return m_score.score(color); }
 
   // Moves in the current position.
   bool   moveIsPossible(Color color) const;
@@ -92,7 +91,7 @@ private:
   Color  m_toMove;
 
   // Some extra data
-  Score        m_score;		// The number of pieces for each side.
+  Score       m_score;		// The number of pieces for each side.
 };
 
 

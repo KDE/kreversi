@@ -80,6 +80,9 @@ KReversiBoardView::KReversiBoardView(QWidget *parent, QReversiGame *krgame)
 
   m_marksShowing = true;
   m_legalMoves.clear();
+
+  m_showLastMove  = false;
+  m_lastMoveShown = SimpleMove();
 }
 
 
@@ -293,6 +296,9 @@ void KReversiBoardView::rotateChip(uint row, uint col)
 
 void KReversiBoardView::updateBoard (bool force)
 {
+  QPainter  p(this);
+  p.setPen(black);
+
   // Draw the squares of the board.
   for (uint row = 0; row < 8; row++)
     for (uint col = 0; col < 8; col++)
@@ -303,8 +309,6 @@ void KReversiBoardView::updateBoard (bool force)
 
   // Draw a border around the board.
   int offset = m_marksShowing ? OFFSET() : 0;
-  QPainter  p(this);
-  p.setPen(black);
   p.drawRect(0 + offset, 0 + offset,
 	     8 * zoomedSize() + 2, 8 * zoomedSize() + 2);
 
@@ -339,18 +343,49 @@ void KReversiBoardView::updateBoard (bool force)
     }
   }
 
-  // Mark all legal moves.
+  // Show legal moves.
   MoveList::iterator  it;
   int ellipseSize = zoomedSize() / 3;
   for (it = m_legalMoves.begin(); it != m_legalMoves.end(); ++it) {
     int  px = offset + ((*it).x() - 1) * zoomedSize() + zoomedSize() / 2;
     int  py = offset + ((*it).y() - 1) * zoomedSize() + zoomedSize() / 2;
 
-    //kdDebug() << "Showing legal move at [" 
-    //      << (*it).x() << ", " << (*it).y() << "]" << endl;
-
     p.drawEllipse(px - ellipseSize / 2, py - ellipseSize / 2,
 		  ellipseSize, ellipseSize);
+  }
+
+  // Show last move
+  SimpleMove  lastMove = m_krgame->lastMove();
+  if (m_showLastMove && lastMove.x() != -1) {
+    // Remove the last shown last move.
+    int  col = m_lastMoveShown.x();
+    int  row = m_lastMoveShown.y();
+    if (col != -1 && row != -1) {
+      if (lastMove.x() != col || lastMove.y() != row) {
+	//kdDebug() << "Redrawing piece at [" << col << "," << row 
+	//  << "] with color " << m_krgame->color(col, row) 
+	//  << endl;
+	drawPiece(row - 1, col - 1, m_krgame->color(col, row));
+      }
+    }
+
+    p.setPen(yellow);
+    p.setBackgroundColor(yellow);
+    p.setBrush(SolidPattern);
+
+    //kdDebug() << "Marking last move at [" 
+    //      << lastMove.x() << "," << lastMove.y() << "]"
+    //      << endl;
+    int  px = offset + (lastMove.x() - 1) * zoomedSize() + zoomedSize() / 2;
+    int  py = offset + (lastMove.y() - 1) * zoomedSize() + zoomedSize() / 2;
+    p.drawEllipse(px - ellipseSize / 2 + 1, py - ellipseSize / 2 + 1,
+		  ellipseSize - 1, ellipseSize - 1);
+
+    m_lastMoveShown = lastMove;
+
+    p.setPen(black);
+    p.setBackgroundColor(black);
+    p.setBrush(NoBrush);
   }
 }
 

@@ -131,12 +131,6 @@ Color Position::color(uint x, uint y) const
 }
 
 
-uint Position::score(Color color) const 
-{
-  return m_score.score(color);
-}
-
-
 // ----------------------------------------------------------------
 //                      Moves in the position
 

@@ -29,6 +29,7 @@
 </ToolBar>
 <ToolBar name="viewToolBar"><text>View Toolbar</text>
   <Action name="game_hint"/>
+  <Action name="show_last_move"/>
   <Action name="show_legal_moves"/>
 </ToolBar>
 
