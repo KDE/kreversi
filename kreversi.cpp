@@ -125,7 +125,7 @@ KReversi::KReversi()
   KNotifyClient::startDaemon();
 
   // The game.
-  m_game       = new Game();
+  m_krgame     = new KReversiGame();
   cheating     = false;
   m_humanColor = Black;
 
@@ -136,8 +136,8 @@ KReversi::KReversi()
   top->addStretch(1);
 
   // The reversi board view.
-  m_board = new Board(w, m_game);
-  top->addWidget(m_board);
+  m_boardView = new KReversiBoardView(w, m_krgame);
+  top->addWidget(m_boardView);
   top->addStretch(1);
 
   // The Engine
@@ -147,32 +147,34 @@ KReversi::KReversi()
   // Populate the GUI.
   createStatusBar();
   createKActions();
-  addWidget(m_board);
+  addWidget(m_boardView);
 
   // Connect some signals on the board with slots of the application
   // FIXME: Look through all signals and see if they make sense,
   //        both from this class and from Board.
-  connect(m_board, SIGNAL(score()),        this, SLOT(showScore()));
-  connect(this,    SIGNAL(score()),        this, SLOT(showScore()));
-  connect(m_board, SIGNAL(gameWon(Color)), this, SLOT(slotGameEnded(Color)));
-  connect(m_board, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
-  connect(this,    SIGNAL(stateChange(State)),
-          this,    SLOT(slotStateChange(State)));
+  connect(m_krgame, SIGNAL(score()),        this, SLOT(showScore()));
+  connect(m_krgame, SIGNAL(gameOver()),     this, SLOT(slotGameOver(Color)));
+  connect(m_krgame, SIGNAL(turn(Color)),    this, SLOT(showTurn(Color)));
 
-  connect(m_board, SIGNAL(signalSquareClicked(int, int)),
-	  this,    SLOT(slotSquareClicked(int, int)));
+  // Internal signal
+  connect(this, SIGNAL(stateChange(State)),
+          this, SLOT(slotStateChange(State)));
 
+  // Signal that is sent when the user clicks on the board.
+  connect(m_boardView, SIGNAL(signalSquareClicked(int, int)),
+	  this,        SLOT(slotSquareClicked(int, int)));
 
   loadSettings();
 
   setupGUI();
   init("popup");
-  m_board->start();
+  m_boardView->start();
 }
+
 
 KReversi::~KReversi()
 {
-  delete m_game;
+  delete m_krgame;
   delete m_engine;
 }
 
@@ -257,7 +259,7 @@ void KReversi::slotNewGame()
   gameOver = false;
   cheating = false;
 
-  m_game->reset();
+  m_krgame->newGame();
   m_competitiveGame = Prefs::competitiveGameChoice();
   m_lowestStrength  = strength();
   //kdDebug() << "Competitive: " << m_competitiveGame << endl;
@@ -266,8 +268,8 @@ void KReversi::slotNewGame()
   // Show some data
   setState(Ready);
   showTurn(Black);
-  // FIXME: emit a signal instead (signalBoard(bool)?).
-  m_board->updateBoard(TRUE);
+  m_boardView->updateBoard(TRUE);
+  showScore();
 
   // Black always makes first move.
   if (m_humanColor == White)
@@ -314,10 +316,10 @@ void KReversi::slotHint()
     return;
 
   setState(Thinking);
-  move = m_engine->computeMove(*m_game, m_competitiveGame);
+  move = m_engine->computeMove(m_krgame->game(), m_competitiveGame);
 
   setState(Hint);
-  m_board->showHint(move);
+  m_boardView->showHint(move);
 
   setState(Ready);
 }
@@ -332,26 +334,26 @@ void KReversi::slotUndo()
     return;
 
   // Can't undo anything if no moves are made.
-  if (m_game->moveNumber() == 0)
+  if (m_krgame->moveNumber() == 0)
     return;
 
   // Undo all moves of the same color as the last one.
-  Color  last_color = m_game->lastMove().color();
-  while (m_game->moveNumber() != 0
-	 && last_color == m_game->lastMove().color())
-    m_game->takeBackMove();
+  Color  last_color = m_krgame->lastMove().color();
+  while (m_krgame->moveNumber() != 0
+	 && last_color == m_krgame->lastMove().color())
+    m_krgame->takeBackMove();
 
   // Take back one more move.
-  m_game->takeBackMove();
+  m_krgame->takeBackMove();
 
-  if (m_game->toMove() == computerColor()) {
+  if (m_krgame->toMove() == computerColor()) {
     // Must repaint so that the new move is not shown before the old
     // one is removed on the screen.
-    m_board->repaint();
+    m_boardView->repaint();
     computerMakeMove();
   }
   else
-    m_board->update();
+    m_boardView->update();
 }
 
 
@@ -380,7 +382,7 @@ void KReversi::slotSwitchSides()
     return;
 
   // It's ok to change sides before the first move.
-  if (m_game->moveNumber() != 0) {
+  if (m_krgame->moveNumber() != 0) {
     int res = KMessageBox::warningContinueCancel(this,
 						 i18n("If you switch side, your score will not be added to the highscores."),
 						 QString::null, QString::null, "switch_side_warning");
@@ -418,7 +420,7 @@ void KReversi::slotSquareClicked(int row, int col)
   if (state() == Ready)
     humanMakeMove(row, col);
   else if (state() == Hint) {
-    m_board->quitHint();
+    m_boardView->quitHint();
     setState(Ready);
   }
   else
@@ -432,8 +434,8 @@ void KReversi::slotSquareClicked(int row, int col)
 
 void KReversi::showColors()
 {
-  m_humanStatus   ->setPixmap(m_board->chipPixmap(humanColor(),    20));
-  m_computerStatus->setPixmap(m_board->chipPixmap(computerColor(), 20));
+  m_humanStatus   ->setPixmap(m_boardView->chipPixmap(humanColor(),    20));
+  m_computerStatus->setPixmap(m_boardView->chipPixmap(computerColor(), 20));
 }
 
 
@@ -442,8 +444,8 @@ void KReversi::showColors()
 
 void KReversi::showScore()
 {
-  m_humanStatus   ->setScore(m_game->score(humanColor()));
-  m_computerStatus->setScore(m_game->score(computerColor()));
+  m_humanStatus   ->setScore(m_krgame->score(humanColor()));
+  m_computerStatus->setScore(m_krgame->score(computerColor()));
 }
 
 
@@ -468,7 +470,26 @@ void KReversi::showTurn(Color color)
 // A slot that is called when the game ends.
 //
 
-void KReversi::slotGameEnded(Color color) 
+void KReversi::slotGameOver()
+{
+  uint  black = m_krgame->score(Black);
+  uint  white = m_krgame->score(White);
+
+  if (black > white)
+    showGameOver(Black);
+  else if (black < white)
+    showGameOver(White);
+  else
+    showGameOver(Nobody);
+
+  showTurn(Nobody);
+}
+
+
+// Show things when the game is over.
+//
+
+void KReversi::showGameOver(Color color) 
 {
   // If the game already was over, do nothing.
   if (gameOver)
@@ -477,11 +498,11 @@ void KReversi::slotGameEnded(Color color)
   statusBar()->message(i18n("End of game"));
 
   // Get the scores.
-  uint human    = m_game->score(humanColor());
-  uint computer = m_game->score(computerColor());
+  uint human    = m_krgame->score(humanColor());
+  uint computer = m_krgame->score(computerColor());
 
   KExtHighscore::Score score;
-  score.setScore(m_game->score(humanColor()));
+  score.setScore(m_krgame->score(humanColor()));
   
   // Show the winner in a messagebox.
   if ( color == Nobody ) {
@@ -545,25 +566,27 @@ void KReversi::humanMakeMove(int row, int col)
   if (state() != Ready) 
     return;
 
-  Color color = m_game->toMove();
+  Color color = m_krgame->toMove();
 
   // Create a move from the mouse click and see if it is legal.
   // If it is, then make a human move.
   Move  move(color, col + 1, row + 1);
-  if (m_game->moveIsLegal(move)) {
-    m_game->makeMove(move);
-    m_board->animateChanged(move);
+  if (m_krgame->moveIsLegal(move)) {
+    m_krgame->makeMove(move);
+    m_boardView->animateChanged(move);
 
-    if (!m_game->moveIsAtAllPossible()) {
-      m_board->updateBoard();
+    if (!m_krgame->moveIsAtAllPossible()) {
+      m_boardView->updateBoard();
+      showScore();
       setState(Ready);
-      m_board->gameEnded();
+      slotGameOver();
       return;
     }
 
-    m_board->updateBoard();
+    m_boardView->updateBoard();
+    showScore();
 
-    if (color != m_game->toMove())
+    if (color != m_krgame->toMove())
       computerMakeMove();
   } else
     illegalMove();
@@ -576,12 +599,12 @@ void KReversi::humanMakeMove(int row, int col)
 void KReversi::computerMakeMove()
 {
   // Check if the computer can move.
-  Color color    = m_game->toMove();
+  Color color    = m_krgame->toMove();
   Color opponent = ::opponent(color);
 
   showTurn(color);
 
-  if (!m_game->moveIsPossible(color))
+  if (!m_krgame->moveIsPossible(color))
     return;
  
   // Make computer moves until the human can play or until the game is over.
@@ -589,13 +612,13 @@ void KReversi::computerMakeMove()
   do {
     Move  move;
 
-    if (!m_game->moveIsAtAllPossible()) {
+    if (!m_krgame->moveIsAtAllPossible()) {
       setState(Ready);
-      m_board->gameEnded();
+      slotGameOver();
       return;
     }
 
-    move = m_engine->computeMove(*m_game, m_competitiveGame);
+    move = m_engine->computeMove(m_krgame->game(), m_competitiveGame);
     if (move.x() == -1) {
       setState(Ready);
       return;
@@ -603,17 +626,18 @@ void KReversi::computerMakeMove()
     usleep(300000); // Pretend we have to think hard.
 
     //playSound("click.wav");
-    m_game->makeMove(move);
-    m_board->animateChanged(move);
-    m_board->updateBoard();
-  } while (!m_game->moveIsPossible(opponent));
+    m_krgame->makeMove(move);
+    m_boardView->animateChanged(move);
+    m_boardView->updateBoard();
+    showScore();
+  } while (!m_krgame->moveIsPossible(opponent));
 
 
   showTurn(opponent);
   setState(Ready);
 
-  if (!m_game->moveIsAtAllPossible()) {
-    m_board->gameEnded();
+  if (!m_krgame->moveIsAtAllPossible()) {
+    slotGameOver();
     return;
   }
 }
@@ -648,7 +672,7 @@ void KReversi::saveGame(KConfig *config)
   // to the file ourselves.
   config->writeEntry("NumberOfMoves", moveNumber());
   for (uint i = 0; i < moveNumber(); i++) {
-    Move  move = m_game->move(i);
+    Move  move = m_krgame->move(i);
 
     QString  moveString;
     QString  idx;
@@ -669,7 +693,7 @@ void KReversi::saveGame(KConfig *config)
 // Loads the game.  Only one game at a time can be saved.
 //
 
-bool KReversi::loadGame(KConfig *config, bool noupdate)
+bool KReversi::loadGame(KConfig *config)
 {
   slotInterrupt(); // stop thinking
 
@@ -677,7 +701,7 @@ bool KReversi::loadGame(KConfig *config, bool noupdate)
   if (nmoves==0) 
     return false;
 
-  m_game->reset();
+  m_krgame->newGame();
   uint movenumber = 1;
   while (nmoves--) {
     // Read one move.
@@ -690,16 +714,14 @@ bool KReversi::loadGame(KConfig *config, bool noupdate)
     Color        color = (Color)(*s.at(2)).toInt();
 
     Move  move(color, x, y);
-    m_game->makeMove(move);
+    m_krgame->makeMove(move);
   }
 
   m_humanColor      = (Color) config->readNumEntry("HumanColor");
   m_competitiveGame = (bool)  config->readNumEntry("Competitive");
 
-  if (noupdate)
-    return true;
-
-  m_board->updateBoard(TRUE);
+  m_boardView->updateBoard(TRUE);
+  showScore();
   setState(State(config->readNumEntry("State")));
   setStrength(config->readNumEntry("Strength", 1));
   //kdDebug() << "Competitive set to: " << m_competitiveGame << endl;
@@ -708,10 +730,10 @@ bool KReversi::loadGame(KConfig *config, bool noupdate)
     slotContinue();
   else {
     // Make the view show who is to move.
-    showTurn(m_game->toMove());
+    showTurn(m_krgame->toMove());
 
     // Computer makes first move.
-    if (m_humanColor != m_game->toMove())
+    if (m_humanColor != m_krgame->toMove())
       computerMakeMove();
   }
 
@@ -728,8 +750,8 @@ void KReversi::saveProperties(KConfig *c)
 }
 
 
-void KReversi::readProperties(KConfig *c) {
-  loadGame(c);
+void KReversi::readProperties(KConfig *config) {
+  loadGame(config);
   gameOver = false;
   cheating = false;		// FIXME: Is this true?
 }
@@ -773,7 +795,7 @@ void KReversi::loadSettings()
   if ( !Prefs::competitiveGameChoice() )
     m_competitiveGame = false;
 
-  m_board->loadSettings();
+  m_boardView->loadSettings();
 
   // Show the color of the human and the computer.
   showColors(); 
@@ -782,7 +804,7 @@ void KReversi::loadSettings()
 
 bool KReversi::isPlaying() const
 {
-  return ( m_game->moveNumber() != 0 && !gameOver );
+  return ( m_krgame->moveNumber() != 0 && !gameOver );
 }
 
 

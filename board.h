@@ -42,41 +42,95 @@
 #include <qwidget.h>
 #include <qpixmap.h>
 
+#include "Position.h"
+#include "Game.h"
 #include "Move.h"
 
 
-class Game;
-
 class KConfig;
+
+
+
+// The main document class in the reversi program.  The thing that
+// makes this a KReversiGame instead of just a ReversiGame is that it
+// emits signals that can be used to update a view.
+//
+// Signals:
+//   updateBoard()
+//   score()
+//   turn(Color)
+//   gameOver()
+//
+
+class KReversiGame : public QObject {
+ Q_OBJECT
+
+ public:
+  KReversiGame(QObject *parent = 0);
+  ~KReversiGame();
+
+  // Methods dealing with the game
+  Game  *game()             const    { return m_game;                 }
+  void   newGame();
+  //  const Position &position() const   { return m_game->position(); }
+  Color  color(uint x, uint y) const { return m_game->color(x, y);    }
+  uint   score(Color color) const    { return m_game->score(color);   }
+  Move   lastMove()         const    { return m_game->lastMove();     }
+  Move   move(uint moveNo)  const    { return m_game->move(moveNo);   }
+
+  uint   moveNumber()       const    { return m_game->moveNumber();   }
+  Color  toMove()           const    { return m_game->toMove();       }
+
+  bool   squareModified(uint x, uint y) const { return m_game->squareModified(x, y); }
+  bool   wasTurned(uint x, uint y) const { return m_game->wasTurned(x, y); }
+
+  bool   makeMove(Move move);
+  bool   takeBackMove();
+  bool   moveIsLegal(Move m) const   { return m_game->moveIsLegal(m); }
+  bool   moveIsPossible(Color color) const {return m_game->moveIsPossible(color);}
+  bool   moveIsAtAllPossible() const { return m_game->moveIsAtAllPossible(); }
+
+  void  loadSettings();
+  bool  loadGame(KConfig *, bool noupdate = FALSE);
+  void  saveGame(KConfig *);
+
+ signals:
+  void  updateBoard();
+  void  score();
+  void  turn(Color);
+  void  gameOver();
+
+  void  sizeChange();
+
+private:
+  Game    *m_game;              // Stores the moves of the game
+};
+
 
 
 // The class Board is the visible Reversi Board widget.
 //
 
-class Board : public QWidget {
+class KReversiBoardView : public QWidget {
   Q_OBJECT
 
 public:
 
-  Board(QWidget *parent, Game *game);
-  ~Board();
-
-  // Used by the outer KZoomMainWindow class.
-  virtual void adjustSize();
-
-  // Helper functions for actions in the main program.
-  void    showHint(Move move);
-  void    quitHint();
+  KReversiBoardView(QWidget *parent, KReversiGame *game);
+  ~KReversiBoardView();
 
   // starts all: emits some signal, so it can't be called from
   // constructor
   void  start();
 
-  // event stuff
-  void  paintEvent(QPaintEvent *);
-  void  mousePressEvent(QMouseEvent *);
+  // Used by the outer KZoomMainWindow class.
+  virtual void adjustSize();
 
   void   setAnimationSpeed(uint);
+
+  // Helper functions for actions in the main program.
+  void    showHint(Move move);
+  void    quitHint();
 
   // Methods for handling images of pieces.
   enum      ChipType { Unloaded, Colored, Grayscale };
@@ -97,13 +151,17 @@ public:
 
   void    loadSettings();
 
+
 signals:
   void  signalSquareClicked(int, int);
 
-  void  score();
-  void  gameWon(Color);
-  void  sizeChange();
-  void  turn(Color);
+
+protected:
+
+  // event stuff
+  void  paintEvent(QPaintEvent *);
+  void  mousePressEvent(QMouseEvent *);
+
 
 private:
   uint  zoomedSize() const;
@@ -114,7 +172,7 @@ private:
   bool  isField(int row, int col) const;
 
 private:
-  Game    *m_game;		// Pointer to the game object (not owner).
+  KReversiGame    *m_krgame; // Pointer to the game object (not owner).
 
   // The background of the board - a color and a pixmap.
   QColor    bgColor;
@@ -128,6 +186,7 @@ private:
   // Special stuff used only in smaller areas.
   bool      m_hintShowing;
 };
+
 
 #endif
 

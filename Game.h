@@ -110,7 +110,7 @@ class Game {
 public:
   Game();
   
-  void   reset();
+  void   newGame();
   
   Color  color(uint x, uint y) const;
   uint   score(Color color)    const;

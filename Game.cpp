@@ -105,14 +105,14 @@
 
 Game::Game()
 {
-  reset();
+  newGame();
 }
 
 
-// Reset the Game to before the first move, i.e. a new game.
+// Start a new game and reset the position to before the first move.
 //
 
-void Game::reset()
+void Game::newGame()
 {
   m_position.constrInit();
   m_lastPosition.constrInit();

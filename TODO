@@ -5,9 +5,9 @@ Next
 ----
 
 * (from step 4 below)
-  Create a new class KReversiGame, that stores a ReversiGame
+  Create a new class KReversiGame, that stores a ReversiGame		DONE
   and sends a lot of signals.
-    - Split out a lot of methods from the current class Board.
+    - Split out a lot of methods from the current class Board.		DONE
 
 * Investigate if there is something wrong with the highscore handling.
   It seems as if a game is finished before all squares are covered
@@ -23,10 +23,10 @@ Next
         - Add a few necessary methods.
      2. Move all the slots for KActions to kreversi.cpp			DONE
      3. Move the ownership of the engine and the game to kreversi.	DONE
-     4. Create a new class KReversiGame, that stores a ReversiGame
+     4. Create a new class KReversiGame, that stores a ReversiGame	DONE
 	and sends a lot of signals.
         - Split out a lot of methods from the current class Board.
-     5. Create KReversiBoardView from the rest of the current Board
+     5. Create KReversiBoardView from the rest of the current Board	DONE
 
   II. Introduce a class ReversiPlayer
 

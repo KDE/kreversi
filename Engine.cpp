@@ -296,7 +296,7 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-Move Engine::computeMove(Game game, bool competitive) 
+Move Engine::computeMove(Game *game, bool competitive) 
 {
   Color color;
 
@@ -313,13 +313,13 @@ Move Engine::computeMove(Game game, bool competitive)
   m_exhaustive = false;
 
   // Get the color to calculate the move for.
-  color = game.toMove();
+  color = game->toMove();
   if (color == Nobody)
     return Move(Nobody, -1, -1);
 
   // Figure out the current score
-  m_score.set(White, game.score(White));
-  m_score.set(Black, game.score(Black));
+  m_score.set(White, game->score(White));
+  m_score.set(Black, game->score(Black));
 
   // Treat the first move as a special case (we can basically just
   // pick a move at random).
@@ -360,7 +360,7 @@ Move Engine::computeMove(Game game, bool competitive)
     for (uint y = 0; y < 10; y++) {
       if (1 <= x && x <= 8
 	  && 1 <= y && y <= 8)
-	m_board[x][y] = game.color(x, y);
+	m_board[x][y] = game->color(x, y);
       else
 	m_board[x][y] = Nobody;
     }
@@ -467,10 +467,10 @@ Move Engine::computeMove(Game game, bool competitive)
 // Get the first move.  We can pick any move at random.
 //
 
-Move Engine::ComputeFirstMove(Game game) 
+Move Engine::ComputeFirstMove(Game *game) 
 {
   int    r;
-  Color  color = game.toMove();
+  Color  color = game->toMove();
 
   r = m_random.getLong(4) + 1;
 

@@ -9,6 +9,33 @@ view of the program, not to serve as detailed documentation.
 Classes
 =======
 
+Class Diagram (See details below)
+-------------
+
+KReversi----------------------------------------------+
+  | | +--------------------------------+              |
+  | +-----------------+                |              |
+  |                   |                |              |
+  v                   v                v              v
+KReversiGame     KReversiBoardView   Engine    Other view widgets
+  |      ^            |                        (score, to move, etc)
+  v      +- - - - - - +
+Game
+ I +=========+
+ I           I
+ v           v
+Position   Move[]
+
+
+Legend: 
+========>  Contains
+-------->  Ownership pointer
+- - - - >  Reference pointer
+
+
+Details
+-------
+
 ReversiPosition (now: Position)
     Holds a Reversi position.  This is the object that implements the
     Reversi rules.
@@ -30,7 +57,7 @@ Engine
     Can generate a move, given a ReversiPosition.
 
 
-KReversiGame (status: PLANNED)
+KReversiGame
     The "document" for KReversi.
     Handles a game being played and sends signals to all its views
     when something changes.  Basically, the only difference between
@@ -39,30 +66,37 @@ KReversiGame (status: PLANNED)
     Contains: ReversiGame	The actual game being played
 
 
-KReversiBoardView (currently class Board)
-    A view for a Reversi board.
+KReversiBoardView
+
+    A view for a Reversi board.  The rest of the game view is
+    implemented in the class kreversi, among other things the current
+    score and side to move.
+
     Contains: *KReversiGame	(not owner)
-              Widgets		(owner)
-    FIXME: Part of the game view is implemented in the class kreversi,
-	   among other things the current score and side to move.
+              Other widgets	(owner)
+
     FIXME: Enhance the view with timing information, move list, clock,
-	   etc.
+	   etc.  This should be done in a new class KReversiGameView
+	   (see below).
 
 
 KReversiGameView (status: PLANNED)
 
     Shows a view of a complete game.  This will, among other things,
-    consist of a list of moves, the current score, etc.
+    comprise list of moves, the current score, etc.
+
     Contains: *KReversiBoardView
               Other widgets.
 
 
 KReversi
     The main class for the KReversi program
-    Contains: *KReversiGame 	(owner)
-	      *KReversiGameView (owner)
-	      *Engine           (owner)
+    Contains: *KReversiGame 	 (owner)
+	      *KReversiBoardView (owner) (now)
+	      *KReversiGameView  (owner) (Planned)
+	      *Engine            (owner)
               View widgets - some of the part of the view, e.g. the score.
+
     FIXME: Let the class also own two players.
 
 

@@ -202,10 +202,10 @@ public:
   Engine(int st);
   Engine();
 
-  Move     computeMove(Game game, bool competitive);
+  Move     computeMove(Game *game, bool competitive);
 
 private:
-  Move     ComputeFirstMove(Game g);
+  Move     ComputeFirstMove(Game *game);
   int      ComputeMove2(int xplay, int yplay, Color color, int level,
 			int cutoffval,
 			ULONG64 colorbits, ULONG64 opponentbits);

@@ -1,6 +1,15 @@
 2004-10-09  Inge Wallin  <inge@lysator.liu.se>
 
-	* Some minor cleaning.  
+	Finally make KReversi a proper Model/View program (step I.4 and
+	I.5 from the plan in the TODO file).
+	* board.{h,cpp} (KReversiGame): new class
+	* board.{h,cpp} (Board): new name KReversiBoardView
+	* Lots of minor cleanup
+	* DESIGN: (class diagram): new info
+	
+	----------------- CVS commit on stuff below --------------------
+
+	Some minor cleanup.
 
 2004-10-03  Inge Wallin  <inge@lysator.liu.se>
 

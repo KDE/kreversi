@@ -84,17 +84,17 @@ public:
   bool isPlaying() const;
 
   // Methods that deal with the game
-  Color  toMove() const           { return m_game->toMove();       }
+  Color  toMove() const           { return m_krgame->toMove();       }
   Color  humanColor() const       { return m_humanColor;           }
   Color  computerColor() const    { return opponent(m_humanColor); }
-  uint   score(Color color) const { return m_game->score(color);   }
-  uint   moveNumber() const       { return m_game->moveNumber();   }
+  uint   score(Color color) const { return m_krgame->score(color);   }
+  uint   moveNumber() const       { return m_krgame->moveNumber();   }
 
   // Methods that deal with the engine.
   void   setStrength(uint);
   uint   strength() const         { return m_engine->strength();   }
   void   interrupt()              { m_engine->setInterrupt(TRUE);  }
-  bool   interrupted() const      { return (m_game->toMove() == computerColor()
+  bool   interrupted() const      { return (m_krgame->toMove() == computerColor()
 					    && m_state == Ready);  }
 
   // State of the program (Hint, Ready, Thinking, etc).
@@ -138,9 +138,10 @@ private slots:
   void  slotContinue();
 
   // Slots for game IO
-  void slotSquareClicked(int, int);
+  void  slotSquareClicked(int, int);
 
-
+  // Misc slots.
+  void  slotStateChange(State);
   void  configureNotifications();
 
   // Some dialogs and other misc stuff.
@@ -148,12 +149,13 @@ private slots:
   void  slotEditSettings();
   void  loadSettings();
 
+ public slots: 
   // Slots for the view.
   void  showColors();
   void  showScore();
   void  showTurn(Color);
-  void  slotGameEnded(Color);
-  void  slotStateChange(State);
+  void  slotGameOver();
+  void  showGameOver(Color);
 
 private:
 
@@ -163,7 +165,7 @@ private:
   void  illegalMove();
 
   void  saveGame(KConfig *);
-  bool  loadGame(KConfig *, bool noupdate = FALSE);
+  bool  loadGame(KConfig *);
 
 
 private:
@@ -172,7 +174,7 @@ private:
   KAction       *continueAction;
 
   // The game itself and game properties
-  Game          *m_game;           // Stores the moves of the game
+  KReversiGame  *m_krgame;	   // Stores the moves of the game
   Color          m_humanColor;	   // The Color of the human player.
   bool           m_lowestStrength; // Lowest strength during the game.
   bool           m_competitiveGame;// True if the game has been
@@ -186,10 +188,10 @@ private:
   bool           cheating;
 
   // Widgets
-  Board         *m_board;          // The board widget.
+  KReversiBoardView  *m_boardView;          // The board widget.
 
-  StatusWidget  *m_humanStatus;
-  StatusWidget  *m_computerStatus;
+  StatusWidget       *m_humanStatus;
+  StatusWidget       *m_computerStatus;
 };
 
 
