@@ -702,7 +702,7 @@ void Board::loadSettings(){
     setAnimationSpeed(10-config->readNumEntry("AnimationSpeed", DEFAULT_ANIMATION_DELAY));
   setZoom(config->readNumEntry("Zoom", 100));
   setFixedSize(sizeHint());
-  setStrength(config->readNumEntry("Skill", 1));
+  setStrength(config->readNumEntry("skill", 1));
 
 
   if(config->readBoolEntry("BackgroundColorChoice", false))

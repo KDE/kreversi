@@ -48,7 +48,7 @@
 #include <kaction.h>
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
-#include <kautoconfig.h>
+#include <kautoconfigdialog.h>
 #include <kscoredialog.h>
 #include <kurlrequester.h>
 
@@ -350,26 +350,14 @@ void KReversi::showHighScoreDialog() {
  * Show Configure dialog.
  */
 void KReversi::showSettings(){
-  settings = new KDialogBase (this, "Configure", false, i18n("Configure"), KDialogBase::Default | KDialogBase::Ok | KDialogBase::Apply | KDialogBase::Cancel);
-  KAutoConfig *kautoconfig = new KAutoConfig(settings, "KAutoConfig");
+  if(KAutoConfigDialog::showDialog("settings"))
+    return;
   
-  connect(settings, SIGNAL(okClicked()), kautoconfig, SLOT(saveSettings()));
-  connect(settings, SIGNAL(okClicked()), this, SLOT(closeSettings()));
-  connect(settings, SIGNAL(applyClicked()), kautoconfig, SLOT(saveSettings()));
-  connect(settings, SIGNAL(defaultClicked()), kautoconfig, SLOT(resetSettings()));
-
-  Settings *general = new Settings(settings, "General");
-  settings->setMainWidget(general);
+  KAutoConfigDialog *dialog = new KAutoConfigDialog(this, "settings", KDialogBase::Swallow);
+  Settings *general = new Settings(0, "General");
   general->BackgroundImage->setURL(PICDATA("background/Light_Wood.png"));
-  kautoconfig->addWidget(general, "Game");
-
-  kautoconfig->retrieveSettings();
-  settings->show();
-	
-  connect(kautoconfig, SIGNAL(settingsChanged()), board, SLOT(loadSettings()));
-}
-
-void KReversi::closeSettings(){
-  settings->close(true);
+  dialog->addPage(general, i18n("General"), "Game", "package_settings");
+  connect(dialog, SIGNAL(settingsChanged()), board, SLOT(loadSettings()));
+  dialog->show();
 }
 

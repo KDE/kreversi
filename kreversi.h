@@ -42,7 +42,6 @@
 #include <kmainwindow.h>
 
 class Board;
-class KDialogBase;
 class KAction;
 class KToggleAction;
 
@@ -77,14 +76,12 @@ private slots:
   void sizeChanged();
   
   void showHighScoreDialog();
-  void closeSettings();
   void showSettings();
 
 private:
   KAction *undoAction, *zoomInAction, *zoomOutAction;
   KAction *stopAction, *continueAction;
   KToggleAction *soundAction;
-  KDialogBase *settings;
   
   Board *board;
   bool gameOver;
