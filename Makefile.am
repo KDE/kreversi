@@ -8,6 +8,7 @@ kreversi_SOURCES = main.cpp kreversi.cpp board.cpp Game.cpp \
 		Engine.cpp Position.cpp Move.cpp prefs.kcfgc
 kreversi_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 kreversi_LDADD = $(LIB_KDEGAMES) $(LIB_KIO)
+kreversi_DEPENDENCIES = $(LIB_KDEGAMES_DEP)
 
 METASOURCES =	AUTO
 
