@@ -9,6 +9,7 @@ kreversi_SOURCES = \
     Position.cpp \
     Game.cpp \
     qreversigame.cpp \
+    qreversigameview.cpp \
     SuperEngine.cpp \
     Engine.cpp \
     board.cpp \
@@ -31,6 +32,7 @@ noinst_HEADERS = \
     Engine.h \
     Game.h \
     qreversigame.h \
+    qreversigameview.h \
     kreversi.h \
     Move.h \
     board.h \

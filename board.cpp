@@ -72,7 +72,7 @@ const uint  CHIP_SIZE             = 36;
 //                class KReversiBoardView
 
 
-KReversiBoardView::KReversiBoardView(QWidget *parent, QReversiGame *krgame)
+QReversiBoardView::QReversiBoardView(QWidget *parent, QReversiGame *krgame)
     : QWidget(parent, "board"),
       chiptype(Unloaded)
 {
@@ -86,7 +86,7 @@ KReversiBoardView::KReversiBoardView(QWidget *parent, QReversiGame *krgame)
 }
 
 
-KReversiBoardView::~KReversiBoardView()
+QReversiBoardView::~QReversiBoardView()
 {
 }
 
@@ -97,14 +97,14 @@ KReversiBoardView::~KReversiBoardView()
 // Start it all up.
 //
 
-void KReversiBoardView::start()
+void QReversiBoardView::start()
 {
   updateBoard(TRUE);
   adjustSize();
 }
 
 
-void KReversiBoardView::loadChips(ChipType type)
+void QReversiBoardView::loadChips(ChipType type)
 {
   QString  name("pics/");
   name += (type==Colored ? "chips.png" : "chips_mono.png");
@@ -123,7 +123,7 @@ void KReversiBoardView::loadChips(ChipType type)
 // no animations are displayed.
 //
 
-void KReversiBoardView::setAnimationSpeed(uint speed)
+void QReversiBoardView::setAnimationSpeed(uint speed)
 {
   if (speed <= 10)
     anim_speed = speed;
@@ -133,7 +133,7 @@ void KReversiBoardView::setAnimationSpeed(uint speed)
 // Handle mouse clicks.
 //
 
-void KReversiBoardView::mousePressEvent(QMouseEvent *e)
+void QReversiBoardView::mousePressEvent(QMouseEvent *e)
 {
   // Only handle left button.  No context menu.
   if ( e->button() != LeftButton ) {
@@ -155,7 +155,7 @@ void KReversiBoardView::mousePressEvent(QMouseEvent *e)
 }
 
 
-void KReversiBoardView::showHint(Move move)
+void QReversiBoardView::showHint(Move move)
 {
   // Only show a hint if there is a move to show.
   if (move.x() == -1)
@@ -192,7 +192,7 @@ void KReversiBoardView::showHint(Move move)
 // end, if it is running.
 //
 
-void KReversiBoardView::quitHint()
+void QReversiBoardView::quitHint()
 {
   m_hintShowing = false;
 }
@@ -200,21 +200,21 @@ void KReversiBoardView::quitHint()
 
 // Mark the list of squares as legal moves.
 
-void KReversiBoardView::showLegalMoves(MoveList moves)
+void QReversiBoardView::showLegalMoves(MoveList moves)
 {
   m_legalMoves = moves;
   updateBoard(true);
 }
 
 
-void KReversiBoardView::quitShowLegalMoves()
+void QReversiBoardView::quitShowLegalMoves()
 {
   m_legalMoves.clear();
   updateBoard(true);
 }
 
 
-void KReversiBoardView::setMarks(bool marks)
+void QReversiBoardView::setMarks(bool marks)
 {
   m_marksShowing = marks;
 }
@@ -229,7 +229,7 @@ void KReversiBoardView::setMarks(bool marks)
 // NOTE: This code is quite a hack.  Should make it better.
 //
 
-void KReversiBoardView::animateChanged(Move move)
+void QReversiBoardView::animateChanged(Move move)
 {
   if (anim_speed == 0)
     return;
@@ -245,13 +245,13 @@ void KReversiBoardView::animateChanged(Move move)
 }
 
 
-bool KReversiBoardView::isField(int row, int col) const
+bool QReversiBoardView::isField(int row, int col) const
 {
   return ((0 <= row) && (row < 8) && (0 <= col) && (col < 8));
 }
 
 
-void KReversiBoardView::animateChangedRow(int row, int col, int dy, int dx)
+void QReversiBoardView::animateChangedRow(int row, int col, int dy, int dx)
 {
   row = row + dy;
   col = col + dx;
@@ -268,7 +268,7 @@ void KReversiBoardView::animateChangedRow(int row, int col, int dy, int dx)
 }
 
 
-void KReversiBoardView::rotateChip(uint row, uint col)
+void QReversiBoardView::rotateChip(uint row, uint col)
 {
   // Check which direction the chip has to be rotated.  If the new
   // chip is white, the chip was black first, so lets begin at index
@@ -294,7 +294,7 @@ void KReversiBoardView::rotateChip(uint row, uint col)
 // m_krgame->squareModified(col, row)).
 //
 
-void KReversiBoardView::updateBoard (bool force)
+void QReversiBoardView::updateBoard (bool force)
 {
   QPainter  p(this);
   p.setPen(black);
@@ -390,7 +390,7 @@ void KReversiBoardView::updateBoard (bool force)
 }
 
 
-QPixmap KReversiBoardView::chipPixmap(Color color, uint size) const
+QPixmap QReversiBoardView::chipPixmap(Color color, uint size) const
 {
   return chipPixmap(CHIP_OFFSET[color], size);
 }
@@ -399,7 +399,7 @@ QPixmap KReversiBoardView::chipPixmap(Color color, uint size) const
 // Get a pixmap for the chip 'i' at size 'size'.
 //
 
-QPixmap KReversiBoardView::chipPixmap(uint i, uint size) const
+QPixmap QReversiBoardView::chipPixmap(uint i, uint size) const
 {
   // Get the part of the 'allchips' pixmap that contains exactly that
   // chip that we want to use.
@@ -415,20 +415,20 @@ QPixmap KReversiBoardView::chipPixmap(uint i, uint size) const
 }
 
 
-uint KReversiBoardView::zoomedSize() const
+uint QReversiBoardView::zoomedSize() const
 {
   return qRound(float(CHIP_SIZE) * Prefs::zoom() / 100);
 }
 
 
-void KReversiBoardView::drawPiece(uint row, uint col, Color color)
+void QReversiBoardView::drawPiece(uint row, uint col, Color color)
 {
   int  i = (color == Nobody ? -1 : int(CHIP_OFFSET[color]));
   drawOnePiece(row, col, i);
 }
 
 
-void KReversiBoardView::drawOnePiece(uint row, uint col, int i)
+void QReversiBoardView::drawOnePiece(uint row, uint col, int i)
 {
   int       px = col * zoomedSize() + 1;
   int       py = row * zoomedSize() + 1;
@@ -460,13 +460,13 @@ void KReversiBoardView::drawOnePiece(uint row, uint col, int i)
 // entire board.
 //
 
-void KReversiBoardView::paintEvent(QPaintEvent *)
+void QReversiBoardView::paintEvent(QPaintEvent *)
 {
   updateBoard(true);
 }
 
 
-void KReversiBoardView::adjustSize()
+void QReversiBoardView::adjustSize()
 {
   int w = 8 * zoomedSize();
 
@@ -477,7 +477,7 @@ void KReversiBoardView::adjustSize()
 }
 
 
-void KReversiBoardView::setPixmap(QPixmap &pm)
+void QReversiBoardView::setPixmap(QPixmap &pm)
 {
   if ( pm.width() == 0 ) 
     return;
@@ -488,7 +488,7 @@ void KReversiBoardView::setPixmap(QPixmap &pm)
 }
 
 
-void KReversiBoardView::setColor(const QColor &c)
+void QReversiBoardView::setColor(const QColor &c)
 {
   bgColor = c;
   bg = QPixmap();
@@ -500,7 +500,7 @@ void KReversiBoardView::setColor(const QColor &c)
 // Load all settings that have to do with the board view, such as
 // piece colors, background, animation speed, an so on.
 
-void KReversiBoardView::loadSettings()
+void QReversiBoardView::loadSettings()
 {
   // Colors of the pieces (red/blue or black/white)
   if ( Prefs::grayscale() ) {

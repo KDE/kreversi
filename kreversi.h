@@ -46,8 +46,9 @@
 #include "Score.h"
 #include "Game.h"
 #include "Engine.h"
-#include "board.h"
+//#include "board.h"
 #include "qreversigame.h"
+#include "qreversigameview.h"
 
 
 class QLabel;
@@ -74,7 +75,8 @@ private:
 };
 
 
-class KReversi : public KZoomMainWindow {
+class KReversi : public KZoomMainWindow 
+{
   Q_OBJECT
 
 public:
@@ -193,7 +195,7 @@ private:
   Engine        *m_engine;         // The AI that creates the computers moves.
 
   // Widgets
-  KReversiBoardView  *m_boardView;          // The board widget.
+  QReversiGameView   *m_gameView;          // The board widget.
   QListBox           *m_movesView;
   StatusWidget       *m_humanStatus;
   StatusWidget       *m_computerStatus;

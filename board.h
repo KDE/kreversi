@@ -54,20 +54,20 @@ class QReversiGame;
 // The class Board is the visible Reversi Board widget.
 //
 
-class KReversiBoardView : public QWidget {
+class QReversiBoardView : public QWidget {
   Q_OBJECT
 
 public:
 
-  KReversiBoardView(QWidget *parent, QReversiGame *game);
-  ~KReversiBoardView();
+  QReversiBoardView(QWidget *parent, QReversiGame *game);
+  ~QReversiBoardView();
 
   // starts all: emits some signal, so it can't be called from
   // constructor
   void  start();
 
   // Used by the outer KZoomMainWindow class.
-  virtual void adjustSize();
+  void adjustSize();
 
   // Show a hint to the user.
   void    showHint(Move move);
@@ -85,10 +85,6 @@ public:
   void    setShowLastMove(bool show)             { m_showLastMove = show; }
   bool    showLastMove()                   const { return m_showLastMove; }
 
-  void    setColor(const QColor &);
-  QColor  color()                          const { return bgColor;        }
-  void    setPixmap(QPixmap &);
-
   // View methods called from the outside.
   void    updateBoard(bool force = FALSE);
   void    animateChanged(Move move);
@@ -96,6 +92,7 @@ public:
 
   void    loadSettings();
 
+  // To get the pixmap for the status view
   QPixmap   chipPixmap(Color color, uint size)  const;
 
 
@@ -117,6 +114,10 @@ private:
   void  animateChangedRow(int row, int col, int dy, int dx);
   void  rotateChip(uint row, uint col);
   bool  isField(int row, int col) const;
+
+  void    setColor(const QColor &);
+  QColor  color()                          const { return bgColor;        }
+  void    setPixmap(QPixmap &);
 
   // Methods for handling images of pieces.
   enum      ChipType { Unloaded, Colored, Grayscale };
