@@ -231,6 +231,7 @@ default_presentation=0
 [draw]
 Name=Draw
 Name[bg]=Равенство
+Name[br]=Tresañ
 Name[bs]=Crtaj
 Name[da]=Træk
 Name[de]=Ziehen
@@ -256,6 +257,7 @@ Name[xx]=xxDrawxx
 Name[zh_CN]=平局
 Comment=Draw
 Comment[bg]=Равенство
+Comment[br]=Tresañ
 Comment[bs]=Crtaj
 Comment[da]=Træk
 Comment[de]=Ziehen
