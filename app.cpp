@@ -161,14 +161,12 @@ App::App() : KTMainWindow() {
     if(conf->readNumEntry("Background", -1) != -1) {
       int i = conf->readNumEntry("Background");
       if(i == 1) {
-	int red, green, blue;
-	QString s = conf->readEntry("BackgroundColor");
-	sscanf((const char *)s, "%d %d %d", &red, &green, &blue);      
-	b->setColor(QColor(red, green, blue));
+	QColor s = conf->readColorEntry("BackgroundColor");
+	b->setColor(s);
       } else if(i == 2) {
 	QString s = conf->readEntry("BackgroundPixmap");
 	if(s.length() > 0) {
-	  QPixmap bg((const char *)s);
+	  QPixmap bg(s);
 	  if(bg.width())
 	    b->setPixmap(bg);
 	}
@@ -299,7 +297,7 @@ void App::createMenuBar() {
 	current = newmenu;
       }
 
-      current->insertItem((const char *)s, ID_PIXMAP + i);
+      current->insertItem(s, ID_PIXMAP + i);
     }
   }
   
@@ -314,7 +312,7 @@ void App::createMenuBar() {
   for(int i = ID_OSPEED+2; i < ID_OSPEED + 10; i++) {
     QString txt;
     txt.setNum(i - ID_OSPEED);
-    om_sp->insertItem((const char *)txt, i);
+    om_sp->insertItem(txt, i);
   }
   om_sp->insertItem(i18n("10 (slowest)"), ID_OSPEED+10);
   om->insertItem(i18n("Animation speed"), om_sp, ID_OSPEED);
@@ -695,7 +693,7 @@ void App::slotGameEnded(int color) {
     // create highscore entry
     HighScore hs;
     QString name = getPlayerName();
-    strncpy(hs.name, (const char *)name, sizeof(hs.name) - 1);
+    strncpy(hs.name, name.utf8(), sizeof(hs.name) - 1);
     hs.color = b->humanIs();
     hs.winner = winner;
     hs.loser = loser;
@@ -823,7 +821,7 @@ void App::readHighscore() {
       highscore.resize(i+1);
 
       HighScore hs;
-      sscanf((const char *)e, "%s %d %d %d %f %ld", 
+      sscanf((const char *)e.utf8(), "%s %d %d %d %f %ld", 
 	     (char *)&hs.name, &hs.color, &hs.winner, 
 	     &hs.loser, &hs.rating, &hs.date);
       highscore[i] = hs;
@@ -848,7 +846,7 @@ void App::writeHighscore() {
     s = QString("Highscore_%1").arg(i);
     HighScore hs = highscore[i];
     e = QString("%1 %2 %3 %4 %5 %6")
-	      .arg(hs.name).arg(hs.color).arg(hs.winner)
+	      .arg(QString::fromUtf8(hs.name)).arg(hs.color).arg(hs.winner)
 	      .arg(hs.loser).arg(hs.rating).arg(hs.date);
     conf->writeEntry(s, e);
   }
@@ -866,7 +864,7 @@ int MAX(int a, int b) {
 
 void App::showHighscore(int focusitem) {
   // this may look a little bit confusing...
-  QDialog *dlg = new QDialog(0, i18n("Hall of Fame"), TRUE);
+  QDialog *dlg = new QDialog(0, "hall_of_fame", TRUE);
   dlg->setCaption(i18n("KReversi: Hall Of Fame"));
 
   QVBoxLayout *tl = new QVBoxLayout(dlg, 10);
@@ -918,7 +916,7 @@ void App::showHighscore(int focusitem) {
   unsigned i, j;
 
   for(i = 0; i < 10; i++) {
-    const char *color = 0;
+    QString color;
     HighScore hs;
     if(i < highscore.size()) {
       hs = highscore[i];
@@ -971,7 +969,7 @@ void App::showHighscore(int focusitem) {
     }
     
   QPushButton *b = new QPushButton(i18n("Close"), dlg);
-  if(style() == MotifStyle)
+  if(style().guiStyle() == MotifStyle)
     b->setFixedSize(b->sizeHint().width() + 10,
 		    b->sizeHint().height() + 10);
   else
@@ -1013,7 +1011,7 @@ QString App::getPlayerName() {
 
   QPushButton *b = new QPushButton(i18n("OK"), dlg);
   b->setDefault(TRUE);
-  if(style() == MotifStyle)
+  if(style().guiStyle() == MotifStyle)
     b->setFixedSize(b->sizeHint().width() + 10,
 		    b->sizeHint().height() +10);
   else

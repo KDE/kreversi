@@ -716,10 +716,10 @@ void Board::loadGame(KConfig *config, bool noupdate) {
       // read one move
       QString idx;
       idx.sprintf("Move_%d", movenumber++);
-      QString s = config->readEntry(idx);
-      
-      int x, y, pl;
-      sscanf(s.data(), "%d %d %d", &x, &y, &pl);
+      QStringList s = config->readListEntry(idx, ' ');
+      int x = (*s.at(0)).toInt();
+      int y = (*s.at(1)).toInt();
+      int pl = (*s.at(2)).toInt();
       Move m(x, y, pl);
       g.MakeMove(m);
     }
