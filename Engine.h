@@ -182,6 +182,7 @@ public:
   Engine(int st, int sd);
   Engine(int st);
   Engine();
+  ~Engine() {};
 
   Move ComputeMove(Game g);
   Move ComputeFirstMove(Game g);
