@@ -364,6 +364,11 @@ void KReversi::slotUndo()
 void KReversi::slotInterrupt()
 {
   m_engine->setInterrupt(TRUE);
+
+  // At this point the engine has not returned yet and State has not
+  // yet been set to Ready, so the interrupted() test does not work
+  // here.
+  showTurn(m_krgame->toMove());
 }
 
 
@@ -461,8 +466,15 @@ void KReversi::showTurn(Color color)
 
   if (color == humanColor())
     statusBar()->message(i18n("Your turn"));
-  else if (color == computerColor())
-    statusBar()->message(i18n("Computer's turn"));
+  else if (color == computerColor()) {
+    QString  message = i18n("Computer's turn");
+
+    // We can't use the interrupted() test here since we might be in a
+    // middle state when called from slotInterrupt().
+    if (m_state == Thinking)
+      message += i18n(" (interrupted)");
+    statusBar()->message(message);
+  }
   else
     statusBar()->clear();
 }

@@ -1,9 +1,16 @@
-2004-10-09  Inge Wallin  <ingwa@c83-250-5-110.bredband.comhem.se>
-
 2004-10-09  Inge Wallin  <inge@lysator.liu.se>
 
+	Fix bug 90203: KReversi: It should be visible when the user
+	interrupts the computers thinking.
+	* kreversi.cpp (slotInterrupt): call showTurn().
+	(showTurn): Show "(interrupted)" if it is.
+	NOTE: This fix can't be backported easily since there is a string
+	freeze for BRANCH_3_3.
+	
+	----------------- CVS commit on stuff below --------------------
+
 	Fix a bug that made the score unset at startup.
-	* kreversi.cpp (KReversi): show Score at startup.
+	* kreversi.cpp (KReversi): show the score at startup.
 
 	----------------- CVS commit on stuff below --------------------
 
