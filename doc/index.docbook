@@ -396,7 +396,7 @@ when a die changes it's color.</para></listitem>
 
 <varlistentry>
 <term><guilabel>Animation Speed</guilabel></term>
-<listitem><para>If the <guilabel>Animation</guilabel> optio is enabled, you
+<listitem><para>If the <guilabel>Animation</guilabel> option is enabled, you
 can use this slider to define how fast the animation should be played; move the
 slider to the left for a slower animation, moving the slider to the right will
 play the animation faster.</para></listitem>
