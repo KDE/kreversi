@@ -72,7 +72,7 @@ int main(int argc, char **argv)
   KImageIO::registerFormats();
   KExtHighscore::ExtManager highscores;
 
-  if(a.isRestored()){
+  if (a.isRestored()){
      RESTORE(KReversi)
   }
   else {

@@ -106,21 +106,28 @@
 //     If this is not done, winning once would make it possible to play the
 //     same moves and win every time against the program.
 
+
 #include "SuperEngine.h"
 
-SuperEngine::SuperEngine(int st) {
+
+SuperEngine::SuperEngine(int st) 
+{
   m_strength = st;
   m_random.setSeed(0);
   m_interrupt = false;
 }
 
-SuperEngine::SuperEngine(int st, int sd) {
+
+SuperEngine::SuperEngine(int st, int sd) 
+{
   m_strength = st;
   m_random.setSeed(sd);
   m_interrupt = false;
 }
 
-void SuperEngine::setSeed(int sd) { 
+
+void SuperEngine::setSeed(int sd) 
+{ 
   m_random.setSeed(sd); 
 }
 

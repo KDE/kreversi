@@ -1,3 +1,8 @@
+2004-08-15  Inge Wallin  <inge@lysator.liu.se>
+
+	Continue the big code cleanup:
+	* SuperEngine.h, SuperEngine.cpp
+
 2004-08-14  Inge Wallin  <inge@lysator.liu.se>
 
 	Start of the big code cleanup:

@@ -119,20 +119,24 @@ public:
   SuperEngine(int st, int sd);
   virtual ~SuperEngine() {}
   
-  void setInterrupt(bool intr) { m_interrupt = intr; }
-  bool interrupt() const { return m_interrupt; }
-  enum Strength { MinStrength = 1, MaxStrength = 7, NbStrengths = MaxStrength };
+  void  setInterrupt(bool intr) { m_interrupt = intr; }
+  bool  interrupt() const       { return m_interrupt; }
+
+  enum Strength             { MinStrength = 1, MaxStrength = 7, 
+			      NbStrengths = MaxStrength };
   void setStrength(uint st) { m_strength = st; }
-  uint strength() const { return m_strength; }
+  uint strength() const     { return m_strength; }
+
   void setSeed(int sd);
+
   virtual Move computeMove(Game g) = 0;
 
 protected:
-  uint m_strength;
-  KRandomSequence m_random;
+  uint             m_strength;
+  KRandomSequence  m_random;
 
 private:
-  bool m_interrupt;
+  bool             m_interrupt;
 };
 
 #endif
