@@ -44,7 +44,7 @@
 QString PICDIR;
 
 int main(int argc, char **argv) {
-  KApplication a(argc, argv, "Reversi");
+  KApplication a(argc, argv, "kreversi");
 
   // locate the picture directory
   PICDIR.setStr(KApplication::kdedir());
