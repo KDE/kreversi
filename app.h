@@ -44,7 +44,7 @@
 #include <ktoolbar.h>
 #include <kmainwindow.h>
 #include <kmenubar.h>
-#include <qarray.h>
+#include <qmemarray.h>
 #include <time.h>
 #include <qlist.h>
 #include <qfileinfo.h>
@@ -104,8 +104,8 @@ private:
   KMenuBar *menu;
   KToolBar *tb;
   KStatusBar *sb;
-  QArray<HighScore> highscore;
-  QList<QFileInfo> backgroundPixmaps;
+  QMemArray<HighScore> highscore;
+  QPtrList<QFileInfo> backgroundPixmaps;
   QPixmap wpm, bpm;
   KLocale *locale;
 };
