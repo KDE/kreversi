@@ -42,9 +42,7 @@
 #include <unistd.h>
 #include <qaccel.h>
 #include <qpopupmenu.h>
-#include <kmsgbox.h>
 #include <kapp.h>
-#include <kmsgbox.h>
 #include <qpushbutton.h>
 #include <qlistbox.h>
 #include <qdatetime.h>
@@ -217,10 +215,10 @@ App::App() : KTopLevelWidget() {
       if(!audioOK()) {
 	show();
 	kapp->processEvents();
-	KMsgBox::message(this, i18n("Error"),
-			 i18n("A problem with the sound server "
-			 "occured!\nCannot enable sound "
-			 "support."), KMsgBox::STOP);	
+	QMessageBox::warning(this, i18n("Error"),
+			     i18n("A problem with the sound server "
+				  "occured!\nCannot enable sound "
+				  "support."), i18n("OK"));
       }
     } else
       doneAudio(); // just to be sure
@@ -451,8 +449,8 @@ void App::processEvent(int itemid) {
       KConfig *config = kapp->getConfig();
       config->setGroup("Savegame");
       b->saveGame(config);
-      KMsgBox::message(this, "Information", 
-		       i18n("Game saved"));
+      QMessageBox::information(this, kapp->getCaption(),
+			       i18n("Game saved"), i18n("OK"));
     }
     break;
 
@@ -575,10 +573,10 @@ void App::processEvent(int itemid) {
     if(!audioOK()) {
       initAudio();
       if(!audioOK()) {
-	KMsgBox::message(this, i18n("Error"), 
-			 i18n("A problem with the sound server "
-			 "occured!\nCannot enable sound "
-			 "support."), KMsgBox::STOP);
+	QMessageBox::warning(this, i18n("Error"), 
+			     i18n("A problem with the sound server "
+				  "occured!\nCannot enable sound "
+				  "support."), i18n("OK"));
 	kapp->getConfig()->writeEntry("Sound", 0);
       } else 
 	kapp->getConfig()->writeEntry("Sound", 1);  
@@ -618,7 +616,8 @@ void App::processEvent(int itemid) {
 	b->setAnimationSpeed(itemid - ID_OSPEED);
 	kapp->getConfig()->writeEntry("AnimationSpeed", b->animationSpeed());
       } else
-	KMsgBox::message(this, i18n("Information"), i18n("not yet implemented"));
+	QMessageBox::information(this, i18n("Information"), 
+				 i18n("not yet implemented"), i18n("Then do it!"));
     }
   }
   enableItems();
@@ -690,7 +689,7 @@ void App::slotGameEnded(int color) {
   if(color == Score::NOBODY) {
     playSound(KGlobal::dirs()->findResource("sound", "reversi-drawn.wav"));
     s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2").arg(winner).arg(loser);
-    KMsgBox::message(this, i18n("Game ended"), (const char *)s);
+    QMessageBox::information(this, i18n("Game ended"), s, i18n("OK"));
   } else if(b->humanIs() == color) {
     // calculate score
     int  st = b->getStrength();
@@ -702,7 +701,7 @@ void App::slotGameEnded(int color) {
     playSound(KGlobal::dirs()->findResource("sound", "reversi-won.wav"));
     s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2\nYour rating %3%%")
 	      .arg(winner).arg(loser).arg(score,1);
-    KMsgBox::message(this, i18n("Game ended"), s);
+    QMessageBox::information(this, i18n("Game ended"), s);
 
     // create highscore entry
     HighScore hs;
@@ -722,7 +721,7 @@ void App::slotGameEnded(int color) {
     playSound(KGlobal::dirs()->findResource("sound", "reversi-lost.wav"));
     s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2")
 	      .arg(loser).arg(winner);
-    KMsgBox::message(this, i18n("Game ended"), (const char *)s);
+    QMessageBox::information(this, i18n("Game ended"), s, i18n("OK"));
   }
 }
 
