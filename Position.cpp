@@ -135,7 +135,7 @@ Color Position::color(uint x, uint y) const
 //                      Moves in the position
 
 
-// Return TRUE if the move is legal.
+// Return true if the move is legal.
 //
 // NOTE: This function does *NOT* test wether the move is done
 //       by the color to move.  That must be checked separately.

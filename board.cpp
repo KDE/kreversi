@@ -100,7 +100,7 @@ QReversiBoardView::~QReversiBoardView()
 
 void QReversiBoardView::start()
 {
-  updateBoard(TRUE);
+  updateBoard(true);
   adjustSize();
 }
 
