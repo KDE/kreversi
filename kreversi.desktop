@@ -19,6 +19,7 @@ Type=Application
 DocPath=kreversi/index.html
 GenericName=Reversi Board Game
 GenericName[bg]=Игра на дъска
+GenericName[bn]=ছককেন্দ্রিক খেলা রিভার্সি
 GenericName[ca]=Joc de taula Reversi
 GenericName[cs]=Desková hra Reversi
 GenericName[da]=Reversi brætspil
