@@ -331,7 +331,7 @@ void QReversiBoardView::updateBoard (bool force)
 
   // Draw letters and numbers if appropriate.
   if (m_marksShowing) {
-    QFont         font("Helvetica", zoomedSize() / 2 - 6);
+    QFont         font("Sans Serif", zoomedSize() / 2 - 6);
     font.setWeight(QFont::DemiBold);
     QFontMetrics  metrics(font);
 
