@@ -22,6 +22,8 @@
 #include <klocale.h>
 #include <kconfig.h>
 #include <kapplication.h>
+//Added by qt3to4:
+#include <QVector>
 
 
 namespace KExtHighscore
@@ -45,8 +47,10 @@ ExtManager::ExtManager()
   setShowDrawGamesStatistic(true);
 
   const uint       RANGE[6] = { 0, 32, 40, 48, 56, 64 };
-  QMemArray<uint>  s;
-  s.duplicate(RANGE, 6);
+  QVector<uint>  s;
+  s.resize(6);
+  qCopy(RANGE, RANGE + 6, s.begin());
+  //s.duplicate(RANGE, 6);
   setScoreHistogram(s, ScoreBound);
 }
 

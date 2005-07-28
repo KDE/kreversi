@@ -66,7 +66,7 @@
 #define __MOVE__H__
 
 
-#include "qvaluelist.h"
+#include "q3valuelist.h"
 #include "qstring.h"
 
 #include "Score.h"
@@ -114,11 +114,11 @@ public:
   bool   wasTurned(uint x, uint y)      const;
 
 private:
-  QValueList<char>  m_turnedPieces;
+  Q3ValueList<char>  m_turnedPieces;
 };
 
 
-typedef QValueList<Move>            MoveList;
+typedef Q3ValueList<Move>            MoveList;
 
 
 #endif

@@ -52,6 +52,8 @@
 
 #include "Position.h"
 #include <stdlib.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 
 Position::Position()
@@ -207,7 +209,7 @@ bool Position::moveIsAtAllPossible() const
 //
 // Return true if the move was legal, otherwise return false.
 //
-bool Position::doMove(SimpleMove &move, QValueList<char> *turned)
+bool Position::doMove(SimpleMove &move, Q3ValueList<char> *turned)
 {
   if (move.color() == Nobody)
     return false;
@@ -293,7 +295,7 @@ bool Position::undoMove(Move &move)
   }
 
   // 2. All turned pieces must be on the board anb be of the right color.
-  QValueList<char>::iterator  it;
+  Q3ValueList<char>::iterator  it;
   for (it = move.m_turnedPieces.begin(); 
        it != move.m_turnedPieces.end(); 
        ++it) {

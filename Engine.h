@@ -124,7 +124,7 @@
 #include "Game.h"
 #include "Move.h"
 #include "Score.h"
-#include <qmemarray.h>
+
 #include <sys/times.h>
 #include <qbitarray.h>
 
@@ -171,7 +171,7 @@ public:
   void              Push(int x, int y);
 
 private:
-  QMemArray<SquareStackEntry>  m_squarestack;
+  QVector<SquareStackEntry>  m_squarestack;
   int                          m_top;
 };
 

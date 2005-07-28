@@ -41,7 +41,9 @@
 
 #include <qlayout.h>
 #include <qlabel.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
+//Added by qt3to4:
+#include <QGridLayout>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -200,7 +202,7 @@ void KReversi::setStrength(uint strength)
   // FIXME: 7 should be MAXSTRENGTH or something similar.
   Q_ASSERT( 1 <= strength && strength <= 7 );
 
-  strength = QMAX(QMIN(strength, 7), 1);
+  strength = QMAX(QMIN(strength, (uint)7), (uint)1);
   m_engine->setStrength(strength);
   if (m_lowestStrength < strength)
     m_lowestStrength = strength;
@@ -392,7 +394,7 @@ void KReversi::slotSwitchSides()
   if (m_game->moveNumber() != 0) {
     int res = KMessageBox::warningContinueCancel(this,
 						 i18n("If you switch side, your score will not be added to the highscores."),
-						 QString::null, QString::null, "switch_side_warning");
+						 QString(), QString(), "switch_side_warning");
     if ( res==KMessageBox::Cancel ) 
       return;
 
@@ -693,9 +695,9 @@ bool KReversi::loadGame(KConfig *config)
     idx.sprintf("Move_%d", movenumber++);
 
     QStringList  s = config->readListEntry(idx, ' ');
-    uint         x = (*s.at(0)).toUInt();
-    uint         y = (*s.at(1)).toUInt();
-    Color        color = (Color)(*s.at(2)).toInt();
+    uint         x = s.at(0).toUInt();
+    uint         y = s.at(1).toUInt();
+    Color        color = (Color)s.at(2).toInt();
 
     Move  move(color, x, y);
     m_game->doMove(move);
@@ -792,7 +794,7 @@ void KReversi::setState(State newState)
   m_state = newState;
 
   if (m_state == Thinking){
-    kapp->setOverrideCursor(waitCursor);
+    kapp->setOverrideCursor(Qt::waitCursor);
     stopAction->setEnabled(true);
   }
   else {

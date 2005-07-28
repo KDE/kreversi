@@ -25,6 +25,9 @@
 #include <kstdaction.h>
 #include <kmenubar.h>
 #include <kcmenumngr.h>
+//Added by qt3to4:
+#include <QEvent>
+#include <Q3PopupMenu>
 
 
 KZoomMainWindow::KZoomMainWindow(uint min, uint max, uint step, 
@@ -53,8 +56,8 @@ void KZoomMainWindow::init(const char *popupName)
   
   // context popup
   if (popupName) {
-    QPopupMenu *popup =
-      static_cast<QPopupMenu *>(factory()->container(popupName, this));
+    Q3PopupMenu *popup =
+      static_cast<Q3PopupMenu *>(factory()->container(popupName, this));
     Q_ASSERT(popup);
     if (popup)
       KContextMenuManager::insert(this, popup);
@@ -67,7 +70,7 @@ void KZoomMainWindow::addWidget(QWidget *widget)
 
   QWidget          *tlw = widget->topLevelWidget();
   KZoomMainWindow  *zm = 
-    static_cast<KZoomMainWindow *>(tlw->qt_cast("KZoomMainWindow"));
+    static_cast<KZoomMainWindow *>(qobject_cast<KZoomMainWindow*>(tlw));
 
   Q_ASSERT(zm);
   zm->m_widgets.append(widget);
@@ -96,7 +99,7 @@ void KZoomMainWindow::setZoom(uint zoom)
   m_zoom = zoom;
   writeZoomSetting(m_zoom);
 
-  QPtrListIterator<QWidget>  it(m_widgets);
+  Q3PtrListIterator<QWidget>  it(m_widgets);
   for (; it.current(); ++it)
     (*it)->adjustSize();
 

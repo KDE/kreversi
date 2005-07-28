@@ -23,6 +23,9 @@
 
 
 #include <kmainwindow.h>
+//Added by qt3to4:
+#include <QEvent>
+#include <Q3PtrList>
 
 
 class KToggleAction;
@@ -124,7 +127,7 @@ private:
   uint  m_minZoom;
   uint  m_maxZoom;
 
-  QPtrList<QWidget>  m_widgets;
+  Q3PtrList<QWidget>  m_widgets;
 
   KAction        *m_zoomInAction;
   KAction        *m_zoomOutAction;

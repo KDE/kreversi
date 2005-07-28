@@ -40,7 +40,10 @@
 #define __QREVERSIGAMEVIEW__H__
 
 
-#include <qlistbox.h>
+#include <q3listbox.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QLabel>
 
 #include "Score.h"
 #include "Move.h"
@@ -147,7 +150,7 @@ private:
 
   // Widgets in the view.
   QReversiBoardView  *m_boardView;
-  QListBox           *m_movesView;
+  Q3ListBox           *m_movesView;
   StatusWidget       *m_blackStatus;
   StatusWidget       *m_whiteStatus;
 };

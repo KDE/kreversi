@@ -40,6 +40,10 @@
 #include <qlayout.h>
 #include <qwidget.h>
 #include <qlabel.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QHBoxLayout>
+#include <QGridLayout>
 
 #include <klocale.h>
 #include <kdialog.h>
@@ -173,11 +177,11 @@ void QReversiGameView::createView()
 
   // The "Moves" label
   QLabel  *movesLabel = new QLabel( "Moves", this);
-  movesLabel->setAlignment(AlignCenter);
+  movesLabel->setAlignment(Qt::AlignCenter);
   layout->addWidget(movesLabel, 2, 1);
 
   // The list of moves.
-  m_movesView = new QListBox(this, "moves");
+  m_movesView = new Q3ListBox(this, "moves");
   m_movesView->setMinimumWidth(150);
   layout->addWidget(m_movesView, 3, 1);
 }

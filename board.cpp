@@ -41,6 +41,10 @@
 
 #include <qpainter.h>
 #include <qfont.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QPixmap>
+#include <QPaintEvent>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -137,7 +141,7 @@ void QReversiBoardView::setAnimationSpeed(uint speed)
 void QReversiBoardView::mousePressEvent(QMouseEvent *e)
 {
   // Only handle left button.  No context menu.
-  if ( e->button() != LeftButton ) {
+  if ( e->button() != Qt::LeftButton ) {
     e->ignore();
     return;
   }
@@ -168,7 +172,7 @@ void QReversiBoardView::showHint(Move move)
   // was viewing a hint and quits the game window, the game doesn't
   // still have to do all this looping and directly ends.
   QPainter p(this);
-  p.setPen(black);
+  p.setPen(Qt::black);
   m_hintShowing = true;
   for (int flash = 0;
        flash < 100 && m_hintShowing && isVisible(); 
@@ -305,7 +309,7 @@ void QReversiBoardView::rotateChip(uint row, uint col)
 void QReversiBoardView::updateBoard (bool force)
 {
   QPainter  p(this);
-  p.setPen(black);
+  p.setPen(Qt::black);
 
   // If we are showing legal moves, we have to erase the old ones
   // before we can show the new ones.  The easiest way to do that is
@@ -380,9 +384,9 @@ void QReversiBoardView::updateBoard (bool force)
       }
     }
 
-    p.setPen(yellow);
-    p.setBackgroundColor(yellow);
-    p.setBrush(SolidPattern);
+    p.setPen(Qt::yellow);
+    p.setBackgroundColor(Qt::yellow);
+    p.setBrush(Qt::SolidPattern);
 
     //kdDebug() << "Marking last move at [" 
     //      << lastMove.x() << "," << lastMove.y() << "]"
@@ -394,9 +398,9 @@ void QReversiBoardView::updateBoard (bool force)
 
     m_lastMoveShown = lastMove;
 
-    p.setPen(black);
-    p.setBackgroundColor(black);
-    p.setBrush(NoBrush);
+    p.setPen(Qt::black);
+    p.setBackgroundColor(Qt::black);
+    p.setBrush(Qt::NoBrush);
   }
 }
 
@@ -406,7 +410,7 @@ void QReversiBoardView::updateBoard (bool force)
 void QReversiBoardView::showLegalMoves()
 {
   QPainter  p(this);
-  p.setPen(black);
+  p.setPen(Qt::black);
 
   // Get the legal moves in the current position.
   Color     toMove = m_krgame->toMove();
@@ -451,7 +455,7 @@ QPixmap QReversiBoardView::chipPixmap(uint i, uint size) const
           CHIP_SIZE, CHIP_SIZE);
 
   // Resize (scale) the pixmap to the desired size.
-  QWMatrix  wm3;
+  QMatrix  wm3;
   wm3.scale(float(size)/CHIP_SIZE, float(size)/CHIP_SIZE);
 
   return pix.xForm(wm3);
@@ -487,7 +491,7 @@ void QReversiBoardView::drawOnePiece(uint row, uint col, int i)
 	       zoomedSize(), zoomedSize(), bgColor);
 
   // Draw a black border around the square.
-  p.setPen(black);
+  p.setPen(Qt::black);
   p.drawRect(px + offset, py + offset, zoomedSize(), zoomedSize());
 
   // If no piece on the square, i.e. only the background, then return here...
