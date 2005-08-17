@@ -1,3 +1,1 @@
-
-KDE_ICON = kreversi
-
+KDE_ICON = AUTO
