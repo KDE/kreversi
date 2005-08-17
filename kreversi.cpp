@@ -176,11 +176,11 @@ void KReversi::createKActions()
   KStdAction::preferences(this, SLOT(slotEditSettings()), actionCollection());
 
   // Actions for the view(s).
-  showLastMoveAction = new KToggleAction(i18n("Show Last Move"), 0, 
+  showLastMoveAction = new KToggleAction(i18n("Show Last Move"), "lastmoves", 0, 
 					 this, SLOT(slotShowLastMove()),
 					 actionCollection(),
 					 "show_last_move");
-  showLegalMovesAction = new KToggleAction(i18n("Show Legal Moves"), 0, 
+  showLegalMovesAction = new KToggleAction(i18n("Show Legal Moves"), "legalmoves", 0, 
 					   this, SLOT(slotShowLegalMoves()),
 					   actionCollection(),
 					   "show_legal_moves");
