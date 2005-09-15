@@ -1,3 +1,8 @@
+2005-09-15  Inge Wallin  <inge@lysator.liu.se>
+
+	Bump version number for the release of KDE 3.5
+	* version.h: Bump version from 1.6 to 1.7
+
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug where hint and 'show legal moves' didn't work together.
