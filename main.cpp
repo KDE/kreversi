@@ -42,6 +42,7 @@
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <khighscore.h>
+#include <klocale.h>
 
 #include "version.h"
 #include "kreversi.h"
