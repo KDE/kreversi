@@ -43,6 +43,7 @@
 #include <kaboutdata.h>
 #include <khighscore.h>
 #include <klocale.h>
+#include <kglobal.h>
 
 #include "version.h"
 #include "kreversi.h"
