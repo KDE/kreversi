@@ -68,22 +68,21 @@ int main(int argc, char **argv)
 
   KCmdLineArgs::init( argc, argv, &aboutData );
 
-  KApplication a;
+  KApplication application;
   KGlobal::locale()->insertCatalog("libkdegames");
 
   // used for loading background pixmaps
   KImageIO::registerFormats();
   KExtHighscore::ExtManager highscores;
 
-  if (a.isRestored()){
+  if (application.isSessionRestored()){
      RESTORE(KReversi)
   }
   else {
-    KReversi *kreversi = new KReversi;
-    a.setMainWidget(kreversi);
-    kreversi->show();
+    KReversi kreversi;
+    kreversi.show();
   }
 
-  return a.exec();
+  return application.exec();
 }
 
