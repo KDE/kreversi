@@ -79,8 +79,8 @@ int main(int argc, char **argv)
      RESTORE(KReversi)
   }
   else {
-    KReversi kreversi;
-    kreversi.show();
+    KReversi *kreversi = new KReversi;
+    kreversi->show();
   }
 
   return application.exec();
