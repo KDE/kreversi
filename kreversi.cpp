@@ -794,7 +794,7 @@ void KReversi::setState(State newState)
   m_state = newState;
 
   if (m_state == Thinking){
-    kapp->setOverrideCursor(Qt::waitCursor);
+    kapp->setOverrideCursor(Qt::WaitCursor);
     stopAction->setEnabled(true);
   }
   else {
