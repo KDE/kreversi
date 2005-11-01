@@ -25,6 +25,7 @@
 //Added by qt3to4:
 #include <QVector>
 #include <QDateTime>
+#include <kglobal.h>
 
 
 namespace KExtHighscore
@@ -80,7 +81,7 @@ void ExtManager::convertLegacy(uint gameType)
   if ( gameType!=0 )
     return;
 
-  KConfigGroupSaver  cg(kapp->config(), "High Score");
+  KConfigGroupSaver  cg(KGlobal::config(), "High Score");
 
   for (uint i = 1; i <= 10; i++) {
     QString  key = "Pos" + QString::number(i);

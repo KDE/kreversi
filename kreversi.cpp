@@ -59,6 +59,7 @@
 #include <knotifyclient.h>
 #include <knotifydialog.h>
 #include <kexthighscore.h>
+#include <kglobal.h>
 
 #include "Score.h"
 #include "kreversi.h"
@@ -260,7 +261,7 @@ void KReversi::slotNewGame()
 
 void KReversi::slotOpenGame()
 {
-  KConfig *config = kapp->config();
+  KConfig *config = KGlobal::config();
   config->setGroup("Savegame");
 
   if (loadGame(config))
@@ -276,7 +277,7 @@ void KReversi::slotOpenGame()
 
 void KReversi::slotSave()
 {
-  KConfig *config = kapp->config();
+  KConfig *config = KGlobal::config();
   config->setGroup("Savegame");
   saveGame(config);
 
