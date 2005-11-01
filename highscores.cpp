@@ -81,20 +81,20 @@ void ExtManager::convertLegacy(uint gameType)
   if ( gameType!=0 )
     return;
 
-  KConfigGroupSaver  cg(KGlobal::config(), "High Score");
+  KConfigGroup  cg(KGlobal::config(), "High Score");
 
   for (uint i = 1; i <= 10; i++) {
     QString  key = "Pos" + QString::number(i);
-    QString  name = cg.config()->readEntry(key + "Name", QString::null);
+    QString  name = cg.readEntry(key + "Name", QString::null);
 
     if ( name.isEmpty() )
       name = i18n("anonymous");
 
-    uint  score = cg.config()->readUnsignedNumEntry(key + "NumChips", 0);
+    uint  score = cg.readUnsignedNumEntry(key + "NumChips", 0);
     if ( score==0 )
       continue;
 
-    QString    sdate = cg.config()->readEntry(key + "Date", QString::null);
+    QString    sdate = cg.readEntry(key + "Date", QString::null);
     QDateTime  date  = QDateTime::fromString(sdate);
     Score      s(Won);
 
