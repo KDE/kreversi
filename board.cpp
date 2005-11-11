@@ -295,7 +295,7 @@ void QReversiBoardView::rotateChip(uint row, uint col)
 
   for (uint i = from; i != end; i += delta) {
     drawOnePiece(row, col, i);
-    kapp->flushX(); // FIXME: use QCanvas to avoid flicker...
+    kapp->flush(); // FIXME: use QCanvas to avoid flicker...
     usleep(ANIMATION_DELAY * anim_speed);
   }
 }
@@ -458,7 +458,7 @@ QPixmap QReversiBoardView::chipPixmap(uint i, uint size) const
   QMatrix  wm3;
   wm3.scale(float(size)/CHIP_SIZE, float(size)/CHIP_SIZE);
 
-  return pix.xForm(wm3);
+  return pix.transformed(wm3);
 }
 
 
