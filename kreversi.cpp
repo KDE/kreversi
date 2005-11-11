@@ -756,7 +756,7 @@ void KReversi::slotEditSettings()
   Settings      *general = new Settings(0, "General");
 
   dialog->addPage(general, i18n("General"), "package_settings");
-  connect(dialog, SIGNAL(settingsChanged()), this, SLOT(loadSettings()));
+  connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(loadSettings()));
   dialog->show();
 }
 
