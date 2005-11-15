@@ -114,11 +114,11 @@ public:
   bool   wasTurned(uint x, uint y)      const;
 
 private:
-  Q3ValueList<char>  m_turnedPieces;
+  QList<char>  m_turnedPieces;
 };
 
 
-typedef Q3ValueList<Move>            MoveList;
+typedef QList<Move>            MoveList;
 
 
 #endif

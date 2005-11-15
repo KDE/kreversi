@@ -54,7 +54,7 @@
 #include "Move.h"
 #include "Score.h"
 //Added by qt3to4:
-#include <Q3ValueList>
+#include <QList>
 
 
 class Position
@@ -79,7 +79,7 @@ public:
   bool   moveIsPossible(Color color) const;
   bool   moveIsAtAllPossible()       const;
   bool   moveIsLegal(SimpleMove &move)     const;
-  bool   doMove(SimpleMove &move, Q3ValueList<char> *turned = 0);
+  bool   doMove(SimpleMove &move, QList<char> *turned = 0);
   bool   doMove(Move &move);
   bool   undoMove(Move &move);
 
