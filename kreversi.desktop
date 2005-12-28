@@ -1,6 +1,6 @@
 [Desktop Entry]
 Encoding=UTF-8
-Exec=kreversi %i %m -caption "%c"
+Exec=kreversi -caption "%c"
 Name=KReversi
 Name[af]=Kreversi
 Name[bn]=কে-রিভার্সি
