@@ -85,7 +85,7 @@ void ExtManager::convertLegacy(uint gameType)
 
   for (uint i = 1; i <= 10; i++) {
     QString  key = "Pos" + QString::number(i);
-    QString  name = cg.readEntry(key + "Name", QString::null);
+    QString  name = cg.readEntry(key + "Name", QString());
 
     if ( name.isEmpty() )
       name = i18n("anonymous");
@@ -94,7 +94,7 @@ void ExtManager::convertLegacy(uint gameType)
     if ( score==0 )
       continue;
 
-    QString    sdate = cg.readEntry(key + "Date", QString::null);
+    QString    sdate = cg.readEntry(key + "Date", QString());
     QDateTime  date  = QDateTime::fromString(sdate);
     Score      s(Won);
 

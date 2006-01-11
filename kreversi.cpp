@@ -650,7 +650,7 @@ void KReversi::saveGame(KConfig *config)
   slotInterrupt(); 
 
   // Write the data to the config file.
-  config->writeEntry("State",         state());
+  config->writeEntry("State",         int(state()));
   config->writeEntry("Strength",      strength());
   config->writeEntry("Competitive",   (int) m_competitiveGame);
   config->writeEntry("HumanColor",    (int) m_humanColor);
