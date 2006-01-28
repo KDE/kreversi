@@ -72,7 +72,7 @@ int main(int argc, char **argv)
   KGlobal::locale()->insertCatalog("libkdegames");
 
   // used for loading background pixmaps
-  KImageIO::registerFormats();
+  
   KExtHighscore::ExtManager highscores;
 
   if (application.isSessionRestored()){
