@@ -684,7 +684,7 @@ bool KReversi::loadGame(KConfig *config)
 {
   slotInterrupt(); // stop thinking
 
-  uint  nmoves = config->readNumEntry("NumberOfMoves", 0);
+  uint  nmoves = config->readEntry("NumberOfMoves", 0);
   if (nmoves==0) 
     return false;
 
@@ -704,12 +704,12 @@ bool KReversi::loadGame(KConfig *config)
     m_game->doMove(move);
   }
 
-  m_humanColor      = (Color) config->readNumEntry("HumanColor");
-  m_competitiveGame = (bool)  config->readNumEntry("Competitive");
+  m_humanColor      = (Color) config->readEntry("HumanColor",0);
+  m_competitiveGame = (bool)  config->readEntry("Competitive",false);
 
   m_gameView->updateBoard(TRUE);
-  setState(State(config->readNumEntry("State")));
-  setStrength(config->readNumEntry("Strength", 1));
+  setState(State(config->readEntry("State",0)));
+  setStrength(config->readEntry("Strength", 1));
 
   if (interrupted())
     slotContinue();
