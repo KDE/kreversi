@@ -695,7 +695,7 @@ bool KReversi::loadGame(KConfig *config)
     QString  idx;
     idx.sprintf("Move_%d", movenumber++);
 
-    QStringList  s = config->readListEntry(idx, ' ');
+    QStringList  s = config->readEntry(idx, QStringList(), ' ');
     uint         x = s.at(0).toUInt();
     uint         y = s.at(1).toUInt();
     Color        color = (Color)s.at(2).toInt();
