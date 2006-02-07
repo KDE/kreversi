@@ -377,7 +377,7 @@ void QReversiBoardView::updateBoard (bool force)
     int  row = m_lastMoveShown.y();
     if (col != -1 && row != -1) {
       if (lastMove.x() != col || lastMove.y() != row) {
-	//kdDebug() << "Redrawing piece at [" << col << "," << row 
+	//kDebug() << "Redrawing piece at [" << col << "," << row 
 	//  << "] with color " << m_krgame->color(col, row) 
 	//  << endl;
 	drawPiece(row - 1, col - 1, m_krgame->color(col, row));
@@ -388,7 +388,7 @@ void QReversiBoardView::updateBoard (bool force)
     p.setBackgroundColor(Qt::yellow);
     p.setBrush(Qt::SolidPattern);
 
-    //kdDebug() << "Marking last move at [" 
+    //kDebug() << "Marking last move at [" 
     //      << lastMove.x() << "," << lastMove.y() << "]"
     //      << endl;
     int  px = offset + (lastMove.x() - 1) * zoomedSize() + zoomedSize() / 2;

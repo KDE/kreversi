@@ -289,7 +289,7 @@ bool Position::undoMove(Move &move)
   // Sanity checks
   // 1. The move must be on the board and be of the right color.
   if (color != m_board[move.x()][move.y()]) {
-    //kdDebug() << "move on the board is wrong color: " << (int) color << "["
+    //kDebug() << "move on the board is wrong color: " << (int) color << "["
     //      << move.x() << "," << move.y() << "]" << endl;
     return false;
   }
@@ -302,7 +302,7 @@ bool Position::undoMove(Move &move)
     int  sq = *it;
 
     if (m_board[sq / 10][sq % 10] != color) {
-      //kdDebug() << "turned piece the board is wrong color: [" 
+      //kDebug() << "turned piece the board is wrong color: [" 
       //	<< sq / 10 << "," << sq % 10 << "]" << endl;
       return false;
     }

@@ -243,7 +243,7 @@ void KReversi::slotNewGame()
   m_game->newGame();
   m_competitiveGame = Prefs::competitiveGameChoice();
   m_lowestStrength  = strength();
-  //kdDebug() << "Competitive: " << m_competitiveGame << endl;
+  //kDebug() << "Competitive: " << m_competitiveGame << endl;
 
   // Set the state to waiting for the humans move.
   setState(Ready);
