@@ -120,10 +120,10 @@
                             <property name="name">
                                 <cstring>kcfg_skill</cstring>
                             </property>
-                            <property name="minValue">
+                            <property name="minimum">
                                 <number>1</number>
                             </property>
-                            <property name="maxValue">
+                            <property name="maximum">
                                 <number>7</number>
                             </property>
                             <property name="pageStep">
@@ -208,10 +208,10 @@
                             <property name="name">
                                 <cstring>kcfg_AnimationSpeed</cstring>
                             </property>
-                            <property name="minValue">
+                            <property name="minimum">
                                 <number>1</number>
                             </property>
-                            <property name="maxValue">
+                            <property name="maximum">
                                 <number>10</number>
                             </property>
                             <property name="lineStep">
