@@ -6,6 +6,7 @@ Name[x-test]=xxKReversixx
 Type=Application
 DocPath=kreversi/index.html
 GenericName=Reversi Board Game
+GenericName[fr]=Jeu de plateau Reversi
 GenericName[x-test]=xxReversi Board Gamexx
 Terminal=false
 Icon=kreversi
