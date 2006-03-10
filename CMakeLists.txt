@@ -26,7 +26,7 @@ set(kreversi_SRCS
 
 kde4_automoc(${kreversi_SRCS})
 
-kde4_add_ui_files(kreversi_SRCS settings.ui )
+kde4_add_ui3_files(kreversi_SRCS settings.ui )
 
 kde4_add_kcfg_files(kreversi_SRCS prefs.kcfgc )
 
