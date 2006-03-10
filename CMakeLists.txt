@@ -32,7 +32,7 @@ kde4_add_kcfg_files(kreversi_SRCS prefs.kcfgc )
 
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi  ${QT_AND_KDECORE_LIBS} kio )
+target_link_libraries(kreversi  ${LIB_KIO} kdegames )
 
 install_targets(/bin kreversi )
 
