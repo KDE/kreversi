@@ -1,5 +1,5 @@
 kde4_header()
-
+project(kreversi)
 add_subdirectory( pics ) 
 add_subdirectory( sounds ) 
 add_subdirectory( icons ) 
