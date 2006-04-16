@@ -1,6 +1,7 @@
 [!Global!]
 IconName=kreversi
 Comment=KReversi
+Comment[bn]=কে-রিভার্সি
 Comment[ca]=Reversi
 Comment[is]=Viðsnúningur
 Comment[ru]=Реверси
