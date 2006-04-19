@@ -82,7 +82,7 @@
 
 
 KReversi::KReversi()
-  : KZoomMainWindow(10, 300, 5, "kreversi"), 
+  : KZoomMainWindow(10, 300, 5, "kreversi"),
     m_gameOver(false)
 {
   QWidget     *w;
@@ -99,7 +99,7 @@ KReversi::KReversi()
   // The Engine
   m_engine = new Engine();
   setStrength(1);
-  
+
   // The visual stuff
   w = new QWidget(this);
   setCentralWidget(w);
@@ -120,7 +120,7 @@ KReversi::KReversi()
   // indicator of whose turn it is in the status bar.  The rest is
   // in the game view.
   connect(m_game, SIGNAL(sig_newGame()),  this, SLOT(showTurn()));
-  connect(m_game, SIGNAL(sig_move(uint, Move&)), 
+  connect(m_game, SIGNAL(sig_move(uint, Move&)),
 	  this,   SLOT(handleMove(uint, Move&))); // Calls showTurn().
   connect(m_game, SIGNAL(sig_update()),   this, SLOT(showTurn()));
   connect(m_game, SIGNAL(sig_gameOver()), this, SLOT(slotGameOver()));
@@ -153,7 +153,7 @@ KReversi::~KReversi()
 void KReversi::createKActions()
 {
   // Standard Game Actions.
-  KStdGameAction::gameNew(this, SLOT(slotNewGame()),  actionCollection(), 
+  KStdGameAction::gameNew(this, SLOT(slotNewGame()),  actionCollection(),
 			  "game_new");
   KStdGameAction::load(this,    SLOT(slotOpenGame()), actionCollection());
   KStdGameAction::save(this,    SLOT(slotSave()),     actionCollection());
@@ -179,14 +179,15 @@ void KReversi::createKActions()
   KStdAction::preferences(this, SLOT(slotEditSettings()), actionCollection());
 
   // Actions for the view(s).
-  showLastMoveAction = new KToggleAction(i18n("Show Last Move"), "lastmoves", 
-					 this, SLOT(slotShowLastMove()),
-					 actionCollection(),
-					 "show_last_move");
-  showLegalMovesAction = new KToggleAction(i18n("Show Legal Moves"), "legalmoves", 
-					   this, SLOT(slotShowLegalMoves()),
+  showLastMoveAction = new KToggleAction( "lastmoves", i18n( "Show Last Move" ),
+                                          actionCollection(),
+                                          "show_last_move");
+  connect( showLastMoveAction, SIGNAL( triggered( bool ) ), SLOT( slotShowLastMove() ) );
+
+  showLegalMovesAction = new KToggleAction( "legalmoves", i18n("Show Legal Moves"),
 					   actionCollection(),
 					   "show_legal_moves");
+  connect( showLegalMovesAction, SIGNAL( triggered( bool ) ), SLOT( slotShowLegalMoves() ) );
 }
 
 
@@ -289,7 +290,7 @@ void KReversi::slotHint()
 {
   Move  move;
 
-  if (state() != Ready) 
+  if (state() != Ready)
     return;
 
   setState(Thinking);
@@ -366,7 +367,7 @@ void KReversi::slotContinue()
 
 // Turn on or off showing of legal moves in the board view.
 
-void KReversi::slotShowLastMove() 
+void KReversi::slotShowLastMove()
 {
   m_gameView->setShowLastMove(showLastMoveAction->isChecked());
 }
@@ -374,7 +375,7 @@ void KReversi::slotShowLastMove()
 
 // Turn on or off showing of legal moves in the board view.
 
-void KReversi::slotShowLegalMoves() 
+void KReversi::slotShowLegalMoves()
 {
   m_gameView->setShowLegalMoves(showLegalMovesAction->isChecked());
 }
@@ -382,7 +383,7 @@ void KReversi::slotShowLegalMoves()
 
 void KReversi::slotSwitchSides()
 {
-  if (state() != Ready) 
+  if (state() != Ready)
     return;
 
   if (interrupted()) {
@@ -396,7 +397,7 @@ void KReversi::slotSwitchSides()
     int res = KMessageBox::warningContinueCancel(this,
 						 i18n("If you switch side, your score will not be added to the highscores."),
 						 QString(), QString(), "switch_side_warning");
-    if ( res==KMessageBox::Cancel ) 
+    if ( res==KMessageBox::Cancel )
       return;
 
     m_cheating = true;
@@ -461,12 +462,12 @@ void KReversi::showTurn()
 
 void KReversi::showTurn(Color color)
 {
-  // If we are not playing, do nothing. 
+  // If we are not playing, do nothing.
   if (m_gameOver)
     return;
 
   if (color == humanColor())
-    statusBar()->message(i18n("Your turn"));
+    statusBar()->showMessage(i18n("Your turn"));
   else if (color == computerColor()) {
     QString  message = i18n("Computer's turn");
 
@@ -474,10 +475,10 @@ void KReversi::showTurn(Color color)
     // middle state when called from slotInterrupt().
     if (m_state == Thinking)
       message += i18n(" (interrupted)");
-    statusBar()->message(message);
+    statusBar()->showMessage(message);
   }
   else
-    statusBar()->clear();
+    statusBar()->clearMessage();
 }
 
 
@@ -509,7 +510,7 @@ void KReversi::slotGameOver()
 
 void KReversi::humanMakeMove(int row, int col)
 {
-  if (state() != Ready) 
+  if (state() != Ready)
     return;
 
   Color color = m_game->toMove();
@@ -547,7 +548,7 @@ void KReversi::computerMakeMove()
 
   if (!m_game->moveIsPossible(color))
     return;
- 
+
   // Make computer moves until the human can play or until the game is over.
   setState(Thinking);
   do {
@@ -591,13 +592,13 @@ void KReversi::illegalMove()
 // Show things when the game is over.
 //
 
-void KReversi::showGameOver(Color color) 
+void KReversi::showGameOver(Color color)
 {
   // If the game already was over, do nothing.
   if (m_gameOver)
     return;
 
-  statusBar()->message(i18n("End of game"));
+  statusBar()->showMessage(i18n("End of game"));
 
   // Get the scores.
   uint human    = m_game->score(humanColor());
@@ -605,7 +606,7 @@ void KReversi::showGameOver(Color color)
 
   KExtHighscore::Score score;
   score.setScore(m_game->score(humanColor()));
-  
+
   // Show the winner in a messagebox.
   if ( color == Nobody ) {
     KNotifyClient::event(winId(), "draw", i18n("Draw!"));
@@ -620,7 +621,7 @@ void KReversi::showGameOver(Color color)
                  human, computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Won);
-  } 
+  }
   else {
     KNotifyClient::event(winId(), "lost", i18n("Game lost!"));
     QString s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2",
@@ -628,7 +629,7 @@ void KReversi::showGameOver(Color color)
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Lost);
   }
-  
+
   // Store the result in the highscore file if no cheating was done,
   // and only if the game was competitive.
   if (!m_cheating && m_competitiveGame) {
@@ -639,7 +640,7 @@ void KReversi::showGameOver(Color color)
 }
 
 
-// Saves the game in the config file.  
+// Saves the game in the config file.
 //
 // Only one game at a time can be saved.
 //
@@ -647,7 +648,7 @@ void KReversi::showGameOver(Color color)
 void KReversi::saveGame(KConfig *config)
 {
   // Stop thinking.
-  slotInterrupt(); 
+  slotInterrupt();
 
   // Write the data to the config file.
   config->writeEntry("State",         int(state()));
@@ -674,7 +675,7 @@ void KReversi::saveGame(KConfig *config)
   config->sync();
 
   // Continue with the move if applicable.
-  slotContinue(); 
+  slotContinue();
 }
 
 
@@ -685,7 +686,7 @@ bool KReversi::loadGame(KConfig *config)
   slotInterrupt(); // stop thinking
 
   uint  nmoves = config->readEntry("NumberOfMoves", 0);
-  if (nmoves==0) 
+  if (nmoves==0)
     return false;
 
   m_game->newGame();
@@ -751,7 +752,7 @@ void KReversi::slotEditSettings()
   if (KConfigDialog::showDialog("settings"))
     return;
 
-  KConfigDialog *dialog  = new KConfigDialog(this, "settings", Prefs::self(), 
+  KConfigDialog *dialog  = new KConfigDialog(this, "settings", Prefs::self(),
 					     KDialogBase::Swallow);
   Settings      *general = new Settings(0, "General");
 

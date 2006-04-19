@@ -77,9 +77,10 @@ const uint  CHIP_SIZE             = 36;
 
 
 QReversiBoardView::QReversiBoardView(QWidget *parent, QReversiGame *krgame)
-    : QWidget(parent, "board"),
+    : QWidget(parent),
       chiptype(Unloaded)
 {
+  setObjectName( "board" );
   m_krgame = krgame;
 
   m_marksShowing      = true;
@@ -150,7 +151,7 @@ void QReversiBoardView::mousePressEvent(QMouseEvent *e)
   int px = e->pos().x()- 1 - offset;
   int py = e->pos().y()- 1 - offset;
 
-  if (px < 0 || px >= 8 * (int) zoomedSize() 
+  if (px < 0 || px >= 8 * (int) zoomedSize()
       || py < 0 || py >= 8 * (int) zoomedSize()) {
     e->ignore();
     return;
@@ -175,7 +176,7 @@ void QReversiBoardView::showHint(Move move)
   p.setPen(Qt::black);
   m_hintShowing = true;
   for (int flash = 0;
-       flash < 100 && m_hintShowing && isVisible(); 
+       flash < 100 && m_hintShowing && isVisible();
        flash++)
   {
     if (flash & 1) {
@@ -213,7 +214,7 @@ void QReversiBoardView::quitHint()
 
 
 void QReversiBoardView::setShowLegalMoves(bool show)
-{ 
+{
   m_legalMovesShowing = show;
   updateBoard(true);
 }
@@ -347,18 +348,18 @@ void QReversiBoardView::updateBoard (bool force)
       uint   charWidth = metrics.charWidth("ABCDEFGH", i);
 
       // The horizontal letters
-      p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
+      p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2,
 		 offset - charHeight / 2 + 2,
 		 QString(letter));
-      p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2, 
+      p.drawText(offset + i * zoomedSize() + (zoomedSize() - charWidth) / 2,
 		 offset + 8 * zoomedSize() + offset - charHeight / 2 + 2,
 		 QString(letter));
 
       // The vertical numbers
-      p.drawText((offset - charWidth) / 2 + 2, 
+      p.drawText((offset - charWidth) / 2 + 2,
 		 offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
 		 QString(number));
-      p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2 + 2, 
+      p.drawText(offset + 8 * zoomedSize() + (offset - charWidth) / 2 + 2,
 		 offset + (i + 1) * zoomedSize() - charHeight / 2 + 2,
 		 QString(number));
     }
@@ -377,8 +378,8 @@ void QReversiBoardView::updateBoard (bool force)
     int  row = m_lastMoveShown.y();
     if (col != -1 && row != -1) {
       if (lastMove.x() != col || lastMove.y() != row) {
-	//kDebug() << "Redrawing piece at [" << col << "," << row 
-	//  << "] with color " << m_krgame->color(col, row) 
+	//kDebug() << "Redrawing piece at [" << col << "," << row
+	//  << "] with color " << m_krgame->color(col, row)
 	//  << endl;
 	drawPiece(row - 1, col - 1, m_krgame->color(col, row));
       }
@@ -388,7 +389,7 @@ void QReversiBoardView::updateBoard (bool force)
     p.setBackgroundColor(Qt::yellow);
     p.setBrush(Qt::SolidPattern);
 
-    //kDebug() << "Marking last move at [" 
+    //kDebug() << "Marking last move at ["
     //      << lastMove.x() << "," << lastMove.y() << "]"
     //      << endl;
     int  px = offset + (lastMove.x() - 1) * zoomedSize() + zoomedSize() / 2;
@@ -427,7 +428,7 @@ void QReversiBoardView::drawSmallCircle(int x, int y, QPainter &p)
 {
   int offset      = m_marksShowing ? OFFSET() : 0;
   int ellipseSize = zoomedSize() / 3;
- 
+
   int  px = offset + (x - 1) * zoomedSize() + zoomedSize() / 2;
   int  py = offset + (y - 1) * zoomedSize() + zoomedSize() / 2;
 
@@ -487,7 +488,7 @@ void QReversiBoardView::drawOnePiece(uint row, uint col, int i)
     p.drawTiledPixmap(px + offset, py + offset,
 		      zoomedSize(), zoomedSize(), bg, px, py);
   else
-    p.fillRect(px + offset, py + offset, 
+    p.fillRect(px + offset, py + offset,
 	       zoomedSize(), zoomedSize(), bgColor);
 
   // Draw a black border around the square.
@@ -526,12 +527,14 @@ void QReversiBoardView::adjustSize()
 
 void QReversiBoardView::setPixmap(QPixmap &pm)
 {
-  if ( pm.width() == 0 ) 
+  if ( pm.width() == 0 )
     return;
 
   bg = pm;
   update();
-  setErasePixmap(pm);
+  QPalette palette;
+  palette.setBrush( backgroundRole(), QBrush( pm ) );
+  setPalette( palette );
 }
 
 
@@ -540,7 +543,9 @@ void QReversiBoardView::setColor(const QColor &c)
   bgColor = c;
   bg = QPixmap();
   update();
-  setEraseColor(c);
+  QPalette palette;
+  palette.setColor( backgroundRole(), c );
+  setPalette( palette );
 }
 
 

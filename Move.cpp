@@ -114,5 +114,5 @@ bool Move::wasTurned(uint x, uint y) const
 {
   // findIndex returns the first index where the item is found, or -1
   // if not found.
-  return (m_turnedPieces.findIndex(10 * x + y) != -1);
+  return (m_turnedPieces.indexOf(10 * x + y) != -1);
 }

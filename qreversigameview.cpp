@@ -76,9 +76,12 @@
 
 
 StatusWidget::StatusWidget(const QString &text, QWidget *parent)
-  : QWidget(parent, "status_widget")
+  : QWidget(parent)
 {
-  QHBoxLayout  *hbox  = new QHBoxLayout(this, 0, KDialog::spacingHint());
+  setObjectName( "status_widget" );
+  QHBoxLayout  *hbox  = new QHBoxLayout(this);
+  hbox->setMargin( 0 );
+  hbox->setSpacing( KDialog::spacingHint() );
   QLabel       *label;
 
   m_textLabel = new QLabel(text, this);
@@ -127,8 +130,9 @@ void StatusWidget::setScore(uint s)
 
 
 QReversiGameView::QReversiGameView(QWidget *parent, QReversiGame *game)
-  : QWidget(parent, "gameview")
+  : QWidget(parent)
 {
+  setObjectName( "gameview" );
   // Store a pointer to the game.
   m_game = game;
 
