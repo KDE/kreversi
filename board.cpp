@@ -386,7 +386,7 @@ void QReversiBoardView::updateBoard (bool force)
     }
 
     p.setPen(Qt::yellow);
-    p.setBackgroundColor(Qt::yellow);
+    p.setBackground(Qt::yellow);
     p.setBrush(Qt::SolidPattern);
 
     //kDebug() << "Marking last move at ["
@@ -400,7 +400,7 @@ void QReversiBoardView::updateBoard (bool force)
     m_lastMoveShown = lastMove;
 
     p.setPen(Qt::black);
-    p.setBackgroundColor(Qt::black);
+    p.setBackground(Qt::black);
     p.setBrush(Qt::NoBrush);
   }
 }
@@ -452,7 +452,8 @@ QPixmap QReversiBoardView::chipPixmap(uint i, uint size) const
   // Get the part of the 'allchips' pixmap that contains exactly that
   // chip that we want to use.
   QPixmap  pix(CHIP_SIZE, CHIP_SIZE);
-  copyBlt(&pix, 0, 0, &allchips, (i%5) * CHIP_SIZE, (i/5) * CHIP_SIZE,
+  QPainter p(&pix);
+  p.drawPixmap( 0, 0, allchips, (i%5) * CHIP_SIZE, (i/5) * CHIP_SIZE,
           CHIP_SIZE, CHIP_SIZE);
 
   // Resize (scale) the pixmap to the desired size.

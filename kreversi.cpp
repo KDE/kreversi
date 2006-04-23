@@ -104,11 +104,11 @@ KReversi::KReversi()
   w = new QWidget(this);
   setCentralWidget(w);
 
-  top = new QGridLayout(w, 2, 2);
+  top = new QGridLayout(w);
 
   // The reversi game view.
   m_gameView = new QReversiGameView(w, m_game);
-  top->addMultiCellWidget(m_gameView, 0, 1, 0, 0);
+  top->addWidget(m_gameView, 0, 0, 2, 1);
 
   // Populate the GUI.
   createKActions();

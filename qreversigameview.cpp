@@ -164,12 +164,12 @@ QReversiGameView::~QReversiGameView()
 
 void QReversiGameView::createView()
 {
-  QGridLayout  *layout = new QGridLayout(this, 4, 2);
+  QGridLayout  *layout = new QGridLayout(this);
 
   // The board
   m_boardView = new QReversiBoardView(this, m_game);
   m_boardView->loadSettings();	// Load the pixmaps used in the status widgets.
-  layout->addMultiCellWidget(m_boardView, 0, 3, 0, 0);
+  layout->addWidget(m_boardView, 0, 0, 4, 1);
 
   // The status widgets
   m_blackStatus = new StatusWidget(QString::null, this);
