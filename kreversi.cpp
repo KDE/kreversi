@@ -204,7 +204,7 @@ void KReversi::setStrength(uint strength)
   // FIXME: 7 should be MAXSTRENGTH or something similar.
   Q_ASSERT( 1 <= strength && strength <= 7 );
 
-  strength = QMAX(QMIN(strength, (uint)7), (uint)1);
+  strength = qMax(qMin(strength, (uint)7), (uint)1);
   m_engine->setStrength(strength);
   if (m_lowestStrength < strength)
     m_lowestStrength = strength;
