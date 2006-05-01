@@ -48,8 +48,6 @@ xdg_apps_DATA = kreversi.desktop
 kde_kcfg_DATA = kreversi.kcfg
 
 
-messages: rc.cpp
-	$(XGETTEXT) *.cpp -o $(podir)/kreversi.pot
 
 # for system-wide highscore file
 DESTBIN = $(DESTDIR)$(bindir)/$(bin_PROGRAMS)
