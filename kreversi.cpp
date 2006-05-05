@@ -164,15 +164,13 @@ void KReversi::createKActions()
 		       "game_undo");
 
   // Non-standard Game Actions: Stop, Continue, Switch sides
-  stopAction = new KAction(i18n("&Stop Thinking"), "game_stop", Qt::Key_Escape,
-			   this, SLOT(slotInterrupt()), actionCollection(),
-			   "game_stop");
-  continueAction = new KAction(i18n("&Continue Thinking"), "reload", 0,
-			       this, SLOT(slotContinue()), actionCollection(),
-			       "game_continue");
-  new KAction(i18n("S&witch Sides"), 0, 0,
-	      this, SLOT(slotSwitchSides()), actionCollection(),
-	      "game_switch_sides");
+  stopAction = new KAction(KIcon("game_stop"), i18n("&Stop Thinking"), actionCollection(), "game_stop");
+  connect(stopAction, SIGNAL(triggered(bool) ), SLOT(slotInterrupt()));
+  stopAction->setShortcut(Qt::Key_Escape);
+  continueAction = new KAction(KIcon("reload"), i18n("&Continue Thinking"), actionCollection(), "game_continue");
+  connect(continueAction, SIGNAL(triggered(bool) ), SLOT(slotContinue()));
+  KAction *action = new KAction(i18n("S&witch Sides"), actionCollection(), "game_switch_sides");
+  connect(action, SIGNAL(triggered(bool) ), SLOT(slotSwitchSides()));
 
   // Some more standard game actions: Highscores, Settings.
   KStdGameAction::highscores(this, SLOT(showHighScoreDialog()), actionCollection());
