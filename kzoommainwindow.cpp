@@ -28,7 +28,7 @@
 #include <QEvent>
 #include <Q3PopupMenu>
 #include <kxmlguifactory.h>
-
+#include <ktoggleaction.h>
 
 KZoomMainWindow::KZoomMainWindow(uint min, uint max, uint step, 
 				 const char *name)

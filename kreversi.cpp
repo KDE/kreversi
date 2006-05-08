@@ -60,6 +60,8 @@
 #include <knotifydialog.h>
 #include <kexthighscore.h>
 #include <kglobal.h>
+#include <ktoggleaction.h>
+#include <kstdaction.h>
 
 #include "Score.h"
 #include "kreversi.h"
