@@ -37,9 +37,9 @@
  */
 
 
-#include <qlayout.h>
-#include <qwidget.h>
-#include <qlabel.h>
+#include <QLayout>
+#include <QWidget>
+#include <QLabel>
 //Added by qt3to4:
 #include <QPixmap>
 #include <QHBoxLayout>
@@ -52,7 +52,7 @@
 #include <unistd.h>
 
 #include <qpainter.h>
-#include <qfont.h>
+#include <QFont>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>

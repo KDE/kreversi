@@ -40,7 +40,7 @@
 #include <unistd.h>
 
 #include <qpainter.h>
-#include <qfont.h>
+#include <QFont>
 //Added by qt3to4:
 #include <QMouseEvent>
 #include <QPixmap>

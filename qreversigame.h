@@ -39,7 +39,7 @@
 #ifndef __QREVERSIGAME__H__
 #define __QREVERSIGAME__H__
 
-#include <qwidget.h>
+#include <QWidget>
 #include <qpixmap.h>
 
 #include "Position.h"
