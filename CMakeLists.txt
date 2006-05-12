@@ -1,4 +1,3 @@
-kde4_header()
 project(kreversi)
 add_subdirectory( pics ) 
 add_subdirectory( sounds ) 
@@ -43,7 +42,6 @@ install_files( ${XDG_APPS_DIR} FILES kreversi.desktop )
 install_files( ${KCFG_INSTALL_DIR} FILES kreversi.kcfg )
 install_files( ${DATA_INSTALL_DIR}/kreversi FILES kreversiui.rc )
 
-kde4_footer()
 
 
 

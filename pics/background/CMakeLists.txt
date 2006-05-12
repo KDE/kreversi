@@ -1,4 +1,3 @@
-kde4_header()
 
 
 
@@ -7,7 +6,6 @@ kde4_header()
 
 install_files( ${DATA_INSTALL_DIR}/kreversi/pics/background FILES Dark_Wood.png Granite.png Light_Wood.png Ocean.png Puzzle.png  Earth.png Hexagon.png  Mystique.png Pipes.png Stones.png )
 
-kde4_footer()
 
 
 

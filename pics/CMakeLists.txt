@@ -1,4 +1,3 @@
-kde4_header()
 
 add_subdirectory( background ) 
 
@@ -9,7 +8,6 @@ add_subdirectory( background )
 
 install_files( ${DATA_INSTALL_DIR}/kreversi/pics FILES chips.png chips_mono.png )
 
-kde4_footer()
 
 
 

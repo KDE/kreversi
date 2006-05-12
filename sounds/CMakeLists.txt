@@ -1,4 +1,3 @@
-kde4_header()
 
 
 
@@ -8,7 +7,6 @@ kde4_header()
 install_files( ${DATA_INSTALL_DIR}/kreversi FILES eventsrc )
 install_files( ${DATA_INSTALL_DIR}/kreversi/sounds FILES reversi-click.wav reversi-won.wav )
 
-kde4_footer()
 
 
 
