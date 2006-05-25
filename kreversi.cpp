@@ -97,6 +97,7 @@ KReversi::KReversi()
   m_cheating   = false;
   m_gameOver   = false;
   m_humanColor = Black;
+  m_lowestStrength = 1;
 
   // The Engine
   m_engine = new Engine();
@@ -179,12 +180,12 @@ void KReversi::createKActions()
   KStdAction::preferences(this, SLOT(slotEditSettings()), actionCollection());
 
   // Actions for the view(s).
-  showLastMoveAction = new KToggleAction( "lastmoves", i18n( "Show Last Move" ),
+  showLastMoveAction = new KToggleAction( KIcon("lastmoves"), i18n( "Show Last Move" ),
                                           actionCollection(),
                                           "show_last_move");
   connect( showLastMoveAction, SIGNAL( triggered( bool ) ), SLOT( slotShowLastMove() ) );
 
-  showLegalMovesAction = new KToggleAction( "legalmoves", i18n("Show Legal Moves"),
+  showLegalMovesAction = new KToggleAction( KIcon("legalmoves"), i18n("Show Legal Moves"),
 					   actionCollection(),
 					   "show_legal_moves");
   connect( showLegalMovesAction, SIGNAL( triggered( bool ) ), SLOT( slotShowLegalMoves() ) );

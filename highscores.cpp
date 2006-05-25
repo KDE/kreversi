@@ -90,7 +90,7 @@ void ExtManager::convertLegacy(uint gameType)
     if ( name.isEmpty() )
       name = i18n("anonymous");
 
-    uint  score = cg.readUnsignedNumEntry(key + "NumChips", 0);
+    uint  score = cg.readEntry(key + "NumChips", (uint)0);
     if ( score==0 )
       continue;
 
