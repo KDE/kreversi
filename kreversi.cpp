@@ -754,7 +754,7 @@ void KReversi::slotEditSettings()
     return;
 
   KConfigDialog *dialog  = new KConfigDialog(this, "settings", Prefs::self(),
-					     KDialogBase::Swallow);
+					     KPageDialog::Plain);
   Settings      *general = new Settings(0, "General");
 
   dialog->addPage(general, i18n("General"), "package_settings");
