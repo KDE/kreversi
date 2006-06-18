@@ -349,7 +349,7 @@ void KReversi::slotUndo()
 
 void KReversi::slotInterrupt()
 {
-  m_engine->setInterrupt(TRUE);
+  m_engine->setInterrupt(true);
 
   // Indicate that the computer was interrupted.
   showTurn();
@@ -709,7 +709,7 @@ bool KReversi::loadGame(KConfig *config)
   m_humanColor      = (Color) config->readEntry("HumanColor",0);
   m_competitiveGame = (bool)  config->readEntry("Competitive",false);
 
-  m_gameView->updateBoard(TRUE);
+  m_gameView->updateBoard(true);
   setState(State(config->readEntry("State",0)));
   setStrength(config->readEntry("Strength", 1));
 

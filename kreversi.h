@@ -79,7 +79,7 @@ public:
   // Methods that deal with the engine.
   void   setStrength(uint);
   uint   strength() const         { return m_engine->strength();   }
-  void   interrupt()              { m_engine->setInterrupt(TRUE);  }
+  void   interrupt()              { m_engine->setInterrupt(true);  }
   bool   interrupted() const      { return (m_game->toMove() == computerColor()
 					    && m_state == Ready);  }
 
