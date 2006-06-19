@@ -6,6 +6,7 @@ Comment[ca]=Reversi
 Comment[is]=Viðsnúningur
 Comment[ru]=Реверси
 Comment[sv]=Othello
+Comment[zh_TW]=KReversi 黑白棋
 
 [click]
 Name=Click
@@ -50,6 +51,7 @@ Name[tg]=Ангуштзанӣ
 Name[tr]=Tık
 Name[uk]=Клац
 Name[zh_CN]=单击
+Name[zh_TW]=點選
 Comment=Click
 Comment[bg]=Щракване
 Comment[bn]=ক্লিক
@@ -93,6 +95,7 @@ Comment[tg]=Ангушт задан
 Comment[tr]=Tık
 Comment[uk]=Клац
 Comment[zh_CN]=单击
+Comment[zh_TW]=點選
 default_presentation=1
 default_sound=kreversi-click.wav
 
@@ -343,6 +346,7 @@ Name[tg]=Кашидан
 Name[tr]=Berabere
 Name[uk]=Нічия
 Name[zh_CN]=平局
+Name[zh_TW]=平手
 Comment=Draw
 Comment[bg]=Равенство
 Comment[bn]=অমীমাংসিত
@@ -386,6 +390,7 @@ Comment[tg]=Кашидан
 Comment[tr]=Beraberlik
 Comment[uk]=нічия
 Comment[zh_CN]=平局
+Comment[zh_TW]=平手
 default_presentation=0
 
 [illegal_move]
@@ -431,6 +436,7 @@ Name[tg]=Ҳаракати Нодуруст
 Name[tr]=Gecersiz Hamle
 Name[uk]=Недозволений хід
 Name[zh_CN]=无效移动
+Name[zh_TW]=不合法的移動
 Comment=Illegal move
 Comment[bg]=Невалиден ход
 Comment[bn]=অবৈধ চাল
@@ -473,4 +479,5 @@ Comment[ta]=தவறான நகர்த்தல்
 Comment[tr]=Geçersiz hamle
 Comment[uk]=Недозволений хід
 Comment[zh_CN]=无效移动
+Comment[zh_TW]=不合法的移動
 default_presentation=0
