@@ -195,7 +195,7 @@ void QReversiGameView::createView()
 //                              Slots
 
 
-// Recieves the sig_newGame signal from the game.
+// Receives the sig_newGame signal from the game.
 
 void QReversiGameView::newGame()
 {
@@ -205,7 +205,7 @@ void QReversiGameView::newGame()
 }
 
 
-// Recieves the sig_move signal from the game.
+// Receives the sig_move signal from the game.
 
 void QReversiGameView::moveMade(uint moveNum, Move &move)
 {
@@ -230,7 +230,7 @@ void QReversiGameView::moveMade(uint moveNum, Move &move)
 }
 
 
-// Recieves the sig_update signal from the game, and can be called
+// Receives the sig_update signal from the game, and can be called
 // whenever a total update of the view is required.
 
 void QReversiGameView::updateView()
