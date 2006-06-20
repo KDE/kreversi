@@ -180,7 +180,7 @@ void QReversiGameView::createView()
   layout->addWidget(m_whiteStatus, 1, 1);
 
   // The "Moves" label
-  QLabel  *movesLabel = new QLabel( "Moves", this);
+  QLabel  *movesLabel = new QLabel( i18n("Moves"), this);
   movesLabel->setAlignment(Qt::AlignCenter);
   layout->addWidget(movesLabel, 2, 1);
 
