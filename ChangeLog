@@ -1,3 +1,15 @@
+2006-07-02  Inge Wallin  <inge@lysator.liu.se>
+
+	* qreversigameview.cpp (moveMade): Print color Red/Blue in
+	addition to White/Black into the game view if non-BW color is
+	chosen in the preferences.
+
+
+	----------------------------------------------------------------
+	New start of ChangeLogging
+	----------------------------------------------------------------
+
+
 2005-04-04  Inge Wallin  <inge@lysator.liu.se>
 
 	Fix bug where hint and 'show legal moves' didn't work together.
