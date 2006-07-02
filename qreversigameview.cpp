@@ -59,9 +59,9 @@
 #include <kdebug.h>
 
 #include "board.h"
-#include "prefs.h"
 #include "Engine.h"
 #endif
+#include "prefs.h"
 
 #include "qreversigame.h"
 #include "qreversigameview.h"
@@ -202,14 +202,21 @@ void QReversiGameView::newGame()
 void QReversiGameView::moveMade(uint moveNum, Move &move)
 {
   //FIXME: Error checks.
-  QString colors[] = {
+  QString colorsWB[] = {
     i18n("White"),
     i18n("Black")
   };
+  QString colorsRB[] = {
+    i18n("Red"),
+    i18n("Blue")
+  };
 
   // Insert the new move in the listbox and mark it as the current one.
-  m_movesView->insertItem(QString("%1. %2 %3").arg(moveNum)
-			  .arg(colors[move.color()]).arg(move.asString()));
+  m_movesView->insertItem(QString("%1. %2 %3")
+			  .arg(moveNum)
+			  .arg(Prefs::grayscale() ? colorsWB[move.color()]
+			       : colorsRB[move.color()])
+			  .arg(move.asString()));
   m_movesView->setCurrentItem(moveNum - 1);
   m_movesView->ensureCurrentVisible();
 
