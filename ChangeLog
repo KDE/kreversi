@@ -1,5 +1,10 @@
 2006-07-03  Inge Wallin  <inge@lysator.liu.se>
 
+	* kreversi.cpp (slotGameOver): Set state back to Ready after the
+	game is finished, and before showing highscore.
+
+2006-07-03  Inge Wallin  <inge@lysator.liu.se>
+
 	* Position.cpp (undoMove): Keep track of score when undoing a
 	move.
 
