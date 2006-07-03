@@ -1,3 +1,11 @@
+2006-07-03  Inge Wallin  <inge@lysator.liu.se>
+
+	* Position.cpp (undoMove): Keep track of score when undoing a
+	move.
+
+	* qreversigameview.h (removeMove): show game status after removing
+	a move.
+	
 2006-07-02  Inge Wallin  <inge@lysator.liu.se>
 
 	* qreversigameview.cpp (moveMade): Print color Red/Blue in

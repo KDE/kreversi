@@ -316,10 +316,14 @@ bool Position::undoMove(Move &move)
     int  sq = *it;
 
     m_board[sq / 10][sq % 10] = other;
+    m_score.dec(color);
+    m_score.inc(other);
   }
 
   // 2. Remove the move itself.
+  m_score.dec(color);
   m_board[move.x()][move.y()] = Nobody;
+
 
   return true;
 }
