@@ -1,5 +1,10 @@
 2006-07-03  Inge Wallin  <inge@lysator.liu.se>
 
+	* kreversi.cpp (slotGameOver): Set state back to Ready after the
+	game is finished, and before showing highscore.
+
+2006-07-03  Inge Wallin  <inge@lysator.liu.se>
+
 	* version.h (KREVERSI_VERSION): Update version to 1.7.1 for KDE
 	3.5.4.
 

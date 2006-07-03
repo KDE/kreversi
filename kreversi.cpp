@@ -486,6 +486,8 @@ void KReversi::slotGameOver()
   uint  black = m_game->score(Black);
   uint  white = m_game->score(White);
 
+  setState(Ready);
+
   if (black > white)
     showGameOver(Black);
   else if (black < white)
