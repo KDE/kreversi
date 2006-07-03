@@ -100,7 +100,10 @@ public:
   // Proxy methods for the movelist
   // FIXME: Not all of these need to be externally reachable
   void insertMove(QString moveString) { m_movesView->insertItem(moveString); }
-  void removeMove(int moveNum) { m_movesView->removeItem(moveNum); }
+  void removeMove(int moveNum) { 
+    m_movesView->removeItem(moveNum); 
+    updateStatus();
+  }
   void setCurrentMove(int moveNum) { 
     m_movesView->setCurrentItem(moveNum); 
     m_movesView->ensureCurrentVisible();
