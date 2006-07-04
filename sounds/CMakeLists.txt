@@ -4,8 +4,8 @@
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kreversi FILES eventsrc )
-install_files( ${DATA_INSTALL_DIR}/kreversi/sounds FILES reversi-click.wav reversi-won.wav )
+install( FILES eventsrc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
+install( FILES reversi-click.wav reversi-won.wav  DESTINATION  ${DATA_INSTALL_DIR}/kreversi/sounds )
 
 
 

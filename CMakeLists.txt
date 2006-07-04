@@ -38,9 +38,9 @@ install_targets(/bin kreversi )
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES kreversi.desktop )
-install_files( ${KCFG_INSTALL_DIR} FILES kreversi.kcfg )
-install_files( ${DATA_INSTALL_DIR}/kreversi FILES kreversiui.rc )
+install( FILES kreversi.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
+install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
 
 
 

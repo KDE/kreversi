@@ -6,7 +6,7 @@ add_subdirectory( background )
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kreversi/pics FILES chips.png chips_mono.png )
+install( FILES chips.png chips_mono.png  DESTINATION  ${DATA_INSTALL_DIR}/kreversi/pics )
 
 
 

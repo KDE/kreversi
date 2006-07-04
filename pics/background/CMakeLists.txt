@@ -4,7 +4,7 @@
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kreversi/pics/background FILES Dark_Wood.png Granite.png Light_Wood.png Ocean.png Puzzle.png  Earth.png Hexagon.png  Mystique.png Pipes.png Stones.png )
+install( FILES Dark_Wood.png Granite.png Light_Wood.png Ocean.png Puzzle.png  Earth.png Hexagon.png  Mystique.png Pipes.png Stones.png  DESTINATION  ${DATA_INSTALL_DIR}/kreversi/pics/background )
 
 
 
