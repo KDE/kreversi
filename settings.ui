@@ -67,7 +67,7 @@
                         <string>&amp;Grayscale chips</string>
                     </property>
                 </widget>
-                <widget class="QButtonGroup" row="0" column="1" rowspan="2" colspan="1">
+                <widget class="KButtonGroup" row="0" column="1" rowspan="2" colspan="1">
                     <property name="name">
                         <cstring>kcfg_CompetitiveGameChoice</cstring>
                     </property>
@@ -240,7 +240,7 @@
                         <bool>true</bool>
                     </property>
                 </widget>
-                <widget class="QButtonGroup" row="3" column="0" rowspan="1" colspan="2">
+                <widget class="KButtonGroup" row="3" column="0" rowspan="1" colspan="2">
                     <property name="name">
                         <cstring>kcfg_BackgroundImageChoice</cstring>
                     </property>
@@ -325,5 +325,6 @@
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kcolorbutton.h</includehint>
+    <includehint>kbuttongroup.h</includehint>
 </includehints>
 </UI>
