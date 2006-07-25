@@ -65,15 +65,11 @@
 #ifndef __MOVE__H__
 #define __MOVE__H__
 
-
-#include "q3valuelist.h"
-#include "qstring.h"
-
+#include <QList>
 #include "Score.h"
 
 
 class Position;
-
 
 class SimpleMove
 {

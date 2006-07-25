@@ -21,18 +21,17 @@
 #include "kzoommainwindow.h"
 #include "kzoommainwindow.moc"
 
+#include <QMenu>
+#include <QEvent>
+
 #include <kaction.h>
 #include <kstdaction.h>
 #include <kmenubar.h>
-//Added by qt3to4:
-#include <QEvent>
-#include <Q3PopupMenu>
 #include <kxmlguifactory.h>
 #include <ktoggleaction.h>
 
-KZoomMainWindow::KZoomMainWindow(uint min, uint max, uint step, 
-				 const char *name)
-  : KMainWindow(0, name), m_zoomStep(step), m_minZoom(min), m_maxZoom(max)
+KZoomMainWindow::KZoomMainWindow(uint min, uint max, uint step)
+  : KMainWindow(0), m_zoomStep(step), m_minZoom(min), m_maxZoom(max)
 {
   installEventFilter(this);
   
@@ -56,8 +55,8 @@ void KZoomMainWindow::init(const char *popupName)
   
   // context popup
   if (popupName) {
-    Q3PopupMenu *popup =
-      static_cast<Q3PopupMenu *>(factory()->container(popupName, this));
+    QMenu *popup =
+      static_cast<QMenu *>(factory()->container(popupName, this));
     Q_ASSERT(popup);
     if (popup) {
       setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -82,7 +81,7 @@ void KZoomMainWindow::addWidget(QWidget *widget)
 
 void KZoomMainWindow::widgetDestroyed()
 {
-  m_widgets.remove(static_cast<const QWidget *>(sender()));
+  m_widgets.removeAll(static_cast<QWidget *>(sender()));
 }
 
 
@@ -101,9 +100,8 @@ void KZoomMainWindow::setZoom(uint zoom)
   m_zoom = zoom;
   writeZoomSetting(m_zoom);
 
-  Q3PtrListIterator<QWidget>  it(m_widgets);
-  for (; it.current(); ++it)
-    (*it)->adjustSize();
+  foreach( QWidget* wid, m_widgets )
+    wid->adjustSize();
 
   m_zoomOutAction->setEnabled( m_zoom > m_minZoom );
   m_zoomInAction->setEnabled( m_zoom < m_maxZoom );

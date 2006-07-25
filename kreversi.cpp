@@ -37,12 +37,8 @@
  */
 
 
-#include <unistd.h>
-
-#include <QLayout>
 #include <QLabel>
-#include <q3listbox.h>
-//Added by qt3to4:
+#include <unistd.h> // for usleep FIXME fix this! :) i.e find a better alternative
 #include <QGridLayout>
 
 #include <kapplication.h>
@@ -84,7 +80,7 @@
 
 
 KReversi::KReversi()
-  : KZoomMainWindow(10, 300, 5, "kreversi"),
+  : KZoomMainWindow(10, 300, 5),
     m_gameOver(false)
 {
   QWidget     *w;

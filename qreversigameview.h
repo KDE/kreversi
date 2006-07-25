@@ -39,11 +39,7 @@
 #ifndef __QREVERSIGAMEVIEW__H__
 #define __QREVERSIGAMEVIEW__H__
 
-
-#include <q3listbox.h>
-//Added by qt3to4:
-#include <QPixmap>
-#include <QLabel>
+#include <QListWidget>
 
 #include "Score.h"
 #include "Move.h"
@@ -54,6 +50,7 @@ class KConfig;
 
 
 class QLabel;
+class QListWidget;
 
 class QReversiGame;
 
@@ -102,14 +99,17 @@ public:
 
   // Proxy methods for the movelist
   // FIXME: Not all of these need to be externally reachable
-  void insertMove(QString moveString) { m_movesView->insertItem(moveString); }
+  void insertMove(QString moveString) { m_movesView->addItem(moveString); }
   void removeMove(int moveNum) { 
-    m_movesView->removeItem(moveNum); 
+    // NOTE is this the only way to just remove element from QListWidget?
+    // can't find removeItem or alike in QListWidget API...
+    QListWidgetItem* item = m_movesView->takeItem(moveNum); 
+    delete item;
     updateStatus();
   }
   void setCurrentMove(int moveNum) { 
-    m_movesView->setCurrentItem(moveNum); 
-    m_movesView->ensureCurrentVisible();
+    m_movesView->setCurrentRow(moveNum); 
+    m_movesView->scrollToItem(m_movesView->currentItem());
   }
 
   // The status widgets.
@@ -153,7 +153,7 @@ private:
 
   // Widgets in the view.
   QReversiBoardView  *m_boardView;
-  Q3ListBox           *m_movesView;
+  QListWidget        *m_movesView;
   StatusWidget       *m_blackStatus;
   StatusWidget       *m_whiteStatus;
 };

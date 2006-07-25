@@ -45,7 +45,7 @@
  */
 
 #include "Move.h"
-
+#include <QString>
 
 SimpleMove::SimpleMove(Color color, int x, int y)
 {

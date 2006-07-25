@@ -40,7 +40,6 @@
 #include <QLayout>
 #include <QWidget>
 #include <QLabel>
-//Added by qt3to4:
 #include <QPixmap>
 #include <QHBoxLayout>
 #include <QGridLayout>
@@ -185,7 +184,7 @@ void QReversiGameView::createView()
   layout->addWidget(movesLabel, 2, 1);
 
   // The list of moves.
-  m_movesView = new Q3ListBox(this, "moves");
+  m_movesView = new QListWidget(this);
   m_movesView->setMinimumWidth(150);
   layout->addWidget(m_movesView, 3, 1);
 }
@@ -220,13 +219,13 @@ void QReversiGameView::moveMade(uint moveNum, Move &move)
   };
 
   // Insert the new move in the listbox and mark it as the current one.
-  m_movesView->insertItem(QString("%1. %2 %3")
+  m_movesView->addItem(QString("%1. %2 %3")
 			  .arg(moveNum)
 			  .arg(Prefs::grayscale() ? colorsWB[move.color()]
 			       : colorsRB[move.color()])
 			  .arg(move.asString()));
-  m_movesView->setCurrentItem(moveNum - 1);
-  m_movesView->ensureCurrentVisible();
+  m_movesView->setCurrentRow(moveNum - 1);
+  m_movesView->scrollToItem(m_movesView->currentItem());
 
   // Animate all changed pieces.
   m_boardView->animateChanged(move);
