@@ -52,8 +52,10 @@
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
 #include <kconfigdialog.h>
-#include <knotifyclient.h>
 #include <knotifydialog.h>
+#include <knotifyconfigwidget.h>
+#include <knotification.h>
+#include <knotifyclient.h>
 #include <kexthighscore.h>
 #include <kglobal.h>
 #include <ktoggleaction.h>
@@ -584,7 +586,7 @@ void KReversi::computerMakeMove()
 
 void KReversi::illegalMove()
 {
-  KNotifyClient::event(winId(), "illegal_move", i18n("Illegal move"));
+   KNotification::event("illegal_move", i18n("Illegal move"),QPixmap() ,this);
 }
 
 
@@ -608,21 +610,21 @@ void KReversi::showGameOver(Color color)
 
   // Show the winner in a messagebox.
   if ( color == Nobody ) {
-    KNotifyClient::event(winId(), "draw", i18n("Draw!"));
+    KNotification::event("draw", i18n("Draw!"),QPixmap() ,this);
     QString s = i18n("Game is drawn!\n\nYou     : %1\nComputer: %2",
                  human, computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Draw);
   }
   else if ( humanColor() == color ) {
-    KNotifyClient::event(winId(), "won", i18n("Game won!"));
+    KNotification::event("won", i18n("Game won!"),QPixmap() ,this);
     QString s = i18n("Congratulations, you have won!\n\nYou     : %1\nComputer: %2",
                  human, computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
     score.setType(KExtHighscore::Won);
   }
   else {
-    KNotifyClient::event(winId(), "lost", i18n("Game lost!"));
+    KNotification::event("lost", i18n("Game lost!"),QPixmap() ,this);
     QString s = i18n("You have lost the game!\n\nYou     : %1\nComputer: %2",
                  human, computer);
     KMessageBox::information(this, s, i18n("Game Ended"));
@@ -763,7 +765,7 @@ void KReversi::slotEditSettings()
 
 void KReversi::configureNotifications()
 {
-    KNotifyDialog::configure(this);
+   KNotifyConfigWidget::configure(this);
 }
 
 

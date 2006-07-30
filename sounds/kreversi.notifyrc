@@ -1,51 +1,51 @@
-[!Global!]
+[Global]
 IconName=kreversi
 Comment=KReversi
 Comment[x-test]=xxKReversixx
 
-[click]
+[Event/click]
 Name=Click
 Name[fr]=Clic
 Name[x-test]=xxClickxx
 Comment=Click
 Comment[fr]=Clic
 Comment[x-test]=xxClickxx
-default_presentation=1
-default_sound=kreversi-click.wav
+Action=Sound
+Sound=kreversi-click.wav
 
-[won]
+[Event/won]
 Name=Game won
 Name[fr]=Partie gagnée
 Name[x-test]=xxGame wonxx
 Comment=Game won
 Comment[fr]=Partie gagnée
 Comment[x-test]=xxGame wonxx
-default_presentation=1
-default_sound=kreversi-won.wav
+Action=Sound
+Sound=kreversi-won.wav
 
-[lost]
+[Event/lost]
 Name=Game lost
 Name[fr]=Partie perdue
 Name[x-test]=xxGame lostxx
 Comment=Game lost
 Comment[fr]=Partie perdue
 Comment[x-test]=xxGame lostxx
-default_presentation=0
+Action=None
 
-[draw]
+[Event/draw]
 Name=Draw
 Name[fr]=Égalité
 Name[x-test]=xxDrawxx
 Comment=Draw
 Comment[fr]=Égalité
 Comment[x-test]=xxDrawxx
-default_presentation=0
+Action=None
 
-[illegal_move]
+[Event/illegal_move]
 Name=Illegal Move
 Name[fr]=Déplacement interdit
 Name[x-test]=xxIllegal Movexx
 Comment=Illegal move
 Comment[fr]=Déplacement interdit
 Comment[x-test]=xxIllegal movexx
-default_presentation=0
+Action=None

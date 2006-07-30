@@ -31,7 +31,7 @@ kde4_add_kcfg_files(kreversi_SRCS prefs.kcfgc )
 
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi  ${KDE4_KIO_LIBS} kdegames )
+target_link_libraries(kreversi  ${KDE4_KIO_LIBS} kdegames knotifyconfig)
 
 install(TARGETS kreversi  DESTINATION ${BIN_INSTALL_DIR} )
 
