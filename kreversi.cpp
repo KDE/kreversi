@@ -66,10 +66,19 @@
 
 // Automatically generated headers
 #include "prefs.h"
-#include "settings.h"
+#include "ui_settings.h"
 
 #include "kreversi.moc"
 
+class Settings : public QWidget, public Ui::Settings
+{
+public:
+    Settings(QWidget* parent)
+        : QWidget(parent)
+    {
+        setupUi(this);
+    }
+};
 
 // ================================================================
 //                         class KReversi
@@ -707,7 +716,7 @@ bool KReversi::loadGame(KConfig *config)
   m_humanColor      = (Color) config->readEntry("HumanColor",0);
   m_competitiveGame = (bool)  config->readEntry("Competitive",false);
 
-  m_gameView->updateBoard(true);
+  m_gameView->updateBoard();
   setState(State(config->readEntry("State",0)));
   setStrength(config->readEntry("Strength", 1));
 
@@ -753,7 +762,7 @@ void KReversi::slotEditSettings()
 
   KConfigDialog *dialog  = new KConfigDialog(this, "settings", Prefs::self(),
 					     KPageDialog::Plain);
-  Settings      *general = new Settings(0, "General");
+  Settings      *general = new Settings(0);
 
   dialog->addPage(general, i18n("General"), "package_settings");
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(loadSettings()));

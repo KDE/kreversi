@@ -198,7 +198,7 @@ void QReversiGameView::createView()
 
 void QReversiGameView::newGame()
 {
-  m_boardView->updateBoard(true);
+  m_boardView->update();
   m_movesView->clear();
   updateStatus();
 }
@@ -229,7 +229,7 @@ void QReversiGameView::moveMade(uint moveNum, Move &move)
 
   // Animate all changed pieces.
   m_boardView->animateChanged(move);
-  m_boardView->updateBoard();
+  m_boardView->update();
 
   // Update the score.
   updateStatus();
@@ -241,7 +241,7 @@ void QReversiGameView::moveMade(uint moveNum, Move &move)
 
 void QReversiGameView::updateView()
 {
-  m_boardView->updateBoard(true);
+  m_boardView->update();
   updateMovelist();
   updateStatus();
 }
@@ -255,14 +255,12 @@ void QReversiGameView::updateStatus()
   m_whiteStatus->setScore(m_game->score(White));
 }
 
-
 // Only updates the status board.
 
-void QReversiGameView::updateBoard(bool force)
+void QReversiGameView::updateBoard()
 {
-  m_boardView->updateBoard(force);
+  m_boardView->update();
 }
-
 
 // Only updates the movelist.  This method regenerates the list from
 // scratch.

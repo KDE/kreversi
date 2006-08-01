@@ -105,7 +105,7 @@ QReversiBoardView::~QReversiBoardView()
 
 void QReversiBoardView::start()
 {
-  updateBoard(true);
+  update();
   adjustSize();
 }
 
@@ -216,20 +216,20 @@ void QReversiBoardView::quitHint()
 void QReversiBoardView::setShowLegalMoves(bool show)
 {
   m_legalMovesShowing = show;
-  updateBoard(true);
+  update();
 }
 
 void QReversiBoardView::setShowMarks(bool show)
 {
   m_marksShowing = show;
-  updateBoard(true);
+  update();
 }
 
 
 void QReversiBoardView::setShowLastMove(bool show)
 {
   m_showLastMove = show;
-  updateBoard(true);
+  update();
 }
 
 

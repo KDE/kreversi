@@ -131,7 +131,7 @@ public slots:
 
   void  updateView();		// Update the entire view.
   void  updateStatus();		// Update the status widgets (score)
-  void  updateBoard(bool force = false); // Update the board.
+  void  updateBoard(); // Update the board.
   void  updateMovelist();	// Update the move list.
 
 signals:
