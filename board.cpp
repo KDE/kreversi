@@ -49,7 +49,7 @@
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
-#include <knotifyclient.h>
+#include <knotification.h>
 #include <klocale.h>
 #include <kexthighscore.h>
 #include <kdebug.h>
@@ -270,7 +270,7 @@ void QReversiBoardView::animateChangedRow(int row, int col, int dy, int dx)
   col = col + dx;
   while (isField(row, col)) {
     if (m_krgame->wasTurned(col+1, row+1)) {
-      KNotifyClient::event(winId(), "click", i18n("Click"));
+      KNotification::event("click", i18n("Click"));
       rotateChip(row, col);
    } else
       return;

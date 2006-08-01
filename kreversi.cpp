@@ -52,10 +52,8 @@
 #include <kstdgameaction.h>
 #include <kkeydialog.h>
 #include <kconfigdialog.h>
-#include <knotifydialog.h>
 #include <knotifyconfigwidget.h>
 #include <knotification.h>
-#include <knotifyclient.h>
 #include <kexthighscore.h>
 #include <kglobal.h>
 #include <ktoggleaction.h>
@@ -63,6 +61,8 @@
 
 #include "Score.h"
 #include "kreversi.h"
+#include "qreversigameview.h"
+
 
 // Automatically generated headers
 #include "prefs.h"
@@ -87,8 +87,6 @@ KReversi::KReversi()
 {
   QWidget     *w;
   QGridLayout *top;
-
-  KNotifyClient::startDaemon();
 
   // The game.
   m_game     = new QReversiGame();

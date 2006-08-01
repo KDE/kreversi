@@ -41,22 +41,16 @@
 #define KREVERSI_H
 
 
-#include "kzoommainwindow.h"
+#include <kzoommainwindow.h>
 
 #include "Score.h"
 #include "Game.h"
 #include "Engine.h"
-//#include "board.h"
 #include "qreversigame.h"
-#include "qreversigameview.h"
-//Added by qt3to4:
-#include <QLabel>
-
 
 class QLabel;
-
 class KAction;
-
+class QReversiGameView;
 
 class KReversi : public KZoomMainWindow 
 {
