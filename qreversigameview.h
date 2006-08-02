@@ -40,6 +40,7 @@
 #define __QREVERSIGAMEVIEW__H__
 
 #include <QListWidget>
+#include <kzoommainwindow.h>
 
 #include "Score.h"
 #include "Move.h"
@@ -75,7 +76,8 @@ private:
 
 // The main game view
 
-class QReversiGameView : public QWidget {
+class QReversiGameView : public QWidget, public Zoomable
+{
   Q_OBJECT
 
 public:
@@ -120,7 +122,7 @@ public:
   void  start() { m_boardView->start(); }
 
   // Used by the outer KZoomMainWindow class.
-  void  adjustSize()   { m_boardView->adjustSize(); }
+  virtual void  zoomChanged()   { m_boardView->adjustSize(); }
 
   void  loadSettings() { m_boardView->loadSettings(); }
 

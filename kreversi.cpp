@@ -120,7 +120,7 @@ KReversi::KReversi()
 
   // Populate the GUI.
   createKActions();
-  addWidget(m_gameView);
+  addZoomable(m_gameView);
 
   // Connect the signals from the game with slots of the view
   //
