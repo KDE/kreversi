@@ -58,6 +58,7 @@
 #include <kglobal.h>
 #include <ktoggleaction.h>
 #include <kstdaction.h>
+#include <kicon.h>
 
 #include "Score.h"
 #include "kreversi.h"
