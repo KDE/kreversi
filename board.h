@@ -135,7 +135,7 @@ private:
 
   // the pieces
   ChipType  chiptype;
-  QPixmap   allchips;
+  QImage   allchips;
   uint      anim_speed;
 
   // Special stuff used only in smaller areas.

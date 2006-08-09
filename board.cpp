@@ -451,16 +451,10 @@ QPixmap QReversiBoardView::chipPixmap(uint i, uint size) const
 {
   // Get the part of the 'allchips' pixmap that contains exactly that
   // chip that we want to use.
-  QPixmap  pix(CHIP_SIZE, CHIP_SIZE);
-  QPainter p(&pix);
-  p.drawPixmap( 0, 0, allchips, (i%5) * CHIP_SIZE, (i/5) * CHIP_SIZE,
-          CHIP_SIZE, CHIP_SIZE);
-
-  // Resize (scale) the pixmap to the desired size.
-  QMatrix  wm3;
-  wm3.scale(float(size)/CHIP_SIZE, float(size)/CHIP_SIZE);
-
-  return pix.transformed(wm3);
+  QImage chip = allchips.copy((i%5) * CHIP_SIZE, (i/5) * CHIP_SIZE,
+                        CHIP_SIZE, CHIP_SIZE);
+  QPixmap  pix = QPixmap::fromImage(chip.scaled(size, size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
+  return pix;
 }
 
 
