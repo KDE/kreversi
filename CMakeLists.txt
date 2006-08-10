@@ -7,6 +7,8 @@ add_subdirectory( icons )
 
 set(kreversi_SRCS 
     kreversiboard.cpp
+    kreversigame.cpp
+    kreversiscene.cpp
     mainwindow.cpp
     main.cpp )
 
@@ -22,5 +24,5 @@ install(TARGETS kreversi  DESTINATION ${BIN_INSTALL_DIR} )
 
 install( FILES kreversi.desktop  DESTINATION  ${XDG_APPS_DIR} )
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
-#install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
+install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
 

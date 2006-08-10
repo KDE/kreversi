@@ -1,45 +1,14 @@
 <!DOCTYPE kpartgui>
 <kpartgui name="kreversi" version="2">
 
-<ActionProperties>
-  <Action name="game_stop" icon="stop"/>
-</ActionProperties>
-
 <MenuBar>
   <Menu name="game"><text>&amp;Game</text>
-    <Action name="game_sound"/>
+    <Action name="new_game"/>
+    <Action name="quit"/>
   </Menu>
-  <Menu name="move"><text>&amp;Move</text>
-    <Action name="game_undo"/>
-    <Action name="game_hint"/>
-    <Action name="game_switch_sides"/>
-    <Separator/>
-    <Action name="game_stop"/>
-    <Action name="game_continue"/>
-  </Menu>
-
 </MenuBar>
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
-  <Action name="game_new"/>
-  <Action name="game_stop"/>
-  <Action name="game_continue"/>
-  <Action name="game_undo"/>
-  <Action name="options_show_menubar"/>
+  <Action name="new_game"/>
 </ToolBar>
-<ToolBar name="viewToolBar"><text>View Toolbar</text>
-  <Action name="game_hint"/>
-  <Action name="show_last_move"/>
-  <Action name="show_legal_moves"/>
-</ToolBar>
-
-<Menu name="popup">
-  <Action name="options_show_menubar"/>
-  <Separator/>
-  <Action name="game_new"/>
-  <Action name="game_highscores"/>
-  <Separator/>
-  <Action name="game_quit"/>
-</Menu>
-
 </kpartgui>

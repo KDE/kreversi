@@ -12,15 +12,23 @@
 class KReversiBoard
 {
 public:
-    enum CellType { emptyCell, playerCell, computerCell };
+    enum ChipType { noChip, playerChip, computerChip };
 
     KReversiBoard(int boardSize=10);
     /**
      *  Resets board to initial (start-of-new-game) state
      */
     void resetBoard();
+    /**
+     *  Sets the type of chip at (row,col)
+     */
+    void setChip(int row, int col, ChipType type);
+    /**
+     *  Retruns type of the chip in cell at (row, col)
+     */
+    ChipType chipAt(int row, int col) const;
 private:
-    QVector<CellType> m_cells;
+    QVector<ChipType> m_cells;
     int m_boardSize;
 };
 #endif
