@@ -9,5 +9,6 @@ public:
     KReversiView( QGraphicsScene* scene, QWidget *parent );
 private:
     virtual QSize sizeHint() const;
+    virtual void showEvent(QShowEvent*);
 };
 #endif
