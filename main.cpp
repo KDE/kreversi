@@ -1,20 +1,6 @@
-/* Yo Emacs, this -*- C++ -*-
- *******************************************************************
- *******************************************************************
+/*******************************************************************
  *
- *
- * KREVERSI
- *
- *
- *******************************************************************
- *
- * A Reversi (or sometimes called Othello) game
- *
- *******************************************************************
- *
- * created 1997 by Mario Weilguni <mweilguni@sime.com>
- *
- *******************************************************************
+ * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
  *
  * This file is part of the KDE project "KREVERSI"
  *
@@ -38,27 +24,20 @@
 
 
 #include <kapplication.h>
-#include <kimageio.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
-#include <khighscore.h>
 #include <klocale.h>
-#include <kglobal.h>
 
+#include "mainwindow.h"
 #include "version.h"
-#include "kreversi.h"
-#include "highscores.h"
 
-
-static const char description[] = I18N_NOOP("KDE Board Game");
+static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
-  KHighscore::init("kreversi");
-
   KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
     KREVERSI_VERSION, description, KAboutData::License_GPL,
-    "(c) 1997-2000, Mario Weilguni");
+    "(c) 1997-2000, Mario Weilguni\n(c) 2006, Dmitry Suzdalev");
   aboutData.addAuthor("Mario Weilguni",0, "mweilguni@sime.com");
   aboutData.addAuthor("Benjamin Meyer",0, "ben+kreversi@meyerhome.net");
   aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
@@ -69,18 +48,14 @@ int main(int argc, char **argv)
   KCmdLineArgs::init( argc, argv, &aboutData );
 
   KApplication application;
-  KGlobal::locale()->insertCatalog("libkdegames");
-
-  // used for loading background pixmaps
-  
-  KExtHighscore::ExtManager highscores;
-
-  if (application.isSessionRestored()){
-     RESTORE(KReversi)
+  if( application.isSessionRestored() )
+  {
+      RESTORE(KReversiMainWindow)
   }
-  else {
-    KReversi *kreversi = new KReversi;
-    kreversi->show();
+  else
+  {
+      KReversiMainWindow *mainWin = new KReversiMainWindow;
+      mainWin->show();
   }
 
   return application.exec();
