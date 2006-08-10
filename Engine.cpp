@@ -117,8 +117,6 @@
 // or nearly equal value after the search is completed.
 
 
-#include <qapplication.h>
-
 #include "Engine.h"
 
 
@@ -296,7 +294,7 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-Move Engine::computeMove(Game *game, bool competitive) 
+KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive) 
 {
   Color color;
 
@@ -467,7 +465,7 @@ Move Engine::computeMove(Game *game, bool competitive)
 // Get the first move.  We can pick any move at random.
 //
 
-Move Engine::ComputeFirstMove(Game *game) 
+KReversiMove Engine::ComputeFirstMove(const KReversiGame& game) 
 {
   int    r;
   Color  color = game->toMove();

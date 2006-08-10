@@ -4,6 +4,7 @@
 #include <kmainwindow.h>
 
 class KReversiScene;
+class KReversiGame;
 
 class KReversiMainWindow : public KMainWindow
 {
@@ -15,6 +16,7 @@ public slots:
 private:
     void setupActions();
 
-    KReversiScene* m_scene;
+    KReversiScene *m_scene;
+    KReversiGame *m_game;
 };
 #endif

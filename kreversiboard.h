@@ -3,6 +3,9 @@
 
 #include <QVector>
 
+// noColor = empty
+enum ChipColor { NoColor, White, Black };
+
 /**
  *  This class represents a reversi board.
  *  It only holds a current state of the game, 
@@ -12,9 +15,7 @@
 class KReversiBoard
 {
 public:
-    enum ChipType { noChip, playerChip, computerChip };
-
-    KReversiBoard(int boardSize=10);
+    KReversiBoard();
     /**
      *  Resets board to initial (start-of-new-game) state
      */
@@ -22,13 +23,22 @@ public:
     /**
      *  Sets the type of chip at (row,col)
      */
-    void setChip(int row, int col, ChipType type);
+    void setChipColor(int row, int col, ChipColor type);
     /**
      *  Retruns type of the chip in cell at (row, col)
      */
-    ChipType chipAt(int row, int col) const;
+    ChipColor chipColorAt(int row, int col) const;
 private:
-    QVector<ChipType> m_cells;
-    int m_boardSize;
+    ChipColor m_cells[8][8];
 };
+
+struct KReversiMove
+{
+    KReversiMove( ChipColor col = NoColor, int r = -1, int c = -1 )
+        : color(col), row(r), col(c) { }
+    ChipColor color;
+    int row;
+    int col;
+};
+
 #endif

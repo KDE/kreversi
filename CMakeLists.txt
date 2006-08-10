@@ -9,6 +9,8 @@ set(kreversi_SRCS
     kreversiboard.cpp
     kreversigame.cpp
     kreversiscene.cpp
+    kreversiview.cpp
+    Engine.cpp
     mainwindow.cpp
     main.cpp )
 

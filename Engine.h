@@ -119,15 +119,18 @@
 #ifndef __ENGINE__H__
 #define __ENGINE__H__
 
-#include "SuperEngine.h"
-#include "Position.h"
-#include "Game.h"
-#include "Move.h"
-#include "Score.h"
+//#include "SuperEngine.h"
+//#include "Position.h"
+//#include "Game.h"
+//#include "Move.h"
+//#include "Score.h"
 
-#include <sys/times.h>
-#include <qbitarray.h>
+//#include <sys/times.h>
+#include <QBitArray>
+#include <QVector>
+#include "kreversiboard.h"
 
+class KReversiGame;
 
 // Class ULONG64 is used as a bitmap for the squares.
 
@@ -196,37 +199,39 @@ public:
 // The real beef of this program: the engine that finds good moves for
 // the computer player.
 //
-class Engine : public SuperEngine {
+class Engine {
 public:
   Engine(int st, int sd);
   Engine(int st);
   Engine();
 
-  Move     computeMove(Game *game, bool competitive);
+  KReversiMove     computeMove(const KReversiGame& game, bool competitive);
 
 private:
-  Move     ComputeFirstMove(Game *game);
-  int      ComputeMove2(int xplay, int yplay, Color color, int level,
+  KReversiMove     ComputeFirstMove(const KReversiGame& game);
+  int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 			int cutoffval,
 			ULONG64 colorbits, ULONG64 opponentbits);
 
-  int      TryAllMoves(Color opponent, int level, int cutoffval,
+  int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
 		       ULONG64 opponentbits, ULONG64 colorbits);
 
-  int      EvaluatePosition(Color color);
+  int      EvaluatePosition(ChipColor color);
   void     SetupBcBoard();
   void     SetupBits();
-  int      CalcBcScore(Color color);
-  ULONG64  ComputeOccupiedBits(Color color);
+  int      CalcBcScore(ChipColor color);
+  ULONG64  ComputeOccupiedBits(ChipColor color);
 
   void yield();
 
 private:
+  // FIXME dimsuz: do these needed outside Engine?
+  // If not put them as static globals in cpp
   static const int  LARGEINT;
   static const int  ILLEGAL_VALUE;
   static const int  BC_WEIGHT;
 
-  Color        m_board[10][10];
+  ChipColor        m_board[10][10];
   int          m_bc_board[9][9];
   Score        m_score;
   Score        m_bc_score;

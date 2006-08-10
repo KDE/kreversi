@@ -4,9 +4,9 @@
 #include "kreversigame.h"
 
 
-KReversiGame::KReversiGame( int boardSize )
+KReversiGame::KReversiGame()
 {
-    m_board = new KReversiBoard(boardSize);
+    m_board = new KReversiBoard();
 }
 
 KReversiGame::~KReversiGame()

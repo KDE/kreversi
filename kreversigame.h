@@ -15,7 +15,7 @@ class KReversiBoard;
 class KReversiGame : public QObject
 {
 public:
-    KReversiGame( int boardSize );
+    KReversiGame();
     ~KReversiGame();
     /**
      *  @returns the board so the callers can examine its current state

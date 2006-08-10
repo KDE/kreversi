@@ -2,26 +2,26 @@
 
 #include "kreversiboard.h"
 
-KReversiBoard::KReversiBoard(int boardSize)
-    : m_boardSize(boardSize)
+KReversiBoard::KReversiBoard()
 {
     resetBoard();
 }
 
 void KReversiBoard::resetBoard()
 {
-    m_cells.resize( m_boardSize * m_boardSize );
-    m_cells.fill( noChip );
+    for(int r=0; r<8; ++r)
+        for(int c=0; c<8; ++c)
+            m_cells[r][c] = NoColor;
 }
 
-void KReversiBoard::setChip(int row, int col, ChipType type)
+void KReversiBoard::setChipColor(int row, int col, ChipColor color)
 {
-    Q_ASSERT( row < m_boardSize && col < m_boardSize );
-    m_cells[row * m_boardSize + col] = type;
+    Q_ASSERT( row < 8 && col < 8 );
+    m_cells[row][col] = color;
 }
 
-KReversiBoard::ChipType KReversiBoard::chipAt(int row, int col) const
+ChipColor KReversiBoard::chipColorAt(int row, int col) const
 {
-    Q_ASSERT( row < m_boardSize && col < m_boardSize );
-    return m_cells.at( row * m_boardSize + col );
+    Q_ASSERT( row < 8 && col < 8 );
+    return m_cells[row][col];
 }
