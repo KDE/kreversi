@@ -7,6 +7,7 @@ add_subdirectory( icons )
 
 set(kreversi_SRCS 
     kreversiboard.cpp
+    kreversichip.cpp
     kreversigame.cpp
     kreversiscene.cpp
     kreversiview.cpp

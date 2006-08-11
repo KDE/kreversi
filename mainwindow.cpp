@@ -9,14 +9,14 @@
 #include <QGraphicsView>
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent)
-    : KMainWindow(parent), m_game(0)
+    : KMainWindow(parent)
 {
     setupActions();
-    m_scene = new KReversiScene;
+    m_game = new KReversiGame;
+    m_scene = new KReversiScene(m_game);
     KReversiView *view = new KReversiView(m_scene, this);
     view->show();
     setCentralWidget(view);
-    newGame();
     setupGUI();
 }
 
