@@ -128,6 +128,7 @@
 //#include <sys/times.h>
 #include <QBitArray>
 #include <QVector>
+#include <krandomsequence.h>
 #include "kreversiboard.h"
 
 class KReversiGame;
@@ -195,6 +196,7 @@ public:
   int  m_value;
 };
 
+class Score;
 
 // The real beef of this program: the engine that finds good moves for
 // the computer player.
@@ -206,6 +208,9 @@ public:
   Engine();
 
   KReversiMove     computeMove(const KReversiGame& game, bool competitive);
+
+  void  setInterrupt(bool intr) { m_interrupt = intr; }
+  bool  interrupted() const     { return m_interrupt; }
 
 private:
   KReversiMove     ComputeFirstMove(const KReversiGame& game);
@@ -233,8 +238,8 @@ private:
 
   ChipColor        m_board[10][10];
   int          m_bc_board[9][9];
-  Score        m_score;
-  Score        m_bc_score;
+  Score*        m_score;
+  Score*        m_bc_score;
   SquareStack  m_squarestack;
   
   int          m_depth;
@@ -242,6 +247,10 @@ private:
   int          m_nodes_searched;
   bool         m_exhaustive;
   bool         m_competitive;
+
+  uint             m_strength;
+  KRandomSequence  m_random;
+  bool             m_interrupt;
 
   ULONG64      m_coord_bit[9][9];
   ULONG64      m_neighbor_bits[9][9];

@@ -1,10 +1,8 @@
 #ifndef KREVERSI_BOARD_H
 #define KREVERSI_BOARD_H
 
-#include <QVector>
-
 // noColor = empty
-enum ChipColor { NoColor, White, Black };
+enum ChipColor { White = 0, Black = 1, NoColor = 2 };
 
 /**
  *  This class represents a reversi board.
@@ -28,8 +26,19 @@ public:
      *  Retruns type of the chip in cell at (row, col)
      */
     ChipColor chipColorAt(int row, int col) const;
+    /**
+     *  Returns number of chips owned by this player
+     */
+    int playerScore( ChipColor player ) const;
 private:
+    /**
+     *  The board itself
+     */
     ChipColor m_cells[8][8];
+    /**
+     *  Score of each player
+     */
+    int m_score[2];
 };
 
 struct KReversiMove
