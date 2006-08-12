@@ -29,10 +29,19 @@ private:
      *  Reimplemented from QGraphicsScene.
      */
     virtual void drawBackground( QPainter *p, const QRectF& rect );
+    virtual void mousePressEvent( QGraphicsSceneMouseEvent* );
     /**
      *  Returns the center point of cell (row,col)
      */
     QPointF cellCenter( int row, int col ) const;
+    /**
+     *  Returns the top-left point of cell (row,col)
+     */
+    QPointF cellTopLeft( int row, int col ) const;
     KReversiGame *m_game;
+    /**
+     *  Bounding rect of the board grid
+     */
+    QRectF m_boardRect;
 };
 #endif

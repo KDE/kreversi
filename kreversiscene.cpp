@@ -1,4 +1,6 @@
+#include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+
 #include <kdebug.h>
 
 #include "kreversiscene.h"
@@ -11,14 +13,25 @@ const int CHIP_SIZE = 32;
 
 KReversiScene::KReversiScene( KReversiGame* game )
 {
-    setGame(game);
     setBackgroundBrush( Qt::lightGray );
-    setSceneRect( 0, 0, CHIP_SIZE*8+10, CHIP_SIZE*8+10);
+
+    m_boardRect = QRectF(5, 5, CHIP_SIZE*8, CHIP_SIZE*8);
+    setSceneRect( 0, 0, m_boardRect.width()+10, m_boardRect.height()+10);
+
+    setGame(game);
 }
 
 void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
+    connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
+    // this will remove all items left from previous game
+    QList<QGraphicsItem*> allChips = items( m_boardRect );
+    foreach( QGraphicsItem* chip, allChips )
+    {
+        removeItem( chip );
+        delete chip;
+    }
     updateBoard();
 }
 
@@ -41,7 +54,7 @@ void KReversiScene::updateBoard()
                 {
                     kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
                     chip = new KReversiChip( m_game->chipColorAt( row, col ), this );
-                    chip->setPos( row*CHIP_SIZE, col*CHIP_SIZE );
+                    chip->setPos( cellTopLeft(row, col) );
                 }
             }
         }
@@ -49,25 +62,42 @@ void KReversiScene::updateBoard()
 
 QPointF KReversiScene::cellCenter( int row, int col ) const
 {
-    return QPointF( row*CHIP_SIZE + CHIP_SIZE/2, col*CHIP_SIZE + CHIP_SIZE/2 );
+    return QPointF( m_boardRect.x() + col*CHIP_SIZE + CHIP_SIZE/2, m_boardRect.y() + row*CHIP_SIZE + CHIP_SIZE/2 );
+}
+
+QPointF KReversiScene::cellTopLeft( int row, int col ) const
+{
+    return QPointF( m_boardRect.x() + col*CHIP_SIZE, m_boardRect.y() + row*CHIP_SIZE );
 }
 
 void KReversiScene::drawBackground( QPainter *p, const QRectF& )
 {
-// NOTE: this code assumes that sceneRect.topLeft() is (0,0)
-    int width = CHIP_SIZE*8;
-    int height = CHIP_SIZE*8;
-    
     QPen pen(Qt::black);
     pen.setWidth(2);
-    //width += 0.5
 
     p->setPen(pen);
 
-    for(int x=0; x<=width; x+=CHIP_SIZE)
-        p->drawLine( x, 0, x, height );
-    for(int y=0; y<=height; y+=CHIP_SIZE)
-        p->drawLine( 0, y, width, y );
+    qreal startx = m_boardRect.x();
+    qreal starty = m_boardRect.y();
+    qreal endx = m_boardRect.x() + m_boardRect.width();
+    qreal endy = m_boardRect.y() + m_boardRect.height();
+    
+    for(qreal x=m_boardRect.x(); x<=endx; x+=CHIP_SIZE)
+        p->drawLine( QPointF(x, starty), QPointF(x, endy) );
+    for(qreal y=m_boardRect.y(); y<=endy; y+=CHIP_SIZE)
+        p->drawLine( QPointF(startx, y), QPointF(endx, y) );
+}
+
+void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
+{
+    if( !m_boardRect.contains(ev->scenePos()) )
+        return;
+    int row = (int)ev->scenePos().y() / CHIP_SIZE;
+    int col = (int)ev->scenePos().x() / CHIP_SIZE;
+    
+    kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
+
+    m_game->putChipAt( row, col );
 }
 
 #include "kreversiscene.moc"

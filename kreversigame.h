@@ -14,6 +14,7 @@
  */
 class KReversiGame : public QObject
 {
+    Q_OBJECT
 public:
     KReversiGame();
     ~KReversiGame();
@@ -24,7 +25,18 @@ public:
     ChipColor currentPlayer() const { return NoColor;/* FIXME dimsuz: implement */ }
     int playerScore( ChipColor player ) const { return m_board->playerScore( player ); }
     ChipColor chipColorAt( int row, int col ) const { return m_board->chipColorAt( row, col ); }
+    void putChipAt(int row, int col);
+signals:
+    void boardChanged();
 private:
     KReversiBoard *m_board;
+    /**
+     *  Color of the current player
+     */
+    ChipColor m_curPlayer;
+    /**
+     *  The color of the computer played chips
+     */
+    ChipColor m_computerColor;
 };
 #endif
