@@ -4,8 +4,6 @@
 
 #include <kdebug.h>
 
-const int BOARD_SIZE = 8;
-
 KReversiView::KReversiView( QGraphicsScene* scene, QWidget *parent )
     : QGraphicsView(scene, parent)
 {

@@ -2,9 +2,7 @@
 #define KREVERSI_CHIP_H
 
 #include <QGraphicsPixmapItem>
-// this is to get ChipColor declaration.
-// FIXME dimsuz: Move it to some common .h? (as it won't be the only h) where it is needed
-#include "kreversiboard.h"
+#include "commondefs.h"
 
 class QGraphicsScene;
 
@@ -13,5 +11,8 @@ class KReversiChip : public QGraphicsPixmapItem
 public:
     KReversiChip( ChipColor color, QGraphicsScene *scene );
     void setColor( ChipColor color );
+    ChipColor color() const { return m_color; }
+private:
+    ChipColor m_color;
 };
 #endif

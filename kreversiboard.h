@@ -1,8 +1,7 @@
 #ifndef KREVERSI_BOARD_H
 #define KREVERSI_BOARD_H
 
-// noColor = empty
-enum ChipColor { White = 0, Black = 1, NoColor = 2 };
+#include "commondefs.h"
 
 /**
  *  This class represents a reversi board.
@@ -40,14 +39,4 @@ private:
      */
     int m_score[2];
 };
-
-struct KReversiMove
-{
-    KReversiMove( ChipColor col = NoColor, int r = -1, int c = -1 )
-        : color(col), row(r), col(c) { }
-    ChipColor color;
-    int row;
-    int col;
-};
-
 #endif

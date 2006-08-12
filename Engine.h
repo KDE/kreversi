@@ -129,7 +129,7 @@
 #include <QBitArray>
 #include <QVector>
 #include <krandomsequence.h>
-#include "kreversiboard.h"
+#include "commondefs.h"
 
 class KReversiGame;
 

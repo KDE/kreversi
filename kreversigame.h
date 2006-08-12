@@ -3,7 +3,9 @@
 
 #include <QObject>
 
-#include "kreversiboard.h"
+#include "commondefs.h"
+
+class KReversiBoard;
 
 /**
  *  KReversiGame incapsulates all of the game logic.
@@ -22,13 +24,36 @@ public:
      *  @returns the board so the callers can examine its current state
      */
     const KReversiBoard& board() const;
-    ChipColor currentPlayer() const { return NoColor;/* FIXME dimsuz: implement */ }
-    int playerScore( ChipColor player ) const { return m_board->playerScore( player ); }
-    ChipColor chipColorAt( int row, int col ) const { return m_board->chipColorAt( row, col ); }
+    ChipColor currentPlayer() const { return m_curPlayer; }
+    // NOTE: this is just a wrapper around KReversiBoard::playerScore
+    // Maybe consider merging KReversiBoard into this class?
+    // same applies to chipColorAt
+    int playerScore( ChipColor player ) const;
+    // NOTE: this is just a wrapper around KReversiBoard::playerScore
+    ChipColor chipColorAt( int row, int col ) const;
     void putChipAt(int row, int col);
 signals:
     void boardChanged();
 private:
+    /**
+     * This function will tell you if the move is possible.
+     * That's why it was given such a name ;)
+     */
+    bool isMovePossible( const KReversiMove& move ) const; 
+    enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
+    /**
+     *  Searches for "chunk" in direction dir for move.
+     *  As my English-skills are somewhat limited, let me introduce 
+     *  new terminology ;).
+     *  I'll define a "chunk" of chips for color "C" as follows:
+     *  (let "O" be the color of the opponent for "C")
+     *  CO[O]C <-- this is a chunk
+     *  where [O] is one or more opponent's pieces
+     */
+    bool hasChunk( Direction dir, const KReversiMove& move) const;
+    /**
+     *  Board itself
+     */
     KReversiBoard *m_board;
     /**
      *  Color of the current player

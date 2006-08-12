@@ -25,6 +25,7 @@ void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
     connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
+
     // this will remove all items left from previous game
     QList<QGraphicsItem*> allChips = items( m_boardRect );
     foreach( QGraphicsItem* chip, allChips )
@@ -32,6 +33,7 @@ void KReversiScene::setGame( KReversiGame* game )
         removeItem( chip );
         delete chip;
     }
+
     updateBoard();
 }
 
@@ -40,20 +42,24 @@ void KReversiScene::updateBoard()
     for(int row=0; row<8; ++row)
         for(int col=0; col<8; ++col )
         {
-            if( m_game->chipColorAt( row, col ) != NoColor )
+            ChipColor color = m_game->chipColorAt( row, col );
+            if( color != NoColor )
             {
                 // if there's a chip, just change it color
                 // otherwise create new
                 KReversiChip *chip = static_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
                 if( chip != 0 )
                 {
-                    kDebug() << "Found item at (" << row << "," << col << "). Setting its color." << endl;
-                    chip->setColor( m_game->chipColorAt( row, col ) );
+                    if( chip->color() != color )
+                    {
+                        kDebug() << "Found item at (" << row << "," << col << "). Setting its color." << endl;
+                        chip->setColor( color );
+                    }
                 }
                 else
                 {
                     kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
-                    chip = new KReversiChip( m_game->chipColorAt( row, col ), this );
+                    chip = new KReversiChip( color, this );
                     chip->setPos( cellTopLeft(row, col) );
                 }
             }
