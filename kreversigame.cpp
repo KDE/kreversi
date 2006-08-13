@@ -2,28 +2,56 @@
 
 #include "kreversiboard.h"
 #include "kreversigame.h"
+#include "Engine.h"
 
 
 KReversiGame::KReversiGame()
     : m_curPlayer(Black), m_computerColor( White )
 {
     m_board = new KReversiBoard();
+    m_engine = new Engine(1);
 }
 
 KReversiGame::~KReversiGame()
 {
     delete m_board;
+    delete m_engine;
 }
 
-void KReversiGame::putChipAt( int row, int col )
+void KReversiGame::makePlayerMove( int row, int col )
 {
+// FIXME dimsuz: debug temporary code
+    if( m_curPlayer == m_computerColor )
+    {
+        kDebug() << "Warning! Player turn called while it's computer turn" << endl;
+        return;
+    }
+
     KReversiMove move( m_curPlayer, row, col );
     if( !isMovePossible(move) )
     {
         kDebug() << "No move possible" << endl;
         return;
     }
-    m_board->setChipColor( row, col, m_curPlayer );
+    makeMove( move );
+}
+
+void KReversiGame::makeComputerMove()
+{
+// FIXME dimsuz: debug temporary code
+    if( m_curPlayer != m_computerColor )
+    {
+        kDebug() << "Warning! Computer turn called while it's player turn" << endl;
+        return;
+    }
+    KReversiMove move = m_engine->computeMove( *this, true );
+    kDebug() << "Computer plays ("<<move.row<<","<<move.col<<")" <<endl;
+    makeMove(move);
+}
+
+void KReversiGame::makeMove( const KReversiMove& move )
+{
+    m_board->setChipColor( move.row, move.col, m_curPlayer );
     // now turn color of all chips that were won
     if( hasChunk( Up, move ) )
     {
@@ -101,6 +129,7 @@ void KReversiGame::putChipAt( int row, int col )
     m_curPlayer = (m_curPlayer == White ? Black : White );
     kDebug() << "Now " << (m_curPlayer == White ? "White" : "Black" )<< " play" << endl;
     emit boardChanged();
+    emit currentPlayerChanged();
 }
 
 bool KReversiGame::isMovePossible( const KReversiMove& move ) const

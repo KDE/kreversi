@@ -207,6 +207,8 @@ public:
   Engine(int st);
   Engine();
 
+  ~Engine();
+
   KReversiMove     computeMove(const KReversiGame& game, bool competitive);
 
   void  setInterrupt(bool intr) { m_interrupt = intr; }

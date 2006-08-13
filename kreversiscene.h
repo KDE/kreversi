@@ -23,6 +23,7 @@ public:
     void setGame( KReversiGame* game );
 public slots:
     void updateBoard();
+    void currentPlayerChanged();
 private:
     /**
      *  Draws a background with 8x8 cell matrix.

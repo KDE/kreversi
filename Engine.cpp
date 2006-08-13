@@ -263,7 +263,11 @@ MoveAndValue::MoveAndValue(int x, int y, int value)
  */
 class Score {
 public:
-  Score();
+  Score()
+  {
+      m_score[White] = 0;
+      m_score[Black] = 0;
+  }
 
   uint score(ChipColor color) const     { return m_score[color]; }
 
@@ -300,6 +304,8 @@ Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
     : m_strength(st)
 {
   m_random.setSeed(sd);
+  m_score = new Score;
+  m_bc_score = new Score;
   SetupBcBoard();
   SetupBits();
 }
@@ -309,6 +315,8 @@ Engine::Engine(int st) //: SuperEngine(st)
     : m_strength(st)
 {
   m_random.setSeed(0);
+  m_score = new Score;
+  m_bc_score = new Score;
   SetupBcBoard();
   SetupBits();
 }
@@ -318,10 +326,17 @@ Engine::Engine()// : SuperEngine(1)
     : m_strength(1)
 {
   m_random.setSeed(0);
+  m_score = new Score;
+  m_bc_score = new Score;
   SetupBcBoard();
   SetupBits();
 }
 
+Engine::~Engine()
+{
+    delete m_score;
+    delete m_bc_score;
+}
 
 // keep GUI alive
 /* 
@@ -398,7 +413,7 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
     for (uint y = 0; y < 10; y++) {
       if (1 <= x && x <= 8
 	  && 1 <= y && y <= 8)
-	m_board[x][y] = game.chipColorAt(x-1, y-1);
+	m_board[x][y] = game.chipColorAt(y-1, x-1);
       else
 	m_board[x][y] = NoColor;
     }
@@ -496,7 +511,7 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
   if (interrupted())
     return KReversiMove(NoColor, -1, -1);
   else if (maxval != -LARGEINT)
-    return KReversiMove(color, max_x, max_y);
+    return KReversiMove(color, max_y-1, max_x-1);
   else
     return KReversiMove(NoColor, -1, -1);
 }
@@ -513,16 +528,16 @@ KReversiMove Engine::ComputeFirstMove(const KReversiGame& game)
   r = m_random.getLong(4) + 1;
 
   if (color == White) {
-    if (r == 1)      return  KReversiMove(color, 3, 5);
-    else if (r == 2) return  KReversiMove(color, 4, 6);
-    else if (r == 3) return  KReversiMove(color, 5, 3);
-    else             return  KReversiMove(color, 6, 4);
+    if (r == 1)      return  KReversiMove(color, 4, 2);
+    else if (r == 2) return  KReversiMove(color, 5, 3);
+    else if (r == 3) return  KReversiMove(color, 2, 4);
+    else             return  KReversiMove(color, 3, 5);
   }
   else {
-    if (r == 1)      return  KReversiMove(color, 3, 4);
-    else if (r == 2) return  KReversiMove(color, 5, 6);
-    else if (r == 3) return  KReversiMove(color, 4, 3);
-    else             return  KReversiMove(color, 6, 5);
+    if (r == 1)      return  KReversiMove(color, 3, 2);
+    else if (r == 2) return  KReversiMove(color, 5, 4);
+    else if (r == 3) return  KReversiMove(color, 2, 3);
+    else             return  KReversiMove(color, 4, 5);
   }
 }
 

@@ -6,6 +6,7 @@
 #include "commondefs.h"
 
 class KReversiBoard;
+class Engine;
 
 /**
  *  KReversiGame incapsulates all of the game logic.
@@ -31,16 +32,30 @@ public:
     int playerScore( ChipColor player ) const;
     // NOTE: this is just a wrapper around KReversiBoard::playerScore
     ChipColor chipColorAt( int row, int col ) const;
-    void putChipAt(int row, int col);
+    /**
+     *  This will put the player chip at row, col.
+     *  If that is possible of course
+     */
+    void makePlayerMove(int row, int col);
+    /**
+     *  This function will make computer decide where he 
+     *  wants to put his chip... and he'll put it there!
+     */
+    void makeComputerMove();
+    /**
+     *  Returns true, if it's computer's turn now
+     */
+    bool computersTurn() const { return m_curPlayer == m_computerColor; }
 signals:
     void boardChanged();
+    void currentPlayerChanged();
 private:
+    enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
     /**
      * This function will tell you if the move is possible.
      * That's why it was given such a name ;)
      */
     bool isMovePossible( const KReversiMove& move ) const; 
-    enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
     /**
      *  Searches for "chunk" in direction dir for move.
      *  As my English-skills are somewhat limited, let me introduce 
@@ -51,6 +66,11 @@ private:
      *  where [O] is one or more opponent's pieces
      */
     bool hasChunk( Direction dir, const KReversiMove& move) const;
+    /**
+     *  Performs move, i.e. marks all the chips that player wins with
+     *  this move with current player color
+     */
+    void makeMove( const KReversiMove& move );
     /**
      *  Board itself
      */
@@ -63,5 +83,9 @@ private:
      *  The color of the computer played chips
      */
     ChipColor m_computerColor;
+    /**
+     *  Our AI
+     */
+    Engine *m_engine;
 };
 #endif

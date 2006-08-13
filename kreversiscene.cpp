@@ -25,6 +25,7 @@ void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
     connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
+    connect( m_game, SIGNAL(currentPlayerChanged()), this, SLOT(currentPlayerChanged()) );
 
     // this will remove all items left from previous game
     QList<QGraphicsItem*> allChips = items( m_boardRect );
@@ -66,6 +67,12 @@ void KReversiScene::updateBoard()
         }
 }
 
+void KReversiScene::currentPlayerChanged()
+{
+    if( m_game->computersTurn() )
+        m_game->makeComputerMove();
+}
+
 QPointF KReversiScene::cellCenter( int row, int col ) const
 {
     return QPointF( m_boardRect.x() + col*CHIP_SIZE + CHIP_SIZE/2, m_boardRect.y() + row*CHIP_SIZE + CHIP_SIZE/2 );
@@ -96,6 +103,12 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& )
 
 void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 {
+    if( m_game->computersTurn() )
+    {
+        kDebug() << "Not your turn, player" << endl;
+        return;
+    }
+
     if( !m_boardRect.contains(ev->scenePos()) )
         return;
     int row = (int)ev->scenePos().y() / CHIP_SIZE;
@@ -103,7 +116,7 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     
     kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
 
-    m_game->putChipAt( row, col );
+    m_game->makePlayerMove( row, col );
 }
 
 #include "kreversiscene.moc"
