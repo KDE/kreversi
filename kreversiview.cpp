@@ -7,6 +7,7 @@
 KReversiView::KReversiView( QGraphicsScene* scene, QWidget *parent )
     : QGraphicsView(scene, parent)
 {
+    setCacheMode( QGraphicsView::CacheBackground );
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //setFixedSize( sceneRect().toRect().size() );

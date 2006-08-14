@@ -17,13 +17,15 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     : KMainWindow(parent)
 {
     m_game = new KReversiGame;
-    m_scene = new KReversiScene(m_game);
 
-    KReversiView *view = new KReversiView(m_scene, this);
-    view->show();
+    // FIXME dimsuz: if chips.png not found give error end exit
+    m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
+
+    m_view = new KReversiView(m_scene, this);
+    m_view->show();
 
     setupActions();
-    setCentralWidget(view);
+    setCentralWidget(m_view);
     setupGUI();
 }
 
@@ -63,7 +65,10 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
     file.remove('&');
     QPixmap pix( KStandardDirs::locate("appdata", QString("pics/background/") + file ) );
     if(!pix.isNull())
+    {
+        m_view->resetCachedContent();
         m_scene->setBackgroundPixmap( pix );
+    }
 }
 
 void KReversiMainWindow::newGame()

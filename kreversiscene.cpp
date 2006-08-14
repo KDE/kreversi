@@ -10,14 +10,16 @@
 
 
 // FIXME dimsuz: something to remove/give-more-thinking
-const int CHIP_SIZE = 32;
+const int CHIP_SIZE = 36;
 
-KReversiScene::KReversiScene( KReversiGame* game )
+KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
 {
     setBackgroundBrush( Qt::lightGray );
 
     m_boardRect = QRectF(5, 5, CHIP_SIZE*8, CHIP_SIZE*8);
     setSceneRect( 0, 0, m_boardRect.width()+10, m_boardRect.height()+10);
+
+    m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
 
     setGame(game);
 }
@@ -61,7 +63,7 @@ void KReversiScene::updateBoard()
                 else
                 {
                     kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
-                    chip = new KReversiChip( color, this );
+                    chip = new KReversiChip( color, m_frameSet, this );
                     chip->setPos( cellTopLeft(row, col) );
                 }
             }

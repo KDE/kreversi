@@ -5,6 +5,7 @@
 
 class KReversiScene;
 class KReversiGame;
+class KReversiView;
 
 class KReversiMainWindow : public KMainWindow
 {
@@ -18,6 +19,7 @@ private:
     void setupActions();
 
     KReversiScene *m_scene;
+    KReversiView  *m_view;
     KReversiGame *m_game;
 };
 #endif

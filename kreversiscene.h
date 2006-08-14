@@ -5,6 +5,7 @@
 #include <QPixmap>
 
 class KReversiGame;
+class KReversiChipFrameSet;
 class QPainter;
 
 /**
@@ -20,7 +21,10 @@ class KReversiScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    KReversiScene( KReversiGame* game=0 );
+    /**
+     * @param chipsPixmap the pixmap with animation frames
+     */
+    KReversiScene( KReversiGame* game, const QPixmap& chipsPixmap );
     void setGame( KReversiGame* game );
     void setBackgroundPixmap( const QPixmap& pix );
 public slots:
@@ -50,5 +54,9 @@ private:
      *  Background pixmap
      */
     QPixmap m_bkgndPix;
+    /**
+     *  Animation frameset for chips
+     */
+    KReversiChipFrameSet *m_frameSet;
 };
 #endif

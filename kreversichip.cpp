@@ -2,8 +2,10 @@
 #include <QPainter>
 #include <QPixmap>
 
-KReversiChip::KReversiChip( ChipColor color, QGraphicsScene* scene )
-    : QGraphicsPixmapItem( 0, scene ), m_color(color)
+#include <kdebug.h>
+
+KReversiChip::KReversiChip( ChipColor color, const KReversiChipFrameSet* frameSet, QGraphicsScene* scene )
+    : QGraphicsPixmapItem( 0, scene ), m_color(color), m_frameSet(frameSet)
 {
     setColor(m_color);
 }
@@ -11,11 +13,27 @@ KReversiChip::KReversiChip( ChipColor color, QGraphicsScene* scene )
 void KReversiChip::setColor( ChipColor color )
 {
     m_color = color;
-    QPixmap pix(32, 32);
-    pix.fill( Qt::white );
-    QPainter p(&pix);
-    p.setBrush( color == White ? Qt::white : Qt::black );
-    p.drawEllipse( QRectF(0,0,32,32) );
-    p.end();
-    setPixmap( pix );
+    setPixmap( m_frameSet->chipPixmap( m_color ) );
+}
+
+KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameSize )
+{
+    // we skip x,y = (0,0) case, because allFrames has a transparent frame as the 
+    // the first one. Just for symmetry I guess (so the pix remains square)
+    for(int y=0; y < allFrames.height(); y += frameSize )
+        for(int x=0; x < allFrames.width(); x += frameSize )
+        {
+            if( x==0 && y==0 ) continue;
+            m_frames.append( allFrames.copy(x,y, frameSize, frameSize) );
+        }
+}
+
+QPixmap KReversiChipFrameSet::frame( int frameNo ) const
+{
+    return m_frames.at(frameNo);
+}
+
+QPixmap KReversiChipFrameSet::chipPixmap( ChipColor color ) const
+{
+    return ( color == White ? m_frames.at(frameCount()-1) : m_frames.at(0) );
 }
