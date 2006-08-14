@@ -2,6 +2,7 @@
 #define KREVERSI_SCENE_H
 
 #include <QGraphicsScene>
+#include <QPixmap>
 
 class KReversiGame;
 class QPainter;
@@ -21,6 +22,7 @@ class KReversiScene : public QGraphicsScene
 public:
     KReversiScene( KReversiGame* game=0 );
     void setGame( KReversiGame* game );
+    void setBackgroundPixmap( const QPixmap& pix );
 public slots:
     void updateBoard();
     void currentPlayerChanged();
@@ -44,5 +46,9 @@ private:
      *  Bounding rect of the board grid
      */
     QRectF m_boardRect;
+    /**
+     *  Background pixmap
+     */
+    QPixmap m_bkgndPix;
 };
 #endif

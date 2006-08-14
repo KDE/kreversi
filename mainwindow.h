@@ -13,6 +13,7 @@ public:
     KReversiMainWindow(QWidget* parent=0);
 public slots:
     void newGame();
+    void slotBackgroundChanged(const QString& text);
 private:
     void setupActions();
 

@@ -2,6 +2,7 @@
 #include <QPainter>
 
 #include <kdebug.h>
+#include <kstandarddirs.h>
 
 #include "kreversiscene.h"
 #include "kreversigame.h"
@@ -83,8 +84,20 @@ QPointF KReversiScene::cellTopLeft( int row, int col ) const
     return QPointF( m_boardRect.x() + col*CHIP_SIZE, m_boardRect.y() + row*CHIP_SIZE );
 }
 
-void KReversiScene::drawBackground( QPainter *p, const QRectF& )
+void KReversiScene::setBackgroundPixmap( const QPixmap& pix )
 {
+    m_bkgndPix = pix;
+    update();
+}
+
+void KReversiScene::drawBackground( QPainter *p, const QRectF& r)
+{
+    if(!m_bkgndPix.isNull())
+    {
+        p->setBrush( m_bkgndPix );
+        p->drawRect( r );
+    }
+
     QPen pen(Qt::black);
     pen.setWidth(2);
 
