@@ -1,5 +1,6 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <QTimer>
 
 #include <kdebug.h>
 #include <kstandarddirs.h>
@@ -20,6 +21,8 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
     setSceneRect( 0, 0, m_boardRect.width()+10, m_boardRect.height()+10);
 
     m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
+    m_animTimer = new QTimer(this);
+    connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
 
     setGame(game);
 }
@@ -27,8 +30,9 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
 void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
+    // FIXME dimsuz: is it needed?
     connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
-    connect( m_game, SIGNAL(currentPlayerChanged()), this, SLOT(currentPlayerChanged()) );
+    connect( m_game, SIGNAL(moveFinished()), this, SLOT(slotMoveFinished()) );
 
     // this will remove all items left from previous game
     QList<QGraphicsItem*> allChips = items( m_boardRect );
@@ -41,6 +45,7 @@ void KReversiScene::setGame( KReversiGame* game )
     updateBoard();
 }
 
+// FIXME dimsuz: seems like it is obsolete now. Remove it?
 void KReversiScene::updateBoard()
 {
     for(int row=0; row<8; ++row)
@@ -70,10 +75,39 @@ void KReversiScene::updateBoard()
         }
 }
 
-void KReversiScene::currentPlayerChanged()
+void KReversiScene::slotMoveFinished()
 {
-    if( m_game->computersTurn() )
-        m_game->makeComputerMove();
+    m_changedChips = m_game->changedChips();
+    // create an item that was placed by player
+    // by convention it will be the first in the list of changed items
+    KReversiMove move = m_changedChips.takeFirst();
+    KReversiChip *newchip = new KReversiChip( move.color, m_frameSet, this );
+    newchip->setPos( cellTopLeft( move.row, move.col ) );
+    // start animation
+    m_animTimer->start(20);
+}
+
+void KReversiScene::slotAnimationStep()
+{
+    KReversiMove move = m_changedChips.at(0);
+    KReversiChip *chip = static_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
+
+    bool animFinished = chip->nextFrame();
+    if(animFinished)
+    {
+        chip->setColor( move.color );
+
+        m_changedChips.removeFirst(); // we finished animating it
+
+        if(m_changedChips.count() == 0)
+        {
+            kDebug() << "stopping timer" <<endl;
+            m_animTimer->stop();
+            // next turn
+            if( m_game->computersTurn() )
+                m_game->makeComputerMove();
+        }
+    }
 }
 
 QPointF KReversiScene::cellCenter( int row, int col ) const

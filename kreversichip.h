@@ -13,9 +13,20 @@ public:
     KReversiChip( ChipColor color, const KReversiChipFrameSet *frameSet, QGraphicsScene *scene );
     void setColor( ChipColor color );
     ChipColor color() const { return m_color; }
+    /**
+     *  Called during animation
+     *  NOTE: it doesn't change the color of the chip when
+     *  animation finishes - you've to do it yourself
+     *  @return whether the animation sequence is finished
+     */
+    bool nextFrame();
 private:
     ChipColor m_color;
     const KReversiChipFrameSet* m_frameSet;
+    /**
+     *  Current animation frame
+     */
+    int m_curFrame;
 };
 
 /**
@@ -50,8 +61,15 @@ public:
     KReversiChipFrameSet( const QPixmap& allFrames, int frameSize );
     /**
      *  Retruns a pixmap which corresponds to frame with number frameNo.
+     *  It takes the chip color into account. This means that
+     *  based on the assumption No. 1 (see class description), while frameNo 
+     *  increases it will return
+     *  frames from black to white if chip color == Black and
+     *  from  white to black if chip color == White.
+     *  It allows this class to hide all this pixmap-format assumtion tricks
+     *  from KReversiChip which can simply increase frameNo and be happy :)
      */
-    QPixmap frame( int frameNo ) const;
+    QPixmap frame( ChipColor color, int frameNo ) const;
     /**
      *  Returns a pixmap with a chip of corresponding color
      */

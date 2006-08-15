@@ -45,91 +45,107 @@ void KReversiGame::makeComputerMove()
         return;
     }
     KReversiMove move = m_engine->computeMove( *this, true );
+    // FIXME dimsuz: if move.color == m_computerColor then this might mean that player already has won!
+    // Check it!
+    Q_ASSERT(move.color == m_computerColor);
     kDebug() << "Computer plays ("<<move.row<<","<<move.col<<")" <<endl;
     makeMove(move);
 }
 
 void KReversiGame::makeMove( const KReversiMove& move )
 {
-    m_board->setChipColor( move.row, move.col, m_curPlayer );
+    m_changedChips.clear();
+
+    m_board->setChipColor( move.row, move.col, move.color );
+    // the first one is the move itself
+    m_changedChips.append( move );
     // now turn color of all chips that were won
     if( hasChunk( Up, move ) )
     {
         for(int r=move.row-1; r >= 0; --r)
         {
-            if( m_board->chipColorAt( r, move.col ) == m_curPlayer )
+            if( m_board->chipColorAt( r, move.col ) == move.color )
                 break;
-            m_board->setChipColor( r, move.col, m_curPlayer );
+            m_board->setChipColor( r, move.col, move.color );
+            m_changedChips.append( KReversiMove( move.color, r, move.col ) );
         }
     }
     if( hasChunk( Down, move ) )
     {
         for(int r=move.row+1; r < 8; ++r)
         {
-            if( m_board->chipColorAt( r, move.col ) == m_curPlayer )
+            if( m_board->chipColorAt( r, move.col ) == move.color )
                 break;
-            m_board->setChipColor( r, move.col, m_curPlayer );
+            m_board->setChipColor( r, move.col, move.color );
+            m_changedChips.append( KReversiMove( move.color, r, move.col ) );
         }
     }
     if( hasChunk( Left, move ) )
     {
         for(int c=move.col-1; c >= 0; --c)
         {
-            if( m_board->chipColorAt( move.row, c ) == m_curPlayer )
+            if( m_board->chipColorAt( move.row, c ) == move.color )
                 break;
-            m_board->setChipColor( move.row, c, m_curPlayer );
+            m_board->setChipColor( move.row, c, move.color );
+            m_changedChips.append( KReversiMove( move.color, move.row, c ) );
         }
     }
     if( hasChunk( Right, move ) )
     {
         for(int c=move.col+1; c < 8; ++c)
         {
-            if( m_board->chipColorAt( move.row, c ) == m_curPlayer )
+            if( m_board->chipColorAt( move.row, c ) == move.color )
                 break;
-            m_board->setChipColor( move.row, c, m_curPlayer );
+            m_board->setChipColor( move.row, c, move.color );
+            m_changedChips.append( KReversiMove( move.color, move.row, c ) );
         }
     }
     if( hasChunk( UpLeft, move ) )
     {
         for(int r=move.row-1, c=move.col-1; r>=0 && c >= 0; --r, --c)
         {
-            if( m_board->chipColorAt( r, c ) == m_curPlayer )
+            if( m_board->chipColorAt( r, c ) == move.color )
                 break;
-            m_board->setChipColor( r, c, m_curPlayer );
+            m_board->setChipColor( r, c, move.color );
+            m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
     if( hasChunk( UpRight, move ) )
     {
         for(int r=move.row-1, c=move.col+1; r>=0 && c < 8; --r, ++c)
         {
-            if( m_board->chipColorAt( r, c ) == m_curPlayer )
+            if( m_board->chipColorAt( r, c ) == move.color )
                 break;
-            m_board->setChipColor( r, c, m_curPlayer );
+            m_board->setChipColor( r, c, move.color );
+            m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
     if( hasChunk( DownLeft, move ) )
     {
         for(int r=move.row+1, c=move.col-1; r < 8 && c >= 0; ++r, --c)
         {
-            if( m_board->chipColorAt( r, c ) == m_curPlayer )
+            if( m_board->chipColorAt( r, c ) == move.color )
                 break;
-            m_board->setChipColor( r, c, m_curPlayer );
+            m_board->setChipColor( r, c, move.color );
+            m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
     if( hasChunk( DownRight, move ) )
     {
         for(int r=move.row+1, c=move.col+1; r < 8 && c < 8; ++r, ++c)
         {
-            if( m_board->chipColorAt( r, c ) == m_curPlayer )
+            if( m_board->chipColorAt( r, c ) == move.color )
                 break;
-            m_board->setChipColor( r, c, m_curPlayer );
+            m_board->setChipColor( r, c, move.color );
+            m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
 
     m_curPlayer = (m_curPlayer == White ? Black : White );
     kDebug() << "Now " << (m_curPlayer == White ? "White" : "Black" )<< " play" << endl;
-    emit boardChanged();
-    emit currentPlayerChanged();
+    // FIXME dimsuz: is it needed at all?
+    //emit boardChanged();
+    emit moveFinished();
 }
 
 bool KReversiGame::isMovePossible( const KReversiMove& move ) const

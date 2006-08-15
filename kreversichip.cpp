@@ -5,7 +5,7 @@
 #include <kdebug.h>
 
 KReversiChip::KReversiChip( ChipColor color, const KReversiChipFrameSet* frameSet, QGraphicsScene* scene )
-    : QGraphicsPixmapItem( 0, scene ), m_color(color), m_frameSet(frameSet)
+    : QGraphicsPixmapItem( 0, scene ), m_color(color), m_frameSet(frameSet), m_curFrame(0)
 {
     setColor(m_color);
 }
@@ -15,6 +15,17 @@ void KReversiChip::setColor( ChipColor color )
     m_color = color;
     setPixmap( m_frameSet->chipPixmap( m_color ) );
 }
+
+bool KReversiChip::nextFrame()
+{
+    setPixmap( m_frameSet->frame( m_color, m_curFrame++ ) );
+    bool finished = (m_curFrame == m_frameSet->frameCount());
+    if(finished)
+        m_curFrame = 0;
+    return finished;
+}
+
+// -------------------------------------------------------------------------------
 
 KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameSize )
 {
@@ -28,9 +39,17 @@ KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameS
         }
 }
 
-QPixmap KReversiChipFrameSet::frame( int frameNo ) const
+QPixmap KReversiChipFrameSet::frame( ChipColor color, int frameNo ) const
 {
-    return m_frames.at(frameNo);
+    int idx = 0;
+    if( color == White )
+        idx = m_frames.count() - frameNo - 1;
+    else if(color == Black)
+        idx = frameNo;
+
+    Q_ASSERT( idx >= 0 && idx < m_frames.count() );
+
+    return m_frames.at( idx );
 }
 
 QPixmap KReversiChipFrameSet::chipPixmap( ChipColor color ) const

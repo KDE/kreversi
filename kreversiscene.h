@@ -4,9 +4,12 @@
 #include <QGraphicsScene>
 #include <QPixmap>
 
+#include "commondefs.h"
+
 class KReversiGame;
 class KReversiChipFrameSet;
 class QPainter;
+class QTimer;
 
 /**
  *  This class provides graphical representation of KReversiGame
@@ -29,7 +32,8 @@ public:
     void setBackgroundPixmap( const QPixmap& pix );
 public slots:
     void updateBoard();
-    void currentPlayerChanged();
+    void slotMoveFinished();
+    void slotAnimationStep();
 private:
     /**
      *  Draws a background with 8x8 cell matrix.
@@ -45,6 +49,9 @@ private:
      *  Returns the top-left point of cell (row,col)
      */
     QPointF cellTopLeft( int row, int col ) const;
+    /**
+     *  The Game object
+     */
     KReversiGame *m_game;
     /**
      *  Bounding rect of the board grid
@@ -58,5 +65,15 @@ private:
      *  Animation frameset for chips
      */
     KReversiChipFrameSet *m_frameSet;
+    /**
+     *  Animation timer
+     */
+    QTimer* m_animTimer;
+    /**
+     *  This list will hold a changed chips
+     *  after each turn. It is received from the game object.
+     *  Used to animate corresponding chips.
+     */
+    QList<KReversiMove> m_changedChips;
 };
 #endif

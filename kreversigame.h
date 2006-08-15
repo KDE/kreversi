@@ -46,9 +46,11 @@ public:
      *  Returns true, if it's computer's turn now
      */
     bool computersTurn() const { return m_curPlayer == m_computerColor; }
+
+    QList<KReversiMove> changedChips() const { return m_changedChips; }
 signals:
     void boardChanged();
-    void currentPlayerChanged();
+    void moveFinished();
 private:
     enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
     /**
@@ -87,5 +89,16 @@ private:
      *  Our AI
      */
     Engine *m_engine;
+     // Well I'm not brief at all :). That's because I think that my
+     // English is not well shaped sometimes, so I try to describe things
+     // so that me and others can understand. Even simple things.
+     // Espesially when I think that my description sucks :)
+    /**
+     *  This list holds chips that were changed/added during last move
+     *  First of them will be the chip added to the board by the player
+     *  during last move. The rest of them - chips that were turned by that
+     *  move.
+     */
+    QList<KReversiMove> m_changedChips;
 };
 #endif
