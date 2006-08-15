@@ -6,6 +6,7 @@
 class KReversiScene;
 class KReversiGame;
 class KReversiView;
+class KAction;
 
 class KReversiMainWindow : public KMainWindow
 {
@@ -13,8 +14,9 @@ class KReversiMainWindow : public KMainWindow
 public:
     KReversiMainWindow(QWidget* parent=0);
 public slots:
-    void newGame();
+    void slotNewGame();
     void slotBackgroundChanged(const QString& text);
+    void slotUndo();
 private:
     void setupActions();
 

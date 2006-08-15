@@ -43,6 +43,10 @@ public:
      */
     void makeComputerMove();
     /**
+     *  Undoes the last player-computer move pair
+     */
+    void undo();
+    /**
      *  Returns true, if it's computer's turn now
      */
     bool computersTurn() const { return m_curPlayer == m_computerColor; }
@@ -100,5 +104,15 @@ private:
      *  move.
      */
     QList<KReversiMove> m_changedChips;
+    /**
+     *  This list holds chips changed with last computer move
+     *  and is used while undoing
+     */
+    QList<KReversiMove> m_lastUndoComputer;
+    /**
+     *  This list holds chips changed with last player move
+     *  and is used while undoing
+     */
+    QList<KReversiMove> m_lastUndoPlayer;
 };
 #endif

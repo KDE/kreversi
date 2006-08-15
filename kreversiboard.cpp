@@ -32,16 +32,25 @@ int KReversiBoard::playerScore( ChipColor player ) const
     return m_score[player];
 }
 
-void KReversiBoard::setChipColor(int row, int col, ChipColor color)
+void KReversiBoard::setChipColor(ChipColor color, int row, int col)
 {
     Q_ASSERT( row < 8 && col < 8 );
     // first: if the current cell already contains a chip of the opponent,
     // we'll decrease opponents score
-    if( m_cells[row][col] != NoColor && m_cells[row][col] != color )
+    if( m_cells[row][col] != NoColor && color != NoColor && m_cells[row][col] != color )
         m_score[opponentColorFor(color)]--;
+    // if the cell contains some chip and is being replaced by NoColor,
+    // we'll decrease the score of that color
+    // Such replacements (with NoColor) occur during undoing
     // and now replacing with chip of 'color'
+    if( m_cells[row][col] != NoColor && color == NoColor )
+        m_score[ m_cells[row][col] ]--;
+
     m_cells[row][col] = color;
-    m_score[color]++;
+
+    if( color != NoColor )
+        m_score[color]++;
+
     kDebug() << "Score of White player: " << m_score[White] << endl;
     kDebug() << "Score of Black player: " << m_score[Black] << endl;
 }

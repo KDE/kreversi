@@ -20,7 +20,7 @@ public:
     /**
      *  Sets the type of chip at (row,col)
      */
-    void setChipColor(int row, int col, ChipColor type);
+    void setChipColor(ChipColor type, int row, int col);
     /**
      *  Retruns type of the chip in cell at (row, col)
      */

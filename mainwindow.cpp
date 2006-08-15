@@ -14,12 +14,10 @@
 #include <QGraphicsView>
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent)
-    : KMainWindow(parent)
+    : KMainWindow(parent), m_scene(0), m_game(0)
 {
-    m_game = new KReversiGame;
-
-    // FIXME dimsuz: if chips.png not found give error end exit
-    m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
+    slotNewGame();
+    // m_scene is created in slotNewGame();
 
     m_view = new KReversiView(m_scene, this);
     m_view->show();
@@ -32,7 +30,8 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 void KReversiMainWindow::setupActions()
 {
     KAction *quitAct = KStdAction::quit(this, SLOT(close()), actionCollection(), "quit");
-    KAction *newGameAct = KStdAction::openNew(this, SLOT(newGame()), actionCollection(), "new_game");
+    KAction *newGameAct = KStdAction::openNew(this, SLOT(slotNewGame()), actionCollection(), "new_game");
+    KAction *undoAct = KStdAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
 
     KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
     connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
@@ -54,6 +53,7 @@ void KReversiMainWindow::setupActions()
 
     addAction(newGameAct);
     addAction(quitAct);
+    addAction(undoAct);
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -71,11 +71,25 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
     }
 }
 
-void KReversiMainWindow::newGame()
+void KReversiMainWindow::slotNewGame()
 {
     delete m_game;
     m_game = new KReversiGame;
-    m_scene->setGame( m_game );
+
+    if(m_scene == 0) // if called first time
+    {
+        // FIXME dimsuz: if chips.png not found give error end exit
+        m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
+    }
+    else
+    {
+        m_scene->setGame( m_game );
+    }
+}
+
+void KReversiMainWindow::slotUndo()
+{
+    m_game->undo();
 }
 
 #include "mainwindow.moc"

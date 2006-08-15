@@ -45,7 +45,6 @@ void KReversiScene::setGame( KReversiGame* game )
     updateBoard();
 }
 
-// FIXME dimsuz: seems like it is obsolete now. Remove it?
 void KReversiScene::updateBoard()
 {
     for(int row=0; row<8; ++row)
@@ -71,6 +70,11 @@ void KReversiScene::updateBoard()
                     chip = new KReversiChip( color, m_frameSet, this );
                     chip->setPos( cellTopLeft(row, col) );
                 }
+            }
+            else
+            {
+                // this if-branch happens on undos
+                delete itemAt( cellCenter(row, col) );
             }
         }
 }
@@ -105,7 +109,9 @@ void KReversiScene::slotAnimationStep()
             m_animTimer->stop();
             // next turn
             if( m_game->computersTurn() )
+            {
                 m_game->makeComputerMove();
+            }
         }
     }
 }
@@ -162,6 +168,11 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
         return;
     int row = (int)ev->scenePos().y() / CHIP_SIZE;
     int col = (int)ev->scenePos().x() / CHIP_SIZE;
+
+    if( row < 0 ) row = 0;
+    if( row > 7 ) row = 7;
+    if( col < 0 ) col = 0;
+    if( col > 7 ) col = 7;
     
     kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
 

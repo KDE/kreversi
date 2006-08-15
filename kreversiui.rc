@@ -6,6 +6,9 @@
     <Action name="new_game"/>
     <Action name="quit"/>
   </Menu>
+  <Menu name="edit"><text>&amp;Edit</text>
+    <Action name="undo"/>
+  </Menu>
   <Menu name="settings"><text>&amp;Settings</text>
     <Action name="choose_bkgnd" />
   </Menu>
@@ -13,5 +16,6 @@
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
   <Action name="new_game"/>
+  <Action name="undo" />
 </ToolBar>
 </kpartgui>
