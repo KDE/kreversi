@@ -3,11 +3,12 @@
 
 <MenuBar>
   <Menu name="game"><text>&amp;Game</text>
-    <Action name="new_game"/>
-    <Action name="quit"/>
+    <Action name="new_game" />
+    <Action name="hint" />
+    <Action name="quit" />
   </Menu>
   <Menu name="edit"><text>&amp;Edit</text>
-    <Action name="undo"/>
+    <Action name="undo" />
   </Menu>
   <Menu name="settings"><text>&amp;Settings</text>
     <Action name="choose_bkgnd" />
@@ -15,7 +16,8 @@
 </MenuBar>
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
-  <Action name="new_game"/>
+  <Action name="new_game" />
+  <Action name="hint" />
   <Action name="undo" />
 </ToolBar>
 </kpartgui>

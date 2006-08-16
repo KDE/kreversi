@@ -4,12 +4,13 @@
 #include "kreversiview.h"
 
 #include <kaction.h>
+#include <kapplication.h>
 #include <kdebug.h>
+#include <kicon.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kstdaction.h>
 #include <kselectaction.h>
-#include <kapplication.h>
 
 #include <QGraphicsView>
 
@@ -29,9 +30,12 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 
 void KReversiMainWindow::setupActions()
 {
-    KAction *quitAct = KStdAction::quit(this, SLOT(close()), actionCollection(), "quit");
     KAction *newGameAct = KStdAction::openNew(this, SLOT(slotNewGame()), actionCollection(), "new_game");
+    KAction *quitAct = KStdAction::quit(this, SLOT(close()), actionCollection(), "quit");
     KAction *undoAct = KStdAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
+    KAction *hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
+    hintAct->setShortcut( Qt::Key_H );
+    connect( hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
     KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
     connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
@@ -47,13 +51,16 @@ void KReversiMainWindow::setupActions()
         bkgndAct->addAction(str.mid(idx1+1,idx2-idx1-1));
     }
 
+
     // FIXME dimsuz: this should come from KConfig!
     bkgndAct->setCurrentAction( "Hexagon" );
     slotBackgroundChanged("Hexagon");
 
+
     addAction(newGameAct);
     addAction(quitAct);
     addAction(undoAct);
+    addAction(hintAct);
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -89,6 +96,7 @@ void KReversiMainWindow::slotNewGame()
 
 void KReversiMainWindow::slotUndo()
 {
+    // scene will automatically notice that it needs to update
     m_game->undo();
 }
 

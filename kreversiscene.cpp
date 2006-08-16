@@ -14,6 +14,7 @@
 const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
+    : m_showingHint(false), m_hintChip(0)
 {
     setBackgroundBrush( Qt::lightGray );
 
@@ -30,7 +31,6 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
 void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
-    // FIXME dimsuz: is it needed?
     connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
     connect( m_game, SIGNAL(moveFinished()), this, SLOT(slotMoveFinished()) );
 
@@ -93,27 +93,87 @@ void KReversiScene::slotMoveFinished()
 
 void KReversiScene::slotAnimationStep()
 {
-    KReversiMove move = m_changedChips.at(0);
-    KReversiChip *chip = static_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
+    if( !m_showingHint )
+    { // we're animating chips move
 
-    bool animFinished = chip->nextFrame();
-    if(animFinished)
-    {
-        chip->setColor( move.color );
+        KReversiMove move = m_changedChips.at(0);
+        KReversiChip *chip = static_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
 
-        m_changedChips.removeFirst(); // we finished animating it
-
-        if(m_changedChips.count() == 0)
+        bool animFinished = chip->nextFrame();
+        if(animFinished)
         {
-            kDebug() << "stopping timer" <<endl;
-            m_animTimer->stop();
-            // next turn
-            if( m_game->computersTurn() )
+            chip->setColor( move.color );
+
+            m_changedChips.removeFirst(); // we finished animating it
+
+            if(m_changedChips.count() == 0)
             {
+                kDebug() << "stopping timer" <<endl;
+                m_animTimer->stop();
+
+                // some better name maybe?
+                beginNextTurn();
+            }
+        }
+    }
+    else
+    { // we're just showing hint to the user
+        m_hintChip->setVisible( !m_hintChip->isVisible() );
+        // FIXME dimsuz: update only bounding rect!
+        update();
+    }
+}
+
+void KReversiScene::beginNextTurn()
+{
+    if( !m_game->isGameOver() )
+    {
+        if( m_game->isComputersTurn() )
+        {
+            if(m_game->isAnyComputerMovePossible())
+                m_game->makeComputerMove();
+            // else we'll just do nothing and wait for
+            // player's mouse intput
+        }
+        else
+        {
+            // if player cant move there's no sence in waiting for mouseInput.
+            // Let the computer play again!
+            if( !m_game->isAnyPlayerMovePossible() )
+            {
+                // FIXME dimsuz: display this in GUI
+                kDebug() << "Player can't move!" << endl;
                 m_game->makeComputerMove();
             }
         }
     }
+    else
+    {
+        // FIXME dimsuz: IMPLEMENT
+        kDebug() << "GAME OVER" << endl;
+    }
+}
+
+void KReversiScene::slotHint()
+{
+    if( m_game->isComputersTurn() )
+    {
+        kDebug() << "It is not a very good time to ask me for a hint, human. I'm thinking..." << endl;
+        return;
+    }
+    if( m_animTimer->isActive() )
+    {
+        kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
+        return;
+    }
+    KReversiMove hint = m_game->getHint();
+    if(hint.row == -1 || hint.col == -1)
+        return;
+    if( m_hintChip == 0 )
+        m_hintChip = new KReversiChip( hint.color, m_frameSet, this );
+    m_hintChip->setPos( cellTopLeft( hint.row, hint.col ) );
+    m_showingHint = true;
+    m_animTimer->start(500);
 }
 
 QPointF KReversiScene::cellCenter( int row, int col ) const
@@ -158,9 +218,24 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& r)
 
 void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 {
-    if( m_game->computersTurn() )
+    if( m_game->isComputersTurn() )
     {
-        kDebug() << "Not your turn, player" << endl;
+        kDebug() << "It is not your turn, human" << endl;
+        return;
+    }
+    if( m_animTimer->isActive() )
+    {
+        if( m_showingHint )
+        {
+            m_animTimer->stop();
+            m_hintChip->hide();
+            m_showingHint = false;
+            // FIXME dimsuz: update only m_hintChips bounding rect!
+            update();
+        }
+        else // scene is animating move now...
+            kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
+
         return;
     }
 

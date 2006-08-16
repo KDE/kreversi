@@ -6,7 +6,7 @@
 
 
 KReversiGame::KReversiGame()
-    : m_curPlayer(Black), m_computerColor( White )
+    : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White )
 {
     m_board = new KReversiBoard();
     m_engine = new Engine(1);
@@ -20,14 +20,10 @@ KReversiGame::~KReversiGame()
 
 void KReversiGame::makePlayerMove( int row, int col )
 {
-// FIXME dimsuz: debug temporary code
-    if( m_curPlayer == m_computerColor )
-    {
-        kDebug() << "Warning! Player turn called while it's computer turn" << endl;
-        return;
-    }
-
-    KReversiMove move( m_curPlayer, row, col );
+    m_curPlayer = m_playerColor;
+    KReversiMove move( m_playerColor, row, col );
+    // this can help you to see computer vs computer battle :)
+    //KReversiMove move = m_engine->computeMove( *this, true );
     if( !isMovePossible(move) )
     {
         kDebug() << "No move possible" << endl;
@@ -39,14 +35,11 @@ void KReversiGame::makePlayerMove( int row, int col )
 
 void KReversiGame::makeComputerMove()
 {
-// FIXME dimsuz: debug temporary code
-    if( m_curPlayer != m_computerColor )
-    {
-        kDebug() << "Warning! Computer turn called while it's player turn" << endl;
-        return;
-    }
+    m_curPlayer = m_computerColor;
+    // FIXME dimsuz: m_competitive. Read from config. What's this btw? :)
+    // (also there's computeMove in getHint)
     KReversiMove move = m_engine->computeMove( *this, true );
-    // FIXME dimsuz: if move.color == m_computerColor then this might mean that player already has won!
+    // FIXME dimsuz: if move.color != m_computerColor then this might mean that player already has won!
     // Check it!
     Q_ASSERT(move.color == m_computerColor);
     kDebug() << "Computer plays ("<<move.row<<","<<move.col<<")" <<endl;
@@ -191,8 +184,6 @@ void KReversiGame::makeMove( const KReversiMove& move )
 
     m_curPlayer = (m_curPlayer == White ? Black : White );
     kDebug() << "Now " << (m_curPlayer == White ? "White" : "Black" )<< " play" << endl;
-    // FIXME dimsuz: is it needed at all?
-    //emit boardChanged();
     emit moveFinished();
 }
 
@@ -236,7 +227,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -257,7 +248,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -278,7 +269,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -299,7 +290,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -320,7 +311,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -341,7 +332,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -362,7 +353,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -383,7 +374,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
             {
                 opponentChipsNum++;
             }
-            else if(color == m_curPlayer)
+            else if(color == move.color)
             {
                 foundPlayerColor = true;
                 break; //bail out
@@ -402,6 +393,50 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
 const KReversiBoard& KReversiGame::board() const
 {
     return *m_board;
+}
+
+bool KReversiGame::isGameOver() const
+{
+    // trivial fast-check
+    if( m_board->playerScore(White) + m_board->playerScore(Black) == 64 )
+        return true; // the board is full
+    else
+        return !(isAnyPlayerMovePossible() || isAnyComputerMovePossible());
+}
+
+bool KReversiGame::isAnyPlayerMovePossible() const
+{
+    for( int r=0; r<8; ++r )
+        for( int c=0; c<8; ++c )
+        {
+            if( m_board->chipColorAt(r,c) == NoColor )
+            {
+                // let's see if we can put chip here
+                if( isMovePossible( KReversiMove( m_playerColor, r, c ) ) )
+                        return true;
+            }
+        }
+    return false;
+}
+
+bool KReversiGame::isAnyComputerMovePossible() const
+{
+    for( int r=0; r<8; ++r )
+        for( int c=0; c<8; ++c )
+        {
+            if( m_board->chipColorAt(r,c) == NoColor )
+            {
+                // let's see if we can put chip here
+                if( isMovePossible( KReversiMove( m_computerColor, r, c ) ) )
+                        return true;
+            }
+        }
+    return false;
+}
+
+KReversiMove KReversiGame::getHint() const
+{
+    return m_engine->computeMove( *this, true );
 }
 
 int KReversiGame::playerScore( ChipColor player ) const

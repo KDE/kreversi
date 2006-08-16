@@ -42,10 +42,10 @@ void KReversiBoard::setChipColor(ChipColor color, int row, int col)
     // if the cell contains some chip and is being replaced by NoColor,
     // we'll decrease the score of that color
     // Such replacements (with NoColor) occur during undoing
-    // and now replacing with chip of 'color'
     if( m_cells[row][col] != NoColor && color == NoColor )
         m_score[ m_cells[row][col] ]--;
 
+    // and now replacing with chip of 'color'
     m_cells[row][col] = color;
 
     if( color != NoColor )

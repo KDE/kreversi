@@ -8,6 +8,7 @@
 
 class KReversiGame;
 class KReversiChipFrameSet;
+class KReversiChip;
 class QPainter;
 class QTimer;
 
@@ -34,6 +35,10 @@ public slots:
     void updateBoard();
     void slotMoveFinished();
     void slotAnimationStep();
+    /**
+     *  Shows hint for player
+     */
+    void slotHint();
 private:
     /**
      *  Draws a background with 8x8 cell matrix.
@@ -41,6 +46,13 @@ private:
      */
     virtual void drawBackground( QPainter *p, const QRectF& rect );
     virtual void mousePressEvent( QGraphicsSceneMouseEvent* );
+    /**
+     *  Checks if players can move and if they can:
+     *  if it's time for computer to move or user is locked and can't move,
+     *  this function tells m_game to perform computer move.
+     *  Else it just sits and wait for user's mouse input (= his turn)
+     */
+    void beginNextTurn();
     /**
      *  Returns the center point of cell (row,col)
      */
@@ -69,6 +81,14 @@ private:
      *  Animation timer
      */
     QTimer* m_animTimer;
+    /**
+     *  Holds true if the scene is showing hint to the player
+     */
+    bool m_showingHint;
+    /**
+     *  This is our "hint-chip" - used to show hints
+     */
+    KReversiChip* m_hintChip;
     /**
      *  This list will hold a changed chips
      *  after each turn. It is received from the game object.
