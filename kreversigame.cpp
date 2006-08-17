@@ -30,7 +30,7 @@ void KReversiGame::makePlayerMove( int row, int col )
         return;
     }
     makeMove( move );
-    m_lastUndoPlayer = m_changedChips;
+    m_undoStack.push( m_changedChips );
 }
 
 void KReversiGame::makeComputerMove()
@@ -44,18 +44,23 @@ void KReversiGame::makeComputerMove()
     Q_ASSERT(move.color == m_computerColor);
     kDebug() << "Computer plays ("<<move.row<<","<<move.col<<")" <<endl;
     makeMove(move);
-    m_lastUndoComputer = m_changedChips;
+    m_undoStack.push( m_changedChips );
 }
 
 void KReversiGame::undo()
 {
-    if( m_lastUndoPlayer.isEmpty() || m_lastUndoComputer.isEmpty() )
+    // we're undoing a PAIR of turns at once - human+computer
+    if( m_undoStack.isEmpty() || m_undoStack.size() % 2 != 0)
+    {
+        kDebug() << "Undo stack is empty or contains an odd number of turns (that's odd)" << endl;
         return;
-    // NOTE the order of undoing matters here -
-    // first computer (which plays second)
-    // and then player (which plays first)
-    //
-    // Another thing that matters is that we take the
+    }
+    // one of them will be human last turn
+    // and another - computer last turn
+    MoveList lastUndo1 = m_undoStack.pop();
+    MoveList lastUndo2 = m_undoStack.pop();
+
+    // One thing that matters here is that we take the
     // chip color directly from board, rather than from move.color
     // That allows to take into account undo from first list, while
     // undoing changes which are in the second list
@@ -66,29 +71,28 @@ void KReversiGame::undo()
     //  Computer makes move and captures this chip back"
     //  Yes, I like long descriptions in comments ;).
     
-    // let's undo computer move
-    KReversiMove move = m_lastUndoComputer.takeFirst();
+    KReversiMove move = lastUndo1.takeFirst();
     m_board->setChipColor( NoColor, move.row, move.col );
     // and change back the color of the rest chips
-    foreach( KReversiMove mv, m_lastUndoComputer )
+    foreach( KReversiMove mv, lastUndo1 )
     {
         // NOTE: if chipColorAt == NoColor here, we've some serious problem. It shouldn't be :)
         ChipColor opponentColor = (m_board->chipColorAt(mv.row,mv.col) == White ? Black : White);
         m_board->setChipColor( opponentColor, mv.row, mv.col );
     }
-    m_lastUndoComputer.clear();
+    lastUndo1.clear();
 
-    // now the same steps with player's turn:
-    move = m_lastUndoPlayer.takeFirst();
+    // now the same steps with other list
+    move = lastUndo2.takeFirst();
     m_board->setChipColor( NoColor, move.row, move.col );
     // and change back the color of the rest chips
-    foreach( KReversiMove mv, m_lastUndoPlayer )
+    foreach( KReversiMove mv, lastUndo2 )
     {
         // NOTE: if chipColorAt == NoColor here, we've some serious problem. It shouldn't be :)
         ChipColor opponentColor = (m_board->chipColorAt(mv.row,mv.col) == White ? Black : White);
         m_board->setChipColor( opponentColor, mv.row, mv.col );
     }
-    m_lastUndoPlayer.clear();
+    lastUndo2.clear();
 
     emit boardChanged();
 }

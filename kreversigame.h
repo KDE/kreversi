@@ -2,6 +2,7 @@
 #define KREVERSI_GAME_H
 
 #include <QObject>
+#include <QStack>
 
 #include "commondefs.h"
 
@@ -99,7 +100,7 @@ public:
      *  First of them will be the move itself, and the rest - chips which
      *  were turned by that move
      */
-    QList<KReversiMove> changedChips() const { return m_changedChips; }
+    MoveList changedChips() const { return m_changedChips; }
 signals:
     void boardChanged();
     void moveFinished();
@@ -155,16 +156,13 @@ private:
      *  during last move. The rest of them - chips that were turned by that
      *  move.
      */
-    QList<KReversiMove> m_changedChips;
+    MoveList m_changedChips;
     /**
-     *  This list holds chips changed with last computer move
-     *  and is used while undoing
+     *  This is an undo stack.
+     *  Note that on each undo action a <b>pair</b> of move lists
+     *  will be popped from top. I.e. player turn and computer turn will
+     *  be undone in one go.
      */
-    QList<KReversiMove> m_lastUndoComputer;
-    /**
-     *  This list holds chips changed with last player move
-     *  and is used while undoing
-     */
-    QList<KReversiMove> m_lastUndoPlayer;
+    QStack<MoveList> m_undoStack;
 };
 #endif

@@ -13,4 +13,6 @@ struct KReversiMove
     int col;
 };
 
+typedef QList<KReversiMove> MoveList;
+
 #endif

@@ -94,6 +94,6 @@ private:
      *  after each turn. It is received from the game object.
      *  Used to animate corresponding chips.
      */
-    QList<KReversiMove> m_changedChips;
+    MoveList m_changedChips;
 };
 #endif
