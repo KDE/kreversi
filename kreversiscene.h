@@ -31,6 +31,15 @@ public:
     KReversiScene( KReversiGame* game, const QPixmap& chipsPixmap );
     void setGame( KReversiGame* game );
     void setBackgroundPixmap( const QPixmap& pix );
+    /**
+     *  This function will tell you if the scene is currently performing
+     *  some kind of "better-don't-interrupt-me" operation.
+     *
+     *  For example this call is used in KReversiMainWindow to decide
+     *  whether it is feasible to perform undo action (which makes a little sence
+     *  during, for example animation of computer move)
+     */
+    bool isBusy() const;
 public slots:
     void updateBoard();
     void slotMoveFinished();

@@ -45,6 +45,11 @@ void KReversiScene::setGame( KReversiGame* game )
     updateBoard();
 }
 
+bool KReversiScene::isBusy() const
+{
+    return m_animTimer->isActive();
+}
+
 void KReversiScene::updateBoard()
 {
     for(int row=0; row<8; ++row)

@@ -96,8 +96,9 @@ void KReversiMainWindow::slotNewGame()
 
 void KReversiMainWindow::slotUndo()
 {
-    // scene will automatically notice that it needs to update
-    m_game->undo();
+    if( !m_scene->isBusy() )
+        // scene will automatically notice that it needs to update
+        m_game->undo();
 }
 
 #include "mainwindow.moc"
