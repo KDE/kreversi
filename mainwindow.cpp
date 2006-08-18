@@ -15,7 +15,7 @@
 #include <QGraphicsView>
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent)
-    : KMainWindow(parent), m_scene(0), m_game(0)
+    : KMainWindow(parent), m_scene(0), m_game(0), m_undoAct(0), m_hintAct(0)
 {
     slotNewGame();
     // m_scene is created in slotNewGame();
@@ -34,9 +34,9 @@ void KReversiMainWindow::setupActions()
     KAction *quitAct = KStdAction::quit(this, SLOT(close()), actionCollection(), "quit");
     m_undoAct = KStdAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
-    KAction *hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
-    hintAct->setShortcut( Qt::Key_H );
-    connect( hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
+    m_hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
+    m_hintAct->setShortcut( Qt::Key_H );
+    connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
     KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
     connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
@@ -61,7 +61,7 @@ void KReversiMainWindow::setupActions()
     addAction(newGameAct);
     addAction(quitAct);
     addAction(m_undoAct);
-    addAction(hintAct);
+    addAction(m_hintAct);
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -85,15 +85,24 @@ void KReversiMainWindow::slotNewGame()
     m_game = new KReversiGame;
     connect( m_game, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
 
+    if(m_hintAct)
+        m_hintAct->setEnabled( true );
+
     if(m_scene == 0) // if called first time
     {
         // FIXME dimsuz: if chips.png not found give error end exit
         m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
+        connect( m_scene, SIGNAL(gameOver()), SLOT(slotGameOver()) );
     }
     else
     {
         m_scene->setGame( m_game );
     }
+}
+
+void KReversiMainWindow::slotGameOver()
+{
+    m_hintAct->setEnabled(false);
 }
 
 void KReversiMainWindow::slotMoveFinished()
@@ -108,6 +117,9 @@ void KReversiMainWindow::slotUndo()
         // scene will automatically notice that it needs to update
         m_game->undo();
         m_undoAct->setEnabled( m_game->canUndo() );    
+        // if the user hits undo after game is over
+        // let's give him a chance to ask for a hint ;)
+        m_hintAct->setEnabled( true );
     }
 }
 

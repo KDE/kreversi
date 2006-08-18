@@ -48,6 +48,8 @@ public slots:
      *  Shows hint for player
      */
     void slotHint();
+signals:
+    void gameOver();
 private:
     /**
      *  Draws a background with 8x8 cell matrix.

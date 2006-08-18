@@ -18,6 +18,7 @@ public slots:
     void slotBackgroundChanged(const QString& text);
     void slotUndo();
     void slotMoveFinished();
+    void slotGameOver();
 private:
     void setupActions();
 
@@ -26,5 +27,6 @@ private:
     KReversiGame *m_game;
 
     KAction* m_undoAct;
+    KAction* m_hintAct;
 };
 #endif

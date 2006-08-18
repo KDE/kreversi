@@ -154,8 +154,9 @@ void KReversiScene::beginNextTurn()
     }
     else
     {
-        // FIXME dimsuz: IMPLEMENT
         kDebug() << "GAME OVER" << endl;
+        // is something else needed?
+        emit gameOver();
     }
 }
 
