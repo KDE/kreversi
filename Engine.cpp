@@ -119,6 +119,7 @@
 
 #include "Engine.h"
 #include "kreversigame.h"
+#include <kapplication.h>
 
 
 // ================================================================
@@ -339,12 +340,10 @@ Engine::~Engine()
 }
 
 // keep GUI alive
-/* 
 void Engine::yield() 
 {
-  qApp->processEvents();
+  kapp->processEvents();
 }
- */
 
 
 // Calculate the best move from the current position, and return it.
@@ -676,8 +675,7 @@ int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
   int maxval = -LARGEINT;
 
   // Keep GUI alive by calling the event loop.
-  //// FIXME dimsuz: 
-  //yield();
+  yield();
 
   ULONG64  null_bits;
   null_bits = 0;
