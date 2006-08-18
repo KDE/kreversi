@@ -88,6 +88,10 @@ public:
      */
     void undo();
     /**
+     *  @return if undo is possible
+     */
+    bool canUndo() const { return !m_undoStack.isEmpty(); }
+    /**
      *  Returns a hint to current player
      */
     KReversiMove getHint() const;

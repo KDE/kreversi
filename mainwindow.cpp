@@ -32,7 +32,8 @@ void KReversiMainWindow::setupActions()
 {
     KAction *newGameAct = KStdAction::openNew(this, SLOT(slotNewGame()), actionCollection(), "new_game");
     KAction *quitAct = KStdAction::quit(this, SLOT(close()), actionCollection(), "quit");
-    KAction *undoAct = KStdAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
+    m_undoAct = KStdAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
+    m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
     KAction *hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
     hintAct->setShortcut( Qt::Key_H );
     connect( hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
@@ -59,7 +60,7 @@ void KReversiMainWindow::setupActions()
 
     addAction(newGameAct);
     addAction(quitAct);
-    addAction(undoAct);
+    addAction(m_undoAct);
     addAction(hintAct);
 }
 
@@ -82,6 +83,7 @@ void KReversiMainWindow::slotNewGame()
 {
     delete m_game;
     m_game = new KReversiGame;
+    connect( m_game, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
 
     if(m_scene == 0) // if called first time
     {
@@ -94,11 +96,19 @@ void KReversiMainWindow::slotNewGame()
     }
 }
 
+void KReversiMainWindow::slotMoveFinished()
+{
+    m_undoAct->setEnabled( m_game->canUndo() );    
+}
+
 void KReversiMainWindow::slotUndo()
 {
     if( !m_scene->isBusy() )
+    {
         // scene will automatically notice that it needs to update
         m_game->undo();
+        m_undoAct->setEnabled( m_game->canUndo() );    
+    }
 }
 
 #include "mainwindow.moc"

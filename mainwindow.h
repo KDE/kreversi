@@ -17,11 +17,14 @@ public slots:
     void slotNewGame();
     void slotBackgroundChanged(const QString& text);
     void slotUndo();
+    void slotMoveFinished();
 private:
     void setupActions();
 
     KReversiScene *m_scene;
     KReversiView  *m_view;
     KReversiGame *m_game;
+
+    KAction* m_undoAct;
 };
 #endif
