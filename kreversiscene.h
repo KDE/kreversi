@@ -40,6 +40,10 @@ public:
      *  during, for example animation of computer move)
      */
     bool isBusy() const;
+    /**
+     *  @return whether the scene is in demo-mode
+     */
+    bool demoModeToggled() const { return m_demoMode; }
 public slots:
     void updateBoard();
     void slotMoveFinished();
@@ -48,6 +52,14 @@ public slots:
      *  Shows hint for player
      */
     void slotHint();
+    /**
+     *  Sets Demo Mode.
+     *  In this mode KReversiScene would not wait for user 
+     *  clicks to produce his turn. It will let computer
+     *  play for user
+     *  @see m_demoMode
+     */
+    void toggleDemoMode(bool toggle);
 signals:
     void gameOver();
 private:
@@ -58,7 +70,7 @@ private:
     virtual void drawBackground( QPainter *p, const QRectF& rect );
     virtual void mousePressEvent( QGraphicsSceneMouseEvent* );
     /**
-     *  Checks if players can move and if they can:
+     *  Checks if players can move and if they can then:
      *  if it's time for computer to move or user is locked and can't move,
      *  this function tells m_game to perform computer move.
      *  Else it just sits and wait for user's mouse input (= his turn)
@@ -106,5 +118,9 @@ private:
      *  Used to animate corresponding chips.
      */
     MoveList m_changedChips;
+    /**
+     *  Specifies whether computer should play human moves
+     */
+    bool m_demoMode;
 };
 #endif

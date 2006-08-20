@@ -5,6 +5,7 @@
   <Menu name="game"><text>&amp;Game</text>
     <Action name="new_game" />
     <Action name="hint" />
+    <Action name="demo" />
     <Action name="quit" />
   </Menu>
   <Menu name="edit"><text>&amp;Edit</text>
@@ -17,7 +18,8 @@
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
   <Action name="new_game" />
-  <Action name="hint" />
   <Action name="undo" />
+  <Action name="hint" />
+  <Action name="demo" />
 </ToolBar>
 </kpartgui>

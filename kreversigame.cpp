@@ -18,12 +18,16 @@ KReversiGame::~KReversiGame()
     delete m_engine;
 }
 
-void KReversiGame::makePlayerMove( int row, int col )
+void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
 {
     m_curPlayer = m_playerColor;
-    KReversiMove move( m_playerColor, row, col );
-    // this can help you to see computer vs computer battle :)
-    //KReversiMove move = m_engine->computeMove( *this, true );
+    KReversiMove move;
+
+    if( !demoMode )
+        move = KReversiMove( m_playerColor, row, col );
+    else
+        move = m_engine->computeMove( *this, true );
+
     if( !isMovePossible(move) )
     {
         kDebug() << "No move possible" << endl;

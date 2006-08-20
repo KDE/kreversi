@@ -14,7 +14,7 @@
 const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
-    : m_showingHint(false), m_hintChip(0)
+    : m_showingHint(false), m_hintChip(0), m_demoMode(false)
 {
     setBackgroundBrush( Qt::lightGray );
 
@@ -84,6 +84,15 @@ void KReversiScene::updateBoard()
         }
 }
 
+void KReversiScene::toggleDemoMode( bool toggle )
+{
+    m_demoMode = toggle;
+    // if we are currently waiting for user mouse input and not animating,
+    // let's do the turn right now!
+    if( !m_game->isComputersTurn() && !m_animTimer->isActive() )
+        beginNextTurn(); // it will take m_demoMode into account
+}
+
 void KReversiScene::slotMoveFinished()
 {
     m_changedChips = m_game->changedChips();
@@ -135,6 +144,12 @@ void KReversiScene::beginNextTurn()
     {
         if( m_game->isComputersTurn() )
         {
+           // FIXME dimsuz: somehow fix undo in this case!
+           // it seems that after undoing of two consequent computer
+           // moves, the player can't move anymore, because m_curPlayer in m_game is set to wrong player
+           // check if this is true and fix
+           // The same situation may also apply for two consequent player moves + undo
+           // check it too
             if(m_game->isAnyComputerMovePossible())
                 m_game->makeComputerMove();
             // else we'll just do nothing and wait for
@@ -149,6 +164,12 @@ void KReversiScene::beginNextTurn()
                 // FIXME dimsuz: display this in GUI
                 kDebug() << "Player can't move!" << endl;
                 m_game->makeComputerMove();
+            }
+            else // else if we're in the demo-mode let the computer play instead of player
+            {
+                // "true" means "let the computer find best row and col for move"
+                if( m_demoMode )
+                    m_game->makePlayerMove( -1, -1, true );
             }
         }
     }
@@ -257,7 +278,7 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     
     kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
 
-    m_game->makePlayerMove( row, col );
+    m_game->makePlayerMove( row, col, false );
 }
 
 #include "kreversiscene.moc"

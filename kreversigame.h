@@ -76,8 +76,10 @@ public:
     /**
      *  This will make the player move at row, col.
      *  If that is possible of course
+     *  If demoMode is true, the computer will decide on what move to take.
+     *  row and col values do not matter in that case.
      */
-    void makePlayerMove(int row, int col);
+    void makePlayerMove(int row, int col, bool demoMode);
     /**
      *  This function will make computer decide where he 
      *  wants to put his chip... and he'll put it there!

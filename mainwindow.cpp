@@ -4,6 +4,7 @@
 #include "kreversiview.h"
 
 #include <kaction.h>
+#include <ktoggleaction.h>
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kicon.h>
@@ -37,6 +38,10 @@ void KReversiMainWindow::setupActions()
     m_hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
     m_hintAct->setShortcut( Qt::Key_H );
     connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
+
+    KAction *demoAct = new KToggleAction( KIcon("1rightarrow"), i18n("Demo"), actionCollection(), "demo" );
+    // FIXME dimsuz: disable undo action in demo mode
+    connect(demoAct, SIGNAL(triggered(bool)), m_scene, SLOT(toggleDemoMode(bool)) );
 
     KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
     connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
