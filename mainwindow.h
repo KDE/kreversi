@@ -28,5 +28,6 @@ private:
 
     KAction* m_undoAct;
     KAction* m_hintAct;
+    KAction* m_demoAct;
 };
 #endif

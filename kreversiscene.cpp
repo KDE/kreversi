@@ -102,7 +102,7 @@ void KReversiScene::slotMoveFinished()
     KReversiChip *newchip = new KReversiChip( move.color, m_frameSet, this );
     newchip->setPos( cellTopLeft( move.row, move.col ) );
     // start animation
-    m_animTimer->start(20);
+    m_animTimer->start(10);
 }
 
 void KReversiScene::slotAnimationStep()
@@ -151,7 +151,17 @@ void KReversiScene::beginNextTurn()
            // The same situation may also apply for two consequent player moves + undo
            // check it too
             if(m_game->isAnyComputerMovePossible())
+            {
                 m_game->makeComputerMove();
+            }
+            else
+            {
+                // FIXME dimsuz: display this in GUI
+                kDebug() << "Computer can't move!" << endl;
+                if( m_demoMode )
+                    m_game->makePlayerMove(-1, -1, true );
+            }
+
             // else we'll just do nothing and wait for
             // player's mouse intput
         }

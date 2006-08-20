@@ -16,7 +16,7 @@
 #include <QGraphicsView>
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent)
-    : KMainWindow(parent), m_scene(0), m_game(0), m_undoAct(0), m_hintAct(0)
+    : KMainWindow(parent), m_scene(0), m_game(0), m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
     slotNewGame();
     // m_scene is created in slotNewGame();
@@ -39,9 +39,9 @@ void KReversiMainWindow::setupActions()
     m_hintAct->setShortcut( Qt::Key_H );
     connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
-    KAction *demoAct = new KToggleAction( KIcon("1rightarrow"), i18n("Demo"), actionCollection(), "demo" );
+    m_demoAct = new KToggleAction( KIcon("1rightarrow"), i18n("Demo"), actionCollection(), "demo" );
     // FIXME dimsuz: disable undo action in demo mode
-    connect(demoAct, SIGNAL(triggered(bool)), m_scene, SLOT(toggleDemoMode(bool)) );
+    connect(m_demoAct, SIGNAL(triggered(bool)), m_scene, SLOT(toggleDemoMode(bool)) );
 
     KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
     connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
@@ -67,6 +67,7 @@ void KReversiMainWindow::setupActions()
     addAction(quitAct);
     addAction(m_undoAct);
     addAction(m_hintAct);
+    addAction(m_demoAct);
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -92,6 +93,8 @@ void KReversiMainWindow::slotNewGame()
 
     if(m_hintAct)
         m_hintAct->setEnabled( true );
+    if(m_demoAct)
+        m_demoAct->setChecked( false );
 
     if(m_scene == 0) // if called first time
     {
@@ -108,6 +111,7 @@ void KReversiMainWindow::slotNewGame()
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
+    m_demoAct->setChecked(false);
 }
 
 void KReversiMainWindow::slotMoveFinished()
