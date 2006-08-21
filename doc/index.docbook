@@ -430,7 +430,7 @@ or <guilabel>Competitively</guilabel>.</para></listitem>
 <varlistentry>
 <term><guilabel>Animation</guilabel></term>
 <listitem><para>If this option is checked, a short animation will be shown
-when a disc changes it's color.</para></listitem>
+when a disc changes its color.</para></listitem>
 </varlistentry>
 
 <varlistentry>
