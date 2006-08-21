@@ -65,13 +65,13 @@ void KReversiScene::updateBoard()
                 {
                     if( chip->color() != color )
                     {
-                        kDebug() << "Found item at (" << row << "," << col << "). Setting its color." << endl;
+                        //kDebug() << "Found item at (" << row << "," << col << "). Setting its color." << endl;
                         chip->setColor( color );
                     }
                 }
                 else
                 {
-                    kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
+                    //kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
                     chip = new KReversiChip( color, m_frameSet, this );
                     chip->setPos( cellTopLeft(row, col) );
                 }
@@ -122,7 +122,6 @@ void KReversiScene::slotAnimationStep()
 
             if(m_changedChips.count() == 0)
             {
-                kDebug() << "stopping timer" <<endl;
                 m_animTimer->stop();
 
                 // some better name maybe?
@@ -284,7 +283,7 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     if( col < 0 ) col = 0;
     if( col > 7 ) col = 7;
     
-    kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
+    //kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
 
     m_game->makePlayerMove( row, col, false );
 }

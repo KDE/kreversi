@@ -40,6 +40,7 @@ void KReversiMainWindow::setupActions()
     connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
     m_demoAct = new KToggleAction( KIcon("1rightarrow"), i18n("Demo"), actionCollection(), "demo" );
+    m_demoAct->setShortcut( Qt::Key_D );
     // FIXME dimsuz: disable undo action in demo mode
     connect(m_demoAct, SIGNAL(triggered(bool)), m_scene, SLOT(toggleDemoMode(bool)) );
 

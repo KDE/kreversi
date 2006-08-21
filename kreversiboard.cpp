@@ -51,8 +51,8 @@ void KReversiBoard::setChipColor(ChipColor color, int row, int col)
     if( color != NoColor )
         m_score[color]++;
 
-    kDebug() << "Score of White player: " << m_score[White] << endl;
-    kDebug() << "Score of Black player: " << m_score[Black] << endl;
+    //kDebug() << "Score of White player: " << m_score[White] << endl;
+    //kDebug() << "Score of Black player: " << m_score[Black] << endl;
 }
 
 ChipColor KReversiBoard::chipColorAt(int row, int col) const
