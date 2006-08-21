@@ -19,7 +19,8 @@ class QTimer;
  *  receives a mouse events, translates them so KReversiGame can understand,
  *  sends them to it, 
  *  receives board-changed notifications, nicely animates them.
- * FIXME dimsuz: make this description more descriptive :)
+ *  It also drives the gameflow, i.e. it tells KReversiGame when to make
+ *  the next move.
  */
 class KReversiScene : public QGraphicsScene
 {

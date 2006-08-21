@@ -234,11 +234,6 @@ private:
   void yield();
 
 private:
-  // FIXME dimsuz: do these needed outside Engine?
-  // If not put them as static globals in cpp
-  static const int  LARGEINT;
-  static const int  ILLEGAL_VALUE;
-  static const int  BC_WEIGHT;
 
   ChipColor        m_board[10][10];
   int          m_bc_board[9][9];

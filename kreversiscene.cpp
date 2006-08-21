@@ -133,8 +133,7 @@ void KReversiScene::slotAnimationStep()
     else
     { // we're just showing hint to the user
         m_hintChip->setVisible( !m_hintChip->isVisible() );
-        // FIXME dimsuz: update only bounding rect!
-        update();
+        update(m_hintChip->sceneBoundingRect());
     }
 }
 
@@ -267,8 +266,7 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
             m_animTimer->stop();
             m_hintChip->hide();
             m_showingHint = false;
-            // FIXME dimsuz: update only m_hintChips bounding rect!
-            update();
+            update(m_hintChip->sceneBoundingRect());
         }
         else // scene is animating move now...
             kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;

@@ -43,8 +43,6 @@ void KReversiGame::makeComputerMove()
     // FIXME dimsuz: m_competitive. Read from config. What's this btw? :)
     // (also there's computeMove in getHint)
     KReversiMove move = m_engine->computeMove( *this, true );
-    // FIXME dimsuz: if move.color != m_computerColor then this might mean that player already has won!
-    // Check it!
     Q_ASSERT(move.color == m_computerColor);
     kDebug() << "Computer plays ("<<move.row<<","<<move.col<<")" <<endl;
     makeMove(move);

@@ -74,7 +74,7 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
 {
     // FIXME dimsuz: I'm removing "&" from text here, because
     // there's a problem in KSelectAction ATM - text will contain a menu accell-ampersands
-    // remove that .remove, after it is fixed
+    // remove that file.remove('&'), after this issue will be fixed in kdelibs
     QString file = text + ".png";
     file.remove('&');
     QPixmap pix( KStandardDirs::locate("appdata", QString("pics/background/") + file ) );

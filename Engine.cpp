@@ -296,9 +296,9 @@ static ChipColor opponentColorFor(ChipColor color)
 
 
 // Some special values used in the search.
-const int Engine::LARGEINT      = 99999;
-const int Engine::ILLEGAL_VALUE = 8888888;
-const int Engine::BC_WEIGHT     = 3;
+static const int LARGEINT      = 99999;
+static const int ILLEGAL_VALUE = 8888888;
+static const int BC_WEIGHT     = 3;
 
 
 Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
