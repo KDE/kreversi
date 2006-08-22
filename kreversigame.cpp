@@ -52,60 +52,50 @@ void KReversiGame::makeComputerMove()
 
 void KReversiGame::undo()
 {
-    // we're undoing a PAIR of turns at once - human+computer
-    if( m_undoStack.isEmpty() || m_undoStack.size() % 2 != 0)
-    {
-        kDebug() << "Undo stack is empty or contains an odd number of turns (that's odd)" << endl;
-        return;
-    }
-    // one of them will be human last turn
-    // and another - computer last turn
-    MoveList lastUndo1 = m_undoStack.pop();
-    MoveList lastUndo2 = m_undoStack.pop();
+    // we're undoing all moves (if any) until we meet move done by a player.
+    // We undo that player move too and we're done.
+    // Simply put: we're undoing all_moves_of_computer + one_move_of_player
 
-    // One thing that matters here is that we take the
-    // chip color directly from board, rather than from move.color
-    // That allows to take into account undo from first list, while
-    // undoing changes which are in the second list
-    // Sounds not very understandable?
-    // Then try to use move.color instead of chipColorAt
-    // and it will mess things when undoing such moves as
-    // "Player captures computer-owned chip,
-    //  Computer makes move and captures this chip back"
-    //  Yes, I like long descriptions in comments ;).
+    // FIXME dimsuz: temporary debug only. Remove this
+    int movesUndone = 0;
+
+    while( !m_undoStack.isEmpty() )
+    {
+        MoveList lastUndo = m_undoStack.pop();
+        // One thing that matters here is that we take the
+        // chip color directly from board, rather than from move.color
+        // That allows to take into account a previously made undo, while
+        // undoing changes which are in the current list
+        // Sounds not very understandable?
+        // Then try to use move.color instead of chipColorAt
+        // and it will mess things when undoing such moves as
+        // "Player captures computer-owned chip,
+        //  Computer makes move and captures this chip back"
+        //  Yes, I like long descriptions in comments ;).
+
+        KReversiMove move = lastUndo.takeFirst();
+        m_board->setChipColor( NoColor, move.row, move.col );
+
+        // and change back the color of the rest chips
+        foreach( KReversiMove mv, lastUndo )
+        {
+            // NOTE: if chipColorAt == NoColor here, we've some serious problem. It shouldn't be :)
+            ChipColor opponentColor = (m_board->chipColorAt(mv.row,mv.col) == White ? Black : White);
+            m_board->setChipColor( opponentColor, mv.row, mv.col );
+        }
+
+        lastUndo.clear();
+
+        movesUndone++;
+        if( move.color == m_playerColor )
+            break; //we've undone all computer + one player moves
+    }
     
-    KReversiMove move = lastUndo1.takeFirst();
-    m_board->setChipColor( NoColor, move.row, move.col );
-    // and change back the color of the rest chips
-    foreach( KReversiMove mv, lastUndo1 )
-    {
-        // NOTE: if chipColorAt == NoColor here, we've some serious problem. It shouldn't be :)
-        ChipColor opponentColor = (m_board->chipColorAt(mv.row,mv.col) == White ? Black : White);
-        m_board->setChipColor( opponentColor, mv.row, mv.col );
-    }
-    lastUndo1.clear();
+    m_curPlayer = m_playerColor;
 
-    // now the same steps with other list
-    move = lastUndo2.takeFirst();
-    ChipColor nextPlayerAfterUndo = move.color;
-
-    m_board->setChipColor( NoColor, move.row, move.col );
-    // and change back the color of the rest chips
-    foreach( KReversiMove mv, lastUndo2 )
-    {
-        // NOTE: if chipColorAt == NoColor here, we've some serious problem. It shouldn't be :)
-        ChipColor opponentColor = (m_board->chipColorAt(mv.row,mv.col) == White ? Black : White);
-        m_board->setChipColor( opponentColor, mv.row, mv.col );
-    }
-    lastUndo2.clear();
-
-    // restoring the color of cur player recorded in undo
-    m_curPlayer = nextPlayerAfterUndo;
-
+    kDebug() << "Undone " << movesUndone << " moves." << endl;
     kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
 
-    // FIXME dimsuz: do emit undoFinished() and in Scene catch it, updateBoard() and then
-    // check if player can't move, and if he can't, perform computer move
     emit boardChanged();
 }
 

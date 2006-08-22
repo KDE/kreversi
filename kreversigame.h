@@ -86,7 +86,7 @@ public:
      */
     void makeComputerMove();
     /**
-     *  Undoes the last player-computer move pair
+     *  Undoes all the computer moves and one player move
      */
     void undo();
     /**
