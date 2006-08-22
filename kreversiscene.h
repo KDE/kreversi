@@ -63,6 +63,10 @@ public slots:
     void toggleDemoMode(bool toggle);
 signals:
     void gameOver();
+    /**
+     *  emitted when Scene finishes displaying last move
+     */
+    void moveFinished();
 private:
     /**
      *  Draws a background with 8x8 cell matrix.

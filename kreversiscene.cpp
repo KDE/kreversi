@@ -122,7 +122,9 @@ void KReversiScene::slotAnimationStep()
 
             if(m_changedChips.count() == 0)
             {
+                // whole animation sequence finished. On to next turn!
                 m_animTimer->stop();
+                emit moveFinished();
 
                 // some better name maybe?
                 beginNextTurn();
@@ -161,7 +163,7 @@ void KReversiScene::beginNextTurn()
             }
 
             // else we'll just do nothing and wait for
-            // player's mouse intput
+            // player's mouse input
         }
         else
         {
@@ -184,6 +186,7 @@ void KReversiScene::beginNextTurn()
     else
     {
         kDebug() << "GAME OVER" << endl;
+        m_demoMode = false;
         // is something else needed?
         emit gameOver();
     }
@@ -253,11 +256,6 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& r)
 
 void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 {
-    if( m_game->isComputersTurn() )
-    {
-        kDebug() << "It is not your turn, human" << endl;
-        return;
-    }
     if( m_animTimer->isActive() )
     {
         if( m_showingHint )

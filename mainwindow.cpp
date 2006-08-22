@@ -10,6 +10,7 @@
 #include <kicon.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kstatusbar.h>
 #include <kstdaction.h>
 #include <kselectaction.h>
 
@@ -26,6 +27,8 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 
     setupActions();
     setCentralWidget(m_view);
+
+    statusBar()->insertItem( i18n("Your turn."), 0 );
     setupGUI();
 }
 
@@ -41,8 +44,7 @@ void KReversiMainWindow::setupActions()
 
     m_demoAct = new KToggleAction( KIcon("1rightarrow"), i18n("Demo"), actionCollection(), "demo" );
     m_demoAct->setShortcut( Qt::Key_D );
-    // FIXME dimsuz: disable undo action in demo mode
-    connect(m_demoAct, SIGNAL(triggered(bool)), m_scene, SLOT(toggleDemoMode(bool)) );
+    connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotDemoMode(bool)) );
 
     KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
     connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
@@ -62,7 +64,6 @@ void KReversiMainWindow::setupActions()
     // FIXME dimsuz: this should come from KConfig!
     bkgndAct->setCurrentAction( "Hexagon" );
     slotBackgroundChanged("Hexagon");
-
 
     addAction(newGameAct);
     addAction(quitAct);
@@ -86,11 +87,19 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
     }
 }
 
+void KReversiMainWindow::slotDemoMode(bool toggled)
+{
+    kDebug() << k_funcinfo << endl;
+    m_scene->toggleDemoMode(toggled);
+
+    m_undoAct->setEnabled( !toggled );
+    m_hintAct->setEnabled( !toggled );
+}
+
 void KReversiMainWindow::slotNewGame()
 {
     delete m_game;
     m_game = new KReversiGame;
-    connect( m_game, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
 
     if(m_hintAct)
         m_hintAct->setEnabled( true );
@@ -102,22 +111,34 @@ void KReversiMainWindow::slotNewGame()
         // FIXME dimsuz: if chips.png not found give error end exit
         m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
         connect( m_scene, SIGNAL(gameOver()), SLOT(slotGameOver()) );
+        connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
     }
     else
     {
         m_scene->setGame( m_game );
     }
+
+    statusBar()->changeItem( i18n("Your turn."), 0 );
 }
 
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
     m_demoAct->setChecked(false);
+    m_undoAct->setEnabled(true);
+
+    // FIXME dimsuz: make this nicer
+    QString res = i18n("GAME OVER. ");
+    res += m_game->playerScore(Black) > m_game->playerScore(White) ? i18n("You won.") : i18n("Computer won.");
+    statusBar()->changeItem( res, 0 );
 }
 
 void KReversiMainWindow::slotMoveFinished()
 {
-    m_undoAct->setEnabled( m_game->canUndo() );    
+    if( !m_demoAct->isChecked() )
+        m_undoAct->setEnabled( m_game->canUndo() );    
+
+    statusBar()->changeItem( m_game->isComputersTurn() ? i18n("Computer turn.") : i18n("Your turn."), 0 );
 }
 
 void KReversiMainWindow::slotUndo()

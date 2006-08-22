@@ -99,8 +99,13 @@ void KReversiGame::undo()
     }
     lastUndo2.clear();
 
-    kDebug() << "Current Player After undo is " << ( nextPlayerAfterUndo == White ? "White" : "Black" ) << endl;
-    kDebug() << "And m_curPlayer is " << ( m_curPlayer == White ? "White" : "Black" ) << endl;
+    // restoring the color of cur player recorded in undo
+    m_curPlayer = nextPlayerAfterUndo;
+
+    kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
+
+    // FIXME dimsuz: do emit undoFinished() and in Scene catch it, updateBoard() and then
+    // check if player can't move, and if he can't, perform computer move
     emit boardChanged();
 }
 
@@ -447,6 +452,7 @@ bool KReversiGame::isAnyComputerMovePossible() const
 
 KReversiMove KReversiGame::getHint() const
 {
+    // FIXME dimsuz: don't use true, use m_competitive
     return m_engine->computeMove( *this, true );
 }
 

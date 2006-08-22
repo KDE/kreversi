@@ -19,6 +19,7 @@ public slots:
     void slotUndo();
     void slotMoveFinished();
     void slotGameOver();
+    void slotDemoMode(bool);
 private:
     void setupActions();
 
