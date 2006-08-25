@@ -287,6 +287,9 @@ void QReversiBoardView::rotateChip(uint row, uint col)
   // chip is white, the chip was black first, so lets begin at index
   // 1, otherwise it was white.
   Color  color = m_krgame->color(col+1, row+1);
+  if (color != White && color != Black)
+	return;
+
   uint   from  = CHIP_OFFSET[opponent(color)];
   uint   end   = CHIP_OFFSET[color];
   int    delta = (color==White ? 1 : -1);
