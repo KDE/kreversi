@@ -95,6 +95,10 @@ private:
      */
     void displayLastAndPossibleMoves();
     /**
+     *  If scene is showing hint animation this function will stop it
+     */
+    void stopHintAnimation();
+    /**
      *  Returns the center point of cell (row,col)
      */
     QPointF cellCenter( int row, int col ) const;

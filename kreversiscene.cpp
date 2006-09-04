@@ -118,6 +118,7 @@ void KReversiScene::updateBoard()
 void KReversiScene::toggleDemoMode( bool toggle )
 {
     m_demoMode = toggle;
+    stopHintAnimation();
     // if we are currently waiting for user mouse input and not animating,
     // let's do the turn right now!
     if( !m_game->isComputersTurn() && !m_animTimer->isActive() )
@@ -260,6 +261,7 @@ void KReversiScene::displayLastAndPossibleMoves()
             {
                 QGraphicsRectItem *item = new QGraphicsRectItem( 0, 0, CHIP_SIZE-1, CHIP_SIZE-1, 0, this );
                 item->setBrush( Qt::darkGreen );
+                item->setZValue(-1);
                 m_possibleMovesItems.append( item );
             }
         }
@@ -335,7 +337,7 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& r)
         p->drawLine( QPointF(startx, y), QPointF(endx, y) );
 }
 
-void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
+void KReversiScene::stopHintAnimation()
 {
     if( m_animTimer->isActive() )
     {
@@ -348,9 +350,12 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
         }
         else // scene is animating move now...
             kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
-
-        return;
     }
+}
+
+void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
+{
+    stopHintAnimation();
 
     if( !m_boardRect.contains(ev->scenePos()) )
         return;
