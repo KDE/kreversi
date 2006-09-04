@@ -56,6 +56,10 @@ public:
      */
     void setEngineStrength(uint strength);
     /**
+     *  Sets the computer skill level. From 1 to 7
+     */
+    void setComputerSkill(int skill);
+    /**
      *  @return strength of the game engine
      */
     uint strength() const;

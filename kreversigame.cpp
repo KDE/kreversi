@@ -435,6 +435,12 @@ bool KReversiGame::isAnyComputerMovePossible() const
     return false;
 }
 
+void KReversiGame::setComputerSkill(int skill)
+{
+    kDebug() << "setting skill to " << skill << endl;
+    m_engine->setStrength( skill );
+}
+
 KReversiMove KReversiGame::getHint() const
 {
     // FIXME dimsuz: don't use true, use m_competitive

@@ -13,6 +13,8 @@
   </Menu>
   <Menu name="settings"><text>&amp;Settings</text>
     <Action name="choose_bkgnd" />
+    <Action name="anim_speed" />
+    <Action name="skill" />
   </Menu>
 </MenuBar>
 

@@ -7,6 +7,7 @@ class KReversiScene;
 class KReversiGame;
 class KReversiView;
 class KAction;
+class KSelectAction;
 
 class KReversiMainWindow : public KMainWindow
 {
@@ -16,12 +17,14 @@ public:
 public slots:
     void slotNewGame();
     void slotBackgroundChanged(const QString& text);
+    void slotSkillChanged(int);
     void slotUndo();
     void slotMoveFinished();
     void slotGameOver();
     void slotDemoMode(bool);
 private:
     void setupActions();
+    void loadSettings();
 
     KReversiScene *m_scene;
     KReversiView  *m_view;
@@ -30,5 +33,7 @@ private:
     KAction* m_undoAct;
     KAction* m_hintAct;
     KAction* m_demoAct;
+    KSelectAction* m_bkgndAct;
+    KSelectAction* m_skillAct;
 };
 #endif

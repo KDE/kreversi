@@ -61,7 +61,7 @@ public:
      *  Supposes that allFrames represents an animation sequence 
      *  going from black to white.
      *  @param allFrames a pixmap containing whole animation sequence
-     *  @param chipSize size of each frame's pixmap. Frames are squares.
+     *  @param frameSize size of each frame's pixmap. Frames are squares.
      */
     KReversiChipFrameSet( const QPixmap& allFrames, int frameSize );
     /**

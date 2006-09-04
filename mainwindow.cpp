@@ -27,6 +27,8 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_view->show();
 
     setupActions();
+    loadSettings();
+
     setCentralWidget(m_view);
 
     statusBar()->insertItem( i18n("Your turn."), 0 );
@@ -47,8 +49,8 @@ void KReversiMainWindow::setupActions()
     m_demoAct->setShortcut( Qt::Key_D );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotDemoMode(bool)) );
 
-    KSelectAction *bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
-    connect(bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
+    m_bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
+    connect(m_bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
 
     QStringList pixList = kapp->dirs()->findAllResources( "appdata", "pics/background/*.png", false, true );
     // let's find a name of files w/o extensions
@@ -58,12 +60,8 @@ void KReversiMainWindow::setupActions()
     {
         int idx1 = str.lastIndexOf('/');
         int idx2 = str.lastIndexOf('.');
-        bkgndAct->addAction(str.mid(idx1+1,idx2-idx1-1));
+        m_bkgndAct->addAction(str.mid(idx1+1,idx2-idx1-1));
     }
-
-
-    bkgndAct->setCurrentAction( Preferences::backgroundImageName() );
-    slotBackgroundChanged( Preferences::backgroundImageName() );
 
     KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show last move"), actionCollection(), "show_last_move");
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
@@ -71,11 +69,33 @@ void KReversiMainWindow::setupActions()
     KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show legal moves"), actionCollection(), "show_legal_moves" );
     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
+    KSelectAction *animSpeed = new KSelectAction(i18n("Animation speed"), actionCollection(), "anim_speed");
+    QStringList acts;
+    acts << "Slow" << "Normal" << "Fast";
+    animSpeed->setItems(acts);
+
+    m_skillAct = new KSelectAction(i18n("Computer skill"), actionCollection(), "skill" );
+    acts.clear();
+    // FIXME dimsuz: this utilises 5 skills. although 7 is possible
+    acts << "Very easy" << "Easy" << "Normal" << "Hard" << "Unbeatable";
+    m_skillAct->setItems(acts);
+    connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
+
     addAction(newGameAct);
     addAction(quitAct);
     addAction(m_undoAct);
     addAction(m_hintAct);
     addAction(m_demoAct);
+}
+
+void KReversiMainWindow::loadSettings()
+{
+    m_bkgndAct->setCurrentAction( Preferences::backgroundImageName() );
+    slotBackgroundChanged( Preferences::backgroundImageName() );
+
+    int skill = Preferences::skill();
+    m_skillAct->setCurrentItem( skill - 1 );
+    slotSkillChanged( skill - 1 );
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -93,6 +113,14 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
         m_scene->setBackgroundPixmap( pix );
     }
     Preferences::setBackgroundImageName( textMod );
+    Preferences::writeConfig();
+}
+
+void KReversiMainWindow::slotSkillChanged(int skill)
+{
+    // m_game takes it from 1 to 7
+    m_game->setComputerSkill( skill+1 );
+    Preferences::setSkill( skill+1 );
     Preferences::writeConfig();
 }
 
