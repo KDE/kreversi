@@ -105,10 +105,14 @@ void KReversiScene::updateBoard()
             else
             {
                 // this if-branch happens on undos
-                delete itemAt( cellCenter(row, col) );
+
+                // deleting only KReversiChips
+                KReversiChip *chip = dynamic_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
+                delete chip;
             }
         }
     m_lastMoveChip = 0;
+    displayLastAndPossibleMoves();
 }
 
 void KReversiScene::toggleDemoMode( bool toggle )
@@ -122,6 +126,13 @@ void KReversiScene::toggleDemoMode( bool toggle )
 
 void KReversiScene::slotGameMoveFinished()
 {
+    // hide shown legal moves
+    if( m_showPossibleMoves )
+    {
+        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
+            rect->hide();
+    }
+
     m_changedChips = m_game->changedChips();
     // create an item that was placed by player
     // by convention it will be the first in the list of changed items
@@ -231,6 +242,10 @@ void KReversiScene::displayLastAndPossibleMoves()
     // ==== Show Possible Moves ====
     if( m_showPossibleMoves && !m_game->isComputersTurn() )
     {
+        //hide currently displayed if any
+        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
+            rect->hide();
+
         MoveList l = m_game->possibleMoves();
         kDebug() << "number of rects: " << m_possibleMovesItems.count() << endl;
         // if m_possibleMovesItems contains less rects then there are items in l
@@ -348,13 +363,6 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     if( col > 7 ) col = 7;
     
     //kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
-
-    // hide shown legal moves
-    if( m_showPossibleMoves )
-    {
-        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
-            rect->hide();
-    }
 
     m_game->makePlayerMove( row, col, false );
 }
