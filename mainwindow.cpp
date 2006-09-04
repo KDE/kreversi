@@ -82,16 +82,17 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
 {
     // FIXME dimsuz: I'm removing "&" from text here, because
     // there's a problem in KSelectAction ATM - text will contain a menu accell-ampersands
-    // remove that file.remove('&'), after this issue will be fixed in kdelibs
-    QString file = text + ".png";
-    file.remove('&');
+    // remove that textMod and use text, after this issue will be fixed in kdelibs
+    QString textMod = text;
+    textMod.remove('&');
+    QString file = textMod + ".png";
     QPixmap pix( KStandardDirs::locate("appdata", QString("pics/background/") + file ) );
     if(!pix.isNull())
     {
         m_view->resetCachedContent();
         m_scene->setBackgroundPixmap( pix );
     }
-    Preferences::setBackgroundImageName( text );
+    Preferences::setBackgroundImageName( textMod );
     Preferences::writeConfig();
 }
 
