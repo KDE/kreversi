@@ -107,6 +107,10 @@ public:
      *  were turned by that move
      */
     MoveList changedChips() const { return m_changedChips; }
+    /**
+     *  @return a list of possible moves for current player
+     */
+    MoveList possibleMoves() const;
 signals:
     void boardChanged();
     void moveFinished();

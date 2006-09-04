@@ -54,6 +54,10 @@ public slots:
      */
     void setShowLastMove( bool show );
     /**
+     *  This will make scene visually mark squares with possible moves
+     */
+    void setShowLegalMoves( bool show );
+    /**
      *  Shows hint for player
      */
     void slotHint();
@@ -144,5 +148,11 @@ private:
      *  If true, then last made turn will be shown to the player
      */
     bool m_showLastMove;
+    /**
+     *  If true, then all possible moves will be shown to the player
+     */
+    bool m_showPossibleMoves;
+    // FIXME dimsuz: document
+    QList<QGraphicsRectItem*> m_possibleMovesItems;
 };
 #endif

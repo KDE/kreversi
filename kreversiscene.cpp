@@ -15,7 +15,7 @@ const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
     : m_hintChip(0), m_lastMoveChip(0), m_showingHint(false), m_demoMode(false), 
-    m_showLastMove(false)
+    m_showLastMove(false), m_showPossibleMoves(false)
 {
     setBackgroundBrush( Qt::lightGray );
 
@@ -49,7 +49,26 @@ void KReversiScene::setGame( KReversiGame* game )
 void KReversiScene::setShowLastMove( bool show )
 {
     m_showLastMove = show;
-    displayLastAndPossibleMoves();
+    if(show)
+        displayLastAndPossibleMoves();
+    else
+    {
+        if(m_lastMoveChip)
+            m_lastMoveChip->showLastMoveMarker(false);
+    }
+}
+
+void KReversiScene::setShowLegalMoves( bool show )
+{
+    m_showPossibleMoves = show;
+    if(show)
+        displayLastAndPossibleMoves();
+    else
+    {
+        // NOTE: or delete?
+        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
+            rect->hide();
+    }
 }
 
 bool KReversiScene::isBusy() const
@@ -208,14 +227,35 @@ void KReversiScene::displayLastAndPossibleMoves()
         if(m_lastMoveChip)
             m_lastMoveChip->showLastMoveMarker(true);
     }
-    else
-    {
-        if(m_lastMoveChip)
-            m_lastMoveChip->showLastMoveMarker(false);
-    }
 
     // ==== Show Possible Moves ====
-    // TODO
+    if( m_showPossibleMoves && !m_game->isComputersTurn() )
+    {
+        MoveList l = m_game->possibleMoves();
+        kDebug() << "number of rects: " << m_possibleMovesItems.count() << endl;
+        // if m_possibleMovesItems contains less rects then there are items in l
+        // lets fill it with additional rects.
+        // Else we'll just reuse rects that we already have.
+        // NOTE: maybe make m_possibleMovesItems a QVector and simply do resize()?
+        if( m_possibleMovesItems.count() < l.count() )
+        {
+            int numtoadd = l.count() - m_possibleMovesItems.count();
+            kDebug() << "growing num possible moves by: " << numtoadd << endl;
+            for( int i=0; i<numtoadd; ++i)
+            {
+                QGraphicsRectItem *item = new QGraphicsRectItem( 0, 0, CHIP_SIZE-1, CHIP_SIZE-1, 0, this );
+                item->setBrush( Qt::darkGreen );
+                m_possibleMovesItems.append( item );
+            }
+        }
+
+        // now let's setup rects to appropriate positions
+        for(int i=0; i<l.size(); ++i )
+        {
+            m_possibleMovesItems[i]->setPos( cellTopLeft( l.at(i).row, l.at(i).col ) );
+            m_possibleMovesItems[i]->show();
+        }
+    }
 }
 
 void KReversiScene::slotHint()
@@ -308,6 +348,13 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     if( col > 7 ) col = 7;
     
     //kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
+
+    // hide shown legal moves
+    if( m_showPossibleMoves )
+    {
+        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
+            rect->hide();
+    }
 
     m_game->makePlayerMove( row, col, false );
 }

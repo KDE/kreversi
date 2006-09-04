@@ -68,6 +68,9 @@ void KReversiMainWindow::setupActions()
     KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show last move"), actionCollection(), "show_last_move");
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
+    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show legal moves"), actionCollection(), "show_legal_moves" );
+    connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
+
     addAction(newGameAct);
     addAction(quitAct);
     addAction(m_undoAct);

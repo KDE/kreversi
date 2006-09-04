@@ -23,5 +23,6 @@
   <Action name="demo" />
   <Separator />
   <Action name="show_last_move" />
+  <Action name="show_legal_moves" />
 </ToolBar>
 </kpartgui>

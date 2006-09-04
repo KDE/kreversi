@@ -451,6 +451,19 @@ KReversiMove KReversiGame::getLastMove() const
     return m_changedChips.first();
 }
 
+MoveList KReversiGame::possibleMoves() const
+{
+    MoveList l;
+    for(int row=0; row < 8; ++row)
+        for(int col=0; col<8; ++col)
+        {
+            KReversiMove move(m_curPlayer, row, col);
+            if( isMovePossible( move ) )
+                l.append(move);
+        }
+    return l;
+}
+
 int KReversiGame::playerScore( ChipColor player ) const
 {
     return m_board->playerScore( player );

@@ -29,10 +29,11 @@ void KReversiChip::showLastMoveMarker(bool show)
 {
     if(show)
     {
-        QPixmap pix = pixmap();
+        QPixmap origPix = pixmap();
+        QPixmap pix = origPix;
         QPainter p(&pix);
-        p.setBrush(Qt::black);
-        p.drawEllipse( 3*pix.width()/8, 3*pix.height()/8, pix.width()/4, pix.height()/4);
+        p.fillRect( 1, 1, pix.width()-2, pix.height()-2, Qt::gray );
+        p.drawPixmap(0,0, origPix);
         p.end();
         setPixmap(pix);
     }
@@ -45,7 +46,7 @@ void KReversiChip::showLastMoveMarker(bool show)
 KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameSize )
 {
     // we skip x,y = (0,0) case, because allFrames has a transparent frame as the 
-    // the first one. Just for symmetry I guess (so the pix remains square)
+    // the first one. It has it just for symmetry I guess (so the whole big pix remains square)
     for(int y=0; y < allFrames.height(); y += frameSize )
         for(int x=0; x < allFrames.width(); x += frameSize )
         {
