@@ -17,6 +17,8 @@ set(kreversi_SRCS
 
 kde4_automoc(${kreversi_SRCS})
 
+kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
+
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi ${KDE4_KDEUI_LIBS})

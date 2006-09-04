@@ -396,11 +396,6 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     return false;
 }
 
-const KReversiBoard& KReversiGame::board() const
-{
-    return *m_board;
-}
-
 bool KReversiGame::isGameOver() const
 {
     // trivial fast-check
@@ -444,6 +439,16 @@ KReversiMove KReversiGame::getHint() const
 {
     // FIXME dimsuz: don't use true, use m_competitive
     return m_engine->computeMove( *this, true );
+}
+
+KReversiMove KReversiGame::getLastMove() const
+{
+    // we'll take this move from changed list
+    if( m_changedChips.isEmpty() )
+        return KReversiMove(NoColor, -1, -1); // invalid one
+
+    // first item in this list is the actual move, rest is turned chips
+    return m_changedChips.first();
 }
 
 int KReversiGame::playerScore( ChipColor player ) const

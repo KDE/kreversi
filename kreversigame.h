@@ -36,6 +36,22 @@ public:
     KReversiGame();
     ~KReversiGame();
     /**
+     *  This will make the player move at row, col.
+     *  If that is possible of course
+     *  If demoMode is true, the computer will decide on what move to take.
+     *  row and col values do not matter in that case.
+     */
+    void makePlayerMove(int row, int col, bool demoMode);
+    /**
+     *  This function will make computer decide where he 
+     *  wants to put his chip... and he'll put it there!
+     */
+    void makeComputerMove();
+    /**
+     *  Undoes all the computer moves and one player move
+     */
+    void undo();
+    /**
      *  Sets the strength of game engine (1 to 7)
      */
     void setEngineStrength(uint strength);
@@ -56,10 +72,6 @@ public:
      */
     bool isAnyComputerMovePossible() const;
     /**
-     *  @return the board so the callers can examine its current state
-     */
-    const KReversiBoard& board() const;
-    /**
      *  @return a color of the current player
      */
     ChipColor currentPlayer() const { return m_curPlayer; }
@@ -74,22 +86,6 @@ public:
     // NOTE: this is just a wrapper around KReversiBoard::playerScore
     ChipColor chipColorAt( int row, int col ) const;
     /**
-     *  This will make the player move at row, col.
-     *  If that is possible of course
-     *  If demoMode is true, the computer will decide on what move to take.
-     *  row and col values do not matter in that case.
-     */
-    void makePlayerMove(int row, int col, bool demoMode);
-    /**
-     *  This function will make computer decide where he 
-     *  wants to put his chip... and he'll put it there!
-     */
-    void makeComputerMove();
-    /**
-     *  Undoes all the computer moves and one player move
-     */
-    void undo();
-    /**
      *  @return if undo is possible
      */
     bool canUndo() const { return !m_undoStack.isEmpty(); }
@@ -97,6 +93,10 @@ public:
      *  Returns a hint to current player
      */
     KReversiMove getHint() const;
+    /**
+     *  @return last move made
+     */
+    KReversiMove getLastMove() const;
     /**
      *  Returns true, if it's computer's turn now
      */

@@ -21,5 +21,7 @@
   <Action name="undo" />
   <Action name="hint" />
   <Action name="demo" />
+  <Separator />
+  <Action name="show_last_move" />
 </ToolBar>
 </kpartgui>

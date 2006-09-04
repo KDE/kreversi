@@ -25,6 +25,21 @@ bool KReversiChip::nextFrame()
     return finished;
 }
 
+void KReversiChip::showLastMoveMarker(bool show)
+{
+    if(show)
+    {
+        QPixmap pix = pixmap();
+        QPainter p(&pix);
+        p.setBrush(Qt::black);
+        p.drawEllipse( 3*pix.width()/8, 3*pix.height()/8, pix.width()/4, pix.height()/4);
+        p.end();
+        setPixmap(pix);
+    }
+    else
+        setPixmap( m_frameSet->chipPixmap( m_color ) );
+}
+
 // -------------------------------------------------------------------------------
 
 KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameSize )

@@ -2,6 +2,7 @@
 #include "kreversigame.h"
 #include "kreversiscene.h"
 #include "kreversiview.h"
+#include "preferences.h"
 
 #include <kaction.h>
 #include <ktoggleaction.h>
@@ -61,9 +62,11 @@ void KReversiMainWindow::setupActions()
     }
 
 
-    // FIXME dimsuz: this should come from KConfig!
-    bkgndAct->setCurrentAction( "Hexagon" );
-    slotBackgroundChanged("Hexagon");
+    bkgndAct->setCurrentAction( Preferences::backgroundImageName() );
+    slotBackgroundChanged( Preferences::backgroundImageName() );
+
+    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show last move"), actionCollection(), "show_last_move");
+    connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
     addAction(newGameAct);
     addAction(quitAct);
@@ -85,6 +88,8 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
         m_view->resetCachedContent();
         m_scene->setBackgroundPixmap( pix );
     }
+    Preferences::setBackgroundImageName( text );
+    Preferences::writeConfig();
 }
 
 void KReversiMainWindow::slotDemoMode(bool toggled)

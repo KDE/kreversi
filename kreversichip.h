@@ -20,6 +20,11 @@ public:
      *  @return whether the animation sequence is finished
      */
     bool nextFrame();
+    /**
+     *  Toggles showing of little marker on top of the chip.
+     *  It is used to indicate last-made move
+     */
+    void showLastMoveMarker(bool show);
 private:
     ChipColor m_color;
     const KReversiChipFrameSet* m_frameSet;

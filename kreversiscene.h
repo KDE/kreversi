@@ -44,11 +44,15 @@ public:
     /**
      *  @return whether the scene is in demo-mode
      */
-    bool demoModeToggled() const { return m_demoMode; }
+    bool isDemoModeToggled() const { return m_demoMode; }
 public slots:
     void updateBoard();
-    void slotMoveFinished();
+    void slotGameMoveFinished();
     void slotAnimationStep();
+    /**
+     *  This will make scene visually mark the last made move
+     */
+    void setShowLastMove( bool show );
     /**
      *  Shows hint for player
      */
@@ -82,6 +86,11 @@ private:
      */
     void beginNextTurn();
     /**
+     *  Visually displays last move and possible moves
+     *  (if the scene is set up to show them)
+     */
+    void displayLastAndPossibleMoves();
+    /**
      *  Returns the center point of cell (row,col)
      */
     QPointF cellCenter( int row, int col ) const;
@@ -106,26 +115,34 @@ private:
      */
     KReversiChipFrameSet *m_frameSet;
     /**
-     *  Animation timer
-     */
-    QTimer* m_animTimer;
-    /**
-     *  Holds true if the scene is showing hint to the player
-     */
-    bool m_showingHint;
-    /**
-     *  This is our "hint-chip" - used to show hints
-     */
-    KReversiChip* m_hintChip;
-    /**
      *  This list will hold a changed chips
      *  after each turn. It is received from the game object.
      *  Used to animate corresponding chips.
      */
     MoveList m_changedChips;
     /**
+     *  Animation timer
+     */
+    QTimer* m_animTimer;
+    /**
+     *  This is our "hint-chip" - used to show hints
+     */
+    KReversiChip* m_hintChip;
+    /**
+     *  This will hold a pointer to chip which has "last-move" mark
+     */
+    KReversiChip* m_lastMoveChip;
+    /**
+     *  Holds true if the scene is showing hint to the player
+     */
+    bool m_showingHint;
+    /**
      *  Specifies whether computer should play human moves
      */
     bool m_demoMode;
+    /**
+     *  If true, then last made turn will be shown to the player
+     */
+    bool m_showLastMove;
 };
 #endif

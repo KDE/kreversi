@@ -3,37 +3,17 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <include>kstandarddirs.h</include>
-  <include>kglobal.h</include>
   <kcfgfile name="kreversirc"/>
   <group name="Game">
     <entry name="Grayscale" type="Bool">
       <label>Whether to use a grayscale board instead of colored.</label>
       <default>false</default>
     </entry>
-      <entry name="HumanColor" type="Int">
-      <label>The human color.</label>
-      <default>1</default>
-    </entry>
-      <entry name="ComputerColor" type="Int">
-      <label>The computer color.</label>
-      <default>0</default>
-    </entry>
-    <entry name="Animation" type="Bool">
-      <label>Whether to use animations.</label>
-      <default>true</default>
-    </entry>
     <entry name="AnimationSpeed" type="Int">
       <label>The speed of the animations.</label>
-       <default>4</default>
-      <min>1</min>
-      <max>10</max>
-    </entry>
-    <entry name="Zoom" type="Int">
-      <label>The zoom factor of the board.</label>
-      <default>100</default>
+      <default>25</default>
       <min>10</min>
-      <max>300</max>
+      <max>40</max>
     </entry>
     <entry name="CompetitiveGameChoice" type="Bool">
       <label>Whether to play competitively in contrast to casually.</label>
@@ -45,22 +25,9 @@
       <min>1</min>
       <max>7</max>
     </entry>
-    <entry name="BackgroundImageChoice" type="Bool">
-      <label>Whether to use a background image.</label>
-      <default>true</default>
-    </entry>
-    <entry name="BackgroundColor" type="Color">
-      <label>The background color to use.</label>
-      <default>#ffffff</default>
-    </entry>
-    <entry name="BackgroundImage" type="Path">
-      <label>Image to use as background.</label>
-      <code>#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)</code>
-      <default code="true">PICDATA("background/Light_Wood.png")</default>
-    </entry>
-    <entry name="MenubarVisible" type="Bool" key="menubar visible">
-      <label>Whether the menubar is visible.</label>
-      <default>true</default>
+    <entry name="backgroundImageName" type="String">
+        <label>Background image name</label>
+        <default>Light_Wood</default>
     </entry>
   </group>
 </kcfg>

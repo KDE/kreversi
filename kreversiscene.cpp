@@ -14,7 +14,8 @@
 const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
-    : m_showingHint(false), m_hintChip(0), m_demoMode(false)
+    : m_hintChip(0), m_lastMoveChip(0), m_showingHint(false), m_demoMode(false), 
+    m_showLastMove(false)
 {
     setBackgroundBrush( Qt::lightGray );
 
@@ -32,7 +33,7 @@ void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
     connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
-    connect( m_game, SIGNAL(moveFinished()), this, SLOT(slotMoveFinished()) );
+    connect( m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()) );
 
     // this will remove all items left from previous game
     QList<QGraphicsItem*> allChips = items( m_boardRect );
@@ -43,6 +44,12 @@ void KReversiScene::setGame( KReversiGame* game )
     }
 
     updateBoard();
+}
+
+void KReversiScene::setShowLastMove( bool show )
+{
+    m_showLastMove = show;
+    displayLastAndPossibleMoves();
 }
 
 bool KReversiScene::isBusy() const
@@ -82,6 +89,7 @@ void KReversiScene::updateBoard()
                 delete itemAt( cellCenter(row, col) );
             }
         }
+    m_lastMoveChip = 0;
 }
 
 void KReversiScene::toggleDemoMode( bool toggle )
@@ -93,7 +101,7 @@ void KReversiScene::toggleDemoMode( bool toggle )
         beginNextTurn(); // it will take m_demoMode into account
 }
 
-void KReversiScene::slotMoveFinished()
+void KReversiScene::slotGameMoveFinished()
 {
     m_changedChips = m_game->changedChips();
     // create an item that was placed by player
@@ -102,6 +110,8 @@ void KReversiScene::slotMoveFinished()
     KReversiChip *newchip = new KReversiChip( move.color, m_frameSet, this );
     newchip->setPos( cellTopLeft( move.row, move.col ) );
     // start animation
+    if( m_lastMoveChip )
+        m_lastMoveChip->showLastMoveMarker( false );
     m_animTimer->start(10);
 }
 
@@ -111,7 +121,7 @@ void KReversiScene::slotAnimationStep()
     { // we're animating chips move
 
         KReversiMove move = m_changedChips.at(0);
-        KReversiChip *chip = static_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
+        KReversiChip *chip = dynamic_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
 
         bool animFinished = chip->nextFrame();
         if(animFinished)
@@ -125,6 +135,8 @@ void KReversiScene::slotAnimationStep()
                 // whole animation sequence finished. On to next turn!
                 m_animTimer->stop();
                 emit moveFinished();
+
+                displayLastAndPossibleMoves();
 
                 // some better name maybe?
                 beginNextTurn();
@@ -144,12 +156,6 @@ void KReversiScene::beginNextTurn()
     {
         if( m_game->isComputersTurn() )
         {
-           // FIXME dimsuz: somehow fix undo in this case!
-           // it seems that after undoing of two consequent computer
-           // moves, the player can't move anymore, because m_curPlayer in m_game is set to wrong player
-           // check if this is true and fix
-           // The same situation may also apply for two consequent player moves + undo
-           // check it too
             if(m_game->isAnyComputerMovePossible())
             {
                 m_game->makeComputerMove();
@@ -190,6 +196,26 @@ void KReversiScene::beginNextTurn()
         // is something else needed?
         emit gameOver();
     }
+}
+
+void KReversiScene::displayLastAndPossibleMoves()
+{
+    // ==== Show What Last Move Was ====
+    if( m_showLastMove )
+    {
+        KReversiMove lastPos = m_game->getLastMove();
+        m_lastMoveChip = dynamic_cast<KReversiChip*>(itemAt(cellCenter(lastPos.row, lastPos.col)));
+        if(m_lastMoveChip)
+            m_lastMoveChip->showLastMoveMarker(true);
+    }
+    else
+    {
+        if(m_lastMoveChip)
+            m_lastMoveChip->showLastMoveMarker(false);
+    }
+
+    // ==== Show Possible Moves ====
+    // TODO
 }
 
 void KReversiScene::slotHint()
