@@ -4,4 +4,4 @@ File=kreversi.kcfg
 ClassName=Preferences
 Singleton=true
 CustomAdditions=false
-Mutators=skill,backgroundImageName
+Mutators=Skill,BackgroundImageName,AnimationSpeed

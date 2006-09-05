@@ -18,6 +18,7 @@ public slots:
     void slotNewGame();
     void slotBackgroundChanged(const QString& text);
     void slotSkillChanged(int);
+    void slotAnimSpeedChanged(int);
     void slotUndo();
     void slotMoveFinished();
     void slotGameOver();
@@ -33,6 +34,7 @@ private:
     KAction* m_undoAct;
     KAction* m_hintAct;
     KAction* m_demoAct;
+    KSelectAction* m_animSpeedAct;
     KSelectAction* m_bkgndAct;
     KSelectAction* m_skillAct;
 };

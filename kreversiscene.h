@@ -45,6 +45,10 @@ public:
      *  @return whether the scene is in demo-mode
      */
     bool isDemoModeToggled() const { return m_demoMode; }
+    /**
+     *  Sets the animation speed (0 - slow, 1 - normal, 2 - fast)
+     */
+    void setAnimationSpeed(int speed);
 public slots:
     void updateBoard();
     void slotGameMoveFinished();
@@ -140,6 +144,10 @@ private:
      *  This will hold a pointer to chip which has "last-move" mark
      */
     KReversiChip* m_lastMoveChip;
+    /**
+     *  Delay between animation frames
+     */
+    int m_timerDelay;
     /**
      *  Holds true if the scene is showing hint to the player
      */

@@ -69,15 +69,18 @@ void KReversiMainWindow::setupActions()
     KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show legal moves"), actionCollection(), "show_legal_moves" );
     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
-    KSelectAction *animSpeed = new KSelectAction(i18n("Animation speed"), actionCollection(), "anim_speed");
+    m_animSpeedAct = new KSelectAction(i18n("Animation speed"), actionCollection(), "anim_speed");
     QStringList acts;
-    acts << "Slow" << "Normal" << "Fast";
-    animSpeed->setItems(acts);
+    acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
+    m_animSpeedAct->setItems(acts);
+    connect( m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)) );
 
     m_skillAct = new KSelectAction(i18n("Computer skill"), actionCollection(), "skill" );
     acts.clear();
     // FIXME dimsuz: this utilises 5 skills. although 7 is possible
-    acts << "Very easy" << "Easy" << "Normal" << "Hard" << "Unbeatable";
+    // also give them good names
+    acts << i18n("Very easy") << i18n("Easy") << i18n("Normal");
+    acts << i18n("Hard") << i18n("Beatable") << i18n("Unbeatable");
     m_skillAct->setItems(acts);
     connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
 
@@ -96,6 +99,9 @@ void KReversiMainWindow::loadSettings()
     int skill = Preferences::skill();
     m_skillAct->setCurrentItem( skill - 1 );
     slotSkillChanged( skill - 1 );
+
+    m_animSpeedAct->setCurrentItem( Preferences::animationSpeed() );
+    slotAnimSpeedChanged( Preferences::animationSpeed() );
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -121,6 +127,13 @@ void KReversiMainWindow::slotSkillChanged(int skill)
     // m_game takes it from 1 to 7
     m_game->setComputerSkill( skill+1 );
     Preferences::setSkill( skill+1 );
+    Preferences::writeConfig();
+}
+
+void KReversiMainWindow::slotAnimSpeedChanged(int speed)
+{
+    m_scene->setAnimationSpeed(speed);
+    Preferences::setAnimationSpeed(speed);
     Preferences::writeConfig();
 }
 

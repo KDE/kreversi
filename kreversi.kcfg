@@ -9,23 +9,26 @@
       <label>Whether to use a grayscale board instead of colored.</label>
       <default>false</default>
     </entry>
-    <entry name="AnimationSpeed" type="Int">
+    <entry name="AnimationSpeed" type="Enum">
       <label>The speed of the animations.</label>
-      <default>25</default>
-      <min>10</min>
-      <max>40</max>
+      <choices>
+          <choice name="Slow" />
+          <choice name="Normal" />
+          <choice name="Fast" />
+      </choices>
+      <default>Normal</default>
     </entry>
     <entry name="CompetitiveGameChoice" type="Bool">
       <label>Whether to play competitively in contrast to casually.</label>
       <default>true</default>
     </entry>
-    <entry name="skill" type="Int">
+    <entry name="Skill" type="Int">
       <label>The strength of the computer player.</label>
       <default>1</default>
       <min>1</min>
       <max>7</max>
     </entry>
-    <entry name="backgroundImageName" type="String">
+    <entry name="BackgroundImageName" type="String">
         <label>Background image name</label>
         <default>Light_Wood</default>
     </entry>

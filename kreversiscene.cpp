@@ -14,7 +14,7 @@
 const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
-    : m_hintChip(0), m_lastMoveChip(0), m_showingHint(false), m_demoMode(false), 
+    : m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), m_showingHint(false), m_demoMode(false), 
     m_showLastMove(false), m_showPossibleMoves(false)
 {
     setBackgroundBrush( Qt::lightGray );
@@ -69,6 +69,16 @@ void KReversiScene::setShowLegalMoves( bool show )
         foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
             rect->hide();
     }
+}
+
+void KReversiScene::setAnimationSpeed(int speed)
+{
+    if( speed == 0 ) // slow
+        m_timerDelay = 35;
+    else if( speed == 1 ) // normal
+        m_timerDelay = 20;
+    else if( speed == 2 ) // fast
+        m_timerDelay = 10;
 }
 
 bool KReversiScene::isBusy() const
@@ -143,7 +153,7 @@ void KReversiScene::slotGameMoveFinished()
     // start animation
     if( m_lastMoveChip )
         m_lastMoveChip->showLastMoveMarker( false );
-    m_animTimer->start(10);
+    m_animTimer->start(m_timerDelay);
 }
 
 void KReversiScene::slotAnimationStep()
