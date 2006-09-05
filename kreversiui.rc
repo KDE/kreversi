@@ -15,6 +15,7 @@
     <Action name="choose_bkgnd" />
     <Action name="anim_speed" />
     <Action name="skill" />
+    <Action name="use_colored_chips" />
   </Menu>
 </MenuBar>
 

@@ -8,6 +8,7 @@ class KReversiGame;
 class KReversiView;
 class KAction;
 class KSelectAction;
+class KToggleAction;
 
 class KReversiMainWindow : public KMainWindow
 {
@@ -23,6 +24,7 @@ public slots:
     void slotMoveFinished();
     void slotGameOver();
     void slotDemoMode(bool);
+    void slotUseColoredChips(bool);
 private:
     void setupActions();
     void loadSettings();
@@ -37,5 +39,6 @@ private:
     KSelectAction* m_animSpeedAct;
     KSelectAction* m_bkgndAct;
     KSelectAction* m_skillAct;
+    KToggleAction* m_coloredChipsAct;
 };
 #endif

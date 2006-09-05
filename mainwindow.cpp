@@ -84,6 +84,9 @@ void KReversiMainWindow::setupActions()
     m_skillAct->setItems(acts);
     connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
 
+    m_coloredChipsAct = new KToggleAction( i18n("Use colored chips"), actionCollection(), "use_colored_chips" );
+    connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
+
     addAction(newGameAct);
     addAction(quitAct);
     addAction(m_undoAct);
@@ -102,6 +105,9 @@ void KReversiMainWindow::loadSettings()
 
     m_animSpeedAct->setCurrentItem( Preferences::animationSpeed() );
     slotAnimSpeedChanged( Preferences::animationSpeed() );
+
+    m_coloredChipsAct->setChecked( Preferences::useColoredChips() );
+    slotUseColoredChips( Preferences::useColoredChips() );
 }
 
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
@@ -134,6 +140,14 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
     m_scene->setAnimationSpeed(speed);
     Preferences::setAnimationSpeed(speed);
+    Preferences::writeConfig();
+}
+
+void KReversiMainWindow::slotUseColoredChips(bool toggled)
+{
+    QString chipsPngPath = m_coloredChipsAct->isChecked() ? "pics/chips.png" : "pics/chips_mono.png";
+    m_scene->setChipsPixmap( KStandardDirs::locate("appdata", chipsPngPath) );
+    Preferences::setUseColoredChips(toggled);
     Preferences::writeConfig();
 }
 

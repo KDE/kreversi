@@ -32,5 +32,9 @@
         <label>Background image name</label>
         <default>Light_Wood</default>
     </entry>
+    <entry name="UseColoredChips" type="Bool">
+        <label>Whether to use colored chips instead of black and white ones.</label>
+        <default>true</default>
+    </entry>
   </group>
 </kcfg>

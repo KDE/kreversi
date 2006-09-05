@@ -14,8 +14,8 @@
 const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
-    : m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), m_showingHint(false), m_demoMode(false), 
-    m_showLastMove(false), m_showPossibleMoves(false)
+    : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), 
+    m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false)
 {
     setBackgroundBrush( Qt::lightGray );
 
@@ -27,11 +27,35 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
 
     setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
 
-    m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
+    setChipsPixmap(chipsPixmap);
+
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
 
     setGame(game);
+}
+
+KReversiScene::~KReversiScene()
+{
+    delete m_frameSet;
+}
+
+void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
+{
+    delete m_frameSet;
+    m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
+    if(m_game)
+    {
+        QList<QGraphicsItem*> allItems = items( m_boardRect );
+        KReversiChip *chip = 0;
+        foreach( QGraphicsItem* item, allItems )
+        {
+            // FIXME dimsuz: use qgraphicsitem_cast?
+            chip = dynamic_cast<KReversiChip*>(item);
+            if( chip )
+                chip->setColor( chip->color() ); // this will reread pixmap
+        }
+    }
 }
 
 void KReversiScene::setGame( KReversiGame* game )
@@ -47,6 +71,14 @@ void KReversiScene::setGame( KReversiGame* game )
         removeItem( chip );
         delete chip;
     }
+
+    m_possibleMovesItems.clear();
+
+    m_animTimer->stop();
+    m_hintChip = 0; // it was deleted above if it was shown
+    m_showingHint = false;
+    m_lastMoveChip = 0;
+    m_demoMode = false;
 
     updateBoard();
 }
