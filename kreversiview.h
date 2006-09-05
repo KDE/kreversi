@@ -8,6 +8,6 @@ class KReversiView : public QGraphicsView
 public:
     KReversiView( QGraphicsScene* scene, QWidget *parent );
 private:
-    //virtual QSize sizeHint() const;
+    virtual QSize sizeHint() const;
 };
 #endif
