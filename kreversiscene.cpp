@@ -19,8 +19,13 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
 {
     setBackgroundBrush( Qt::lightGray );
 
-    m_boardRect = QRectF(5, 5, CHIP_SIZE*8, CHIP_SIZE*8);
-    setSceneRect( 0, 0, m_boardRect.width()+10, m_boardRect.height()+10);
+    QFont font; // it'll be initialised to default application font
+    // NOTE we assume that fontMetrics in drawBackground() will be the same as here
+    int fontHeight = QFontMetrics(font).height();
+
+    m_boardRect = QRectF(fontHeight, fontHeight, CHIP_SIZE*8, CHIP_SIZE*8);
+
+    setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
 
     m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
     m_animTimer = new QTimer(this);
@@ -323,12 +328,12 @@ void KReversiScene::setBackgroundPixmap( const QPixmap& pix )
     update();
 }
 
-void KReversiScene::drawBackground( QPainter *p, const QRectF& r)
+void KReversiScene::drawBackground( QPainter *p, const QRectF& rc)
 {
     if(!m_bkgndPix.isNull())
     {
         p->setBrush( m_bkgndPix );
-        p->drawRect( r );
+        p->drawRect( rc );
     }
 
     QPen pen(Qt::black);
@@ -341,10 +346,33 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& r)
     qreal endx = m_boardRect.x() + m_boardRect.width();
     qreal endy = m_boardRect.y() + m_boardRect.height();
     
-    for(qreal x=m_boardRect.x(); x<=endx; x+=CHIP_SIZE)
+    for(qreal x=startx; x<=endx; x+=CHIP_SIZE)
         p->drawLine( QPointF(x, starty), QPointF(x, endy) );
-    for(qreal y=m_boardRect.y(); y<=endy; y+=CHIP_SIZE)
+    for(qreal y=starty; y<=endy; y+=CHIP_SIZE)
         p->drawLine( QPointF(startx, y), QPointF(endx, y) );
+
+    int fontHeight = p->fontMetrics().height();
+
+    QString horLabels("ABCDEFGH");
+    QString verLabels("12345678");
+
+    QRect rect;
+    // draw top+bottom labels
+    for(int c=0; c<8;++c)
+    {
+        rect = QRect((int)startx+c*CHIP_SIZE, (int)starty-fontHeight, CHIP_SIZE, fontHeight );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, horLabels.at(c) );
+        rect.moveTop( (int)endy );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, horLabels.at(c) );
+    }
+    // draw left+right labels
+    for(int r=0; r<8;++r)
+    {
+        rect = QRect( (int)startx-fontHeight, (int)starty+r*CHIP_SIZE, fontHeight, CHIP_SIZE );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, verLabels.at(r) );
+        rect.moveLeft( (int)endx );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, verLabels.at(r) );
+    }
 }
 
 void KReversiScene::stopHintAnimation()
@@ -369,8 +397,8 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 
     if( !m_boardRect.contains(ev->scenePos()) )
         return;
-    int row = (int)ev->scenePos().y() / CHIP_SIZE;
-    int col = (int)ev->scenePos().x() / CHIP_SIZE;
+    int row = (int)(-m_boardRect.y() + ev->scenePos().y()) / CHIP_SIZE;
+    int col = (int)(-m_boardRect.x() + ev->scenePos().x()) / CHIP_SIZE;
 
     if( row < 0 ) row = 0;
     if( row > 7 ) row = 7;
