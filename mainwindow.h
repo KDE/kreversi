@@ -9,6 +9,8 @@ class KReversiView;
 class KAction;
 class KSelectAction;
 class KToggleAction;
+class QListWidget;
+class QLabel;
 
 class KReversiMainWindow : public KMainWindow
 {
@@ -25,13 +27,16 @@ public slots:
     void slotGameOver();
     void slotDemoMode(bool);
     void slotUseColoredChips(bool);
+    void slotShowMovesHistory(bool);
 private:
     void setupActions();
     void loadSettings();
 
     KReversiScene *m_scene;
     KReversiView  *m_view;
-    KReversiGame *m_game;
+    KReversiGame  *m_game;
+    QListWidget   *m_historyView;
+    QLabel        *m_historyLabel;
 
     KAction* m_undoAct;
     KAction* m_hintAct;

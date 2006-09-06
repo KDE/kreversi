@@ -49,8 +49,9 @@ public:
     void makeComputerMove();
     /**
      *  Undoes all the computer moves and one player move
+     *  @return number of undone moves
      */
-    void undo();
+    int undo();
     /**
      *  Sets the strength of game engine (1 to 7)
      */
@@ -173,9 +174,8 @@ private:
     MoveList m_changedChips;
     /**
      *  This is an undo stack.
-     *  Note that on each undo action a <b>pair</b> of move lists
-     *  will be popped from top. I.e. player turn and computer turn will
-     *  be undone in one go.
+     *  It contains a lists of chips changed with each turn.
+     *  @see m_changedChips
      */
     QStack<MoveList> m_undoStack;
 };

@@ -50,13 +50,12 @@ void KReversiGame::makeComputerMove()
     m_undoStack.push( m_changedChips );
 }
 
-void KReversiGame::undo()
+int KReversiGame::undo()
 {
     // we're undoing all moves (if any) until we meet move done by a player.
     // We undo that player move too and we're done.
     // Simply put: we're undoing all_moves_of_computer + one_move_of_player
 
-    // FIXME dimsuz: temporary debug only. Remove this
     int movesUndone = 0;
 
     while( !m_undoStack.isEmpty() )
@@ -97,6 +96,8 @@ void KReversiGame::undo()
     kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
 
     emit boardChanged();
+
+    return movesUndone;
 }
 
 void KReversiGame::makeMove( const KReversiMove& move )

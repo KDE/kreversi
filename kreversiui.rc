@@ -8,6 +8,9 @@
     <Action name="demo" />
     <Action name="quit" />
   </Menu>
+  <Menu name="view"><text>&amp;View</text>
+    <Action name="show_moves" />
+  </Menu>
   <Menu name="edit"><text>&amp;Edit</text>
     <Action name="undo" />
   </Menu>

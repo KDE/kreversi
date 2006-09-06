@@ -20,6 +20,7 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
     setBackgroundBrush( Qt::lightGray );
 
     QFont font; // it'll be initialised to default application font
+    font.setBold(true);
     // NOTE we assume that fontMetrics in drawBackground() will be the same as here
     int fontHeight = QFontMetrics(font).height();
 
@@ -55,6 +56,9 @@ void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
             if( chip )
                 chip->setColor( chip->color() ); // this will reread pixmap
         }
+
+        if(m_hintChip)
+            m_hintChip->setColor( m_hintChip->color() );
     }
 }
 
@@ -383,27 +387,30 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& rc)
     for(qreal y=starty; y<=endy; y+=CHIP_SIZE)
         p->drawLine( QPointF(startx, y), QPointF(endx, y) );
 
+    QFont f = p->font();
+    f.setBold(true);
+    p->setFont(f);
     int fontHeight = p->fontMetrics().height();
 
-    QString horLabels("ABCDEFGH");
-    QString verLabels("12345678");
+    const char horLabels[] = "ABCDEFGH";
+    const char verLabels[] = "12345678";
 
     QRect rect;
     // draw top+bottom labels
     for(int c=0; c<8;++c)
     {
         rect = QRect((int)startx+c*CHIP_SIZE, (int)starty-fontHeight, CHIP_SIZE, fontHeight );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, horLabels.at(c) );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
         rect.moveTop( (int)endy );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, horLabels.at(c) );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
     }
     // draw left+right labels
     for(int r=0; r<8;++r)
     {
         rect = QRect( (int)startx-fontHeight, (int)starty+r*CHIP_SIZE, fontHeight, CHIP_SIZE );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, verLabels.at(r) );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
         rect.moveLeft( (int)endx );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, verLabels.at(r) );
+        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
     }
 }
 

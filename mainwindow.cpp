@@ -16,22 +16,56 @@
 #include <kselectaction.h>
 
 #include <QGraphicsView>
+#include <QListWidget>
+#include <QGridLayout>
+
+static QString moveToString( const KReversiMove& move )
+{
+    QString moveString;
+    if( Preferences::useColoredChips() )
+        moveString = (move.color == Black ? i18n("Blue") : i18n("Red") );
+    else
+        moveString = (move.color == Black ? i18n("Black") : i18n("White") );
+
+    const char labelsHor[] = "ABCDEFGH";
+    const char labelsVer[] = "12345678";
+
+    moveString += " ";
+    moveString += labelsHor[move.col];
+    moveString += labelsVer[move.row];
+
+    return moveString;
+}
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     : KMainWindow(parent), m_scene(0), m_game(0), m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
+    statusBar()->insertItem( i18n("Your turn."), 0 );
+
     slotNewGame();
     // m_scene is created in slotNewGame();
 
-    m_view = new KReversiView(m_scene, this);
+    QWidget *mainWid = new QWidget;
+    QGridLayout *lay = new QGridLayout(mainWid);
+    lay->setMargin(1);
+
+    m_view = new KReversiView(m_scene, mainWid);
     m_view->show();
+    lay->addWidget(m_view, 0, 0, 2, 1);
+
+    m_historyLabel = new QLabel( i18n("Moves history"), mainWid );
+    lay->addWidget( m_historyLabel, 0, 1, Qt::AlignCenter );
+    m_historyView = new QListWidget( mainWid );
+    lay->addWidget(m_historyView, 1, 1);
+
+    m_historyLabel->hide();
+    m_historyView->hide();
 
     setupActions();
     loadSettings();
 
-    setCentralWidget(m_view);
+    setCentralWidget(mainWid);
 
-    statusBar()->insertItem( i18n("Your turn."), 0 );
     setupGUI();
 }
 
@@ -86,6 +120,10 @@ void KReversiMainWindow::setupActions()
 
     m_coloredChipsAct = new KToggleAction( i18n("Use colored chips"), actionCollection(), "use_colored_chips" );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
+
+    // FIXME dimsuz: read/write this from/to config file? Or not necessary?
+    KToggleAction *showMovesAct = new KToggleAction( i18n("Show moves history"), actionCollection(), "show_moves" );
+    connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
     addAction(newGameAct);
     addAction(quitAct);
@@ -151,9 +189,14 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
     Preferences::writeConfig();
 }
 
+void KReversiMainWindow::slotShowMovesHistory(bool toggled)
+{
+    m_historyLabel->setVisible(toggled);
+    m_historyView->setVisible(toggled);
+}
+
 void KReversiMainWindow::slotDemoMode(bool toggled)
 {
-    kDebug() << k_funcinfo << endl;
     m_scene->toggleDemoMode(toggled);
 
     m_undoAct->setEnabled( !toggled );
@@ -202,6 +245,14 @@ void KReversiMainWindow::slotMoveFinished()
     if( !m_demoAct->isChecked() )
         m_undoAct->setEnabled( m_game->canUndo() );    
 
+    // add last move to history list
+    KReversiMove move = m_game->getLastMove();
+    QString numStr = QString::number( m_historyView->count()+1 ) + ". ";
+    m_historyView->addItem( numStr + moveToString(move) );
+    QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );
+    m_historyView->setCurrentItem( last );
+    m_historyView->scrollToItem( last );
+
     statusBar()->changeItem( m_game->isComputersTurn() ? i18n("Computer turn.") : i18n("Your turn."), 0 );
 }
 
@@ -210,7 +261,15 @@ void KReversiMainWindow::slotUndo()
     if( !m_scene->isBusy() )
     {
         // scene will automatically notice that it needs to update
-        m_game->undo();
+        int numUndone = m_game->undo();
+        // remove last numUndone items from historyView
+        for(int i=0;i<numUndone; ++i)
+            delete m_historyView->takeItem( m_historyView->count()-1 );
+
+        QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );
+        m_historyView->setCurrentItem( last );
+        m_historyView->scrollToItem( last );
+
         m_undoAct->setEnabled( m_game->canUndo() );    
         // if the user hits undo after game is over
         // let's give him a chance to ask for a hint ;)
