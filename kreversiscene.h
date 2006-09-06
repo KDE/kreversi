@@ -77,7 +77,6 @@ public slots:
      */
     void toggleDemoMode(bool toggle);
 signals:
-    void gameOver();
     /**
      *  emitted when Scene finishes displaying last move
      */
@@ -89,13 +88,6 @@ private:
      */
     virtual void drawBackground( QPainter *p, const QRectF& rect );
     virtual void mousePressEvent( QGraphicsSceneMouseEvent* );
-    /**
-     *  Checks if players can move and if they can then:
-     *  if it's time for computer to move or user is locked and can't move,
-     *  this function tells m_game to perform computer move.
-     *  Else it just sits and wait for user's mouse input (= his turn)
-     */
-    void beginNextTurn();
     /**
      *  Visually displays last move and possible moves
      *  (if the scene is set up to show them)

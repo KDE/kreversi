@@ -15,6 +15,7 @@ class Engine;
  *  Whenever the board state changes it emits corresponding signals.
  *  The idea is also to abstract from any graphic representation of the game process
  *
+ * FIXME dimsuz: re-document this! :)
  *  KReversiGame is supposed to be driven by someone from outside.
  *  I.e. it receives commands and emits events when it's internal state changes
  *  due to this commands dispatching.
@@ -35,6 +36,15 @@ class KReversiGame : public QObject
 public:
     KReversiGame();
     ~KReversiGame();
+    /**
+     *  Makes next player turn.
+     *  Checks if players can move and if they can then:
+     *  if it's time for computer to move or user is locked and can't move,
+     *  this function performs a computer move.
+     *
+     *  @param demoMode if true then computer will decide for player turn
+     */
+    void nextTurn(bool demoMode);
     /**
      *  This will make the player move at row, col.
      *  If that is possible of course
@@ -117,8 +127,10 @@ public:
      */
     MoveList possibleMoves() const;
 signals:
+    void gameOver();
     void boardChanged();
     void moveFinished();
+    void computerCantMove();
 private:
     enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
     /**

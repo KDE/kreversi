@@ -179,7 +179,7 @@ void KReversiScene::toggleDemoMode( bool toggle )
     // if we are currently waiting for user mouse input and not animating,
     // let's do the turn right now!
     if( !m_game->isComputersTurn() && !m_animTimer->isActive() )
-        beginNextTurn(); // it will take m_demoMode into account
+        m_game->nextTurn(m_demoMode);
 }
 
 void KReversiScene::slotGameMoveFinished()
@@ -226,8 +226,8 @@ void KReversiScene::slotAnimationStep()
 
                 displayLastAndPossibleMoves();
 
-                // some better name maybe?
-                beginNextTurn();
+                // FIXME dimsuz: set m_demoMode=false on GAME OVER somewhere!
+                m_game->nextTurn(m_demoMode);
             }
         }
     }
@@ -235,54 +235,6 @@ void KReversiScene::slotAnimationStep()
     { // we're just showing hint to the user
         m_hintChip->setVisible( !m_hintChip->isVisible() );
         update(m_hintChip->sceneBoundingRect());
-    }
-}
-
-void KReversiScene::beginNextTurn()
-{
-    if( !m_game->isGameOver() )
-    {
-        if( m_game->isComputersTurn() )
-        {
-            if(m_game->isAnyComputerMovePossible())
-            {
-                m_game->makeComputerMove();
-            }
-            else
-            {
-                // FIXME dimsuz: display this in GUI
-                kDebug() << "Computer can't move!" << endl;
-                if( m_demoMode )
-                    m_game->makePlayerMove(-1, -1, true );
-            }
-
-            // else we'll just do nothing and wait for
-            // player's mouse input
-        }
-        else
-        {
-            // if player cant move there's no sence in waiting for mouseInput.
-            // Let the computer play again!
-            if( !m_game->isAnyPlayerMovePossible() )
-            {
-                // FIXME dimsuz: display this in GUI
-                kDebug() << "Player can't move!" << endl;
-                m_game->makeComputerMove();
-            }
-            else // else if we're in the demo-mode let the computer play instead of player
-            {
-                // "true" means "let the computer find best row and col for move"
-                if( m_demoMode )
-                    m_game->makePlayerMove( -1, -1, true );
-            }
-        }
-    }
-    else
-    {
-        kDebug() << "GAME OVER" << endl;
-        m_demoMode = false;
-        // is something else needed?
-        emit gameOver();
     }
 }
 
@@ -431,14 +383,17 @@ void KReversiScene::stopHintAnimation()
             m_showingHint = false;
             update(m_hintChip->sceneBoundingRect());
         }
-        else // scene is animating move now...
-            kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
     }
 }
 
 void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 {
     stopHintAnimation();
+    if( m_animTimer->isActive() )
+    {
+        kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
+        return;
+    }
 
     if( !m_boardRect.contains(ev->scenePos()) )
         return;

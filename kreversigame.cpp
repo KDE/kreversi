@@ -38,6 +38,48 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
     m_undoStack.push( m_changedChips );
 }
 
+void KReversiGame::nextTurn(bool demoMode)
+{
+    if( !isGameOver() )
+    {
+        if( isComputersTurn() )
+        {
+            if(isAnyComputerMovePossible())
+            {
+                makeComputerMove();
+            }
+            else if( demoMode )
+            {
+                    makePlayerMove(-1, -1, true );
+            }
+            else // no comp move possible and not in demo mode
+            {
+                kDebug() << "Computer can't move!" << endl;
+                emit computerCantMove();
+            }
+        }
+        else
+        {
+            // if player cant move let the computer play again!
+            if( !isAnyPlayerMovePossible() )
+            {
+                // FIXME dimsuz: emit something like "playerCantMove()" for gui to catch this?
+                kDebug() << "Player can't move!" << endl;
+                makeComputerMove();
+            }
+            else if( demoMode ) // let the computer play instead of player
+            {
+                makePlayerMove( -1, -1, true );
+            }
+        }
+    }
+    else
+    {
+        kDebug() << "GAME OVER" << endl;
+        emit gameOver();
+    }
+}
+
 void KReversiGame::makeComputerMove()
 {
     m_curPlayer = m_computerColor;

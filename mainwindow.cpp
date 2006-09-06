@@ -215,6 +215,8 @@ void KReversiMainWindow::slotNewGame()
 {
     delete m_game;
     m_game = new KReversiGame;
+    connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
+    connect( m_game, SIGNAL(computerCantMove()), SLOT(slotComputerCantMove()) );
 
     if(m_hintAct)
         m_hintAct->setEnabled( true );
@@ -230,7 +232,6 @@ void KReversiMainWindow::slotNewGame()
     {
         // FIXME dimsuz: if chips.png not found give error end exit
         m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
-        connect( m_scene, SIGNAL(gameOver()), SLOT(slotGameOver()) );
         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
     }
     else
@@ -274,6 +275,11 @@ void KReversiMainWindow::slotMoveFinished()
     statusBar()->changeItem( m_game->isComputersTurn() ? i18n("Computer turn.") : i18n("Your turn."), 0 );
     statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
     statusBar()->changeItem( i18n("Computer: %1", m_game->playerScore(White) ), COMP_STATUSBAR_ID);
+}
+
+void KReversiMainWindow::slotComputerCantMove()
+{
+    statusBar()->changeItem( i18n("Computer can not make move. Your turn."), 0 );
 }
 
 void KReversiMainWindow::slotUndo()

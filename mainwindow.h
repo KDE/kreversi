@@ -28,6 +28,7 @@ public slots:
     void slotDemoMode(bool);
     void slotUseColoredChips(bool);
     void slotShowMovesHistory(bool);
+    void slotComputerCantMove();
 private:
     void setupActions();
     void loadSettings();
