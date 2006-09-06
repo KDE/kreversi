@@ -35,8 +35,8 @@ private:
     KReversiScene *m_scene;
     KReversiView  *m_view;
     KReversiGame  *m_game;
-    QListWidget   *m_historyView;
     QLabel        *m_historyLabel;
+    QListWidget   *m_historyView;
 
     KAction* m_undoAct;
     KAction* m_hintAct;

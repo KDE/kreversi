@@ -39,7 +39,9 @@ static QString moveToString( const KReversiMove& move )
 }
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent)
-    : KMainWindow(parent), m_scene(0), m_game(0), m_undoAct(0), m_hintAct(0), m_demoAct(0)
+    : KMainWindow(parent), m_scene(0), m_game(0),
+    m_historyLabel(0), m_historyView(0), m_undoAct(0),
+    m_hintAct(0), m_demoAct(0)
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
 
@@ -213,6 +215,11 @@ void KReversiMainWindow::slotNewGame()
         m_hintAct->setEnabled( true );
     if(m_demoAct)
         m_demoAct->setChecked( false );
+    if(m_undoAct)
+        m_undoAct->setEnabled( false );
+
+    if(m_historyView)
+        m_historyView->clear();
 
     if(m_scene == 0) // if called first time
     {

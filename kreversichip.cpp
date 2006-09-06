@@ -10,6 +10,11 @@ KReversiChip::KReversiChip( ChipColor color, const KReversiChipFrameSet* frameSe
     setColor(m_color);
 }
 
+void KReversiChip::setFrameSet( const KReversiChipFrameSet* frameSet )
+{
+    m_frameSet = frameSet;
+}
+
 void KReversiChip::setColor( ChipColor color )
 {
     m_color = color;

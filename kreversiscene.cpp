@@ -54,11 +54,17 @@ void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
             // FIXME dimsuz: use qgraphicsitem_cast?
             chip = dynamic_cast<KReversiChip*>(item);
             if( chip )
+            {
+                chip->setFrameSet( m_frameSet );
                 chip->setColor( chip->color() ); // this will reread pixmap
+            }
         }
 
         if(m_hintChip)
+        {
+            m_hintChip->setFrameSet( m_frameSet );
             m_hintChip->setColor( m_hintChip->color() );
+        }
     }
 }
 

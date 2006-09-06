@@ -11,6 +11,7 @@ class KReversiChip : public QGraphicsPixmapItem
 {
 public:
     KReversiChip( ChipColor color, const KReversiChipFrameSet *frameSet, QGraphicsScene *scene );
+    void setFrameSet( const KReversiChipFrameSet *frameSet );
     void setColor( ChipColor color );
     ChipColor color() const { return m_color; }
     /**
