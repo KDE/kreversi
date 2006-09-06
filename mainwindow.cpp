@@ -20,6 +20,9 @@
 #include <QListWidget>
 #include <QGridLayout>
 
+static const int PLAYER_STATUSBAR_ID = 1;
+static const int COMP_STATUSBAR_ID = 2;
+
 static QString moveToString( const KReversiMove& move )
 {
     QString moveString;
@@ -44,6 +47,8 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_hintAct(0), m_demoAct(0)
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
+    statusBar()->insertItem( i18n("You: %1", 2), PLAYER_STATUSBAR_ID );
+    statusBar()->insertItem( i18n("Computer: %1", 2), COMP_STATUSBAR_ID );
 
     slotNewGame();
     // m_scene is created in slotNewGame();
@@ -267,6 +272,8 @@ void KReversiMainWindow::slotMoveFinished()
     m_historyView->scrollToItem( last );
 
     statusBar()->changeItem( m_game->isComputersTurn() ? i18n("Computer turn.") : i18n("Your turn."), 0 );
+    statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
+    statusBar()->changeItem( i18n("Computer: %1", m_game->playerScore(White) ), COMP_STATUSBAR_ID);
 }
 
 void KReversiMainWindow::slotUndo()
