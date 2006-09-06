@@ -10,6 +10,7 @@
 #include <kdebug.h>
 #include <kicon.h>
 #include <klocale.h>
+#include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
@@ -234,10 +235,15 @@ void KReversiMainWindow::slotGameOver()
     m_demoAct->setChecked(false);
     m_undoAct->setEnabled(true);
 
-    // FIXME dimsuz: make this nicer
-    QString res = i18n("GAME OVER. ");
-    res += m_game->playerScore(Black) > m_game->playerScore(White) ? i18n("You won.") : i18n("Computer won.");
-    statusBar()->changeItem( res, 0 );
+    statusBar()->changeItem( i18n("GAME OVER."), 0 );
+
+    int blackScore = m_game->playerScore(Black);
+    int whiteScore = m_game->playerScore(White);
+    QString res =  blackScore > whiteScore ? i18n("You win!") : i18n("You have lost!");
+    res += i18n("\nYou: %1", blackScore);
+    res += i18n("\nComputer: %1", whiteScore);
+
+    KMessageBox::information( this, res, i18n("Game over") );
 }
 
 void KReversiMainWindow::slotMoveFinished()
