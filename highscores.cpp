@@ -33,6 +33,7 @@ namespace KExtHighscore
 ExtManager::ExtManager()
     : Manager(7)
 {
+    setShowMode( NeverShow );
     setShowStatistics(true);
     setShowDrawGamesStatistic(true);
 

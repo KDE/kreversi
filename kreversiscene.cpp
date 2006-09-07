@@ -389,9 +389,9 @@ void KReversiScene::stopHintAnimation()
 void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 {
     stopHintAnimation();
-    if( m_animTimer->isActive() )
+    if( m_animTimer->isActive() || m_game->isComputersTurn() )
     {
-        kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
+        kDebug() << "Don't you see I'm busy? Be patient, human child..." << endl;
         return;
     }
 
