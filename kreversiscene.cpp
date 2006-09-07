@@ -179,7 +179,7 @@ void KReversiScene::toggleDemoMode( bool toggle )
     // if we are currently waiting for user mouse input and not animating,
     // let's do the turn right now!
     if( !m_game->isComputersTurn() && !m_animTimer->isActive() )
-        m_game->nextTurn(m_demoMode);
+        m_game->startNextTurn(m_demoMode);
 }
 
 void KReversiScene::slotGameMoveFinished()
@@ -227,7 +227,7 @@ void KReversiScene::slotAnimationStep()
                 displayLastAndPossibleMoves();
 
                 // FIXME dimsuz: set m_demoMode=false on GAME OVER somewhere!
-                m_game->nextTurn(m_demoMode);
+                m_game->startNextTurn(m_demoMode);
             }
         }
     }

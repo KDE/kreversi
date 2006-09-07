@@ -253,6 +253,8 @@ void KReversiMainWindow::slotGameOver()
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);
     QString res =  blackScore > whiteScore ? i18n("You win!") : i18n("You have lost!");
+    if( blackScore == whiteScore )
+        res = i18n("Game is drawn!");
     res += i18n("\nYou: %1", blackScore);
     res += i18n("\nComputer: %1", whiteScore);
 

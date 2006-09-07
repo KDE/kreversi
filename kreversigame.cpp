@@ -38,7 +38,7 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
     m_undoStack.push( m_changedChips );
 }
 
-void KReversiGame::nextTurn(bool demoMode)
+void KReversiGame::startNextTurn(bool demoMode)
 {
     if( !isGameOver() )
     {

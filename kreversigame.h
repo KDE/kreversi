@@ -15,18 +15,11 @@ class Engine;
  *  Whenever the board state changes it emits corresponding signals.
  *  The idea is also to abstract from any graphic representation of the game process
  *
- * FIXME dimsuz: re-document this! :)
  *  KReversiGame is supposed to be driven by someone from outside.
  *  I.e. it receives commands and emits events when it's internal state changes
  *  due to this commands dispatching.
  *  The main commands are:
- *  makePlayerMove() and makeComputerMove()
- *  Also, after each turn is made a user of this class should check
- *  that isGameOver() returns false,
- *  and that next player can move 
- *  (by calling isAnyPlayerMovePossible() || isAnyComputerMovePossible()).
- *  If, for example isAnyPlayerMovePossible() returns false, than player needs to skip and 
- *  makeComputerMove() should be called.
+ *  startNextTurn() and  makePlayerMove()
  *
  *  See KReversiScene for example of working with KReversiGame
  */
@@ -37,14 +30,24 @@ public:
     KReversiGame();
     ~KReversiGame();
     /**
-     *  Makes next player turn.
-     *  Checks if players can move and if they can then:
-     *  if it's time for computer to move or user is locked and can't move,
-     *  this function performs a computer move.
+     *  Starts next player turn.
+     *  If game isn't over yet, then this function do the following:
+     *  - if it is computer turn and computer can move, it'll make that move.
+     *  - if it is computer turn and computer can't move it'll emit "computerCantMove"
+     *  signal and exit
+     *  - if it is player turn and player can move then this function 
+     *  will do nothing - you can call makePlayerMove(row,col) to make player move (but see last item)
+     *  - if it is player turn and player can't move it'll make a computer move
+     *  - in demo mode this function will make computer play player moves,
+     *  so you don't need to call makePlayerMove.
+     *  
+     *  If it's still unclear how to use it please see KReversiScene for working example.
+     *  In short: it calls startNextTurn() at the end of each turn and makePlayerMove() 
+     *  in mouseReleaseEvent()
      *
      *  @param demoMode if true then computer will decide for player turn
      */
-    void nextTurn(bool demoMode);
+    void startNextTurn(bool demoMode);
     /**
      *  This will make the player move at row, col.
      *  If that is possible of course
@@ -59,6 +62,7 @@ public:
     void makeComputerMove();
     /**
      *  Undoes all the computer moves and one player move
+     *  (so after calling this function it will be player turn)
      *  @return number of undone moves
      */
     int undo();
@@ -77,15 +81,15 @@ public:
     /**
      *  @return whether the game is already over
      */
-    bool isGameOver() const;
+    bool isGameOver() const; // perhaps this doesn't need to be public
     /**
      *  @return whether any player move is at all possible
      */
-    bool isAnyPlayerMovePossible() const;
+    bool isAnyPlayerMovePossible() const;// perhaps this doesn't need to be public
     /**
      *  @return whether any computer move is at all possible
      */
-    bool isAnyComputerMovePossible() const;
+    bool isAnyComputerMovePossible() const;// perhaps this doesn't need to be public
     /**
      *  @return a color of the current player
      */
