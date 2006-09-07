@@ -12,6 +12,7 @@ set(kreversi_SRCS
     kreversiscene.cpp
     kreversiview.cpp
     Engine.cpp
+    highscores.cpp
     mainwindow.cpp
     main.cpp )
 
@@ -21,7 +22,7 @@ kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi ${KDE4_KDEUI_LIBS})
+target_link_libraries(kreversi ${KDE4_KDEUI_LIBS} kdegames)
 install(TARGETS kreversi  DESTINATION ${BIN_INSTALL_DIR} )
 
 

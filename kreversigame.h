@@ -40,6 +40,8 @@ public:
      *  - if it is player turn and player can't move it'll make a computer move
      *  - in demo mode this function will make computer play player moves,
      *  so you don't need to call makePlayerMove.
+     *
+     *  If game is over it'll emit gameOver()
      *  
      *  If it's still unclear how to use it please see KReversiScene for working example.
      *  In short: it calls startNextTurn() at the end of each turn and makePlayerMove() 

@@ -8,12 +8,14 @@
 #include <ktoggleaction.h>
 #include <kapplication.h>
 #include <kdebug.h>
+#include <kexthighscore.h>
 #include <kicon.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
 #include <kstdaction.h>
+#include <kstdgameaction.h>
 #include <kselectaction.h>
 
 #include <QGraphicsView>
@@ -69,6 +71,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_historyLabel->hide();
     m_historyView->hide();
 
+
     setupActions();
     loadSettings();
 
@@ -122,7 +125,7 @@ void KReversiMainWindow::setupActions()
     // FIXME dimsuz: this utilises 5 skills. although 7 is possible
     // also give them good names
     acts << i18n("Very easy") << i18n("Easy") << i18n("Normal");
-    acts << i18n("Hard") << i18n("Beatable") << i18n("Unbeatable");
+    acts << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
     m_skillAct->setItems(acts);
     connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
 
@@ -132,6 +135,8 @@ void KReversiMainWindow::setupActions()
     // FIXME dimsuz: read/write this from/to config file? Or not necessary?
     KToggleAction *showMovesAct = new KToggleAction( i18n("Show moves history"), actionCollection(), "show_moves" );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
+
+    KStdGameAction::highscores(this, SLOT(slotHighScores()), actionCollection());
 
     addAction(newGameAct);
     addAction(quitAct);
@@ -252,13 +257,35 @@ void KReversiMainWindow::slotGameOver()
 
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);
-    QString res =  blackScore > whiteScore ? i18n("You win!") : i18n("You have lost!");
+
+    // FIXME dimsuz: use lowest skill that was during ONE game
+    KExtHighscore::setGameType( Preferences::skill()-1 );
+    KExtHighscore::Score score;
+    score.setScore(blackScore);
+
+    QString res;
     if( blackScore == whiteScore )
+    {
         res = i18n("Game is drawn!");
+        score.setType( KExtHighscore::Draw );
+    }
+    else if( blackScore > whiteScore )
+    {
+        res = i18n("You win!");
+        score.setType( KExtHighscore::Won );
+    }
+    else
+    {
+        res = i18n("You have lost!");
+        score.setType( KExtHighscore::Lost );
+    }
+
     res += i18n("\nYou: %1", blackScore);
     res += i18n("\nComputer: %1", whiteScore);
 
     KMessageBox::information( this, res, i18n("Game over") );
+    // FIXME dimsuz: don't submit if in demo mode!
+    KExtHighscore::submitScore(score, this);
 }
 
 void KReversiMainWindow::slotMoveFinished()
@@ -303,6 +330,11 @@ void KReversiMainWindow::slotUndo()
         // let's give him a chance to ask for a hint ;)
         m_hintAct->setEnabled( true );
     }
+}
+
+void KReversiMainWindow::slotHighscores()
+{
+    KExtHighscore::show(this);
 }
 
 #include "mainwindow.moc"

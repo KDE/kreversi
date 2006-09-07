@@ -2,7 +2,7 @@
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
  *
- * This file is part of the KDE project "KREVERSI"
+ * This file is part of the KDE project "KReversi"
  *
  * KREVERSI is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #include <kaboutdata.h>
 #include <klocale.h>
 
+#include "highscores.h"
 #include "mainwindow.h"
 #include "version.h"
 
@@ -35,27 +36,29 @@ static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
-  KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
-    KREVERSI_VERSION, description, KAboutData::License_GPL,
-    "(c) 1997-2000, Mario Weilguni\n(c) 2006, Dmitry Suzdalev");
-  aboutData.addAuthor("Mario Weilguni",I18N_NOOP("Original author"), "mweilguni@sime.com");
-  aboutData.addAuthor("Dmitry Suzdalev", I18N_NOOP("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
-  aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
-  aboutData.addCredit("Arne Klaassen", I18N_NOOP("Raytraced chips."), 0);
+    KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
+            KREVERSI_VERSION, description, KAboutData::License_GPL,
+            "(c) 1997-2000, Mario Weilguni\n(c) 2006, Dmitry Suzdalev");
+    aboutData.addAuthor("Mario Weilguni",I18N_NOOP("Original author"), "mweilguni@sime.com");
+    aboutData.addAuthor("Dmitry Suzdalev", I18N_NOOP("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
+    aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
+    aboutData.addCredit("Arne Klaassen", I18N_NOOP("Raytraced chips."), 0);
 
-  KCmdLineArgs::init( argc, argv, &aboutData );
+    KCmdLineArgs::init( argc, argv, &aboutData );
 
-  KApplication application;
-  if( application.isSessionRestored() )
-  {
-      RESTORE(KReversiMainWindow)
-  }
-  else
-  {
-      KReversiMainWindow *mainWin = new KReversiMainWindow;
-      mainWin->show();
-  }
+    KApplication application;
+    if( application.isSessionRestored() )
+    {
+        RESTORE(KReversiMainWindow)
+    }
+    else
+    {
+        KReversiMainWindow *mainWin = new KReversiMainWindow;
+        mainWin->show();
+    }
 
-  return application.exec();
+    KExtHighscore::ExtManager highscoresManager;
+
+    return application.exec();
 }
 
