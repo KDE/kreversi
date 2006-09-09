@@ -32,7 +32,7 @@
 #include "kreversichip.h"
 
 
-// FIXME dimsuz: something to remove/give-more-thinking
+// something to remove/give-more-thinking
 const int CHIP_SIZE = 36;
 
 KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )

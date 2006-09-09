@@ -1,2 +1,3 @@
 Mario Weilguni <mweilguni@sime.com>	Initial coding
 Inge Wallin <inge@lysator.liu.se>	Cleanups, lots of enhancements
+Dmitry Suzdalev <dimsuz@gmail.com>      Rewrite to use QGraphicsView

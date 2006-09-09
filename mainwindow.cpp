@@ -144,8 +144,7 @@ void KReversiMainWindow::setupActions()
 
     m_skillAct = new KSelectAction(i18n("Computer skill"), actionCollection(), "skill" );
     acts.clear();
-    // FIXME dimsuz: this utilises 5 skills. although 7 is possible
-    // also give them good names
+    // FIXME dimsuz: give them good names
     acts << i18n("Very easy") << i18n("Easy") << i18n("Normal");
     acts << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
     m_skillAct->setItems(acts);
@@ -154,7 +153,7 @@ void KReversiMainWindow::setupActions()
     m_coloredChipsAct = new KToggleAction( i18n("Use colored chips"), actionCollection(), "use_colored_chips" );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
-    // FIXME dimsuz: read/write this from/to config file? Or not necessary?
+    // NOTE: read/write this from/to config file? Or not necessary?
     KToggleAction *showMovesAct = new KToggleAction( i18n("Show moves history"), actionCollection(), "show_moves" );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 

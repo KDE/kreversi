@@ -105,7 +105,7 @@ void KReversiGame::startNextTurn(bool demoMode)
 void KReversiGame::makeComputerMove()
 {
     m_curPlayer = m_computerColor;
-    // FIXME dimsuz: m_competitive. Read from config. What's this btw? :)
+    // FIXME dimsuz: m_competitive. Read from config.
     // (also there's computeMove in getHint)
     KReversiMove move = m_engine->computeMove( *this, true );
     Q_ASSERT(move.color == m_computerColor);
