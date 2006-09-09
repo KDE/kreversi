@@ -1,45 +1,35 @@
 <!DOCTYPE kpartgui>
 <kpartgui name="kreversi" version="2">
 
-<ActionProperties>
-  <Action name="game_stop" icon="stop"/>
-</ActionProperties>
-
 <MenuBar>
   <Menu name="game"><text>&amp;Game</text>
-    <Action name="game_sound"/>
+    <Action name="new_game" />
+    <Action name="hint" />
+    <Action name="demo" />
+    <Action name="game_highscores" />
+    <Action name="quit" />
   </Menu>
-  <Menu name="move"><text>&amp;Move</text>
-    <Action name="game_undo"/>
-    <Action name="game_hint"/>
-    <Action name="game_switch_sides"/>
-    <Separator/>
-    <Action name="game_stop"/>
-    <Action name="game_continue"/>
+  <Menu name="view"><text>&amp;View</text>
+    <Action name="show_moves" />
   </Menu>
-
+  <Menu name="edit"><text>&amp;Edit</text>
+    <Action name="undo" />
+  </Menu>
+  <Menu name="settings"><text>&amp;Settings</text>
+    <Action name="choose_bkgnd" />
+    <Action name="anim_speed" />
+    <Action name="skill" />
+    <Action name="use_colored_chips" />
+  </Menu>
 </MenuBar>
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
-  <Action name="game_new"/>
-  <Action name="game_stop"/>
-  <Action name="game_continue"/>
-  <Action name="game_undo"/>
-  <Action name="options_show_menubar"/>
+  <Action name="new_game" />
+  <Action name="undo" />
+  <Action name="hint" />
+  <Action name="demo" />
+  <Separator />
+  <Action name="show_last_move" />
+  <Action name="show_legal_moves" />
 </ToolBar>
-<ToolBar name="viewToolBar"><text>View Toolbar</text>
-  <Action name="game_hint"/>
-  <Action name="show_last_move"/>
-  <Action name="show_legal_moves"/>
-</ToolBar>
-
-<Menu name="popup">
-  <Action name="options_show_menubar"/>
-  <Separator/>
-  <Action name="game_new"/>
-  <Action name="game_highscores"/>
-  <Separator/>
-  <Action name="game_quit"/>
-</Menu>
-
 </kpartgui>

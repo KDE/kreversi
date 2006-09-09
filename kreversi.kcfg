@@ -3,64 +3,38 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
-  <include>kstandarddirs.h</include>
-  <include>kglobal.h</include>
   <kcfgfile name="kreversirc"/>
   <group name="Game">
     <entry name="Grayscale" type="Bool">
       <label>Whether to use a grayscale board instead of colored.</label>
       <default>false</default>
     </entry>
-      <entry name="HumanColor" type="Int">
-      <label>The human color.</label>
-      <default>1</default>
-    </entry>
-      <entry name="ComputerColor" type="Int">
-      <label>The computer color.</label>
-      <default>0</default>
-    </entry>
-    <entry name="Animation" type="Bool">
-      <label>Whether to use animations.</label>
-      <default>true</default>
-    </entry>
-    <entry name="AnimationSpeed" type="Int">
+    <entry name="AnimationSpeed" type="Enum">
       <label>The speed of the animations.</label>
-       <default>4</default>
-      <min>1</min>
-      <max>10</max>
-    </entry>
-    <entry name="Zoom" type="Int">
-      <label>The zoom factor of the board.</label>
-      <default>100</default>
-      <min>10</min>
-      <max>300</max>
+      <choices>
+          <choice name="Slow" />
+          <choice name="Normal" />
+          <choice name="Fast" />
+      </choices>
+      <default>Normal</default>
     </entry>
     <entry name="CompetitiveGameChoice" type="Bool">
       <label>Whether to play competitively in contrast to casually.</label>
       <default>true</default>
     </entry>
-    <entry name="skill" type="Int">
+    <entry name="Skill" type="Int">
       <label>The strength of the computer player.</label>
       <default>1</default>
       <min>1</min>
       <max>7</max>
     </entry>
-    <entry name="BackgroundImageChoice" type="Bool">
-      <label>Whether to use a background image.</label>
-      <default>true</default>
+    <entry name="BackgroundImageName" type="String">
+        <label>Background image name</label>
+        <default>Light_Wood</default>
     </entry>
-    <entry name="BackgroundColor" type="Color">
-      <label>The background color to use.</label>
-      <default>#ffffff</default>
-    </entry>
-    <entry name="BackgroundImage" type="Path">
-      <label>Image to use as background.</label>
-      <code>#define PICDATA(x) KGlobal::dirs()->findResource("appdata", QString("pics/")+ x)</code>
-      <default code="true">PICDATA("background/Light_Wood.png")</default>
-    </entry>
-    <entry name="MenubarVisible" type="Bool" key="menubar visible">
-      <label>Whether the menubar is visible.</label>
-      <default>true</default>
+    <entry name="UseColoredChips" type="Bool">
+        <label>Whether to use colored chips instead of black and white ones.</label>
+        <default>true</default>
     </entry>
   </group>
 </kcfg>

@@ -20,29 +20,21 @@
 #ifndef HIGHSCORES_H
 #define HIGHSCORES_H
 
-
 #include <kexthighscore.h>
 #include <kdemacros.h>
-#include "SuperEngine.h"
-
+#include <QStringList>
 
 namespace KExtHighscore
 {
 
 class KDE_EXPORT ExtManager : public Manager
 {
- public:
-  ExtManager();
+public:
+    ExtManager();
 
- private:
-  QString gameTypeLabel(uint gameTye, LabelType) const;
-  void convertLegacy(uint gameType);
-    
-  struct Data {
-    const char  *label;
-    const char  *icon;
-  };
-  static const Data  DATA[SuperEngine::NbStrengths];
+private:
+    virtual QString gameTypeLabel(uint gameTye, LabelType) const;
+    QStringList m_typeLabels;
 };
 
 }

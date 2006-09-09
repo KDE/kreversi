@@ -22,7 +22,6 @@
 #include <klocale.h>
 #include <kconfig.h>
 #include <kapplication.h>
-//Added by qt3to4:
 #include <QVector>
 #include <QDateTime>
 #include <kglobal.h>
@@ -31,53 +30,51 @@
 namespace KExtHighscore
 {
 
-const ExtManager::Data ExtManager::DATA[SuperEngine::NbStrengths] = {
-  { I18N_NOOP("1 (Beginner)"), "beginner" },
-  { I18N_NOOP("2"), 0 },
-  { I18N_NOOP("3"), 0 },
-  { I18N_NOOP("4 (Average)"), "average" },
-  { I18N_NOOP("5"), 0 },
-  { I18N_NOOP("6"), 0 },
-  { I18N_NOOP("7 (Expert)"), "expert" }
-};
-
-
 ExtManager::ExtManager()
-    : Manager(SuperEngine::NbStrengths)
+    : Manager(7)
 {
-  setShowStatistics(true);
-  setShowDrawGamesStatistic(true);
+    setShowMode( NeverShow );
+    setShowStatistics(true);
+    setShowDrawGamesStatistic(true);
 
-  const uint       RANGE[6] = { 0, 32, 40, 48, 56, 64 };
-  QVector<uint>  s;
-  s.resize(6);
-  qCopy(RANGE, RANGE + 6, s.begin());
-  //s.duplicate(RANGE, 6);
-  setScoreHistogram(s, ScoreBound);
+    const uint       RANGE[6] = { 0, 32, 40, 48, 56, 64 };
+    QVector<uint>  s;
+    s.resize(6);
+    qCopy(RANGE, RANGE + 6, s.begin());
+    setScoreHistogram(s, ScoreBound);
+
+    // FIXME dimsuz: somehow rearrange the code to be sure that this and in mainwindow.cpp are 
+    // always in sync
+    m_typeLabels << i18n("Very easy") << i18n("Easy") << i18n("Normal");
+    m_typeLabels << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
 }
 
 
 QString ExtManager::gameTypeLabel(uint gameType, LabelType type) const
 {
-  const Data &data = DATA[gameType];
-  switch (type) {
-  case Icon:     return data.icon;
-  case Standard: return QString::number(gameType);
-  case I18N:     return i18n(data.label);
-  case WW:       break;
-  }
+    switch (type) {
+        case Standard:
+            return QString::number(gameType);
+        case I18N: 
+            return m_typeLabels.at(gameType);
+        case Icon:
+            // FIXME dimsuz: implement
+            break;
+        case WW:
+            break;
+    }
 
-  return QString::null;
+    return QString::null;
 }
 
 
+// FIXME dimsuz: is this still needed?
+/* 
 void ExtManager::convertLegacy(uint gameType)
 {
   // Since there is no information about the skill level
   // in the legacy highscore list, consider they are
   // for beginner skill ...
-  qDebug("convert legacy %i", gameType);
-
   if ( gameType!=0 )
     return;
 
@@ -105,6 +102,7 @@ void ExtManager::convertLegacy(uint gameType)
     submitLegacyScore(s);
   }
 }
+ */
 
 
 } // Namespace

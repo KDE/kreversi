@@ -117,9 +117,9 @@
 // or nearly equal value after the search is completed.
 
 
-#include <qapplication.h>
-
 #include "Engine.h"
+#include "kreversigame.h"
+#include <kapplication.h>
 
 
 // ================================================================
@@ -255,50 +255,102 @@ MoveAndValue::MoveAndValue(int x, int y, int value)
   setXYV(x, y, value);
 }
 
+// ================================================================
+//                       class Score
+
+/* This class keeps track of the score for both colors.  Such a score
+ * could be either the number of pieces, the score from the evaluation
+ * function or anything similar.
+ */
+class Score {
+public:
+  Score()
+  {
+      m_score[White] = 0;
+      m_score[Black] = 0;
+  }
+
+  uint score(ChipColor color) const     { return m_score[color]; }
+
+  void set(ChipColor color, uint score) { m_score[color] = score; }
+  void inc(ChipColor color)             { m_score[color]++; }
+  void dec(ChipColor color)             { m_score[color]--; }
+  void add(ChipColor color, uint s)     { m_score[color] += s; }
+  void sub(ChipColor color, uint s)     { m_score[color] -= s; }
+  
+private:
+  uint  m_score[2];
+};
+
+// helper function
+static ChipColor opponentColorFor(ChipColor color)
+{
+    if(color == NoColor) 
+        return color;
+    else
+        return ( color == White ? Black : White );
+}
 
 // ================================================================
 //                        The Engine itself
 
 
 // Some special values used in the search.
-const int Engine::LARGEINT      = 99999;
-const int Engine::ILLEGAL_VALUE = 8888888;
-const int Engine::BC_WEIGHT     = 3;
+static const int LARGEINT      = 99999;
+static const int ILLEGAL_VALUE = 8888888;
+static const int BC_WEIGHT     = 3;
 
 
-Engine::Engine(int st, int sd) : SuperEngine(st, sd) 
+Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
+    : m_strength(st)
 {
+  m_random.setSeed(sd);
+  m_score = new Score;
+  m_bc_score = new Score;
   SetupBcBoard();
   SetupBits();
 }
 
 
-Engine::Engine(int st) : SuperEngine(st) 
+Engine::Engine(int st) //: SuperEngine(st) 
+    : m_strength(st)
 {
+  m_random.setSeed(0);
+  m_score = new Score;
+  m_bc_score = new Score;
   SetupBcBoard();
   SetupBits();
 }
 
 
-Engine::Engine() : SuperEngine(1) 
+Engine::Engine()// : SuperEngine(1) 
+    : m_strength(1)
 {
+  m_random.setSeed(0);
+  m_score = new Score;
+  m_bc_score = new Score;
   SetupBcBoard();
   SetupBits();
 }
 
+Engine::~Engine()
+{
+    delete m_score;
+    delete m_bc_score;
+}
 
 // keep GUI alive
 void Engine::yield() 
 {
-  qApp->processEvents();
+  kapp->processEvents();
 }
 
 
 // Calculate the best move from the current position, and return it.
 
-Move Engine::computeMove(Game *game, bool competitive) 
+KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive) 
 {
-  Color color;
+  ChipColor color;
 
   // A competitive game is one where we try our damnedest to make the
   // best move.  The opposite is a casual game where the engine might
@@ -313,17 +365,17 @@ Move Engine::computeMove(Game *game, bool competitive)
   m_exhaustive = false;
 
   // Get the color to calculate the move for.
-  color = game->toMove();
-  if (color == Nobody)
-    return Move(Nobody, -1, -1);
+  color = game.currentPlayer();
+  if (color == NoColor)
+    return KReversiMove(NoColor, -1, -1);
 
   // Figure out the current score
-  m_score.set(White, game->score(White));
-  m_score.set(Black, game->score(Black));
+  m_score->set(White, game.playerScore(White));
+  m_score->set(Black, game.playerScore(Black));
 
   // Treat the first move as a special case (we can basically just
   // pick a move at random).
-  if (m_score.score(White) + m_score.score(Black) == 4)
+  if (m_score->score(White) + m_score->score(Black) == 4)
     return ComputeFirstMove(game);
 
   // Let there be room for 3000 changes during the recursive search.
@@ -334,16 +386,16 @@ Move Engine::computeMove(Game *game, bool competitive)
   // the number of possible moves goes down, so we can search deeper
   // without using more time.  
   m_depth = m_strength;
-  if (m_score.score(White) + m_score.score(Black) + m_depth + 3 >= 64)
-    m_depth = 64 - m_score.score(White) - m_score.score(Black);
-  else if (m_score.score(White) + m_score.score(Black) + m_depth + 4 >= 64)
+  if (m_score->score(White) + m_score->score(Black) + m_depth + 3 >= 64)
+    m_depth = 64 - m_score->score(White) - m_score->score(Black);
+  else if (m_score->score(White) + m_score->score(Black) + m_depth + 4 >= 64)
     m_depth += 2;
-  else if (m_score.score(White) + m_score.score(Black) + m_depth + 5 >= 64)
+  else if (m_score->score(White) + m_score->score(Black) + m_depth + 5 >= 64)
     m_depth++;
 
   // If we are very close to the end, we can even make the search
   // exhaustive.
-  if (m_score.score(White) + m_score.score(Black) + m_depth >= 64)
+  if (m_score->score(White) + m_score->score(Black) + m_depth >= 64)
     m_exhaustive = true;
 
   // The evaluation is a linear combination of the score (number of
@@ -352,7 +404,7 @@ Move Engine::computeMove(Game *game, bool competitive)
   // values and the later in the game the more we use the number of
   // pieces.
   m_coeff = 100 - (100*
-		   (m_score.score(White) + m_score.score(Black) 
+		   (m_score->score(White) + m_score->score(Black) 
 		    + m_depth - 4)) / 60;
 
   // Initialize the board that we use for the search.
@@ -360,9 +412,9 @@ Move Engine::computeMove(Game *game, bool competitive)
     for (uint y = 0; y < 10; y++) {
       if (1 <= x && x <= 8
 	  && 1 <= y && y <= 8)
-	m_board[x][y] = game->color(x, y);
+	m_board[x][y] = game.chipColorAt(y-1, x-1);
       else
-	m_board[x][y] = Nobody;
+	m_board[x][y] = NoColor;
     }
 
   // Initialize a lot of stuff that we will use in the search.
@@ -370,11 +422,11 @@ Move Engine::computeMove(Game *game, bool competitive)
   // Initialize m_bc_score to the current bc score.  This is kept
   // up-to-date incrementally so that way we won't have to calculate
   // it from scratch for each evaluation.
-  m_bc_score.set(White, CalcBcScore(White));
-  m_bc_score.set(Black, CalcBcScore(Black));
+  m_bc_score->set(White, CalcBcScore(White));
+  m_bc_score->set(Black, CalcBcScore(Black));
 
   ULONG64 colorbits    = ComputeOccupiedBits(color);
-  ULONG64 opponentbits = ComputeOccupiedBits(opponent(color));
+  ULONG64 opponentbits = ComputeOccupiedBits(opponentColorFor(color));
 
   int maxval = -LARGEINT;
   int max_x = 0;
@@ -397,7 +449,7 @@ Move Engine::computeMove(Game *game, bool competitive)
     for (int y = 1; y < 9; y++) {
       // Don't bother with non-empty squares and squares that aren't
       // neighbors to opponent pieces.
-      if (m_board[x][y] != Nobody
+      if (m_board[x][y] != NoColor
 	  || (m_neighbor_bits[x][y] & opponentbits) == null_bits)
 	continue;
 
@@ -456,35 +508,35 @@ Move Engine::computeMove(Game *game, bool competitive)
 
   // Return a suitable move.
   if (interrupted())
-    return Move(Nobody, -1, -1);
+    return KReversiMove(NoColor, -1, -1);
   else if (maxval != -LARGEINT)
-    return Move(color, max_x, max_y);
+    return KReversiMove(color, max_y-1, max_x-1);
   else
-    return Move(Nobody, -1, -1);
+    return KReversiMove(NoColor, -1, -1);
 }
 
 
 // Get the first move.  We can pick any move at random.
 //
 
-Move Engine::ComputeFirstMove(Game *game) 
+KReversiMove Engine::ComputeFirstMove(const KReversiGame& game) 
 {
   int    r;
-  Color  color = game->toMove();
+  ChipColor  color = game.currentPlayer();
 
   r = m_random.getLong(4) + 1;
 
   if (color == White) {
-    if (r == 1)      return  Move(color, 3, 5);
-    else if (r == 2) return  Move(color, 4, 6);
-    else if (r == 3) return  Move(color, 5, 3);
-    else             return  Move(color, 6, 4);
+    if (r == 1)      return  KReversiMove(color, 4, 2);
+    else if (r == 2) return  KReversiMove(color, 5, 3);
+    else if (r == 3) return  KReversiMove(color, 2, 4);
+    else             return  KReversiMove(color, 3, 5);
   }
   else {
-    if (r == 1)      return  Move(color, 3, 4);
-    else if (r == 2) return  Move(color, 5, 6);
-    else if (r == 3) return  Move(color, 4, 3);
-    else             return  Move(color, 6, 5);
+    if (r == 1)      return  KReversiMove(color, 3, 2);
+    else if (r == 2) return  KReversiMove(color, 5, 4);
+    else if (r == 3) return  KReversiMove(color, 2, 3);
+    else             return  KReversiMove(color, 4, 5);
   }
 }
 
@@ -495,21 +547,21 @@ Move Engine::ComputeFirstMove(Game *game)
 // search.
 //
 
-int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
+int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 			 int cutoffval, ULONG64 colorbits,
 			 ULONG64 opponentbits)
 {
   int               number_of_turned = 0;
   SquareStackEntry  mse;
-  Color             opponent = ::opponent(color);
+  ChipColor             opponent = opponentColorFor(color);
 
   m_nodes_searched++;
 
   // Put the piece on the board and incrementally update scores and bitmaps.
   m_board[xplay][yplay] = color;
   colorbits |= m_coord_bit[xplay][yplay];
-  m_score.inc(color);
-  m_bc_score.add(color, m_bc_board[xplay][yplay]);
+  m_score->inc(color);
+  m_bc_score->add(color, m_bc_board[xplay][yplay]);
 
   // Loop through all 8 directions and turn the pieces that can be turned.
   for (int xinc = -1; xinc <= 1; xinc++)
@@ -536,8 +588,8 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
 
 	  m_squarestack.Push(x, y);
 
-	  m_bc_score.add(color, m_bc_board[x][y]);
-	  m_bc_score.sub(opponent, m_bc_board[x][y]);
+	  m_bc_score->add(color, m_bc_board[x][y]);
+	  m_bc_score->sub(opponent, m_bc_board[x][y]);
 	  number_of_turned++;
 	}
     }
@@ -549,8 +601,8 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
   if (number_of_turned > 0) {
 
     // First adjust the number of pieces for each side.
-    m_score.add(color, number_of_turned);
-    m_score.sub(opponent, number_of_turned);
+    m_score->add(color, number_of_turned);
+    m_score->sub(opponent, number_of_turned);
 
     // If we are at the bottom of the search, get the evaluation.
     if (level >= m_depth)
@@ -569,7 +621,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
 	if (retval == -LARGEINT) {
 
 	  // No possible move for anybody => end of game:
-	  int finalscore = m_score.score(color) - m_score.score(opponent);
+	  int finalscore = m_score->score(color) - m_score->score(opponent);
 
 	  if (m_exhaustive)
 	    retval = finalscore;
@@ -587,22 +639,22 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
       }
     }
 
-    m_score.add(opponent, number_of_turned);
-    m_score.sub(color, number_of_turned);
+    m_score->add(opponent, number_of_turned);
+    m_score->sub(color, number_of_turned);
   }
 
   // Undo the move.  Start by unturning the turned pieces.
   for (int i = number_of_turned; i > 0; i--) {
     mse = m_squarestack.Pop();
-    m_bc_score.add(opponent, m_bc_board[mse.m_x][mse.m_y]);
-    m_bc_score.sub(color, m_bc_board[mse.m_x][mse.m_y]);
+    m_bc_score->add(opponent, m_bc_board[mse.m_x][mse.m_y]);
+    m_bc_score->sub(color, m_bc_board[mse.m_x][mse.m_y]);
     m_board[mse.m_x][mse.m_y] = opponent;
   }
 
   // Now remove the new piece that we put down.
-  m_board[xplay][yplay] = Nobody;
-  m_score.sub(color, 1);
-  m_bc_score.sub(color, m_bc_board[xplay][yplay]);
+  m_board[xplay][yplay] = NoColor;
+  m_score->sub(color, 1);
+  m_bc_score->sub(color, m_bc_board[xplay][yplay]);
 
   // Return a suitable value.
   if (number_of_turned < 1 || interrupted())
@@ -617,7 +669,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
 // most valuable move, but not the move itself.
 //
 
-int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
+int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
 			ULONG64 opponentbits, ULONG64 colorbits)
 {
   int maxval = -LARGEINT;
@@ -630,7 +682,7 @@ int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
 
   for (int x = 1; x < 9; x++) {
     for (int y = 1; y < 9; y++) {
-      if (m_board[x][y] == Nobody 
+      if (m_board[x][y] == NoColor 
 	  && (m_neighbor_bits[x][y] & colorbits) != null_bits) {
 	int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
 			       colorbits);
@@ -660,22 +712,22 @@ int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
 // using the board control values.
 //
 
-int Engine::EvaluatePosition(Color color)
+int Engine::EvaluatePosition(ChipColor color)
 {
   int retval;
 
-  Color  opponent = ::opponent(color);
+  ChipColor opponent = opponentColorFor(color);
 
-  int    score_color    = m_score.score(color);
-  int    score_opponent = m_score.score(opponent);
+  int    score_color    = m_score->score(color);
+  int    score_opponent = m_score->score(opponent);
 
   if (m_exhaustive)
     retval = score_color - score_opponent;
   else {
     retval = (100-m_coeff) *
-      (m_score.score(color) - m_score.score(opponent)) 
-      + m_coeff * BC_WEIGHT * (m_bc_score.score(color)
-			       - m_bc_score.score(opponent));
+      (m_score->score(color) - m_score->score(opponent)) 
+      + m_coeff * BC_WEIGHT * (m_bc_score->score(color)
+			       - m_bc_score->score(opponent));
   }
 
   return retval;
@@ -758,7 +810,7 @@ void Engine::SetupBcBoard()
 // Calculate the board control score.
 //
 
-int Engine::CalcBcScore(Color color)
+int Engine::CalcBcScore(ChipColor color)
 {
   int sum = 0;
 
@@ -774,7 +826,7 @@ int Engine::CalcBcScore(Color color)
 // Calculate a bitmap of the occupied squares for a certain color.
 //
 
-ULONG64 Engine::ComputeOccupiedBits(Color color)
+ULONG64 Engine::ComputeOccupiedBits(ChipColor color)
 {
   ULONG64 retval = 0;
 
