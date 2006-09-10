@@ -24,6 +24,8 @@
  *
  *******************************************************************
  *
+ * Copyright 1997 Mario Weilguni <mweilguni@sime.com>
+ *
  * This file is part of the KDE project "KREVERSI"
  *
  * KREVERSI is free software; you can redistribute it and/or modify

@@ -64,7 +64,7 @@ QString ExtManager::gameTypeLabel(uint gameType, LabelType type) const
             break;
     }
 
-    return QString::null;
+    return QString();
 }
 
 

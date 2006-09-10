@@ -58,7 +58,7 @@ static QString moveToString( const KReversiMove& move )
     const char labelsHor[] = "ABCDEFGH";
     const char labelsVer[] = "12345678";
 
-    moveString += " ";
+    moveString += ' ';
     moveString += labelsHor[move.col];
     moveString += labelsVer[move.row];
 
