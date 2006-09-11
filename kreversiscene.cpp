@@ -93,8 +93,9 @@ void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
 void KReversiScene::setGame( KReversiGame* game )
 {
     m_game = game;
-    connect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
-    connect( m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()) );
+    connect( m_game, SIGNAL(boardChanged()), SLOT(updateBoard()) );
+    connect( m_game, SIGNAL(moveFinished()), SLOT(slotGameMoveFinished()) );
+    connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
 
     // this will remove all items left from previous game
     QList<QGraphicsItem*> allChips = items( m_boardRect );
@@ -248,7 +249,6 @@ void KReversiScene::slotAnimationStep()
 
                 displayLastAndPossibleMoves();
 
-                // FIXME dimsuz: set m_demoMode=false on GAME OVER somewhere!
                 m_game->startNextTurn(m_demoMode);
             }
         }
@@ -279,7 +279,6 @@ void KReversiScene::displayLastAndPossibleMoves()
             rect->hide();
 
         MoveList l = m_game->possibleMoves();
-        kDebug() << "number of rects: " << m_possibleMovesItems.count() << endl;
         // if m_possibleMovesItems contains less rects then there are items in l
         // lets fill it with additional rects.
         // Else we'll just reuse rects that we already have.
@@ -287,7 +286,6 @@ void KReversiScene::displayLastAndPossibleMoves()
         if( m_possibleMovesItems.count() < l.count() )
         {
             int numtoadd = l.count() - m_possibleMovesItems.count();
-            kDebug() << "growing num possible moves by: " << numtoadd << endl;
             for( int i=0; i<numtoadd; ++i)
             {
                 QGraphicsRectItem *item = new QGraphicsRectItem( 0, 0, CHIP_SIZE-1, CHIP_SIZE-1, 0, this );
@@ -326,6 +324,11 @@ void KReversiScene::slotHint()
     m_hintChip->setPos( cellTopLeft( hint.row, hint.col ) );
     m_showingHint = true;
     m_animTimer->start(500);
+}
+
+void KReversiScene::slotGameOver()
+{
+    m_demoMode = false;
 }
 
 QPointF KReversiScene::cellCenter( int row, int col ) const

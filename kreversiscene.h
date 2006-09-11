@@ -76,8 +76,6 @@ public:
     void setAnimationSpeed(int speed);
 public slots:
     void updateBoard();
-    void slotGameMoveFinished();
-    void slotAnimationStep();
     /**
      *  This will make scene visually mark the last made move
      */
@@ -98,6 +96,10 @@ public slots:
      *  @see m_demoMode
      */
     void toggleDemoMode(bool toggle);
+private slots:
+    void slotGameMoveFinished();
+    void slotAnimationStep();
+    void slotGameOver();
 signals:
     /**
      *  emitted when Scene finishes displaying last move
