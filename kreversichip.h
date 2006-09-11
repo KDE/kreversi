@@ -48,6 +48,9 @@ public:
      *  It is used to indicate last-made move
      */
     void showLastMoveMarker(bool show);
+
+    enum { Type = UserType + 1 };
+    virtual int type() const { return Type; }
 private:
     ChipColor m_color;
     const KReversiChipFrameSet* m_frameSet;

@@ -73,8 +73,7 @@ void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
         KReversiChip *chip = 0;
         foreach( QGraphicsItem* item, allItems )
         {
-            // FIXME dimsuz: use qgraphicsitem_cast?
-            chip = dynamic_cast<KReversiChip*>(item);
+            chip = qgraphicsitem_cast<KReversiChip*>(item);
             if( chip )
             {
                 chip->setFrameSet( m_frameSet );
@@ -186,6 +185,8 @@ void KReversiScene::updateBoard()
             {
                 // this if-branch happens on undos
 
+                // FIXME dimsuz: qgraphicsitem_cast<...>(0) crashes.
+                // Therefore I leave dynamic_cast here until this is fixed in qt
                 // deleting only KReversiChips
                 KReversiChip *chip = dynamic_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
                 delete chip;
@@ -232,7 +233,7 @@ void KReversiScene::slotAnimationStep()
     { // we're animating chips move
 
         KReversiMove move = m_changedChips.at(0);
-        KReversiChip *chip = dynamic_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
+        KReversiChip *chip = qgraphicsitem_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
 
         bool animFinished = chip->nextFrame();
         if(animFinished)
@@ -266,7 +267,7 @@ void KReversiScene::displayLastAndPossibleMoves()
     if( m_showLastMove )
     {
         KReversiMove lastPos = m_game->getLastMove();
-        m_lastMoveChip = dynamic_cast<KReversiChip*>(itemAt(cellCenter(lastPos.row, lastPos.col)));
+        m_lastMoveChip = qgraphicsitem_cast<KReversiChip*>(itemAt(cellCenter(lastPos.row, lastPos.col)));
         if(m_lastMoveChip)
             m_lastMoveChip->showLastMoveMarker(true);
     }
