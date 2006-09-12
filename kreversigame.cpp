@@ -77,6 +77,7 @@ void KReversiGame::startNextTurn(bool demoMode)
             else // no comp move possible and not in demo mode
             {
                 kDebug() << "Computer can't move!" << endl;
+                m_curPlayer = m_playerColor;
                 emit computerCantMove();
             }
         }

@@ -69,7 +69,7 @@ void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
     m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
     if(m_game)
     {
-        // FIXME: Qt rc1 bug? there was items( m_boundingRect ) here
+        // FIXME: Qt rc1 bug? there was items( m_boardRect ) here
         // but for some reason it returns only 2 white chips on initial board with 4 chips.
         // Check out one more time!
         QList<QGraphicsItem*> allItems = items();

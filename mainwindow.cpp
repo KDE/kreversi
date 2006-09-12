@@ -256,8 +256,8 @@ void KReversiMainWindow::slotNewGame()
 
     if(m_scene == 0) // if called first time
     {
-        // FIXME dimsuz: if chips.png not found give error end exit
-        m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips.png"));
+        // FIXME dimsuz: if chips[_mono].png not found give error end exit
+        m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips_mono.png"));
         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
     }
     else
