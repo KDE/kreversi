@@ -72,12 +72,9 @@ void KReversiChip::showLastMoveMarker(bool show)
 
 KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameSize )
 {
-    // we skip x,y = (0,0) case, because allFrames has a transparent frame as the 
-    // the first one. It has it just for symmetry I guess (so the whole big pix remains square)
     for(int y=0; y < allFrames.height(); y += frameSize )
         for(int x=0; x < allFrames.width(); x += frameSize )
         {
-            if( x==0 && y==0 ) continue;
             m_frames.append( allFrames.copy(x,y, frameSize, frameSize) );
         }
 }

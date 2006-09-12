@@ -69,7 +69,10 @@ void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
     m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
     if(m_game)
     {
-        QList<QGraphicsItem*> allItems = items( m_boardRect );
+        // FIXME: Qt rc1 bug? there was items( m_boundingRect ) here
+        // but for some reason it returns only 2 white chips on initial board with 4 chips.
+        // Check out one more time!
+        QList<QGraphicsItem*> allItems = items();
         KReversiChip *chip = 0;
         foreach( QGraphicsItem* item, allItems )
         {
@@ -143,11 +146,11 @@ void KReversiScene::setShowLegalMoves( bool show )
 void KReversiScene::setAnimationSpeed(int speed)
 {
     if( speed == 0 ) // slow
-        m_timerDelay = 35;
+        m_timerDelay = 40;
     else if( speed == 1 ) // normal
-        m_timerDelay = 20;
+        m_timerDelay = 25;
     else if( speed == 2 ) // fast
-        m_timerDelay = 10;
+        m_timerDelay = 15;
 }
 
 bool KReversiScene::isBusy() const
