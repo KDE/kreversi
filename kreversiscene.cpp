@@ -76,7 +76,7 @@ void KReversiScene::setChipsPixmap( const QString& chipsPath )
     if (!chips.isValid()) return;
     //Construct an image object to render the contents of the .svgz file
     baseImg = QImage(chips.defaultSize(),QImage::Format_ARGB32_Premultiplied);
-    //Is it really necessary to fill the buffer? Apparently yes, or we get garbage in the alpha channel
+    //Fill the buffer, it is unitialized by default
     baseImg.fill(0);
     QPainter p(&baseImg);
     chips.render(&p);
