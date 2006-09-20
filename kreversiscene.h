@@ -51,12 +51,12 @@ public:
     /**
      * @param chipsPixmap the pixmap with animation frames
      */
-    KReversiScene( KReversiGame* game, const QPixmap& chipsPixmap );
+    KReversiScene( KReversiGame* game, const QString& chipsPath );
     ~KReversiScene();
 
     void setGame( KReversiGame* game );
     void setBackgroundPixmap( const QPixmap& pix );
-    void setChipsPixmap( const QPixmap& chipsPixmap );
+    void setChipsPixmap( const QString& chipsPath );
     /**
      *  This function will tell you if the scene is currently performing
      *  some kind of "better-don't-interrupt-me" operation.

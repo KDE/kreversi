@@ -23,9 +23,11 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QTimer>
+#include <QImage>
 
 #include <kdebug.h>
 #include <kstandarddirs.h>
+#include <ksvgrenderer.h>
 
 #include "kreversiscene.h"
 #include "kreversigame.h"
@@ -35,7 +37,7 @@
 // something to remove/give-more-thinking
 const int CHIP_SIZE = 36;
 
-KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
+KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), 
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false)
 {
@@ -50,7 +52,7 @@ KReversiScene::KReversiScene( KReversiGame* game , const QPixmap& chipsPixmap )
 
     setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
 
-    setChipsPixmap(chipsPixmap);
+    setChipsPixmap(chipsPath);
 
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
@@ -63,10 +65,23 @@ KReversiScene::~KReversiScene()
     delete m_frameSet;
 }
 
-void KReversiScene::setChipsPixmap( const QPixmap& chipsPixmap )
+void KReversiScene::setChipsPixmap( const QString& chipsPath )
 {
     delete m_frameSet;
-    m_frameSet = new KReversiChipFrameSet( chipsPixmap, CHIP_SIZE );
+    QImage baseImg;
+
+    //Use the new addition to kdelib/kdecore, KSvgRenderer, so we can use .svgz
+    KSvgRenderer chips(KStandardDirs::locate("appdata", chipsPath));
+    //TODO Return meaningful error?
+    if (!chips.isValid()) return;
+    //Construct an image object to render the contents of the .svgz file
+    baseImg = QImage(chips.defaultSize(),QImage::Format_ARGB32_Premultiplied);
+    //Is it really necessary to fill the buffer? Apparently yes, or we get garbage in the alpha channel
+    baseImg.fill(0);
+    QPainter p(&baseImg);
+    chips.render(&p);
+
+    m_frameSet = new KReversiChipFrameSet( QPixmap::fromImage(baseImg), CHIP_SIZE );
     if(m_game)
     {
         // FIXME: Qt rc1 bug? there was items( m_boardRect ) here
