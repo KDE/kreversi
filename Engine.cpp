@@ -1,28 +1,4 @@
-/* Yo Emacs, this -*- C++ -*-
- *******************************************************************
- *******************************************************************
- *
- *
- * KREVERSI
- *
- *
- *******************************************************************
- *
- * A Reversi (or sometimes called Othello) game
- *
- *******************************************************************
- *
- * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
- * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
- * Many thanks to Mr. Luthman who has allowed me to put this port
- * under the GNU GPL. Without his wonderful game engine kreversi
- * would be just another of those Reversi programs a five year old
- * child could beat easily. But with it it's a worthy opponent!
- *
- * If you are interested on the JAVA applet of Mr. Luthman take a
- * look at http://www.sylog.se/~mats/
- *
- *******************************************************************
+/*******************************************************************
  *
  * Copyright 1997 Mario Weilguni <mweilguni@sime.com>
  *
@@ -44,6 +20,26 @@
  * Boston, MA 02110-1301, USA.
  *
  *******************************************************************
+ *
+ *
+ * KREVERSI
+ *
+ *
+ *******************************************************************
+ *
+ * A Reversi (or sometimes called Othello) game
+ *
+ *******************************************************************
+ *
+ * Created 1997 by Mario Weilguni <mweilguni@sime.com>. This file
+ * is ported from Mats Luthman's <Mats.Luthman@sylog.se> JAVA applet.
+ * Many thanks to Mr. Luthman who has allowed me to put this port
+ * under the GNU GPL. Without his wonderful game engine kreversi
+ * would be just another of those Reversi programs a five year old
+ * child could beat easily. But with it it's a worthy opponent!
+ *
+ * If you are interested on the JAVA applet of Mr. Luthman take a
+ * look at http://www.sylog.se/~mats/
  */
 
 // The class Engine produces moves from a Game object through calls to the

@@ -76,7 +76,7 @@ void KReversiScene::setChipsPixmap( const QString& chipsPath )
     if (!chips.isValid()) return;
     //Construct an image object to render the contents of the .svgz file
     baseImg = QImage(chips.defaultSize(),QImage::Format_ARGB32_Premultiplied);
-    //Fill the buffer, it is unitialized by default
+    //Fill the buffer, it is unitialised by default
     baseImg.fill(0);
     QPainter p(&baseImg);
     chips.render(&p);
@@ -216,6 +216,8 @@ void KReversiScene::updateBoard()
 
 void KReversiScene::toggleDemoMode( bool toggle )
 {
+    if( m_game->isGameOver() )
+        return;
     m_demoMode = toggle;
     stopHintAnimation();
     // if we are currently waiting for user mouse input and not animating,
