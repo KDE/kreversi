@@ -29,7 +29,7 @@
 #include <kdebug.h>
 
 KReversiView::KReversiView( KReversiScene* scene, QWidget *parent )
-    : QGraphicsView(scene, parent)
+    : QGraphicsView(scene, parent), m_scene(scene)
 {
     setCacheMode( QGraphicsView::CacheBackground );
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -39,7 +39,13 @@ KReversiView::KReversiView( KReversiScene* scene, QWidget *parent )
     resize( sizeHint() );
 }
 
+void KReversiView::resizeEvent( QResizeEvent* ev )
+{
+    m_scene->resizeScene( ev->size().width(), ev->size().height() );
+    QGraphicsView::resizeEvent(ev);
+}
+
 QSize KReversiView::sizeHint() const
 {
-    return QSize( (int)scene()->width(), (int)scene()->height() );
+    return QSize( (int)m_scene->width(), (int)m_scene->height() );
 }

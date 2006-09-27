@@ -30,10 +30,6 @@
 #include "kreversigame.h"
 #include "kreversichip.h"
 
-
-// something to remove/give-more-thinking
-const int CHIP_SIZE = 36;
-
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), 
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false)
@@ -42,14 +38,7 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
 
     setChipsPixmap(chipsPath);
 
-    QFont font; // it'll be initialised to default application font
-    font.setBold(true);
-    // NOTE we assume that fontMetrics in drawBackground() will be the same as here
-    int fontHeight = QFontMetrics(font).height();
-
-    m_boardRect = QRectF(fontHeight, fontHeight, CHIP_SIZE*8, CHIP_SIZE*8);
-
-    setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
+    resizeScene( m_curChipSize*8, m_curChipSize*8 );
 
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
@@ -62,11 +51,45 @@ KReversiScene::~KReversiScene()
     delete m_frameSet;
 }
 
+void KReversiScene::resizeScene( int width, int height )
+{
+    QFont font; // it'll be initialised to default application font
+    font.setBold(true);
+    // NOTE we assume that fontMetrics in drawBackground() will be the same as here
+    int fontHeight = QFontMetrics(font).height();
+
+    m_curChipSize = qMin( width/8, height/8 );
+    m_boardRect = QRectF(fontHeight, fontHeight, m_curChipSize*8, m_curChipSize*8);
+
+    setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
+
+    // adopt to new chip size
+
+    m_frameSet->setChipSize( m_curChipSize );
+
+    QList<QGraphicsItem*> allItems = items();
+    KReversiChip *chip = 0;
+    foreach( QGraphicsItem* item, allItems )
+    {
+        chip = qgraphicsitem_cast<KReversiChip*>(item);
+        if( chip )
+        {
+            // adjust pos to new one
+            chip->setPos( cellTopLeft( chip->row(), chip->col() ) );
+            chip->setColor( chip->color() ); // this will reread pixmap
+        }
+    }
+    // FIXME dimsuz: need to take care of m_possibleMovesItems, m_hintChip as in setGame???
+    // if yes, maybe move this duplicated functionality to separate function
+}
+
 void KReversiScene::setChipsPixmap( const QString& chipsPath )
 {
     if(!m_frameSet)
         m_frameSet = new KReversiChipFrameSet();
     m_frameSet->loadFrames( chipsPath );
+
+    m_curChipSize = m_frameSet->defaultChipSize();
 
     if(m_game)
     {
@@ -183,6 +206,7 @@ void KReversiScene::updateBoard()
                     //kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
                     chip = new KReversiChip( color, m_frameSet, this );
                     chip->setPos( cellTopLeft(row, col) );
+                    chip->setRowCol( row, col );
                 }
             }
             else
@@ -227,6 +251,7 @@ void KReversiScene::slotGameMoveFinished()
     KReversiMove move = m_changedChips.takeFirst();
     KReversiChip *newchip = new KReversiChip( move.color, m_frameSet, this );
     newchip->setPos( cellTopLeft( move.row, move.col ) );
+    newchip->setRowCol( move.row, move.col );
     // start animation
     if( m_lastMoveChip )
         m_lastMoveChip->showLastMoveMarker( false );
@@ -295,7 +320,7 @@ void KReversiScene::displayLastAndPossibleMoves()
             int numtoadd = l.count() - m_possibleMovesItems.count();
             for( int i=0; i<numtoadd; ++i)
             {
-                QGraphicsRectItem *item = new QGraphicsRectItem( 0, 0, CHIP_SIZE-1, CHIP_SIZE-1, 0, this );
+                QGraphicsRectItem *item = new QGraphicsRectItem( 0, 0, m_curChipSize-1, m_curChipSize-1, 0, this );
                 item->setBrush( Qt::darkGreen );
                 item->setZValue(-1);
                 m_possibleMovesItems.append( item );
@@ -329,6 +354,7 @@ void KReversiScene::slotHint()
     if( m_hintChip == 0 )
         m_hintChip = new KReversiChip( hint.color, m_frameSet, this );
     m_hintChip->setPos( cellTopLeft( hint.row, hint.col ) );
+    m_hintChip->setRowCol( hint.row, hint.col );
     m_showingHint = true;
     m_animTimer->start(500);
 }
@@ -340,12 +366,12 @@ void KReversiScene::slotGameOver()
 
 QPointF KReversiScene::cellCenter( int row, int col ) const
 {
-    return QPointF( m_boardRect.x() + col*CHIP_SIZE + CHIP_SIZE/2, m_boardRect.y() + row*CHIP_SIZE + CHIP_SIZE/2 );
+    return QPointF( m_boardRect.x() + col*m_curChipSize + m_curChipSize/2, m_boardRect.y() + row*m_curChipSize + m_curChipSize/2 );
 }
 
 QPointF KReversiScene::cellTopLeft( int row, int col ) const
 {
-    return QPointF( m_boardRect.x() + col*CHIP_SIZE, m_boardRect.y() + row*CHIP_SIZE );
+    return QPointF( m_boardRect.x() + col*m_curChipSize, m_boardRect.y() + row*m_curChipSize );
 }
 
 void KReversiScene::setBackgroundPixmap( const QPixmap& pix )
@@ -371,10 +397,10 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& rc)
     qreal starty = m_boardRect.y();
     qreal endx = m_boardRect.x() + m_boardRect.width();
     qreal endy = m_boardRect.y() + m_boardRect.height();
-    
-    for(qreal x=startx; x<=endx; x+=CHIP_SIZE)
+
+    for(qreal x=startx; x<=endx; x+=m_curChipSize)
         p->drawLine( QPointF(x, starty), QPointF(x, endy) );
-    for(qreal y=starty; y<=endy; y+=CHIP_SIZE)
+    for(qreal y=starty; y<=endy; y+=m_curChipSize)
         p->drawLine( QPointF(startx, y), QPointF(endx, y) );
 
     QFont f = p->font();
@@ -385,21 +411,21 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF& rc)
     const char horLabels[] = "ABCDEFGH";
     const char verLabels[] = "12345678";
 
-    QRect rect;
+    QRectF rect;
     // draw top+bottom labels
     for(int c=0; c<8;++c)
     {
-        rect = QRect((int)startx+c*CHIP_SIZE, (int)starty-fontHeight, CHIP_SIZE, fontHeight );
+        rect = QRectF(startx+c*m_curChipSize, starty-fontHeight, m_curChipSize, fontHeight );
         p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
-        rect.moveTop( (int)endy );
+        rect.moveTop( endy );
         p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
     }
     // draw left+right labels
     for(int r=0; r<8;++r)
     {
-        rect = QRect( (int)startx-fontHeight, (int)starty+r*CHIP_SIZE, fontHeight, CHIP_SIZE );
+        rect = QRectF( startx-fontHeight, starty+r*m_curChipSize, fontHeight, m_curChipSize );
         p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
-        rect.moveLeft( (int)endx );
+        rect.moveLeft( endx );
         p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
     }
 }
@@ -429,8 +455,8 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 
     if( !m_boardRect.contains(ev->scenePos()) )
         return;
-    int row = (int)(-m_boardRect.y() + ev->scenePos().y()) / CHIP_SIZE;
-    int col = (int)(-m_boardRect.x() + ev->scenePos().x()) / CHIP_SIZE;
+    int row = (int)(-m_boardRect.y() + ev->scenePos().y()) / m_curChipSize;
+    int col = (int)(-m_boardRect.x() + ev->scenePos().x()) / m_curChipSize;
 
     if( row < 0 ) row = 0;
     if( row > 7 ) row = 7;

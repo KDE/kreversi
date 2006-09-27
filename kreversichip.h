@@ -35,6 +35,10 @@ public:
     KReversiChip( ChipColor color, const KReversiChipFrameSet *frameSet, QGraphicsScene *scene );
     void setFrameSet( const KReversiChipFrameSet *frameSet );
     void setColor( ChipColor color );
+    void setRowCol( int row, int col ) { m_row = row; m_col = col; };
+
+    int row() const { return m_row; }
+    int col() const { return m_col; }
     ChipColor color() const { return m_color; }
     /**
      *  Called during animation
@@ -58,7 +62,11 @@ private:
      *  Current animation frame
      */
     int m_curFrame;
+    int m_row;
+    int m_col;
 };
+
+class KSvgRenderer;
 
 /**
  *  This class will load and hold a chip animation frameset.
@@ -79,6 +87,7 @@ class KReversiChipFrameSet
 {
 public:
     KReversiChipFrameSet();
+    ~KReversiChipFrameSet();
     /**
      *  Loads a chips (svg) pixmap found in path chipsPath, which 
      *  contains chip's animation sequence.
@@ -109,10 +118,17 @@ public:
      */
     int frameCount() const { return m_frames.count(); }
     /**
+     *  Sets chip pixmap size to size.
+     *  I.e. re-renders svg image so that each individual chip
+     *  pixmap in m_frames will have size passed as a parameter to this function
+     */
+    void setChipSize( int newSize );
+    /**
      *  Returns default chip size
      */
     int defaultChipSize() const { return m_frames.at(0).width(); }
 private:
     QList<QPixmap> m_frames;
+    KSvgRenderer *m_renderer;
 };
 #endif

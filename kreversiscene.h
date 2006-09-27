@@ -57,6 +57,7 @@ public:
     void setGame( KReversiGame* game );
     void setBackgroundPixmap( const QPixmap& pix );
     void setChipsPixmap( const QString& chipsPath );
+    void resizeScene( int width, int height );
     /**
      *  This function will tell you if the scene is currently performing
      *  some kind of "better-don't-interrupt-me" operation.
@@ -145,6 +146,10 @@ private:
      *  Animation frameset for chips
      */
     KReversiChipFrameSet *m_frameSet;
+    /**
+     *  Current size of chip
+     */
+    int m_curChipSize;
     /**
      *  This list will hold a changed chips
      *  after each turn. It is received from the game object.

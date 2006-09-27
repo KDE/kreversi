@@ -72,30 +72,44 @@ void KReversiChip::showLastMoveMarker(bool show)
 
 // -------------------------------------------------------------------------------
 
+// FIXME dimsuz: make member?
+static const int NUM_COLS_IN_PIX = 4;
+static const int NUM_ROWS_IN_PIX = 3;
+
 KReversiChipFrameSet::KReversiChipFrameSet()
 {
+    m_renderer = new KSvgRenderer;
+}
+
+KReversiChipFrameSet::~KReversiChipFrameSet()
+{
+    delete m_renderer;
 }
 
 void KReversiChipFrameSet::loadFrames( const QString& chipsPath )
 {
-    m_frames.clear();
-
-    QImage baseImg;
-
-    //Use the new addition to kdelib/kdecore, KSvgRenderer, so we can use .svgz
-    KSvgRenderer chips( chipsPath );
+    m_renderer->load( chipsPath );
     //TODO Return meaningful error?
-    if (!chips.isValid()) return;
+    if (!m_renderer->isValid()) return;
+    setChipSize( m_renderer->defaultSize().width()/NUM_COLS_IN_PIX );
+}
+
+void KReversiChipFrameSet::setChipSize( int newSize )
+{
+    QImage baseImg;
+    //TODO Return meaningful error?
+    if (!m_renderer->isValid()) return;
     //Construct an image object to render the contents of the .svgz file
-    baseImg = QImage(chips.defaultSize(),QImage::Format_ARGB32_Premultiplied);
+    baseImg = QImage(newSize*NUM_COLS_IN_PIX, newSize*NUM_ROWS_IN_PIX, QImage::Format_ARGB32_Premultiplied);
     //Fill the buffer, it is unitialised by default
     baseImg.fill(0);
     QPainter p(&baseImg);
-    chips.render(&p);
+    m_renderer->render(&p);
 
     QPixmap allFrames = QPixmap::fromImage(baseImg);
-    int frameSize = allFrames.width() / 4;
+    int frameSize = allFrames.width() / NUM_COLS_IN_PIX;
 
+    m_frames.clear();
     for(int y=0; y < allFrames.height(); y += frameSize )
         for(int x=0; x < allFrames.width(); x += frameSize )
         {
