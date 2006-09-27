@@ -61,35 +61,34 @@ private:
 };
 
 /**
- *  This class will hold a chip animation frameset.
+ *  This class will load and hold a chip animation frameset.
  *  As all chips share the same frames it's good to
  *  put them in a single storage class like this,
  *  so any chip can retrieve any frame any time :).
  *
  *  This class is based on a number of assumptions which
- *  reflect the current allchips.png pixmap format.
+ *  reflect the current chips.svgz pixmap format.
  *  Here they are:
  *  1. Animation sequence goes from black to white colored chips
  *  2a. as a consequence of 1: frame(0) is black chip
  *  2b. as a consequence of 1: frame(frameCount()) is white chip
  *  But 2a and 2b shouldn't matter, because there's chipPixmap()
- *
- *  These are subject to changing/rethinking ;)
+ *  3. The svg image contains 4 cols and 3 rows of chip pixmaps, i.e 12 frames
  */
 class KReversiChipFrameSet
 {
 public:
+    KReversiChipFrameSet();
     /**
-     *  Initializes this class with 'allFrames' QPixmap, which 
+     *  Loads a chips (svg) pixmap found in path chipsPath, which 
      *  contains chip's animation sequence.
      *  The chips frames are extracted from it and put into 
      *  m_frames QList
-     *  Supposes that allFrames represents an animation sequence 
+     *  Supposes that this pixmap represents an animation sequence 
      *  going from black to white.
-     *  @param allFrames a pixmap containing whole animation sequence
-     *  @param frameSize size of each frame's pixmap. Frames are squares.
+     *  @param chipsPath a path to svg pixmap containing whole animation sequence
      */
-    KReversiChipFrameSet( const QPixmap& allFrames, int frameSize );
+    void loadFrames( const QString& chipsPath );
     /**
      *  Retruns a pixmap which corresponds to frame with number frameNo.
      *  It takes the chip color into account. This means that
@@ -109,6 +108,10 @@ public:
      *  Returns number of frames in animation
      */
     int frameCount() const { return m_frames.count(); }
+    /**
+     *  Returns default chip size
+     */
+    int defaultChipSize() const { return m_frames.at(0).width(); }
 private:
     QList<QPixmap> m_frames;
 };

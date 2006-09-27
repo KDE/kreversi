@@ -23,11 +23,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QTimer>
-#include <QImage>
 
 #include <kdebug.h>
-#include <kstandarddirs.h>
-#include <ksvgrenderer.h>
 
 #include "kreversiscene.h"
 #include "kreversigame.h"
@@ -43,6 +40,8 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
 {
     setBackgroundBrush( Qt::lightGray );
 
+    setChipsPixmap(chipsPath);
+
     QFont font; // it'll be initialised to default application font
     font.setBold(true);
     // NOTE we assume that fontMetrics in drawBackground() will be the same as here
@@ -51,8 +50,6 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     m_boardRect = QRectF(fontHeight, fontHeight, CHIP_SIZE*8, CHIP_SIZE*8);
 
     setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
-
-    setChipsPixmap(chipsPath);
 
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
@@ -67,21 +64,10 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::setChipsPixmap( const QString& chipsPath )
 {
-    delete m_frameSet;
-    QImage baseImg;
+    if(!m_frameSet)
+        m_frameSet = new KReversiChipFrameSet();
+    m_frameSet->loadFrames( chipsPath );
 
-    //Use the new addition to kdelib/kdecore, KSvgRenderer, so we can use .svgz
-    KSvgRenderer chips(KStandardDirs::locate("appdata", chipsPath));
-    //TODO Return meaningful error?
-    if (!chips.isValid()) return;
-    //Construct an image object to render the contents of the .svgz file
-    baseImg = QImage(chips.defaultSize(),QImage::Format_ARGB32_Premultiplied);
-    //Fill the buffer, it is unitialised by default
-    baseImg.fill(0);
-    QPainter p(&baseImg);
-    chips.render(&p);
-
-    m_frameSet = new KReversiChipFrameSet( QPixmap::fromImage(baseImg), CHIP_SIZE );
     if(m_game)
     {
         // FIXME: Qt rc1 bug? there was items( m_boardRect ) here

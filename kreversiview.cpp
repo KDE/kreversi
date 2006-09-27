@@ -21,12 +21,14 @@
  *
  ********************************************************************/
 #include "kreversiview.h"
+#include "kreversiscene.h"
 
 #include <QGraphicsScene>
+#include <QResizeEvent>
 
 #include <kdebug.h>
 
-KReversiView::KReversiView( QGraphicsScene* scene, QWidget *parent )
+KReversiView::KReversiView( KReversiScene* scene, QWidget *parent )
     : QGraphicsView(scene, parent)
 {
     setCacheMode( QGraphicsView::CacheBackground );

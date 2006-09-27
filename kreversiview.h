@@ -25,10 +25,12 @@
 
 #include <QGraphicsView>
 
+class KReversiScene;
+
 class KReversiView : public QGraphicsView
 {
 public:
-    KReversiView( QGraphicsScene* scene, QWidget *parent );
+    KReversiView( KReversiScene* scene, QWidget *parent );
 private:
     virtual QSize sizeHint() const;
 };

@@ -21,8 +21,10 @@
  *
  ********************************************************************/
 #include "kreversichip.h"
+#include <ksvgrenderer.h>
 #include <QPainter>
 #include <QPixmap>
+#include <QImage>
 
 #include <kdebug.h>
 
@@ -70,8 +72,30 @@ void KReversiChip::showLastMoveMarker(bool show)
 
 // -------------------------------------------------------------------------------
 
-KReversiChipFrameSet::KReversiChipFrameSet( const QPixmap& allFrames, int frameSize )
+KReversiChipFrameSet::KReversiChipFrameSet()
 {
+}
+
+void KReversiChipFrameSet::loadFrames( const QString& chipsPath )
+{
+    m_frames.clear();
+
+    QImage baseImg;
+
+    //Use the new addition to kdelib/kdecore, KSvgRenderer, so we can use .svgz
+    KSvgRenderer chips( chipsPath );
+    //TODO Return meaningful error?
+    if (!chips.isValid()) return;
+    //Construct an image object to render the contents of the .svgz file
+    baseImg = QImage(chips.defaultSize(),QImage::Format_ARGB32_Premultiplied);
+    //Fill the buffer, it is unitialised by default
+    baseImg.fill(0);
+    QPainter p(&baseImg);
+    chips.render(&p);
+
+    QPixmap allFrames = QPixmap::fromImage(baseImg);
+    int frameSize = allFrames.width() / 4;
+
     for(int y=0; y < allFrames.height(); y += frameSize )
         for(int x=0; x < allFrames.width(); x += frameSize )
         {
