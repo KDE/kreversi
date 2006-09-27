@@ -79,8 +79,11 @@ void KReversiScene::resizeScene( int width, int height )
             chip->setColor( chip->color() ); // this will reread pixmap
         }
     }
-    // FIXME dimsuz: need to take care of m_possibleMovesItems, m_hintChip as in setGame???
-    // if yes, maybe move this duplicated functionality to separate function
+    //recalc possible moves items rects
+    foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
+        rect->setRect( 0, 0, m_curChipSize-1, m_curChipSize-1 );
+    // and reposition them according to new cell sizes
+    displayLastAndPossibleMoves();
 }
 
 void KReversiScene::setChipsPixmap( const QString& chipsPath )
