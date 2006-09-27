@@ -96,8 +96,10 @@ public:
      *  Supposes that this pixmap represents an animation sequence 
      *  going from black to white.
      *  @param chipsPath a path to svg pixmap containing whole animation sequence
+     *  @param chipSize if not equal to 0 then chips will be scaled to chipSize x chipSize each
+     *  else chips will be loaded unscaled
      */
-    void loadFrames( const QString& chipsPath );
+    void loadFrames( const QString& chipsPath, int chipSize = 0 );
     /**
      *  Retruns a pixmap which corresponds to frame with number frameNo.
      *  It takes the chip color into account. This means that

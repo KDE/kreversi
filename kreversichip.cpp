@@ -86,16 +86,18 @@ KReversiChipFrameSet::~KReversiChipFrameSet()
     delete m_renderer;
 }
 
-void KReversiChipFrameSet::loadFrames( const QString& chipsPath )
+void KReversiChipFrameSet::loadFrames( const QString& chipsPath, int chipSize )
 {
     m_renderer->load( chipsPath );
     //TODO Return meaningful error?
     if (!m_renderer->isValid()) return;
-    setChipSize( m_renderer->defaultSize().width()/NUM_COLS_IN_PIX );
+    int size = chipSize == 0 ? m_renderer->defaultSize().width()/NUM_COLS_IN_PIX : chipSize;
+    setChipSize( size );
 }
 
 void KReversiChipFrameSet::setChipSize( int newSize )
 {
+    kDebug() << k_funcinfo << endl;
     QImage baseImg;
     //TODO Return meaningful error?
     if (!m_renderer->isValid()) return;

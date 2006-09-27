@@ -85,11 +85,18 @@ void KReversiScene::resizeScene( int width, int height )
 
 void KReversiScene::setChipsPixmap( const QString& chipsPath )
 {
-    if(!m_frameSet)
+    if(!m_frameSet) // this is a first invocation
+    {
         m_frameSet = new KReversiChipFrameSet();
-    m_frameSet->loadFrames( chipsPath );
+        m_frameSet->loadFrames( chipsPath );
+        m_curChipSize = m_frameSet->defaultChipSize();
+    }
+    else // we're changing frameset's pixmap (monochrome-chips <-> color-chips transition)
+    {
+        // m_curChipSize is already defined in this case
+        m_frameSet->loadFrames( chipsPath, m_curChipSize );
+    }
 
-    m_curChipSize = m_frameSet->defaultChipSize();
 
     if(m_game)
     {
