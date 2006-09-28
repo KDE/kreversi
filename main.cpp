@@ -44,7 +44,7 @@ int main(int argc, char **argv)
     aboutData.addAuthor("Dmitry Suzdalev", I18N_NOOP("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
     aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
     aboutData.addCredit("Arne Klaassen", I18N_NOOP("Original raytraced chips."), 0);
-    aboutData.addCredit("Mauricio Piacentini", I18N_NOOP("Vector chips for KDE4."), 0);
+    aboutData.addCredit("Mauricio Piacentini", I18N_NOOP("Vector chips and background for KDE4."), 0);
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
