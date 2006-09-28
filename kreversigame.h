@@ -28,7 +28,6 @@
 
 #include "commondefs.h"
 
-class KReversiBoard;
 class Engine;
 
 /**
@@ -119,14 +118,10 @@ public:
      */
     ChipColor currentPlayer() const { return m_curPlayer; }
     
-    // NOTE: this is just a wrapper around KReversiBoard::playerScore
-    // Maybe consider merging KReversiBoard into this class?
-    // same applies to chipColorAt
     /**
      *  @return score (number of chips) of the player
      */
     int playerScore( ChipColor player ) const;
-    // NOTE: this is just a wrapper around KReversiBoard::playerScore
     ChipColor chipColorAt( int row, int col ) const;
     /**
      *  @return if undo is possible
@@ -182,9 +177,17 @@ private:
      */
     void makeMove( const KReversiMove& move );
     /**
-     *  Board itself
+     *  Sets the type of chip at (row,col)
      */
-    KReversiBoard *m_board;
+    void setChipColor(ChipColor type, int row, int col);
+    /**
+     *  The board itself
+     */
+    ChipColor m_cells[8][8];
+    /**
+     *  Score of each player
+     */
+    int m_score[2];
     /**
      *  Color of the current player
      */

@@ -9,7 +9,6 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdegames ${CMAKE_SOURCE_DIR}/libkdeg
 ########### next target ###############
 
 set(kreversi_SRCS 
-    kreversiboard.cpp
     kreversichip.cpp
     kreversigame.cpp
     kreversiscene.cpp

@@ -22,21 +22,35 @@
  ********************************************************************/
 #include <kdebug.h>
 
-#include "kreversiboard.h"
 #include "kreversigame.h"
 #include "Engine.h"
 
+static ChipColor opponentColorFor(ChipColor color)
+{
+    if(color == NoColor) 
+        return color;
+    else
+        return ( color == White ? Black : White );
+}
 
 KReversiGame::KReversiGame()
     : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White )
 {
-    m_board = new KReversiBoard();
+    // reset board
+    for(int r=0; r<8; ++r)
+        for(int c=0; c<8; ++c)
+            m_cells[r][c] = NoColor;
+    // initial pos
+    m_cells[3][3] = m_cells[4][4] = White;
+    m_cells[3][4] = m_cells[4][3] = Black;
+
+    m_score[White] = m_score[Black] = 2;
+
     m_engine = new Engine(1);
 }
 
 KReversiGame::~KReversiGame()
 {
-    delete m_board;
     delete m_engine;
 }
 
@@ -131,21 +145,20 @@ int KReversiGame::undo()
         // That allows to take into account a previously made undo, while
         // undoing changes which are in the current list
         // Sounds not very understandable?
-        // Then try to use move.color instead of chipColorAt
+        // Then try to use move.color instead of m_cells[row][col]
         // and it will mess things when undoing such moves as
         // "Player captures computer-owned chip,
         //  Computer makes move and captures this chip back"
         //  Yes, I like long descriptions in comments ;).
 
         KReversiMove move = lastUndo.takeFirst();
-        m_board->setChipColor( NoColor, move.row, move.col );
+        setChipColor( NoColor, move.row, move.col );
 
         // and change back the color of the rest chips
         foreach( KReversiMove mv, lastUndo )
         {
-            // NOTE: if chipColorAt == NoColor here, we've some serious problem. It shouldn't be :)
-            ChipColor opponentColor = (m_board->chipColorAt(mv.row,mv.col) == White ? Black : White);
-            m_board->setChipColor( opponentColor, mv.row, mv.col );
+            ChipColor opponentColor = opponentColorFor( m_cells[mv.row][mv.col] );
+            setChipColor( opponentColor, mv.row, mv.col );
         }
 
         lastUndo.clear();
@@ -169,7 +182,7 @@ void KReversiGame::makeMove( const KReversiMove& move )
 {
     m_changedChips.clear();
 
-    m_board->setChipColor( move.color, move.row, move.col );
+    setChipColor( move.color, move.row, move.col );
     // the first one is the move itself
     m_changedChips.append( move );
     // now turn color of all chips that were won
@@ -177,9 +190,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int r=move.row-1; r >= 0; --r)
         {
-            if( m_board->chipColorAt( r, move.col ) == move.color )
+            if( m_cells[r][move.col] == move.color )
                 break;
-            m_board->setChipColor( move.color, r, move.col );
+            setChipColor( move.color, r, move.col );
             m_changedChips.append( KReversiMove( move.color, r, move.col ) );
         }
     }
@@ -187,9 +200,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int r=move.row+1; r < 8; ++r)
         {
-            if( m_board->chipColorAt( r, move.col ) == move.color )
+            if( m_cells[r][move.col] == move.color )
                 break;
-            m_board->setChipColor( move.color, r, move.col );
+            setChipColor( move.color, r, move.col );
             m_changedChips.append( KReversiMove( move.color, r, move.col ) );
         }
     }
@@ -197,9 +210,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int c=move.col-1; c >= 0; --c)
         {
-            if( m_board->chipColorAt( move.row, c ) == move.color )
+            if( m_cells[move.row][c] == move.color )
                 break;
-            m_board->setChipColor( move.color, move.row, c );
+            setChipColor( move.color, move.row, c );
             m_changedChips.append( KReversiMove( move.color, move.row, c ) );
         }
     }
@@ -207,9 +220,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int c=move.col+1; c < 8; ++c)
         {
-            if( m_board->chipColorAt( move.row, c ) == move.color )
+            if( m_cells[move.row][c] == move.color )
                 break;
-            m_board->setChipColor( move.color, move.row, c );
+            setChipColor( move.color, move.row, c );
             m_changedChips.append( KReversiMove( move.color, move.row, c ) );
         }
     }
@@ -217,9 +230,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int r=move.row-1, c=move.col-1; r>=0 && c >= 0; --r, --c)
         {
-            if( m_board->chipColorAt( r, c ) == move.color )
+            if( m_cells[r][c] == move.color )
                 break;
-            m_board->setChipColor( move.color, r, c );
+            setChipColor( move.color, r, c );
             m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
@@ -227,9 +240,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int r=move.row-1, c=move.col+1; r>=0 && c < 8; --r, ++c)
         {
-            if( m_board->chipColorAt( r, c ) == move.color )
+            if( m_cells[r][c] == move.color )
                 break;
-            m_board->setChipColor( move.color, r, c );
+            setChipColor( move.color, r, c );
             m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
@@ -237,9 +250,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int r=move.row+1, c=move.col-1; r < 8 && c >= 0; ++r, --c)
         {
-            if( m_board->chipColorAt( r, c ) == move.color )
+            if( m_cells[r][c] == move.color )
                 break;
-            m_board->setChipColor( move.color, r, c );
+            setChipColor( move.color, r, c );
             m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
@@ -247,9 +260,9 @@ void KReversiGame::makeMove( const KReversiMove& move )
     {
         for(int r=move.row+1, c=move.col+1; r < 8 && c < 8; ++r, ++c)
         {
-            if( m_board->chipColorAt( r, c ) == move.color )
+            if( m_cells[r][c] == move.color )
                 break;
-            m_board->setChipColor( move.color, r, c );
+            setChipColor( move.color, r, c );
             m_changedChips.append( KReversiMove( move.color, r, c ) );
         }
     }
@@ -262,7 +275,7 @@ void KReversiGame::makeMove( const KReversiMove& move )
 bool KReversiGame::isMovePossible( const KReversiMove& move ) const
 {
     // first - the trivial case:
-    if( m_board->chipColorAt( move.row, move.col ) != NoColor || move.color == NoColor )
+    if( m_cells[move.row][move.col] != NoColor || move.color == NoColor )
         return false;
 
     if( hasChunk( Up, move ) || hasChunk( Down, move ) 
@@ -287,14 +300,14 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     //
     // Well, I wrote this description from my head, now lets produce some code for that ;)
 
-    ChipColor opColor = ( move.color == White ? Black : White );
+    ChipColor opColor = opponentColorFor(move.color);
     int opponentChipsNum = 0;
     bool foundPlayerColor = false;
     if( dir == Up )
     {
         for( int row=move.row-1; row >= 0; --row )
         {
-            ChipColor color = m_board->chipColorAt( row, move.col );
+            ChipColor color = m_cells[row][move.col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -315,7 +328,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int row=move.row+1; row < 8; ++row )
         {
-            ChipColor color = m_board->chipColorAt( row, move.col );
+            ChipColor color = m_cells[row][move.col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -336,7 +349,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int col=move.col-1; col >= 0; --col )
         {
-            ChipColor color = m_board->chipColorAt( move.row, col );
+            ChipColor color = m_cells[move.row][col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -357,7 +370,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int col=move.col+1; col < 8; ++col )
         {
-            ChipColor color = m_board->chipColorAt( move.row, col );
+            ChipColor color = m_cells[move.row][col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -378,7 +391,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int row=move.row-1, col=move.col-1; row >= 0 && col >= 0; --row, --col )
         {
-            ChipColor color = m_board->chipColorAt( row, col );
+            ChipColor color = m_cells[row][col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -399,7 +412,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int row=move.row-1, col=move.col+1; row >= 0 && col < 8; --row, ++col )
         {
-            ChipColor color = m_board->chipColorAt( row, col );
+            ChipColor color = m_cells[row][col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -420,7 +433,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int row=move.row+1, col=move.col-1; row < 8 && col >= 0; ++row, --col )
         {
-            ChipColor color = m_board->chipColorAt( row, col );
+            ChipColor color = m_cells[row][col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -441,7 +454,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
     {
         for( int row=move.row+1, col=move.col+1; row < 8 && col < 8; ++row, ++col )
         {
-            ChipColor color = m_board->chipColorAt( row, col );
+            ChipColor color = m_cells[row][col];
             if( color == opColor )
             {
                 opponentChipsNum++;
@@ -465,7 +478,7 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiMove& move ) const
 bool KReversiGame::isGameOver() const
 {
     // trivial fast-check
-    if( m_board->playerScore(White) + m_board->playerScore(Black) == 64 )
+    if( m_score[White] + m_score[Black] == 64 )
         return true; // the board is full
     else
         return !(isAnyPlayerMovePossible() || isAnyComputerMovePossible());
@@ -476,7 +489,7 @@ bool KReversiGame::isAnyPlayerMovePossible() const
     for( int r=0; r<8; ++r )
         for( int c=0; c<8; ++c )
         {
-            if( m_board->chipColorAt(r,c) == NoColor )
+            if( m_cells[r][c] == NoColor )
             {
                 // let's see if we can put chip here
                 if( isMovePossible( KReversiMove( m_playerColor, r, c ) ) )
@@ -491,7 +504,7 @@ bool KReversiGame::isAnyComputerMovePossible() const
     for( int r=0; r<8; ++r )
         for( int c=0; c<8; ++c )
         {
-            if( m_board->chipColorAt(r,c) == NoColor )
+            if( m_cells[r][c] == NoColor )
             {
                 // let's see if we can put chip here
                 if( isMovePossible( KReversiMove( m_computerColor, r, c ) ) )
@@ -538,12 +551,36 @@ MoveList KReversiGame::possibleMoves() const
 
 int KReversiGame::playerScore( ChipColor player ) const
 {
-    return m_board->playerScore( player );
+    return m_score[player];
+}
+
+void KReversiGame::setChipColor(ChipColor color, int row, int col)
+{
+    Q_ASSERT( row < 8 && col < 8 );
+    // first: if the current cell already contains a chip of the opponent,
+    // we'll decrease opponents score
+    if( m_cells[row][col] != NoColor && color != NoColor && m_cells[row][col] != color )
+        m_score[opponentColorFor(color)]--;
+    // if the cell contains some chip and is being replaced by NoColor,
+    // we'll decrease the score of that color
+    // Such replacements (with NoColor) occur during undoing
+    if( m_cells[row][col] != NoColor && color == NoColor )
+        m_score[ m_cells[row][col] ]--;
+
+    // and now replacing with chip of 'color'
+    m_cells[row][col] = color;
+
+    if( color != NoColor )
+        m_score[color]++;
+
+    //kDebug() << "Score of White player: " << m_score[White] << endl;
+    //kDebug() << "Score of Black player: " << m_score[Black] << endl;
 }
 
 ChipColor KReversiGame::chipColorAt( int row, int col ) const
 { 
-    return m_board->chipColorAt( row, col ); 
+    Q_ASSERT( row < 8 && col < 8 );
+    return m_cells[row][col];
 }
 
 #include "kreversigame.moc"
