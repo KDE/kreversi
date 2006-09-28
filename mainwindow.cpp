@@ -118,20 +118,6 @@ void KReversiMainWindow::setupActions()
     m_demoAct->setShortcut( Qt::Key_D );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotDemoMode(bool)) );
 
-    m_bkgndAct = new KSelectAction(i18n("Choose background"), actionCollection(), "choose_bkgnd");
-    connect(m_bkgndAct, SIGNAL(triggered(const QString&)), SLOT(slotBackgroundChanged(const QString&)));
-
-    QStringList pixList = kapp->dirs()->findAllResources( "appdata", "pics/background/*.png", false, true );
-    // let's find a name of files w/o extensions
-    // FIXME dimsuz: this wont work with Windows separators...
-    // But let's fix problems as they come (maybe will be some generalized solution in future)
-    foreach( QString str, pixList )
-    {
-        int idx1 = str.lastIndexOf('/');
-        int idx2 = str.lastIndexOf('.');
-        m_bkgndAct->addAction(str.mid(idx1+1,idx2-idx1-1));
-    }
-
     KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show last move"), actionCollection(), "show_last_move");
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
@@ -170,9 +156,6 @@ void KReversiMainWindow::setupActions()
 
 void KReversiMainWindow::loadSettings()
 {
-    m_bkgndAct->setCurrentAction( Preferences::backgroundImageName() );
-    slotBackgroundChanged( Preferences::backgroundImageName() );
-
     int skill = Preferences::skill();
     m_skillAct->setCurrentItem( skill - 1 );
     slotSkillChanged( skill - 1 );
@@ -182,25 +165,6 @@ void KReversiMainWindow::loadSettings()
 
     m_coloredChipsAct->setChecked( Preferences::useColoredChips() );
     slotUseColoredChips( Preferences::useColoredChips() );
-}
-
-// FIXME dimsuz: remove this
-void KReversiMainWindow::slotBackgroundChanged( const QString& text )
-{
-    // FIXME dimsuz: I'm removing "&" from text here, because
-    // there's a problem in KSelectAction ATM - text will contain a menu accell-ampersands
-    // remove that textMod and use text, after this issue will be fixed in kdelibs
-    QString textMod = text;
-    textMod.remove('&');
-    QString file = textMod + ".png";
-    QPixmap pix( KStandardDirs::locate("appdata", QString("pics/background/") + file ) );
-    if(!pix.isNull())
-    {
-        m_view->resetCachedContent();
-        //m_scene->setBackgroundPixmap( pix );
-    }
-    Preferences::setBackgroundImageName( textMod );
-    Preferences::writeConfig();
 }
 
 void KReversiMainWindow::slotSkillChanged(int skill)

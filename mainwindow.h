@@ -41,7 +41,6 @@ public:
     KReversiMainWindow(QWidget* parent=0);
 public slots:
     void slotNewGame();
-    void slotBackgroundChanged(const QString& text);
     void slotSkillChanged(int);
     void slotAnimSpeedChanged(int);
     void slotUndo();
@@ -66,7 +65,6 @@ private:
     KAction* m_hintAct;
     KAction* m_demoAct;
     KSelectAction* m_animSpeedAct;
-    KSelectAction* m_bkgndAct;
     KSelectAction* m_skillAct;
     KToggleAction* m_coloredChipsAct;
 };

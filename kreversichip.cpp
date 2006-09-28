@@ -97,7 +97,6 @@ void KReversiChipFrameSet::loadFrames( const QString& chipsPath, int chipSize )
 
 void KReversiChipFrameSet::setChipSize( int newSize )
 {
-    kDebug() << k_funcinfo << endl;
     QImage baseImg;
     //TODO Return meaningful error?
     if (!m_renderer->isValid()) return;

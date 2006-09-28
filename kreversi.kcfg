@@ -5,10 +5,6 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kreversirc"/>
   <group name="Game">
-    <entry name="Grayscale" type="Bool">
-      <label>Whether to use a grayscale board instead of colored.</label>
-      <default>false</default>
-    </entry>
     <entry name="AnimationSpeed" type="Enum">
       <label>The speed of the animations.</label>
       <choices>
@@ -27,10 +23,6 @@
       <default>1</default>
       <min>1</min>
       <max>7</max>
-    </entry>
-    <entry name="BackgroundImageName" type="String">
-        <label>Background image name</label>
-        <default>Light_Wood</default>
     </entry>
     <entry name="UseColoredChips" type="Bool">
         <label>Whether to use colored chips instead of black and white ones.</label>
