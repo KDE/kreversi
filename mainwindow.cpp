@@ -93,6 +93,8 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_historyLabel->hide();
     m_historyView->hide();
 
+    m_scene->setBackground( KStandardDirs::locate("appdata", "pics/default_board.svgz"),
+            KStandardDirs::locate("appdata", "pics/board_numbers.svgz") );
 
     setupActions();
     loadSettings();
@@ -182,6 +184,7 @@ void KReversiMainWindow::loadSettings()
     slotUseColoredChips( Preferences::useColoredChips() );
 }
 
+// FIXME dimsuz: remove this
 void KReversiMainWindow::slotBackgroundChanged( const QString& text )
 {
     // FIXME dimsuz: I'm removing "&" from text here, because
@@ -194,7 +197,7 @@ void KReversiMainWindow::slotBackgroundChanged( const QString& text )
     if(!pix.isNull())
     {
         m_view->resetCachedContent();
-        m_scene->setBackgroundPixmap( pix );
+        //m_scene->setBackgroundPixmap( pix );
     }
     Preferences::setBackgroundImageName( textMod );
     Preferences::writeConfig();

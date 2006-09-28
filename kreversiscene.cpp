@@ -25,6 +25,7 @@
 #include <QTimer>
 
 #include <kdebug.h>
+#include <ksvgrenderer.h>
 
 #include "kreversiscene.h"
 #include "kreversigame.h"
@@ -34,6 +35,9 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), 
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false)
 {
+    m_bkgndRenderer = new KSvgRenderer(this);
+    m_bkgndLabelsRenderer = new KSvgRenderer(this);
+
     setBackgroundBrush( Qt::lightGray );
 
     setChipsPixmap(chipsPath);
@@ -53,18 +57,13 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::resizeScene( int width, int height )
 {
-    QFont font; // it'll be initialised to default application font
-    font.setBold(true);
-    // NOTE we assume that fontMetrics in drawBackground() will be the same as here
-    int fontHeight = QFontMetrics(font).height();
+    m_curChipSize = qMin( width/10, height/10 );
+    m_boardRect = QRectF(m_curChipSize, m_curChipSize, width - m_curChipSize*2, height - m_curChipSize*2);
 
-    m_curChipSize = qMin( width/8, height/8 );
-    m_boardRect = QRectF(fontHeight, fontHeight, m_curChipSize*8, m_curChipSize*8);
-
-    setSceneRect( 0, 0, m_boardRect.width()+2*fontHeight, m_boardRect.height()+2*fontHeight);
+    int minSize = qMin(width, height);
+    setSceneRect( 0, 0, minSize, minSize );
 
     // adopt to new chip size
-
     m_frameSet->setChipSize( m_curChipSize );
 
     QList<QGraphicsItem*> allItems = items();
@@ -96,7 +95,7 @@ void KReversiScene::setChipsPixmap( const QString& chipsPath )
     }
     else // we're changing frameset's pixmap (monochrome-chips <-> color-chips transition)
     {
-        // m_curChipSize is already defined in this case
+        // m_curChipSize is already defined in this case, so lets scale chips on load
         m_frameSet->loadFrames( chipsPath, m_curChipSize );
     }
 
@@ -225,6 +224,7 @@ void KReversiScene::updateBoard()
 
                 // FIXME dimsuz: qgraphicsitem_cast<...>(0) crashes.
                 // Therefore I leave dynamic_cast here until this is fixed in qt
+                //
                 // deleting only KReversiChips
                 KReversiChip *chip = dynamic_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
                 delete chip;
@@ -384,59 +384,66 @@ QPointF KReversiScene::cellTopLeft( int row, int col ) const
     return QPointF( m_boardRect.x() + col*m_curChipSize, m_boardRect.y() + row*m_curChipSize );
 }
 
-void KReversiScene::setBackgroundPixmap( const QPixmap& pix )
+void KReversiScene::setBackground( const QString& bkgndPath, const QString& bkgndLabelsPath )
 {
-    m_bkgndPix = pix;
-    update();
+    m_bkgndRenderer->load( bkgndPath );
+    m_bkgndLabelsRenderer->load( bkgndLabelsPath );
 }
 
-void KReversiScene::drawBackground( QPainter *p, const QRectF& rc)
+void KReversiScene::drawBackground( QPainter *p, const QRectF&)
 {
-    if(!m_bkgndPix.isNull())
+    // we render on square, so if sceneRect() is not square let's adjust this
+    QRectF sRect = sceneRect();
+    int minSize = qMin( (int)sRect.width(), (int)sRect.height() );
+    sRect.setWidth( minSize );
+    sRect.setHeight( minSize );
+
+    m_bkgndRenderer->render(p, sRect);
+    m_bkgndLabelsRenderer->render(p, sRect);
+
+    // FIXME dimsuz: remove completely
+    if(false)
     {
-        p->setBrush( m_bkgndPix );
-        p->drawRect( rc );
-    }
+        QPen pen(Qt::black);
+        pen.setWidth(2);
 
-    QPen pen(Qt::black);
-    pen.setWidth(2);
+        p->setPen(pen);
 
-    p->setPen(pen);
+        qreal startx = m_boardRect.x();
+        qreal starty = m_boardRect.y();
+        qreal endx = m_boardRect.x() + m_boardRect.width();
+        qreal endy = m_boardRect.y() + m_boardRect.height();
 
-    qreal startx = m_boardRect.x();
-    qreal starty = m_boardRect.y();
-    qreal endx = m_boardRect.x() + m_boardRect.width();
-    qreal endy = m_boardRect.y() + m_boardRect.height();
+        for(qreal x=startx; x<=endx; x+=m_curChipSize)
+            p->drawLine( QPointF(x, starty), QPointF(x, endy) );
+        for(qreal y=starty; y<=endy; y+=m_curChipSize)
+            p->drawLine( QPointF(startx, y), QPointF(endx, y) );
 
-    for(qreal x=startx; x<=endx; x+=m_curChipSize)
-        p->drawLine( QPointF(x, starty), QPointF(x, endy) );
-    for(qreal y=starty; y<=endy; y+=m_curChipSize)
-        p->drawLine( QPointF(startx, y), QPointF(endx, y) );
+        QFont f = p->font();
+        f.setBold(true);
+        p->setFont(f);
+        int fontHeight = p->fontMetrics().height();
 
-    QFont f = p->font();
-    f.setBold(true);
-    p->setFont(f);
-    int fontHeight = p->fontMetrics().height();
+        const char horLabels[] = "ABCDEFGH";
+        const char verLabels[] = "12345678";
 
-    const char horLabels[] = "ABCDEFGH";
-    const char verLabels[] = "12345678";
-
-    QRectF rect;
-    // draw top+bottom labels
-    for(int c=0; c<8;++c)
-    {
-        rect = QRectF(startx+c*m_curChipSize, starty-fontHeight, m_curChipSize, fontHeight );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
-        rect.moveTop( endy );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
-    }
-    // draw left+right labels
-    for(int r=0; r<8;++r)
-    {
-        rect = QRectF( startx-fontHeight, starty+r*m_curChipSize, fontHeight, m_curChipSize );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
-        rect.moveLeft( endx );
-        p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
+        QRectF rect;
+        // draw top+bottom labels
+        for(int c=0; c<8;++c)
+        {
+            rect = QRectF(startx+c*m_curChipSize, starty-fontHeight, m_curChipSize, fontHeight );
+            p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
+            rect.moveTop( endy );
+            p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
+        }
+        // draw left+right labels
+        for(int r=0; r<8;++r)
+        {
+            rect = QRectF( startx-fontHeight, starty+r*m_curChipSize, fontHeight, m_curChipSize );
+            p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
+            rect.moveLeft( endx );
+            p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
+        }
     }
 }
 

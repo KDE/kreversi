@@ -31,9 +31,11 @@
 class KReversiGame;
 class KReversiChipFrameSet;
 class KReversiChip;
+class KSvgRenderer;
 class QPainter;
 class QTimer;
 
+// FIXME dimsuz: document undocumented functions
 /**
  *  This class provides graphical representation of KReversiGame
  *  using QGraphicsScene for graphics display.
@@ -55,7 +57,7 @@ public:
     ~KReversiScene();
 
     void setGame( KReversiGame* game );
-    void setBackgroundPixmap( const QPixmap& pix );
+    void setBackground( const QString& bkgndPath, const QString& bkgndLabelsPath );
     void setChipsPixmap( const QString& chipsPath );
     void resizeScene( int width, int height );
     /**
@@ -139,9 +141,13 @@ private:
      */
     QRectF m_boardRect;
     /**
-     *  Background pixmap
+     *  Svg renderer for background rendering on resizes
      */
-    QPixmap m_bkgndPix;
+    KSvgRenderer* m_bkgndRenderer;
+    /**
+     *  Svg renderer for background labels (A-H, 0-7) rendering on resizes
+     */
+    KSvgRenderer* m_bkgndLabelsRenderer;
     /**
      *  Animation frameset for chips
      */
