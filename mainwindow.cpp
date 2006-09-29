@@ -79,6 +79,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 
     QWidget *mainWid = new QWidget;
     QGridLayout *lay = new QGridLayout(mainWid);
+    lay->setColStretch( 0, 1 );
     lay->setMargin(1);
 
     m_view = new KReversiView(m_scene, mainWid);
@@ -88,6 +89,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_historyLabel = new QLabel( i18n("Moves history"), mainWid );
     lay->addWidget( m_historyLabel, 0, 1, Qt::AlignCenter );
     m_historyView = new QListWidget( mainWid );
+    m_historyView->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Expanding );
     lay->addWidget(m_historyView, 1, 1);
 
     m_historyLabel->hide();
