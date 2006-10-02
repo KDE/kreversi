@@ -40,7 +40,6 @@
 #include <kstdgameaction.h>
 #include <kselectaction.h>
 
-#include <QGraphicsView>
 #include <QListWidget>
 #include <QGridLayout>
 
@@ -314,6 +313,9 @@ void KReversiMainWindow::slotUndo()
         QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );
         m_historyView->setCurrentItem( last );
         m_historyView->scrollToItem( last );
+
+        statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
+        statusBar()->changeItem( i18n("Computer: %1", m_game->playerScore(White) ), COMP_STATUSBAR_ID);
 
         m_undoAct->setEnabled( m_game->canUndo() );    
         // if the user hits undo after game is over
