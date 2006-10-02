@@ -160,13 +160,10 @@ void KReversiMainWindow::loadSettings()
 {
     int skill = Preferences::skill();
     m_skillAct->setCurrentItem( skill - 1 );
-    slotSkillChanged( skill - 1 );
 
     m_animSpeedAct->setCurrentItem( Preferences::animationSpeed() );
-    slotAnimSpeedChanged( Preferences::animationSpeed() );
 
     m_coloredChipsAct->setChecked( Preferences::useColoredChips() );
-    slotUseColoredChips( Preferences::useColoredChips() );
 }
 
 void KReversiMainWindow::slotSkillChanged(int skill)
@@ -210,6 +207,7 @@ void KReversiMainWindow::slotNewGame()
 {
     delete m_game;
     m_game = new KReversiGame;
+    m_game->setComputerSkill( Preferences::skill() );
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
     connect( m_game, SIGNAL(computerCantMove()), SLOT(slotComputerCantMove()) );
 
@@ -226,7 +224,9 @@ void KReversiMainWindow::slotNewGame()
     if(m_scene == 0) // if called first time
     {
         // FIXME dimsuz: if chips[_mono].png not found give error end exit
-        m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", "pics/chips_mono.svgz"));
+        QString chipsPath = Preferences::useColoredChips() ? "pics/chips.svgz" : "pics/chips_mono.svgz";
+        m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", chipsPath));
+        m_scene->setAnimationSpeed( Preferences::animationSpeed() );
         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
     }
     else
