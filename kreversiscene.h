@@ -35,7 +35,6 @@ class KSvgRenderer;
 class QPainter;
 class QTimer;
 
-// FIXME dimsuz: document undocumented functions
 /**
  *  This class provides graphical representation of KReversiGame
  *  using QGraphicsScene for graphics display.
@@ -51,14 +50,32 @@ class KReversiScene : public QGraphicsScene
     Q_OBJECT
 public:
     /**
-     * @param chipsPixmap the pixmap with animation frames
+     * @param chipsPath path to the svg pixmap with animation frames
      */
     KReversiScene( KReversiGame* game, const QString& chipsPath );
     ~KReversiScene();
 
+    /**
+     *  Sets the game object which this scene will visualise/use
+     */
     void setGame( KReversiGame* game );
+    /**
+     *  Sets two svg's for background.
+     *  First one is the background picture itself, second is
+     *  picture with A-F, 1-8 labels
+     *  @param bkgndPath path to background svg
+     *  @param bkgndLabelsPath path to labels svg
+     */
     void setBackground( const QString& bkgndPath, const QString& bkgndLabelsPath );
+    /**
+     *  Sets the chips pixmap to be one found in chipsPath
+     *  @see KReversiChipFrameSet
+     */
     void setChipsPixmap( const QString& chipsPath );
+    /**
+     *  Performs scene resize - rescales all corresponding svg's,
+     *  recalcs playfield rect etc etc
+     */
     void resizeScene( int width, int height );
     /**
      *  This function will tell you if the scene is currently performing
@@ -78,6 +95,9 @@ public:
      */
     void setAnimationSpeed(int speed);
 public slots:
+    /**
+     *  Synchronizes graphical board with m_game's board
+     */
     void updateBoard();
     /**
      *  This will make scene visually mark the last made move
@@ -114,6 +134,9 @@ private:
      *  Reimplemented from QGraphicsScene.
      */
     virtual void drawBackground( QPainter *p, const QRectF& rect );
+    /**
+     *  Mouse presses event handler
+     */
     virtual void mousePressEvent( QGraphicsSceneMouseEvent* );
     /**
      *  Visually displays last move and possible moves
@@ -194,7 +217,20 @@ private:
      *  If true, then all possible moves will be shown to the player
      */
     bool m_showPossibleMoves;
-    // FIXME dimsuz: document
+    /**
+     *  List of RectItems which are used to show possible moves.
+     *  This list behaves like this:
+     *  it is created only once and grows only as needed.
+     *  If number of items in it is sufficient to display all possible moves,
+     *  than these items are reused, if not then it grows with new items until
+     *  there are enough of them.
+     *  Example: at start of the game there are 4 items (4 possible move to highlight)
+     *  if after the next turn there will be 6 possible moves, this list
+     *  will be grown by 2 rect items and previous 4 will be reused (their position
+     *  can change though).
+     *
+     *  (isn't that too much words for this little thingie? ;) )
+     */
     QList<QGraphicsRectItem*> m_possibleMovesItems;
 };
 #endif

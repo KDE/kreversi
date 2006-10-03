@@ -69,7 +69,7 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
         kDebug() << "No move possible" << endl;
         return;
     }
-    kDebug() << "Black (player) play ("<<move.row<<","<<move.col<<")" <<endl;
+    //kDebug() << "Black (player) play ("<<move.row<<","<<move.col<<")" <<endl;
     makeMove( move );
     m_undoStack.push( m_changedChips );
 }
@@ -124,7 +124,7 @@ void KReversiGame::makeComputerMove()
     // (also there's computeMove in getHint)
     KReversiMove move = m_engine->computeMove( *this, true );
     Q_ASSERT(move.color == m_computerColor);
-    kDebug() << "White (computer) play ("<<move.row<<","<<move.col<<")" <<endl;
+    //kDebug() << "White (computer) play ("<<move.row<<","<<move.col<<")" <<endl;
     makeMove(move);
     m_undoStack.push( m_changedChips );
 }
@@ -171,7 +171,7 @@ int KReversiGame::undo()
     m_curPlayer = m_playerColor;
 
     kDebug() << "Undone " << movesUndone << " moves." << endl;
-    kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
+    //kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
 
     emit boardChanged();
 
@@ -268,7 +268,7 @@ void KReversiGame::makeMove( const KReversiMove& move )
     }
 
     m_curPlayer = (m_curPlayer == White ? Black : White );
-    kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
+    //kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
     emit moveFinished();
 }
 
@@ -516,7 +516,6 @@ bool KReversiGame::isAnyComputerMovePossible() const
 
 void KReversiGame::setComputerSkill(int skill)
 {
-    kDebug() << "setting skill to " << skill << endl;
     m_engine->setStrength( skill );
 }
 
