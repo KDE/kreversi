@@ -42,7 +42,7 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
 
     setChipsPixmap(chipsPath);
 
-    resizeScene( m_curChipSize*8, m_curChipSize*8 );
+    resizeScene( (int)m_curCellSize*10, (int)m_curCellSize*10 );
 
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
@@ -57,14 +57,19 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::resizeScene( int width, int height )
 {
-    m_curChipSize = qMin( width/10, height/10 );
-    m_boardRect = QRectF(m_curChipSize, m_curChipSize, width - m_curChipSize*2, height - m_curChipSize*2);
+    int size = qMin(width, height);
+    setSceneRect( 0, 0, size, size );
 
-    int minSize = qMin(width, height);
-    setSceneRect( 0, 0, minSize, minSize );
+    // bkgnd is square so no matter what to use - width or height
+    qreal scale = (qreal)size / m_bkgndRenderer->defaultSize().width();
+    // FIXME dimsuz: remove and find out where this comes from!
+    if(scale <=0)
+        return;
+
+    m_curCellSize = m_bkgndRenderer->defaultSize().width() * scale / 10;
 
     // adopt to new chip size
-    m_frameSet->setChipSize( m_curChipSize );
+    m_frameSet->setChipSize( (int)m_curCellSize );
 
     QList<QGraphicsItem*> allItems = items();
     KReversiChip *chip = 0;
@@ -80,7 +85,7 @@ void KReversiScene::resizeScene( int width, int height )
     }
     //recalc possible moves items rects
     foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
-        rect->setRect( 0, 0, m_curChipSize-1, m_curChipSize-1 );
+        rect->setRect( 1, 1, m_curCellSize-2, m_curCellSize-2 );
     // and reposition them according to new cell sizes
     displayLastAndPossibleMoves();
 }
@@ -91,12 +96,12 @@ void KReversiScene::setChipsPixmap( const QString& chipsPath )
     {
         m_frameSet = new KReversiChipFrameSet();
         m_frameSet->loadFrames( chipsPath );
-        m_curChipSize = m_frameSet->defaultChipSize();
+        m_curCellSize = m_frameSet->defaultChipSize();
     }
     else // we're changing frameset's pixmap (monochrome-chips <-> color-chips transition)
     {
-        // m_curChipSize is already defined in this case, so lets scale chips on load
-        m_frameSet->loadFrames( chipsPath, m_curChipSize );
+        // m_curCellSize is already defined in this case, so lets scale chips on load
+        m_frameSet->loadFrames( chipsPath, (int)m_curCellSize );
     }
 
 
@@ -133,7 +138,7 @@ void KReversiScene::setGame( KReversiGame* game )
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
 
     // this will remove all items left from previous game
-    QList<QGraphicsItem*> allChips = items( m_boardRect );
+    QList<QGraphicsItem*> allChips = items();
     foreach( QGraphicsItem* chip, allChips )
     {
         removeItem( chip );
@@ -330,8 +335,9 @@ void KReversiScene::displayLastAndPossibleMoves()
             int numtoadd = l.count() - m_possibleMovesItems.count();
             for( int i=0; i<numtoadd; ++i)
             {
-                QGraphicsRectItem *item = new QGraphicsRectItem( 0, 0, m_curChipSize-1, m_curChipSize-1, 0, this );
+                QGraphicsRectItem *item = new QGraphicsRectItem( 1, 1, m_curCellSize-2, m_curCellSize-2, 0, this );
                 item->setBrush( Qt::darkGreen );
+                item->setPen( Qt::NoPen );
                 item->setZValue(-1);
                 m_possibleMovesItems.append( item );
             }
@@ -376,12 +382,12 @@ void KReversiScene::slotGameOver()
 
 QPointF KReversiScene::cellCenter( int row, int col ) const
 {
-    return QPointF( m_boardRect.x() + col*m_curChipSize + m_curChipSize/2, m_boardRect.y() + row*m_curChipSize + m_curChipSize/2 );
+    return cellTopLeft(row,col) + QPointF( m_curCellSize / 2, m_curCellSize / 2 );
 }
 
 QPointF KReversiScene::cellTopLeft( int row, int col ) const
 {
-    return QPointF( m_boardRect.x() + col*m_curChipSize, m_boardRect.y() + row*m_curChipSize );
+    return QPointF( (col+1) * m_curCellSize, (row+1) * m_curCellSize );
 }
 
 void KReversiScene::setBackground( const QString& bkgndPath, const QString& bkgndLabelsPath )
@@ -400,51 +406,6 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF&)
 
     m_bkgndRenderer->render(p, sRect);
     m_bkgndLabelsRenderer->render(p, sRect);
-
-    // FIXME dimsuz: remove completely
-    if(false)
-    {
-        QPen pen(Qt::black);
-        pen.setWidth(2);
-
-        p->setPen(pen);
-
-        qreal startx = m_boardRect.x();
-        qreal starty = m_boardRect.y();
-        qreal endx = m_boardRect.x() + m_boardRect.width();
-        qreal endy = m_boardRect.y() + m_boardRect.height();
-
-        for(qreal x=startx; x<=endx; x+=m_curChipSize)
-            p->drawLine( QPointF(x, starty), QPointF(x, endy) );
-        for(qreal y=starty; y<=endy; y+=m_curChipSize)
-            p->drawLine( QPointF(startx, y), QPointF(endx, y) );
-
-        QFont f = p->font();
-        f.setBold(true);
-        p->setFont(f);
-        int fontHeight = p->fontMetrics().height();
-
-        const char horLabels[] = "ABCDEFGH";
-        const char verLabels[] = "12345678";
-
-        QRectF rect;
-        // draw top+bottom labels
-        for(int c=0; c<8;++c)
-        {
-            rect = QRectF(startx+c*m_curChipSize, starty-fontHeight, m_curChipSize, fontHeight );
-            p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
-            rect.moveTop( endy );
-            p->drawText( rect, Qt::AlignCenter | Qt::AlignTop, QChar(horLabels[c]) );
-        }
-        // draw left+right labels
-        for(int r=0; r<8;++r)
-        {
-            rect = QRectF( startx-fontHeight, starty+r*m_curChipSize, fontHeight, m_curChipSize );
-            p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
-            rect.moveLeft( endx );
-            p->drawText( rect, Qt::AlignCenter | Qt::AlignVCenter, QChar(verLabels[r]) );
-        }
-    }
 }
 
 void KReversiScene::stopHintAnimation()
@@ -470,10 +431,11 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
         return;
     }
 
-    if( !m_boardRect.contains(ev->scenePos()) )
+    QRectF boardRect( cellTopLeft(0, 0), QSizeF( m_curCellSize * 8, m_curCellSize * 8) );
+    if( !boardRect.contains(ev->scenePos()) )
         return;
-    int row = (int)(-m_boardRect.y() + ev->scenePos().y()) / m_curChipSize;
-    int col = (int)(-m_boardRect.x() + ev->scenePos().x()) / m_curChipSize;
+    int row = (int)((-boardRect.y() + ev->scenePos().y()) / m_curCellSize);
+    int col = (int)((-boardRect.x() + ev->scenePos().x()) / m_curCellSize);
 
     if( row < 0 ) row = 0;
     if( row > 7 ) row = 7;

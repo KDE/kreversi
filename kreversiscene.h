@@ -160,10 +160,6 @@ private:
      */
     KReversiGame *m_game;
     /**
-     *  Bounding rect of the board grid
-     */
-    QRectF m_boardRect;
-    /**
      *  Svg renderer for background rendering on resizes
      */
     KSvgRenderer* m_bkgndRenderer;
@@ -178,7 +174,7 @@ private:
     /**
      *  Current size of chip
      */
-    int m_curChipSize;
+    qreal m_curCellSize;
     /**
      *  This list will hold a changed chips
      *  after each turn. It is received from the game object.
