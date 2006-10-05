@@ -32,7 +32,6 @@ class Engine;
 
 /**
  *  KReversiGame incapsulates all of the game logic.
- *  It creates KReversiBoard and manages a chips on it.
  *  Whenever the board state changes it emits corresponding signals.
  *  The idea is also to abstract from any graphic representation of the game process
  *
@@ -52,7 +51,7 @@ public:
     ~KReversiGame();
     /**
      *  Starts next player turn.
-     *  If game isn't over yet, then this function do the following:
+     *  If game isn't over yet, then this function does the following:
      *  - if it is computer turn and computer can move, it'll make that move.
      *  - if it is computer turn and computer can't move it'll emit "computerCantMove"
      *  signal and exit
@@ -65,7 +64,7 @@ public:
      *  If game is over it'll emit gameOver()
      *  
      *  If it's still unclear how to use it please see KReversiScene for working example.
-     *  In short: it calls startNextTurn() at the end of each turn and makePlayerMove() 
+     *  In short: KReversiScene calls startNextTurn() at the end of each turn and makePlayerMove() 
      *  in mouseReleaseEvent()
      *
      *  @param demoMode if true then computer will decide for player turn
@@ -90,17 +89,9 @@ public:
      */
     int undo();
     /**
-     *  Sets the strength of game engine (1 to 7)
-     */
-    void setEngineStrength(uint strength);
-    /**
      *  Sets the computer skill level. From 1 to 7
      */
     void setComputerSkill(int skill);
-    /**
-     *  @return strength of the game engine
-     */
-    uint strength() const;
     /**
      *  @return whether the game is already over
      */
@@ -122,13 +113,16 @@ public:
      *  @return score (number of chips) of the player
      */
     int playerScore( ChipColor player ) const;
+    /**
+     *  @return color of the chip at position [row, col]
+     */
     ChipColor chipColorAt( int row, int col ) const;
     /**
      *  @return if undo is possible
      */
     bool canUndo() const { return !m_undoStack.isEmpty(); }
     /**
-     *  Returns a hint to current player
+     *  @return a hint to current player
      */
     KReversiMove getHint() const;
     /**
@@ -136,7 +130,7 @@ public:
      */
     KReversiMove getLastMove() const;
     /**
-     *  Returns true, if it's computer's turn now
+     *  @return true, if it's computer's turn now
      */
     bool isComputersTurn() const { return m_curPlayer == m_computerColor; }
     /**
@@ -166,7 +160,7 @@ private:
      *  As my English-skills are somewhat limited, let me introduce 
      *  new terminology ;).
      *  I'll define a "chunk" of chips for color "C" as follows:
-     *  (let "O" be the color of the opponent for "C")
+     *  (let "O" be the color of the opponent for color "C")
      *  CO[O]C <-- this is a chunk
      *  where [O] is one or more opponent's pieces
      */
