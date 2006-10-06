@@ -73,6 +73,14 @@ public:
      */
     void setChipsPixmap( const QString& chipsPath );
     /**
+     *  Sets whether to show board labels.
+     *  You'll need to call 
+     *  QGraphicsView::resetCachedContent();
+     *  QGraphicsView::update()
+     *  for this to take effect
+     */
+    void setShowBoardLabels( bool show );
+    /**
      *  Performs scene resize - rescales all corresponding svg's,
      *  recalcs playfield rect etc etc
      */
@@ -213,6 +221,10 @@ private:
      *  If true, then all possible moves will be shown to the player
      */
     bool m_showPossibleMoves;
+    /**
+     *  If true board labels will be rendered
+     */
+    bool m_showLabels;
     /**
      *  List of RectItems which are used to show possible moves.
      *  This list behaves like this:

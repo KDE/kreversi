@@ -33,7 +33,8 @@
 
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), 
-    m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false)
+    m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
+    m_showLabels(false)
 {
     m_bkgndRenderer = new KSvgRenderer(this);
     m_bkgndLabelsRenderer = new KSvgRenderer(this);
@@ -128,6 +129,11 @@ void KReversiScene::setChipsPixmap( const QString& chipsPath )
             m_hintChip->setColor( m_hintChip->color() );
         }
     }
+}
+
+void KReversiScene::setShowBoardLabels( bool show )
+{
+    m_showLabels = show;
 }
 
 void KReversiScene::setGame( KReversiGame* game )
@@ -405,7 +411,8 @@ void KReversiScene::drawBackground( QPainter *p, const QRectF&)
     sRect.setHeight( minSize );
 
     m_bkgndRenderer->render(p, sRect);
-    m_bkgndLabelsRenderer->render(p, sRect);
+    if(m_showLabels)
+        m_bkgndLabelsRenderer->render(p, sRect);
 }
 
 void KReversiScene::stopHintAnimation()

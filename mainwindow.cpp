@@ -192,6 +192,10 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 {
     m_historyLabel->setVisible(toggled);
     m_historyView->setVisible(toggled);
+
+    m_scene->setShowBoardLabels( toggled );
+    m_view->resetCachedContent();
+    m_view->update();
 }
 
 void KReversiMainWindow::slotDemoMode(bool toggled)
