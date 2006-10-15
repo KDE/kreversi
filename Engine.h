@@ -133,6 +133,15 @@
 
 class KReversiGame;
 
+static ChipColor opponentColorFor(ChipColor color)
+{
+    if(color == NoColor)
+        return color;
+    else
+        return ( color == White ? Black : White );
+}
+
+
 // Class ULONG64 is used as a bitmap for the squares.
 
 #if defined(__GNUC__)

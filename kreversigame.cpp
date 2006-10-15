@@ -25,14 +25,6 @@
 #include "kreversigame.h"
 #include "Engine.h"
 
-static ChipColor opponentColorFor(ChipColor color)
-{
-    if(color == NoColor) 
-        return color;
-    else
-        return ( color == White ? Black : White );
-}
-
 KReversiGame::KReversiGame()
     : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White )
 {

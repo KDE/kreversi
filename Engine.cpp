@@ -280,15 +280,6 @@ private:
   uint  m_score[2];
 };
 
-// helper function
-static ChipColor opponentColorFor(ChipColor color)
-{
-    if(color == NoColor) 
-        return color;
-    else
-        return ( color == White ? Black : White );
-}
-
 // ================================================================
 //                        The Engine itself
 
