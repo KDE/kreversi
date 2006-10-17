@@ -233,11 +233,8 @@ void KReversiScene::updateBoard()
             {
                 // this if-branch happens on undos
 
-                // FIXME dimsuz: qgraphicsitem_cast<...>(0) crashes.
-                // Therefore I leave dynamic_cast here until this is fixed in qt
-                //
                 // deleting only KReversiChips
-                KReversiChip *chip = dynamic_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
+                KReversiChip *chip = qgraphicsitem_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
                 delete chip;
             }
         }
