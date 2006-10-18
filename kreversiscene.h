@@ -188,7 +188,7 @@ private:
      *  after each turn. It is received from the game object.
      *  Used to animate corresponding chips.
      */
-    MoveList m_changedChips;
+    PosList m_changedChips;
     /**
      *  Animation timer
      */

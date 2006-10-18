@@ -26,15 +26,15 @@
 // noColor = empty
 enum ChipColor { White = 0, Black = 1, NoColor = 2 };
 
-struct KReversiMove
+struct KReversiPos
 {
-    KReversiMove( ChipColor col = NoColor, int r = -1, int c = -1 )
+    KReversiPos( ChipColor col = NoColor, int r = -1, int c = -1 )
         : color(col), row(r), col(c) { }
     ChipColor color;
     int row;
     int col;
 };
 
-typedef QList<KReversiMove> MoveList;
+typedef QList<KReversiPos> PosList;
 
 #endif

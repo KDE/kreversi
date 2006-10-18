@@ -218,7 +218,7 @@ public:
 
   ~Engine();
 
-  KReversiMove     computeMove(const KReversiGame& game, bool competitive);
+  KReversiPos     computeMove(const KReversiGame& game, bool competitive);
 
   void  setInterrupt(bool intr) { m_interrupt = intr; }
   bool  interrupted() const     { return m_interrupt; }
@@ -226,7 +226,7 @@ public:
   void  setStrength(uint strength) { m_strength = strength; }
   uint  strength() const { return m_strength; }
 private:
-  KReversiMove     ComputeFirstMove(const KReversiGame& game);
+  KReversiPos     ComputeFirstMove(const KReversiGame& game);
   int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 			int cutoffval,
 			ULONG64 colorbits, ULONG64 opponentbits);

@@ -234,6 +234,7 @@ void KReversiScene::updateBoard()
                 // this if-branch happens on undos
 
                 // deleting only KReversiChips
+                // (for other QGItems cast will return 0 causing "delete" to be no-op)
                 KReversiChip *chip = qgraphicsitem_cast<KReversiChip*>(itemAt( cellCenter(row, col) ));
                 delete chip;
             }
@@ -266,7 +267,7 @@ void KReversiScene::slotGameMoveFinished()
     m_changedChips = m_game->changedChips();
     // create an item that was placed by player
     // by convention it will be the first in the list of changed items
-    KReversiMove move = m_changedChips.takeFirst();
+    KReversiPos move = m_changedChips.takeFirst();
     KReversiChip *newchip = new KReversiChip( move.color, m_frameSet, this );
     newchip->setPos( cellTopLeft( move.row, move.col ) );
     newchip->setRowCol( move.row, move.col );
@@ -281,7 +282,7 @@ void KReversiScene::slotAnimationStep()
     if( !m_showingHint )
     { // we're animating chips move
 
-        KReversiMove move = m_changedChips.at(0);
+        KReversiPos move = m_changedChips.at(0);
         KReversiChip *chip = qgraphicsitem_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
 
         bool animFinished = chip->nextFrame();
@@ -315,7 +316,7 @@ void KReversiScene::displayLastAndPossibleMoves()
     // ==== Show What Last Move Was ====
     if( m_showLastMove )
     {
-        KReversiMove lastPos = m_game->getLastMove();
+        KReversiPos lastPos = m_game->getLastMove();
         m_lastMoveChip = qgraphicsitem_cast<KReversiChip*>(itemAt(cellCenter(lastPos.row, lastPos.col)));
         if(m_lastMoveChip)
             m_lastMoveChip->showLastMoveMarker(true);
@@ -328,7 +329,7 @@ void KReversiScene::displayLastAndPossibleMoves()
         foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
             rect->hide();
 
-        MoveList l = m_game->possibleMoves();
+        PosList l = m_game->possibleMoves();
         // if m_possibleMovesItems contains less rects then there are items in l
         // lets fill it with additional rects.
         // Else we'll just reuse rects that we already have.
@@ -367,7 +368,7 @@ void KReversiScene::slotHint()
         kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
         return;
     }
-    KReversiMove hint = m_game->getHint();
+    KReversiPos hint = m_game->getHint();
     if(hint.row == -1 || hint.col == -1)
         return;
     if( m_hintChip == 0 )

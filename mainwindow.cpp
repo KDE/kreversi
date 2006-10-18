@@ -46,7 +46,7 @@
 static const int PLAYER_STATUSBAR_ID = 1;
 static const int COMP_STATUSBAR_ID = 2;
 
-static QString moveToString( const KReversiMove& move )
+static QString moveToString( const KReversiPos& move )
 {
     QString moveString;
     if( Preferences::useColoredChips() )
@@ -287,7 +287,7 @@ void KReversiMainWindow::slotMoveFinished()
         m_undoAct->setEnabled( m_game->canUndo() );    
 
     // add last move to history list
-    KReversiMove move = m_game->getLastMove();
+    KReversiPos move = m_game->getLastMove();
     QString numStr = QString::number( m_historyView->count()+1 ) + ". ";
     m_historyView->addItem( numStr + moveToString(move) );
     QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );

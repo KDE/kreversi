@@ -124,11 +124,11 @@ public:
     /**
      *  @return a hint to current player
      */
-    KReversiMove getHint() const;
+    KReversiPos getHint() const;
     /**
      *  @return last move made
      */
-    KReversiMove getLastMove() const;
+    KReversiPos getLastMove() const;
     /**
      *  @return true, if it's computer's turn now
      */
@@ -138,11 +138,11 @@ public:
      *  First of them will be the move itself, and the rest - chips which
      *  were turned by that move
      */
-    MoveList changedChips() const { return m_changedChips; }
+    PosList changedChips() const { return m_changedChips; }
     /**
      *  @return a list of possible moves for current player
      */
-    MoveList possibleMoves() const;
+    PosList possibleMoves() const;
 signals:
     void gameOver();
     void boardChanged();
@@ -154,7 +154,7 @@ private:
      * This function will tell you if the move is possible.
      * That's why it was given such a name ;)
      */
-    bool isMovePossible( const KReversiMove& move ) const; 
+    bool isMovePossible( const KReversiPos& move ) const; 
     /**
      *  Searches for "chunk" in direction dir for move.
      *  As my English-skills are somewhat limited, let me introduce 
@@ -164,12 +164,12 @@ private:
      *  CO[O]C <-- this is a chunk
      *  where [O] is one or more opponent's pieces
      */
-    bool hasChunk( Direction dir, const KReversiMove& move) const;
+    bool hasChunk( Direction dir, const KReversiPos& move) const;
     /**
      *  Performs move, i.e. marks all the chips that player wins with
      *  this move with current player color
      */
-    void makeMove( const KReversiMove& move );
+    void makeMove( const KReversiPos& move );
     /**
      *  Sets the type of chip at (row,col)
      */
@@ -208,12 +208,12 @@ private:
      *  during last move. The rest of them - chips that were turned by that
      *  move.
      */
-    MoveList m_changedChips;
+    PosList m_changedChips;
     /**
      *  This is an undo stack.
      *  It contains a lists of chips changed with each turn.
      *  @see m_changedChips
      */
-    QStack<MoveList> m_undoStack;
+    QStack<PosList> m_undoStack;
 };
 #endif

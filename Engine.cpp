@@ -337,7 +337,7 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive) 
+KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive) 
 {
   ChipColor color;
 
@@ -356,7 +356,7 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
   // Get the color to calculate the move for.
   color = game.currentPlayer();
   if (color == NoColor)
-    return KReversiMove(NoColor, -1, -1);
+    return KReversiPos(NoColor, -1, -1);
 
   // Figure out the current score
   m_score->set(White, game.playerScore(White));
@@ -497,18 +497,18 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
 
   // Return a suitable move.
   if (interrupted())
-    return KReversiMove(NoColor, -1, -1);
+    return KReversiPos(NoColor, -1, -1);
   else if (maxval != -LARGEINT)
-    return KReversiMove(color, max_y-1, max_x-1);
+    return KReversiPos(color, max_y-1, max_x-1);
   else
-    return KReversiMove(NoColor, -1, -1);
+    return KReversiPos(NoColor, -1, -1);
 }
 
 
 // Get the first move.  We can pick any move at random.
 //
 
-KReversiMove Engine::ComputeFirstMove(const KReversiGame& game) 
+KReversiPos Engine::ComputeFirstMove(const KReversiGame& game) 
 {
   int    r;
   ChipColor  color = game.currentPlayer();
@@ -516,16 +516,16 @@ KReversiMove Engine::ComputeFirstMove(const KReversiGame& game)
   r = m_random.getLong(4) + 1;
 
   if (color == White) {
-    if (r == 1)      return  KReversiMove(color, 4, 2);
-    else if (r == 2) return  KReversiMove(color, 5, 3);
-    else if (r == 3) return  KReversiMove(color, 2, 4);
-    else             return  KReversiMove(color, 3, 5);
+    if (r == 1)      return  KReversiPos(color, 4, 2);
+    else if (r == 2) return  KReversiPos(color, 5, 3);
+    else if (r == 3) return  KReversiPos(color, 2, 4);
+    else             return  KReversiPos(color, 3, 5);
   }
   else {
-    if (r == 1)      return  KReversiMove(color, 3, 2);
-    else if (r == 2) return  KReversiMove(color, 5, 4);
-    else if (r == 3) return  KReversiMove(color, 2, 3);
-    else             return  KReversiMove(color, 4, 5);
+    if (r == 1)      return  KReversiPos(color, 3, 2);
+    else if (r == 2) return  KReversiPos(color, 5, 4);
+    else if (r == 3) return  KReversiPos(color, 2, 3);
+    else             return  KReversiPos(color, 4, 5);
   }
 }
 
