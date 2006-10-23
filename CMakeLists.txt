@@ -18,9 +18,9 @@ set(kreversi_SRCS
     mainwindow.cpp
     main.cpp )
 
-kde4_automoc(kreversi ${kreversi_SRCS})
+kde4_automoc(${kreversi_SRCS})
 
-kde4_add_kcfg_files(kreversi kreversi_SRCS preferences.kcfgc)
+kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
