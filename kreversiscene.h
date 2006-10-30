@@ -56,7 +56,7 @@ public:
     ~KReversiScene();
 
     /**
-     *  Sets the game object which this scene will visualise/use
+     *  Sets the game object which this scene will visualize/use
      */
     void setGame( KReversiGame* game );
     /**
