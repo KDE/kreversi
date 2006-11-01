@@ -115,9 +115,9 @@ void KReversiMainWindow::setupActions()
     m_hintAct->setShortcut( Qt::Key_H );
     connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
-    m_demoAct = new KToggleAction( KIcon("1rightarrow"), i18n("Demo"), actionCollection(), "demo" );
+    m_demoAct = new KAction( KIcon("player_play"), i18n("Demo"), actionCollection(), "demo" );
     m_demoAct->setShortcut( Qt::Key_D );
-    connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotDemoMode(bool)) );
+    connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
 
     KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show last move"), actionCollection(), "show_last_move");
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
@@ -198,8 +198,20 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
     m_view->update();
 }
 
-void KReversiMainWindow::slotDemoMode(bool toggled)
+void KReversiMainWindow::slotToggleDemoMode()
 {
+    bool toggled = false;
+    if( m_scene->isInDemoMode() )
+    {
+        toggled = false;
+        m_demoAct->setIcon( KIcon("player_play") );
+    }
+    else
+    {
+        toggled = true;
+        m_demoAct->setIcon( KIcon("player_pause") );
+    }
+
     m_scene->toggleDemoMode(toggled);
 
     m_undoAct->setEnabled( !toggled );

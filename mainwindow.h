@@ -46,7 +46,7 @@ public slots:
     void slotUndo();
     void slotMoveFinished();
     void slotGameOver();
-    void slotDemoMode(bool);
+    void slotToggleDemoMode();
     void slotUseColoredChips(bool);
     void slotShowMovesHistory(bool);
     void slotComputerCantMove();

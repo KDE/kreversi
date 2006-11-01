@@ -127,6 +127,10 @@ public slots:
      *  @see m_demoMode
      */
     void toggleDemoMode(bool toggle);
+    /**
+     *  @return whether game is in demo mode
+     */
+    bool isInDemoMode() const { return m_demoMode; }
 private slots:
     void slotGameMoveFinished();
     void slotAnimationStep();
