@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 {
     KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
             KREVERSI_VERSION, description, KAboutData::License_GPL,
-            "(c) 1997-2000, Mario Weilguni\n(c) 2006, Dmitry Suzdalev");
+            "(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev");
     aboutData.addAuthor("Mario Weilguni",I18N_NOOP("Original author"), "mweilguni@sime.com");
     aboutData.addAuthor("Inge Wallin",I18N_NOOP("Original author"), "inge@lysator.liu.se");
     aboutData.addAuthor("Dmitry Suzdalev", I18N_NOOP("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
