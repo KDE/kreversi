@@ -85,7 +85,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_view->show();
     lay->addWidget(m_view, 0, 0, 2, 1);
 
-    m_historyLabel = new QLabel( i18n("Moves history"), mainWid );
+    m_historyLabel = new QLabel( i18n("Move history"), mainWid );
     lay->addWidget( m_historyLabel, 0, 1, Qt::AlignCenter );
     m_historyView = new QListWidget( mainWid );
     m_historyView->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Expanding );
@@ -143,7 +143,7 @@ void KReversiMainWindow::setupActions()
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction( i18n("Show moves history"), actionCollection(), "show_moves" );
+    KToggleAction *showMovesAct = new KToggleAction( i18n("Show move history"), actionCollection(), "show_moves" );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
     KStdGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
