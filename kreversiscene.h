@@ -180,6 +180,15 @@ private:
      */
     KSvgRenderer* m_bkgndLabelsRenderer;
     /**
+     *  Svg renderer for possible moves label rendering
+     */
+    KSvgRenderer* m_possMovesRenderer;
+    /**
+     *  This will hold pixmap which is rendered by m_possMovesRenderer.
+     *  It will be rerendered on resizes
+     */
+    QPixmap m_possMovePix;
+    /**
      *  Animation frameset for chips
      */
     KReversiChipFrameSet *m_frameSet;
@@ -230,7 +239,7 @@ private:
      */
     bool m_showLabels;
     /**
-     *  List of RectItems which are used to show possible moves.
+     *  List of items which are used to show possible moves.
      *  This list behaves like this:
      *  it is created only once and grows only as needed.
      *  If number of items in it is sufficient to display all possible moves,
@@ -243,6 +252,6 @@ private:
      *
      *  (isn't that too much words for this little thingie? ;) )
      */
-    QList<QGraphicsRectItem*> m_possibleMovesItems;
+    QList<QGraphicsPixmapItem*> m_possibleMovesItems;
 };
 #endif

@@ -26,6 +26,7 @@
 
 #include <kdebug.h>
 #include <ksvgrenderer.h>
+#include <kstandarddirs.h>
 
 #include "kreversiscene.h"
 #include "kreversigame.h"
@@ -36,8 +37,11 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
     m_showLabels(false)
 {
+    // FIXME dimsuz: move this to single SVG. and introduce smth like KReversiScene::setTheme()
     m_bkgndRenderer = new KSvgRenderer(this);
     m_bkgndLabelsRenderer = new KSvgRenderer(this);
+    m_possMovesRenderer = new KSvgRenderer(this);
+    m_possMovesRenderer->load( KStandardDirs::locate("appdata", "pics/move_hint.svgz") );
 
     setBackgroundBrush( Qt::lightGray );
 
@@ -84,9 +88,18 @@ void KReversiScene::resizeScene( int width, int height )
             chip->setColor( chip->color() ); // this will reread pixmap
         }
     }
+
+    // Render possible moves pixmap
+    QImage baseImg((int)m_curCellSize, (int)m_curCellSize, QImage::Format_ARGB32_Premultiplied);
+    baseImg.fill(0);
+    QPainter p(&baseImg);
+    m_possMovesRenderer->render(&p);
+    p.end();
+    m_possMovePix = QPixmap::fromImage(baseImg);
+
     //recalc possible moves items rects
-    foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
-        rect->setRect( 1, 1, m_curCellSize-2, m_curCellSize-2 );
+    foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+        item->setPixmap( m_possMovePix );
     // and reposition them according to new cell sizes
     displayLastAndPossibleMoves();
 }
@@ -182,8 +195,8 @@ void KReversiScene::setShowLegalMoves( bool show )
     else
     {
         // NOTE: or delete?
-        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
-            rect->hide();
+        foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+            item->hide();
     }
 }
 
@@ -260,8 +273,8 @@ void KReversiScene::slotGameMoveFinished()
     // hide shown legal moves
     if( m_showPossibleMoves )
     {
-        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
-            rect->hide();
+        foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+            item->hide();
     }
 
     m_changedChips = m_game->changedChips();
@@ -326,8 +339,8 @@ void KReversiScene::displayLastAndPossibleMoves()
     if( m_showPossibleMoves && !m_game->isComputersTurn() )
     {
         //hide currently displayed if any
-        foreach( QGraphicsRectItem* rect, m_possibleMovesItems )
-            rect->hide();
+        foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+            item->hide();
 
         PosList l = m_game->possibleMoves();
         // if m_possibleMovesItems contains less rects then there are items in l
@@ -339,9 +352,7 @@ void KReversiScene::displayLastAndPossibleMoves()
             int numtoadd = l.count() - m_possibleMovesItems.count();
             for( int i=0; i<numtoadd; ++i)
             {
-                QGraphicsRectItem *item = new QGraphicsRectItem( 1, 1, m_curCellSize-2, m_curCellSize-2, 0, this );
-                item->setBrush( Qt::darkGreen );
-                item->setPen( Qt::NoPen );
+                QGraphicsPixmapItem *item = new QGraphicsPixmapItem( m_possMovePix, 0, this );
                 item->setZValue(-1);
                 m_possibleMovesItems.append( item );
             }

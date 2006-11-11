@@ -106,6 +106,7 @@ void KReversiChipFrameSet::setChipSize( int newSize )
     baseImg.fill(0);
     QPainter p(&baseImg);
     m_renderer->render(&p);
+    p.end();
 
     QPixmap allFrames = QPixmap::fromImage(baseImg);
     int frameSize = allFrames.width() / NUM_COLS_IN_PIX;
