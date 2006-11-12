@@ -11,5 +11,5 @@ GenericName[x-test]=xxReversi Board Gamexx
 Terminal=false
 Icon=kreversi
 X-KDE-StartupNotify=true
-X-DCOP-ServiceType=Multi
+X-DBUS-StartupType=Multi
 Categories=Qt;KDE;Game;BoardGame;
