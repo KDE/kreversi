@@ -119,31 +119,31 @@ void KReversiMainWindow::setupActions()
     m_demoAct->setShortcut( Qt::Key_D );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
 
-    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show last move"), actionCollection(), "show_last_move");
+    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), actionCollection(), "show_last_move");
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
-    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show legal moves"), actionCollection(), "show_legal_moves" );
+    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show Legal Moves"), actionCollection(), "show_legal_moves" );
     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
-    m_animSpeedAct = new KSelectAction(i18n("Animation speed"), actionCollection(), "anim_speed");
+    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), actionCollection(), "anim_speed");
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
     connect( m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)) );
 
-    m_skillAct = new KSelectAction(i18n("Computer skill"), actionCollection(), "skill" );
+    m_skillAct = new KSelectAction(i18n("Computer Skill"), actionCollection(), "skill" );
     acts.clear();
     // FIXME dimsuz: give them good names
-    acts << i18n("Very easy") << i18n("Easy") << i18n("Normal");
+    acts << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
     acts << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
     m_skillAct->setItems(acts);
     connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
 
-    m_coloredChipsAct = new KToggleAction( i18n("Use colored chips"), actionCollection(), "use_colored_chips" );
+    m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), actionCollection(), "use_colored_chips" );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction( i18n("Show move history"), actionCollection(), "show_moves" );
+    KToggleAction *showMovesAct = new KToggleAction( i18n("Show Move History"), actionCollection(), "show_moves" );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
     KStdGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
@@ -296,7 +296,7 @@ void KReversiMainWindow::slotGameOver()
 void KReversiMainWindow::slotMoveFinished()
 {
     if( !m_demoAct->isChecked() )
-        m_undoAct->setEnabled( m_game->canUndo() );    
+        m_undoAct->setEnabled( m_game->canUndo() );
 
     // add last move to history list
     KReversiPos move = m_game->getLastMove();
@@ -333,7 +333,7 @@ void KReversiMainWindow::slotUndo()
         statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
         statusBar()->changeItem( i18n("Computer: %1", m_game->playerScore(White) ), COMP_STATUSBAR_ID);
 
-        m_undoAct->setEnabled( m_game->canUndo() );    
+        m_undoAct->setEnabled( m_game->canUndo() );
         // if the user hits undo after game is over
         // let's give him a chance to ask for a hint ;)
         m_hintAct->setEnabled( true );
