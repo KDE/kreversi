@@ -36,7 +36,7 @@
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kstdgameaction.h>
 #include <kselectaction.h>
 
@@ -107,9 +107,9 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 
 void KReversiMainWindow::setupActions()
 {
-    KAction *newGameAct = KStdAction::openNew(this, SLOT(slotNewGame()), actionCollection(), "new_game");
-    KAction *quitAct = KStdAction::quit(this, SLOT(close()), actionCollection(), "quit");
-    m_undoAct = KStdAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
+    KAction *newGameAct = KStandardAction::openNew(this, SLOT(slotNewGame()), actionCollection(), "new_game");
+    KAction *quitAct = KStandardAction::quit(this, SLOT(close()), actionCollection(), "quit");
+    m_undoAct = KStandardAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
     m_hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
     m_hintAct->setShortcut( Qt::Key_H );
