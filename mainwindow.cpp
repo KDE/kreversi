@@ -37,7 +37,7 @@
 #include <kstandarddirs.h>
 #include <kstatusbar.h>
 #include <kstandardaction.h>
-#include <kstdgameaction.h>
+#include <kstandardgameaction.h>
 #include <kselectaction.h>
 
 #include <QListWidget>
@@ -146,7 +146,7 @@ void KReversiMainWindow::setupActions()
     KToggleAction *showMovesAct = new KToggleAction( i18n("Show Move History"), actionCollection(), "show_moves" );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
-    KStdGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
+    KStandardGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
 
     addAction(newGameAct);
     addAction(quitAct);
