@@ -27,6 +27,7 @@
 #include "preferences.h"
 
 #include <kaction.h>
+#include <kactioncollection.h>
 #include <ktoggleaction.h>
 #include <kapplication.h>
 #include <kdebug.h>
@@ -107,31 +108,39 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 
 void KReversiMainWindow::setupActions()
 {
-    KAction *newGameAct = KStandardAction::openNew(this, SLOT(slotNewGame()), actionCollection(), "new_game");
-    KAction *quitAct = KStandardAction::quit(this, SLOT(close()), actionCollection(), "quit");
-    m_undoAct = KStandardAction::undo( this, SLOT(slotUndo()), actionCollection(), "undo" );
+    QAction *newGameAct = actionCollection()->addAction(KStandardAction::New, "new_game", this, SLOT(slotNewGame()));
+    QAction *quitAct = actionCollection()->addAction(KStandardAction::Quit, "quit", this, SLOT(close()));
+    m_undoAct = actionCollection()->addAction(KStandardAction::Undo, "undo", this, SLOT(slotUndo()));
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
-    m_hintAct = new KAction( KIcon("wizard"), i18n("Hint"), actionCollection(), "hint" );
+    m_hintAct = actionCollection()->addAction( "hint" );
+    m_hintAct->setIcon( KIcon("wizard") );
+    m_hintAct->setText( i18n("Hint") );
     m_hintAct->setShortcut( Qt::Key_H );
     connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
-    m_demoAct = new KAction( KIcon("player_play"), i18n("Demo"), actionCollection(), "demo" );
+    m_demoAct = actionCollection()->addAction( "demo" );
+    m_demoAct->setIcon( KIcon("player_play") );
+    m_demoAct->setText( i18n("Demo") );
     m_demoAct->setShortcut( Qt::Key_D );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
 
-    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), actionCollection(), "show_last_move");
+    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), this);
+    actionCollection()->addAction("show_last_move", showLast);
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
-    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show Legal Moves"), actionCollection(), "show_legal_moves" );
+    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show Legal Moves"), this);
+    actionCollection()->addAction("show_legal_moves", showLegal);
     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
-    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), actionCollection(), "anim_speed");
+    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
+    actionCollection()->addAction("anim_speed", m_animSpeedAct);
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
     connect( m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)) );
 
-    m_skillAct = new KSelectAction(i18n("Computer Skill"), actionCollection(), "skill" );
+    m_skillAct = new KSelectAction(i18n("Computer Skill"), this);
+    actionCollection()->addAction("skill", m_skillAct);
     acts.clear();
     // FIXME dimsuz: give them good names
     acts << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
@@ -139,14 +148,17 @@ void KReversiMainWindow::setupActions()
     m_skillAct->setItems(acts);
     connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
 
-    m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), actionCollection(), "use_colored_chips" );
+    m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), this );
+    actionCollection()->addAction( "use_colored_chips", m_coloredChipsAct );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction( i18n("Show Move History"), actionCollection(), "show_moves" );
+    KToggleAction *showMovesAct = new KToggleAction( i18n("Show Move History"), this );
+    actionCollection()->addAction( "show_moves", showMovesAct );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
-    KStandardGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
+    QAction *action = KStandardGameAction::highscores(this, SLOT(slotHighscores()), this);
+    actionCollection()->addAction(action->objectName(), action);
 
     addAction(newGameAct);
     addAction(quitAct);
