@@ -21,7 +21,6 @@
 
 #include <klocale.h>
 #include <kconfig.h>
-#include <kapplication.h>
 #include <QVector>
 #include <QDateTime>
 #include <kglobal.h>

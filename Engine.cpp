@@ -117,8 +117,7 @@
 
 #include "Engine.h"
 #include "kreversigame.h"
-#include <kapplication.h>
-
+#include <QApplication>
 
 // ================================================================
 //                          Class ULONG64
@@ -331,7 +330,7 @@ Engine::~Engine()
 // keep GUI alive
 void Engine::yield() 
 {
-  kapp->processEvents();
+  qApp->processEvents();
 }
 
 

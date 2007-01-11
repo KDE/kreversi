@@ -29,7 +29,6 @@
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <ktoggleaction.h>
-#include <kapplication.h>
 #include <kdebug.h>
 #include <kexthighscore.h>
 #include <kicon.h>
