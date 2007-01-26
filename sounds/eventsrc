@@ -1,6 +1,7 @@
 [!Global!]
 IconName=kreversi
 Comment=KReversi
+Comment[be]=Рэверсі
 Comment[bn]=কে-রিভার্সি
 Comment[ca]=Reversi
 Comment[is]=Viðsnúningur
@@ -10,6 +11,7 @@ Comment[zh_TW]=KReversi 黑白棋
 
 [click]
 Name=Click
+Name[be]=Пстрычка
 Name[bg]=Щракване
 Name[bn]=ক্লিক
 Name[br]=Klik
@@ -57,6 +59,7 @@ Name[uk]=Клац
 Name[zh_CN]=单击
 Name[zh_TW]=點選
 Comment=Click
+Comment[be]=Пстрычка
 Comment[bg]=Щракване
 Comment[bn]=ক্লিক
 Comment[br]=Klik
@@ -110,6 +113,7 @@ default_sound=kreversi-click.wav
 [won]
 Name=Game won
 Name[ar]=ربحت اللعبة
+Name[be]=Перамога
 Name[bg]=Спечелихте
 Name[bn]=খেলা জিতেছেন
 Name[br]=Gounezet eo ar c'hoari
@@ -162,6 +166,7 @@ Name[zh_CN]=您赢了游戏
 Name[zh_TW]=遊戲獲勝
 Comment=Game won
 Comment[ar]=ربحت اللعبة
+Comment[be]=Перамога
 Comment[bg]=Спечелихте
 Comment[bn]=খেল খতম
 Comment[br]=Gounezet eo ar c'hoari
@@ -218,6 +223,7 @@ default_sound=kreversi-won.wav
 [lost]
 Name=Game lost
 Name[ar]=خسرت اللعبة
+Name[be]=Параза
 Name[bg]=Загубихте
 Name[bn]=খেলায় হেরে গিয়েছেন
 Name[br]=Kollet eo ar c'hoari
@@ -270,6 +276,7 @@ Name[zh_CN]=您输了游戏
 Name[zh_TW]=遊戲失敗
 Comment=Game lost
 Comment[ar]=خسرت اللعبة
+Comment[be]=Параза
 Comment[bg]=Загубихте
 Comment[bn]=খেলায় হেরে গিয়েছেন
 Comment[br]=Koll eo ar c'hoari
@@ -324,6 +331,7 @@ default_presentation=0
 
 [draw]
 Name=Draw
+Name[be]=Нічыя
 Name[bg]=Равенство
 Name[bn]=অমীমাংসিত
 Name[br]=Tresañ
@@ -371,6 +379,7 @@ Name[uk]=Нічия
 Name[zh_CN]=平局
 Name[zh_TW]=平手
 Comment=Draw
+Comment[be]=Нічыя
 Comment[bg]=Равенство
 Comment[bn]=অমীমাংসিত
 Comment[br]=Tresañ
@@ -421,6 +430,7 @@ default_presentation=0
 
 [illegal_move]
 Name=Illegal Move
+Name[be]=Няправільны ход
 Name[bg]=Невалиден ход
 Name[bn]=অবৈধ চাল
 Name[bs]=Nedozvoljen potez
@@ -468,6 +478,7 @@ Name[uk]=Недозволений хід
 Name[zh_CN]=无效移动
 Name[zh_TW]=不合法的移動
 Comment=Illegal move
+Comment[be]=Няправільны ход
 Comment[bg]=Невалиден ход
 Comment[bn]=অবৈধ চাল
 Comment[bs]=Nedozvoljen potez
