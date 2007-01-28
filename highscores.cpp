@@ -24,6 +24,7 @@
 #include <QVector>
 #include <QDateTime>
 #include <kglobal.h>
+#include <kconfiggroup.h>
 
 
 namespace KExtHighscore
