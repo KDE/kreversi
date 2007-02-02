@@ -38,7 +38,7 @@ class KReversiMainWindow : public KMainWindow
 {
     Q_OBJECT
 public:
-    KReversiMainWindow(QWidget* parent=0);
+    explicit KReversiMainWindow(QWidget* parent=0);
 public slots:
     void slotNewGame();
     void slotSkillChanged(int);
