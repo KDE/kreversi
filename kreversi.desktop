@@ -8,7 +8,6 @@ DocPath=kreversi/index.html
 GenericName=Reversi Board Game
 GenericName[el]=Επιτραπέζιο παιχνίδι Reversi
 GenericName[fr]=Jeu de plateau Reversi
-GenericName[ja]=オセロゲーム
 GenericName[x-test]=xxReversi Board Gamexx
 Terminal=false
 Icon=kreversi
