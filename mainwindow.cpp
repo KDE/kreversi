@@ -78,7 +78,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
 
     QWidget *mainWid = new QWidget;
     QGridLayout *lay = new QGridLayout(mainWid);
-    lay->setColStretch( 0, 1 );
+    lay->setColumnStretch( 0, 1 );
     lay->setMargin(1);
 
     m_view = new KReversiView(m_scene, mainWid);
