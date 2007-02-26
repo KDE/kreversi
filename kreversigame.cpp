@@ -622,7 +622,7 @@ void KReversiGame::networkData(int fd)
     int playertype1;
     int playertype2;
     int seat;
-    Q_INT8 turn, boardfield;
+    qint8 turn, boardfield;
 
     kDebug() << "GGZDEBUG: Network traffic on fd " << fd << endl;
 
