@@ -33,7 +33,7 @@ class Engine;
 namespace KGGZMod
 {
     class Module;
-};
+}
 
 class KGGZRaw;
 
