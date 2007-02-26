@@ -22,6 +22,10 @@
  ********************************************************************/
 #include <kdebug.h>
 
+#include <kggzmod/module.h>
+#include <kggzmod/player.h>
+#include <kggznet/kggzraw.h>
+
 #include "kreversigame.h"
 #include "Engine.h"
 
@@ -39,11 +43,24 @@ KReversiGame::KReversiGame()
     m_score[White] = m_score[Black] = 2;
 
     m_engine = new Engine(1);
+
+    kDebug() << "GGZDEBUG: see if we're in ggz mode" << endl;
+    if(KGGZMod::Module::isGGZ())
+    {
+        kDebug() << "GGZDEBUG: yep we're in ggz mode, now activate kggzmod" << endl;
+        m_mod = new KGGZMod::Module("KReversi");
+        connect(m_mod, SIGNAL(signalError()), SLOT(networkErrorHandler()));
+        connect(m_mod, SIGNAL(signalNetwork(int)), SLOT(networkData(int)));
+        kDebug() << "GGZDEBUG: kggzmod activated" << endl;
+    }
+    m_raw = NULL;
 }
 
 KReversiGame::~KReversiGame()
 {
     delete m_engine;
+    delete m_raw;
+    delete m_mod;
 }
 
 void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
@@ -572,6 +589,93 @@ ChipColor KReversiGame::chipColorAt( int row, int col ) const
 { 
     Q_ASSERT( row < 8 && col < 8 );
     return m_cells[row][col];
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Network code starts here - might be moved or auto-generated in the future
+////////////////////////////////////////////////////////////////////////////
+
+// FIXME: move those to a protocol class
+#define MSG_SEAT 0
+#define MSG_PLAYERS 1
+#define MSG_START 5
+#define MSG_SYNC 6
+
+void KReversiGame::networkErrorHandler()
+{
+    kError() << "GGZDEBUG: Network error, disconnect all channels" << endl;
+    delete m_raw;
+    delete m_mod;
+    m_raw = NULL;
+    m_mod = NULL;
+
+    emit networkError();
+    // This is either on the GGZ channel or on the game channel
+    // FIXME: propagate error information to the user
+}
+
+void KReversiGame::networkData(int fd)
+{
+    int opcode;
+    QString playername1;
+    QString playername2;
+    int playertype1;
+    int playertype2;
+    int seat;
+    Q_INT8 turn, boardfield;
+
+    kDebug() << "GGZDEBUG: Network traffic on fd " << fd << endl;
+
+    if(!m_raw)
+    {
+        kDebug() << "GGZDEBUG: Set up packet reader" << endl;
+        m_raw = new KGGZRaw();
+        m_raw->setNetwork(fd);
+        connect(m_raw, SIGNAL(signalError()), SLOT(networkErrorHandler()));
+    }
+
+    *m_raw >> opcode;
+    kDebug() << "GGZDEBUG: opcode=" << opcode << endl;
+
+    if(opcode == MSG_SEAT)
+    {
+        *m_raw >> seat;
+        kDebug() << "GGZDEBUG: MSG_SEAT: seat=" << seat << endl;
+    }
+    else if(opcode == MSG_PLAYERS)
+    {
+        *m_raw >> playertype1;
+        if(playertype1 != KGGZMod::Player::open)
+        {
+            *m_raw >> playername1;
+        }
+        *m_raw >> playertype2;
+        if(playertype1 != KGGZMod::Player::open)
+        {
+            *m_raw >> playername2;
+        }
+        kDebug() << "GGZDEBUG: MSG_PLAYERS:" << endl;
+	kDebug() << " player1=" << playername1 << endl;
+	kDebug() << " player2=" << playername2 << endl;
+    }
+    else if(opcode == MSG_SYNC)
+    {
+        *m_raw >> turn;
+        for(int i = 0; i < 64; i++)
+        {
+            *m_raw >> boardfield;
+        }
+        kDebug() << "GGZDEBUG: MSG_SYNC: turn=" << turn << endl;
+    }
+    else if(opcode == MSG_START)
+    {
+        kDebug() << "GGZDEBUG: MSG_START" << endl;
+    }
+    else
+    {
+        kDebug() << "GGZDEBUG: Waaaah, we've not implemented the whole protocol yet!" << endl;
+        networkError();
+    }
 }
 
 #include "kreversigame.moc"

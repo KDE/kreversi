@@ -8,6 +8,7 @@
     <Action name="hint" />
     <Action name="demo" />
     <Action name="game_highscores" />
+    <Action name="game_seats" />
     <Action name="quit" />
   </Menu>
   <Menu name="view"><text>&amp;View</text>

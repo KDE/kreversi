@@ -51,6 +51,7 @@ public slots:
     void slotShowMovesHistory(bool);
     void slotComputerCantMove();
     void slotHighscores();
+    void slotSeats();
 private:
     void setupActions();
     void loadSettings();
@@ -64,6 +65,7 @@ private:
     QAction* m_undoAct;
     QAction* m_hintAct;
     QAction* m_demoAct;
+    QAction* m_seatsAct;
     KSelectAction* m_animSpeedAct;
     KSelectAction* m_skillAct;
     KToggleAction* m_coloredChipsAct;

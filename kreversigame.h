@@ -30,6 +30,13 @@
 
 class Engine;
 
+namespace KGGZMod
+{
+    class Module;
+};
+
+class KGGZRaw;
+
 /**
  *  KReversiGame incapsulates all of the game logic.
  *  Whenever the board state changes it emits corresponding signals.
@@ -148,6 +155,10 @@ signals:
     void boardChanged();
     void moveFinished();
     void computerCantMove();
+    void networkError();
+private slots:
+    void networkData(int fd);
+    void networkErrorHandler();
 private:
     enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
     /**
@@ -215,5 +226,10 @@ private:
      *  @see m_changedChips
      */
     QStack<PosList> m_undoStack;
+    /**
+     *  Network connection to GGZ
+     */
+    KGGZMod::Module *m_mod;
+    KGGZRaw *m_raw;
 };
 #endif

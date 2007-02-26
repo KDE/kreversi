@@ -1,9 +1,12 @@
+#include (${CMAKE_MODULE_PATH}/GGZ.cmake)
+include (../cmake/modules/GGZ.cmake)
+
 project(kreversi)
 add_subdirectory( pics ) 
 add_subdirectory( sounds ) 
 add_subdirectory( icons ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdegames ${CMAKE_SOURCE_DIR}/libkdegames/highscore  )
+include_directories( ${CMAKE_SOURCE_DIR}/libkdegames ${CMAKE_SOURCE_DIR}/libkdegames/highscore)
 
 ########### next target ###############
 
@@ -23,9 +26,10 @@ kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi ${KDE4_KDEUI_LIBS} kdegames)
+target_link_libraries(kreversi ${KDE4_KDEUI_LIBS} kdegames ${KGGZGAMES_LIBS})
 install(TARGETS kreversi  DESTINATION ${BIN_INSTALL_DIR} )
 
+register_ggz_module(module.dsc)
 
 ########### install files ###############
 

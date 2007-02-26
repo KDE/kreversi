@@ -26,6 +26,8 @@
 #include "kreversiview.h"
 #include "preferences.h"
 
+#include <kggzgames/kggzseatsdialog.h>
+#include <kggzmod/module.h>
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <ktoggleaction.h>
@@ -123,6 +125,12 @@ void KReversiMainWindow::setupActions()
     m_demoAct->setShortcut( Qt::Key_D );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
 
+    m_seatsAct = actionCollection()->addAction( "game_seats" );
+    m_seatsAct->setIcon( KIcon("roll") );
+    m_seatsAct->setText( i18n("Players and Seats") );
+    m_seatsAct->setShortcut( Qt::Key_S );
+    connect(m_seatsAct, SIGNAL(triggered(bool)), SLOT(slotSeats()) );
+
     KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), this);
     actionCollection()->addAction("show_last_move", showLast);
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
@@ -164,6 +172,17 @@ void KReversiMainWindow::setupActions()
     addAction(m_undoAct);
     addAction(m_hintAct);
     addAction(m_demoAct);
+    addAction(m_seatsAct); // FIXME (josef): is this needed?
+
+    if(!KGGZMod::Module::isGGZ())
+    {
+        // disable multiplayer actions
+        m_seatsAct->setEnabled(false);
+    }
+    else
+    {
+        // disable singleplayer actions
+    }
 }
 
 void KReversiMainWindow::loadSettings()
@@ -354,6 +373,14 @@ void KReversiMainWindow::slotUndo()
 void KReversiMainWindow::slotHighscores()
 {
     KExtHighscore::show(this);
+}
+
+void KReversiMainWindow::slotSeats()
+{
+    KGGZSeatsDialog *dlg = new KGGZSeatsDialog();
+    Q_UNUSED(dlg);
+    // FIXME (josef): make this a real non-modal dialog?
+    // FIXME (josef): player might want to use it alongside game window
 }
 
 #include "mainwindow.moc"
