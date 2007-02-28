@@ -182,6 +182,10 @@ private:
      */
     void makeMove( const KReversiPos& move );
     /**
+     *  Requests a move from the game server
+     */
+    void makeNetworkMove( int row, int col );
+    /**
      *  Sets the type of chip at (row,col)
      */
     void setChipColor(ChipColor type, int row, int col);
