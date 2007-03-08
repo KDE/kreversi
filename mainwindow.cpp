@@ -120,7 +120,7 @@ void KReversiMainWindow::setupActions()
     connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
 
     m_demoAct = actionCollection()->addAction( "demo" );
-    m_demoAct->setIcon( KIcon("player_play") );
+    m_demoAct->setIcon( KIcon("media-playback-start") );
     m_demoAct->setText( i18n("Demo") );
     m_demoAct->setShortcut( Qt::Key_D );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
@@ -234,12 +234,12 @@ void KReversiMainWindow::slotToggleDemoMode()
     if( m_scene->isInDemoMode() )
     {
         toggled = false;
-        m_demoAct->setIcon( KIcon("player_play") );
+        m_demoAct->setIcon( KIcon("media-playback-start") );
     }
     else
     {
         toggled = true;
-        m_demoAct->setIcon( KIcon("player_pause") );
+        m_demoAct->setIcon( KIcon("media-playback-pause") );
     }
 
     m_scene->toggleDemoMode(toggled);
