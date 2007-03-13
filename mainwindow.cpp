@@ -44,6 +44,7 @@
 
 #include <QListWidget>
 #include <QGridLayout>
+#include <QLabel>
 
 static const int PLAYER_STATUSBAR_ID = 1;
 static const int COMP_STATUSBAR_ID = 2;
