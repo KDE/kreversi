@@ -35,7 +35,7 @@ public:
     KReversiChip( ChipColor color, const KReversiChipFrameSet *frameSet, QGraphicsScene *scene );
     void setFrameSet( const KReversiChipFrameSet *frameSet );
     void setColor( ChipColor color );
-    void setRowCol( int row, int col ) { m_row = row; m_col = col; };
+    void setRowCol( int row, int col ) { m_row = row; m_col = col; }
 
     int row() const { return m_row; }
     int col() const { return m_col; }
