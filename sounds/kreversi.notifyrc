@@ -11,7 +11,7 @@ Comment=Click
 Comment[fr]=Clic
 Comment[x-test]=xxClickxx
 Action=Sound
-Sound=kreversi-click.wav
+Sound=reversi-click.wav
 
 [Event/won]
 Name=Game won
@@ -21,7 +21,7 @@ Comment=Game won
 Comment[fr]=Partie gagnée
 Comment[x-test]=xxGame wonxx
 Action=Sound
-Sound=kreversi-won.wav
+Sound=reversi-won.wav
 
 [Event/lost]
 Name=Game lost
