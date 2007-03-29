@@ -111,7 +111,7 @@ Comment[uk]=Клац
 Comment[zh_CN]=单击
 Comment[zh_TW]=點選
 default_presentation=1
-default_sound=kreversi-click.wav
+default_sound=reversi-click.wav
 
 [won]
 Name=Game won
@@ -223,7 +223,7 @@ Comment[wa]=Djeu wangnî
 Comment[zh_CN]=您赢了游戏
 Comment[zh_TW]=遊戲獲勝
 default_presentation=1
-default_sound=kreversi-won.wav
+default_sound=reversi-won.wav
 
 [lost]
 Name=Game lost
