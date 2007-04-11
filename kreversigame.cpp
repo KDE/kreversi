@@ -134,6 +134,12 @@ void KReversiGame::startNextTurn(bool demoMode)
 
 void KReversiGame::makeComputerMove()
 {
+    if( m_mod )
+    {
+        // Network games will automatically send us the opponent move
+        return;
+    }
+
     m_curPlayer = m_computerColor;
     // FIXME dimsuz: m_competitive. Read from config.
     // (also there's computeMove in getHint)
@@ -636,7 +642,8 @@ void KReversiGame::networkData(int fd)
     int seat;
     qint8 turn, boardfield[64];
     int winner;
-    int move;
+    int movevalue;
+    KReversiPos move;
 
     kDebug() << "GGZDEBUG: Network traffic on fd " << fd << endl;
 
@@ -687,10 +694,10 @@ void KReversiGame::networkData(int fd)
     }
     else if(opcode == MSG_MOVE)
     {
-        *m_raw >> move;
-        kDebug() << "GGZDEBUG: MSG_MOVE move=" << move << endl;
+        *m_raw >> movevalue;
+        kDebug() << "GGZDEBUG: MSG_MOVE move=" << movevalue << endl;
 
-        if( move == -1 )
+        if( movevalue == -1 )
         {
             // FIXME: do something here
             return;
@@ -698,19 +705,12 @@ void KReversiGame::networkData(int fd)
 
         // translate protocol moves into local moves
         ChipColor color = currentPlayer();
-        int r = move % 8;
-        int c = move / 8;
-        // FIXME: must calculate changed chips with GGZ protocol?!
+        int row = movevalue % 8;
+        int col = movevalue / 8;
         // FIXME: re-use the code to handle impossible moves (i.e. double turns)
 
-        m_changedChips.clear();
-        m_changedChips.append( KReversiPos( color, r, c ) );
-        emit moveFinished();
-
-        if( m_curPlayer == m_computerColor)
-            m_curPlayer = m_playerColor;
-        else
-            m_curPlayer = m_computerColor;
+        move = KReversiPos( color, row, col );
+        makeMove( move );
     }
     else if(opcode == MSG_GAMEOVER)
     {
