@@ -30,7 +30,8 @@
 #include "Engine.h"
 
 KReversiGame::KReversiGame()
-    : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White )
+    : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White ),
+      m_mod(0), m_raw(0)
 {
     // reset board
     for(int r=0; r<8; ++r)
