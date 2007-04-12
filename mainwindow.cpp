@@ -97,9 +97,6 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent)
     m_historyLabel->hide();
     m_historyView->hide();
 
-    m_scene->setBackground( KStandardDirs::locate("appdata", "pics/default_board.svgz"),
-            KStandardDirs::locate("appdata", "pics/board_numbers.svgz") );
-
     setupActions();
     loadSettings();
 

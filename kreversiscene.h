@@ -31,7 +31,6 @@
 class KReversiGame;
 class KReversiChipFrameSet;
 class KReversiChip;
-class KSvgRenderer;
 class QPainter;
 class QTimer;
 
@@ -40,7 +39,7 @@ class QTimer;
  *  using QGraphicsScene for graphics display.
  *  It displays the reversi board in its current state,
  *  receives a mouse events, translates them so KReversiGame can understand,
- *  sends them to it, 
+ *  sends them to it,
  *  receives board-changed notifications, nicely animates them.
  *  It also drives the gameflow, i.e. it tells KReversiGame when to make
  *  the next move.
@@ -60,21 +59,13 @@ public:
      */
     void setGame( KReversiGame* game );
     /**
-     *  Sets two svg's for background.
-     *  First one is the background picture itself, second is
-     *  picture with A-F, 1-8 labels
-     *  @param bkgndPath path to background svg
-     *  @param bkgndLabelsPath path to labels svg
-     */
-    void setBackground( const QString& bkgndPath, const QString& bkgndLabelsPath );
-    /**
      *  Sets the chips pixmap to be one found in chipsPath
      *  @see KReversiChipFrameSet
      */
     void setChipsPixmap( const QString& chipsPath );
     /**
      *  Sets whether to show board labels.
-     *  You'll need to call 
+     *  You'll need to call
      *  QGraphicsView::resetCachedContent();
      *  QGraphicsView::update()
      *  for this to take effect
@@ -121,7 +112,7 @@ public slots:
     void slotHint();
     /**
      *  Sets Demo Mode.
-     *  In this mode KReversiScene would not wait for user 
+     *  In this mode KReversiScene would not wait for user
      *  clicks to produce his turn. It will let computer
      *  play for user
      *  @see m_demoMode
@@ -168,21 +159,13 @@ private:
      */
     QPointF cellTopLeft( int row, int col ) const;
     /**
+     * Position of the board within the scene
+     */
+    QRectF m_boardRect;
+    /**
      *  The Game object
      */
     KReversiGame *m_game;
-    /**
-     *  Svg renderer for background rendering on resizes
-     */
-    KSvgRenderer* m_bkgndRenderer;
-    /**
-     *  Svg renderer for background labels (A-H, 0-7) rendering on resizes
-     */
-    KSvgRenderer* m_bkgndLabelsRenderer;
-    /**
-     *  Svg renderer for possible moves label rendering
-     */
-    KSvgRenderer* m_possMovesRenderer;
     /**
      *  This will hold pixmap which is rendered by m_possMovesRenderer.
      *  It will be rerendered on resizes

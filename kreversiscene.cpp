@@ -25,24 +25,17 @@
 #include <QTimer>
 
 #include <kdebug.h>
-#include <ksvgrenderer.h>
-#include <kstandarddirs.h>
 
 #include "kreversiscene.h"
 #include "kreversigame.h"
 #include "kreversichip.h"
+#include "kreversirenderer.h"
 
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
-    : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25), 
+    : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
     m_showLabels(false)
 {
-    // FIXME dimsuz: move this to single SVG. and introduce smth like KReversiScene::setTheme()
-    m_bkgndRenderer = new KSvgRenderer(this);
-    m_bkgndLabelsRenderer = new KSvgRenderer(this);
-    m_possMovesRenderer = new KSvgRenderer(this);
-    m_possMovesRenderer->load( KStandardDirs::locate("appdata", "pics/move_hint.svgz") );
-
     setBackgroundBrush( Qt::lightGray );
 
     setChipsPixmap(chipsPath);
@@ -62,16 +55,19 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::resizeScene( int width, int height )
 {
-    int size = qMin(width, height);
-    setSceneRect( 0, 0, size, size );
+    setSceneRect( 0, 0, width, height );
 
-    // bkgnd is square so no matter what to use - width or height
-    qreal scale = (qreal)size / m_bkgndRenderer->defaultSize().width();
+    int size = qMin(width, height);
+    m_boardRect.setRect( width/2 - size/2, height/2 - size/2, size, size );
+
+    // board is square so no matter what to use - width or height
+    int defWidth = KReversiRenderer::self()->defaultBoardSize().width();
+    qreal scale = (qreal)size / defWidth;
     // FIXME dimsuz: remove and find out where this comes from!
     if(scale <=0)
         return;
 
-    m_curCellSize = m_bkgndRenderer->defaultSize().width() * scale / 10;
+    m_curCellSize = defWidth * scale / 10;
 
     // adopt to new chip size
     m_frameSet->setChipSize( (int)m_curCellSize );
@@ -93,7 +89,7 @@ void KReversiScene::resizeScene( int width, int height )
     QImage baseImg((int)m_curCellSize, (int)m_curCellSize, QImage::Format_ARGB32_Premultiplied);
     baseImg.fill(0);
     QPainter p(&baseImg);
-    m_possMovesRenderer->render(&p);
+    KReversiRenderer::self()->renderPossibleMove( &p );
     p.end();
     m_possMovePix = QPixmap::fromImage(baseImg);
 
@@ -117,7 +113,6 @@ void KReversiScene::setChipsPixmap( const QString& chipsPath )
         // m_curCellSize is already defined in this case, so lets scale chips on load
         m_frameSet->loadFrames( chipsPath, (int)m_curCellSize );
     }
-
 
     if(m_game)
     {
@@ -410,26 +405,16 @@ QPointF KReversiScene::cellCenter( int row, int col ) const
 
 QPointF KReversiScene::cellTopLeft( int row, int col ) const
 {
-    return QPointF( (col+1) * m_curCellSize, (row+1) * m_curCellSize );
-}
-
-void KReversiScene::setBackground( const QString& bkgndPath, const QString& bkgndLabelsPath )
-{
-    m_bkgndRenderer->load( bkgndPath );
-    m_bkgndLabelsRenderer->load( bkgndLabelsPath );
+    return m_boardRect.topLeft()+QPointF( (col+1) * m_curCellSize, (row+1) * m_curCellSize );
 }
 
 void KReversiScene::drawBackground( QPainter *p, const QRectF&)
 {
-    // we render on square, so if sceneRect() is not square let's adjust this
-    QRectF sRect = sceneRect();
-    int minSize = qMin( (int)sRect.width(), (int)sRect.height() );
-    sRect.setWidth( minSize );
-    sRect.setHeight( minSize );
-
-    m_bkgndRenderer->render(p, sRect);
+    KReversiRenderer::self()->renderBackground( p, sceneRect() );
+    p->setOpacity( 0.5 );
+    KReversiRenderer::self()->renderBoard(p, m_boardRect);
     if(m_showLabels)
-        m_bkgndLabelsRenderer->render(p, sRect);
+        KReversiRenderer::self()->renderBoardLabels(p, m_boardRect);
 }
 
 void KReversiScene::stopHintAnimation()
@@ -465,7 +450,7 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     if( row > 7 ) row = 7;
     if( col < 0 ) col = 0;
     if( col > 7 ) col = 7;
-    
+
     //kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
 
     m_game->makePlayerMove( row, col, false );
