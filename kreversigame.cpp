@@ -20,13 +20,14 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+#include "kreversigame.h"
+
 #include <kdebug.h>
 
 #include <kggzmod/module.h>
 #include <kggzmod/player.h>
 #include <kggznet/kggzraw.h>
 
-#include "kreversigame.h"
 #include "Engine.h"
 
 KReversiGame::KReversiGame()

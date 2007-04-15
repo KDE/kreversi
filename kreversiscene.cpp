@@ -20,16 +20,16 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+#include "kreversiscene.h"
+#include "kreversigame.h"
+#include "kreversichip.h"
+#include "kreversirenderer.h"
+
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QTimer>
 
 #include <kdebug.h>
-
-#include "kreversiscene.h"
-#include "kreversigame.h"
-#include "kreversichip.h"
-#include "kreversirenderer.h"
 
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
