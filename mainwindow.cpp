@@ -68,7 +68,7 @@ static QString moveToString( const KReversiPos& move )
 }
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
-    : KMainWindow(parent), m_scene(0), m_game(0),
+    : KXmlGuiWindow(parent), m_scene(0), m_game(0),
       m_historyLabel(0), m_historyView(0),
       m_firstShow( true ), m_startInDemoMode( startDemo ),
       m_undoAct(0), m_hintAct(0), m_demoAct(0)

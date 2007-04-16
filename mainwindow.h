@@ -23,7 +23,7 @@
 #ifndef KREVERSI_MAIN_WINDOW_H
 #define KREVERSI_MAIN_WINDOW_H
 
-#include <kmainwindow.h>
+#include <kxmlguiwindow.h>
 
 class KReversiScene;
 class KReversiGame;
@@ -34,7 +34,7 @@ class KToggleAction;
 class QListWidget;
 class QLabel;
 
-class KReversiMainWindow : public KMainWindow
+class KReversiMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
