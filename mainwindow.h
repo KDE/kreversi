@@ -38,7 +38,7 @@ class KReversiMainWindow : public KMainWindow
 {
     Q_OBJECT
 public:
-    explicit KReversiMainWindow(QWidget* parent=0);
+    explicit KReversiMainWindow(QWidget* parent=0,  bool startDemo=false );
 public slots:
     void slotNewGame();
     void slotSkillChanged(int);
@@ -53,6 +53,7 @@ public slots:
     void slotHighscores();
     void slotSeats();
 private:
+    virtual void showEvent( QShowEvent* );
     void setupActions();
     void loadSettings();
 
@@ -61,6 +62,9 @@ private:
     KReversiGame  *m_game;
     QLabel        *m_historyLabel;
     QListWidget   *m_historyView;
+
+    bool m_firstShow;
+    bool m_startInDemoMode;
 
     QAction* m_undoAct;
     QAction* m_hintAct;

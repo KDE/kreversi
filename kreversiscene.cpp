@@ -284,7 +284,7 @@ void KReversiScene::slotGameMoveFinished()
 
 void KReversiScene::slotAnimationStep()
 {
-    if(m_changedChips.count() == 0)
+    if(m_changedChips.count() == 0 && !m_showingHint)
     {
         // FIXME: GGZ only - doesn't yet report flipped chips
         m_animTimer->stop();

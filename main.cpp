@@ -24,9 +24,9 @@
 
 
 #include <kapplication.h>
+#include <klocale.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
-#include <klocale.h>
 
 #include "highscores.h"
 #include "mainwindow.h"
@@ -34,11 +34,17 @@
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
+static const KCmdLineOptions options[] =
+{
+    {"demo", I18N_NOOP( "Start with demo game playing" ),  0 },
+    KCmdLineLastOption
+};
+
 int main(int argc, char **argv)
 {
     KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
-            KREVERSI_VERSION, description, KAboutData::License_GPL,
-            "(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev");
+                          KREVERSI_VERSION, description, KAboutData::License_GPL,
+                          "(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev");
     aboutData.addAuthor("Mario Weilguni",I18N_NOOP("Original author"), "mweilguni@sime.com");
     aboutData.addAuthor("Inge Wallin",I18N_NOOP("Original author"), "inge@lysator.liu.se");
     aboutData.addAuthor("Dmitry Suzdalev", I18N_NOOP("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
@@ -47,6 +53,7 @@ int main(int argc, char **argv)
     aboutData.addCredit("Mauricio Piacentini", I18N_NOOP("Vector chips and background for KDE4."), 0);
 
     KCmdLineArgs::init( argc, argv, &aboutData );
+    KCmdLineArgs::addCmdLineOptions( options );
 
     KApplication application;
     if( application.isSessionRestored() )
@@ -55,7 +62,8 @@ int main(int argc, char **argv)
     }
     else
     {
-        KReversiMainWindow *mainWin = new KReversiMainWindow;
+        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+        KReversiMainWindow *mainWin = new KReversiMainWindow( 0, args->isSet( "demo" ) );
         mainWin->show();
     }
 

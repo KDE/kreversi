@@ -67,10 +67,11 @@ static QString moveToString( const KReversiPos& move )
     return moveString;
 }
 
-KReversiMainWindow::KReversiMainWindow(QWidget* parent)
+KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     : KMainWindow(parent), m_scene(0), m_game(0),
-    m_historyLabel(0), m_historyView(0), m_undoAct(0),
-    m_hintAct(0), m_demoAct(0)
+      m_historyLabel(0), m_historyView(0),
+      m_firstShow( true ), m_startInDemoMode( startDemo ),
+      m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
     statusBar()->insertItem( i18n("You: %1", 2), PLAYER_STATUSBAR_ID );
@@ -121,6 +122,7 @@ void KReversiMainWindow::setupActions()
     m_demoAct->setIcon( KIcon("media-playback-start") );
     m_demoAct->setText( i18n("Demo") );
     m_demoAct->setShortcut( Qt::Key_D );
+    m_demoAct->setCheckable( true );
     connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
 
     m_seatsAct = actionCollection()->addAction( "game_seats" );
@@ -233,11 +235,13 @@ void KReversiMainWindow::slotToggleDemoMode()
     {
         toggled = false;
         m_demoAct->setIcon( KIcon("media-playback-start") );
+        m_demoAct->setChecked( false );
     }
     else
     {
         toggled = true;
         m_demoAct->setIcon( KIcon("media-playback-pause") );
+        m_demoAct->setChecked( true );
     }
 
     m_scene->toggleDemoMode(toggled);
@@ -257,7 +261,10 @@ void KReversiMainWindow::slotNewGame()
     if(m_hintAct)
         m_hintAct->setEnabled( true );
     if(m_demoAct)
+    {
         m_demoAct->setChecked( false );
+        m_demoAct->setIcon( KIcon("media-playback-start") );
+    }
     if(m_undoAct)
         m_undoAct->setEnabled( false );
 
@@ -283,8 +290,16 @@ void KReversiMainWindow::slotNewGame()
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
-    m_demoAct->setChecked(false);
     m_undoAct->setEnabled(true);
+
+    if ( m_scene->isInDemoMode() )
+    {
+        // let's loop! :-)
+        slotToggleDemoMode();// turn off
+        slotNewGame();
+        slotToggleDemoMode();// turn on
+        return;
+    }
 
     statusBar()->changeItem( i18n("GAME OVER."), 0 );
 
@@ -379,6 +394,16 @@ void KReversiMainWindow::slotSeats()
     Q_UNUSED(dlg);
     // FIXME (josef): make this a real non-modal dialog?
     // FIXME (josef): player might want to use it alongside game window
+}
+
+void KReversiMainWindow::showEvent( QShowEvent* )
+{
+    if ( m_firstShow && m_startInDemoMode )
+    {
+        kDebug() << "starting demo..." <<endl;
+        slotToggleDemoMode();
+    }
+    m_firstShow = false;
 }
 
 #include "mainwindow.moc"
