@@ -14,7 +14,7 @@ Action=Sound
 Sound=reversi-click.wav
 
 [Event/won]
-Name=Game won
+Name=Game Won
 Name[fr]=Partie gagnée
 Name[x-test]=xxGame wonxx
 Comment=Game won
@@ -24,7 +24,7 @@ Action=Sound
 Sound=reversi-won.wav
 
 [Event/lost]
-Name=Game lost
+Name=Game Lost
 Name[fr]=Partie perdue
 Name[x-test]=xxGame lostxx
 Comment=Game lost
