@@ -27,7 +27,7 @@
 namespace KExtHighscore
 {
 
-class KDE_EXPORT ExtManager : public Manager
+class ExtManager : public Manager
 {
 public:
     ExtManager();
