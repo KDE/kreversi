@@ -109,7 +109,10 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
 void KReversiMainWindow::setupActions()
 {
     QAction *newGameAct = actionCollection()->addAction(KStandardAction::New, "new_game", this, SLOT(slotNewGame()));
-    QAction *quitAct = actionCollection()->addAction(KStandardAction::Quit, "quit", this, SLOT(close()));
+    
+    QAction *act = KStandardGameAction::quit(this, SLOT(close()), this);
+    actionCollection()->addAction( act->objectName(), act );
+    
     m_undoAct = actionCollection()->addAction(KStandardAction::Undo, "undo", this, SLOT(slotUndo()));
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
     m_hintAct = actionCollection()->addAction( "hint" );
@@ -168,7 +171,6 @@ void KReversiMainWindow::setupActions()
     actionCollection()->addAction(action->objectName(), action);
 
     addAction(newGameAct);
-    addAction(quitAct);
     addAction(m_undoAct);
     addAction(m_hintAct);
     addAction(m_demoAct);
