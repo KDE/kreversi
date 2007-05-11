@@ -1,13 +1,8 @@
 <!DOCTYPE kpartgui>
-<kpartgui name="kreversi" version="2">
+<kpartgui name="kreversi" version="3">
 
 <MenuBar>
-  <Menu name="game"><text>&amp;Game</text>
-    <Action name="new_game" />
-    <Action name="undo" />
-    <Action name="hint" />
-    <Action name="demo" />
-    <Action name="game_highscores" />
+  <Menu name="game">
     <Action name="game_seats" />
   </Menu>
   <Menu name="view"><text>&amp;View</text>
@@ -23,10 +18,10 @@
 </MenuBar>
 
 <ToolBar name="mainToolBar"><text>Main Toolbar</text>
-  <Action name="new_game" />
-  <Action name="undo" />
-  <Action name="hint" />
-  <Action name="demo" />
+  <Action name="game_new" />
+  <Action name="move_undo" />
+  <Action name="move_hint" />
+  <Action name="move_demo" />
   <Separator />
   <Action name="show_last_move" />
   <Action name="show_legal_moves" />

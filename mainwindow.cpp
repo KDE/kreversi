@@ -108,26 +108,27 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
 
 void KReversiMainWindow::setupActions()
 {
-    QAction *newGameAct = actionCollection()->addAction(KStandardAction::New, "new_game", this, SLOT(slotNewGame()));
+    // Standard actions
+    QAction *temp = KStandardGameAction::gameNew(this, SLOT(slotNewGame()), this);
+    actionCollection()->addAction(temp->objectName(), temp );
     
-    QAction *act = KStandardGameAction::quit(this, SLOT(close()), this);
-    actionCollection()->addAction( act->objectName(), act );
+    temp = KStandardGameAction::highscores(this, SLOT(slotHighscores()), this);
+    actionCollection()->addAction(temp->objectName(), temp);
+
+    temp = KStandardGameAction::quit(this, SLOT(close()), this);
+    actionCollection()->addAction(temp->objectName(), temp );
     
-    m_undoAct = actionCollection()->addAction(KStandardAction::Undo, "undo", this, SLOT(slotUndo()));
+    m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), this);
+    actionCollection()->addAction(m_undoAct->objectName(), m_undoAct );
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
-    m_hintAct = actionCollection()->addAction( "hint" );
-    m_hintAct->setIcon( KIcon("wizard") );
-    m_hintAct->setText( i18n("Hint") );
-    m_hintAct->setShortcut( Qt::Key_H );
-    connect( m_hintAct, SIGNAL(triggered(bool)), m_scene, SLOT(slotHint()) );
-
-    m_demoAct = actionCollection()->addAction( "demo" );
-    m_demoAct->setIcon( KIcon("media-playback-start") );
-    m_demoAct->setText( i18n("Demo") );
-    m_demoAct->setShortcut( Qt::Key_D );
-    m_demoAct->setCheckable( true );
-    connect(m_demoAct, SIGNAL(triggered(bool)), SLOT(slotToggleDemoMode()) );
-
+    
+    m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), this);
+    actionCollection()->addAction(m_hintAct->objectName(), m_hintAct );
+    
+    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), this);
+    actionCollection()->addAction(m_demoAct->objectName(), m_demoAct );
+    
+    
     m_seatsAct = actionCollection()->addAction( "game_seats" );
     m_seatsAct->setIcon( KIcon("roll") );
     m_seatsAct->setText( i18n("Players and Seats") );
@@ -167,13 +168,6 @@ void KReversiMainWindow::setupActions()
     actionCollection()->addAction( "show_moves", showMovesAct );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
-    QAction *action = KStandardGameAction::highscores(this, SLOT(slotHighscores()), this);
-    actionCollection()->addAction(action->objectName(), action);
-
-    addAction(newGameAct);
-    addAction(m_undoAct);
-    addAction(m_hintAct);
-    addAction(m_demoAct);
     addAction(m_seatsAct); // FIXME (josef): is this needed?
 
     if(!KGGZMod::Module::isGGZ())
