@@ -108,26 +108,16 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
 
 void KReversiMainWindow::setupActions()
 {
-    // Standard actions
-    QAction *temp = KStandardGameAction::gameNew(this, SLOT(slotNewGame()), this);
-    actionCollection()->addAction(temp->objectName(), temp );
+    // Game
+    KStandardGameAction::gameNew(this, SLOT(slotNewGame()), actionCollection());
+    KStandardGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
+    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     
-    temp = KStandardGameAction::highscores(this, SLOT(slotHighscores()), this);
-    actionCollection()->addAction(temp->objectName(), temp);
-
-    temp = KStandardGameAction::quit(this, SLOT(close()), this);
-    actionCollection()->addAction(temp->objectName(), temp );
-    
-    m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), this);
-    actionCollection()->addAction(m_undoAct->objectName(), m_undoAct );
+    // Move
+    m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), actionCollection());
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
-    
-    m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), this);
-    actionCollection()->addAction(m_hintAct->objectName(), m_hintAct );
-    
-    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), this);
-    actionCollection()->addAction(m_demoAct->objectName(), m_demoAct );
-    
+    m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), actionCollection());
+    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
     
     m_seatsAct = actionCollection()->addAction( "game_seats" );
     m_seatsAct->setIcon( KIcon("roll") );
@@ -135,23 +125,20 @@ void KReversiMainWindow::setupActions()
     m_seatsAct->setShortcut( Qt::Key_S );
     connect(m_seatsAct, SIGNAL(triggered(bool)), SLOT(slotSeats()) );
 
-    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), this);
-    actionCollection()->addAction("show_last_move", showLast);
+    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), actionCollection());
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
-    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show Legal Moves"), this);
-    actionCollection()->addAction("show_legal_moves", showLegal);
+    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show Legal Moves"), actionCollection());
     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
-    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
-    actionCollection()->addAction("anim_speed", m_animSpeedAct);
+    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), actionCollection());
+    
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
     connect( m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)) );
 
-    m_skillAct = new KSelectAction(i18n("Computer Skill"), this);
-    actionCollection()->addAction("skill", m_skillAct);
+    m_skillAct = new KSelectAction(i18n("Computer Skill"), actionCollection());
     acts.clear();
     // FIXME dimsuz: give them good names
     acts << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
@@ -159,13 +146,11 @@ void KReversiMainWindow::setupActions()
     m_skillAct->setItems(acts);
     connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
 
-    m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), this );
-    actionCollection()->addAction( "use_colored_chips", m_coloredChipsAct );
+    m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), actionCollection() );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction( i18n("Show Move History"), this );
-    actionCollection()->addAction( "show_moves", showMovesAct );
+    KToggleAction *showMovesAct = new KToggleAction( i18n("Show Move History"), actionCollection() );
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
     addAction(m_seatsAct); // FIXME (josef): is this needed?
