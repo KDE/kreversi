@@ -1,5 +1,6 @@
-<!DOCTYPE kpartgui>
-<kpartgui name="kreversi" version="3">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<gui name="kreversi" version="3">
 
 <MenuBar>
   <Menu name="game">
@@ -26,4 +27,5 @@
   <Action name="show_last_move" />
   <Action name="show_legal_moves" />
 </ToolBar>
-</kpartgui>
+
+</gui>
