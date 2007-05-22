@@ -391,7 +391,7 @@ void KReversiMainWindow::slotHighscores()
     else
     {
         // FIXME (josef): GGZ needs KExtHighscore integration
-        KToolInvocation::invokeBrowser("http://www.ggzgamingzone.org/db/games?lookup=Reversi");
+        KToolInvocation::invokeBrowser("http://www.ggzcommunity.org/db/games?lookup=Reversi");
     }
 }
 
