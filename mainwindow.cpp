@@ -164,7 +164,7 @@ void KReversiMainWindow::setupActions()
     else
     {
         // disable singleplayer actions
-        actionCollection()->addAction( "game_new" )->setEnabled(false);
+        actionCollection()->action( "game_new" )->setEnabled(false);
         m_hintAct->setEnabled(false);
         m_demoAct->setEnabled(false);
         m_skillAct->setEnabled(false);
