@@ -56,6 +56,7 @@ private:
     virtual void showEvent( QShowEvent* );
     void setupActions();
     void loadSettings();
+    QString opponentName();
 
     KReversiScene *m_scene;
     KReversiView  *m_view;

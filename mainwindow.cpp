@@ -41,6 +41,7 @@
 #include <kstandardaction.h>
 #include <kstandardgameaction.h>
 #include <kselectaction.h>
+#include <ktoolinvocation.h>
 
 #include <QListWidget>
 #include <QGridLayout>
@@ -75,7 +76,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
     statusBar()->insertItem( i18n("You: %1", 2), PLAYER_STATUSBAR_ID );
-    statusBar()->insertItem( i18n("Computer: %1", 2), COMP_STATUSBAR_ID );
+    statusBar()->insertItem( i18n("%1: %2", opponentName(), 2), COMP_STATUSBAR_ID );
 
     slotNewGame();
     // m_scene is created in slotNewGame();
@@ -163,6 +164,11 @@ void KReversiMainWindow::setupActions()
     else
     {
         // disable singleplayer actions
+        newGameAct->setEnabled(false);
+        m_hintAct->setEnabled(false);
+        m_demoAct->setEnabled(false);
+        m_skillAct->setEnabled(false);
+        m_undoAct->setEnabled(false);
     }
 }
 
@@ -239,8 +245,16 @@ void KReversiMainWindow::slotNewGame()
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
     connect( m_game, SIGNAL(computerCantMove()), SLOT(slotComputerCantMove()) );
 
-    if(m_hintAct)
-        m_hintAct->setEnabled( true );
+    if(KGGZMod::Module::isGGZ())
+    {
+        setCaption(i18n("Online game"));
+    }
+    else
+    {
+        if(m_hintAct)
+            m_hintAct->setEnabled( true );
+    }
+
     if(m_demoAct)
     {
         m_demoAct->setChecked( false );
@@ -310,7 +324,7 @@ void KReversiMainWindow::slotGameOver()
     }
 
     res += i18n("\nYou: %1", blackScore);
-    res += i18n("\nComputer: %1", whiteScore);
+    res += i18n("\n%1: %2", opponentName(), whiteScore);
 
     KMessageBox::information( this, res, i18n("Game over") );
     // FIXME dimsuz: don't submit if in demo mode!
@@ -319,8 +333,11 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
-    if( !m_demoAct->isChecked() )
-        m_undoAct->setEnabled( m_game->canUndo() );
+    if( !KGGZMod::Module::isGGZ())
+    {
+        if( !m_demoAct->isChecked() )
+            m_undoAct->setEnabled( m_game->canUndo() );
+    }
 
     // add last move to history list
     KReversiPos move = m_game->getLastMove();
@@ -330,9 +347,10 @@ void KReversiMainWindow::slotMoveFinished()
     m_historyView->setCurrentItem( last );
     m_historyView->scrollToItem( last );
 
-    statusBar()->changeItem( m_game->isComputersTurn() ? i18n("Computer turn.") : i18n("Your turn."), 0 );
+    statusBar()->changeItem( m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0 );
+
     statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
-    statusBar()->changeItem( i18n("Computer: %1", m_game->playerScore(White) ), COMP_STATUSBAR_ID);
+    statusBar()->changeItem( i18n("%1: %2", opponentName(), m_game->playerScore(White) ), COMP_STATUSBAR_ID);
 }
 
 void KReversiMainWindow::slotComputerCantMove()
@@ -355,7 +373,7 @@ void KReversiMainWindow::slotUndo()
         m_historyView->scrollToItem( last );
 
         statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
-        statusBar()->changeItem( i18n("Computer: %1", m_game->playerScore(White) ), COMP_STATUSBAR_ID);
+        statusBar()->changeItem( i18n("%1: %2", opponentName(), m_game->playerScore(White) ), COMP_STATUSBAR_ID);
 
         m_undoAct->setEnabled( m_game->canUndo() );
         // if the user hits undo after game is over
@@ -366,7 +384,15 @@ void KReversiMainWindow::slotUndo()
 
 void KReversiMainWindow::slotHighscores()
 {
-    KExtHighscore::show(this);
+    if(!KGGZMod::Module::isGGZ())
+    {
+        KExtHighscore::show(this);
+    }
+    else
+    {
+        // FIXME (josef): GGZ needs KExtHighscore integration
+        KToolInvocation::invokeBrowser("http://www.ggzgamingzone.org/db/games?lookup=Reversi");
+    }
 }
 
 void KReversiMainWindow::slotSeats()
@@ -385,6 +411,18 @@ void KReversiMainWindow::showEvent( QShowEvent* )
         slotToggleDemoMode();
     }
     m_firstShow = false;
+}
+
+QString KReversiMainWindow::opponentName()
+{
+    if(KGGZMod::Module::isGGZ())
+    {
+        return i18n("Opponent");
+    }
+    else
+    {
+        return i18n("Computer");
+    }
 }
 
 #include "mainwindow.moc"
