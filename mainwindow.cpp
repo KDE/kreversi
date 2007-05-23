@@ -195,14 +195,14 @@ void KReversiMainWindow::slotSkillChanged(int skill)
     // m_game takes it from 1 to 7
     m_game->setComputerSkill( skill+1 );
     Preferences::setSkill( skill+1 );
-    Preferences::writeConfig();
+    Preferences::self()->writeConfig();
 }
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
     m_scene->setAnimationSpeed(speed);
     Preferences::setAnimationSpeed(speed);
-    Preferences::writeConfig();
+    Preferences::self()->writeConfig();
 }
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
@@ -210,7 +210,7 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
     QString chipsPath = m_coloredChipsAct->isChecked() ? "pics/chips.svgz" : "pics/chips_mono.svgz";
     m_scene->setChipsPixmap( KStandardDirs::locate("appdata", chipsPath) );
     Preferences::setUseColoredChips(toggled);
-    Preferences::writeConfig();
+    Preferences::self()->writeConfig();
 }
 
 void KReversiMainWindow::slotShowMovesHistory(bool toggled)
