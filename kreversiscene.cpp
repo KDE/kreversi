@@ -246,6 +246,7 @@ void KReversiScene::updateBoard()
         }
     m_lastMoveChip = 0;
     displayLastAndPossibleMoves();
+    update();
 }
 
 void KReversiScene::toggleDemoMode( bool toggle )
