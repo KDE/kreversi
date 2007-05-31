@@ -35,18 +35,9 @@ KReversiView::KReversiView( KReversiScene* scene, QWidget *parent )
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFrameStyle( QFrame::NoFrame );
-
-    setMinimumSize( sizeHint() );
-    resize( sizeHint() );
 }
 
 void KReversiView::resizeEvent( QResizeEvent* ev )
 {
     m_scene->resizeScene( ev->size().width(), ev->size().height() );
-    QGraphicsView::resizeEvent(ev);
-}
-
-QSize KReversiView::sizeHint() const
-{
-    return QSize( (int)m_scene->width(), (int)m_scene->height() );
 }

@@ -1,6 +1,6 @@
 /*******************************************************************
  *
- * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2006-2007 Dmitry Suzdalev <dimsuz@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -40,8 +40,6 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
 
     setChipsPixmap(chipsPath);
 
-    resizeScene( (int)m_curCellSize*10, (int)m_curCellSize*10 );
-
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
 
@@ -55,6 +53,7 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::resizeScene( int width, int height )
 {
+    kDebug() << "resizeScene " << width << "x" << height<<endl;
     setSceneRect( 0, 0, width, height );
 
     int size = qMin(width, height);

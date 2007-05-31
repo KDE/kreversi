@@ -87,7 +87,6 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     lay->setMargin(1);
 
     m_view = new KReversiView(m_scene, mainWid);
-    m_view->show();
     lay->addWidget(m_view, 0, 0, 2, 1);
 
     m_historyLabel = new QLabel( i18n("Move history"), mainWid );

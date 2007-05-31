@@ -33,8 +33,6 @@ public:
     KReversiView( KReversiScene* scene, QWidget *parent );
 private:
     virtual void resizeEvent( QResizeEvent* );
-    virtual QSize sizeHint() const;
-
     KReversiScene* m_scene;
 };
 #endif
