@@ -65,6 +65,7 @@ int main(int argc, char **argv)
     {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         KReversiMainWindow *mainWin = new KReversiMainWindow( 0, args->isSet( "demo" ) );
+	args->clear();
         mainWin->show();
     }
 
