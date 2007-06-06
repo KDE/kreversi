@@ -62,7 +62,7 @@ void KReversiScene::resizeScene( int width, int height )
     // board is square so no matter what to use - width or height
     int defWidth = KReversiRenderer::self()->defaultBoardSize().width();
     qreal scale = (qreal)size / defWidth;
-    // FIXME dimsuz: remove and find out where this comes from!
+
     if(scale <=0)
         return;
 
@@ -431,6 +431,11 @@ void KReversiScene::stopHintAnimation()
 void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 {
     stopHintAnimation();
+
+    // user moves not allowed in demo mode
+    if( m_demoMode )
+        return;
+
     if( m_animTimer->isActive() || m_game->isComputersTurn() )
     {
         kDebug() << "Don't you see I'm busy? Be patient, human child..." << endl;
@@ -447,8 +452,6 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     if( row > 7 ) row = 7;
     if( col < 0 ) col = 0;
     if( col > 7 ) col = 7;
-
-    //kDebug() << "Cell (" << row << "," << col << ") clicked." << endl;
 
     m_game->makePlayerMove( row, col, false );
 }

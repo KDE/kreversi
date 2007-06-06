@@ -1,6 +1,6 @@
 /*******************************************************************
  *
- * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2006-2007 Dmitry Suzdalev <dimsuz@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -147,7 +147,6 @@ void KReversiGame::makeComputerMove()
     // (also there's computeMove in getHint)
     KReversiPos move = m_engine->computeMove( *this, true );
     Q_ASSERT(move.color == m_computerColor);
-    //kDebug() << "White (computer) play ("<<move.row<<","<<move.col<<")" <<endl;
     makeMove(move);
     m_undoStack.push( m_changedChips );
 }
@@ -190,7 +189,7 @@ int KReversiGame::undo()
         if( move.color == m_playerColor )
             break; //we've undone all computer + one player moves
     }
-    
+
     m_curPlayer = m_playerColor;
 
     kDebug() << "Undone " << movesUndone << " moves." << endl;
@@ -301,9 +300,9 @@ bool KReversiGame::isMovePossible( const KReversiPos& move ) const
     if( m_cells[move.row][move.col] != NoColor || move.color == NoColor )
         return false;
 
-    if( hasChunk( Up, move ) || hasChunk( Down, move ) 
-            || hasChunk( Left, move ) || hasChunk( Right, move ) 
-            || hasChunk( UpLeft, move ) || hasChunk( UpRight, move ) 
+    if( hasChunk( Up, move ) || hasChunk( Down, move )
+            || hasChunk( Left, move ) || hasChunk( Right, move )
+            || hasChunk( UpLeft, move ) || hasChunk( UpRight, move )
             || hasChunk( DownLeft, move ) || hasChunk( DownRight, move ) )
     {
         return true;
@@ -314,7 +313,7 @@ bool KReversiGame::isMovePossible( const KReversiPos& move ) const
 
 bool KReversiGame::hasChunk( Direction dir, const KReversiPos& move ) const
 {
-    // On each step (as we proceed) we must ensure that current chip is of the 
+    // On each step (as we proceed) we must ensure that current chip is of the
     // opponent color.
     // We'll do our steps until we reach the chip of player color or we reach
     // the end of the board in this direction.
@@ -600,7 +599,7 @@ void KReversiGame::setChipColor(ChipColor color, int row, int col)
 }
 
 ChipColor KReversiGame::chipColorAt( int row, int col ) const
-{ 
+{
     Q_ASSERT( row < 8 && col < 8 );
     return m_cells[row][col];
 }
