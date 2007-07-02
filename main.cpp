@@ -34,26 +34,23 @@
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
-static const KCmdLineOptions options[] =
-{
-    {"demo", I18N_NOOP( "Start with demo game playing" ),  0 },
-    KCmdLineLastOption
-};
-
 int main(int argc, char **argv)
 {
-    KAboutData aboutData( "kreversi", I18N_NOOP("KReversi"),
-                          KREVERSI_VERSION, description, KAboutData::License_GPL,
-                          "(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev");
-    aboutData.addAuthor("Mario Weilguni",I18N_NOOP("Original author"), "mweilguni@sime.com");
-    aboutData.addAuthor("Inge Wallin",I18N_NOOP("Original author"), "inge@lysator.liu.se");
-    aboutData.addAuthor("Dmitry Suzdalev", I18N_NOOP("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
-    aboutData.addCredit("Simon Hürlimann", I18N_NOOP("Action refactoring"), 0);
-    aboutData.addCredit("Mats Luthman", I18N_NOOP("Game engine, ported from his JAVA applet."), 0);
-    aboutData.addCredit("Arne Klaassen", I18N_NOOP("Original raytraced chips."), 0);
-    aboutData.addCredit("Mauricio Piacentini", I18N_NOOP("Vector chips and background for KDE4."), 0);
+    KAboutData aboutData( "kreversi", 0, ki18n("KReversi"),
+                          KREVERSI_VERSION, ki18n(description), KAboutData::License_GPL,
+                          ki18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"));
+    aboutData.addAuthor(ki18n("Mario Weilguni"),ki18n("Original author"), "mweilguni@sime.com");
+    aboutData.addAuthor(ki18n("Inge Wallin"),ki18n("Original author"), "inge@lysator.liu.se");
+    aboutData.addAuthor(ki18n("Dmitry Suzdalev"), ki18n("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
+    aboutData.addCredit(ki18n("Simon Hürlimann"), ki18n("Action refactoring"));
+    aboutData.addCredit(ki18n("Mats Luthman"), ki18n("Game engine, ported from his JAVA applet."));
+    aboutData.addCredit(ki18n("Arne Klaassen"), ki18n("Original raytraced chips."));
+    aboutData.addCredit(ki18n("Mauricio Piacentini"), ki18n("Vector chips and background for KDE4."));
 
     KCmdLineArgs::init( argc, argv, &aboutData );
+
+    KCmdLineOptions options;
+    options.add("demo", ki18n( "Start with demo game playing" ));
     KCmdLineArgs::addCmdLineOptions( options );
 
     KApplication application;
