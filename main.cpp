@@ -30,14 +30,13 @@
 
 #include "highscores.h"
 #include "mainwindow.h"
-#include "version.h"
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
     KAboutData aboutData( "kreversi", 0, ki18n("KReversi"),
-                          KREVERSI_VERSION, ki18n(description), KAboutData::License_GPL,
+                          "2.0", ki18n(description), KAboutData::License_GPL,
                           ki18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"));
     aboutData.addAuthor(ki18n("Mario Weilguni"),ki18n("Original author"), "mweilguni@sime.com");
     aboutData.addAuthor(ki18n("Inge Wallin"),ki18n("Original author"), "inge@lysator.liu.se");

@@ -20,8 +20,8 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#ifndef COMMON_DEFINITIONS_H
-#define COMMON_DEFINITIONS_H
+#ifndef COMMONDEFS_H
+#define COMMONDEFS_H
 
 // noColor = empty
 enum ChipColor { White = 0, Black = 1, NoColor = 2 };
