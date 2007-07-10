@@ -45,21 +45,9 @@ private:
     ~KReversiRenderer();
 
     /**
-     *  Svg renderer for background rendering on resizes
+     *  Svg renderer instance
      */
-    KSvgRenderer *m_bkgndRenderer;
-    /**
-     *  Svg renderer for board rendering on resizes
-     */
-    KSvgRenderer* m_boardRenderer;
-    /**
-     *  Svg renderer for background labels (A-H, 0-7) rendering on resizes
-     */
-    KSvgRenderer* m_boardLabelsRenderer;
-    /**
-     *  Svg renderer for possible moves label rendering
-     */
-    KSvgRenderer* m_possMovesRenderer;
+    KSvgRenderer *m_renderer;
 
 };
 #endif

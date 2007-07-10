@@ -33,49 +33,38 @@ KReversiRenderer* KReversiRenderer::self()
 
 KReversiRenderer::KReversiRenderer()
 {
-    // FIXME dimsuz: move this to single SVG. and introduce smth like setTheme()
-    m_bkgndRenderer = new KSvgRenderer();
-    m_bkgndRenderer->load( KStandardDirs::locate( "appdata", "pics/background.svgz" ) );
-
-    m_boardRenderer = new KSvgRenderer();
-    m_boardRenderer->load( KStandardDirs::locate("appdata", "pics/default_board.svgz") );
-
-    m_boardLabelsRenderer = new KSvgRenderer();
-    m_boardLabelsRenderer->load( KStandardDirs::locate("appdata", "pics/board_numbers.svgz") );
-
-    m_possMovesRenderer = new KSvgRenderer();
-    m_possMovesRenderer->load( KStandardDirs::locate("appdata", "pics/move_hint.svgz") );
+    // TODO introduce smth like setTheme()
+    m_renderer = new KSvgRenderer();
+    m_renderer->load( KStandardDirs::locate( "appdata", "pics/default_theme.svgz" ) );
 }
 
 void KReversiRenderer::renderBackground( QPainter *p, const QRectF& r )
 {
-    m_bkgndRenderer->render( p, r );
+    m_renderer->render( p, "background", r );
 }
 
 void KReversiRenderer::renderBoard( QPainter *p, const QRectF& r )
 {
-    m_boardRenderer->render( p, r );
+    m_renderer->render( p, "board", r );
 }
 
 void KReversiRenderer::renderBoardLabels( QPainter *p, const QRectF& r )
 {
-    m_boardLabelsRenderer->render( p, r );
+    m_renderer->render( p, "board_numbers", r );
 }
 
 void KReversiRenderer::renderPossibleMove( QPainter *p )
 {
-    m_possMovesRenderer->render( p );
+    m_renderer->render( p, "move_hint" );
 }
 
 KReversiRenderer::~KReversiRenderer()
 {
-    delete m_bkgndRenderer;
-    delete m_boardRenderer;
-    delete m_boardLabelsRenderer;
-    delete m_possMovesRenderer;
+    delete m_renderer;
 }
 
 QSize KReversiRenderer::defaultBoardSize() const
 {
-    return m_boardRenderer->defaultSize();
+    QRectF boardSize = m_renderer->boundsOnElement("board");
+    return QSize((int) boardSize.width(), (int) boardSize.height());
 }
