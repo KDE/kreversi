@@ -53,9 +53,14 @@ void KReversiRenderer::renderBoardLabels( QPainter *p, const QRectF& r )
     m_renderer->render( p, "board_numbers", r );
 }
 
-void KReversiRenderer::renderPossibleMove( QPainter *p )
+void KReversiRenderer::renderPossibleMove( QPainter *p, const QRectF& r  )
 {
-    m_renderer->render( p, "move_hint" );
+    m_renderer->render( p, "move_hint", r );
+}
+
+void KReversiRenderer::renderElement (QPainter *p, QString& elementid )
+{
+    m_renderer->render( p, elementid );
 }
 
 KReversiRenderer::~KReversiRenderer()
@@ -67,4 +72,10 @@ QSize KReversiRenderer::defaultBoardSize() const
 {
     QRectF boardSize = m_renderer->boundsOnElement("board");
     return QSize((int) boardSize.width(), (int) boardSize.height());
+}
+
+QSize KReversiRenderer::defaultChipSize() const
+{
+    QRectF chipSize = m_renderer->boundsOnElement("chip_bw_1");
+    return QSize((int) chipSize.width(), (int) chipSize.height());
 }

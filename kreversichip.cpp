@@ -21,7 +21,7 @@
  *
  ********************************************************************/
 #include "kreversichip.h"
-#include <ksvgrenderer.h>
+#include "kreversirenderer.h"
 #include <QPainter>
 #include <QPixmap>
 #include <QImage>
@@ -72,51 +72,36 @@ void KReversiChip::showLastMoveMarker(bool show)
 
 // -------------------------------------------------------------------------------
 
-// FIXME dimsuz: make member?
-static const int NUM_COLS_IN_PIX = 4;
-static const int NUM_ROWS_IN_PIX = 3;
-
 KReversiChipFrameSet::KReversiChipFrameSet()
 {
-    m_renderer = new KSvgRenderer;
 }
 
 KReversiChipFrameSet::~KReversiChipFrameSet()
 {
-    delete m_renderer;
 }
 
-void KReversiChipFrameSet::loadFrames( const QString& chipsPath, int chipSize )
+void KReversiChipFrameSet::switchChipSet( const QString& chipsPrefix, int chipSize )
 {
-    m_renderer->load( chipsPath );
-    //TODO Return meaningful error?
-    if (!m_renderer->isValid()) return;
-    int size = chipSize == 0 ? m_renderer->defaultSize().width()/NUM_COLS_IN_PIX : chipSize;
+    m_currentChipsPrefix = chipsPrefix;
+    int size = chipSize == 0 ? KReversiRenderer::self()->defaultChipSize().width() : chipSize;
     setChipSize( size );
 }
 
 void KReversiChipFrameSet::setChipSize( int newSize )
 {
     QImage baseImg;
-    //TODO Return meaningful error?
-    if (!m_renderer->isValid()) return;
+    m_frames.clear();
+    for (int i=1; i<=12; i++) {
     //Construct an image object to render the contents of the .svgz file
-    baseImg = QImage(newSize*NUM_COLS_IN_PIX, newSize*NUM_ROWS_IN_PIX, QImage::Format_ARGB32_Premultiplied);
+    baseImg = QImage(newSize, newSize, QImage::Format_ARGB32_Premultiplied);
     //Fill the buffer, it is unitialised by default
     baseImg.fill(0);
     QPainter p(&baseImg);
-    m_renderer->render(&p);
+    QString nextelement(m_currentChipsPrefix.arg(i));
+    KReversiRenderer::self()->renderElement(&p, nextelement);
     p.end();
-
-    QPixmap allFrames = QPixmap::fromImage(baseImg);
-    int frameSize = allFrames.width() / NUM_COLS_IN_PIX;
-
-    m_frames.clear();
-    for(int y=0; y < allFrames.height(); y += frameSize )
-        for(int x=0; x < allFrames.width(); x += frameSize )
-        {
-            m_frames.append( allFrames.copy(x,y, frameSize, frameSize) );
-        }
+    m_frames.append( QPixmap::fromImage(baseImg) );
+    }
 }
 
 QPixmap KReversiChipFrameSet::frame( ChipColor color, int frameNo ) const

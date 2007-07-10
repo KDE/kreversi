@@ -38,7 +38,7 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
 {
     setBackgroundBrush( Qt::lightGray );
 
-    setChipsPixmap(chipsPath);
+    setChipsPrefix(chipsPath);
 
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
@@ -86,9 +86,10 @@ void KReversiScene::resizeScene( int width, int height )
 
     // Render possible moves pixmap
     QImage baseImg((int)m_curCellSize, (int)m_curCellSize, QImage::Format_ARGB32_Premultiplied);
+    QRectF moveRect(0,0,m_curCellSize,m_curCellSize);
     baseImg.fill(0);
     QPainter p(&baseImg);
-    KReversiRenderer::self()->renderPossibleMove( &p );
+    KReversiRenderer::self()->renderPossibleMove( &p, moveRect );
     p.end();
     m_possMovePix = QPixmap::fromImage(baseImg);
 
@@ -99,18 +100,18 @@ void KReversiScene::resizeScene( int width, int height )
     displayLastAndPossibleMoves();
 }
 
-void KReversiScene::setChipsPixmap( const QString& chipsPath )
+void KReversiScene::setChipsPrefix( const QString& chipsPrefix )
 {
     if(!m_frameSet) // this is a first invocation
     {
         m_frameSet = new KReversiChipFrameSet();
-        m_frameSet->loadFrames( chipsPath );
+        m_frameSet->switchChipSet( chipsPrefix );
         m_curCellSize = m_frameSet->defaultChipSize();
     }
     else // we're changing frameset's pixmap (monochrome-chips <-> color-chips transition)
     {
         // m_curCellSize is already defined in this case, so lets scale chips on load
-        m_frameSet->loadFrames( chipsPath, (int)m_curCellSize );
+        m_frameSet->switchChipSet( chipsPrefix, (int)m_curCellSize );
     }
 
     if(m_game)

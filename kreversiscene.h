@@ -59,10 +59,10 @@ public:
      */
     void setGame( KReversiGame* game );
     /**
-     *  Sets the chips pixmap to be one found in chipsPath
+     *  Sets the chips pixmap to be one found in chipsPrefix
      *  @see KReversiChipFrameSet
      */
-    void setChipsPixmap( const QString& chipsPath );
+    void setChipsPrefix( const QString& chipsPrefix );
     /**
      *  Sets whether to show board labels.
      *  You'll need to call

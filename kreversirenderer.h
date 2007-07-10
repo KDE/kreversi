@@ -35,8 +35,10 @@ public:
     void renderBackground( QPainter *p, const QRectF& r );
     void renderBoard( QPainter *p, const QRectF& r );
     void renderBoardLabels( QPainter *p, const QRectF& r );
-    void renderPossibleMove( QPainter *p );
+    void renderPossibleMove( QPainter *p, const QRectF& r  );
+    void renderElement (QPainter *p, QString& elementid );
     QSize defaultBoardSize() const;
+    QSize defaultChipSize() const;
 private:
     // disable copy - it's singleton
     KReversiRenderer();

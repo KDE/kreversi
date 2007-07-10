@@ -206,8 +206,8 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
-    QString chipsPath = m_coloredChipsAct->isChecked() ? "pics/chips.svgz" : "pics/chips_mono.svgz";
-    m_scene->setChipsPixmap( KStandardDirs::locate("appdata", chipsPath) );
+    QString chipsPrefix = m_coloredChipsAct->isChecked() ? "chip_color_%1" : "chip_bw_%1";
+    m_scene->setChipsPrefix( chipsPrefix );
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
 }
@@ -275,9 +275,8 @@ void KReversiMainWindow::slotNewGame()
 
     if(m_scene == 0) // if called first time
     {
-        // FIXME dimsuz: if chips[_mono].png not found give error end exit
-        QString chipsPath = Preferences::useColoredChips() ? "pics/chips.svgz" : "pics/chips_mono.svgz";
-        m_scene = new KReversiScene(m_game, KStandardDirs::locate("appdata", chipsPath));
+        QString chipsPrefix = Preferences::useColoredChips() ? "chip_color_%1" : "chip_bw_%1";
+        m_scene = new KReversiScene(m_game, chipsPrefix);
         m_scene->setAnimationSpeed( Preferences::animationSpeed() );
         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
     }

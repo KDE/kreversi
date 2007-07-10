@@ -66,8 +66,6 @@ private:
     int m_col;
 };
 
-class KSvgRenderer;
-
 /**
  *  This class will load and hold a chip animation frameset.
  *  As all chips share the same frames it's good to
@@ -89,17 +87,17 @@ public:
     KReversiChipFrameSet();
     ~KReversiChipFrameSet();
     /**
-     *  Loads a chips (svg) pixmap found in path chipsPath, which 
+     *  Prepare to render chips (from svg elements) pixmap with prefix chipsPrefix, which 
      *  contains chip's animation sequence.
      *  The chips frames are extracted from it and put into 
      *  m_frames QList
      *  Supposes that this pixmap represents an animation sequence 
      *  going from black to white.
-     *  @param chipsPath a path to svg pixmap containing whole animation sequence
+     *  @param chipsPrefixa svg prefix element ids containing whole animation sequence
      *  @param chipSize if not equal to 0 then chips will be scaled to chipSize x chipSize each
      *  else chips will be loaded unscaled
      */
-    void loadFrames( const QString& chipsPath, int chipSize = 0 );
+    void switchChipSet( const QString& chipsPrefix, int chipSize = 0 );
     /**
      *  Retruns a pixmap which corresponds to frame with number frameNo.
      *  It takes the chip color into account. This means that
@@ -131,6 +129,6 @@ public:
     int defaultChipSize() const { return m_frames.at(0).width(); }
 private:
     QList<QPixmap> m_frames;
-    KSvgRenderer *m_renderer;
+    QString m_currentChipsPrefix;
 };
 #endif
