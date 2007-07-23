@@ -1,6 +1,3 @@
-#include (${CMAKE_MODULE_PATH}/GGZ.cmake)
-include (../cmake/modules/GGZ.cmake)
-
 project(kreversi)
 add_subdirectory( pics ) 
 add_subdirectory( sounds ) 
