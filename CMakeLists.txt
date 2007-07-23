@@ -32,7 +32,7 @@ register_ggz_module(module.dsc)
 
 ########### install files ###############
 
-install( FILES kreversi.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
 
