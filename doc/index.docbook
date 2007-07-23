@@ -217,6 +217,26 @@ of a corner.</para>
 
 </chapter>
 
+<chapter id="multiplayer">
+<title>Multiplayer support</title>
+
+<para>
+&kreversi; can be played online on any GGZ Gaming Zone site. You can
+find other players there, and compete against them. Just enter one
+of the available Reversi rooms with any GGZ core client, such as
+kggz, and &kreversi; will be offered to you as your favourite
+game client. If a GGZ core client is installed, you can try
+out GGZ by visiting the <ulink url="ggz://live.ggzgamingzone.org/#Reversi">community site</ulink>.
+</para>
+
+<para>
+Remember that when playing online, the opponent might be either a
+human player or a computer player. The latter one might behave
+differently from the computer player included in &kreversi;.
+</para>
+
+</chapter>
+
 <chapter id="user-interface">
 <title>User Interface</title>
 
