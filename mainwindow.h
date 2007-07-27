@@ -49,7 +49,6 @@ public slots:
     void slotToggleDemoMode();
     void slotUseColoredChips(bool);
     void slotShowMovesHistory(bool);
-    void slotComputerCantMove();
     void slotHighscores();
     void slotSeats();
 private:

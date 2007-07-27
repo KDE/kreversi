@@ -31,6 +31,7 @@
 class KReversiGame;
 class KReversiChipFrameSet;
 class KReversiChip;
+class KGamePopupItem;
 class QPainter;
 class QTimer;
 
@@ -126,6 +127,8 @@ private slots:
     void slotGameMoveFinished();
     void slotAnimationStep();
     void slotGameOver();
+    void slotComputerCantMove();
+    void slotPlayerCantMove();
 signals:
     /**
      *  emitted when Scene finishes displaying last move
@@ -236,5 +239,9 @@ private:
      *  (isn't that too much words for this little thingie? ;) )
      */
     QList<QGraphicsPixmapItem*> m_possibleMovesItems;
+    /**
+     * Item to show messages to user
+     */
+    KGamePopupItem* m_messageItem;
 };
 #endif

@@ -30,13 +30,17 @@
 #include <QTimer>
 
 #include <kdebug.h>
+#include <KLocale>
+#include <KGamePopupItem>
 
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
     m_showLabels(false)
 {
-    setBackgroundBrush( Qt::lightGray );
+    m_messageItem = new KGamePopupItem();
+    m_messageItem->setMessageOpacity(0.9);
+    addItem(m_messageItem);
 
     setChipsPrefix(chipsPath);
 
@@ -147,13 +151,20 @@ void KReversiScene::setGame( KReversiGame* game )
     connect( m_game, SIGNAL(boardChanged()), SLOT(updateBoard()) );
     connect( m_game, SIGNAL(moveFinished()), SLOT(slotGameMoveFinished()) );
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
+    connect( m_game, SIGNAL(computerCantMove()), SLOT(slotComputerCantMove()) );
+    connect( m_game, SIGNAL(playerCantMove()), SLOT(slotPlayerCantMove()) );
 
-    // this will remove all items left from previous game
-    QList<QGraphicsItem*> allChips = items();
-    foreach( QGraphicsItem* chip, allChips )
+    // this will remove all chips left from previous game
+    QList<QGraphicsItem*> allItems = items();
+    KReversiChip* chip;
+    foreach( QGraphicsItem* item, allItems )
     {
-        removeItem( chip );
-        delete chip;
+        chip = qgraphicsitem_cast<KReversiChip*>(item);
+        if(chip)
+        {
+            removeItem( chip );
+            delete chip;
+        }
     }
 
     m_possibleMovesItems.clear();
@@ -455,6 +466,18 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
     if( col > 7 ) col = 7;
 
     m_game->makePlayerMove( row, col, false );
+}
+
+void KReversiScene::slotComputerCantMove()
+{
+    m_messageItem->setMessageTimeout(3000);
+    m_messageItem->showMessage(i18n("Computer can not move. It is your turn again."), KGamePopupItem::BottomLeft);
+}
+
+void KReversiScene::slotPlayerCantMove()
+{
+    m_messageItem->setMessageTimeout(3000);
+    m_messageItem->showMessage(i18n("You can not perform any move. Computer makes next turn now."), KGamePopupItem::BottomLeft);
 }
 
 #include "kreversiscene.moc"

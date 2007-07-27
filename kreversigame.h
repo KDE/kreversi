@@ -62,16 +62,16 @@ public:
      *  - if it is computer turn and computer can move, it'll make that move.
      *  - if it is computer turn and computer can't move it'll emit "computerCantMove"
      *  signal and exit
-     *  - if it is player turn and player can move then this function 
+     *  - if it is player turn and player can move then this function
      *  will do nothing - you can call makePlayerMove(row,col) to make player move (but see last item)
      *  - if it is player turn and player can't move it'll make a computer move
      *  - in demo mode this function will make computer play player moves,
      *  so you don't need to call makePlayerMove.
      *
      *  If game is over it'll emit gameOver()
-     *  
+     *
      *  If it's still unclear how to use it please see KReversiScene for working example.
-     *  In short: KReversiScene calls startNextTurn() at the end of each turn and makePlayerMove() 
+     *  In short: KReversiScene calls startNextTurn() at the end of each turn and makePlayerMove()
      *  in mouseReleaseEvent()
      *
      *  @param demoMode if true then computer will decide for player turn
@@ -85,7 +85,7 @@ public:
      */
     void makePlayerMove(int row, int col, bool demoMode);
     /**
-     *  This function will make computer decide where he 
+     *  This function will make computer decide where he
      *  wants to put his chip... and he'll put it there!
      */
     void makeComputerMove();
@@ -115,7 +115,7 @@ public:
      *  @return a color of the current player
      */
     ChipColor currentPlayer() const { return m_curPlayer; }
-    
+
     /**
      *  @return score (number of chips) of the player
      */
@@ -155,6 +155,7 @@ signals:
     void boardChanged();
     void moveFinished();
     void computerCantMove();
+    void playerCantMove();
     void networkError();
 private slots:
     void networkData(int fd);
@@ -165,10 +166,10 @@ private:
      * This function will tell you if the move is possible.
      * That's why it was given such a name ;)
      */
-    bool isMovePossible( const KReversiPos& move ) const; 
+    bool isMovePossible( const KReversiPos& move ) const;
     /**
      *  Searches for "chunk" in direction dir for move.
-     *  As my English-skills are somewhat limited, let me introduce 
+     *  As my English-skills are somewhat limited, let me introduce
      *  new terminology ;).
      *  I'll define a "chunk" of chips for color "C" as follows:
      *  (let "O" be the color of the opponent for color "C")

@@ -250,7 +250,6 @@ void KReversiMainWindow::slotNewGame()
     m_game = new KReversiGame;
     m_game->setComputerSkill( Preferences::skill() );
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
-    connect( m_game, SIGNAL(computerCantMove()), SLOT(slotComputerCantMove()) );
 
     if(KGGZMod::Module::isGGZ())
     {
@@ -357,11 +356,6 @@ void KReversiMainWindow::slotMoveFinished()
 
     statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
     statusBar()->changeItem( i18n("%1: %2", opponentName(), m_game->playerScore(White) ), COMP_STATUSBAR_ID);
-}
-
-void KReversiMainWindow::slotComputerCantMove()
-{
-    statusBar()->changeItem( i18n("Computer can not make move. Your turn."), 0 );
 }
 
 void KReversiMainWindow::slotUndo()

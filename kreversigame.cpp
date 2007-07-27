@@ -117,8 +117,7 @@ void KReversiGame::startNextTurn(bool demoMode)
             // if player cant move let the computer play again!
             if( !isAnyPlayerMovePossible() )
             {
-                // FIXME dimsuz: emit something like "playerCantMove()" for gui to catch this?
-                kDebug() << "Player can't move!" << endl;
+                emit playerCantMove();
                 makeComputerMove();
             }
             else if( demoMode ) // let the computer play instead of player
