@@ -98,7 +98,7 @@ void KReversiChipFrameSet::setChipSize( int newSize )
     baseImg.fill(0);
     QPainter p(&baseImg);
     QString nextelement(m_currentChipsPrefix.arg(i));
-    KReversiRenderer::self()->renderElement(&p, nextelement);
+    KReversiRenderer::self()->renderElement(&p, nextelement, QRectF(0,0,newSize,newSize));
     p.end();
     m_frames.append( QPixmap::fromImage(baseImg) );
     }

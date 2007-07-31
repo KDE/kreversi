@@ -24,6 +24,9 @@
 #include "kreversirenderer.h"
 #include <kstandarddirs.h>
 #include <ksvgrenderer.h>
+#include <kpixmapcache.h>
+
+#include <QPainter>
 
 KReversiRenderer* KReversiRenderer::self()
 {
@@ -33,39 +36,54 @@ KReversiRenderer* KReversiRenderer::self()
 
 KReversiRenderer::KReversiRenderer()
 {
-    // TODO introduce smth like setTheme()
     m_renderer = new KSvgRenderer();
     m_renderer->load( KStandardDirs::locate( "appdata", "pics/default_theme.svgz" ) );
+
+    m_cache = new KPixmapCache("kreversi-cache");
+    m_cache->setCacheLimit( 3*1024 );
 }
 
-void KReversiRenderer::renderBackground( QPainter *p, const QRectF& r )
+void KReversiRenderer::renderBackground( QPainter *p, const QRectF& r ) const
 {
-    m_renderer->render( p, "background", r );
+    renderElement(p, "background", r);
 }
 
-void KReversiRenderer::renderBoard( QPainter *p, const QRectF& r )
+void KReversiRenderer::renderBoard( QPainter *p, const QRectF& r ) const
 {
-    m_renderer->render( p, "board", r );
+    renderElement(p, "board", r);
 }
 
-void KReversiRenderer::renderBoardLabels( QPainter *p, const QRectF& r )
+void KReversiRenderer::renderBoardLabels( QPainter *p, const QRectF& r ) const
 {
-    m_renderer->render( p, "board_numbers", r );
+    renderElement(p, "board_numbers", r);
 }
 
-void KReversiRenderer::renderPossibleMove( QPainter *p, const QRectF& r  )
+void KReversiRenderer::renderPossibleMove( QPainter *p, const QRectF& r  ) const
 {
-    m_renderer->render( p, "move_hint", r );
+    renderElement( p, "move_hint", r );
 }
 
-void KReversiRenderer::renderElement (QPainter *p, QString& elementid )
+void KReversiRenderer::renderElement (QPainter *p, const QString& elementid, const QRectF& r ) const
 {
-    m_renderer->render( p, elementid );
+    QPixmap pix;
+    QString cacheStr = elementid+QString("_%1x%2").arg(r.width()).arg(r.height());
+    if(!m_cache->find(cacheStr, pix))
+    {
+        pix = QPixmap(r.size().toSize());
+        pix.fill(Qt::transparent);
+        QPainter paint(&pix);
+        m_renderer->render(&paint, elementid);
+        paint.end();
+        m_cache->insert(cacheStr, pix);
+    }
+
+    p->drawPixmap(static_cast<int>(r.x()), static_cast<int>(r.y()), pix);
 }
 
 KReversiRenderer::~KReversiRenderer()
 {
     delete m_renderer;
+    delete m_cache;
 }
 
 QSize KReversiRenderer::defaultBoardSize() const

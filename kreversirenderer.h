@@ -26,17 +26,18 @@
 #include <QPixmap>
 
 class KSvgRenderer;
+class KPixmapCache;
 
 class KReversiRenderer
 {
 public:
     static KReversiRenderer* self();
 
-    void renderBackground( QPainter *p, const QRectF& r );
-    void renderBoard( QPainter *p, const QRectF& r );
-    void renderBoardLabels( QPainter *p, const QRectF& r );
-    void renderPossibleMove( QPainter *p, const QRectF& r  );
-    void renderElement (QPainter *p, QString& elementid );
+    void renderBackground( QPainter *p, const QRectF& r ) const;
+    void renderBoard( QPainter *p, const QRectF& r ) const;
+    void renderBoardLabels( QPainter *p, const QRectF& r ) const;
+    void renderPossibleMove( QPainter *p, const QRectF& r  ) const;
+    void renderElement (QPainter *p, const QString& elementid, const QRectF& r ) const;
     QSize defaultBoardSize() const;
     QSize defaultChipSize() const;
 private:
@@ -50,6 +51,6 @@ private:
      *  Svg renderer instance
      */
     KSvgRenderer *m_renderer;
-
+    KPixmapCache *m_cache;
 };
 #endif
