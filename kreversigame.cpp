@@ -86,7 +86,7 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
         kDebug() << "No move possible";
         return;
     }
-    //kDebug() << "Black (player) play ("<<move.row<<","<<move.col<<")" <<endl;
+    //kDebug() << "Black (player) play ("<<move.row<<","<<move.col<<")";
     makeMove( move );
     m_undoStack.push( m_changedChips );
 }
@@ -192,7 +192,7 @@ int KReversiGame::undo()
     m_curPlayer = m_playerColor;
 
     kDebug() << "Undone" << movesUndone << "moves.";
-    //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" )<< endl;
+    //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" );
 
     emit boardChanged();
 
@@ -289,7 +289,7 @@ void KReversiGame::makeMove( const KReversiPos& move )
     }
 
     m_curPlayer = (m_curPlayer == White ? Black : White );
-    //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" )<< endl;
+    //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" );
     emit moveFinished();
 }
 

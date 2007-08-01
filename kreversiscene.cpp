@@ -57,7 +57,7 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::resizeScene( int width, int height )
 {
-    kDebug() << "resizeScene" << width << "x" << height<<endl;
+    kDebug() << "resizeScene" << width << "x" << height;
     setSceneRect( 0, 0, width, height );
 
     int size = qMin(width, height);
