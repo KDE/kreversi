@@ -57,7 +57,7 @@ KReversiScene::~KReversiScene()
 
 void KReversiScene::resizeScene( int width, int height )
 {
-    kDebug() << "resizeScene " << width << "x" << height<<endl;
+    kDebug() << "resizeScene" << width << "x" << height<<endl;
     setSceneRect( 0, 0, width, height );
 
     int size = qMin(width, height);
@@ -233,13 +233,13 @@ void KReversiScene::updateBoard()
                 {
                     if( chip->color() != color )
                     {
-                        //kDebug() << "Found item at (" << row << "," << col << "). Setting its color." << endl;
+                        //kDebug() << "Found item at (" << row << "," << col << "). Setting its color.";
                         chip->setColor( color );
                     }
                 }
                 else
                 {
-                    //kDebug() << "No item at (" << row << "," << col << "). Creating." << endl;
+                    //kDebug() << "No item at (" << row << "," << col << "). Creating.";
                     chip = new KReversiChip( color, m_frameSet, this );
                     chip->setPos( cellTopLeft(row, col) );
                     chip->setRowCol( row, col );
@@ -383,12 +383,12 @@ void KReversiScene::slotHint()
 {
     if( m_game->isComputersTurn() )
     {
-        kDebug() << "It is not a very good time to ask me for a hint, human. I'm thinking..." << endl;
+        kDebug() << "It is not a very good time to ask me for a hint, human. I'm thinking...";
         return;
     }
     if( m_animTimer->isActive() )
     {
-        kDebug() << "Don't you see I'm animating? Be patient, human child..." << endl;
+        kDebug() << "Don't you see I'm animating? Be patient, human child...";
         return;
     }
     KReversiPos hint = m_game->getHint();
@@ -450,7 +450,7 @@ void KReversiScene::mousePressEvent( QGraphicsSceneMouseEvent* ev )
 
     if( m_animTimer->isActive() || m_game->isComputersTurn() )
     {
-        kDebug() << "Don't you see I'm busy? Be patient, human child..." << endl;
+        kDebug() << "Don't you see I'm busy? Be patient, human child...";
         return;
     }
 

@@ -46,14 +46,14 @@ KReversiGame::KReversiGame()
 
     m_engine = new Engine(1);
 
-    kDebug() << "GGZDEBUG: see if we're in ggz mode" << endl;
+    kDebug() << "GGZDEBUG: see if we're in ggz mode";
     if(KGGZMod::Module::isGGZ())
     {
-        kDebug() << "GGZDEBUG: yep we're in ggz mode, now activate kggzmod" << endl;
+        kDebug() << "GGZDEBUG: yep we're in ggz mode, now activate kggzmod";
         m_mod = new KGGZMod::Module("KReversi");
         connect(m_mod, SIGNAL(signalError()), SLOT(networkErrorHandler()));
         connect(m_mod, SIGNAL(signalNetwork(int)), SLOT(networkData(int)));
-        kDebug() << "GGZDEBUG: kggzmod activated" << endl;
+        kDebug() << "GGZDEBUG: kggzmod activated";
     }
     m_raw = NULL;
 }
@@ -83,7 +83,7 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
 
     if( !isMovePossible(move) )
     {
-        kDebug() << "No move possible" << endl;
+        kDebug() << "No move possible";
         return;
     }
     //kDebug() << "Black (player) play ("<<move.row<<","<<move.col<<")" <<endl;
@@ -107,7 +107,7 @@ void KReversiGame::startNextTurn(bool demoMode)
             }
             else // no comp move possible and not in demo mode
             {
-                kDebug() << "Computer can't move!" << endl;
+                kDebug() << "Computer can't move!";
                 m_curPlayer = m_playerColor;
                 emit computerCantMove();
             }
@@ -128,7 +128,7 @@ void KReversiGame::startNextTurn(bool demoMode)
     }
     else
     {
-        kDebug() << "GAME OVER" << endl;
+        kDebug() << "GAME OVER";
         emit gameOver();
     }
 }
@@ -191,8 +191,8 @@ int KReversiGame::undo()
 
     m_curPlayer = m_playerColor;
 
-    kDebug() << "Undone " << movesUndone << " moves." << endl;
-    //kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
+    kDebug() << "Undone" << movesUndone << "moves.";
+    //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" )<< endl;
 
     emit boardChanged();
 
@@ -289,7 +289,7 @@ void KReversiGame::makeMove( const KReversiPos& move )
     }
 
     m_curPlayer = (m_curPlayer == White ? Black : White );
-    //kDebug() << "Current player changed to " << (m_curPlayer == White ? "White" : "Black" )<< endl;
+    //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" )<< endl;
     emit moveFinished();
 }
 
@@ -593,8 +593,8 @@ void KReversiGame::setChipColor(ChipColor color, int row, int col)
     if( color != NoColor )
         m_score[color]++;
 
-    //kDebug() << "Score of White player: " << m_score[White] << endl;
-    //kDebug() << "Score of Black player: " << m_score[Black] << endl;
+    //kDebug() << "Score of White player:" << m_score[White];
+    //kDebug() << "Score of Black player:" << m_score[Black];
 }
 
 ChipColor KReversiGame::chipColorAt( int row, int col ) const
@@ -621,7 +621,7 @@ ChipColor KReversiGame::chipColorAt( int row, int col ) const
 
 void KReversiGame::networkErrorHandler()
 {
-    kError() << "GGZDEBUG: Network error, disconnect all channels" << endl;
+    kError() << "GGZDEBUG: Network error, disconnect all channels";
     delete m_raw;
     delete m_mod;
     m_raw = NULL;
@@ -645,23 +645,23 @@ void KReversiGame::networkData(int fd)
     int movevalue;
     KReversiPos move;
 
-    kDebug() << "GGZDEBUG: Network traffic on fd " << fd << endl;
+    kDebug() << "GGZDEBUG: Network traffic on fd" << fd;
 
     if(!m_raw)
     {
-        kDebug() << "GGZDEBUG: Set up packet reader" << endl;
+        kDebug() << "GGZDEBUG: Set up packet reader";
         m_raw = new KGGZRaw();
         m_raw->setNetwork(fd);
         connect(m_raw, SIGNAL(signalError()), SLOT(networkErrorHandler()));
     }
 
     *m_raw >> opcode;
-    kDebug() << "GGZDEBUG: opcode=" << opcode << endl;
+    kDebug() << "GGZDEBUG: opcode=" << opcode;
 
     if(opcode == MSG_SEAT)
     {
         *m_raw >> seat;
-        kDebug() << "GGZDEBUG: MSG_SEAT: seat=" << seat << endl;
+        kDebug() << "GGZDEBUG: MSG_SEAT: seat=" << seat;
     }
     else if(opcode == MSG_PLAYERS)
     {
@@ -675,9 +675,9 @@ void KReversiGame::networkData(int fd)
         {
             *m_raw >> playername2;
         }
-        kDebug() << "GGZDEBUG: MSG_PLAYERS:" << endl;
-        kDebug() << " player1=" << playername1 << endl;
-        kDebug() << " player2=" << playername2 << endl;
+        kDebug() << "GGZDEBUG: MSG_PLAYERS:";
+        kDebug() << "player1=" << playername1;
+        kDebug() << "player2=" << playername2;
     }
     else if(opcode == MSG_SYNC)
     {
@@ -686,16 +686,16 @@ void KReversiGame::networkData(int fd)
         {
             *m_raw >> boardfield[i];
         }
-        kDebug() << "GGZDEBUG: MSG_SYNC: turn=" << turn << endl;
+        kDebug() << "GGZDEBUG: MSG_SYNC: turn=" << turn;
     }
     else if(opcode == MSG_START)
     {
-        kDebug() << "GGZDEBUG: MSG_START" << endl;
+        kDebug() << "GGZDEBUG: MSG_START";
     }
     else if(opcode == MSG_MOVE)
     {
         *m_raw >> movevalue;
-        kDebug() << "GGZDEBUG: MSG_MOVE move=" << movevalue << endl;
+        kDebug() << "GGZDEBUG: MSG_MOVE move=" << movevalue;
 
         if( movevalue == -1 )
         {
@@ -715,11 +715,11 @@ void KReversiGame::networkData(int fd)
     else if(opcode == MSG_GAMEOVER)
     {
         *m_raw >> winner;
-        kDebug() << "GGZDEBUG: MSG_WINNER winner=" << winner << endl;
+        kDebug() << "GGZDEBUG: MSG_WINNER winner=" << winner;
     }
     else
     {
-        kDebug() << "GGZDEBUG: Waaaah, we've not implemented the whole protocol yet!" << endl;
+        kDebug() << "GGZDEBUG: Waaaah, we've not implemented the whole protocol yet!";
         networkError();
     }
 }
@@ -730,11 +730,11 @@ void KReversiGame::makeNetworkMove( int row, int col )
 
     if( !m_raw )
     {
-        kError() << "GGZDEBUG: Not connected to server" << endl;
+        kError() << "GGZDEBUG: Not connected to server";
         return;
     }
 
-    kDebug() << "GGZDEBUG: submit move " << movevalue << " to network" << endl;
+    kDebug() << "GGZDEBUG: submit move" << movevalue << "to network";
     *m_raw << REQ_MOVE;
     *m_raw << movevalue;
 }
