@@ -3,7 +3,7 @@ add_subdirectory( pics )
 add_subdirectory( sounds ) 
 add_subdirectory( icons ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdegames ${CMAKE_SOURCE_DIR}/libkdegames/highscore)
+include_directories( ${CMAKE_SOURCE_DIR}/libkdegames/highscore)
 
 ########### next target ###############
 
