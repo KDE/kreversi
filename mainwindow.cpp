@@ -43,9 +43,11 @@
 #include <kselectaction.h>
 #include <ktoolinvocation.h>
 
+#include <QApplication>
 #include <QListWidget>
 #include <QGridLayout>
 #include <QLabel>
+#include <QDesktopWidget>
 
 static const int PLAYER_STATUSBAR_ID = 1;
 static const int COMP_STATUSBAR_ID = 2;
@@ -103,7 +105,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
 
     setCentralWidget(mainWid);
 
-    setupGUI();
+    setupGUI(qApp->desktop()->availableGeometry().size()*0.7);
 }
 
 void KReversiMainWindow::setupActions()
