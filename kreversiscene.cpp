@@ -420,7 +420,6 @@ QPointF KReversiScene::cellTopLeft( int row, int col ) const
 void KReversiScene::drawBackground( QPainter *p, const QRectF&)
 {
     KReversiRenderer::self()->renderBackground( p, sceneRect() );
-    p->setOpacity( 0.5 );
     KReversiRenderer::self()->renderBoard(p, m_boardRect);
     if(m_showLabels)
         KReversiRenderer::self()->renderBoardLabels(p, m_boardRect);
