@@ -53,6 +53,8 @@ int main(int argc, char **argv)
     KCmdLineArgs::addCmdLineOptions( options );
 
     KApplication application;
+    KGlobal::locale()->insertCatalog("libkdegames");
+
     if( application.isSessionRestored() )
     {
         RESTORE(KReversiMainWindow)
