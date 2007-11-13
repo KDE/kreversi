@@ -1,17 +1,21 @@
 <?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY kappname "&kreversi;">
-  <!ENTITY package "kdegames">
-  <!ENTITY % addindex "IGNORE">
+  <!ENTITY kappversion "2.0"><!--Applicaion version. Use this variable everywhere it's needed.-->
+  <!ENTITY docversion "1.7"><!--Document version. Use this variable everywhere it's needed.-->
+  <!ENTITY docupdate "2005-12-14"><!--Document version. Use this variable everywhere it's needed.-->
+  <!ENTITY package "kdegames">  <!-- do not change this! -->
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"> <!-- do not change this! -->
 ]>
-
-<book lang="&language;">
+ 
+<book lang="&language;"> <!-- do not change this! -->
 <bookinfo>
-<title>The &kreversi; Handbook</title>
-
+	<title>The &kappname; Handbook</title> <!-- This is the title of the docbook. Live as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
 <authorgroup>
-
 <author>
 <firstname>Clay</firstname>
 <surname>Pradarits</surname>
@@ -36,74 +40,85 @@
 &Lauri.Watts.mail;
 </address></affiliation>
 </othercredit>
-
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
-
 </authorgroup>
-
-<date>2005-12-14</date>
-<releaseinfo>1.7</releaseinfo>
-
-<abstract><para>&kreversi; is a simple one player strategy game.</para>
+ 
+<date>&docupdate;</date><!-- Date of (re)writing, ro update. Use the variable definitions within header to change this value.-->
+<releaseinfo>&docversion;</releaseinfo><!-- Application version number. Use the variable definitions within header to change this value.-->
+ 
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para>This documentation describes the game of &kappname; version &kappversion;</para>
 </abstract>
-
+ 
+<!--List of relevan keywords-->
 <keywordset>
-<keyword>KDE</keyword>
-<keyword>kdegames</keyword>
-<keyword>game</keyword>
-<keyword>KReversi</keyword>
+	<keyword>KDE</keyword> <!-- do not change this! -->
+	<keyword>kdegames</keyword> <!-- do not change this! -->
+	<keyword>game</keyword> <!-- do not change this! -->
+	<keyword>Kreversi</keyword><!--Application name goes here-->
+<!-- Game genre. use as many as necessary.Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword>board</keyword>
+	<keyword>arcade</keyword>
+	<keyword>GO</keyword>
+	<keyword>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword>one player</keyword>
+<!--All other relevant keywords-->
+	<keyword>stones</keyword>
+	<keyword>white</keyword>
+	<keyword>black</keyword>
 </keywordset>
 </bookinfo>
-
-<chapter id="Introduction">
-<title>Introduction</title>
-
-<sect1 id="what-is-kreversi">
-<title>What is &kreversi;?</title>
-
-<para>&kreversi; is a simple one player strategy game played against the
+<!--Content begins here: -->
+<chapter id="introduction"><title>Introduction</title> <!-- do not change this! -->
+	<note><title>Gametype:</title><para>Board, Arcade</para></note><!-- Game genre. use as many as necessary.Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note><title>Number of possible players:</title><para>One</para></note><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+ 
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para>&kappname; is a simple one player strategy game played against the
 computer. The playing field is an 8 by 8 square board divided into 64
-squares. The game piece used is a colored stone - one side of it is red, the
-other blue. If a piece is captured by an opposing player, that piece is turned
+squares. The game pieces used are two sided stones, where each side has its own, distinctive color.
+ If a piece is captured by an opposing player, that piece is turned over
 to reveal the color of that player. A winner is declared when one player has
-more pieces of his own color on the board and if there are no more possible
+more pieces of his own color on the board and there are no more possible
 moves.</para>
-
-</sect1>
-
-<sect1 id="object-of-the-game">
-<title>Object of the Game</title>
-
-<para>The object of the game is to control the majority of squares on the
-board.</para>
-
-</sect1>
 </chapter>
-
-
-
-<chapter id="Playing">
-<title>Playing</title>
-
+ 
+<chapter id="howto"><title>How to play</title> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note><title>Objective:</title><para>Get control over the majority of squares on the board.</para></note><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para>
+	&kappname; loads directly into the game play mode. As a first player you have the right to move first.</para>
+<note><title>Note:</title><para>By default the human player always has a right to the first move.</para></note>
+<para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more then one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
+<para>Every single move you do in &kappname; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
+<note><title>Note:</title><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
+<para>The idea here is to fill the board with the stones of your own color. The player who manages to conquer the most of the game board is announced the winner.
+	</para>
+</chapter>
+ 
+<chapter id="rules_and_tips"><title>Game Rules, Strategies and Tips</title> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
 <sect1 id="basics">                 
-<title>Basics</title>
+<title>Game Basics</title>
 
-<para>A move consists  of outflanking your opponents disc(s),  then flipping the
-outflanked disc(s)  to reveal  your color.  A move is  performed by  placing the
-mouse pointer over the desired square then &LMB; click.</para> 
+<para>A move consists  of outflanking your opponents stone(s),  then flipping the
+outflanked stone(s)  to reveal  your color.  A move is  performed by  placing the
+mouse pointer over the desired square then &LMB; click.</para>
 
-<para>To outflank means to place a disc on the board so that your opponent's
-row(s) of disc(s) is bordered at each end by a disc of your color. A row may be
-made up of one or more discs.</para>
+<para>To outflank means to place a stone on the board so that your opponent's
+row(s) of stone(s) is bordered at each end by a stone of your color. A row may be
+made up of one or more stones.</para>
 
-<para>The game starts with each player having two discs automatically placed
+<para>The game starts with each player having two stones automatically placed
 in the center four squares of the board in the following pattern:</para>
 
 <screenshot>
-<screeninfo>&kreversi; opening position</screeninfo>
+<screeninfo>&kappname; opening position</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
-<textobject><phrase>&kreversi; opening position</phrase></textobject>
+<textobject><phrase>&kappname; opening position</phrase></textobject>
 <caption><para>Board Layout</para></caption>
 </mediaobject>
 </screenshot>
@@ -130,8 +145,7 @@ letter</keycap></keycombo> to show the drop-down menu.</para>
 <term><interface>Toolbar</interface></term>
 <listitem><para>Provides the player with icon shortcuts for commonly
 used actions. These are <guiicon>New</guiicon>,
-<guiicon>Stop Thinking</guiicon>, <guiicon>Continue Thinking</guiicon>,
-<guiicon>Undo</guiicon>, <guiicon>Show Menubar</guiicon>, <guiicon>Hint</guiicon>,
+<guiicon>Undo</guiicon>, <guiicon>Hint</guiicon>, <guiicon>Demo</guiicon>,
 <guiicon>Show Last Move</guiicon>, and <guiicon>Show Legal Moves</guiicon>.
 Place the mouse pointer over any of these icons and click with the &LMB; to
 activate.</para></listitem>
@@ -152,41 +166,37 @@ divided into 64 squares.</para></listitem>
 <listitem><para>The status bar displays whose turn it is.</para></listitem>
 </varlistentry>
 </variablelist>
-
-<para>The field on the right side of the game board contains useful information such as
-which color represents each player, the number of
-squares each player controls on the board and displays all moves in the current game.</para>
 </sect1>
 
 <sect1 id="Rules">
-<title>Rules</title>
+<title>Game Rules</title>
 
-<para>Blue always moves first.</para>
+<para>You always move first.</para>
 
 <para>If on your turn you cannot outflank and flip at least one
-opposing disc, your turn is forfeited and your opponent moves
+opposing stone, your turn is forfeited and your opponent moves
 again. However, if a move is available to you, you may not forfeit
 your turn.</para>
 
-<para>A disc may outflank any number of discs in one or more rows in
+<para>A stone may outflank any number of stones in one or more rows in
 any number of directions at the same time - horizontally, vertically
-or diagonally. A row is defined as one or more discs in a continuous
+or diagonally. A row is defined as one or more stones in a continuous
 straight line. </para>
 
-<para>You may not skip over your own color disc to outflank an
-opposing disc.</para>
+<para>You may not skip over your own color stone to outflank an
+opposing stone.</para>
 
-<para>Discs may only be outflanked as a direct result of a move and
-must fall in the direct line of the disc placed down.</para>
+<para>Stones may only be outflanked as a direct result of a move and
+must fall in the direct line of the stone placed down.</para>
 
-<para>All discs outflanked in any one move must be flipped, even if it
+<para>All stones outflanked in any one move must be flipped, even if it
 is to the player's advantage not to flip them.</para>
 
-<para>Once a disc is placed on a square, it can never be moved to
+<para>Once a stone is placed on a square, it can never be moved to
 another square later in the game.</para>
 
 <para>When it is no longer possible for either player to move, the
-game is over. Discs are then counted and the player with the majority
+game is over. Stones are then counted and the player with the majority
 of his or her color discs on the board is declared the winner.</para>
 
 <note><para>It is possible for a game to end before all 64 squares are
@@ -195,52 +205,31 @@ filled.</para></note>
 </sect1>
 
 <sect1 id="tips">
-<title>Tips</title>
+<title>Strategies and Tips</title>
 
-<para>Try to place pieces on the edges whenever possible. Your
-opponent cannot outflank these pieces.</para>
+<para>Try to place stones on the edges whenever possible. Your
+opponent cannot outflank these stones.</para>
 
-<para>Avoid placing pieces on one of the three neighbor fields of a
+<para>Avoid placing stones on one of the three neighbor fields of a
 corner unless you are absolutely sure that your opponent will not be
-able to put a piece on a corner.</para>
+able to put a stone on a corner.</para>
 
-<para>Sometimes it is better to offer some pieces to your
+<para>Sometimes it is better to offer some stones to your
 opponent</para>
 
-<para>Try to put pieces on fields which prevent your opponent from
+<para>Try to put stones on fields which prevent your opponent from
 moving.</para>
 
-<para>Try to force your opponent to put a piece in a neighboring field
+<para>Try to force your opponent to put a stone in a neighboring field
 of a corner.</para>
 
 </sect1>
-
 </chapter>
-
-<chapter id="multiplayer">
-<title>Multiplayer support</title>
-
-<para>
-&kreversi; can be played online on any GGZ Gaming Zone site. You can
-find other players there, and compete against them. Just enter one
-of the available Reversi rooms with any GGZ core client, such as
-kggz, and &kreversi; will be offered to you as your favourite
-game client. If a GGZ core client is installed, you can try
-out GGZ by visiting the <ulink url="ggz://live.ggzgamingzone.org/#Reversi">community site</ulink>.
-</para>
-
-<para>
-Remember that when playing online, the opponent might be either a
-human player or a computer player. The latter one might behave
-differently from the computer player included in &kreversi;.
-</para>
-
-</chapter>
-
-<chapter id="user-interface">
-<title>User Interface</title>
-
-<sect1 id="game-menu">
+ 
+ 
+<chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist> and <varlistentry>. Split the chapter into sections using <sect1(2,3)> for better viewing.-->
+ <sect1 id="game-menu">
 <title><guimenu>Game</guimenu> Menu</title>
 
 <variablelist>
@@ -249,22 +238,6 @@ differently from the computer player included in &kreversi;.
 action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 <guimenu>Game</guimenu><guimenuitem>New</guimenuitem></menuchoice></term>
 <listitem><para>Starts a new game.
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Load...</guimenuitem></menuchoice></term>
-<listitem><para>Loads a saved game.
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Save</guimenuitem></menuchoice></term>
-<listitem><para>Saves the current game.
 </para></listitem>
 </varlistentry>
 
@@ -279,11 +252,19 @@ Nickname and add a Comment.</para></listitem>
 </varlistentry>
 
 <varlistentry>
+<term><menuchoice><shortcut><keycap>S</keycap></shortcut>
+<guimenu>File</guimenu><guimenuitem>Players and Seats</guimenuitem></menuchoice></term>
+<listitem><para>Option is currently disabled.</para></listitem>
+</varlistentry>
+
+<varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
-<guimenu>File</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para>Quits &kreversi;.</para></listitem>
+<guimenu>Game</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
+<listitem><para>Exit &kappname;
+</para></listitem>
 </varlistentry>
+
 </variablelist>
 </sect1>
 
@@ -308,202 +289,228 @@ move.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><menuchoice><guimenu>Move</guimenu><guimenuitem>Switch 
-Sides</guimenuitem></menuchoice></term>
-<listitem><para>Will make you the opposite color.</para></listitem>
+<term><menuchoice><shortcut><keycap>D</keycap></shortcut>
+<guimenu>Move</guimenu><guimenuitem>Demo</guimenuitem></menuchoice></term>
+<listitem><para>Start/Stop the demo mode.</para></listitem>
 </varlistentry>
 
-<varlistentry>
-<term><menuchoice><shortcut><keycap>Escape</keycap></shortcut>
-<guimenu>Move</guimenu><guimenuitem>Stop
-Thinking</guimenuitem></menuchoice></term>
-<listitem><para>Stops the computer's depth search, then you choose the 
-computer's next move, or select the <guimenuitem>Continue Thinking</guimenuitem>
-menu item to continue the computer's thinking process.</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Move</guimenu>
-<guimenuitem>Continue Thinking</guimenuitem></menuchoice></term>
-<listitem><para>Continue the computer's thinking process if it was
-previously stopped using the <guimenuitem>Stop Thinking</guimenuitem> menu
-item.
-</para></listitem>
-</varlistentry>
 </variablelist>
 </sect1>
 
 <sect1 id="view-menu">
 <title><guimenu>View</guimenu> Menu</title>
-
-<variablelist>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo
-action="simul">&Ctrl;<keycap>+</keycap></keycombo></shortcut>
-<guimenu>View</guimenu><guimenuitem>Zoom In</guimenuitem></menuchoice></term>
-<listitem><para>Enlarges the game board.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo
-action="simul">&Ctrl;<keycap>-</keycap></keycombo></shortcut>
-<guimenu>View</guimenu><guimenuitem>Zoom Out</guimenuitem></menuchoice></term>
-<listitem><para>Shrinks the game board.</para></listitem>
-</varlistentry>
-</variablelist>
+  <variablelist>
+    <varlistentry>
+      <term><menuchoice>
+	<guimenu>View</guimenu><guimenuitem>Show Last Move</guimenuitem>
+      </menuchoice></term>
+      <listitem><para>Highlights your opponent's last move.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><menuchoice>
+	<guimenu>View</guimenu><guimenuitem>Show Legal Moves</guimenuitem>
+      </menuchoice></term>
+      <listitem><para>Highlights all the moves available for your current move.</para></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><menuchoice>
+	<guimenu>View</guimenu><guimenuitem>Show Move History</guimenuitem>
+      </menuchoice></term>
+      <listitem><para>Enables/Disables the move history sidebar.</para></listitem>
+    </varlistentry>
+  </variablelist>
 </sect1>
 
 <sect1 id="settings-menu">
 <title><guimenu>Settings</guimenu> Menu</title>
 
 <variablelist>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>M</keycap></keycombo></shortcut><guimenu>Settings</guimenu>
-<guimenuitem>Hide Menubar</guimenuitem></menuchoice></term>
-<listitem><para>Toggles whether the menubar is visible.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guisubmenu>Toolbars</guisubmenu>
-<guimenuitem>Main Toolbar (&kreversi;)</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Toggle</action> the <guilabel>Main Toolbar</guilabel></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guisubmenu>Toolbars</guisubmenu>
-<guimenuitem>View Toolbar (&kreversi;)</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Toggle</action> the <guilabel>View Toolbar</guilabel></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Configure Shortcuts...</guimenuitem></menuchoice></term>
-<listitem><para>Opens a dialog which lets you configure all the keyboard shortcuts which
-are available in &kreversi;.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure Toolbars...</guimenuitem>
-</menuchoice></term>
-<listitem>
-<para><action>Open a dialog where you can configure the toolbars</action> for &kreversi;</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Configure &kreversi;...</guimenuitem></menuchoice></term>
-<listitem><para>Opens the <link linkend="configuration">configuration
-dialog</link> which lets you tweak a lot of &kreversi;'s
-options.</para></listitem>
-</varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Slow</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the ingame animation speed to slow.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Normal</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the ingame animation speed to normal.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Very Easy</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be very easy.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Easy</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be easy.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Normal</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be very normal.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Hard</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be hard.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Very Very</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be very hard.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Unbeatable</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be very unbeatable.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Champion</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be champion like.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guimenuitem>Use Colored Chips</guimenuitem>
+    </menuchoice></term>
+    <listitem><para><action>Toggle</action> the color of the stones between black and white (default), and red and blue.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guimenuitem>Show Toolbar</guimenuitem>
+    </menuchoice></term>
+    <listitem><para><action>Toggle</action> the toolbar on and off.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guimenuitem>Show Statusbar</guimenuitem>
+    </menuchoice></term>
+    <listitem><para><action>Toggle</action> the statusbar on and off.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guimenuitem>Configure Shortcuts...</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Opens a dialog which lets you configure all the keyboard shortcuts which are available in &kappname;.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guimenuitem>Configure Toolbars...</guimenuitem>
+    </menuchoice></term>
+    <listitem><para><action>Open a dialog where you can configure the toolbars</action> for &kappname;.</para></listitem>
+  </varlistentry>
 </variablelist>
 </sect1>
 
-<sect1 id="help-menu">
-<title><guimenu>Help</guimenu> Menu</title>
-
+<sect1 id="help-menu"><!--This is a standard Help menubar entry. Only change if needed.-->
+<title>The <guimenuitem>Help</guimenuitem> Menu</title>
 &help.menu.documentation;
+</sect1>
+</chapter>
+ 
+ <chapter id="faq"><title>Frequently asked questions</title> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset> <qandaentry> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+<question><para>Who made this game?</para></question>
+ <answer><para>The kdegames team. You can find their website here.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>Where can I get cheatcodes? </para></question>
+ <answer><para>You can't get cheatcodes for KDE games.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>How do I start a new game? </para></question>
+ <answer><para>To start a new game use <menuchoice><shortcut><keycombo 
+action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+<guimenu>Game</guimenu><guimenuitem>New</guimenuitem></menuchoice> on the menubar.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>How do I pause the game? </para></question>
+ <answer><para>&kappname; does not have a pause feature, as it does not require one.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>I want to change the way this game looks. Can I? </para></question>
+ <answer><para>The only part of the game that can be changed is the color of the stones. To chnage the color of the stones use <menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Use Colored Chips</guimenuitem>
+</menuchoice> on the menubar.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>I have made a mistake. Can I undo? </para></question>
+ <answer><para>Yes. To undo your last move you can use <menuchoice><shortcut><keycombo 
+action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+<guimenu>Move</guimenu><guimenuitem>Undo</guimenuitem></menuchoice> on the menubar.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>Can I use keyboard? </para></question>
+ <answer><para>No. &kappname; does not provide for the keyboard play.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>I can't figure out what to do here! Are there hints? </para></question>
+ <answer><para>Yes. To activate the &kappname; hint system use <menuchoice><shortcut><keycap>H</keycap></shortcut><guimenu>Move</guimenu><guimenuitem>Hint</guimenuitem></menuchoice> on the menubar.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>I have to quit the game now, but I'm not finished yet. Can I save my progress?</para></question>
+  <answer><para>No. &kappname; does not have a save feature.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>Where are the highscores?</para></question>
+ <answer><para>To access &kappname; highscore board use <menuchoice><shortcut><keycombo 
+action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guimenu><guimenuitem>Show Highscores</guimenuitem></menuchoice> on the menubar.</para></answer>
+</qandaentry>
+<qandaentry>
+ <question><para>I want to change the game configuration. Where do I go? </para></question>
+ <answer><para>All of the possible &kappname;'s settings are located under the <menuchoice><guimenu>Settings</guimenu></menuchoice> on the menubar.</para></answer><!--IMPORTANT!: this link has to send user to 'Interface Overview' section. So please setup the link structure accordingly.-->
+</qandaentry>
+<qandaentry>
+ <question><para>I want to change the toolbar layout. What do I do?</para></question>
+ <answer><para>To change the toolbar layout please use <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Toolbars...</guimenuitem></menuchoice> on the menubar.</para></answer><!--IMPORTANT!: this link has to send user to 'Interface Overview' section. So please setup the link structure accordingly.-->
+</qandaentry>
+<!--Please add more Q&As if needed-->
+ 
+</qandaset>
+</chapter>
+ 
+<chapter id="configuration"><title>Game Configuration</title> <!-- do not change this! -->
+<sect1 id="multiplayer">
+<title>Multiplayer support</title>
+
+<para>
+&kappname; can be played online on any GGZ Gaming Zone site. You can
+find other players there, and compete against them. Just enter one
+of the available Reversi rooms with any GGZ core client, such as
+kggz, and &kappname; will be offered to you as your favourite
+game client. If a GGZ core client is installed, you can try
+out GGZ by visiting the <ulink url="ggz://live.ggzgamingzone.org/#Reversi">community site</ulink>.
+</para>
+
+<para>
+Remember that when playing online, the opponent might be either a
+human player or a computer player. The latter one might behave
+differently from the computer player included in &kappname;.
+</para>
 
 </sect1>
 </chapter>
-
-<chapter id="configuration">
-<title>Configuration</title>
-
-<para>Selecting the <menuchoice><guimenu>Settings</guimenu>
-<guimenuitem>Configure &kreversi;...</guimenuitem></menuchoice> menu item will
-open a configuration dialog which lets you adjust many of &kreversi;'s
-options.</para>
-
-<screenshot>
-<screeninfo>&kreversi; configuration dialog</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="kreversi-configuration.png" format="PNG"/></imageobject>
-<textobject><phrase>&kreversi; configuration dialog</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<variablelist>
-<varlistentry>
-<term><guilabel>Grayscale chips</guilabel></term>
-<listitem><para>Check this box to use grayscale chips instead of blue and
-red ones; this might improve the look on very low color
-displays.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Play Game</guilabel></term>
-<listitem><para>Check a radiobutton whether to play <guilabel>Casually</guilabel>
-or <guilabel>Competitively</guilabel>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Animation</guilabel></term>
-<listitem><para>If this option is checked, a short animation will be shown
-when a disc changes its color.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Animation Speed</guilabel></term>
-<listitem><para>If the <guilabel>Animation</guilabel> option is enabled, you
-can use this slider to define how fast the animation should be played; move the
-slider to the left for a slower animation, moving the slider to the right will
-play the animation faster.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Computer Skill</guilabel></term>
-<listitem><para>This slider lets you define the skill level of the computer
-player. There are seven different skill levels available, ranging from beginner
-to expert. Move the slider to the left for an easier opponent, or to the right
-to get a more difficult opponent.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Background</guilabel></term>
-<listitem><para>Here you can define the appearance of the playground. Select
-the <guilabel>Color:</guilabel> option and press the colored button at the right
-if you want the background to have a single color. Select the
-<guilabel>Image:</guilabel> option and enter the path to a picture in the input
-field at the right in case you want to use a specific image as the background
-wallpaper.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guibutton>Help</guibutton></term>
-<listitem><para>Opens &kreversi; help.</para></listitem></varlistentry>
-
-<varlistentry>
-<term><guibutton>Defaults</guibutton></term>
-<listitem><para>Reverts settings to defaults.</para></listitem></varlistentry>
-
-<varlistentry>
-<term><guibutton>OK</guibutton></term>
-<listitem><para>Saves changes and closes dialog.</para></listitem></varlistentry>
-
-<varlistentry>
-<term><guibutton>Apply</guibutton></term>
-<listitem><para>Saves changes but doesn't close dialog.</para></listitem></varlistentry>
-
-<varlistentry>
-<term><guibutton>Cancel</guibutton></term>
-<listitem><para>Cancels all your changes and closes the dialog.</para></listitem></varlistentry>
-
-</variablelist>
-</chapter>
-
-<chapter id="credits-and-license">
-<title>Credits and License</title>
+ 
+<chapter id="credits"><title>Credits and License</title> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+ 
+<para>
+&kappname;  <!-- do not change this! -->
+</para>
 
 <para>Program Copyright 1998-2000 &Mario.Weilguni;</para>
 <para>Mats Luthman - Designer of the move engine.</para>
@@ -516,38 +523,43 @@ wallpaper.</para></listitem>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 
+
 &underFDL;
 &underGPL;
+ 
 </chapter>
-
-<appendix id="Installation">
+ 
+ 
+<appendix id="installation">
 <title>Installation</title>
-
+ 
 &install.intro.documentation;
-
-<sect1 id="compilation-and-installation">
+ 
+ 
+<sect1 id="Compilation">
 <title>Compilation and Installation</title>
-
+ 
 &install.compile.documentation;
  
 </sect1>
 </appendix>
-
-&documentation.index;
+ 
+&documentation.index; 
 </book>
 <!--
 Local Variables:
 mode: sgml
-sgml-omittag: nil
-sgml-shorttag: t
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
 End:
 -->
-
-
-
-
-
-
-
-
-
