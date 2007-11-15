@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" ?>
+<?xml version="1.0" ?>
 <!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY kappname "&kreversi;">
   <!ENTITY kappversion "2.0"><!--Applicaion version. Use this variable everywhere it's needed.-->
   <!ENTITY docversion "1.7"><!--Document version. Use this variable everywhere it's needed.-->
-  <!ENTITY docupdate "2005-12-14"><!--Document version. Use this variable everywhere it's needed.-->
+  <!ENTITY docupdate "2007-11-14"><!--Document version. Use this variable everywhere it's needed.-->
   <!ENTITY package "kdegames">  <!-- do not change this! -->
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY % addindex "IGNORE"> <!-- do not change this! -->
@@ -40,6 +40,7 @@
 &Lauri.Watts.mail;
 </address></affiliation>
 </othercredit>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
  
 <date>&docupdate;</date><!-- Date of (re)writing, ro update. Use the variable definitions within header to change this value.-->
@@ -84,7 +85,7 @@ more pieces of his own color on the board and there are no more possible
 moves.</para>
 </chapter>
  
-<chapter id="howto"><title>How to play</title> <!-- do not change this! -->
+<chapter id="howto"><title>How to Play</title> <!-- do not change this! -->
 <!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
 	<note><title>Objective:</title><para>Get control over the majority of squares on the board.</para></note><!--Describe the objective of the game.-->
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
@@ -243,11 +244,11 @@ action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Show Highscores</guimenuitem></menuchoice></term>
+<guimenu>Game</guimenu><guimenuitem>Show High Scores...</guimenuitem></menuchoice></term>
 <listitem><para>Opens a dialog that displays different high score tables. 
-<guibutton>Export</guibutton> the high scores into a file or click on 
-<guibutton>Configure</guibutton> to open a dialog to customize your 
-Nickname and add a Comment.</para></listitem>
+<guibutton>Export...</guibutton> the high scores into a file or click on 
+<guibutton>Configure...</guibutton> to open a dialog to customize your 
+<guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -338,43 +339,49 @@ move.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Very Easy</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Fast</guimenuitem>
+    </menuchoice></term>
+    <listitem><para>Set the ingame animation speed to fast.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Very Easy</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be very easy.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Easy</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Easy</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be easy.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Normal</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Normal</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be very normal.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Hard</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Hard</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be hard.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Very Very</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Very Hard</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be very hard.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Unbeatable</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Unbeatable</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be very unbeatable.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Champion</guimenuitem>
+      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Champion</guimenuitem>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be champion like.</para></listitem>
   </varlistentry>
@@ -394,7 +401,7 @@ move.</para></listitem>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guimenuitem>Show Statusbar</guimenuitem>
     </menuchoice></term>
-    <listitem><para><action>Toggle</action> the statusbar on and off.</para></listitem>
+    <listitem><para><action>Toggle</action> the status bar on and off.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
@@ -412,7 +419,7 @@ move.</para></listitem>
 </sect1>
 
 <sect1 id="help-menu"><!--This is a standard Help menubar entry. Only change if needed.-->
-<title>The <guimenuitem>Help</guimenuitem> Menu</title>
+<title><guimenuitem>Help</guimenuitem> Menu</title>
 &help.menu.documentation;
 </sect1>
 </chapter>
@@ -427,7 +434,7 @@ move.</para></listitem>
 </qandaentry>
 <qandaentry>
  <question><para>Where can I get cheatcodes? </para></question>
- <answer><para>You can't get cheatcodes for &kde; games.</para></answer>
+ <answer><para>You cannot get cheatcodes for &kde; games.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>How do I start a new game? </para></question>
@@ -441,7 +448,7 @@ action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 </qandaentry>
 <qandaentry>
  <question><para>I want to change the way this game looks. Can I? </para></question>
- <answer><para>The only part of the game that can be changed is the color of the stones. To chnage the color of the stones use <menuchoice>
+ <answer><para>The only part of the game that can be changed is the color of the stones. To change the color of the stones use <menuchoice>
 <guimenu>Settings</guimenu>
 <guimenuitem>Use Colored Chips</guimenuitem>
 </menuchoice> on the menubar.</para></answer>
@@ -457,17 +464,17 @@ action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
  <answer><para>No. &kappname; does not provide for the keyboard play.</para></answer>
 </qandaentry>
 <qandaentry>
- <question><para>I can't figure out what to do here! Are there hints? </para></question>
+ <question><para>I cannot figure out what to do here! Are there hints? </para></question>
  <answer><para>Yes. To activate the &kappname; hint system use <menuchoice><shortcut><keycap>H</keycap></shortcut><guimenu>Move</guimenu><guimenuitem>Hint</guimenuitem></menuchoice> on the menubar.</para></answer>
 </qandaentry>
 <qandaentry>
- <question><para>I have to quit the game now, but I'm not finished yet. Can I save my progress?</para></question>
+ <question><para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para></question>
   <answer><para>No. &kappname; does not have a save feature.</para></answer>
 </qandaentry>
 <qandaentry>
- <question><para>Where are the highscores?</para></question>
- <answer><para>To access &kappname; highscore board use <menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guimenu><guimenuitem>Show Highscores</guimenuitem></menuchoice> on the menubar.</para></answer>
+ <question><para>Where are the high scores?</para></question>
+ <answer><para>To access &kappname; highs core board use <menuchoice><shortcut><keycombo 
+action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guimenu><guimenuitem>Show High Scores...</guimenuitem></menuchoice> on the menubar.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I want to change the game configuration. Where do I go? </para></question>
@@ -484,7 +491,7 @@ action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guim
  
 <chapter id="configuration"><title>Game Configuration</title> <!-- do not change this! -->
 <sect1 id="multiplayer">
-<title>Multiplayer support</title>
+<title>Multiplayer Support</title>
 
 <para>
 &kappname; can be played online on any GGZ Gaming Zone site. You can
