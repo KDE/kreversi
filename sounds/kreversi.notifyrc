@@ -99,6 +99,7 @@ Sound=reversi-click.wav
 
 [Event/won]
 Name=Game Won
+Name[ca]=Partida guanyada
 Name[de]=Spiel gewonnen
 Name[el]=Νίκη στο παιχνίδι
 Name[es]=Partida ganada
@@ -157,6 +158,7 @@ Sound=reversi-won.wav
 
 [Event/lost]
 Name=Game Lost
+Name[ca]=Partida perduda
 Name[de]=Spiel verloren
 Name[el]=Ήττα στο παιχνίδι
 Name[es]=Partida perdida
