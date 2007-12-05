@@ -79,7 +79,11 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
     if( !demoMode )
         move = KReversiPos( m_playerColor, row, col );
     else
+    {
         move = m_engine->computeMove( *this, true );
+        if( !move.isValid() )
+            return;
+    }
 
     if( !isMovePossible(move) )
     {
@@ -145,7 +149,15 @@ void KReversiGame::makeComputerMove()
     // FIXME dimsuz: m_competitive. Read from config.
     // (also there's computeMove in getHint)
     KReversiPos move = m_engine->computeMove( *this, true );
-    Q_ASSERT(move.color == m_computerColor);
+    if( !move.isValid() )
+        return;
+
+    if( move.color != m_computerColor )
+    {
+        kDebug() << "Strange! makeComputerMove() just got not computer move!";
+        return;
+    }
+
     makeMove(move);
     m_undoStack.push( m_changedChips );
 }

@@ -249,7 +249,7 @@ private:
   Score*        m_score;
   Score*        m_bc_score;
   SquareStack  m_squarestack;
-  
+
   int          m_depth;
   int          m_coeff;
   int          m_nodes_searched;
@@ -262,6 +262,8 @@ private:
 
   ULONG64      m_coord_bit[9][9];
   ULONG64      m_neighbor_bits[9][9];
+
+  bool m_computingMove;
 };
 
 #endif

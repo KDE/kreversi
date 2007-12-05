@@ -118,6 +118,7 @@
 #include "Engine.h"
 #include "kreversigame.h"
 #include <QApplication>
+#include <KDebug>
 
 // ================================================================
 //                          Class ULONG64
@@ -126,7 +127,7 @@
 #if !defined(__GNUC__)
 
 
-ULONG64::ULONG64() : QBitArray(64) 
+ULONG64::ULONG64() : QBitArray(64)
 {
   fill(0);
 }
@@ -135,7 +136,7 @@ ULONG64::ULONG64() : QBitArray(64)
 // Initialize an ULONG64 from a 32 bit value.
 //
 
-ULONG64::ULONG64( unsigned int value ) : QBitArray(64) 
+ULONG64::ULONG64( unsigned int value ) : QBitArray(64)
 {
   fill(0);
   for(int i = 0; i < 32; i++) {
@@ -148,7 +149,7 @@ ULONG64::ULONG64( unsigned int value ) : QBitArray(64)
 // Shift an ULONG64 left one bit.
 //
 
-void ULONG64::shl() 
+void ULONG64::shl()
 {
   for(int i = 63; i > 0; i--)
     setBit(i, testBit(i - 1));
@@ -191,7 +192,7 @@ SquareStack::SquareStack(int size) {
 }
 
 
-void SquareStack::resize(int size) 
+void SquareStack::resize(int size)
 {
   m_squarestack.resize(size);
 }
@@ -201,7 +202,7 @@ void SquareStack::resize(int size)
 // resize it to 'size'.
 //
 
-void SquareStack::init(int size) 
+void SquareStack::init(int size)
 {
   resize(size);
 
@@ -212,7 +213,7 @@ void SquareStack::init(int size)
 
 
 
-inline SquareStackEntry SquareStack::Pop() 
+inline SquareStackEntry SquareStack::Pop()
 {
   return m_squarestack[--m_top];
 }
@@ -233,7 +234,7 @@ inline void SquareStack::Push(int x, int y)
 //
 
 
-inline void MoveAndValue::setXYV(int x, int y, int value) 
+inline void MoveAndValue::setXYV(int x, int y, int value)
 {
   m_x     = x;
   m_y     = y;
@@ -241,13 +242,13 @@ inline void MoveAndValue::setXYV(int x, int y, int value)
 }
 
 
-MoveAndValue::MoveAndValue() 
+MoveAndValue::MoveAndValue()
 {
   setXYV(0,0,0);
 }
 
 
-MoveAndValue::MoveAndValue(int x, int y, int value) 
+MoveAndValue::MoveAndValue(int x, int y, int value)
 {
   setXYV(x, y, value);
 }
@@ -274,7 +275,7 @@ public:
   void dec(ChipColor color)             { m_score[color]--; }
   void add(ChipColor color, uint s)     { m_score[color] += s; }
   void sub(ChipColor color, uint s)     { m_score[color] -= s; }
-  
+
 private:
   uint  m_score[2];
 };
@@ -290,7 +291,7 @@ static const int BC_WEIGHT     = 3;
 
 
 Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
-    : m_strength(st)
+    : m_strength(st), m_computingMove( false )
 {
   m_random.setSeed(sd);
   m_score = new Score;
@@ -300,8 +301,8 @@ Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
 }
 
 
-Engine::Engine(int st) //: SuperEngine(st) 
-    : m_strength(st)
+Engine::Engine(int st) //: SuperEngine(st)
+    : m_strength(st), m_computingMove(false)
 {
   m_random.setSeed(0);
   m_score = new Score;
@@ -311,8 +312,8 @@ Engine::Engine(int st) //: SuperEngine(st)
 }
 
 
-Engine::Engine()// : SuperEngine(1) 
-    : m_strength(1)
+Engine::Engine()// : SuperEngine(1)
+    : m_strength(1), m_computingMove(false)
 {
   m_random.setSeed(0);
   m_score = new Score;
@@ -328,7 +329,7 @@ Engine::~Engine()
 }
 
 // keep GUI alive
-void Engine::yield() 
+void Engine::yield()
 {
   qApp->processEvents();
 }
@@ -336,8 +337,15 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive) 
+KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 {
+    if( m_computingMove )
+    {
+        kDebug() << "I'm already computing move! Yours KReversi Engine.";
+        return KReversiPos();
+    }
+    m_computingMove = true;
+
   ChipColor color;
 
   // A competitive game is one where we try our damnedest to make the
@@ -355,7 +363,10 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
   // Get the color to calculate the move for.
   color = game.currentPlayer();
   if (color == NoColor)
-    return KReversiPos(NoColor, -1, -1);
+  {
+      m_computingMove = false;
+      return KReversiPos();
+  }
 
   // Figure out the current score
   m_score->set(White, game.playerScore(White));
@@ -364,7 +375,10 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
   // Treat the first move as a special case (we can basically just
   // pick a move at random).
   if (m_score->score(White) + m_score->score(Black) == 4)
-    return ComputeFirstMove(game);
+  {
+      m_computingMove = false;
+      return ComputeFirstMove(game);
+  }
 
   // Let there be room for 3000 changes during the recursive search.
   // This is more than will ever be needed.
@@ -372,7 +386,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 
   // Get the search depth.  If we are close to the end of the game,
   // the number of possible moves goes down, so we can search deeper
-  // without using more time.  
+  // without using more time.
   m_depth = m_strength;
   if (m_score->score(White) + m_score->score(Black) + m_depth + 3 >= 64)
     m_depth = 64 - m_score->score(White) - m_score->score(Black);
@@ -392,7 +406,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
   // values and the later in the game the more we use the number of
   // pieces.
   m_coeff = 100 - (100*
-		   (m_score->score(White) + m_score->score(Black) 
+		   (m_score->score(White) + m_score->score(Black)
 		    + m_depth - 4)) / 60;
 
   // Initialize the board that we use for the search.
@@ -430,7 +444,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
   null_bits = 0;
 
   // The main search loop.  Step through all possible moves and keep
-  // track of the most valuable one.  This move is stored in 
+  // track of the most valuable one.  This move is stored in
   // (max_x, max_y) and the value is stored in maxval.
   m_nodes_searched = 0;
   for (int x = 1; x < 9; x++) {
@@ -458,8 +472,8 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 	  // user wants a casual game, which is set in the settings
 	  // dialog.
 	  int randi = m_random.getLong(7);
-	  if (maxval == -LARGEINT 
-	      || m_competitive 
+	  if (maxval == -LARGEINT
+	      || m_competitive
 	      || randi < (int) m_strength) {
 	    maxval = val;
 	    max_x  = x;
@@ -473,7 +487,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
       }
 
       // Jump out prematurely if interrupt is set.
-      if (interrupted()) 
+      if (interrupted())
 	break;
     }
   }
@@ -486,7 +500,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
     int  i;
 
     for (i = 0; i < number_of_moves; i++) {
-      if (moves[i].m_value == maxval && --r <= 0) 
+      if (moves[i].m_value == maxval && --r <= 0)
 	break;
     }
 
@@ -494,6 +508,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
     max_y = moves[i].m_y;
   }
 
+  m_computingMove = false;
   // Return a suitable move.
   if (interrupted())
     return KReversiPos(NoColor, -1, -1);
@@ -507,7 +522,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 // Get the first move.  We can pick any move at random.
 //
 
-KReversiPos Engine::ComputeFirstMove(const KReversiGame& game) 
+KReversiPos Engine::ComputeFirstMove(const KReversiGame& game)
 {
   int    r;
   ChipColor  color = game.currentPlayer();
@@ -554,7 +569,7 @@ int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
   // Loop through all 8 directions and turn the pieces that can be turned.
   for (int xinc = -1; xinc <= 1; xinc++)
     for (int yinc = -1; yinc <= 1; yinc++) {
-      if (xinc == 0 && yinc == 0) 
+      if (xinc == 0 && yinc == 0)
 	continue;
 
       int x, y;
@@ -616,7 +631,7 @@ int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 	  else {
 	    // Take a sure win and avoid a sure loss (may not be optimal):
 
-	    if (finalscore > 0) 
+	    if (finalscore > 0)
 	      retval = LARGEINT - 65 + finalscore;
 	    else if (finalscore < 0)
 	      retval = -(LARGEINT - 65 + finalscore);
@@ -670,14 +685,14 @@ int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
 
   for (int x = 1; x < 9; x++) {
     for (int y = 1; y < 9; y++) {
-      if (m_board[x][y] == NoColor 
+      if (m_board[x][y] == NoColor
 	  && (m_neighbor_bits[x][y] & colorbits) != null_bits) {
 	int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits,
 			       colorbits);
 
 	if (val != ILLEGAL_VALUE && val > maxval) {
 	  maxval = val;
-	  if (maxval > -cutoffval || interrupted()) 
+	  if (maxval > -cutoffval || interrupted())
 	    break;
 	}
       }
@@ -687,7 +702,7 @@ int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
       break;
   }
 
-  if (interrupted()) 
+  if (interrupted())
     return -LARGEINT;
 
   return maxval;
@@ -713,7 +728,7 @@ int Engine::EvaluatePosition(ChipColor color)
     retval = score_color - score_opponent;
   else {
     retval = (100-m_coeff) *
-      (m_score->score(color) - m_score->score(opponent)) 
+      (m_score->score(color) - m_score->score(opponent))
       + m_coeff * BC_WEIGHT * (m_bc_score->score(color)
 			       - m_bc_score->score(opponent));
   }

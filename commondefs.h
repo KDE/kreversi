@@ -33,6 +33,8 @@ struct KReversiPos
     ChipColor color;
     int row;
     int col;
+
+    bool isValid() const { return ( color != NoColor || row != -1 || col != -1 ); }
 };
 
 typedef QList<KReversiPos> PosList;

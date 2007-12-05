@@ -392,7 +392,7 @@ void KReversiScene::slotHint()
         return;
     }
     KReversiPos hint = m_game->getHint();
-    if(hint.row == -1 || hint.col == -1)
+    if( !hint.isValid() )
         return;
     if( m_hintChip == 0 )
         m_hintChip = new KReversiChip( hint.color, m_frameSet, this );
