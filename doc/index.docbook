@@ -253,7 +253,7 @@ action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
 
 <varlistentry>
 <term><menuchoice><shortcut><keycap>S</keycap></shortcut>
-<guimenu>File</guimenu><guimenuitem>Players and Seats</guimenuitem></menuchoice></term>
+<guimenu>Game</guimenu><guimenuitem>Players and Seats</guimenuitem></menuchoice></term>
 <listitem><para>Option is currently disabled.</para></listitem>
 </varlistentry>
 
@@ -329,19 +329,19 @@ move.</para></listitem>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Slow</guimenuitem>
     </menuchoice></term>
-    <listitem><para>Set the ingame animation speed to slow.</para></listitem>
+    <listitem><para>Set the game animation speed to slow.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Normal</guimenuitem>
     </menuchoice></term>
-    <listitem><para>Set the ingame animation speed to normal.</para></listitem>
+    <listitem><para>Set the game animation speed to normal.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Fast</guimenuitem>
     </menuchoice></term>
-    <listitem><para>Set the ingame animation speed to fast.</para></listitem>
+    <listitem><para>Set the game animation speed to fast.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
@@ -419,7 +419,7 @@ move.</para></listitem>
 </sect1>
 
 <sect1 id="help-menu"><!--This is a standard Help menubar entry. Only change if needed.-->
-<title><guimenuitem>Help</guimenuitem> Menu</title>
+<title><guimenu>Help</guimenu> Menu</title>
 &help.menu.documentation;
 </sect1>
 </chapter>
