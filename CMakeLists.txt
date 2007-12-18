@@ -20,6 +20,14 @@ set(kreversi_SRCS
 
 kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
+set(kreversi_icons
+	icons/hi16-app-kreversi.png
+	icons/hi32-app-kreversi.png
+	icons/hi48-app-kreversi.png
+	icons/hi64-app-kreversi.png
+	icons/hi128-app-kreversi.png
+)
+kde4_add_win32_app_icon(kreversi_SRCS ${kreversi_icons})
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi ${KDE4_KDEUI_LIBS} kdegames ${KGGZGAMES_LIBS})
