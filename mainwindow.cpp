@@ -159,7 +159,7 @@ void KReversiMainWindow::setupActions()
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction( KIcon("history"), i18n("Show Move History"), this );
+    KToggleAction *showMovesAct = new KToggleAction( KIcon("view-history"), i18n("Show Move History"), this );
     actionCollection()->addAction("show_moves", showMovesAct);
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
