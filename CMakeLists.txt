@@ -20,14 +20,7 @@ set(kreversi_SRCS
 
 kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
-set(kreversi_icons
-	${CMAKE_CURRENT_SOURCE_DIR}/icons/hi16-app-kreversi.png
-	${CMAKE_CURRENT_SOURCE_DIR}/icons/hi32-app-kreversi.png
-	${CMAKE_CURRENT_SOURCE_DIR}/icons/hi48-app-kreversi.png
-	${CMAKE_CURRENT_SOURCE_DIR}/icons/hi64-app-kreversi.png
-	${CMAKE_CURRENT_SOURCE_DIR}/icons/hi128-app-kreversi.png
-)
-kde4_add_win32_app_icon(kreversi_SRCS ${kreversi_icons})
+kde4_add_app_icon(kreversi_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-kreversi.png")
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi ${KDE4_KDEUI_LIBS} kdegames ${KGGZGAMES_LIBS})
@@ -40,4 +33,5 @@ register_ggz_module(module.dsc)
 install( FILES kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
+
 
