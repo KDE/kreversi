@@ -110,6 +110,7 @@ Sound=reversi-click.wav
 
 [Event/won]
 Name=Game Won
+Name[be]=Перамога
 Name[ca]=Partida guanyada
 Name[de]=Spiel gewonnen
 Name[el]=Νίκη στο παιχνίδι
