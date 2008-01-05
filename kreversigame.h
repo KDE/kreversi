@@ -100,6 +100,10 @@ public:
      */
     void setComputerSkill(int skill);
     /**
+     * @return whether the game is currently computing turn
+     */
+    bool isThinking() const;
+    /**
      *  @return whether the game is already over
      */
     bool isGameOver() const; // perhaps this doesn't need to be public

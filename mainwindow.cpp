@@ -248,11 +248,6 @@ void KReversiMainWindow::slotToggleDemoMode()
 
 void KReversiMainWindow::slotNewGame()
 {
-    delete m_game;
-    m_game = new KReversiGame;
-    m_game->setComputerSkill( Preferences::skill() );
-    connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
-
     if(KGGZMod::Module::isGGZ())
     {
         setCaption(i18n("Online game"));
@@ -273,6 +268,10 @@ void KReversiMainWindow::slotNewGame()
 
     if(m_historyView)
         m_historyView->clear();
+
+    m_game = new KReversiGame;
+    m_game->setComputerSkill( Preferences::skill() );
+    connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
 
     if(m_scene == 0) // if called first time
     {

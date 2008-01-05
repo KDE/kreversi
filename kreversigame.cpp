@@ -508,6 +508,14 @@ bool KReversiGame::hasChunk( Direction dir, const KReversiPos& move ) const
     return false;
 }
 
+bool KReversiGame::isThinking() const
+{
+    if( !m_engine )
+        return false;
+
+    return m_engine->isThinking();
+}
+
 bool KReversiGame::isGameOver() const
 {
     // trivial fast-check
