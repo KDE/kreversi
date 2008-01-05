@@ -56,7 +56,8 @@ public:
     ~KReversiScene();
 
     /**
-     *  Sets the game object which this scene will visualize/use
+     *  Sets the game object which this scene will visualize/use.
+     *  KReversiScene takes ownership of this object and will delete it when appropriate
      */
     void setGame( KReversiGame* game );
     /**
@@ -145,6 +146,11 @@ private:
      */
     virtual void mousePressEvent( QGraphicsSceneMouseEvent* );
     /**
+     *  Makes pending new game object a current one.
+     *  @see m_pendingNewGame @see setGame
+     */
+    void setNewGameObject( KReversiGame* game );
+    /**
      *  Visually displays last move and possible moves
      *  (if the scene is set up to show them)
      */
@@ -169,6 +175,11 @@ private:
      *  The Game object
      */
     KReversiGame *m_game;
+    /**
+     *  This pointer is meant for temporal storage of new game object being set.
+     *  New game object is *actually* set after animation slot gets called by timer
+     */
+    KReversiGame *m_pendingNewGame;
     /**
      *  This will hold pixmap which is rendered by m_possMovesRenderer.
      *  It will be rerendered on resizes

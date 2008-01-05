@@ -34,7 +34,7 @@
 #include <KGamePopupItem>
 
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
-    : m_game(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
+    : m_game(0), m_pendingNewGame(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
     m_showLabels(false)
 {
@@ -147,7 +147,43 @@ void KReversiScene::setShowBoardLabels( bool show )
 
 void KReversiScene::setGame( KReversiGame* game )
 {
+    // if animation is running or we are thinking save this game in pending var.
+    // It will be made current animation slot will get called
+    // @see setNewGameObject and @see slotAnimationStep
+    //
+    // NOTE: all this magic is needed for game not to crash while pressing new game:
+    // if we'd simply set the new object right away and deleted an old one, slotAnimationStep
+    // might got called *after* this, trying to do smth with already deleted object.
+    // For example see BUG #154946
+    // So we postpone the setting && deletion...
+    if( m_animTimer->isActive() || ( m_game && m_game->isThinking() ) )
+        m_pendingNewGame = game;
+    else
+        setNewGameObject( game );
+}
+
+void KReversiScene::setNewGameObject( KReversiGame* game )
+{
+    m_animTimer->stop();
+
+    // disconnect signals from previous game if it exists,
+    // we are not interested in them anymore
+    if( m_game )
+    {
+        disconnect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
+        disconnect( m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()) );
+        disconnect( m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()) );
+        disconnect( m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()) );
+        disconnect( m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()) );
+    }
+
+    // delete old object
+    delete m_game;	
+
     m_game = game;
+
+    m_pendingNewGame = 0; // it's made official now ;)
+
     connect( m_game, SIGNAL(boardChanged()), SLOT(updateBoard()) );
     connect( m_game, SIGNAL(moveFinished()), SLOT(slotGameMoveFinished()) );
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
@@ -169,7 +205,6 @@ void KReversiScene::setGame( KReversiGame* game )
 
     m_possibleMovesItems.clear();
 
-    m_animTimer->stop();
     m_hintChip = 0; // it was deleted above if it was shown
     m_showingHint = false;
     m_lastMoveChip = 0;
@@ -296,6 +331,14 @@ void KReversiScene::slotGameMoveFinished()
 
 void KReversiScene::slotAnimationStep()
 {
+    if( m_pendingNewGame != 0 )
+    {
+	// aha! we have new game waiting for us
+	m_animTimer->stop();
+	setNewGameObject( m_pendingNewGame );
+	return;
+    }
+
     if(m_changedChips.count() == 0 && !m_showingHint)
     {
         // FIXME: GGZ only - doesn't yet report flipped chips

@@ -219,6 +219,7 @@ public:
   ~Engine();
 
   KReversiPos     computeMove(const KReversiGame& game, bool competitive);
+  bool isThinking() const { return m_computingMove; }
 
   void  setInterrupt(bool intr) { m_interrupt = intr; }
   bool  interrupted() const     { return m_interrupt; }
