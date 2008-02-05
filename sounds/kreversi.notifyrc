@@ -115,6 +115,7 @@ Sound=reversi-click.wav
 Name=Game Won
 Name[be]=Перамога
 Name[ca]=Partida guanyada
+Name[cs]=Vyhraná hra
 Name[de]=Spiel gewonnen
 Name[el]=Νίκη στο παιχνίδι
 Name[eo]=Vi gajnis
@@ -194,6 +195,7 @@ Sound=reversi-won.wav
 [Event/lost]
 Name=Game Lost
 Name[ca]=Partida perduda
+Name[cs]=Prohraná hra
 Name[de]=Spiel verloren
 Name[el]=Ήττα στο παιχνίδι
 Name[eo]=Vi perdis
