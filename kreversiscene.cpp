@@ -178,7 +178,7 @@ void KReversiScene::setNewGameObject( KReversiGame* game )
     }
 
     // delete old object
-    delete m_game;	
+    delete m_game;
 
     m_game = game;
 
@@ -203,6 +203,11 @@ void KReversiScene::setNewGameObject( KReversiGame* game )
         }
     }
 
+    foreach( QGraphicsItem* item, m_possibleMovesItems )
+    {
+        removeItem( item );
+        delete item;
+    }
     m_possibleMovesItems.clear();
 
     m_hintChip = 0; // it was deleted above if it was shown
