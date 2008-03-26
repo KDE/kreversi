@@ -519,12 +519,16 @@ void KReversiScene::slotComputerCantMove()
 {
     m_messageItem->setMessageTimeout(3000);
     m_messageItem->showMessage(i18n("Computer can not move. It is your turn again."), KGamePopupItem::BottomLeft);
+
+    displayLastAndPossibleMoves();
 }
 
 void KReversiScene::slotPlayerCantMove()
 {
     m_messageItem->setMessageTimeout(3000);
     m_messageItem->showMessage(i18n("You can not perform any move. Computer makes next turn now."), KGamePopupItem::BottomLeft);
+
+    displayLastAndPossibleMoves();
 }
 
 #include "kreversiscene.moc"
