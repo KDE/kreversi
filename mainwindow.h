@@ -24,6 +24,7 @@
 #define KREVERSI_MAIN_WINDOW_H
 
 #include <kxmlguiwindow.h>
+#include <KGameDifficulty>
 
 class KReversiScene;
 class KReversiGame;
@@ -41,7 +42,7 @@ public:
     explicit KReversiMainWindow(QWidget* parent=0,  bool startDemo=false );
 public slots:
     void slotNewGame();
-    void slotSkillChanged(int);
+    void levelChanged(KGameDifficulty::standardLevel level);
     void slotAnimSpeedChanged(int);
     void slotUndo();
     void slotMoveFinished();
@@ -66,12 +67,16 @@ private:
     bool m_firstShow;
     bool m_startInDemoMode;
 
+    /**
+     * Used for the high scores: if the player changes the difficulty level during a running game, we'll keep the lowest computer skill corresponding to the levels chosen.
+     */
+    int m_lowestSkill;
+
     QAction* m_undoAct;
     QAction* m_hintAct;
     QAction* m_demoAct;
     QAction* m_seatsAct;
     KSelectAction* m_animSpeedAct;
-    KSelectAction* m_skillAct;
     KToggleAction* m_coloredChipsAct;
 };
 #endif

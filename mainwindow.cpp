@@ -74,7 +74,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     : KXmlGuiWindow(parent), m_scene(0), m_game(0),
       m_historyLabel(0), m_historyView(0),
       m_firstShow( true ), m_startInDemoMode( startDemo ),
-      m_undoAct(0), m_hintAct(0), m_demoAct(0)
+      m_undoAct(0), m_hintAct(0), m_demoAct(0), m_lowestSkill(1)
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
     statusBar()->insertItem( i18n("You: %1", 2), PLAYER_STATUSBAR_ID );
@@ -144,15 +144,14 @@ void KReversiMainWindow::setupActions()
     m_animSpeedAct->setItems(acts);
     connect( m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)) );
 
-    m_skillAct = new KSelectAction(i18n("Computer Skill"), actionCollection());
-    actionCollection()->addAction("skill", m_skillAct);
-
-    acts.clear();
-    // FIXME dimsuz: give them good names
-    acts << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
-    acts << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
-    m_skillAct->setItems(acts);
-    connect(m_skillAct, SIGNAL(triggered(int)), SLOT(slotSkillChanged(int)) );
+    KGameDifficulty::init(this, this, SLOT(levelChanged(KGameDifficulty::standardLevel)));
+    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
+    KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
+    KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
+    KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
+    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
+    KGameDifficulty::addStandardLevel(KGameDifficulty::ExtremelyHard);
+    KGameDifficulty::addStandardLevel(KGameDifficulty::Impossible);
 
     m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), this );
     actionCollection()->addAction( "use_colored_chips", m_coloredChipsAct );
@@ -176,26 +175,52 @@ void KReversiMainWindow::setupActions()
         actionCollection()->action( "game_new" )->setEnabled(false);
         m_hintAct->setEnabled(false);
         m_demoAct->setEnabled(false);
-        m_skillAct->setEnabled(false);
+        KGameDifficulty::setEnabled(false);
         m_undoAct->setEnabled(false);
     }
 }
 
 void KReversiMainWindow::loadSettings()
 {
-    int skill = Preferences::skill();
-    m_skillAct->setCurrentItem( skill - 1 );
-
+    KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (Preferences::level()));
     m_animSpeedAct->setCurrentItem( Preferences::animationSpeed() );
-
     m_coloredChipsAct->setChecked( Preferences::useColoredChips() );
 }
 
-void KReversiMainWindow::slotSkillChanged(int skill)
+void KReversiMainWindow::levelChanged(KGameDifficulty::standardLevel level)
 {
+    int skill;
+
+    switch(level) {
+        case KGameDifficulty::VeryEasy:
+            skill=1;
+            break;
+        case KGameDifficulty::Easy:
+        default:
+            skill=2;
+            break;
+        case KGameDifficulty::Medium:
+            skill=3;
+            break;
+        case KGameDifficulty::Hard:
+            skill=4;
+            break;
+        case KGameDifficulty::VeryHard:
+            skill=5;
+            break;
+        case KGameDifficulty::ExtremelyHard:
+            skill=6;
+            break;
+        case KGameDifficulty::Impossible:
+            skill=7;
+            break;
+    }
+    m_lowestSkill = qMin(m_lowestSkill, skill);
+
     // m_game takes it from 1 to 7
-    m_game->setComputerSkill( skill+1 );
-    Preferences::setSkill( skill+1 );
+    m_game->setComputerSkill( skill );
+
+    Preferences::setLevel((int)(level));
     Preferences::self()->writeConfig();
 }
 
@@ -248,6 +273,8 @@ void KReversiMainWindow::slotToggleDemoMode()
 
 void KReversiMainWindow::slotNewGame()
 {
+    m_lowestSkill = 1;
+
     if(KGGZMod::Module::isGGZ())
     {
         setCaption(i18n("Online game"));
@@ -270,7 +297,7 @@ void KReversiMainWindow::slotNewGame()
         m_historyView->clear();
 
     m_game = new KReversiGame;
-    m_game->setComputerSkill( Preferences::skill() );
+    levelChanged( (KGameDifficulty::standardLevel) (Preferences::level()) );
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
 
     if(m_scene == 0) // if called first time
@@ -307,8 +334,7 @@ void KReversiMainWindow::slotGameOver()
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);
 
-    // FIXME dimsuz: use lowest skill that was during ONE game
-    KExtHighscore::setGameType( Preferences::skill()-1 );
+    KExtHighscore::setGameType( m_lowestSkill );
     KExtHighscore::Score score;
     score.setScore(blackScore);
 

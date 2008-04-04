@@ -18,11 +18,9 @@
       <label>Whether to play competitively in contrast to casually.</label>
       <default>true</default>
     </entry>
-    <entry name="Skill" type="Int">
-      <label>The strength of the computer player.</label>
-      <default>1</default>
-      <min>1</min>
-      <max>7</max>
+    <entry name="level" type="Int">
+      <label>Difficulty level</label>
+      <default>30</default>
     </entry>
     <entry name="UseColoredChips" type="Bool">
         <label>Whether to use colored chips instead of black and white ones.</label>
