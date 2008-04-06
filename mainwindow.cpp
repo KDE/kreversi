@@ -73,8 +73,8 @@ static QString moveToString( const KReversiPos& move )
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     : KXmlGuiWindow(parent), m_scene(0), m_game(0),
       m_historyLabel(0), m_historyView(0),
-      m_firstShow( true ), m_startInDemoMode( startDemo ),
-      m_undoAct(0), m_hintAct(0), m_demoAct(0), m_lowestSkill(1)
+      m_firstShow( true ), m_startInDemoMode( startDemo ), m_lowestSkill(1),
+      m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
     statusBar()->insertItem( i18n("You: %1", 2), PLAYER_STATUSBAR_ID );
