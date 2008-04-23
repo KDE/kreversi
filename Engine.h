@@ -126,7 +126,6 @@
 //#include "Score.h"
 
 //#include <sys/times.h>
-#include <QBitArray>
 #include <QVector>
 #include <krandomsequence.h>
 #include "commondefs.h"
@@ -215,17 +214,17 @@ public:
 private:
   KReversiPos     ComputeFirstMove(const KReversiGame& game);
   int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
-			int cutoffval,
-			ULONG64 colorbits, ULONG64 opponentbits);
+  int      cutoffval,
+  quint64  colorbits, ULONG64 opponentbits);
 
   int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
-		       ULONG64 opponentbits, ULONG64 colorbits);
+  quint64  opponentbits, ULONG64 colorbits);
 
   int      EvaluatePosition(ChipColor color);
   void     SetupBcBoard();
   void     SetupBits();
   int      CalcBcScore(ChipColor color);
-  ULONG64  ComputeOccupiedBits(ChipColor color);
+  quint64  ComputeOccupiedBits(ChipColor color);
 
   void yield();
 
@@ -247,8 +246,8 @@ private:
   KRandomSequence  m_random;
   bool             m_interrupt;
 
-  ULONG64      m_coord_bit[9][9];
-  ULONG64      m_neighbor_bits[9][9];
+  quint64      m_coord_bit[9][9];
+  quint64      m_neighbor_bits[9][9];
 
   bool m_computingMove;
 };
