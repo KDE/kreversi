@@ -12,7 +12,7 @@
  
 <book lang="&language;"> <!-- do not change this! -->
 <bookinfo>
-	<title>The &kappname; Handbook</title> <!-- This is the title of the docbook. Live as is unless change is necessary.-->
+	<title>The ""&kappname;"" Handbook</title> <!-- This is the title of the docbook. Live as is unless change is necessary.-->
 <!-- List of immidiate authors begins here. -->
 <!--INPORTANT! - All other contributors: [to be determined] -->
 <authorgroup>
@@ -48,7 +48,7 @@
  
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
-	<para>This documentation describes the game of &kappname; version &kappversion;</para>
+	<para>This documentation describes the game of "&kappname;" version &kappversion;</para>
 </abstract>
  
 <!--List of relevan keywords-->
@@ -76,7 +76,7 @@
 	<note><title>Number of possible players:</title><para>One</para></note><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
  
 <!--Short game description starts here. 3-4 sentences (paragraphs)-->
-<para>&kappname; is a simple one player strategy game played against the
+<para>"&kappname;" is a simple one player strategy game played against the
 computer. The playing field is an 8 by 8 square board divided into 64
 squares. The game pieces used are two sided stones, where each side has its own, distinctive color.
  If a piece is captured by an opposing player, that piece is turned over
@@ -90,10 +90,10 @@ moves.</para>
 	<note><title>Objective:</title><para>Get control over the majority of squares on the board.</para></note><!--Describe the objective of the game.-->
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
 	<para>
-	&kappname; loads directly into the game play mode. As a first player you have the right to move first.</para>
+	"&kappname;" loads directly into the game play mode. As a first player you have the right to move first.</para>
 <note><title>Note:</title><para>By default the human player always has a right to the first move.</para></note>
 <para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more then one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
-<para>Every single move you do in &kappname; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
+<para>Every single move you do in "&kappname;" has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
 <note><title>Note:</title><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
 <para>The idea here is to fill the board with the stones of your own color. The player who manages to conquer the most of the game board is announced the winner.
 	</para>
@@ -116,10 +116,10 @@ made up of one or more stones.</para>
 in the center four squares of the board in the following pattern:</para>
 
 <screenshot>
-<screeninfo>&kappname; opening position</screeninfo>
+<screeninfo>"&kappname;" opening position</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
-<textobject><phrase>&kappname; opening position</phrase></textobject>
+<textobject><phrase>"&kappname;" opening position</phrase></textobject>
 <caption><para>Board Layout</para></caption>
 </mediaobject>
 </screenshot>
@@ -261,7 +261,7 @@ action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
 <guimenu>Game</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para>Exit &kappname;
+<listitem><para>Exit "&kappname;"
 </para></listitem>
 </varlistentry>
 
@@ -407,13 +407,13 @@ move.</para></listitem>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guimenuitem>Configure Shortcuts...</guimenuitem>
     </menuchoice></term>
-    <listitem><para>Opens a dialog which lets you configure all the keyboard shortcuts which are available in &kappname;.</para></listitem>
+    <listitem><para>Opens a dialog which lets you configure all the keyboard shortcuts which are available in "&kappname;".</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guimenuitem>Configure Toolbars...</guimenuitem>
     </menuchoice></term>
-    <listitem><para><action>Open a dialog where you can configure the toolbars</action> for &kappname;.</para></listitem>
+    <listitem><para><action>Open a dialog where you can configure the toolbars</action> for "&kappname;".</para></listitem>
   </varlistentry>
 </variablelist>
 </sect1>
@@ -444,7 +444,7 @@ action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 </qandaentry>
 <qandaentry>
  <question><para>How do I pause the game? </para></question>
- <answer><para>&kappname; does not have a pause feature, as it does not require one.</para></answer>
+ <answer><para>"&kappname;" does not have a pause feature, as it does not require one.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I want to change the way this game looks. Can I? </para></question>
@@ -461,24 +461,24 @@ action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
 </qandaentry>
 <qandaentry>
  <question><para>Can I use keyboard? </para></question>
- <answer><para>No. &kappname; does not provide for the keyboard play.</para></answer>
+ <answer><para>No. "&kappname;" does not provide for the keyboard play.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I cannot figure out what to do here! Are there hints? </para></question>
- <answer><para>Yes. To activate the &kappname; hint system use <menuchoice><shortcut><keycap>H</keycap></shortcut><guimenu>Move</guimenu><guimenuitem>Hint</guimenuitem></menuchoice> on the menubar.</para></answer>
+ <answer><para>Yes. To activate the "&kappname;" hint system use <menuchoice><shortcut><keycap>H</keycap></shortcut><guimenu>Move</guimenu><guimenuitem>Hint</guimenuitem></menuchoice> on the menubar.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para></question>
-  <answer><para>No. &kappname; does not have a save feature.</para></answer>
+  <answer><para>No. "&kappname;" does not have a save feature.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>Where are the high scores?</para></question>
- <answer><para>To access &kappname; highs core board use <menuchoice><shortcut><keycombo 
+ <answer><para>To access "&kappname;" highs core board use <menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guimenu><guimenuitem>Show High Scores...</guimenuitem></menuchoice> on the menubar.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I want to change the game configuration. Where do I go? </para></question>
- <answer><para>All of the possible &kappname;'s settings are located under the <menuchoice><guimenu>Settings</guimenu></menuchoice> on the menubar.</para></answer><!--IMPORTANT!: this link has to send user to 'Interface Overview' section. So please setup the link structure accordingly.-->
+ <answer><para>All of the possible "&kappname;"'s settings are located under the <menuchoice><guimenu>Settings</guimenu></menuchoice> on the menubar.</para></answer><!--IMPORTANT!: this link has to send user to 'Interface Overview' section. So please setup the link structure accordingly.-->
 </qandaentry>
 <qandaentry>
  <question><para>I want to change the toolbar layout. What do I do?</para></question>
@@ -494,10 +494,10 @@ action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guim
 <title>Multiplayer Support</title>
 
 <para>
-&kappname; can be played online on any GGZ Gaming Zone site. You can
+"&kappname;" can be played online on any GGZ Gaming Zone site. You can
 find other players there, and compete against them. Just enter one
 of the available Reversi rooms with any GGZ core client, such as
-kggz, and &kappname; will be offered to you as your favourite
+kggz, and "&kappname;" will be offered to you as your favourite
 game client. If a GGZ core client is installed, you can try
 out GGZ by visiting the <ulink url="ggz://live.ggzgamingzone.org/#Reversi">community site</ulink>.
 </para>
@@ -505,7 +505,7 @@ out GGZ by visiting the <ulink url="ggz://live.ggzgamingzone.org/#Reversi">commu
 <para>
 Remember that when playing online, the opponent might be either a
 human player or a computer player. The latter one might behave
-differently from the computer player included in &kappname;.
+differently from the computer player included in "&kappname;".
 </para>
 
 </sect1>
@@ -515,7 +515,7 @@ differently from the computer player included in &kappname;.
 <!--This chapter is for credits and licenses.-->
  
 <para>
-&kappname;  <!-- do not change this! -->
+"&kappname;"  <!-- do not change this! -->
 </para>
 
 <para>Program Copyright 1998-2000 &Mario.Weilguni;</para>
@@ -524,7 +524,7 @@ differently from the computer player included in &kappname;.
 <para>Original documentation by &Mario.Weilguni;</para>
 <para>Edited by Robert Williams</para>
 
-<para>Documentation re-written and updated for &kde; 2.0 by &Clay.Pradarits;
+<para>Documentation re-written and updated for &kde; &kappversion; by &Clay.Pradarits;
 &Clay.Pradarits.mail;</para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
