@@ -215,10 +215,10 @@ private:
   KReversiPos     ComputeFirstMove(const KReversiGame& game);
   int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
   int      cutoffval,
-  quint64  colorbits, ULONG64 opponentbits);
+  quint64  colorbits, quint64 opponentbits);
 
   int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
-  quint64  opponentbits, ULONG64 colorbits);
+  quint64  opponentbits, quint64 colorbits);
 
   int      EvaluatePosition(ChipColor color);
   void     SetupBcBoard();
