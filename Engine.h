@@ -142,20 +142,6 @@ static ChipColor opponentColorFor(ChipColor color)
 }
 
 
-// Class ULONG64 is used as a bitmap for the squares.
-
-#if defined(__GNUC__)
-#define ULONG64 unsigned long long int
-#else
-class ULONG64 : public QBitArray {
-public:
-  ULONG64();
-  ULONG64( unsigned int );
-  void shl();
-};
-#endif
-
-
 // SquareStackEntry and SquareStack are used during search to keep
 // track of turned pieces.
 

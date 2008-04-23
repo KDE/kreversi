@@ -121,45 +121,6 @@
 #include <KDebug>
 
 // ================================================================
-//                          Class ULONG64
-
-
-#if !defined(__GNUC__)
-
-
-ULONG64::ULONG64() : QBitArray(64)
-{
-  fill(0);
-}
-
-
-// Initialize an ULONG64 from a 32 bit value.
-//
-
-ULONG64::ULONG64( unsigned int value ) : QBitArray(64)
-{
-  fill(0);
-  for(int i = 0; i < 32; i++) {
-    setBit(i, (bool)(value & 1));
-    value >>= 1;
-  }
-}
-
-
-// Shift an ULONG64 left one bit.
-//
-
-void ULONG64::shl()
-{
-  for(int i = 63; i > 0; i--)
-    setBit(i, testBit(i - 1));
-  setBit(0, 0);
-}
-
-#endif
-
-
-// ================================================================
 //           Classes SquareStackEntry and SquareStack
 
 
@@ -427,8 +388,8 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
   m_bc_score->set(White, CalcBcScore(White));
   m_bc_score->set(Black, CalcBcScore(Black));
 
-  ULONG64 colorbits    = ComputeOccupiedBits(color);
-  ULONG64 opponentbits = ComputeOccupiedBits(opponentColorFor(color));
+  quint64 colorbits    = ComputeOccupiedBits(color);
+  quint64 opponentbits = ComputeOccupiedBits(opponentColorFor(color));
 
   int maxval = -LARGEINT;
   int max_x = 0;
@@ -440,7 +401,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 
   setInterrupt(false);
 
-  ULONG64 null_bits;
+  quint64 null_bits;
   null_bits = 0;
 
   // The main search loop.  Step through all possible moves and keep
@@ -551,8 +512,8 @@ KReversiPos Engine::ComputeFirstMove(const KReversiGame& game)
 //
 
 int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
-			 int cutoffval, ULONG64 colorbits,
-			 ULONG64 opponentbits)
+			 int cutoffval, quint64 colorbits,
+			 quint64 opponentbits)
 {
   int               number_of_turned = 0;
   SquareStackEntry  mse;
@@ -673,14 +634,14 @@ int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 //
 
 int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
-			ULONG64 opponentbits, ULONG64 colorbits)
+			quint64 opponentbits, quint64 colorbits)
 {
   int maxval = -LARGEINT;
 
   // Keep GUI alive by calling the event loop.
   yield();
 
-  ULONG64  null_bits;
+  quint64  null_bits;
   null_bits = 0;
 
   for (int x = 1; x < 9; x++) {
@@ -746,18 +707,14 @@ void Engine::SetupBits()
   //m_coord_bit = new long[9][9];
   //m_neighbor_bits = new long[9][9];
 
-  ULONG64 bits = 1;
+  quint64 bits = 1;
 
   // Store a 64 bit unsigned it with the corresponding bit set for
   // each square.
   for (int i=1; i < 9; i++)
     for (int j=1; j < 9; j++) {
       m_coord_bit[i][j] = bits;
-#if !defined(__GNUC__)
-      bits.shl();
-#else
       bits *= 2;
-#endif
     }
 
   // Store a bitmap consisting of all neighbors for each square.
@@ -829,9 +786,9 @@ int Engine::CalcBcScore(ChipColor color)
 // Calculate a bitmap of the occupied squares for a certain color.
 //
 
-ULONG64 Engine::ComputeOccupiedBits(ChipColor color)
+quint64 Engine::ComputeOccupiedBits(ChipColor color)
 {
-  ULONG64 retval = 0;
+  quint64 retval = 0;
 
   for (int i=1; i < 9; i++)
     for (int j=1; j < 9; j++)
