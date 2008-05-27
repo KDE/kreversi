@@ -24,7 +24,7 @@ kde4_add_app_icon(kreversi_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-kreve
 kde4_add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi ${KDE4_KDEUI_LIBS} kdegames ${KGGZGAMES_LIBS})
-install(TARGETS kreversi  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 register_ggz_module(module.dsc)
 
