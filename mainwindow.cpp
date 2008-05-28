@@ -313,6 +313,7 @@ void KReversiMainWindow::slotNewGame()
     }
 
     statusBar()->changeItem( i18n("Your turn."), 0 );
+    updateScores();
 }
 
 void KReversiMainWindow::slotGameOver()
@@ -381,8 +382,7 @@ void KReversiMainWindow::slotMoveFinished()
 
     statusBar()->changeItem( m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0 );
 
-    statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
-    statusBar()->changeItem( i18n("%1: %2", opponentName(), m_game->playerScore(White) ), COMP_STATUSBAR_ID);
+    updateScores();
 }
 
 void KReversiMainWindow::slotUndo()
@@ -399,8 +399,7 @@ void KReversiMainWindow::slotUndo()
         m_historyView->setCurrentItem( last );
         m_historyView->scrollToItem( last );
 
-        statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
-        statusBar()->changeItem( i18n("%1: %2", opponentName(), m_game->playerScore(White) ), COMP_STATUSBAR_ID);
+        updateScores();
 
         m_undoAct->setEnabled( m_game->canUndo() );
         // if the user hits undo after game is over
@@ -440,16 +439,15 @@ void KReversiMainWindow::showEvent( QShowEvent* )
     m_firstShow = false;
 }
 
-QString KReversiMainWindow::opponentName()
+void KReversiMainWindow::updateScores()
 {
-    if(KGGZMod::Module::isGGZ())
-    {
-        return i18n("Opponent");
-    }
-    else
-    {
-        return i18n("Computer");
-    }
+    statusBar()->changeItem( i18n("You: %1", m_game->playerScore(Black) ), PLAYER_STATUSBAR_ID);
+    statusBar()->changeItem( i18n("%1: %2", opponentName(), m_game->playerScore(White) ), COMP_STATUSBAR_ID);
+}
+
+QString KReversiMainWindow::opponentName() const
+{
+    return KGGZMod::Module::isGGZ() ? i18n("Opponent") : i18n("Computer");
 }
 
 #include "mainwindow.moc"
