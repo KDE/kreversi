@@ -235,6 +235,11 @@ void KReversiMainWindow::slotToggleDemoMode()
     }
     else
     {
+        // if game is over when user launched Demo, start new game
+        // before Demo starts
+        if (m_game && m_game->isGameOver())
+            slotNewGame();
+
         toggled = true;
         m_demoAct->setIcon( KIcon("media-playback-pause") );
         m_demoAct->setChecked( true );
