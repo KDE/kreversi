@@ -1,5 +1,4 @@
 [Desktop Entry]
-Encoding=UTF-8
 Exec=kreversi %i %m -caption "%c"
 Name=KReversi
 Name[af]=Kreversi
