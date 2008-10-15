@@ -92,7 +92,7 @@ moves.</para>
 	<para>
 	&kappname; loads directly into the game play mode. As a first player you have the right to move first.</para>
 <note><title>Note:</title><para>By default the human player always has a right to the first move.</para></note>
-<para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more then one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
+<para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more than one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
 <para>Every single move you do in &kappname; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
 <note><title>Note:</title><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
 <para>The idea here is to fill the board with the stones of your own color. The player who manages to conquer the most of the game board is announced the winner.
