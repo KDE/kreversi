@@ -244,7 +244,7 @@ action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Show High Scores...</guimenuitem></menuchoice></term>
+<guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
 <listitem><para>Opens a dialog that displays different high score tables. 
 <guibutton>Export...</guibutton> the high scores into a file or click on 
 <guibutton>Configure...</guibutton> to open a dialog to customize your 
@@ -474,7 +474,7 @@ action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
 <qandaentry>
  <question><para>Where are the high scores?</para></question>
  <answer><para>To access &kappname; highs core board use <menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guimenu><guimenuitem>Show High Scores...</guimenuitem></menuchoice> on the menubar.</para></answer>
+action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut><guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem></menuchoice> on the menubar.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I want to change the game configuration. Where do I go? </para></question>
