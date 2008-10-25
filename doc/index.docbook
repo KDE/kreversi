@@ -208,7 +208,7 @@ filled.</para></note>
 <sect1 id="tips">
 <title>Strategies and Tips</title>
 
-<para>Try to place stones on the edges whenever possible. Your
+<para>Try to place stones on the corners whenever possible. Your
 opponent cannot outflank these stones.</para>
 
 <para>Avoid placing stones on one of the three neighbor fields of a
@@ -216,7 +216,7 @@ corner unless you are absolutely sure that your opponent will not be
 able to put a stone on a corner.</para>
 
 <para>Sometimes it is better to offer some stones to your
-opponent</para>
+opponent.</para>
 
 <para>Try to put stones on fields which prevent your opponent from
 moving.</para>
