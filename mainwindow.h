@@ -30,6 +30,7 @@ class KReversiScene;
 class KReversiGame;
 class KReversiView;
 class QAction;
+class KAction;
 class KSelectAction;
 class KToggleAction;
 class QListWidget;
@@ -76,7 +77,7 @@ private:
     QAction* m_undoAct;
     QAction* m_hintAct;
     QAction* m_demoAct;
-    QAction* m_seatsAct;
+    KAction* m_seatsAct;
     KSelectAction* m_animSpeedAct;
     KToggleAction* m_coloredChipsAct;
 };
