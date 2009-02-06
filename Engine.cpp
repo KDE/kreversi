@@ -460,7 +460,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
     int  r = m_random.getLong(number_of_maxval) + 1;
     int  i;
 
-    for (i = 0; i < number_of_moves; i++) {
+    for (i = 0; i < number_of_moves; ++i) {
       if (moves[i].m_value == maxval && --r <= 0)
 	break;
     }
