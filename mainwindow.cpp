@@ -335,7 +335,7 @@ void KReversiMainWindow::slotGameOver()
         return;
     }
 
-    statusBar()->changeItem( i18n("GAME OVER."), 0 );
+    statusBar()->changeItem( i18n("GAME OVER"), 0 );
 
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);

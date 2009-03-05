@@ -526,7 +526,7 @@ void KReversiScene::slotComputerCantMove()
 void KReversiScene::slotPlayerCantMove()
 {
     m_messageItem->setMessageTimeout(3000);
-    m_messageItem->showMessage(i18n("You can not perform any move. Computer makes next turn now."), KGamePopupItem::BottomLeft);
+    m_messageItem->showMessage(i18n("You can not perform any move. Computer takes next turn now."), KGamePopupItem::BottomLeft);
 
     displayLastAndPossibleMoves();
 }
