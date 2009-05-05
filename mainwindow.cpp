@@ -91,7 +91,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     m_view = new KReversiView(m_scene, mainWid);
     lay->addWidget(m_view, 0, 0, 2, 1);
 
-    m_historyLabel = new QLabel( i18n("Move history"), mainWid );
+    m_historyLabel = new QLabel( i18n("Move History"), mainWid );
     lay->addWidget( m_historyLabel, 0, 1, Qt::AlignCenter );
     m_historyView = new QListWidget( mainWid );
     m_historyView->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Expanding );
@@ -123,7 +123,7 @@ void KReversiMainWindow::setupActions()
 
     m_seatsAct = actionCollection()->addAction( "game_seats" );
     m_seatsAct->setIcon( KIcon("roll") );
-    m_seatsAct->setText( i18n("Players and Seats") );
+    m_seatsAct->setText( i18n("Players && Seats") );
     m_seatsAct->setShortcut( Qt::Key_S );
     connect(m_seatsAct, SIGNAL(triggered(bool)), SLOT(slotSeats()) );
 
