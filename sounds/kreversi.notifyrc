@@ -1,6 +1,10 @@
 [Global]
 IconName=kreversi
 Comment=KReversi Game
+Comment[pt]=Jogo KReversi
+Comment[pt_BR]=Jogo KReversi
+Comment[uk]=Гра KReversi
+Comment[x-test]=xxKReversi Gamexx
 
 [Event/click]
 Name=Click
