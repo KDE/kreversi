@@ -344,7 +344,7 @@ void KReversiScene::slotAnimationStep()
 	return;
     }
 
-    if(m_changedChips.count() == 0 && !m_showingHint)
+    if(m_changedChips.isEmpty() && !m_showingHint)
     {
         // FIXME: GGZ only - doesn't yet report flipped chips
         m_animTimer->stop();
@@ -356,9 +356,22 @@ void KReversiScene::slotAnimationStep()
     { // we're animating chips move
 
         KReversiPos move = m_changedChips.at(0);
-        KReversiChip *chip = qgraphicsitem_cast<KReversiChip*>(itemAt( cellCenter(move.row, move.col) ));
+        QPointF pos = cellCenter(move.row, move.col);
+        KReversiChip *chip = qgraphicsitem_cast<KReversiChip*>(itemAt(pos));
+        if (!chip)
+        {
+            kDebug() << "looks like pos" << move.row << "," << move.col << "is hovered by message item, searching below";
+            QList<QGraphicsItem*> allItemsAtPos = items(pos);
+            foreach (QGraphicsItem* item, allItemsAtPos)
+            {
+                chip = qgraphicsitem_cast<KReversiChip*>(item);
+                if (chip)
+                    break;
+            }
+            kDebug() << (chip ? "found it!" : "not found... skipping all animation frames and hoping for the best");
+        }
 
-        bool animFinished = chip->nextFrame();
+        bool animFinished = chip ? chip->nextFrame() : true /* skip frames */;
         if(animFinished)
         {
             chip->setColor( move.color );
