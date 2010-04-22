@@ -14,6 +14,7 @@ Comment[pt_BR]=Jogo KReversi
 Comment[sv]=Spelet Othello
 Comment[uk]=Гра KReversi
 Comment[x-test]=xxKReversi Gamexx
+Comment[zh_TW]=黑白棋棋盤遊戲
 
 [Event/click]
 Name=Click
