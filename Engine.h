@@ -116,8 +116,8 @@
 // This makes it possible to select a random move among those with equal
 // or nearly equal value after the search is completed.
 
-#ifndef __ENGINE__H__
-#define __ENGINE__H__
+#ifndef KREVERSI_ENGINE_H
+#define KREVERSI_ENGINE_H
 
 //#include "SuperEngine.h"
 //#include "Position.h"
