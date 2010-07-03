@@ -25,7 +25,7 @@
 
 #include <QPixmap>
 
-class KSvgRenderer;
+class QSvgRenderer;
 class KPixmapCache;
 
 class KReversiRenderer
@@ -50,7 +50,7 @@ private:
     /**
      *  Svg renderer instance
      */
-    KSvgRenderer *m_renderer;
+    QSvgRenderer *m_renderer;
     KPixmapCache *m_cache;
 };
 #endif

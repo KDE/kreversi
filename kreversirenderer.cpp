@@ -23,7 +23,7 @@
 
 #include "kreversirenderer.h"
 #include <kstandarddirs.h>
-#include <ksvgrenderer.h>
+#include <qsvgrenderer.h>
 #include <kpixmapcache.h>
 
 #include <QPainter>
@@ -36,7 +36,7 @@ KReversiRenderer* KReversiRenderer::self()
 
 KReversiRenderer::KReversiRenderer()
 {
-    m_renderer = new KSvgRenderer();
+    m_renderer = new QSvgRenderer();
     m_renderer->load( KStandardDirs::locate( "appdata", "pics/default_theme.svgz" ) );
 
     m_cache = new KPixmapCache("kreversi-cache");
