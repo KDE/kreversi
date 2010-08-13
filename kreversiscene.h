@@ -1,6 +1,7 @@
 /*******************************************************************
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -25,11 +26,12 @@
 
 #include <QGraphicsScene>
 #include <QPixmap>
+#include <KGameRenderedItem>
+#include <KGameRenderer>
 
 #include "commondefs.h"
 
 class KReversiGame;
-class KReversiChipFrameSet;
 class KReversiChip;
 class KGamePopupItem;
 class QPainter;
@@ -50,10 +52,9 @@ class KReversiScene : public QGraphicsScene
     Q_OBJECT
 public:
     /**
-     * @param chipsPath path to the svg pixmap with animation frames
+     * @param chipsPrefix prefix indicating what type of chips to render
      */
-    KReversiScene( KReversiGame* game, const QString& chipsPath );
-    ~KReversiScene();
+    KReversiScene( KReversiGame* game, const QString& chipsPrefix );
 
     /**
      *  Sets the game object which this scene will visualize/use.
@@ -62,7 +63,6 @@ public:
     void setGame( KReversiGame* game );
     /**
      *  Sets the chips pixmap to be one found in chipsPrefix
-     *  @see KReversiChipFrameSet
      */
     void setChipsPrefix( const QString& chipsPrefix );
     /**
@@ -168,6 +168,10 @@ private:
      */
     QPointF cellTopLeft( int row, int col ) const;
     /**
+     * Caching SVG sprite renderer
+     */
+    KGameRenderer m_renderer;
+    /**
      * Position of the board within the scene
      */
     QRectF m_boardRect;
@@ -181,14 +185,9 @@ private:
      */
     KReversiGame *m_pendingNewGame;
     /**
-     *  This will hold pixmap which is rendered by m_possMovesRenderer.
-     *  It will be rerendered on resizes
+     * The SVG element prefix for the current chip set
      */
-    QPixmap m_possMovePix;
-    /**
-     *  Animation frameset for chips
-     */
-    KReversiChipFrameSet *m_frameSet;
+    QString m_chipsPrefix;
     /**
      *  Current size of chip
      */
@@ -249,7 +248,7 @@ private:
      *
      *  (isn't that too much words for this little thingie? ;) )
      */
-    QList<QGraphicsPixmapItem*> m_possibleMovesItems;
+    QList<KGameRenderedItem*> m_possibleMovesItems;
     /**
      * Item to show messages to user
      */

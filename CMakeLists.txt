@@ -10,7 +10,6 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdegames/highscore)
 set(kreversi_SRCS 
     kreversichip.cpp
     kreversigame.cpp
-    kreversirenderer.cpp
     kreversiscene.cpp
     kreversiview.cpp
     Engine.cpp

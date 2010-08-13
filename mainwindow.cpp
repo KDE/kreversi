@@ -1,6 +1,7 @@
 /*******************************************************************
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -233,7 +234,7 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
-    QString chipsPrefix = m_coloredChipsAct->isChecked() ? "chip_color_%1" : "chip_bw_%1";
+    QString chipsPrefix = m_coloredChipsAct->isChecked() ? "chip_color" : "chip_bw";
     m_scene->setChipsPrefix( chipsPrefix );
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
@@ -307,7 +308,7 @@ void KReversiMainWindow::slotNewGame()
 
     if(m_scene == 0) // if called first time
     {
-        QString chipsPrefix = Preferences::useColoredChips() ? "chip_color_%1" : "chip_bw_%1";
+        QString chipsPrefix = Preferences::useColoredChips() ? "chip_color" : "chip_bw";
         m_scene = new KReversiScene(m_game, chipsPrefix);
         m_scene->setAnimationSpeed( Preferences::animationSpeed() );
         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );

@@ -1,6 +1,7 @@
 /*******************************************************************
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -21,103 +22,81 @@
  *
  ********************************************************************/
 #include "kreversichip.h"
-#include "kreversirenderer.h"
 #include <QPainter>
 #include <QPixmap>
 #include <QImage>
+#include <QGraphicsScene>
 
 #include <kdebug.h>
 
-KReversiChip::KReversiChip( ChipColor color, const KReversiChipFrameSet* frameSet, QGraphicsScene* scene )
-    : QGraphicsPixmapItem( 0, scene ), m_color(color), m_frameSet(frameSet), m_curFrame(0)
+QPixmap* KReversiChip::s_lastMoveMarker;
+
+KReversiChip::KReversiChip( KGameRenderer* renderer, ChipColor color,
+        const QString& chipsPrefix, int size, QGraphicsScene* scene )
+    : KGameRenderedItem( renderer, chipsPrefix ), m_color(color), m_curFrame(0)
 {
+    scene->addItem(this);
+    setRenderSize( QSize(size, size) );
     setColor(m_color);
 }
 
-void KReversiChip::setFrameSet( const KReversiChipFrameSet* frameSet )
+void KReversiChip::setChipPrefix( const QString& chipPrefix )
 {
-    m_frameSet = frameSet;
+    setSpriteKey( chipPrefix );
+}
+
+void KReversiChip::setChipSize( int newSize )
+{
+    setRenderSize( QSize(newSize, newSize) );
 }
 
 void KReversiChip::setColor( ChipColor color )
 {
     m_color = color;
-    setPixmap( m_frameSet->chipPixmap( m_color ) );
+    setFrame(currentFrameNumber());
 }
 
 bool KReversiChip::nextFrame()
 {
-    setPixmap( m_frameSet->frame( m_color, m_curFrame++ ) );
-    bool finished = (m_curFrame == m_frameSet->frameCount());
-    if(finished)
+    setFrame(currentFrameNumber());
+    m_curFrame++;
+    if(m_curFrame == frameCount())
+    {
         m_curFrame = 0;
-    return finished;
+        return true;
+    }
+    return false;
 }
 
 void KReversiChip::showLastMoveMarker(bool show)
 {
+    QList<QGraphicsItem*> children = childItems();
+    qDeleteAll(children);
     if(show)
     {
-        QPixmap origPix = pixmap();
-        QPixmap pix = origPix;
-        QPainter p(&pix);
-        p.fillRect( 1, 1, pix.width()-2, pix.height()-2, Qt::gray );
-        p.drawPixmap(0,0, origPix);
-        p.end();
-        setPixmap(pix);
+        QGraphicsItem* marker = new QGraphicsPixmapItem(*s_lastMoveMarker, this);
+        marker->setFlag(QGraphicsItem::ItemStacksBehindParent);
     }
-    else
-        setPixmap( m_frameSet->chipPixmap( m_color ) );
 }
 
-// -------------------------------------------------------------------------------
-
-KReversiChipFrameSet::KReversiChipFrameSet()
+void KReversiChip::initLastMoveMarker( int size )
 {
-}
-
-KReversiChipFrameSet::~KReversiChipFrameSet()
-{
-}
-
-void KReversiChipFrameSet::switchChipSet( const QString& chipsPrefix, int chipSize )
-{
-    m_currentChipsPrefix = chipsPrefix;
-    int size = chipSize == 0 ? KReversiRenderer::self()->defaultChipSize().width() : chipSize;
-    setChipSize( size );
-}
-
-void KReversiChipFrameSet::setChipSize( int newSize )
-{
-    QImage baseImg;
-    m_frames.clear();
-    for (int i=1; i<=12; i++) {
-    //Construct an image object to render the contents of the .svgz file
-    baseImg = QImage(newSize, newSize, QImage::Format_ARGB32_Premultiplied);
-    //Fill the buffer, it is unitialised by default
-    baseImg.fill(0);
-    QPainter p(&baseImg);
-    QString nextelement(m_currentChipsPrefix.arg(i));
-    KReversiRenderer::self()->renderElement(&p, nextelement, QRectF(0,0,newSize,newSize));
+    if(s_lastMoveMarker != NULL)
+        delete s_lastMoveMarker;
+    s_lastMoveMarker = new QPixmap(size, size);
+    s_lastMoveMarker->fill(Qt::transparent);
+    QPainter p(s_lastMoveMarker);
+    qreal offset = size*.02;
+    p.fillRect(QRectF(offset, offset, size-(offset*4), size-(offset*4)), Qt::gray );
     p.end();
-    m_frames.append( QPixmap::fromImage(baseImg) );
-    }
 }
 
-QPixmap KReversiChipFrameSet::frame( ChipColor color, int frameNo ) const
+int KReversiChip::currentFrameNumber() const
 {
-    int idx = 0;
-    if( color == White )
-        idx = m_frames.count() - frameNo - 1;
-    else if(color == Black)
-        idx = frameNo;
-
-    Q_ASSERT( idx >= 0 && idx < m_frames.count() );
-
-    return m_frames.at( idx );
+    if( m_color == White )
+        return frameCount() - m_curFrame;
+    else if( m_color == Black )
+        return m_curFrame+1;
+    else return -1;
 }
 
-QPixmap KReversiChipFrameSet::chipPixmap( ChipColor color ) const
-{
-    return ( color == White ? m_frames.at(frameCount()-1) : m_frames.at(0) );
-}

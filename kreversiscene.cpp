@@ -1,6 +1,7 @@
 /*******************************************************************
  *
  * Copyright 2006-2007 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -23,7 +24,6 @@
 #include "kreversiscene.h"
 #include "kreversigame.h"
 #include "kreversichip.h"
-#include "kreversirenderer.h"
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
@@ -33,8 +33,9 @@
 #include <KLocale>
 #include <KGamePopupItem>
 
-KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
-    : m_game(0), m_pendingNewGame(0), m_frameSet(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
+KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPrefix )
+    : m_renderer(QLatin1String("pics/default_theme.desktop")), m_game(0),
+    m_pendingNewGame(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
     m_showLabels(false)
 {
@@ -42,17 +43,15 @@ KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPath )
     m_messageItem->setMessageOpacity(0.9);
     addItem(m_messageItem);
 
-    setChipsPrefix(chipsPath);
+    m_renderer.setFrameBaseIndex(1);
+    m_curCellSize = qMin(width(), height()) / 10;
+    KReversiChip::initLastMoveMarker(m_curCellSize);
+    setChipsPrefix(chipsPrefix);
 
     m_animTimer = new QTimer(this);
     connect(m_animTimer, SIGNAL(timeout()), SLOT(slotAnimationStep()));
 
     setGame(game);
-}
-
-KReversiScene::~KReversiScene()
-{
-    delete m_frameSet;
 }
 
 void KReversiScene::resizeScene( int width, int height )
@@ -63,18 +62,15 @@ void KReversiScene::resizeScene( int width, int height )
     int size = qMin(width, height);
     m_boardRect.setRect( width/2 - size/2, height/2 - size/2, size, size );
 
-    // board is square so no matter what to use - width or height
-    int defWidth = KReversiRenderer::self()->defaultBoardSize().width();
-    qreal scale = (qreal)size / defWidth;
+    m_curCellSize = size / 10.0;
 
-    if(scale <=0)
-        return;
+    if(m_lastMoveChip)
+        m_lastMoveChip->showLastMoveMarker(false);
+    KReversiChip::initLastMoveMarker(m_curCellSize);
+    if(m_lastMoveChip && m_showLastMove)
+        m_lastMoveChip->showLastMoveMarker(true);
 
-    m_curCellSize = defWidth * scale / 10;
-
-    // adopt to new chip size
-    m_frameSet->setChipSize( (int)m_curCellSize );
-
+    // adopt new chip size
     QList<QGraphicsItem*> allItems = items();
     KReversiChip *chip = 0;
     foreach( QGraphicsItem* item, allItems )
@@ -84,40 +80,18 @@ void KReversiScene::resizeScene( int width, int height )
         {
             // adjust pos to new one
             chip->setPos( cellTopLeft( chip->row(), chip->col() ) );
-            chip->setColor( chip->color() ); // this will reread pixmap
+            chip->setChipSize( (int)m_curCellSize );
         }
     }
 
-    // Render possible moves pixmap
-    QImage baseImg((int)m_curCellSize, (int)m_curCellSize, QImage::Format_ARGB32_Premultiplied);
-    QRectF moveRect(0,0,m_curCellSize,m_curCellSize);
-    baseImg.fill(0);
-    QPainter p(&baseImg);
-    KReversiRenderer::self()->renderPossibleMove( &p, moveRect );
-    p.end();
-    m_possMovePix = QPixmap::fromImage(baseImg);
-
-    //recalc possible moves items rects
-    foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
-        item->setPixmap( m_possMovePix );
-    // and reposition them according to new cell sizes
+    foreach( KGameRenderedItem* item, m_possibleMovesItems )
+        item->setRenderSize(QSize(m_curCellSize, m_curCellSize));
     displayLastAndPossibleMoves();
 }
 
 void KReversiScene::setChipsPrefix( const QString& chipsPrefix )
 {
-    if(!m_frameSet) // this is a first invocation
-    {
-        m_frameSet = new KReversiChipFrameSet();
-        m_frameSet->switchChipSet( chipsPrefix );
-        m_curCellSize = m_frameSet->defaultChipSize();
-    }
-    else // we're changing frameset's pixmap (monochrome-chips <-> color-chips transition)
-    {
-        // m_curCellSize is already defined in this case, so lets scale chips on load
-        m_frameSet->switchChipSet( chipsPrefix, (int)m_curCellSize );
-    }
-
+    m_chipsPrefix = chipsPrefix;
     if(m_game)
     {
         QList<QGraphicsItem*> allItems = items(m_boardRect);
@@ -126,17 +100,11 @@ void KReversiScene::setChipsPrefix( const QString& chipsPrefix )
         {
             chip = qgraphicsitem_cast<KReversiChip*>(item);
             if( chip )
-            {
-                chip->setFrameSet( m_frameSet );
-                chip->setColor( chip->color() ); // this will reread pixmap
-            }
+                chip->setChipPrefix( chipsPrefix );
         }
 
         if(m_hintChip)
-        {
-            m_hintChip->setFrameSet( m_frameSet );
-            m_hintChip->setColor( m_hintChip->color() );
-        }
+            m_hintChip->setChipPrefix( chipsPrefix );
     }
 }
 
@@ -238,7 +206,7 @@ void KReversiScene::setShowLegalMoves( bool show )
     else
     {
         // NOTE: or delete?
-        foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+        foreach( KGameRenderedItem* item, m_possibleMovesItems )
             item->hide();
     }
 }
@@ -280,7 +248,7 @@ void KReversiScene::updateBoard()
                 else
                 {
                     //kDebug() << "No item at (" << row << "," << col << "). Creating.";
-                    chip = new KReversiChip( color, m_frameSet, this );
+                    chip = new KReversiChip( &m_renderer, color, m_chipsPrefix, m_curCellSize, this );
                     chip->setPos( cellTopLeft(row, col) );
                     chip->setRowCol( row, col );
                 }
@@ -317,7 +285,7 @@ void KReversiScene::slotGameMoveFinished()
     // hide shown legal moves
     if( m_showPossibleMoves )
     {
-        foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+        foreach( KGameRenderedItem* item, m_possibleMovesItems )
             item->hide();
     }
 
@@ -325,7 +293,7 @@ void KReversiScene::slotGameMoveFinished()
     // create an item that was placed by player
     // by convention it will be the first in the list of changed items
     KReversiPos move = m_changedChips.takeFirst();
-    KReversiChip *newchip = new KReversiChip( move.color, m_frameSet, this );
+    KReversiChip *newchip = new KReversiChip( &m_renderer, move.color, m_chipsPrefix, m_curCellSize, this );
     newchip->setPos( cellTopLeft( move.row, move.col ) );
     newchip->setRowCol( move.row, move.col );
     // start animation
@@ -412,7 +380,7 @@ void KReversiScene::displayLastAndPossibleMoves()
     if( m_showPossibleMoves && !m_game->isComputersTurn() )
     {
         //hide currently displayed if any
-        foreach( QGraphicsPixmapItem* item, m_possibleMovesItems )
+        foreach( KGameRenderedItem* item, m_possibleMovesItems )
             item->hide();
 
         PosList l = m_game->possibleMoves();
@@ -420,15 +388,13 @@ void KReversiScene::displayLastAndPossibleMoves()
         // lets fill it with additional rects.
         // Else we'll just reuse rects that we already have.
         // NOTE: maybe make m_possibleMovesItems a QVector and simply do resize()?
-        if( m_possibleMovesItems.count() < l.count() )
+        while( m_possibleMovesItems.count() < l.count() )
         {
-            int numtoadd = l.count() - m_possibleMovesItems.count();
-            for( int i=0; i<numtoadd; ++i)
-            {
-                QGraphicsPixmapItem *item = new QGraphicsPixmapItem( m_possMovePix, 0, this );
-                item->setZValue(-1);
-                m_possibleMovesItems.append( item );
-            }
+            KGameRenderedItem *item = new KGameRenderedItem( &m_renderer, "move_hint" );
+            addItem(item);
+            item->setRenderSize( QSize(m_curCellSize, m_curCellSize) );
+            item->setZValue(-1);
+            m_possibleMovesItems.append( item );
         }
 
         // now let's setup rects to appropriate positions
@@ -456,7 +422,7 @@ void KReversiScene::slotHint()
     if( !hint.isValid() )
         return;
     if( m_hintChip == 0 )
-        m_hintChip = new KReversiChip( hint.color, m_frameSet, this );
+        m_hintChip = new KReversiChip( &m_renderer, hint.color, m_chipsPrefix, m_curCellSize, this );
     m_hintChip->setPos( cellTopLeft( hint.row, hint.col ) );
     m_hintChip->setRowCol( hint.row, hint.col );
     m_showingHint = true;
@@ -478,12 +444,12 @@ QPointF KReversiScene::cellTopLeft( int row, int col ) const
     return m_boardRect.topLeft()+QPointF( (col+1) * m_curCellSize, (row+1) * m_curCellSize );
 }
 
-void KReversiScene::drawBackground( QPainter *p, const QRectF&)
+void KReversiScene::drawBackground( QPainter *p, const QRectF& )
 {
-    KReversiRenderer::self()->renderBackground( p, sceneRect() );
-    KReversiRenderer::self()->renderBoard(p, m_boardRect);
+    p->drawPixmap(sceneRect().topLeft(), m_renderer.spritePixmap("background", sceneRect().size().toSize()));
+    p->drawPixmap(m_boardRect.topLeft(), m_renderer.spritePixmap("board", m_boardRect.size().toSize()));
     if(m_showLabels)
-        KReversiRenderer::self()->renderBoardLabels(p, m_boardRect);
+        p->drawPixmap(m_boardRect.topLeft(), m_renderer.spritePixmap("board_numbers", m_boardRect.size().toSize()));
 }
 
 void KReversiScene::stopHintAnimation()

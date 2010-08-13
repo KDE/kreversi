@@ -46,6 +46,7 @@ int main(int argc, char **argv)
     aboutData.addCredit(ki18n("Mats Luthman"), ki18n("Game engine, ported from his JAVA applet."));
     aboutData.addCredit(ki18n("Arne Klaassen"), ki18n("Original raytraced chips."));
     aboutData.addCredit(ki18n("Mauricio Piacentini"), ki18n("Vector chips and background for KDE4."));
+    aboutData.addCredit(ki18n("Brian Croom"), ki18n("Port rendering code to KGameRenderer"), "brian.s.croom@gmail.com");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
