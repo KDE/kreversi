@@ -1,6 +1,10 @@
 [KGameTheme]
 VersionFormat=1
 Name=KReversi Default Theme
+Name[pt]=Tema Predefinido do KReversi
+Name[pt_BR]=Tema padrão do KReversi
+Name[sv]=Othello standardtema
+Name[uk]=Типова тема KReversi
 Name[x-test]=xxKReversi Default Themexx
 FileName=default_theme.svgz
 Author=Mauricio Piacentini
