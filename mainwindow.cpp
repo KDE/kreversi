@@ -122,23 +122,23 @@ void KReversiMainWindow::setupActions()
     m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), actionCollection());
     m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
-    m_seatsAct = actionCollection()->addAction( "game_seats" );
-    m_seatsAct->setIcon( KIcon("roll") );
+    m_seatsAct = actionCollection()->addAction( QLatin1String(  "game_seats" ) );
+    m_seatsAct->setIcon( KIcon( QLatin1String( "roll" )) );
     m_seatsAct->setText( i18n("Players && Seats") );
     m_seatsAct->setShortcut( Qt::Key_S );
     connect(m_seatsAct, SIGNAL(triggered(bool)), SLOT(slotSeats()) );
 
     // View
-    KToggleAction *showLast = new KToggleAction(KIcon("lastmoves"), i18n("Show Last Move"), this);
-    actionCollection()->addAction("show_last_move", showLast);
+    KToggleAction *showLast = new KToggleAction(KIcon( QLatin1String( "lastmoves") ), i18n("Show Last Move" ), this);
+    actionCollection()->addAction( QLatin1String( "show_last_move" ), showLast);
     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
-    KToggleAction *showLegal = new KToggleAction(KIcon("legalmoves"), i18n("Show Legal Moves"), this);
-    actionCollection()->addAction("show_legal_moves", showLegal);
+    KToggleAction *showLegal = new KToggleAction(KIcon( QLatin1String( "legalmoves") ), i18n("Show Legal Moves" ), this);
+    actionCollection()->addAction( QLatin1String( "show_legal_moves" ), showLegal);
     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
     m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
-    actionCollection()->addAction("anim_speed", m_animSpeedAct);
+    actionCollection()->addAction( QLatin1String( "anim_speed" ), m_animSpeedAct);
 
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
@@ -155,12 +155,12 @@ void KReversiMainWindow::setupActions()
     KGameDifficulty::addStandardLevel(KGameDifficulty::Impossible);
 
     m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), this );
-    actionCollection()->addAction( "use_colored_chips", m_coloredChipsAct );
+    actionCollection()->addAction( QLatin1String(  "use_colored_chips" ), m_coloredChipsAct );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction( KIcon("view-history"), i18n("Show Move History"), this );
-    actionCollection()->addAction("show_moves", showMovesAct);
+    KToggleAction *showMovesAct = new KToggleAction( KIcon( QLatin1String( "view-history") ), i18n("Show Move History" ), this );
+    actionCollection()->addAction( QLatin1String( "show_moves" ), showMovesAct);
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
 
     addAction(m_seatsAct); // FIXME (josef): is this needed?
@@ -256,7 +256,7 @@ void KReversiMainWindow::slotToggleDemoMode()
     if( m_scene->isInDemoMode() )
     {
         toggled = false;
-        m_demoAct->setIcon( KIcon("media-playback-start") );
+        m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-start" )) );
         m_demoAct->setChecked( false );
     }
     else
@@ -267,7 +267,7 @@ void KReversiMainWindow::slotToggleDemoMode()
             slotNewGame();
 
         toggled = true;
-        m_demoAct->setIcon( KIcon("media-playback-pause") );
+        m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-pause" )) );
         m_demoAct->setChecked( true );
     }
 
@@ -294,7 +294,7 @@ void KReversiMainWindow::slotNewGame()
     if(m_demoAct)
     {
         m_demoAct->setChecked( false );
-        m_demoAct->setIcon( KIcon("media-playback-start") );
+        m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-start" )) );
     }
     if(m_undoAct)
         m_undoAct->setEnabled( false );
