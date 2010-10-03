@@ -390,7 +390,7 @@ void KReversiScene::displayLastAndPossibleMoves()
         // NOTE: maybe make m_possibleMovesItems a QVector and simply do resize()?
         while( m_possibleMovesItems.count() < l.count() )
         {
-            KGameRenderedItem *item = new KGameRenderedItem( &m_renderer, "move_hint" );
+            KGameRenderedItem *item = new KGameRenderedItem( &m_renderer, QLatin1String( "move_hint" ) );
             addItem(item);
             item->setRenderSize( QSize(m_curCellSize, m_curCellSize) );
             item->setZValue(-1);
@@ -446,10 +446,10 @@ QPointF KReversiScene::cellTopLeft( int row, int col ) const
 
 void KReversiScene::drawBackground( QPainter *p, const QRectF& )
 {
-    p->drawPixmap(sceneRect().topLeft(), m_renderer.spritePixmap("background", sceneRect().size().toSize()));
-    p->drawPixmap(m_boardRect.topLeft(), m_renderer.spritePixmap("board", m_boardRect.size().toSize()));
+    p->drawPixmap(sceneRect().topLeft(), m_renderer.spritePixmap(QLatin1String( "background" ), sceneRect().size().toSize()));
+    p->drawPixmap(m_boardRect.topLeft(), m_renderer.spritePixmap(QLatin1String( "board" ), m_boardRect.size().toSize()));
     if(m_showLabels)
-        p->drawPixmap(m_boardRect.topLeft(), m_renderer.spritePixmap("board_numbers", m_boardRect.size().toSize()));
+        p->drawPixmap(m_boardRect.topLeft(), m_renderer.spritePixmap(QLatin1String( "board_numbers" ), m_boardRect.size().toSize()));
 }
 
 void KReversiScene::stopHintAnimation()

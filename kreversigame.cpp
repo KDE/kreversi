@@ -50,7 +50,7 @@ KReversiGame::KReversiGame()
     if(KGGZMod::Module::isGGZ())
     {
         kDebug() << "GGZDEBUG: yep we're in ggz mode, now activate kggzmod";
-        m_mod = new KGGZMod::Module("KReversi");
+        m_mod = new KGGZMod::Module(QLatin1String( "KReversi" ));
         connect(m_mod, SIGNAL(signalError()), SLOT(networkErrorHandler()));
         connect(m_mod, SIGNAL(signalNetwork(int)), SLOT(networkData(int)));
         kDebug() << "GGZDEBUG: kggzmod activated";

@@ -64,9 +64,9 @@ static QString moveToString( const KReversiPos& move )
     const char labelsHor[] = "ABCDEFGH";
     const char labelsVer[] = "12345678";
 
-    moveString += ' ';
-    moveString += labelsHor[move.col];
-    moveString += labelsVer[move.row];
+    moveString += QLatin1Char( ' ' );
+    moveString += QLatin1Char( labelsHor[move.col] );
+    moveString += QLatin1Char( labelsVer[move.row] );
 
     return moveString;
 }
@@ -173,7 +173,7 @@ void KReversiMainWindow::setupActions()
     else
     {
         // disable singleplayer actions
-        actionCollection()->action( "game_new" )->setEnabled(false);
+        actionCollection()->action( QLatin1String( "game_new" ) )->setEnabled(false);
         m_hintAct->setEnabled(false);
         m_demoAct->setEnabled(false);
         KGameDifficulty::setEnabled(false);
@@ -234,7 +234,7 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
-    QString chipsPrefix = m_coloredChipsAct->isChecked() ? "chip_color" : "chip_bw";
+    QString chipsPrefix = m_coloredChipsAct->isChecked() ? QLatin1String( "chip_color" ) : QLatin1String( "chip_bw" );
     m_scene->setChipsPrefix( chipsPrefix );
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
@@ -308,7 +308,7 @@ void KReversiMainWindow::slotNewGame()
 
     if(m_scene == 0) // if called first time
     {
-        QString chipsPrefix = Preferences::useColoredChips() ? "chip_color" : "chip_bw";
+        QString chipsPrefix = Preferences::useColoredChips() ? QLatin1String( "chip_color" ) : QLatin1String( "chip_bw" );
         m_scene = new KReversiScene(m_game, chipsPrefix);
         m_scene->setAnimationSpeed( Preferences::animationSpeed() );
         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
@@ -380,7 +380,7 @@ void KReversiMainWindow::slotMoveFinished()
 
     // add last move to history list
     KReversiPos move = m_game->getLastMove();
-    QString numStr = QString::number( m_historyView->count()+1 ) + ". ";
+    QString numStr = QString::number( m_historyView->count()+1 ) + QLatin1String( ". " );
     m_historyView->addItem( numStr + moveToString(move) );
     QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );
     m_historyView->setCurrentItem( last );
@@ -423,7 +423,7 @@ void KReversiMainWindow::slotHighscores()
     else
     {
         // FIXME (josef): GGZ needs KExtHighscore integration
-        KToolInvocation::invokeBrowser("http://www.ggzcommunity.org/db/games?lookup=Reversi");
+        KToolInvocation::invokeBrowser(QLatin1String( "http://www.ggzcommunity.org/db/games?lookup=Reversi" ));
     }
 }
 
