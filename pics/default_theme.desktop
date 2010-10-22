@@ -1,6 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=KReversi Default Theme
+Name[ca]=Tema predeterminat del KReversi
 Name[de]=Standard
 Name[en_GB]=KReversi Default Theme
 Name[es]=Tema predeterminado de KReversi
