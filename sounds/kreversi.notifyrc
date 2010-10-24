@@ -29,6 +29,7 @@ Comment[zh_TW]=黑白棋棋盤遊戲
 
 [Event/click]
 Name=Click
+Name[ast]=Calcar
 Name[be]=Пстрычка
 Name[bn]=ক্লিক
 Name[br]=Klik
@@ -89,6 +90,7 @@ Name[x-test]=xxClickxx
 Name[zh_CN]=单击
 Name[zh_TW]=點擊
 Comment=Click
+Comment[ast]=Calcar
 Comment[be]=Пстрычка
 Comment[bn]=ক্লিক
 Comment[br]=Klik
@@ -152,6 +154,7 @@ Sound=reversi-click.wav
 
 [Event/won]
 Name=Game Won
+Name[ast]=Partida ganada
 Name[be]=Перамога
 Name[ca]=Partida guanyada
 Name[ca@valencia]=Partida guanyada
@@ -200,6 +203,7 @@ Name[x-test]=xxGame Wonxx
 Name[zh_CN]=赢了游戏
 Name[zh_TW]=您贏了
 Comment=Game won
+Comment[ast]=Partida ganada
 Comment[be]=Перамога
 Comment[bn]=খেল খতম
 Comment[br]=Gounezet eo ar c'hoari
@@ -261,6 +265,7 @@ Sound=reversi-won.wav
 
 [Event/lost]
 Name=Game Lost
+Name[ast]=Partida perdida
 Name[ca]=Partida perduda
 Name[ca@valencia]=Partida perduda
 Name[cs]=Prohraná hra
@@ -309,6 +314,7 @@ Name[x-test]=xxGame Lostxx
 Name[zh_CN]=输了游戏
 Name[zh_TW]=您輸了
 Comment=Game lost
+Comment[ast]=Partida perdida
 Comment[be]=Параза
 Comment[bn]=খেলায় হেরে গিয়েছেন
 Comment[br]=Koll eo ar c'hoari
@@ -369,6 +375,7 @@ Action=None
 
 [Event/draw]
 Name=Draw
+Name[ast]=Dibuxar
 Name[be]=Нічыя
 Name[bn]=অমীমাংসিত
 Name[br]=Tresañ
@@ -426,6 +433,7 @@ Name[x-test]=xxDrawxx
 Name[zh_CN]=平局
 Name[zh_TW]=發牌
 Comment=Draw
+Comment[ast]=Dibuxar
 Comment[be]=Нічыя
 Comment[bn]=অমীমাংসিত
 Comment[br]=Tresañ
@@ -486,6 +494,7 @@ Action=None
 
 [Event/illegal_move]
 Name=Illegal Move
+Name[ast]=Movimientu illegal
 Name[be]=Няправільны ход
 Name[bn]=অবৈধ চাল
 Name[ca]=Moviment il·legal
@@ -541,6 +550,7 @@ Name[x-test]=xxIllegal Movexx
 Name[zh_CN]=无效移动
 Name[zh_TW]=移動不合法
 Comment=Illegal move
+Comment[ast]=Movimientu illegal
 Comment[be]=Няправільны ход
 Comment[bn]=অবৈধ চাল
 Comment[ca]=Moviment il·legal
