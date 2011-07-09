@@ -46,7 +46,7 @@
 
 #include <QApplication>
 #include <QListWidget>
-#include <QGridLayout>
+#include <QDockWidget>
 #include <QLabel>
 #include <QDesktopWidget>
 
@@ -73,7 +73,7 @@ static QString moveToString( const KReversiPos& move )
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     : KXmlGuiWindow(parent), m_scene(0), m_game(0),
-      m_historyLabel(0), m_historyView(0),
+      m_historyDock(0), m_historyView(0),
       m_firstShow( true ), m_startInDemoMode( startDemo ), m_lowestSkill(1),
       m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
@@ -84,27 +84,21 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     slotNewGame();
     // m_scene is created in slotNewGame();
 
-    QWidget *mainWid = new QWidget;
-    QGridLayout *lay = new QGridLayout(mainWid);
-    lay->setColumnStretch( 0, 1 );
-    lay->setMargin(1);
+    m_view = new KReversiView(m_scene, this);
+    setCentralWidget(m_view);
 
-    m_view = new KReversiView(m_scene, mainWid);
-    lay->addWidget(m_view, 0, 0, 2, 1);
-
-    m_historyLabel = new QLabel( i18n("Move History"), mainWid );
-    lay->addWidget( m_historyLabel, 0, 1, Qt::AlignCenter );
-    m_historyView = new QListWidget( mainWid );
+    m_historyView = new QListWidget( this );
     m_historyView->setSizePolicy( QSizePolicy::Maximum, QSizePolicy::Expanding );
-    lay->addWidget(m_historyView, 1, 1);
+    m_historyDock = new QDockWidget( i18n("Move History") );
+    m_historyDock->setWidget(m_historyView);
+    m_historyDock->setObjectName("history_dock");
 
-    m_historyLabel->hide();
-    m_historyView->hide();
+    m_historyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
+    m_historyDock->hide();
 
     setupActions();
     loadSettings();
-
-    setCentralWidget(mainWid);
 
     setupGUI(qApp->desktop()->availableGeometry().size()*0.7);
 }
@@ -242,8 +236,7 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
 
 void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 {
-    m_historyLabel->setVisible(toggled);
-    m_historyView->setVisible(toggled);
+    m_historyDock->setVisible(toggled);
 
     m_scene->setShowBoardLabels( toggled );
     m_view->resetCachedContent();

@@ -63,7 +63,7 @@ private:
     KReversiScene *m_scene;
     KReversiView  *m_view;
     KReversiGame  *m_game;
-    QLabel        *m_historyLabel;
+    QDockWidget   *m_historyDock;
     QListWidget   *m_historyView;
 
     bool m_firstShow;
