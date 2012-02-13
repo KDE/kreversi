@@ -24,15 +24,10 @@
 
 #include <kdebug.h>
 
-#include <kggzmod/module.h>
-#include <kggzmod/player.h>
-#include <kggznet/kggzraw.h>
-
 #include "Engine.h"
 
 KReversiGame::KReversiGame()
-    : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White ),
-      m_mod(0), m_raw(0)
+    : m_curPlayer(Black), m_playerColor(Black), m_computerColor( White )
 {
     // reset board
     for(int r=0; r<8; ++r)
@@ -45,36 +40,17 @@ KReversiGame::KReversiGame()
     m_score[White] = m_score[Black] = 2;
 
     m_engine = new Engine(1);
-
-    kDebug() << "GGZDEBUG: see if we're in ggz mode";
-    if(KGGZMod::Module::isGGZ())
-    {
-        kDebug() << "GGZDEBUG: yep we're in ggz mode, now activate kggzmod";
-        m_mod = new KGGZMod::Module(QLatin1String( "KReversi" ));
-        connect(m_mod, SIGNAL(signalError()), SLOT(networkErrorHandler()));
-        connect(m_mod, SIGNAL(signalNetwork(int)), SLOT(networkData(int)));
-        kDebug() << "GGZDEBUG: kggzmod activated";
-    }
-    m_raw = NULL;
 }
 
 KReversiGame::~KReversiGame()
 {
     delete m_engine;
-    delete m_raw;
-    delete m_mod;
 }
 
 void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
 {
     m_curPlayer = m_playerColor;
     KReversiPos move;
-
-    if( m_mod )
-    {
-        makeNetworkMove( row, col );
-        return;
-    }
 
     if( !demoMode )
         move = KReversiPos( m_playerColor, row, col );
@@ -139,12 +115,6 @@ void KReversiGame::startNextTurn(bool demoMode)
 
 void KReversiGame::makeComputerMove()
 {
-    if( m_mod )
-    {
-        // Network games will automatically send us the opponent move
-        return;
-    }
-
     m_curPlayer = m_computerColor;
     // FIXME dimsuz: m_competitive. Read from config.
     // (also there's computeMove in getHint)
@@ -621,142 +591,6 @@ ChipColor KReversiGame::chipColorAt( int row, int col ) const
 {
     Q_ASSERT( row < 8 && col < 8 );
     return m_cells[row][col];
-}
-
-////////////////////////////////////////////////////////////////////////////
-// Network code starts here - might be moved or auto-generated in the future
-////////////////////////////////////////////////////////////////////////////
-
-// FIXME: move those to a protocol class
-#define MSG_SEAT 0
-#define MSG_PLAYERS 1
-#define MSG_MOVE 2
-#define MSG_GAMEOVER 3
-#define MSG_START 5
-#define MSG_SYNC 6
-
-#define REQ_MOVE 4
-#define REQ_SYNC 7
-#define REQ_AGAIN 8
-
-void KReversiGame::networkErrorHandler()
-{
-    kError() << "GGZDEBUG: Network error, disconnect all channels";
-    delete m_raw;
-    delete m_mod;
-    m_raw = NULL;
-    m_mod = NULL;
-
-    emit networkError();
-    // This is either on the GGZ channel or on the game channel
-    // FIXME: propagate error information to the user
-}
-
-void KReversiGame::networkData(int fd)
-{
-    int opcode;
-    QString playername1;
-    QString playername2;
-    int playertype1;
-    int playertype2;
-    int seat;
-    qint8 turn, boardfield[64];
-    int winner;
-    int movevalue;
-    KReversiPos move;
-
-    kDebug() << "GGZDEBUG: Network traffic on fd" << fd;
-
-    if(!m_raw)
-    {
-        kDebug() << "GGZDEBUG: Set up packet reader";
-        m_raw = new KGGZRaw();
-        m_raw->setNetwork(fd);
-        connect(m_raw, SIGNAL(signalError()), SLOT(networkErrorHandler()));
-    }
-
-    *m_raw >> opcode;
-    kDebug() << "GGZDEBUG: opcode=" << opcode;
-
-    if(opcode == MSG_SEAT)
-    {
-        *m_raw >> seat;
-        kDebug() << "GGZDEBUG: MSG_SEAT: seat=" << seat;
-    }
-    else if(opcode == MSG_PLAYERS)
-    {
-        *m_raw >> playertype1;
-        if(playertype1 != KGGZMod::Player::open)
-        {
-            *m_raw >> playername1;
-        }
-        *m_raw >> playertype2;
-        if(playertype2 != KGGZMod::Player::open)
-        {
-            *m_raw >> playername2;
-        }
-        kDebug() << "GGZDEBUG: MSG_PLAYERS:";
-        kDebug() << "player1=" << playername1;
-        kDebug() << "player2=" << playername2;
-    }
-    else if(opcode == MSG_SYNC)
-    {
-        *m_raw >> turn;
-        for(int i = 0; i < 64; i++)
-        {
-            *m_raw >> boardfield[i];
-        }
-        kDebug() << "GGZDEBUG: MSG_SYNC: turn=" << turn;
-    }
-    else if(opcode == MSG_START)
-    {
-        kDebug() << "GGZDEBUG: MSG_START";
-    }
-    else if(opcode == MSG_MOVE)
-    {
-        *m_raw >> movevalue;
-        kDebug() << "GGZDEBUG: MSG_MOVE move=" << movevalue;
-
-        if( movevalue == -1 )
-        {
-            // FIXME: do something here
-            return;
-        }
-
-        // translate protocol moves into local moves
-        ChipColor color = currentPlayer();
-        int row = movevalue % 8;
-        int col = movevalue / 8;
-        // FIXME: re-use the code to handle impossible moves (i.e. double turns)
-
-        move = KReversiPos( color, row, col );
-        makeMove( move );
-    }
-    else if(opcode == MSG_GAMEOVER)
-    {
-        *m_raw >> winner;
-        kDebug() << "GGZDEBUG: MSG_WINNER winner=" << winner;
-    }
-    else
-    {
-        kDebug() << "GGZDEBUG: Waaaah, we've not implemented the whole protocol yet!";
-        networkError();
-    }
-}
-
-void KReversiGame::makeNetworkMove( int row, int col )
-{
-    int movevalue = col * 8 + row;
-
-    if( !m_raw )
-    {
-        kError() << "GGZDEBUG: Not connected to server";
-        return;
-    }
-
-    kDebug() << "GGZDEBUG: submit move" << movevalue << "to network";
-    *m_raw << REQ_MOVE;
-    *m_raw << movevalue;
 }
 
 #include "kreversigame.moc"

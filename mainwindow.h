@@ -52,7 +52,6 @@ public slots:
     void slotUseColoredChips(bool);
     void slotShowMovesHistory(bool);
     void slotHighscores();
-    void slotSeats();
 private:
     virtual void showEvent( QShowEvent* );
     void setupActions();
@@ -77,7 +76,6 @@ private:
     QAction* m_undoAct;
     QAction* m_hintAct;
     QAction* m_demoAct;
-    KAction* m_seatsAct;
     KSelectAction* m_animSpeedAct;
     KToggleAction* m_coloredChipsAct;
 };

@@ -27,8 +27,6 @@
 #include "kreversiview.h"
 #include "preferences.h"
 
-#include <kggzgames/kggzseatsdialog.h>
-#include <kggzmod/module.h>
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <ktoggleaction.h>
@@ -116,12 +114,6 @@ void KReversiMainWindow::setupActions()
     m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), actionCollection());
     m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
-    m_seatsAct = actionCollection()->addAction( QLatin1String(  "game_seats" ) );
-    m_seatsAct->setIcon( KIcon( QLatin1String( "roll" )) );
-    m_seatsAct->setText( i18n("Players && Seats") );
-    m_seatsAct->setShortcut( Qt::Key_S );
-    connect(m_seatsAct, SIGNAL(triggered(bool)), SLOT(slotSeats()) );
-
     // View
     KToggleAction *showLast = new KToggleAction(KIcon( QLatin1String( "lastmoves") ), i18n("Show Last Move" ), this);
     actionCollection()->addAction( QLatin1String( "show_last_move" ), showLast);
@@ -156,23 +148,6 @@ void KReversiMainWindow::setupActions()
     KToggleAction *showMovesAct = new KToggleAction( KIcon( QLatin1String( "view-history") ), i18n("Show Move History" ), this );
     actionCollection()->addAction( QLatin1String( "show_moves" ), showMovesAct);
     connect( showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)) );
-
-    addAction(m_seatsAct); // FIXME (josef): is this needed?
-
-    if(!KGGZMod::Module::isGGZ())
-    {
-        // disable multiplayer actions
-        m_seatsAct->setEnabled(false);
-    }
-    else
-    {
-        // disable singleplayer actions
-        actionCollection()->action( QLatin1String( "game_new" ) )->setEnabled(false);
-        m_hintAct->setEnabled(false);
-        m_demoAct->setEnabled(false);
-        KGameDifficulty::setEnabled(false);
-        m_undoAct->setEnabled(false);
-    }
 }
 
 void KReversiMainWindow::loadSettings()
@@ -274,15 +249,8 @@ void KReversiMainWindow::slotNewGame()
 {
     m_lowestSkill = 1;
 
-    if(KGGZMod::Module::isGGZ())
-    {
-        setCaption(i18n("Online game"));
-    }
-    else
-    {
-        if(m_hintAct)
-            m_hintAct->setEnabled( true );
-    }
+    if(m_hintAct)
+        m_hintAct->setEnabled( true );
 
     if(m_demoAct)
     {
@@ -365,11 +333,8 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
-    if( !KGGZMod::Module::isGGZ())
-    {
-        if( !m_demoAct->isChecked() )
-            m_undoAct->setEnabled( m_game->canUndo() );
-    }
+    if( !m_demoAct->isChecked() )
+        m_undoAct->setEnabled( m_game->canUndo() );
 
     // add last move to history list
     KReversiPos move = m_game->getLastMove();
@@ -409,23 +374,7 @@ void KReversiMainWindow::slotUndo()
 
 void KReversiMainWindow::slotHighscores()
 {
-    if(!KGGZMod::Module::isGGZ())
-    {
-        KExtHighscore::show(this);
-    }
-    else
-    {
-        // FIXME (josef): GGZ needs KExtHighscore integration
-        KToolInvocation::invokeBrowser(QLatin1String( "http://www.ggzcommunity.org/db/games?lookup=Reversi" ));
-    }
-}
-
-void KReversiMainWindow::slotSeats()
-{
-    KGGZSeatsDialog *dlg = new KGGZSeatsDialog();
-    Q_UNUSED(dlg);
-    // FIXME (josef): make this a real non-modal dialog?
-    // FIXME (josef): player might want to use it alongside game window
+    KExtHighscore::show(this);
 }
 
 void KReversiMainWindow::showEvent( QShowEvent* )
@@ -446,7 +395,7 @@ void KReversiMainWindow::updateScores()
 
 QString KReversiMainWindow::opponentName() const
 {
-    return KGGZMod::Module::isGGZ() ? i18n("Opponent") : i18n("Computer");
+    return i18n("Computer");
 }
 
 #include "mainwindow.moc"
