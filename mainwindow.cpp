@@ -41,6 +41,7 @@
 #include <kstandardgameaction.h>
 #include <kselectaction.h>
 #include <ktoolinvocation.h>
+#include <KgDifficulty>
 
 #include <QApplication>
 #include <QListWidget>
@@ -78,6 +79,13 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     statusBar()->insertItem( i18n("Your turn."), 0 );
     statusBar()->insertItem( i18n("You: %1", 2), PLAYER_STATUSBAR_ID );
     statusBar()->insertItem( i18n("%1: %2", opponentName(), 2), COMP_STATUSBAR_ID );
+
+    Kg::difficulty()->addStandardLevelRange(
+        KgDifficultyLevel::VeryEasy, KgDifficultyLevel::Impossible,
+        KgDifficultyLevel::Easy //default
+    );
+    KgDifficultyGUI::init(this);
+    connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(levelChanged()));
 
     slotNewGame();
     // m_scene is created in slotNewGame();
@@ -131,15 +139,6 @@ void KReversiMainWindow::setupActions()
     m_animSpeedAct->setItems(acts);
     connect( m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)) );
 
-    KGameDifficulty::init(this, this, SLOT(levelChanged(KGameDifficulty::standardLevel)));
-    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryEasy);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::VeryHard);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::ExtremelyHard);
-    KGameDifficulty::addStandardLevel(KGameDifficulty::Impossible);
-
     m_coloredChipsAct = new KToggleAction( i18n("Use Colored Chips"), this );
     actionCollection()->addAction( QLatin1String(  "use_colored_chips" ), m_coloredChipsAct );
     connect( m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)) );
@@ -152,36 +151,35 @@ void KReversiMainWindow::setupActions()
 
 void KReversiMainWindow::loadSettings()
 {
-    KGameDifficulty::setLevel((KGameDifficulty::standardLevel) (Preferences::level()));
     m_animSpeedAct->setCurrentItem( Preferences::animationSpeed() );
     m_coloredChipsAct->setChecked( Preferences::useColoredChips() );
 }
 
-void KReversiMainWindow::levelChanged(KGameDifficulty::standardLevel level)
+void KReversiMainWindow::levelChanged()
 {
     int skill;
 
-    switch(level) {
-        case KGameDifficulty::VeryEasy:
+    switch(Kg::difficultyLevel()) {
+        case KgDifficultyLevel::VeryEasy:
             skill=1;
             break;
-        case KGameDifficulty::Easy:
+        case KgDifficultyLevel::Easy:
         default:
             skill=2;
             break;
-        case KGameDifficulty::Medium:
+        case KgDifficultyLevel::Medium:
             skill=3;
             break;
-        case KGameDifficulty::Hard:
+        case KgDifficultyLevel::Hard:
             skill=4;
             break;
-        case KGameDifficulty::VeryHard:
+        case KgDifficultyLevel::VeryHard:
             skill=5;
             break;
-        case KGameDifficulty::ExtremelyHard:
+        case KgDifficultyLevel::ExtremelyHard:
             skill=6;
             break;
-        case KGameDifficulty::Impossible:
+        case KgDifficultyLevel::Impossible:
             skill=7;
             break;
     }
@@ -189,9 +187,6 @@ void KReversiMainWindow::levelChanged(KGameDifficulty::standardLevel level)
 
     // m_game takes it from 1 to 7
     m_game->setComputerSkill( skill );
-
-    Preferences::setLevel((int)(level));
-    Preferences::self()->writeConfig();
 }
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
@@ -264,7 +259,7 @@ void KReversiMainWindow::slotNewGame()
         m_historyView->clear();
 
     m_game = new KReversiGame;
-    levelChanged( (KGameDifficulty::standardLevel) (Preferences::level()) );
+    levelChanged();
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
 
     if(m_scene == 0) // if called first time

@@ -24,7 +24,6 @@
 #define KREVERSI_MAIN_WINDOW_H
 
 #include <kxmlguiwindow.h>
-#include <KGameDifficulty>
 
 class KReversiScene;
 class KReversiGame;
@@ -43,7 +42,7 @@ public:
     explicit KReversiMainWindow(QWidget* parent=0,  bool startDemo=false );
 public slots:
     void slotNewGame();
-    void levelChanged(KGameDifficulty::standardLevel level);
+    void levelChanged();
     void slotAnimSpeedChanged(int);
     void slotUndo();
     void slotMoveFinished();
