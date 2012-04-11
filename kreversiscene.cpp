@@ -38,7 +38,7 @@
 static KgTheme* theme()
 {
     KgTheme* theme = new KgTheme("pics/default_theme.desktop");
-    theme->setSvgPath(KStandardDirs::locate("appdata", "pics/default_theme.svgz"));
+    theme->setGraphicsPath(KStandardDirs::locate("appdata", "pics/default_theme.svgz"));
     return theme;
 }
 
