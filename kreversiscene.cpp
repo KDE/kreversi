@@ -31,10 +31,19 @@
 
 #include <kdebug.h>
 #include <KLocale>
+#include <KStandardDirs>
 #include <KGamePopupItem>
+#include <KgTheme>
+
+static KgTheme* theme()
+{
+    KgTheme* theme = new KgTheme("pics/default_theme.desktop");
+    theme->setSvgPath(KStandardDirs::locate("appdata", "pics/default_theme.svgz"));
+    return theme;
+}
 
 KReversiScene::KReversiScene( KReversiGame* game , const QString& chipsPrefix )
-    : m_renderer(QLatin1String("pics/default_theme.desktop")), m_game(0),
+    : m_renderer(theme()), m_game(0),
     m_pendingNewGame(0), m_hintChip(0), m_lastMoveChip(0), m_timerDelay(25),
     m_showingHint(false), m_demoMode(false), m_showLastMove(false), m_showPossibleMoves(false),
     m_showLabels(false)
