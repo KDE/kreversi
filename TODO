@@ -1,87 +1,39 @@
 TODO-list for KREVERSI
 ======================
 
-Next
-----
+Legend
+------
 
-* 
+* Main task
++ subtask
+- subsubtask
 
+----    Unassigned task
+[name]  Assigned task
+[DONE]  Finished task
 
-================================================================
+----------------------------------------------------------------
 
+Fix important bugs
+ * All crashes                                                          ----
+ * 
 
-* Implement the plans in DESIGN
-  + Implement the QReversiGameView class				DONE
-    - Move board view to it						done
-    - Move movelist to it						done
-    - Move status widgets to it						done
-  + Move all showing of legal moves into the BoardView class		DONE
-  + Implement the QEngineView class					----
+General enhancements
+ * Make it possible to play white                                       ----
+ * Save settings of toggleactions in config file.			----
 
-* More cleaning / refactoring
-  + class KReversi is still a bit of a mess.  Separate it more		DONE
+Enhancements to the view
+ * Show 'last move' during the animation of flipped pieces.             ----
+   That way the last move can be shown also in demo mode
+ * Make the demo mode not restart automatically                         ----
 
-* Enhancements to the view
-  + Letters A-H and figures 1-8 on the board view.			DONE
+Structural enhancements
+* Improve separation of engine + game logic from the UI                 ----
+  This will let us create a QML based UI for Plasma Active
 
-  + Show possible moves in the current position				DONE
-    - Actually show them on the board					done
-    - Create a toggle action to toggle it on/off			done
-    - Make an icon for the toggle action				--
-    - Bug: legal moves don't get updated if one side has to pass	done
-    - Bug: legal moves don't work together with hint.			done
-  + Show moves made during the game					DONE
+Documentation
+  * Rewrite DESIGN totally.                                             ----
+    It was created when KReversi was still based on QWidget.
 
-  + Navigate in the list of moves					----
-
-  + Wish 102813: Should be able to show last move			DONE
-    - Make an icon for the toggle action				--
-    - Bug: When turned on, should show last move immediately		done
-    - Bug: When turned off, should unshow last move immediately		done
-
-  + Save settings of toggleactions in config file.			----
-
-* Convert KReversi to use KGame / KPlayer
-  I. Convert KReversi to a proper Model/View program.
-     1. Fix a ReversiGame (formerly known as Game)			DONE
-        - Clean it up. (Only store the moves).
-        - Add a few necessary methods.
-     2. Move all the slots for KActions to kreversi.cpp			DONE
-     3. Move the ownership of the engine and the game to kreversi.	DONE
-     4. Create a new class QReversiGame, that inherits ReversiGame	DONE
-	and sends a lot of signals.
-        - Split out a lot of methods from the current class Board.	done
-     5. Create QReversiBoardView from the rest of the current Board	DONE
-        - Clean it							done
-
-  II. Introduce a class ReversiPlayer
-
-  III. Convert everything to KGame
-     1. Let KReversiGame inherit from KGame
-     2. Let ReversiPlayer inherit from KPlayer.
-
-  IV. ...
-
-  V.  Profit!
-
-
-
-
-PARTIALLY DONE/NOT DONE
-=======================
-
-* undo/redo
-	undo works, but I'll probably do not make a redo function
-
-* Sound support:
-  I'm not happy with
-  the sound files I have so if
-  you have better sounds, mail them to me 
-  (uuencoded). I need sounds for the following actions:
-	- game won
-	- game lost
-	- game drawn
-	- turning a piece
-	- putting a piece
-	- something for the hall of fame (trumpets???)
-
+Long term enhancements
+  * Navigate in the list of moves					----
