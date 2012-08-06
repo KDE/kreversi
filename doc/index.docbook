@@ -41,8 +41,8 @@
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 <legalnotice>&FDLNotice;</legalnotice>
-<date>2007-11-14</date><!-- Date of (re)writing, or update.-->
-<releaseinfo>&kappversion;</releaseinfo><!-- Application version number. Use the variable definitions within header to change this value.-->
+<date>2012-08-06</date><!-- Date of (re)writing, or update.-->
+<releaseinfo>&kappversion; (&kde; 4.9)</releaseinfo><!-- Application version number. Use the variable definitions within header to change this value.-->
  
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
@@ -248,13 +248,13 @@ action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
 <guibutton>Configure...</guibutton> to open a dialog to customize your 
 <guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.</para></listitem>
 </varlistentry>
-
+<!--
 <varlistentry>
 <term><menuchoice><shortcut><keycap>S</keycap></shortcut>
 <guimenu>Game</guimenu><guimenuitem>Players and Seats</guimenuitem></menuchoice></term>
 <listitem><para>Option is currently disabled.</para></listitem>
 </varlistentry>
-
+-->
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
@@ -321,67 +321,12 @@ move.</para></listitem>
 
 <sect1 id="settings-menu">
 <title><guimenu>Settings</guimenu> Menu</title>
-
 <variablelist>
   <varlistentry>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Slow</guimenuitem>
     </menuchoice></term>
-    <listitem><para>Set the game animation speed to slow.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Normal</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the game animation speed to normal.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Fast</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the game animation speed to fast.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Very Easy</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be very easy.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Easy</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be easy.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Normal</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be very normal.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Hard</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be hard.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Very Hard</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be very hard.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Unbeatable</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be very unbeatable.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Computer Skill</guisubmenu><guimenuitem>Champion</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be champion like.</para></listitem>
+    <listitem><para>Set the game animation speed to <guimenuitem>Slow</guimenuitem> to <guimenuitem>Fast</guimenuitem>.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
@@ -400,6 +345,12 @@ move.</para></listitem>
       <guimenu>Settings</guimenu><guimenuitem>Show Statusbar</guimenuitem>
     </menuchoice></term>
     <listitem><para><action>Toggle</action> the status bar on and off.</para></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+      <guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu>
+    </menuchoice></term>
+    <listitem><para>Set the difficulty to be <guimenuitem>Very Easy</guimenuitem> up to <guimenuitem>Impossible</guimenuitem>.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
