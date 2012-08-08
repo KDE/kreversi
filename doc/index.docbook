@@ -326,7 +326,7 @@ move.</para></listitem>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Slow</guimenuitem>
     </menuchoice></term>
-    <listitem><para>Set the game animation speed to <guimenuitem>Slow</guimenuitem> to <guimenuitem>Fast</guimenuitem>.</para></listitem>
+    <listitem><para>Set the game animation speed from <guimenuitem>Slow</guimenuitem> to <guimenuitem>Fast</guimenuitem>.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
