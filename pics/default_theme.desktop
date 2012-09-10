@@ -1,5 +1,7 @@
 [KGameTheme]
 VersionFormat=1
 Name=KReversi Default Theme
+Name[uk]=Типова тема KReversi
+Name[x-test]=xxKReversi Default Themexx
 FileName=default_theme.svgz
 Author=Mauricio Piacentini

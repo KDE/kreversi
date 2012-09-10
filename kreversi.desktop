@@ -1,9 +1,13 @@
 [Desktop Entry]
 Exec=kreversi -caption "%c"
 Name=KReversi
+Name[uk]=Реверсі
+Name[x-test]=xxKReversixx
 Type=Application
 X-DocPath=kreversi/index.html
 GenericName=Reversi Board Game
+GenericName[uk]=Гра на дошці (реверсі)
+GenericName[x-test]=xxReversi Board Gamexx
 Terminal=false
 Icon=kreversi
 X-KDE-StartupNotify=true

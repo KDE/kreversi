@@ -1,30 +1,52 @@
 [Global]
 IconName=kreversi
 Comment=KReversi Game
+Comment[uk]=Гра KReversi
+Comment[x-test]=xxKReversi Gamexx
 
 [Event/click]
 Name=Click
+Name[uk]=Клац
+Name[x-test]=xxClickxx
 Comment=Click
+Comment[uk]=Клац
+Comment[x-test]=xxClickxx
 Action=Sound
 Sound=reversi-click.wav
 
 [Event/won]
 Name=Game Won
+Name[uk]=Гру виграно
+Name[x-test]=xxGame Wonxx
 Comment=Game won
+Comment[uk]=Гру виграно
+Comment[x-test]=xxGame wonxx
 Action=Sound
 Sound=reversi-won.wav
 
 [Event/lost]
 Name=Game Lost
+Name[uk]=Гру програно
+Name[x-test]=xxGame Lostxx
 Comment=Game lost
+Comment[uk]=Гру програно
+Comment[x-test]=xxGame lostxx
 Action=None
 
 [Event/draw]
 Name=Draw
+Name[uk]=Нічия
+Name[x-test]=xxDrawxx
 Comment=Draw
+Comment[uk]=Нічия
+Comment[x-test]=xxDrawxx
 Action=None
 
 [Event/illegal_move]
 Name=Illegal Move
+Name[uk]=Недозволений хід
+Name[x-test]=xxIllegal Movexx
 Comment=Illegal move
+Comment[uk]=Недозволений хід
+Comment[x-test]=xxIllegal movexx
 Action=None
