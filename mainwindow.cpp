@@ -73,7 +73,7 @@ static QString moveToString( const KReversiPos& move )
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     : KXmlGuiWindow(parent), m_scene(0), m_game(0),
       m_historyDock(0), m_historyView(0),
-      m_firstShow( true ), m_startInDemoMode( startDemo ), m_lowestSkill(1),
+      m_firstShow( true ), m_startInDemoMode( startDemo ), m_lowestSkill(6),
       m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
     statusBar()->insertItem( i18n("Your turn."), 0 );
@@ -161,32 +161,32 @@ void KReversiMainWindow::levelChanged()
 
     switch(Kg::difficultyLevel()) {
         case KgDifficultyLevel::VeryEasy:
-            skill=1;
+            skill=0;
             break;
         case KgDifficultyLevel::Easy:
         default:
-            skill=2;
+            skill=1;
             break;
         case KgDifficultyLevel::Medium:
-            skill=3;
+            skill=2;
             break;
         case KgDifficultyLevel::Hard:
-            skill=4;
+            skill=3;
             break;
         case KgDifficultyLevel::VeryHard:
-            skill=5;
+            skill=4;
             break;
         case KgDifficultyLevel::ExtremelyHard:
-            skill=6;
+            skill=5;
             break;
         case KgDifficultyLevel::Impossible:
-            skill=7;
+            skill=6;
             break;
     }
     m_lowestSkill = qMin(m_lowestSkill, skill);
 
     // m_game takes it from 1 to 7
-    m_game->setComputerSkill( skill );
+    m_game->setComputerSkill( skill + 1 );
 }
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
@@ -242,7 +242,7 @@ void KReversiMainWindow::slotToggleDemoMode()
 
 void KReversiMainWindow::slotNewGame()
 {
-    m_lowestSkill = 1;
+    m_lowestSkill = 6;
 
     if(m_hintAct)
         m_hintAct->setEnabled( true );
