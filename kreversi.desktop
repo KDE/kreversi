@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=kreversi -caption "%c"
+Exec=kreversi -caption %c
 Name=KReversi
 Name[af]=Kreversi
 Name[ast]=KReversi
