@@ -41,8 +41,8 @@
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 <legalnotice>&FDLNotice;</legalnotice>
-<date>2012-08-06</date><!-- Date of (re)writing, or update.-->
-<releaseinfo>&kappversion; (&kde; 4.9)</releaseinfo><!-- Application version number. Use the variable definitions within header to change this value.-->
+<date>2013-05-06</date><!-- Date of (re)writing, or update.-->
+<releaseinfo>&kappversion; (&kde; 4.11)</releaseinfo><!-- Application version number. Use the variable definitions within header to change this value.-->
  
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
@@ -127,12 +127,9 @@ in the center four squares of the board in the following pattern:</para>
 <term><interface>Menu Bar</interface></term>
 <listitem>
 <para>The <interface>Menu Bar</interface> contains several choices of
-drop-down menus. These are <link
-linkend="game-menu"><guimenu>Game</guimenu></link>, <link
-linkend="move-menu"><guimenu>Move</guimenu></link>, <link
-linkend="view-menu"><guimenu>View</guimenu></link>, <link
-linkend="settings-menu"><guimenu>Settings</guimenu></link>, and <link
-linkend="help-menu"><guimenu>Help</guimenu></link>. Click with the &LMB; or
+drop-down menus. These are <guimenu>Game</guimenu>, <guimenu>Move</guimenu>, 
+<guimenu>View</guimenu>, <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>. 
+Click with the &LMB; or
 <keycombo action="simul">&Alt;<keycap>the underlined
 letter</keycap></keycombo> to show the drop-down menu.</para>
 </listitem>
@@ -227,8 +224,8 @@ of a corner.</para>
   
 <chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
 <!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist> and <varlistentry>. Split the chapter into sections using <sect1(2,3)> for better viewing.-->
- <sect1 id="game-menu">
-<title><guimenu>Game</guimenu> Menu</title>
+<sect1 id="menu">
+<title>Menu Items</title>
 
 <variablelist>
 <varlistentry>
@@ -263,13 +260,6 @@ action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
 </para></listitem>
 </varlistentry>
 
-</variablelist>
-</sect1>
-
-<sect1 id="move-menu">
-<title><guimenu>Move</guimenu> Menu</title>
-
-<variablelist>
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
@@ -292,12 +282,6 @@ move.</para></listitem>
 <listitem><para>Start/Stop the demo mode.</para></listitem>
 </varlistentry>
 
-</variablelist>
-</sect1>
-
-<sect1 id="view-menu">
-<title><guimenu>View</guimenu> Menu</title>
-  <variablelist>
     <varlistentry>
       <term><menuchoice>
 	<guimenu>View</guimenu><guimenuitem>Show Last Move</guimenuitem>
@@ -316,12 +300,7 @@ move.</para></listitem>
       </menuchoice></term>
       <listitem><para>Enables/Disables the move history sidebar.</para></listitem>
     </varlistentry>
-  </variablelist>
-</sect1>
 
-<sect1 id="settings-menu">
-<title><guimenu>Settings</guimenu> Menu</title>
-<variablelist>
   <varlistentry>
     <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Slow</guimenuitem>
@@ -336,40 +315,18 @@ move.</para></listitem>
   </varlistentry>
   <varlistentry>
     <term><menuchoice>
-      <guimenu>Settings</guimenu><guimenuitem>Show Toolbar</guimenuitem>
-    </menuchoice></term>
-    <listitem><para><action>Toggle</action> the toolbar on and off.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guimenuitem>Show Statusbar</guimenuitem>
-    </menuchoice></term>
-    <listitem><para><action>Toggle</action> the status bar on and off.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
       <guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu>
     </menuchoice></term>
     <listitem><para>Set the difficulty to be <guimenuitem>Very Easy</guimenuitem> up to <guimenuitem>Impossible</guimenuitem>.</para></listitem>
   </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guimenuitem>Configure Shortcuts...</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Opens a dialog which lets you configure all the keyboard shortcuts which are available in &kappname;.</para></listitem>
-  </varlistentry>
-  <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guimenuitem>Configure Toolbars...</guimenuitem>
-    </menuchoice></term>
-    <listitem><para><action>Open a dialog where you can configure the toolbars</action> for &kappname;.</para></listitem>
-  </varlistentry>
 </variablelist>
-</sect1>
+<para>
+Additionally &kappname; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Settings Menu</ulink> and <ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
+of the &kde; Fundamentals.
+</para>
 
-<sect1 id="help-menu"><!--This is a standard Help menubar entry. Only change if needed.-->
-<title><guimenu>Help</guimenu> Menu</title>
-&help.menu.documentation;
 </sect1>
 </chapter>
  
