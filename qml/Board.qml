@@ -1,0 +1,100 @@
+/*
+    Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+import QtQuick 1.0
+import org.kde.games.core 0.1 as KgCore
+import "globals.js" as Globals
+
+Item {
+    id: container
+
+    signal cellClicked(int row, int column)
+
+    function toggleHint(row, column) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).toggleHint()
+    }
+
+    function toggleLegal(row, column) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).toggleLegal()
+    }
+
+    function setChipState(row, column, new_state) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).setChipState(
+                    new_state)
+    }
+
+    function getChipState(row, column) {
+        return cells.itemAt(row * Globals.COLUMN_COUNT + column).getChipState()
+    }
+
+    function toggleLabels() {
+        if (state == "")
+            state = "ShowLabels"
+        else
+            state = ""
+    }
+
+    KgCore.KgItem {
+        id: board_background
+        z: 0
+        anchors.fill: parent
+        provider: themeProvider
+        spriteKey: "board"
+    }
+
+    KgCore.KgItem {
+        id: board_labels
+        z: 0
+        anchors.fill: parent
+        visible: false
+        provider: themeProvider
+        spriteKey: "board_numbers"
+    }
+
+    Grid {
+        z: 1
+        x: Globals.GRID_OFFSET_X_PERCENT * container.width
+        y: Globals.GRID_OFFSET_Y_PERCENT * container.height
+        width: Globals.GRID_WIDTH_PERCENT * container.width
+        height: Globals.GRID_HEIGHT_PERCENT * container.height
+        rows: Globals.ROW_COUNT
+        columns: Globals.COLUMN_COUNT
+
+        Repeater {
+            id: cells
+            model: Globals.ROW_COUNT * Globals.COLUMN_COUNT
+
+            Cell {
+                width: Globals.GRID_WIDTH_PERCENT * container.width / Globals.COLUMN_COUNT
+                height: Globals.GRID_HEIGHT_PERCENT * container.height / Globals.ROW_COUNT
+                onClicked: container.cellClicked(index / Globals.COLUMN_COUNT,
+                                                 index % Globals.COLUMN_COUNT)
+            }
+        }
+    }
+
+    states: [
+        State {
+            name: "ShowLabels"
+
+            PropertyChanges {
+                target: board_image
+                visible: true
+            }
+        }
+    ]
+}

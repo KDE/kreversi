@@ -2,6 +2,7 @@
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
  * Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
+ * Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -71,7 +72,7 @@ static QString moveToString( const KReversiPos& move )
 }
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
-    : KXmlGuiWindow(parent), m_scene(0), m_game(0),
+    : KXmlGuiWindow(parent), /*m_scene(0),*/ m_game(0),
       m_historyDock(0), m_historyView(0),
       m_firstShow( true ), m_startInDemoMode( startDemo ), m_lowestSkill(6),
       m_undoAct(0), m_hintAct(0), m_demoAct(0)
@@ -90,7 +91,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo )
     slotNewGame();
     // m_scene is created in slotNewGame();
 
-    m_view = new KReversiView(m_scene, this);
+    m_view = new KReversiView(m_game, this);
     setCentralWidget(m_view);
 
     m_historyView = new QListWidget( this );
@@ -119,17 +120,17 @@ void KReversiMainWindow::setupActions()
     // Move
     m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), actionCollection());
     m_undoAct->setEnabled( false ); // nothing to undo at the start of the game
-    m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), actionCollection());
+//     m_hintAct = KStandardGameAction::hint(m_scene, SLOT(slotHint()), actionCollection());
     m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
     // View
     KToggleAction *showLast = new KToggleAction(KIcon( QLatin1String( "lastmoves") ), i18n("Show Last Move" ), this);
     actionCollection()->addAction( QLatin1String( "show_last_move" ), showLast);
-    connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
+//     connect( showLast, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLastMove(bool)) );
 
     KToggleAction *showLegal = new KToggleAction(KIcon( QLatin1String( "legalmoves") ), i18n("Show Legal Moves" ), this);
     actionCollection()->addAction( QLatin1String( "show_legal_moves" ), showLegal);
-    connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
+//     connect( showLegal, SIGNAL(triggered(bool)), m_scene, SLOT(setShowLegalMoves(bool)) );
 
     m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
     actionCollection()->addAction( QLatin1String( "anim_speed" ), m_animSpeedAct);
@@ -191,7 +192,7 @@ void KReversiMainWindow::levelChanged()
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
-    m_scene->setAnimationSpeed(speed);
+//     m_scene->setAnimationSpeed(speed);
     Preferences::setAnimationSpeed(speed);
     Preferences::self()->writeConfig();
 }
@@ -199,7 +200,7 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
     QString chipsPrefix = m_coloredChipsAct->isChecked() ? QLatin1String( "chip_color" ) : QLatin1String( "chip_bw" );
-    m_scene->setChipsPrefix( chipsPrefix );
+//     m_scene->setChipsPrefix( chipsPrefix );
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
 }
@@ -208,7 +209,7 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 {
     m_historyDock->setVisible(toggled);
 
-    m_scene->setShowBoardLabels( toggled );
+//     m_scene->setShowBoardLabels( toggled );
     m_view->resetCachedContent();
     m_view->update();
 }
@@ -216,25 +217,25 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 void KReversiMainWindow::slotToggleDemoMode()
 {
     bool toggled = false;
-    if( m_scene->isInDemoMode() )
-    {
-        toggled = false;
-        m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-start" )) );
-        m_demoAct->setChecked( false );
-    }
-    else
-    {
-        // if game is over when user launched Demo, start new game
-        // before Demo starts
-        if (m_game && m_game->isGameOver())
-            slotNewGame();
+//     if( m_scene->isInDemoMode() )
+//     {
+//         toggled = false;
+//         m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-start" )) );
+//         m_demoAct->setChecked( false );
+//     }
+//     else
+//     {
+//         // if game is over when user launched Demo, start new game
+//         // before Demo starts
+//         if (m_game && m_game->isGameOver())
+//             slotNewGame();
+// 
+//         toggled = true;
+//         m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-pause" )) );
+//         m_demoAct->setChecked( true );
+//     }
 
-        toggled = true;
-        m_demoAct->setIcon( KIcon( QLatin1String( "media-playback-pause" )) );
-        m_demoAct->setChecked( true );
-    }
-
-    m_scene->toggleDemoMode(toggled);
+//     m_scene->toggleDemoMode(toggled);
 
     m_undoAct->setEnabled( !toggled );
     m_hintAct->setEnabled( !toggled );
@@ -262,17 +263,17 @@ void KReversiMainWindow::slotNewGame()
     levelChanged();
     connect( m_game, SIGNAL(gameOver()), SLOT(slotGameOver()) );
 
-    if(m_scene == 0) // if called first time
-    {
-        QString chipsPrefix = Preferences::useColoredChips() ? QLatin1String( "chip_color" ) : QLatin1String( "chip_bw" );
-        m_scene = new KReversiScene(m_game, chipsPrefix);
-        m_scene->setAnimationSpeed( Preferences::animationSpeed() );
-        connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
-    }
-    else
-    {
-        m_scene->setGame( m_game );
-    }
+//     if(m_scene == 0) // if called first time
+//     {
+//         QString chipsPrefix = Preferences::useColoredChips() ? QLatin1String( "chip_color" ) : QLatin1String( "chip_bw" );
+//         m_scene = new KReversiScene(m_game, chipsPrefix);
+//         m_scene->setAnimationSpeed( Preferences::animationSpeed() );
+//         connect( m_scene, SIGNAL(moveFinished()), SLOT(slotMoveFinished()) );
+//     }
+//     else
+//     {
+//         m_scene->setGame( m_game );
+//     }
 
     statusBar()->changeItem( i18n("Your turn."), 0 );
     updateScores();
@@ -283,14 +284,14 @@ void KReversiMainWindow::slotGameOver()
     m_hintAct->setEnabled(false);
     m_undoAct->setEnabled(true);
 
-    if ( m_scene->isInDemoMode() )
-    {
-        // let's loop! :-)
-        slotToggleDemoMode();// turn off
-        slotNewGame();
-        slotToggleDemoMode();// turn on
-        return;
-    }
+//     if ( m_scene->isInDemoMode() )
+//     {
+//         // let's loop! :-)
+//         slotToggleDemoMode();// turn off
+//         slotNewGame();
+//         slotToggleDemoMode();// turn on
+//         return;
+//     }
 
     statusBar()->changeItem( i18n("GAME OVER"), 0 );
 
@@ -346,25 +347,25 @@ void KReversiMainWindow::slotMoveFinished()
 
 void KReversiMainWindow::slotUndo()
 {
-    if( !m_scene->isBusy() )
-    {
-        // scene will automatically notice that it needs to update
-        int numUndone = m_game->undo();
-        // remove last numUndone items from historyView
-        for(int i=0;i<numUndone; ++i)
-            delete m_historyView->takeItem( m_historyView->count()-1 );
-
-        QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );
-        m_historyView->setCurrentItem( last );
-        m_historyView->scrollToItem( last );
-
-        updateScores();
-
-        m_undoAct->setEnabled( m_game->canUndo() );
-        // if the user hits undo after game is over
-        // let's give him a chance to ask for a hint ;)
-        m_hintAct->setEnabled( true );
-    }
+//     if( !m_scene->isBusy() )
+//     {
+//         // scene will automatically notice that it needs to update
+//         int numUndone = m_game->undo();
+//         // remove last numUndone items from historyView
+//         for(int i=0;i<numUndone; ++i)
+//             delete m_historyView->takeItem( m_historyView->count()-1 );
+// 
+//         QListWidgetItem *last = m_historyView->item( m_historyView->count() - 1 );
+//         m_historyView->setCurrentItem( last );
+//         m_historyView->scrollToItem( last );
+// 
+//         updateScores();
+// 
+//         m_undoAct->setEnabled( m_game->canUndo() );
+//         // if the user hits undo after game is over
+//         // let's give him a chance to ask for a hint ;)
+//         m_hintAct->setEnabled( true );
+//     }
 }
 
 void KReversiMainWindow::slotHighscores()

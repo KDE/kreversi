@@ -58,7 +58,6 @@ private:
     QString opponentName() const;
     void updateScores();
 
-    KReversiScene *m_scene;
     KReversiView  *m_view;
     KReversiGame  *m_game;
     QDockWidget   *m_historyDock;
