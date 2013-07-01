@@ -1,7 +1,7 @@
 /*
-    Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
     Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
     Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
+    Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

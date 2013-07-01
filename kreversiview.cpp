@@ -1,7 +1,7 @@
 /*
-    Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
     Copyright 2006-2007 Dmitry Suzdalev <dimsuz@gmail.com>
     Copyright 2010 Brian Croom <brian.s.croom@gmail.com>
+    Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -39,8 +39,6 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
     connect(m_qml_root, SIGNAL(cellClicked(int, int)),
             this, SLOT(onPlayerMove(int, int)));
     setGame(game);
-
-    connect(&m_delayTimer, SIGNAL(timeout()), SLOT(slotOnDelay()));
 }
 
 void KReversiView::setGame(KReversiGame *game)
@@ -206,7 +204,7 @@ void KReversiView::slotGameMoveFinished()
     m_hint = KReversiPos();
     updateBoard();
     emit moveFinished();
-    m_delayTimer.start(m_delay);
+    m_delayTimer.singleShot(m_delay, this, SLOT(slotOnDelay()));
 }
 
 void KReversiView::slotGameOver()
