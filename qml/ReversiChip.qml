@@ -41,6 +41,14 @@ Item {
         onClicked: container.clicked()
     }
 
+    Timer {
+        id: blinking_timer
+        interval: 500
+        running: false
+        repeat: true
+        onTriggered: chipImage.visible = !chipImage.visible
+    }
+
     states: [
         State {
             name: "Black"
@@ -54,6 +62,30 @@ Item {
                 target: container
                 current_frame: 1
             }
+
+            PropertyChanges {
+                target: blinking_timer
+                running: false
+            }
+        },
+
+        State {
+            name: "Black_blinking"
+
+            PropertyChanges {
+                target: chipImage
+                visible: true
+            }
+
+            PropertyChanges {
+                target: container
+                current_frame: 1
+            }
+
+            PropertyChanges {
+                target: blinking_timer
+                running: true
+            }
         },
 
         State {
@@ -66,7 +98,31 @@ Item {
 
             PropertyChanges {
                 target: container
-                current_frame: container.frames_count
+                current_frame: frames_count
+            }
+
+            PropertyChanges {
+                target: blinking_timer
+                running: false
+            }
+        },
+
+        State {
+            name: "White_blinking"
+
+            PropertyChanges {
+                target: chipImage
+                visible: true
+            }
+
+            PropertyChanges {
+                target: container
+                current_frame: frames_count
+            }
+
+            PropertyChanges {
+                target: blinking_timer
+                running: true
             }
         }
     ]

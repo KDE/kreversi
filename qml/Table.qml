@@ -24,15 +24,32 @@ Item {
     id: container
 
     signal cellClicked(int row, int column)
-    function toggleLabels() {
-        board.toggleLabels()
+
+    function setLegal(row, column, value) {
+        board.setLegal(row, column, value);
+    }
+
+    function setChipState(row, column, value) {
+        board.setChipState(row, column, value);
+    }
+
+    function setLabels(show) {
+        board.setLabels(show);
+    }
+
+    function setHint(row, col, show) {
+        board.setHint(row, col, show);
+    }
+
+    function setChipsPrefix(prefix) {
+        board.setChipsPrefix(prefix);
+    }
+
+    function setLastMove(row, column, value) {
+        board.setLastMove(row, column, value)
     }
 
     function showPopup(text) {}
-
-    function setChipState(row, column, new_state) {
-        board.setChipState(row, column, new_state)
-    }
 
     KgCore.KgItem {
         id: table_background

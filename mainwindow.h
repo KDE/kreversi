@@ -39,7 +39,7 @@ class KReversiMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    explicit KReversiMainWindow(QWidget* parent=0,  bool startDemo=false );
+    explicit KReversiMainWindow(QWidget* parent = 0,  bool startDemo = false);
 public slots:
     void slotNewGame();
     void levelChanged();
@@ -52,7 +52,7 @@ public slots:
     void slotShowMovesHistory(bool);
     void slotHighscores();
 private:
-    virtual void showEvent( QShowEvent* );
+    virtual void showEvent(QShowEvent*);
     void setupActions();
     void loadSettings();
     QString opponentName() const;

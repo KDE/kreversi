@@ -26,25 +26,27 @@ Item {
         reversi_chip.state = new_state
     }
 
-    function getChipState() {
-        return reversi_chip.state
+    function setHint(new_state) {
+        if (new_state)
+            reversi_chip.state = "Black_blinking"
+        else {
+            if (reversi_chip.state == "Black_blinking")
+                reversi_chip.state = "Black";
+            else if (reversi_chip.state == "White_blinking")
+                reversi_chip.state = "White";
+        }
     }
 
-    function toggleHint() {
-        cell_hint_image.visible = !cell_hint_image.visible
+    function setLegal(new_state) {
+        cell_legal_image.visible = new_state
     }
 
-    function toggleLegalImage() {
-        cell_legal_image.visible = !cell_legal_image.visible
+    function setChipPrefix(prefix) {
+        reversi_chip.image_prefix = prefix + "_";
     }
 
-    KgCore.KgItem {
-        id: cell_hint_image
-        z: 0
-        anchors.fill: parent
-        visible: false
-        provider: themeProvider
-        spriteKey: "board_numbers"
+    function setLastMove(value) {
+        cell_last_move_marker.visible = value;
     }
 
     KgCore.KgItem {
@@ -54,6 +56,14 @@ Item {
         visible: false
         provider: themeProvider
         spriteKey: "move_hint"
+    }
+
+    Rectangle {
+        id: cell_last_move_marker;
+        z: 1
+        visible: true
+        anchors.fill: parent
+        color: "#AAAAAA"
     }
 
     ReversiChip {

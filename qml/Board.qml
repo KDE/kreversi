@@ -24,28 +24,32 @@ Item {
 
     signal cellClicked(int row, int column)
 
-    function toggleHint(row, column) {
-        cells.itemAt(row * Globals.COLUMN_COUNT + column).toggleHint()
+    function setHint(row, column, value) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).setHint(value)
     }
 
-    function toggleLegal(row, column) {
-        cells.itemAt(row * Globals.COLUMN_COUNT + column).toggleLegal()
+    function setLegal(row, column, value) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).setLegal(value)
     }
 
-    function setChipState(row, column, new_state) {
+    function setChipState(row, column, value) {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).setChipState(
-                    new_state)
+                    value)
     }
 
-    function getChipState(row, column) {
-        return cells.itemAt(row * Globals.COLUMN_COUNT + column).getChipState()
+    function setLabels(show) {
+        board_labels.visible = show;
     }
 
-    function toggleLabels() {
-        if (state == "")
-            state = "ShowLabels"
-        else
-            state = ""
+    function setChipsPrefix(prefix) {
+        for (var i = 0; i < Globals.ROW_COUNT; i++)
+            for (var j = 0; j < Globals.COLUMN_COUNT; j++)
+                cells.itemAt(i * Globals.COLUMN_COUNT + j).setChipPrefix(
+                            prefix)
+    }
+
+    function setLastMove(row, column, value) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).setLastMove(value)
     }
 
     KgCore.KgItem {
@@ -86,15 +90,4 @@ Item {
             }
         }
     }
-
-    states: [
-        State {
-            name: "ShowLabels"
-
-            PropertyChanges {
-                target: board_image
-                visible: true
-            }
-        }
-    ]
 }
