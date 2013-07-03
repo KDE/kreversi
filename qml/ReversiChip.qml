@@ -23,6 +23,7 @@ Item {
     property int frames_count: 12
     property int current_frame: 1
     property string image_prefix: "chip_bw_"
+    property int animation_time: 300
 
     signal clicked
 
@@ -129,7 +130,7 @@ Item {
 
     Behavior on current_frame {
         NumberAnimation {
-            duration: 300
+            duration: animation_time
             easing.type: Easing.InOutQuad
         }
     }

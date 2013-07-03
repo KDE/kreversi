@@ -56,7 +56,7 @@ public:
     /**
      *  Sets the animation speed (0 - slow, 1 - normal, 2 - fast)
      */
-//    void setAnimationSpeed(int speed);
+    void setAnimationSpeed(int speed);
 public slots:
     void onPlayerMove(int row, int col);
     /**
@@ -98,6 +98,9 @@ private slots:
 signals:
     void moveFinished();
 private:
+    static const int ANIMATION_SPEED_SLOW = 40 * 12;
+    static const int ANIMATION_SPEED_NORMAL = 25 * 12;
+    static const int ANIMATION_SPEED_FAST = 15 * 12;
     QObject *m_qml_root;
     KgThemeProvider *m_provider;
     QTimer m_delayTimer;

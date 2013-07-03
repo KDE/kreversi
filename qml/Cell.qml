@@ -49,6 +49,10 @@ Item {
         cell_last_move_marker.visible = value;
     }
 
+    function setAnimationTime(value) {
+        reversi_chip.animation_time = value;
+    }
+
     KgCore.KgItem {
         id: cell_legal_image
         z: 1

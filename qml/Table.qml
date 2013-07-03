@@ -49,6 +49,10 @@ Item {
         board.setLastMove(row, column, value)
     }
 
+    function setAnimationTime(value) {
+        board.setAnimationTime(value)
+    }
+
     function showPopup(text) {}
 
     KgCore.KgItem {

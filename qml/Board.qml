@@ -52,6 +52,13 @@ Item {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).setLastMove(value)
     }
 
+    function setAnimationTime(value) {
+        for (var i = 0; i < Globals.ROW_COUNT; i++)
+            for (var j = 0; j < Globals.COLUMN_COUNT; j++)
+                cells.itemAt(i * Globals.COLUMN_COUNT + j).setAnimationTime(
+                            value)
+    }
+
     KgCore.KgItem {
         id: board_background
         z: 0

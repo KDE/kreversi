@@ -82,6 +82,26 @@ void KReversiView::setShowBoardLabels(bool show)
     updateBoard();
 }
 
+void KReversiView::setAnimationSpeed(int speed)
+{
+    int value;
+    switch (speed) {
+    case 0:
+        value = ANIMATION_SPEED_SLOW;
+        break;
+    default:
+    case 1:
+        value = ANIMATION_SPEED_NORMAL;
+        break;
+    case 2:
+        value = ANIMATION_SPEED_FAST;
+        break;
+    }
+
+    QMetaObject::invokeMethod(m_qml_root, "setAnimationTime",
+                              Q_ARG(QVariant, value));
+}
+
 void KReversiView::updateBoard()
 {
     for (int i = 0; i < 8; i++)
