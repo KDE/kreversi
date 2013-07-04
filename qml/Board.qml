@@ -85,6 +85,7 @@ Item {
         rows: Globals.ROW_COUNT
         columns: Globals.COLUMN_COUNT
 
+
         Repeater {
             id: cells
             model: Globals.ROW_COUNT * Globals.COLUMN_COUNT
@@ -95,6 +96,7 @@ Item {
                 onClicked: container.cellClicked(index / Globals.COLUMN_COUNT,
                                                  index % Globals.COLUMN_COUNT)
             }
+
         }
     }
 }

@@ -53,7 +53,9 @@ Item {
         board.setAnimationTime(value)
     }
 
-    function showPopup(text) {}
+    function showPopup(text) {
+        popup.show(text);
+    }
 
     KgCore.KgItem {
         id: table_background
@@ -64,13 +66,18 @@ Item {
     }
 
     Board {
-        z: 1
         id: board
+        z: 1
         width: Math.min(parent.width, parent.height)
         height: Math.min(parent.width, parent.height)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
 
         onCellClicked: container.cellClicked(row, column)
+    }
+
+    Popup {
+        id: popup
+        z: 2
     }
 }

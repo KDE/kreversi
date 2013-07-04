@@ -234,12 +234,17 @@ void KReversiView::slotGameOver()
 
 void KReversiView::slotComputerCantMove()
 {
-//    TODO: 3000 ms message "Computer can not move. It is your turn again.";
+    QMetaObject::invokeMethod(m_qml_root, "showPopup",
+        Q_ARG(QVariant,
+        i18n("Computer can not move. It is your turn again.")));
 }
 
 void KReversiView::slotPlayerCantMove()
 {
-//    TODO: 3000 ms message "You can not perform any move. Computer takes next turn now.";
+
+    QMetaObject::invokeMethod(m_qml_root, "showPopup",
+        Q_ARG(QVariant,
+        i18n("You can not perform any move. Computer takes next turn now.")));
 }
 
 void KReversiView::slotOnDelay()

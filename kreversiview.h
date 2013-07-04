@@ -20,6 +20,7 @@
 #ifndef KREVERSI_VIEW_H
 #define KREVERSI_VIEW_H
 
+#include <klocalizedstring.h>
 #include <KgDeclarativeView>
 #include "kreversigame.h"
 
