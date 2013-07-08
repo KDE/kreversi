@@ -46,13 +46,12 @@ void KReversiView::setGame(KReversiGame *game)
     // disconnect signals from previous game if it exists,
     // we are not interested in them anymore
     if (m_game) {
-        disconnect(m_game, 0, 0, 0);
-//        TODO: Why code below get runtime error?
-//        disconnect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
-//        disconnect( m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()) );
-//        disconnect( m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()) );
-//        disconnect( m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()) );
-//        disconnect( m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()) );
+        disconnect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
+        disconnect( m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()) );
+        disconnect( m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()) );
+        disconnect( m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()) );
+        disconnect( m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()) );
+        delete m_game;
     }
 
     m_game = game;
@@ -184,10 +183,14 @@ void KReversiView::setShowLegalMoves(bool show)
 
 void KReversiView::slotHint()
 {
-    if (m_game->isComputersTurn()) {
-        kDebug() << "It is computer turn now. Can't provide hint.";
+    if (!m_game)
+    {
+        m_hint = KReversiPos();
         return;
     }
+
+    if (m_game->isComputersTurn())
+        return;
 
     m_hint = m_game->getHint();
     updateBoard();
@@ -195,8 +198,12 @@ void KReversiView::slotHint()
 
 void KReversiView::setDemoMode(bool state)
 {
+    if (!m_game)
+        return;
+
     if (m_game->isGameOver())
         return;
+
     m_demoMode = state;
 
     if (!m_game->isComputersTurn())
@@ -205,15 +212,15 @@ void KReversiView::setDemoMode(bool state)
 
 void KReversiView::onPlayerMove(int row, int col)
 {
+    if (!m_game)
+        return;
+
     // user moves not allowed in demo mode
     if (m_demoMode)
         return;
 
     if (m_game->isComputersTurn())
-    {
-        kDebug() << "It is computer turn now. You player can't do moves.";
         return;
-    }
 
     m_game->makePlayerMove(row, col, false);
 }
@@ -249,5 +256,6 @@ void KReversiView::slotPlayerCantMove()
 
 void KReversiView::slotOnDelay()
 {
-    m_game->startNextTurn(m_demoMode);
+    if (m_game)
+        m_game->startNextTurn(m_demoMode);
 }
