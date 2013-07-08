@@ -56,11 +56,14 @@ void KReversiView::setGame(KReversiGame *game)
 
     m_game = game;
 
-    connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-    connect(m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()));
-    connect(m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()));
-    connect(m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()));
-    connect(m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()));
+    if (m_game)
+    {
+        connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
+        connect(m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()));
+        connect(m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()));
+        connect(m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()));
+        connect(m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()));
+    }
 
 
     m_hint = KReversiPos();
