@@ -103,6 +103,11 @@ void KReversiView::setAnimationSpeed(int speed)
                               Q_ARG(QVariant, value));
 }
 
+KReversiView::~KReversiView()
+{
+    setGame(0);
+}
+
 void KReversiView::updateBoard()
 {
     for (int i = 0; i < 8; i++)

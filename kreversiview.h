@@ -87,6 +87,10 @@ public:
      */
     void setAnimationSpeed(int speed);
 
+    /**
+     *  Destructor used to delete game object owned by class
+     */
+    ~KReversiView();
 public slots:
     /**
      *  Triggered on user click on board, connected to QML signal
