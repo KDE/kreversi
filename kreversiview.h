@@ -20,16 +20,13 @@
 #ifndef KREVERSI_VIEW_H
 #define KREVERSI_VIEW_H
 
-#include <klocalizedstring.h>
+#include <KLocalizedString>
 #include <KgDeclarativeView>
-#include "kreversigame.h"
-
-#include <KGameRenderer>
 #include <KStandardDirs>
 #include <KgThemeProvider>
 #include <QTimer>
 
-#include <kdebug.h>
+#include "kreversigame.h"
 
 /**
  *  This class provides graphical representation of KReversiGame
