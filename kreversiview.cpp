@@ -21,7 +21,7 @@
 #include "kreversiscene.h"
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
-    KgDeclarativeView(parent), m_delay(500), m_game(0),
+    KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
     m_demoMode(false), m_showLastMove(false), m_showLegalMoves(false),
     m_showLabels(false)
 {
@@ -83,7 +83,7 @@ void KReversiView::setShowBoardLabels(bool show)
 
 void KReversiView::setAnimationSpeed(int speed)
 {
-    int value;
+    int value = ANIMATION_SPEED_NORMAL;
     switch (speed) {
     case 0:
         value = ANIMATION_SPEED_SLOW;
@@ -96,6 +96,8 @@ void KReversiView::setAnimationSpeed(int speed)
         value = ANIMATION_SPEED_FAST;
         break;
     }
+
+    m_delay = value;
 
     QMetaObject::invokeMethod(m_qml_root, "setAnimationTime",
                               Q_ARG(QVariant, value));
