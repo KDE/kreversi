@@ -76,27 +76,38 @@ Item {
         spriteKey: "board_numbers"
     }
 
-    Grid {
-        z: 1
+    Item {
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
+
         x: Globals.GRID_OFFSET_X_PERCENT * container.width
         y: Globals.GRID_OFFSET_Y_PERCENT * container.height
+
         width: Globals.GRID_WIDTH_PERCENT * container.width
         height: Globals.GRID_HEIGHT_PERCENT * container.height
-        rows: Globals.ROW_COUNT
-        columns: Globals.COLUMN_COUNT
-
 
         Repeater {
             id: cells
             model: Globals.ROW_COUNT * Globals.COLUMN_COUNT
 
             Cell {
-                width: Globals.GRID_WIDTH_PERCENT * container.width / Globals.COLUMN_COUNT
-                height: Globals.GRID_HEIGHT_PERCENT * container.height / Globals.ROW_COUNT
+                x: (index % Globals.COLUMN_COUNT)
+                   * Globals.GRID_WIDTH_PERCENT
+                   * container.width
+                   / Globals.COLUMN_COUNT;
+                y: Math.floor(index / Globals.COLUMN_COUNT)
+                   * Globals.GRID_HEIGHT_PERCENT
+                   * container.height
+                   / Globals.ROW_COUNT;
+
+                width: Globals.GRID_WIDTH_PERCENT * container.width
+                       / Globals.COLUMN_COUNT
+                height: Globals.GRID_HEIGHT_PERCENT * container.height
+                        / Globals.ROW_COUNT
+
                 onClicked: container.cellClicked(index / Globals.COLUMN_COUNT,
                                                  index % Globals.COLUMN_COUNT)
             }
-
         }
     }
 }

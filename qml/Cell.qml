@@ -65,7 +65,7 @@ Item {
     Rectangle {
         id: cell_last_move_marker;
         z: 1
-        visible: true
+        visible: false
         anchors.fill: parent
         color: "#AAAAAA"
     }
