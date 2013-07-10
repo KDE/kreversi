@@ -330,24 +330,22 @@ void KReversiMainWindow::slotMoveFinished()
 
 void KReversiMainWindow::slotUndo()
 {
-    if (true) { //!m_scene->isBusy() )
-        // scene will automatically notice that it needs to update
-        int numUndone = m_game->undo();
-        // remove last numUndone items from historyView
-        for (int i = 0; i < numUndone; ++i)
-            delete m_historyView->takeItem(m_historyView->count() - 1);
+    // scene will automatically notice that it needs to update
+    int numUndone = m_game->undo();
+    // remove last numUndone items from historyView
+    for (int i = 0; i < numUndone; ++i)
+        delete m_historyView->takeItem(m_historyView->count() - 1);
 
-        QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
-        m_historyView->setCurrentItem(last);
-        m_historyView->scrollToItem(last);
+    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
+    m_historyView->setCurrentItem(last);
+    m_historyView->scrollToItem(last);
 
-        updateScores();
+    updateScores();
 
-        m_undoAct->setEnabled(m_game->canUndo());
-        // if the user hits undo after game is over
-        // let's give him a chance to ask for a hint ;)
-        m_hintAct->setEnabled(true);
-    }
+    m_undoAct->setEnabled(m_game->canUndo());
+    // if the user hits undo after game is over
+    // let's give him a chance to ask for a hint ;)
+    m_hintAct->setEnabled(true);
 }
 
 void KReversiMainWindow::slotHighscores()

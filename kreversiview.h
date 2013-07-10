@@ -144,9 +144,6 @@ public slots:
         return m_demoMode;
     }
 private slots:
-    /**
-     * @brief slotGameMoveFinished
-     */
     void slotGameMoveFinished();
     void slotGameOver();
     void slotComputerCantMove();
