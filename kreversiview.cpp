@@ -46,18 +46,17 @@ void KReversiView::setGame(KReversiGame *game)
     // disconnect signals from previous game if it exists,
     // we are not interested in them anymore
     if (m_game) {
-        disconnect( m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()) );
-        disconnect( m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()) );
-        disconnect( m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()) );
-        disconnect( m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()) );
-        disconnect( m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()) );
+        disconnect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
+        disconnect(m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()));
+        disconnect(m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()));
+        disconnect(m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()));
+        disconnect(m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()));
         delete m_game;
     }
 
     m_game = game;
 
-    if (m_game)
-    {
+    if (m_game) {
         connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
         connect(m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()));
         connect(m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()));
@@ -193,8 +192,7 @@ void KReversiView::setShowLegalMoves(bool show)
 
 void KReversiView::slotHint()
 {
-    if (!m_game)
-    {
+    if (!m_game) {
         m_hint = KReversiPos();
         return;
     }
@@ -252,16 +250,16 @@ void KReversiView::slotGameOver()
 void KReversiView::slotComputerCantMove()
 {
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
-        Q_ARG(QVariant,
-        i18n("Computer can not move. It is your turn again.")));
+                              Q_ARG(QVariant,
+                                    i18n("Computer can not move. It is your turn again.")));
 }
 
 void KReversiView::slotPlayerCantMove()
 {
 
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
-        Q_ARG(QVariant,
-        i18n("You can not perform any move. Computer takes next turn now.")));
+                              Q_ARG(QVariant,
+                                    i18n("You can not perform any move. Computer takes next turn now.")));
 }
 
 void KReversiView::slotOnDelay()
