@@ -1,9 +1,3 @@
-This file describes the overall design of KReversi.  Some of the
-classes have different names at this point, but that is indicated by a
-(now: XXX) tag.  These names will be changed when the KDE project has
-converted from CVS to Subversion since Subversion has so much better
-support for renaming files and directories.
-
 Almost all of the classes hold more members than are mentioned here,
 but those are implementation details and would only obscure the
 overall picture.  This file is only to give a helicopter view of the
@@ -16,104 +10,110 @@ Classes
 Class Diagram (See details below)
 -------------
 
-KReversi----------------------------------------------+
-  | | +--------------------------------+              |
-  | +-----------------+                |              |
-  |                   |                |              |
-  |                   v                v              v
-  |              QReversiGameView    Engine        StatusBar
-  |                   |    |   |               (shows whose turn it is)
-  |    +- - - - - - - +    |   +----------+
-  |    |                   v              v
-  |      +- - - -QReversiBoardView    Other widgets
-  |    | |                          (movelist, score)
-  v    v v
-QReversiGame
-  X
-  v
- Game
- I +=========+
- I           I
- v           v
-Position   Move[]
+KReversiMainWindow-----------------------------------+
+  |       |   +---------------------+                |
+          |                         |                |
+  |       +-------------+           |                V
+  V                     V           |             Widgets
+KReversiGame<-------KReversiView    |    (Status bar, Action bar...)
+     |                  I           V
+     |                  I       Highscores
+     |                  I
+     V                  V
+   Engine      +======*Table*======+
+               V                   V
+            *Popup*             *Board*
+                                   I
+                                   V
+                                *Cell*
+                                   I
+                                   V
+                             *ReversiChip*
 
-
-Legend: 
-XXXXXXXX>  Inherits
+Legend:
 ========>  Contains
 -------->  Ownership pointer
 - - - - >  Reference pointer
+*Name*     QML class
 
 
 Details
 -------
 
-ReversiPosition (now: Position)
-    Holds a Reversi position.  This is the object that implements the
-    Reversi rules.
+KReversiMainWindow
+    Main window of game, contains option controls, move history
+    and KReversiView.
 
 
-ReversiMove (now: Move)
-    A move in a Reversi game.  
+KReversiGame
+    KReversiGame incapsulates all of the game logic.
+    Whenever the board state changes it emits corresponding signals.
+    The idea is also to abstract from any graphic representation of the game process
 
-
-ReversiGame (now: Game)
-    Holds all the moves of the game being played.  
-    Contains: ReversiPosition	Holds the current position.
-              Move[60]
-    FIXME: Remove the ReversiPosition and let it be implicit?
-    FIXME: Implement variations (later)
+    KReversiGame is supposed to be driven by someone from outside.
+    I.e. it receives commands and emits events when it's internal state changes
+    due to this commands dispatching.
+    The main commands are:
+    startNextTurn() and  makePlayerMove()
 
 
 Engine
     Can generate a move, given a ReversiPosition.
 
 
-QReversiGame
-    The "document" for KReversi.
-    Handles a game being played and sends signals to all its views
-    when something changes.  Basically, the only difference between
-    this class and the more basic ReversiGame is that it sends signals
-    to the views.
-    Inherits: ReversiGame	The actual game being played
-
-
-QReversiGameView (status: PLANNED)
-
-    Shows a view of a complete game.  Currently this comprises a board
-    view, a listbox with a list of the moves, two status widgets
-    showing the current score.
-
-    Contains: *QReversiBoardView
-	      *QListBox
-	      *StatusWidget (two of them)
-
-
-QReversiBoardView
-
-    A view for a Reversi board.  The rest of the game view is
-    implemented in the class QReversiGameView.
-
-    Inherits: QWidget.
-    Contains: *QReversiGame	(not owner)
+KReversiView
+    This class provides graphical representation of KReversiGame
+    using QML for graphics display.
+    It displays the reversi board in its current state,
+    receives a mouse events, translates them so KReversiGame can understand,
+    sends them to it,
+    receives board-changed notifications, nicely animates them.
+    It also drives the gameflow, i.e. it tells KReversiGame when to make
+    the next move.
 
     FIXME: Enhance the view with timing information, clock, etc.
 
 
-KReversi
-    The main class for the KReversi program
-    Contains: KActions
-	      *QReversiGame 	 (owner)
-	      *KReversiGameView  (owner)
-	      *Engine            (owner)
-              Statusbar
+*Table*
+    Contains table background, *Board* and *Popup*.
 
-    FIXME: Let the class also own two players.
+
+*Popup*
+    Used to show in-game messages. Looks like KGamePopupItem.
+
+    FIXME: It should load kde-theme-specific values for rendering.
+           Now default values are hardcoded.
+
+
+*Board*
+    Draws board with labels, when needed. Contains 8X8 *Cell* matrix.
+
+
+*Cell*
+    Used to draw single cell of a board with *ReversiChip*.
+    Can show hint and legal markers.
+
+
+*ReversiChip*
+    Used to draw single chip with animations. Can show hint.
+
+
+KReversiPos
+    Holds information about Reversi move: row, column, color.
+
+
+Highscores
+    Used to access KDE highscore statistics for games.
+
+
+ReversiPosition (now: Position)
+    Holds a Reversi position.  This is the object that implements the
+    Reversi rules.
 
 
 EngineView (status: PLANNED)
     View of the internal thought processes of an Engine (trace, etc).
-    
+
 
 Some notes
 ----------
