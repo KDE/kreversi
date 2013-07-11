@@ -42,7 +42,7 @@ class KReversiView : public KgDeclarativeView
 {
     Q_OBJECT
 public:
-    KReversiView(KReversiGame* game, QWidget *parent = 0);
+    explicit KReversiView(KReversiGame* game, QWidget *parent = 0);
 
     /**
      *  Sets the game object which this view will visualize/use
@@ -69,7 +69,7 @@ public:
     void setShowBoardLabels(bool show);
 
     /**
-     *  Checks wether the view is in demo-mode
+     *  Checks whether the view is in demo-mode
      *
      *  @return whether the view is in demo-mode
      */
