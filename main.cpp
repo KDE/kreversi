@@ -47,6 +47,7 @@ int main(int argc, char **argv)
     aboutData.addCredit(ki18n("Arne Klaassen"), ki18n("Original raytraced chips."));
     aboutData.addCredit(ki18n("Mauricio Piacentini"), ki18n("Vector chips and background for KDE4."));
     aboutData.addCredit(ki18n("Brian Croom"), ki18n("Port rendering code to KGameRenderer"), "brian.s.croom@gmail.com");
+    aboutData.addCredit(ki18n("Denis Kuplyakov"), ki18n("Port rendering code to QML"), "dener.kup@gmail.com");
 
     KCmdLineArgs::init( argc, argv, &aboutData );
 
@@ -65,7 +66,7 @@ int main(int argc, char **argv)
     {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         KReversiMainWindow *mainWin = new KReversiMainWindow( 0, args->isSet( "demo" ) );
-	args->clear();
+        args->clear();
         mainWin->show();
     }
 
