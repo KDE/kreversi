@@ -41,7 +41,7 @@ class Engine;
  *  The main commands are:
  *  startNextTurn() and  makePlayerMove()
  *
- *  See KReversiScene for example of working with KReversiGame
+ *  See KReversiView for example of working with KReversiGame
  */
 class KReversiGame : public QObject
 {
@@ -63,11 +63,11 @@ public:
      *
      *  If game is over it'll emit gameOver()
      *
-     *  If it's still unclear how to use it please see KReversiScene for working example.
-     *  In short: KReversiScene calls startNextTurn() at the end of each turn and makePlayerMove()
-     *  in mouseReleaseEvent()
+     *  If it's still unclear how to use it please see KReversiView for working example.
+     *  In short: KReversiView calls startNextTurn() at the end of each turn and makePlayerMove()
+     *  in onPlayerMove()
      *
-     *  @param demoMode if true then computer will decide for player turn
+     *  @param demoMode if @c true then computer will decide for player turn
      */
     void startNextTurn(bool demoMode);
     /**
