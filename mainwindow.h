@@ -67,7 +67,9 @@ private:
     bool m_startInDemoMode;
 
     /**
-     * Used for the high scores: if the player changes the difficulty level during a running game, we'll keep the lowest computer skill corresponding to the levels chosen.
+     * Used for the high scores: if the player changes the difficulty level
+     * during a running game, we'll keep the lowest computer skill corresponding
+     * to the levels chosen.
      */
     int m_lowestSkill;
 
