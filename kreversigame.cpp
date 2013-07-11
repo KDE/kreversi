@@ -176,6 +176,8 @@ int KReversiGame::undo()
     kDebug() << "Undone" << movesUndone << "moves.";
     //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" );
 
+    m_changedChips.clear(); // clearing last move mark
+
     emit boardChanged();
 
     return movesUndone;
