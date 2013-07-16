@@ -25,7 +25,6 @@
 
 #include <kxmlguiwindow.h>
 
-class KReversiScene;
 class KReversiGame;
 class KReversiView;
 class QAction;

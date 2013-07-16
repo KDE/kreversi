@@ -18,7 +18,6 @@
 */
 
 #include "kreversiview.h"
-#include "kreversiscene.h"
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
     KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),

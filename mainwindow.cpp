@@ -24,7 +24,6 @@
  ********************************************************************/
 #include "mainwindow.h"
 #include "kreversigame.h"
-#include "kreversiscene.h"
 #include "kreversiview.h"
 #include "preferences.h"
 
