@@ -16,16 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-
 #include "highscores.h"
-
-#include <klocale.h>
-#include <kconfig.h>
-#include <QVector>
-#include <QDateTime>
-#include <kglobal.h>
-#include <kconfiggroup.h>
-
 
 namespace KExtHighscore
 {
@@ -43,7 +34,7 @@ ExtManager::ExtManager()
     qCopy(RANGE, RANGE + 6, s.begin());
     setScoreHistogram(s, ScoreBound);
 
-    // FIXME dimsuz: somehow rearrange the code to be sure that this and in mainwindow.cpp are 
+    // FIXME dimsuz: somehow rearrange the code to be sure that this and in mainwindow.cpp are
     // always in sync
     m_typeLabels << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
     m_typeLabels << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
@@ -55,7 +46,7 @@ QString ExtManager::gameTypeLabel(uint gameType, LabelType type) const
     switch (type) {
         case Standard:
             return QString::number(gameType);
-        case I18N: 
+        case I18N:
             return m_typeLabels.at(gameType);
         case Icon:
             // FIXME dimsuz: implement
@@ -69,7 +60,7 @@ QString ExtManager::gameTypeLabel(uint gameType, LabelType type) const
 
 
 // FIXME dimsuz: is this still needed?
-/* 
+/*
 void ExtManager::convertLegacy(uint gameType)
 {
   // Since there is no information about the skill level
@@ -105,4 +96,4 @@ void ExtManager::convertLegacy(uint gameType)
  */
 
 
-} // Namespace
+} // Namespace KExtHighscore

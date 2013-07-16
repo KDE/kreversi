@@ -119,26 +119,15 @@
 #ifndef KREVERSI_ENGINE_H
 #define KREVERSI_ENGINE_H
 
-//#include "SuperEngine.h"
-//#include "Position.h"
-//#include "Game.h"
-//#include "Move.h"
-//#include "Score.h"
-
-//#include <sys/times.h>
 #include <QVector>
-#include <krandomsequence.h>
+#include <QApplication>
+
+#include <KRandomSequence>
+#include <KDebug>
+
 #include "commondefs.h"
-
+#include "kreversigame.h"
 class KReversiGame;
-
-static ChipColor opponentColorFor(ChipColor color)
-{
-    if(color == NoColor)
-        return color;
-    else
-        return ( color == White ? Black : White );
-}
 
 
 // SquareStackEntry and SquareStack are used during search to keep
@@ -203,7 +192,7 @@ public:
 
   ~Engine();
 
-  KReversiPos     computeMove(const KReversiGame& game, bool competitive);
+  KReversiMove     computeMove(const KReversiGame& game, bool competitive);
   bool isThinking() const { return m_computingMove; }
 
   void  setInterrupt(bool intr) { m_interrupt = intr; }
@@ -212,7 +201,7 @@ public:
   void  setStrength(uint strength) { m_strength = strength; }
   uint  strength() const { return m_strength; }
 private:
-  KReversiPos     ComputeFirstMove(const KReversiGame& game);
+  KReversiMove     ComputeFirstMove(const KReversiGame& game);
   int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
   int      cutoffval,
   quint64  colorbits, quint64 opponentbits);

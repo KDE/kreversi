@@ -24,19 +24,48 @@
 #define COMMONDEFS_H
 
 // noColor = empty
-enum ChipColor { White = 0, Black = 1, NoColor = 2 };
+enum ChipColor {White = 0, Black = 1, NoColor = 2};
 
 struct KReversiPos
 {
-    KReversiPos( ChipColor col = NoColor, int r = -1, int c = -1 )
-        : color(col), row(r), col(c) { }
-    ChipColor color;
+    KReversiPos(int r = -1, int c = -1)
+        : row(r), col(c) { }
+
     int row;
     int col;
 
-    bool isValid() const { return ( color != NoColor || row != -1 || col != -1 ); }
+    bool isValid() const
+    {
+        return (row >= 0 && col >= 0 && row < 8 && col < 8);
+    }
 };
 
-typedef QList<KReversiPos> PosList;
+struct KReversiMove: public KReversiPos
+{
+    KReversiMove(ChipColor col = NoColor, int r = -1, int c = -1)
+        : KReversiPos(r, c), color(col) { }
+
+    KReversiMove(ChipColor col, const KReversiPos &pos)
+        : KReversiPos(pos), color(col) { }
+
+    ChipColor color;
+
+    bool isValid() const
+    {
+        return (color != NoColor
+                && row >= 0 && col >= 0
+                && row < 8 && col < 8);
+    }
+};
+
+static ChipColor opponentColorFor(ChipColor color)
+{
+    if (color == NoColor)
+        return NoColor;
+    else
+        return (color == White ? Black : White);
+}
+
+typedef QList<KReversiMove> MoveList;
 
 #endif

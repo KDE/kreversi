@@ -16,15 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #ifndef KREVERSI_VIEW_H
 #define KREVERSI_VIEW_H
+
+#include <QTimer>
 
 #include <KLocalizedString>
 #include <KgDeclarativeView>
 #include <KStandardDirs>
 #include <KgThemeProvider>
-#include <QTimer>
 
 #include "kreversigame.h"
 
@@ -42,6 +42,7 @@ class KReversiView : public KgDeclarativeView
 {
     Q_OBJECT
 public:
+    enum ChipsPrefix { Colored, BlackWhite };
     explicit KReversiView(KReversiGame* game, QWidget *parent = 0);
 
     /**
@@ -56,9 +57,9 @@ public:
      *  Sets the chips pixmap to be one found in chipsPrefix
      *
      *  @param chipsPrefix Use @c chip_color for colored chips
-     *                    and @c chip_bw for black-white chips
+     *                     and @c chip_bw for black-white chips
      */
-    void setChipsPrefix(const QString& chipsPrefix);
+    void setChipsPrefix(ChipsPrefix chipsPrefix);
 
     /**
      *  Sets whether to show board labels.
@@ -67,15 +68,6 @@ public:
      *              @c false to hide labels
      */
     void setShowBoardLabels(bool show);
-
-    /**
-     *  Checks whether the view is in demo-mode
-     *
-     *  @return whether the view is in demo-mode
-     */
-    bool isDemoModeToggled() const {
-        return m_demoMode;
-    }
 
     /**
      *  Sets the animation speed
@@ -89,19 +81,6 @@ public:
      */
     ~KReversiView();
 public slots:
-    /**
-     *  Triggered on user click on board, connected to QML signal
-     *
-     *  @param row index of the clicked cell row (starting from zero)
-     *  @param col index of the clicked cell column (starting from zero)
-     */
-    void onPlayerMove(int row, int col);
-
-    /**
-     *  Synchronizes graphical board with m_game's board
-     */
-    void updateBoard();
-
     /**
     *   This will make view visually mark the last made move
     *
@@ -123,37 +102,28 @@ public slots:
      */
     void slotHint();
 
-    /**
-     *  Sets Demo Mode.
-     *  In this mode KReversiScene would not wait for user
-     *  clicks to produce his turn. It will let computer
-     *  play for user
-     *  @see m_demoMode
-     *
-     *  @param state @c true to enable demo mode
-     *               @c false to disable demo mode
-     */
-    void setDemoMode(bool state);
-
-    /**
-     *  Checks whether view is in demo mode
-     *
-     *  @return whether game is in demo mode
-     */
-    bool isInDemoMode() const {
-        return m_demoMode;
-    }
 private slots:
-    void slotGameMoveFinished();
-    void slotGameOver();
-    void slotComputerCantMove();
-    void slotPlayerCantMove();
-    void slotOnDelay();
+    /**
+     *  Triggered on user click on board, connected to QML signal
+     *
+     *  @param row index of the clicked cell row (starting from zero)
+     *  @param col index of the clicked cell column (starting from zero)
+     */
+    void onPlayerMove(int row, int col);
+    /**
+     *  Synchronizes graphical board with m_game's board
+     */
+    void updateBoard();
+    void gameMoveFinished();
+    void gameOver();
+    void whitePlayerCantMove();
+    void blackPlayerCantMove();
 signals:
     /**
      * The signal used to notify about end of the move
      */
     void moveFinished();
+    void userMove(KReversiPos);
 private:
     /**
      *  40 ms time per frame for animation
@@ -181,14 +151,9 @@ private:
     KgThemeProvider *m_provider;
 
     /**
-     *  Used to handle end of animation
-     */
-    QTimer m_delayTimer;
-
-    /**
      *  Position of calculated hint. It is not valid if there is no hint
      */
-    KReversiPos m_hint;
+    KReversiMove m_hint;
 
     /**
      *  Current animation time
@@ -204,11 +169,6 @@ private:
      *  The SVG element prefix for the current chip set
      */
     QString m_chipsPrefix;
-
-    /**
-     *  Specifies whether computer should play human moves
-     */
-    bool m_demoMode;
 
     /**
      *  If true, then last made turn will be shown to the player

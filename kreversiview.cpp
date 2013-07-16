@@ -21,7 +21,7 @@
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
     KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
-    m_demoMode(false), m_showLastMove(false), m_showLegalMoves(false),
+    m_showLastMove(false), m_showLegalMoves(false),
     m_showLabels(false)
 {
     m_provider = new KgThemeProvider();
@@ -46,10 +46,10 @@ void KReversiView::setGame(KReversiGame *game)
     // we are not interested in them anymore
     if (m_game) {
         disconnect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-        disconnect(m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()));
-        disconnect(m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()));
-        disconnect(m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()));
-        disconnect(m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()));
+        disconnect(m_game, SIGNAL(moveFinished()), this, SLOT(gameMoveFinished()));
+        disconnect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
+        disconnect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
+        disconnect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
         delete m_game;
     }
 
@@ -57,22 +57,27 @@ void KReversiView::setGame(KReversiGame *game)
 
     if (m_game) {
         connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-        connect(m_game, SIGNAL(moveFinished()), this, SLOT(slotGameMoveFinished()));
-        connect(m_game, SIGNAL(gameOver()), this, SLOT(slotGameOver()));
-        connect(m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()));
-        connect(m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()));
+        connect(m_game, SIGNAL(moveFinished()), this, SLOT(gameMoveFinished()));
+        connect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
+        connect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
+        connect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
     }
 
 
-    m_hint = KReversiPos();
-    m_demoMode = false;
+    m_hint = KReversiMove();
 
     updateBoard();
 }
 
-void KReversiView::setChipsPrefix(const QString &chipsPrefix)
+void KReversiView::setChipsPrefix(ChipsPrefix chipsPrefix)
 {
-    m_qml_root->setProperty("chipsImagePrefix", chipsPrefix);
+    QString string;
+    if (chipsPrefix == Colored)
+        string = "chip_color";
+    else
+        string = "chip_bw";
+
+    m_qml_root->setProperty("chipsImagePrefix", string);
 }
 
 void KReversiView::setShowBoardLabels(bool show)
@@ -113,7 +118,7 @@ void KReversiView::updateBoard()
         for (int j = 0; j < 8; j++) {
             QString new_state = "";
             if (m_game) // showing empty board if has no game
-                switch (m_game->chipColorAt(i, j)) {
+                switch (m_game->chipColorAt(KReversiMove(NoColor, i, j))) {
                 case Black:
                     new_state = "Black";
                     break;
@@ -146,7 +151,7 @@ void KReversiView::updateBoard()
         }
 
     if (m_game && m_showLegalMoves) {
-        PosList possible_moves = m_game->possibleMoves();
+        MoveList possible_moves = m_game->possibleMoves();
         for (int i = 0; i < possible_moves.size(); i++) {
             QMetaObject::invokeMethod(m_qml_root, "setLegal",
                                       Q_ARG(QVariant, possible_moves.at(i).row),
@@ -169,7 +174,7 @@ void KReversiView::updateBoard()
     }
 
     if (m_game && m_showLastMove) {
-        KReversiPos lastmove = m_game->getLastMove();
+        KReversiMove lastmove = m_game->getLastMove();
         if (lastmove.isValid())
             QMetaObject::invokeMethod(m_qml_root, "setLastMove",
                                       Q_ARG(QVariant, lastmove.row),
@@ -193,29 +198,12 @@ void KReversiView::setShowLegalMoves(bool show)
 void KReversiView::slotHint()
 {
     if (!m_game) {
-        m_hint = KReversiPos();
+        m_hint = KReversiMove();
         return;
     }
 
-    if (m_game->isComputersTurn())
-        return;
-
     m_hint = m_game->getHint();
     updateBoard();
-}
-
-void KReversiView::setDemoMode(bool state)
-{
-    if (!m_game)
-        return;
-
-    if (m_game->isGameOver())
-        return;
-
-    m_demoMode = state;
-
-    if (!m_game->isComputersTurn())
-        m_game->startNextTurn(m_demoMode);
 }
 
 void KReversiView::onPlayerMove(int row, int col)
@@ -223,48 +211,35 @@ void KReversiView::onPlayerMove(int row, int col)
     if (!m_game)
         return;
 
-    // user moves not allowed in demo mode
-    if (m_demoMode)
-        return;
-
-    if (m_game->isComputersTurn())
-        return;
-
-    m_game->makePlayerMove(row, col, false);
+    emit userMove(KReversiPos(row, col));
 }
 
 
-void KReversiView::slotGameMoveFinished()
+void KReversiView::gameMoveFinished()
 {
-    m_hint = KReversiPos();
+    m_hint = KReversiMove();
     updateBoard();
     emit moveFinished();
-    m_delayTimer.singleShot(m_delay, this, SLOT(slotOnDelay()));
 }
 
-void KReversiView::slotGameOver()
+void KReversiView::gameOver()
 {
-    m_demoMode = false;
 }
 
-void KReversiView::slotComputerCantMove()
+void KReversiView::whitePlayerCantMove()
 {
+    /// TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
-                                    i18n("Computer can not move. It is your turn again.")));
+                                    i18n("White player can not perform any move. It is black turn again.")));
     updateBoard();
 }
 
-void KReversiView::slotPlayerCantMove()
+void KReversiView::blackPlayerCantMove()
 {
+    /// TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
-                                    i18n("You can not perform any move. Computer takes next turn now.")));
+                                    i18n("Black player can not perform any move. It is white turn again.")));
     updateBoard();
-}
-
-void KReversiView::slotOnDelay()
-{
-    if (m_game)
-        m_game->startNextTurn(m_demoMode);
 }

@@ -1,6 +1,7 @@
 /*******************************************************************
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2013 Denis Kuplaykov <dener.kup@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
@@ -25,10 +26,14 @@
 
 #include <QObject>
 #include <QStack>
+#include <KDebug>
+#include <QTimer>
 
-#include "commondefs.h"
-
+#include "Engine.h"
 class Engine;
+#include "commondefs.h"
+#include "kreversiplayer.h"
+class KReversiPlayer;
 
 /**
  *  KReversiGame incapsulates all of the game logic.
@@ -47,119 +52,102 @@ class KReversiGame : public QObject
 {
     Q_OBJECT
 public:
-    KReversiGame();
+    KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePlayer);
     ~KReversiGame();
-    /**
-     *  Starts next player turn.
-     *  If game isn't over yet, then this function does the following:
-     *  - if it is computer turn and computer can move, it'll make that move.
-     *  - if it is computer turn and computer can't move it'll emit "computerCantMove"
-     *  signal and exit
-     *  - if it is player turn and player can move then this function
-     *  will do nothing - you can call makePlayerMove(row,col) to make player move (but see last item)
-     *  - if it is player turn and player can't move it'll make a computer move
-     *  - in demo mode this function will make computer play player moves,
-     *  so you don't need to call makePlayerMove.
-     *
-     *  If game is over it'll emit gameOver()
-     *
-     *  If it's still unclear how to use it please see KReversiView for working example.
-     *  In short: KReversiView calls startNextTurn() at the end of each turn and makePlayerMove()
-     *  in onPlayerMove()
-     *
-     *  @param demoMode if @c true then computer will decide for player turn
-     */
-    void startNextTurn(bool demoMode);
-    /**
-     *  This will make the player move at row, col.
-     *  If that is possible of course
-     *  If demoMode is true, the computer will decide on what move to take.
-     *  row and col values do not matter in that case.
-     */
-    void makePlayerMove(int row, int col, bool demoMode);
-    /**
-     *  This function will make computer decide where he
-     *  wants to put his chip... and he'll put it there!
-     */
-    void makeComputerMove();
-    /**
-     *  Undoes all the computer moves and one player move
-     *  (so after calling this function it will be player turn)
-     *  @return number of undone moves
-     */
-    int undo();
-    /**
-     *  Sets the computer skill level. From 1 to 7
-     */
-    void setComputerSkill(int skill);
-    /**
-     * @return whether the game is currently computing turn
-     */
-    bool isThinking() const;
-    /**
-     *  @return whether the game is already over
-     */
-    bool isGameOver() const; // perhaps this doesn't need to be public
-    /**
-     *  @return whether any player move is at all possible
-     */
-    bool isAnyPlayerMovePossible() const;// perhaps this doesn't need to be public
-    /**
-     *  @return whether any computer move is at all possible
-     */
-    bool isAnyComputerMovePossible() const;// perhaps this doesn't need to be public
-    /**
-     *  @return a color of the current player
-     */
-    ChipColor currentPlayer() const { return m_curPlayer; }
-
-    /**
-     *  @return score (number of chips) of the player
-     */
-    int playerScore( ChipColor player ) const;
-    /**
-     *  @return color of the chip at position [row, col]
-     */
-    ChipColor chipColorAt( int row, int col ) const;
     /**
      *  @return if undo is possible
      */
     bool canUndo() const { return !m_undoStack.isEmpty(); }
     /**
+     *  Undoes all the opponent of current player moves and one his move
+     *  (so after calling this function it will be still current player turn)
+     *  @return number of undone moves
+     */
+    int undo();
+    /**
+     *  @return score (number of chips) of the player
+     */
+    int playerScore(ChipColor player) const;
+    /**
+     *  @return color of the chip at position [row, col]
+     */
+    ChipColor chipColorAt(KReversiPos pos) const;
+    /**
      *  @return a hint to current player
      */
-    KReversiPos getHint() const;
+    KReversiMove getHint() const;
     /**
      *  @return last move made
      */
-    KReversiPos getLastMove() const;
-    /**
-     *  @return true, if it's computer's turn now
-     */
-    bool isComputersTurn() const { return m_curPlayer == m_computerColor; }
+    KReversiMove getLastMove() const;
     /**
      *  @return a list of chips which were changed during last move.
      *  First of them will be the move itself, and the rest - chips which
      *  were turned by that move
      */
-    PosList changedChips() const { return m_changedChips; }
+    MoveList changedChips() const { return m_changedChips; }
     /**
      *  @return a list of possible moves for current player
      */
-    PosList possibleMoves() const;
+    MoveList possibleMoves() const;
+    /**
+     *  @return whether the game is already over
+     */
+    bool isGameOver() const;
+    /**
+     *  @return whether any player move is at all possible
+     */
+    bool isAnyPlayerMovePossible(ChipColor player) const;
+    /**
+     *  @return a color of the current player
+     */
+    ChipColor currentPlayer() const { return m_curPlayer; }
+    /**
+     *  Sets animation times from players
+     */
+    void setDelay(int delay);
+private slots:
+    /**
+     *  Starts next player turn.
+     */
+    void startNextTurn();
+    /**
+     *  Slot used to handle moves from black player
+     *  @param move Move of black player
+     */
+    void blackPlayerMove(KReversiMove move);
+    /**
+     *  Slot used to handle moves from white player
+     *  @param move Move of white player
+     */
+    void whitePlayerMove(KReversiMove move);
+    /**
+     *  Slot to handle end of animations with m_delayTimer
+     */
+    void onDelayTimer();
 signals:
     void gameOver();
     void boardChanged();
     void moveFinished();
-    void computerCantMove();
-    void playerCantMove();
+    void whitePlayerCantMove();
+    void blackPlayerCantMove();
+    void whitePlayerTurn();
+    void blackPlayerTurn();
 private:
-    enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
+    static const int DIRECTIONS_COUNT = 8;
+    static const int DX[];
+    static const int DY[];
+    void kickCurrentPlayer();
+    /**
+     *  This will make the player move
+     *  If that is possible of course
+     */
+    void makeMove(const KReversiMove &move);
     /**
      * This function will tell you if the move is possible.
      * That's why it was given such a name ;)
      */
-    bool isMovePossible( const KReversiPos& move ) const;
+    bool isMovePossible(const KReversiMove &move) const;
     /**
      *  Searches for "chunk" in direction dir for move.
      *  As my English-skills are somewhat limited, let me introduce
@@ -169,16 +157,21 @@ private:
      *  CO[O]C <-- this is a chunk
      *  where [O] is one or more opponent's pieces
      */
-    bool hasChunk( Direction dir, const KReversiPos& move) const;
+    bool hasChunk(int dirNum, const KReversiMove &move) const;
     /**
      *  Performs move, i.e. marks all the chips that player wins with
      *  this move with current player color
      */
-    void makeMove( const KReversiPos& move );
+    void turnChips(const KReversiMove &move);
     /**
-     *  Sets the type of chip at (row,col)
+     *  Sets the type of chip acording to KReversiMove
      */
-    void setChipColor(ChipColor type, int row, int col);
+    void setChipColor(const KReversiMove &move);
+    /**
+     *  Delay time
+     */
+    int m_delay;
+    ChipColor m_lastPlayer;
     /**
      *  The board itself
      */
@@ -188,21 +181,13 @@ private:
      */
     int m_score[2];
     /**
+     *  AI to give hints
+     */
+    Engine *m_engine;
+    /**
      *  Color of the current player
      */
     ChipColor m_curPlayer;
-    /**
-     *  The color of the human played chips
-     */
-    ChipColor m_playerColor;
-    /**
-     *  The color of the computer played chips
-     */
-    ChipColor m_computerColor;
-    /**
-     *  Our AI
-     */
-    Engine *m_engine;
      // Well I'm not brief at all :). That's because I think that my
      // English is not well shaped sometimes, so I try to describe things
      // so that me and others can understand. Even simple things.
@@ -213,12 +198,18 @@ private:
      *  during last move. The rest of them - chips that were turned by that
      *  move.
      */
-    PosList m_changedChips;
+    MoveList m_changedChips;
     /**
      *  This is an undo stack.
      *  It contains a lists of chips changed with each turn.
      *  @see m_changedChips
      */
-    QStack<PosList> m_undoStack;
+    QStack<MoveList> m_undoStack;
+    /**
+     *  Used to handle end of player's animations or other stuff
+     */
+    QTimer m_delayTimer;
+
+    KReversiPlayer *m_player[2];
 };
 #endif

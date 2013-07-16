@@ -15,14 +15,20 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-
 #ifndef HIGHSCORES_H
 #define HIGHSCORES_H
 
-#include <kexthighscore.h>
-#include <kdemacros.h>
+#include <QVector>
+#include <QDateTime>
 #include <QStringList>
+
+#include <KExtHighscore>
+#include <kdemacros.h>
+#include <KGlobal>
+#include <KLocale>
+#include <KConfigGroup>
+#include <KConfig>
+
 
 namespace KExtHighscore
 {

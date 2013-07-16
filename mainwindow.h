@@ -24,6 +24,34 @@
 #define KREVERSI_MAIN_WINDOW_H
 
 #include <kxmlguiwindow.h>
+#include "preferences.h"
+
+#include <QApplication>
+#include <QListWidget>
+#include <QDockWidget>
+#include <QLabel>
+#include <QDesktopWidget>
+
+#include <KAction>
+#include <kactioncollection.h>
+#include <ktoggleaction.h>
+#include <kdebug.h>
+#include <kexthighscore.h>
+#include <kicon.h>
+#include <klocale.h>
+#include <kmessagebox.h>
+#include <kstandarddirs.h>
+#include <kstatusbar.h>
+#include <kstandardaction.h>
+#include <kstandardgameaction.h>
+#include <kselectaction.h>
+#include <ktoolinvocation.h>
+#include <KgDifficulty>
+#include "kreversihumanplayer.h"
+#include "kreversicomputerplayer.h"
+
+#include "kreversigame.h"
+#include "kreversiview.h"
 
 class KReversiGame;
 class KReversiView;
@@ -56,6 +84,8 @@ private:
     void loadSettings();
     QString opponentName() const;
     void updateScores();
+    KReversiHumanPlayer *human;
+    KReversiComputerPlayer *computer;
 
     KReversiView  *m_view;
     KReversiGame  *m_game;

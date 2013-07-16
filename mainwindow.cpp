@@ -23,36 +23,11 @@
  *
  ********************************************************************/
 #include "mainwindow.h"
-#include "kreversigame.h"
-#include "kreversiview.h"
-#include "preferences.h"
-
-#include <kaction.h>
-#include <kactioncollection.h>
-#include <ktoggleaction.h>
-#include <kdebug.h>
-#include <kexthighscore.h>
-#include <kicon.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kstandarddirs.h>
-#include <kstatusbar.h>
-#include <kstandardaction.h>
-#include <kstandardgameaction.h>
-#include <kselectaction.h>
-#include <ktoolinvocation.h>
-#include <KgDifficulty>
-
-#include <QApplication>
-#include <QListWidget>
-#include <QDockWidget>
-#include <QLabel>
-#include <QDesktopWidget>
 
 static const int PLAYER_STATUSBAR_ID = 1;
 static const int COMP_STATUSBAR_ID = 2;
 
-static QString moveToString(const KReversiPos& move)
+static QString moveToString(const KReversiMove& move)
 {
     QString moveString;
     if (Preferences::useColoredChips())
@@ -117,7 +92,7 @@ void KReversiMainWindow::setupActions()
     m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), actionCollection());
     m_undoAct->setEnabled(false);   // nothing to undo at the start of the game
     m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
-    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
+//    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
     // View
     KToggleAction *showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
@@ -183,7 +158,8 @@ void KReversiMainWindow::levelChanged()
     m_lowestSkill = qMin(m_lowestSkill, skill);
 
     // m_game takes it from 1 to 7
-    m_game->setComputerSkill(skill + 1);
+    //m_game->setComputerSkill(skill + 1);
+    computer->setSkill(skill);
 }
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
@@ -195,7 +171,9 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
-    QString chipsPrefix = m_coloredChipsAct->isChecked() ? QLatin1String("chip_color") : QLatin1String("chip_bw");
+    KReversiView::ChipsPrefix chipsPrefix = m_coloredChipsAct->isChecked() ?
+                KReversiView::Colored :
+                KReversiView::BlackWhite;
     m_view->setChipsPrefix(chipsPrefix);
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
@@ -210,26 +188,26 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 
 void KReversiMainWindow::slotToggleDemoMode()
 {
-    bool toggled = false;
-    if (m_view->isInDemoMode()) {
-        toggled = false;
-        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-start")));
-        m_demoAct->setChecked(false);
-    } else {
-        // if game is over when user launched Demo, start new game
-        // before Demo starts
-        if (m_game && m_game->isGameOver())
-            slotNewGame();
+//    bool toggled = false;
+//    if (m_view->isInDemoMode()) {
+//        toggled = false;
+//        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-start")));
+//        m_demoAct->setChecked(false);
+//    } else {
+//        // if game is over when user launched Demo, start new game
+//        // before Demo starts
+//        if (m_game && m_game->isGameOver())
+//            slotNewGame();
 
-        toggled = true;
-        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-pause")));
-        m_demoAct->setChecked(true);
-    }
+//        toggled = true;
+//        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-pause")));
+//        m_demoAct->setChecked(true);
+//    }
 
-    m_view->setDemoMode(toggled);
+//    m_view->setDemoMode(toggled);
 
-    m_undoAct->setEnabled(!toggled);
-    m_hintAct->setEnabled(!toggled);
+//    m_undoAct->setEnabled(!toggled);
+//    m_hintAct->setEnabled(!toggled);
 }
 
 void KReversiMainWindow::slotNewGame()
@@ -249,9 +227,13 @@ void KReversiMainWindow::slotNewGame()
     if (m_historyView)
         m_historyView->clear();
 
-    m_game = new KReversiGame;
+    human = new KReversiHumanPlayer(Black);
+    computer = new KReversiComputerPlayer(White);
+    /// TODO: DELETE HUMAN AND COMPUTER
+    m_game = new KReversiGame(human, computer);
     levelChanged();
     connect(m_game, SIGNAL(gameOver()), SLOT(slotGameOver()));
+    m_game->setDelay(300);
 
     if (m_view == 0) { // if called first time
         QString chipsPrefix = Preferences::useColoredChips() ? QLatin1String("chip_color") : QLatin1String("chip_bw");
@@ -263,6 +245,8 @@ void KReversiMainWindow::slotNewGame()
         m_view->setGame(m_game);
     }
 
+    connect(m_view, SIGNAL(userMove(KReversiPos)), human, SLOT(onUICellClick(KReversiPos)));
+
     statusBar()->changeItem(i18n("Your turn."), 0);
     updateScores();
 }
@@ -272,13 +256,13 @@ void KReversiMainWindow::slotGameOver()
     m_hintAct->setEnabled(false);
     m_undoAct->setEnabled(true);
 
-    if (m_view->isInDemoMode()) {
-        // let's loop! :-)
-        slotToggleDemoMode();// turn off
-        slotNewGame();
-        slotToggleDemoMode();// turn on
-        return;
-    }
+//    if (m_view->isInDemoMode()) {
+//        // let's loop! :-)
+//        slotToggleDemoMode();// turn off
+//        slotNewGame();
+//        slotToggleDemoMode();// turn on
+//        return;
+//    }
 
     statusBar()->changeItem(i18n("GAME OVER"), 0);
 
@@ -311,18 +295,18 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
-    if (!m_demoAct->isChecked())
-        m_undoAct->setEnabled(m_game->canUndo());
+//    if (!m_demoAct->isChecked())
+//        m_undoAct->setEnabled(m_game->canUndo());
 
     // add last move to history list
-    KReversiPos move = m_game->getLastMove();
-    QString numStr = QString::number(m_historyView->count() + 1) + QLatin1String(". ");
-    m_historyView->addItem(numStr + moveToString(move));
-    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
-    m_historyView->setCurrentItem(last);
-    m_historyView->scrollToItem(last);
+//    KReversiMove move = m_game->getLastMove();
+//    QString numStr = QString::number(m_historyView->count() + 1) + QLatin1String(". ");
+//    m_historyView->addItem(numStr + moveToString(move));
+//    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
+//    m_historyView->setCurrentItem(last);
+//    m_historyView->scrollToItem(last);
 
-    statusBar()->changeItem(m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0);
+//    statusBar()->changeItem(m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0);
 
     updateScores();
 }

@@ -23,10 +23,10 @@
  */
 
 
-#include <kapplication.h>
-#include <klocale.h>
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <KApplication>
+#include <KLocale>
+#include <KCmdLineArgs>
+#include <KAboutData>
 
 #include "highscores.h"
 #include "mainwindow.h"
