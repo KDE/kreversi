@@ -257,7 +257,6 @@ void KReversiView::slotComputerCantMove()
 
 void KReversiView::slotPlayerCantMove()
 {
-
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("You can not perform any move. Computer takes next turn now.")));
