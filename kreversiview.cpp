@@ -100,8 +100,7 @@ void KReversiView::setAnimationSpeed(int speed)
 
     m_delay = value;
 
-    QMetaObject::invokeMethod(m_qml_root, "setAnimationTime",
-                              Q_ARG(QVariant, value));
+    m_qml_root->setProperty("chipsAnimationTime", value);
 }
 
 KReversiView::~KReversiView()
@@ -157,10 +156,13 @@ void KReversiView::updateBoard()
         }
     }
 
-    QMetaObject::invokeMethod(m_qml_root, "setLabels",
-                              Q_ARG(QVariant, m_showLabels));
+    m_qml_root->setProperty("isBoardShowingLabels", m_showLabels);
 
     if (m_hint.isValid()) {
+        QMetaObject::invokeMethod(m_qml_root, "setChipState",
+                                  Q_ARG(QVariant, m_hint.row),
+                                  Q_ARG(QVariant, m_hint.col),
+                                  Q_ARG(QVariant, "Black"));
         QMetaObject::invokeMethod(m_qml_root, "setHint",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),

@@ -20,47 +20,32 @@ import org.kde.games.core 0.1 as KgCore
 import "globals.js" as Globals
 
 Item {
-    id: container
+    id: boardContainer
+    property bool isShowingLabels: parent.isBoardShowingLabels
+    property string chipsImagePrefix: parent.chipsImagePrefix
+    property int chipsAnimationTime: parent.chipsAnimationTime
 
     signal cellClicked(int row, int column)
 
     function setHint(row, column, value) {
-        cells.itemAt(row * Globals.COLUMN_COUNT + column).setHint(value)
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).isHint = value
     }
 
     function setLegal(row, column, value) {
-        cells.itemAt(row * Globals.COLUMN_COUNT + column).setLegal(value)
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).isLegal = value
     }
 
     function setChipState(row, column, value) {
-        cells.itemAt(row * Globals.COLUMN_COUNT + column).setChipState(
-                    value)
-    }
-
-    function setLabels(show) {
-        board_labels.visible = show;
-    }
-
-    function setChipsPrefix(prefix) {
-        for (var i = 0; i < Globals.ROW_COUNT; i++)
-            for (var j = 0; j < Globals.COLUMN_COUNT; j++)
-                cells.itemAt(i * Globals.COLUMN_COUNT + j).setChipPrefix(
-                            prefix)
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).chipState = value
     }
 
     function setLastMove(row, column, value) {
-        cells.itemAt(row * Globals.COLUMN_COUNT + column).setLastMove(value)
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).isLastMove = value
     }
 
-    function setAnimationTime(value) {
-        for (var i = 0; i < Globals.ROW_COUNT; i++)
-            for (var j = 0; j < Globals.COLUMN_COUNT; j++)
-                cells.itemAt(i * Globals.COLUMN_COUNT + j).setAnimationTime(
-                            value)
-    }
 
     KgCore.KgItem {
-        id: board_background
+        id: boardBackground
         z: 0
         anchors.fill: parent
         provider: themeProvider
@@ -68,10 +53,10 @@ Item {
     }
 
     KgCore.KgItem {
-        id: board_labels
+        id: boardLabels
         z: 0
         anchors.fill: parent
-        visible: false
+        visible: isShowingLabels
         provider: themeProvider
         spriteKey: "board_numbers"
     }
@@ -80,11 +65,11 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
 
-        x: Globals.GRID_OFFSET_X_PERCENT * container.width
-        y: Globals.GRID_OFFSET_Y_PERCENT * container.height
+        x: Globals.GRID_OFFSET_X_PERCENT * boardContainer.width
+        y: Globals.GRID_OFFSET_Y_PERCENT * boardContainer.height
 
-        width: Globals.GRID_WIDTH_PERCENT * container.width
-        height: Globals.GRID_HEIGHT_PERCENT * container.height
+        width: Globals.GRID_WIDTH_PERCENT * boardContainer.width
+        height: Globals.GRID_HEIGHT_PERCENT * boardContainer.height
 
         Repeater {
             id: cells
@@ -93,19 +78,19 @@ Item {
             Cell {
                 x: (index % Globals.COLUMN_COUNT)
                    * Globals.GRID_WIDTH_PERCENT
-                   * container.width
+                   * boardContainer.width
                    / Globals.COLUMN_COUNT;
                 y: Math.floor(index / Globals.COLUMN_COUNT)
                    * Globals.GRID_HEIGHT_PERCENT
-                   * container.height
+                   * boardContainer.height
                    / Globals.ROW_COUNT;
 
-                width: Globals.GRID_WIDTH_PERCENT * container.width
+                width: Globals.GRID_WIDTH_PERCENT * boardContainer.width
                        / Globals.COLUMN_COUNT
-                height: Globals.GRID_HEIGHT_PERCENT * container.height
+                height: Globals.GRID_HEIGHT_PERCENT * boardContainer.height
                         / Globals.ROW_COUNT
 
-                onClicked: container.cellClicked(index / Globals.COLUMN_COUNT,
+                onClicked: boardContainer.cellClicked(index / Globals.COLUMN_COUNT,
                                                  index % Globals.COLUMN_COUNT)
             }
         }

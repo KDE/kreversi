@@ -20,7 +20,7 @@ import org.kde.games.core 0.1 as KgCore
 import org.kde.plasma.core 0.1 as PlasmaCore
 
 Rectangle {
-    id: container
+    id: popupContainer
     height: row.height + 30
     width: row.width + 30
     anchors.bottom: undefined
@@ -76,8 +76,8 @@ Rectangle {
             name: "Showing"
 
             AnchorChanges {
-                target: container
-                anchors.bottom: container.parent.bottom
+                target: popupContainer
+                anchors.bottom: popupContainer.parent.bottom
                 anchors.top: undefined
             }
         }

@@ -21,7 +21,11 @@ import "globals.js" as Globals
 
 Item {
     anchors.fill: parent
-    id: container
+    id: tableContainer
+
+    property bool isBoardShowingLabels: false
+    property string chipsImagePrefix: "chip_bw"
+    property int chipsAnimationTime: 25 * 12
 
     signal cellClicked(int row, int column)
 
@@ -33,24 +37,12 @@ Item {
         board.setChipState(row, column, value);
     }
 
-    function setLabels(show) {
-        board.setLabels(show);
-    }
-
     function setHint(row, col, show) {
         board.setHint(row, col, show);
     }
 
-    function setChipsPrefix(prefix) {
-        board.setChipsPrefix(prefix);
-    }
-
     function setLastMove(row, column, value) {
         board.setLastMove(row, column, value)
-    }
-
-    function setAnimationTime(value) {
-        board.setAnimationTime(value)
     }
 
     function showPopup(text) {
@@ -73,7 +65,7 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
 
-        onCellClicked: container.cellClicked(row, column)
+        onCellClicked: tableContainer.cellClicked(row, column)
     }
 
     Popup {

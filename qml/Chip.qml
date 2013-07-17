@@ -19,11 +19,11 @@ import QtQuick 1.1
 import org.kde.games.core 0.1 as KgCore
 
 Item {
-    id: container
-    property int frames_count: 12
-    property int current_frame: 1
-    property string image_prefix: "chip_bw_"
-    property int animation_time: 300
+    id: chipContainer
+    property int framesCount: 12
+    property int currentFrame: 1
+    property string imagePrefix: parent.chipImagePrefix + "_"
+    property int animationTime: parent.chipAnimationTime
 
     signal clicked
 
@@ -33,17 +33,17 @@ Item {
         anchors.fill: parent
         visible: false
         provider: themeProvider
-        spriteKey: image_prefix + current_frame
+        spriteKey: imagePrefix + currentFrame
     }
 
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        onClicked: container.clicked()
+        onClicked: chipContainer.clicked()
     }
 
     Timer {
-        id: blinking_timer
+        id: blinkingTimer
         interval: 500
         running: false
         repeat: true
@@ -60,12 +60,12 @@ Item {
             }
 
             PropertyChanges {
-                target: container
-                current_frame: 1
+                target: chipContainer
+                currentFrame: 1
             }
 
             PropertyChanges {
-                target: blinking_timer
+                target: blinkingTimer
                 running: false
             }
         },
@@ -79,12 +79,12 @@ Item {
             }
 
             PropertyChanges {
-                target: container
-                current_frame: 1
+                target: chipContainer
+                currentFrame: 1
             }
 
             PropertyChanges {
-                target: blinking_timer
+                target: blinkingTimer
                 running: true
             }
         },
@@ -98,12 +98,12 @@ Item {
             }
 
             PropertyChanges {
-                target: container
-                current_frame: frames_count
+                target: chipContainer
+                currentFrame: framesCount
             }
 
             PropertyChanges {
-                target: blinking_timer
+                target: blinkingTimer
                 running: false
             }
         },
@@ -117,20 +117,20 @@ Item {
             }
 
             PropertyChanges {
-                target: container
-                current_frame: frames_count
+                target: chipContainer
+                currentFrame: framesCount
             }
 
             PropertyChanges {
-                target: blinking_timer
+                target: blinkingTimer
                 running: true
             }
         }
     ]
 
-    Behavior on current_frame {
+    Behavior on currentFrame {
         NumberAnimation {
-            duration: animation_time
+            duration: animationTime
             easing.type: Easing.InOutQuad
         }
     }

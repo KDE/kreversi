@@ -19,61 +19,39 @@ import QtQuick 1.1
 import org.kde.games.core 0.1 as KgCore
 
 Item {
-    id: container
+    id: cellContainer
     signal clicked
-
-    function setChipState(new_state) {
-        reversi_chip.state = new_state
-    }
-
-    function setHint(new_state) {
-        if (new_state)
-            reversi_chip.state = "Black_blinking"
-        else {
-            if (reversi_chip.state == "Black_blinking")
-                reversi_chip.state = "Black";
-            else if (reversi_chip.state == "White_blinking")
-                reversi_chip.state = "White";
-        }
-    }
-
-    function setLegal(new_state) {
-        cell_legal_image.visible = new_state
-    }
-
-    function setChipPrefix(prefix) {
-        reversi_chip.image_prefix = prefix + "_";
-    }
-
-    function setLastMove(value) {
-        cell_last_move_marker.visible = value;
-    }
-
-    function setAnimationTime(value) {
-        reversi_chip.animation_time = value;
-    }
+    property bool isLastMove: false
+    property bool isLegal: false
+    property bool isHint: false
+    property string chipImagePrefix: boardContainer.chipsImagePrefix
+    property int chipAnimationTime: boardContainer.chipsAnimationTime
+    property string chipState: ""
 
     KgCore.KgItem {
-        id: cell_legal_image
+        id: cellLegalImage
         z: 1
         anchors.fill: parent
-        visible: false
+        visible: isLegal
         provider: themeProvider
         spriteKey: "move_hint"
     }
 
     Rectangle {
-        id: cell_last_move_marker;
+        id: cellLastMoveMarker;
         z: 1
-        visible: false
+        visible: isLastMove
         anchors.fill: parent
         color: "#AAAAAA"
     }
 
-    ReversiChip {
-        id: reversi_chip
+    Chip {
+        id: reversiChip
         z: 2
         anchors.fill: parent
-        onClicked: container.clicked()
+
+        state: chipState + (isHint ? "_blinking" : "")
+
+        onClicked: cellContainer.clicked()
     }
 }
