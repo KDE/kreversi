@@ -72,8 +72,7 @@ void KReversiView::setGame(KReversiGame *game)
 
 void KReversiView::setChipsPrefix(const QString &chipsPrefix)
 {
-    QMetaObject::invokeMethod(m_qml_root, "setChipsPrefix",
-                              Q_ARG(QVariant, chipsPrefix));
+    m_qml_root->setProperty("chipsImagePrefix", chipsPrefix);
 }
 
 void KReversiView::setShowBoardLabels(bool show)
@@ -253,6 +252,7 @@ void KReversiView::slotComputerCantMove()
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("Computer can not move. It is your turn again.")));
+    updateBoard();
 }
 
 void KReversiView::slotPlayerCantMove()
@@ -261,6 +261,7 @@ void KReversiView::slotPlayerCantMove()
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("You can not perform any move. Computer takes next turn now.")));
+    updateBoard();
 }
 
 void KReversiView::slotOnDelay()
