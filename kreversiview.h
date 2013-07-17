@@ -161,7 +161,7 @@ private:
     static const int ANIMATION_SPEED_SLOW = 40 * 12;
 
     /**
-     *  5 ms time per frame for animation
+     *  25 ms time per frame for animation
      */
     static const int ANIMATION_SPEED_NORMAL = 25 * 12;
 
