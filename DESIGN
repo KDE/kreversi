@@ -106,11 +106,6 @@ Highscores
     Used to access KDE highscore statistics for games.
 
 
-ReversiPosition (now: Position)
-    Holds a Reversi position.  This is the object that implements the
-    Reversi rules.
-
-
 EngineView (status: PLANNED)
     View of the internal thought processes of an Engine (trace, etc).
 
