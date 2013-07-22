@@ -29,7 +29,6 @@ Item {
 
     KgCore.KgItem {
         id: chipImage
-        z: 0
         anchors.fill: parent
         visible: false
         provider: themeProvider

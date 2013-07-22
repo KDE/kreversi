@@ -51,7 +51,6 @@ Item {
 
     KgCore.KgItem {
         id: table_background
-        z: 0
         anchors.fill: parent
         provider: themeProvider
         spriteKey: "background"
@@ -59,7 +58,6 @@ Item {
 
     Board {
         id: board
-        z: 1
         width: Math.min(parent.width, parent.height)
         height: Math.min(parent.width, parent.height)
         anchors.horizontalCenter: parent.horizontalCenter
@@ -70,6 +68,5 @@ Item {
 
     Popup {
         id: popup
-        z: 2
     }
 }

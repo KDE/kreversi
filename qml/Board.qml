@@ -46,7 +46,6 @@ Item {
 
     KgCore.KgItem {
         id: boardBackground
-        z: 0
         anchors.fill: parent
         provider: themeProvider
         spriteKey: "board"
@@ -54,7 +53,6 @@ Item {
 
     KgCore.KgItem {
         id: boardLabels
-        z: 0
         anchors.fill: parent
         visible: isShowingLabels
         provider: themeProvider

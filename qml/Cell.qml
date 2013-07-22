@@ -30,7 +30,6 @@ Item {
 
     KgCore.KgItem {
         id: cellLegalImage
-        z: 1
         anchors.fill: parent
         visible: isLegal
         provider: themeProvider
@@ -39,7 +38,6 @@ Item {
 
     Rectangle {
         id: cellLastMoveMarker;
-        z: 1
         visible: isLastMove
         anchors.fill: parent
         color: "#AAAAAA"
@@ -47,7 +45,6 @@ Item {
 
     Chip {
         id: reversiChip
-        z: 2
         anchors.fill: parent
 
         state: chipState + (isHint ? "_blinking" : "")
