@@ -20,9 +20,9 @@ import "globals.js" as Globals
 
 Item {
     id: boardContainer
-    property bool isShowingLabels: parent.isBoardShowingLabels
-    property string chipsImagePrefix: parent.chipsImagePrefix
-    property int chipsAnimationTime: parent.chipsAnimationTime
+    property bool isShowingLabels: false
+    property string chipsImagePrefix: "chip_bw"
+    property int chipsAnimationTime: 25 * 12
 
     signal cellClicked(int row, int column)
 
@@ -41,7 +41,6 @@ Item {
     function setLastMove(row, column, value) {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).isLastMove = value
     }
-
 
     CanvasItem {
         id: boardBackground
@@ -84,6 +83,9 @@ Item {
                        / Globals.COLUMN_COUNT
                 height: Globals.GRID_HEIGHT_PERCENT * boardContainer.height
                         / Globals.ROW_COUNT
+
+                chipImagePrefix: boardContainer.chipsImagePrefix
+                chipAnimationTime: boardContainer.chipsAnimationTime
 
                 onClicked: boardContainer.cellClicked(index / Globals.COLUMN_COUNT,
                                                  index % Globals.COLUMN_COUNT)

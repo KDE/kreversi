@@ -23,8 +23,8 @@ Item {
     property bool isLastMove: false
     property bool isLegal: false
     property bool isHint: false
-    property string chipImagePrefix: boardContainer.chipsImagePrefix
-    property int chipAnimationTime: boardContainer.chipsAnimationTime
+    property string chipImagePrefix: "chip_bw"
+    property int chipAnimationTime: 25 * 12
     property string chipState: ""
 
     CanvasItem {
@@ -46,6 +46,9 @@ Item {
         anchors.fill: parent
 
         state: chipState + (isHint ? "_blinking" : "")
+
+        imagePrefix: parent.chipImagePrefix + "_"
+        animationTime: parent.chipAnimationTime
 
         onClicked: cellContainer.clicked()
     }

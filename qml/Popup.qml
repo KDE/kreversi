@@ -28,7 +28,6 @@ Rectangle {
     anchors.leftMargin: 5
     anchors.bottomMargin: 5
 
-
     color: "#111111"
     opacity: 0.9
     border.color: "#111111"

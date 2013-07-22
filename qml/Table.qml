@@ -19,8 +19,8 @@ import QtQuick 1.1
 import "globals.js" as Globals
 
 Item {
-    anchors.fill: parent
     id: tableContainer
+    anchors.fill: parent
 
     property bool isBoardShowingLabels: false
     property string chipsImagePrefix: "chip_bw"
@@ -60,6 +60,10 @@ Item {
         height: Math.min(parent.width, parent.height)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+
+        isShowingLabels: parent.isBoardShowingLabels
+        chipsImagePrefix: parent.chipsImagePrefix
+        chipsAnimationTime: parent.chipsAnimationTime
 
         onCellClicked: tableContainer.cellClicked(row, column)
     }

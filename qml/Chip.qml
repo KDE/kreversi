@@ -21,8 +21,8 @@ Item {
     id: chipContainer
     property int framesCount: 12
     property int currentFrame: 1
-    property string imagePrefix: parent.chipImagePrefix + "_"
-    property int animationTime: parent.chipAnimationTime
+    property string imagePrefix: "chip_bw_"
+    property int animationTime: 25 * 12
 
     signal clicked
 
