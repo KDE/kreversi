@@ -16,7 +16,6 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 import "globals.js" as Globals
 
 Item {
@@ -44,18 +43,16 @@ Item {
     }
 
 
-    KgCore.KgItem {
+    CanvasItem {
         id: boardBackground
         anchors.fill: parent
-        provider: themeProvider
         spriteKey: "board"
     }
 
-    KgCore.KgItem {
+    CanvasItem {
         id: boardLabels
         anchors.fill: parent
         visible: isShowingLabels
-        provider: themeProvider
         spriteKey: "board_numbers"
     }
 

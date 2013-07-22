@@ -16,7 +16,6 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 
 Item {
     id: chipContainer
@@ -27,11 +26,10 @@ Item {
 
     signal clicked
 
-    KgCore.KgItem {
+    CanvasItem {
         id: chipImage
         anchors.fill: parent
         visible: false
-        provider: themeProvider
         spriteKey: imagePrefix + currentFrame
     }
 

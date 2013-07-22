@@ -16,7 +16,6 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 
 Item {
     id: cellContainer
@@ -28,11 +27,10 @@ Item {
     property int chipAnimationTime: boardContainer.chipsAnimationTime
     property string chipState: ""
 
-    KgCore.KgItem {
+    CanvasItem {
         id: cellLegalImage
         anchors.fill: parent
         visible: isLegal
-        provider: themeProvider
         spriteKey: "move_hint"
     }
 

@@ -16,7 +16,6 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 import "globals.js" as Globals
 
 Item {
@@ -49,10 +48,9 @@ Item {
         popup.show(text);
     }
 
-    KgCore.KgItem {
+    CanvasItem {
         id: table_background
         anchors.fill: parent
-        provider: themeProvider
         spriteKey: "background"
     }
 

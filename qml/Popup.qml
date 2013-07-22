@@ -16,7 +16,6 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 import org.kde.plasma.core 0.1 as PlasmaCore
 
 Rectangle {
