@@ -1,4 +1,5 @@
 /*
+    Copyright 2012 Viranch Mehta <viranch.mehta@gmail.com
     Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -19,20 +20,45 @@ import QtQuick 1.1
 import ColorScheme 1.0
 
 Rectangle {
-    id: popupContainer
+    id: popup
 
-    height: row.height + 30
-    width: row.width + 30
+    // constants
+    property int marginOnSides: 15
+    property int marginIconText: 10
 
-    color: colorScheme.background
-    opacity: 0.9
-    border.color: colorScheme.border
-    border.width: 1
+    // API properties
+    property int timeout: 3000
+    property alias sharpness: popup.radius
+    property string iconName: "dialog-information"
+    property alias showIcon: icon.visible
+    property alias hideOnMouseClick: mouseArea.enabled
+    property bool useCustomTextColor: false
+    property color textColor: "white"
+    property bool useCustomBackgroundColor: false
+    property color backgroundColor: "black"
+    property bool useCustomBorderColor: false
+    property color borderColor: "black"
+    property int borderWidth: 1
+    property bool isReplacing: false
+
+    // API signals
+    signal linkActivated(string link)
+    signal hidden()
+
+    // private properties
+    height: row.height + 2 * marginOnSides
+    width: row.width + 2 * marginOnSides
+
+    color: useCustomBackgroundColor ? backgroundColor : colorScheme.background
+    border.color: useCustomBorderColor ? borderColor : colorScheme.border
+    border.width: borderWidth
 
     function show(message, showing_state) {
-        text.text = message
-        timer.start();
-        state = showing_state
+        if (!timer.running || isReplacing) {
+            text.text = message
+            timer.restart()
+            state = showing_state
+        }
     }
 
     ColorScheme {
@@ -42,15 +68,18 @@ Rectangle {
     Timer {
         id: timer
         repeat: false
-        interval: 3000
-        onTriggered: state = ""
+        interval: timeout
+        onTriggered: {
+            state = ""
+            hidden()
+        }
     }
 
     Row {
         id: row
-        x: 15
-        y: 15
-        spacing: 10
+        x: marginOnSides
+        y: marginOnSides
+        spacing: marginIconText
 
         Image {
             id: icon
@@ -58,7 +87,6 @@ Rectangle {
             width: visible ? 32 : 0
             height: visible ? 32 : 0
 
-            property string iconName: "dialog-information"
             source: "image://icon/" + iconName
         }
 
@@ -68,6 +96,19 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             color: colorScheme.foreground
             wrapMode: Text.WordWrap
+
+            onLinkActivated: popupContainer.linkActivated(link);
+        }
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: row
+
+        onClicked: {
+            state = ""
+            hidden()
+            timer.stop() // TODO: does it call trigger?
         }
     }
 }

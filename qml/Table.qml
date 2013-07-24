@@ -77,6 +77,9 @@ Item {
         anchors.leftMargin: 5
         anchors.bottomMargin: 5
 
+        opacity: 0.9
+        isReplacing: true
+
         states: [
             State {
                 name: "SHOWING"
