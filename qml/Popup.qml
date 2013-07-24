@@ -29,10 +29,10 @@ Rectangle {
     border.color: colorScheme.border
     border.width: 1
 
-    function show(message) {
+    function show(message, showing_state) {
         text.text = message
         timer.start();
-        state = "SHOWING"
+        state = showing_state
     }
 
     ColorScheme {
@@ -59,7 +59,7 @@ Rectangle {
             height: visible ? 32 : 0
 
             property string iconName: "dialog-information"
-            source: "image://icon/"+iconName
+            source: "image://icon/" + iconName
         }
 
 

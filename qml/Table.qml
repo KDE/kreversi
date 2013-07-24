@@ -45,7 +45,7 @@ Item {
     }
 
     function showPopup(text) {
-        popup.show(text);
+        popup.show(text, "SHOWING");
     }
 
     CanvasItem {
@@ -93,6 +93,7 @@ Item {
             Transition {
                 from: ""
                 to: "SHOWING"
+                reversible: true
 
                 AnchorAnimation {
 
