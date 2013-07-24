@@ -17,6 +17,7 @@
 
 import QtQuick 1.1
 import org.kde.plasma.core 0.1 as PlasmaCore
+import ColorScheme 1.0
 
 Rectangle {
     id: popupContainer
@@ -28,15 +29,19 @@ Rectangle {
     anchors.leftMargin: 5
     anchors.bottomMargin: 5
 
-    color: "#111111"
+    color: colorScheme.background
     opacity: 0.9
-    border.color: "#111111"
+    border.color: colorScheme.border
     border.width: 1
 
     function show(message) {
         text.text = message
         timer.start();
         state = "Showing"
+    }
+
+    ColorScheme {
+        id: colorScheme
     }
 
     Timer {
@@ -64,7 +69,7 @@ Rectangle {
         Text {
             id: text
             anchors.verticalCenter: parent.verticalCenter
-            color: "white"
+            color: colorScheme.foreground
             wrapMode: Text.WordWrap
         }
     }

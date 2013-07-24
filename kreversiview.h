@@ -26,6 +26,7 @@
 #include <KgThemeProvider>
 #include <QTimer>
 
+#include "colorscheme.h"
 #include "kreversigame.h"
 
 /**

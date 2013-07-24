@@ -3,17 +3,21 @@
 
 #include <QDeclarativeItem>
 #include <KColorScheme>
+#include <QColor>
 
 class ColorScheme : public QDeclarativeItem
 {
     Q_OBJECT
+    Q_PROPERTY(QColor background READ background)
+    Q_PROPERTY(QColor foreground READ foreground)
+    Q_PROPERTY(QColor border READ border)
+
 public:
-    explicit ColorScheme(QDeclarativeItem *parent = 0);
+    ColorScheme(QDeclarativeItem *parent = 0);
 
-signals:
-
-public slots:
-
+    QColor background() const;
+    QColor foreground() const;
+    QColor border() const;
 };
 
 #endif // COLORSCHEME_H

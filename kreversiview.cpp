@@ -24,6 +24,8 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
     m_demoMode(false), m_showLastMove(false), m_showLegalMoves(false),
     m_showLabels(false)
 {
+    qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
+
     m_provider = new KgThemeProvider();
     m_provider->discoverThemes("appdata", QLatin1String("pics"));
     m_provider->setDeclarativeEngine("themeProvider", engine());
