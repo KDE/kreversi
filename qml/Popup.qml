@@ -16,18 +16,13 @@
 */
 
 import QtQuick 1.1
-import org.kde.plasma.core 0.1 as PlasmaCore
 import ColorScheme 1.0
 
 Rectangle {
     id: popupContainer
+
     height: row.height + 30
     width: row.width + 30
-    anchors.bottom: undefined
-    anchors.top: parent.bottom
-    anchors.left: parent.left
-    anchors.leftMargin: 5
-    anchors.bottomMargin: 5
 
     color: colorScheme.background
     opacity: 0.9
@@ -37,7 +32,7 @@ Rectangle {
     function show(message) {
         text.text = message
         timer.start();
-        state = "Showing"
+        state = "SHOWING"
     }
 
     ColorScheme {
@@ -57,12 +52,14 @@ Rectangle {
         y: 15
         spacing: 10
 
-        PlasmaCore.IconItem {
+        Image {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
-            width: theme.iconSizes.dialog
-            height: width
-            source: "dialog-information"
+            width: visible ? 32 : 0
+            height: visible ? 32 : 0
+
+            property string iconName: "dialog-information"
+            source: "image://icon/"+iconName
         }
 
 
@@ -73,25 +70,4 @@ Rectangle {
             wrapMode: Text.WordWrap
         }
     }
-
-    states: [
-        State {
-            name: "Showing"
-
-            AnchorChanges {
-                target: popupContainer
-                anchors.bottom: popupContainer.parent.bottom
-                anchors.top: undefined
-            }
-        }
-    ]
-
-    transitions: [
-        Transition {
-
-            AnchorAnimation {
-                duration: 300
-            }
-        }
-    ]
 }

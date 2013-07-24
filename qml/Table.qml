@@ -70,5 +70,35 @@ Item {
 
     Popup {
         id: popup
+
+        anchors.bottom: undefined
+        anchors.top: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: 5
+        anchors.bottomMargin: 5
+
+        states: [
+            State {
+                name: "SHOWING"
+
+                AnchorChanges {
+                    target: popup
+                    anchors.bottom: popup.parent.bottom
+                    anchors.top: undefined
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                from: ""
+                to: "SHOWING"
+
+                AnchorAnimation {
+
+                    duration: 300
+                }
+           }
+        ]
     }
 }
