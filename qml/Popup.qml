@@ -97,18 +97,18 @@ Rectangle {
             color: colorScheme.foreground
             wrapMode: Text.WordWrap
 
-            onLinkActivated: popupContainer.linkActivated(link);
+            onLinkActivated: popup.linkActivated(link);
         }
     }
 
     MouseArea {
         id: mouseArea
-        anchors.fill: row
+        anchors.fill: parent
 
         onClicked: {
-            state = ""
+            popup.state = ""
+            timer.stop()
             hidden()
-            timer.stop() // TODO: does it call trigger?
         }
     }
 }
