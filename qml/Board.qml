@@ -16,14 +16,13 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 import "globals.js" as Globals
 
 Item {
     id: boardContainer
-    property bool isShowingLabels: parent.isBoardShowingLabels
-    property string chipsImagePrefix: parent.chipsImagePrefix
-    property int chipsAnimationTime: parent.chipsAnimationTime
+    property bool isShowingLabels: false
+    property string chipsImagePrefix: "chip_bw"
+    property int chipsAnimationTime: 25 * 12
 
     signal cellClicked(int row, int column)
 
@@ -43,21 +42,16 @@ Item {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).isLastMove = value
     }
 
-
-    KgCore.KgItem {
+    CanvasItem {
         id: boardBackground
-        z: 0
         anchors.fill: parent
-        provider: themeProvider
         spriteKey: "board"
     }
 
-    KgCore.KgItem {
+    CanvasItem {
         id: boardLabels
-        z: 0
         anchors.fill: parent
         visible: isShowingLabels
-        provider: themeProvider
         spriteKey: "board_numbers"
     }
 
@@ -89,6 +83,9 @@ Item {
                        / Globals.COLUMN_COUNT
                 height: Globals.GRID_HEIGHT_PERCENT * boardContainer.height
                         / Globals.ROW_COUNT
+
+                chipImagePrefix: boardContainer.chipsImagePrefix
+                chipAnimationTime: boardContainer.chipsAnimationTime
 
                 onClicked: boardContainer.cellClicked(index / Globals.COLUMN_COUNT,
                                                  index % Globals.COLUMN_COUNT)

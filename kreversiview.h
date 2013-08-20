@@ -26,6 +26,7 @@
 #include <KStandardDirs>
 #include <KgThemeProvider>
 
+#include "colorscheme.h"
 #include "kreversigame.h"
 
 /**

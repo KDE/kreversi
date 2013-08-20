@@ -16,12 +16,11 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 import "globals.js" as Globals
 
 Item {
-    anchors.fill: parent
     id: tableContainer
+    anchors.fill: parent
 
     property bool isBoardShowingLabels: false
     property string chipsImagePrefix: "chip_bw"
@@ -46,30 +45,64 @@ Item {
     }
 
     function showPopup(text) {
-        popup.show(text);
+        popup.show(text, "SHOWING");
     }
 
-    KgCore.KgItem {
+    CanvasItem {
         id: table_background
-        z: 0
         anchors.fill: parent
-        provider: themeProvider
         spriteKey: "background"
     }
 
     Board {
         id: board
-        z: 1
         width: Math.min(parent.width, parent.height)
         height: Math.min(parent.width, parent.height)
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
+
+        isShowingLabels: parent.isBoardShowingLabels
+        chipsImagePrefix: parent.chipsImagePrefix
+        chipsAnimationTime: parent.chipsAnimationTime
 
         onCellClicked: tableContainer.cellClicked(row, column)
     }
 
     Popup {
         id: popup
-        z: 2
+
+        anchors.bottom: undefined
+        anchors.top: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: 5
+        anchors.bottomMargin: 5
+
+        opacity: 0.9
+        isReplacing: true
+
+        states: [
+            State {
+                name: "SHOWING"
+
+                AnchorChanges {
+                    target: popup
+                    anchors.bottom: popup.parent.bottom
+                    anchors.top: undefined
+                }
+            }
+        ]
+
+        transitions: [
+            Transition {
+                from: ""
+                to: "SHOWING"
+                reversible: true
+
+                AnchorAnimation {
+
+                    duration: 300
+                }
+           }
+        ]
     }
 }

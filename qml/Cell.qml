@@ -16,7 +16,6 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
 
 Item {
     id: cellContainer
@@ -24,22 +23,19 @@ Item {
     property bool isLastMove: false
     property bool isLegal: false
     property bool isHint: false
-    property string chipImagePrefix: boardContainer.chipsImagePrefix
-    property int chipAnimationTime: boardContainer.chipsAnimationTime
+    property string chipImagePrefix: "chip_bw"
+    property int chipAnimationTime: 25 * 12
     property string chipState: ""
 
-    KgCore.KgItem {
+    CanvasItem {
         id: cellLegalImage
-        z: 1
         anchors.fill: parent
         visible: isLegal
-        provider: themeProvider
         spriteKey: "move_hint"
     }
 
     Rectangle {
         id: cellLastMoveMarker;
-        z: 1
         visible: isLastMove
         anchors.fill: parent
         color: "#AAAAAA"
@@ -47,10 +43,12 @@ Item {
 
     Chip {
         id: reversiChip
-        z: 2
         anchors.fill: parent
 
         state: chipState + (isHint ? "_blinking" : "")
+
+        imagePrefix: parent.chipImagePrefix + "_"
+        animationTime: parent.chipAnimationTime
 
         onClicked: cellContainer.clicked()
     }

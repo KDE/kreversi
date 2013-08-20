@@ -1,4 +1,5 @@
 /*
+    Copyright 2012 Viranch Mehta <viranch.mehta@gmail.com
     Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -16,79 +17,98 @@
 */
 
 import QtQuick 1.1
-import org.kde.games.core 0.1 as KgCore
-import org.kde.plasma.core 0.1 as PlasmaCore
+import ColorScheme 1.0
 
 Rectangle {
-    id: popupContainer
-    height: row.height + 30
-    width: row.width + 30
-    anchors.bottom: undefined
-    anchors.top: parent.bottom
-    anchors.left: parent.left
-    anchors.leftMargin: 5
-    anchors.bottomMargin: 5
+    id: popup
 
+    // constants
+    property int marginOnSides: 15
+    property int marginIconText: 10
 
-    color: "#111111"
-    opacity: 0.9
-    border.color: "#111111"
-    border.width: 1
+    // API properties
+    property int timeout: 3000
+    property alias sharpness: popup.radius
+    property string iconName: "dialog-information"
+    property alias showIcon: icon.visible
+    property alias hideOnMouseClick: mouseArea.enabled
+    property bool useCustomTextColor: false
+    property color textColor: "white"
+    property bool useCustomBackgroundColor: false
+    property color backgroundColor: "black"
+    property bool useCustomBorderColor: false
+    property color borderColor: "black"
+    property int borderWidth: 1
+    property bool isReplacing: false
 
-    function show(message) {
-        text.text = message
-        timer.start();
-        state = "Showing"
+    // API signals
+    signal linkActivated(string link)
+    signal hidden()
+
+    // private properties
+    height: row.height + 2 * marginOnSides
+    width: row.width + 2 * marginOnSides
+
+    color: useCustomBackgroundColor ? backgroundColor : colorScheme.background
+    border.color: useCustomBorderColor ? borderColor : colorScheme.border
+    border.width: borderWidth
+
+    function show(message, showing_state) {
+        if (!timer.running || isReplacing) {
+            text.text = message
+            timer.restart()
+            state = showing_state
+        }
+    }
+
+    ColorScheme {
+        id: colorScheme
     }
 
     Timer {
         id: timer
         repeat: false
-        interval: 3000
-        onTriggered: state = ""
+        interval: timeout
+        onTriggered: {
+            state = ""
+            hidden()
+        }
     }
 
     Row {
         id: row
-        x: 15
-        y: 15
-        spacing: 10
+        x: marginOnSides
+        y: marginOnSides
+        spacing: marginIconText
 
-        PlasmaCore.IconItem {
+        Image {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
-            width: theme.iconSizes.dialog
-            height: width
-            source: "dialog-information"
+            width: visible ? 32 : 0
+            height: visible ? 32 : 0
+
+            source: "image://icon/" + iconName
         }
 
 
         Text {
             id: text
             anchors.verticalCenter: parent.verticalCenter
-            color: "white"
+            color: colorScheme.foreground
             wrapMode: Text.WordWrap
+
+            onLinkActivated: popup.linkActivated(link);
         }
     }
 
-    states: [
-        State {
-            name: "Showing"
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
 
-            AnchorChanges {
-                target: popupContainer
-                anchors.bottom: popupContainer.parent.bottom
-                anchors.top: undefined
-            }
+        onClicked: {
+            popup.state = ""
+            timer.stop()
+            hidden()
         }
-    ]
-
-    transitions: [
-        Transition {
-
-            AnchorAnimation {
-                duration: 300
-            }
-        }
-    ]
+    }
 }
