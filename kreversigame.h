@@ -57,7 +57,9 @@ public:
     /**
      *  @return if undo is possible
      */
-    bool canUndo() const { return !m_undoStack.isEmpty(); }
+    bool canUndo() const {
+        return !m_undoStack.isEmpty();
+    }
     /**
      *  Undoes all the opponent of current player moves and one his move
      *  (so after calling this function it will be still current player turn)
@@ -85,7 +87,9 @@ public:
      *  First of them will be the move itself, and the rest - chips which
      *  were turned by that move
      */
-    MoveList changedChips() const { return m_changedChips; }
+    MoveList changedChips() const {
+        return m_changedChips;
+    }
     /**
      *  @return a list of possible moves for current player
      */
@@ -101,7 +105,9 @@ public:
     /**
      *  @return a color of the current player
      */
-    ChipColor currentPlayer() const { return m_curPlayer; }
+    ChipColor currentPlayer() const {
+        return m_curPlayer;
+    }
     /**
      *  Sets animation times from players
      */
@@ -188,10 +194,10 @@ private:
      *  Color of the current player
      */
     ChipColor m_curPlayer;
-     // Well I'm not brief at all :). That's because I think that my
-     // English is not well shaped sometimes, so I try to describe things
-     // so that me and others can understand. Even simple things.
-     // Specially when I think that my description sucks :)
+    // Well I'm not brief at all :). That's because I think that my
+    // English is not well shaped sometimes, so I try to describe things
+    // so that me and others can understand. Even simple things.
+    // Specially when I think that my description sucks :)
     /**
      *  This list holds chips that were changed/added during last move
      *  First of them will be the chip added to the board by the player

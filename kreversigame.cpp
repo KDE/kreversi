@@ -67,8 +67,7 @@ KReversiGame::~KReversiGame()
 
 void KReversiGame::makeMove(const KReversiMove &move)
 {
-    if (!move.isValid())
-    {
+    if (!move.isValid()) {
         kickCurrentPlayer();
         return; // Move is invalid!
     }
@@ -76,8 +75,7 @@ void KReversiGame::makeMove(const KReversiMove &move)
     if (move.color != m_curPlayer)
         return; // It's not your turn now
 
-    if (!isMovePossible(move))
-    {
+    if (!isMovePossible(move)) {
         kickCurrentPlayer();
         return; // Unpossible move
     }
@@ -95,16 +93,13 @@ void KReversiGame::startNextTurn()
 
     emit moveFinished(); // previous move has just finished
 
-    if (!isGameOver())
-    {
+    if (!isGameOver()) {
         if (isAnyPlayerMovePossible(m_curPlayer)) {
             if (m_curPlayer == White)
                 emit whitePlayerTurn();
             else
                 emit blackPlayerTurn();
-        }
-        else
-        {
+        } else {
             if (m_curPlayer == White)
                 emit whitePlayerCantMove();
             else
@@ -113,9 +108,7 @@ void KReversiGame::startNextTurn()
             m_lastPlayer = m_curPlayer;
             startNextTurn();
         }
-    }
-    else //Game is over
-    {
+    } else { //Game is over
         emit gameOver();
     }
 }
@@ -130,8 +123,7 @@ int KReversiGame::undo()
 
     int movesUndone = 0;
 
-    while( !m_undoStack.isEmpty() )
-    {
+    while (!m_undoStack.isEmpty()) {
         MoveList lastUndo = m_undoStack.pop();
         // One thing that matters here is that we take the
         // chip color directly from board, rather than from move.color
@@ -148,8 +140,7 @@ int KReversiGame::undo()
         setChipColor(KReversiMove(NoColor, move.row, move.col));
 
         // and change back the color of the rest chips
-        foreach( const KReversiMove &pos, lastUndo )
-        {
+        foreach(const KReversiMove & pos, lastUndo) {
             ChipColor opponentColor = opponentColorFor(m_cells[pos.row][pos.col]);
             setChipColor(KReversiMove(opponentColor, pos.row, pos.col));
         }
@@ -157,7 +148,7 @@ int KReversiGame::undo()
         lastUndo.clear();
 
         movesUndone++;
-        if( move.color == m_curPlayer )
+        if (move.color == m_curPlayer)
             break; //we've undone all opponent's + one current player's moves
     }
 
@@ -179,15 +170,12 @@ void KReversiGame::turnChips(const KReversiMove &move)
     setChipColor(move);
     m_changedChips.append(move);
     // now turn color of all chips that were won
-    for (int dirNum = 0; dirNum < DIRECTIONS_COUNT; dirNum++)
-    {
-        if (hasChunk(dirNum, move))
-        {
+    for (int dirNum = 0; dirNum < DIRECTIONS_COUNT; dirNum++) {
+        if (hasChunk(dirNum, move)) {
             for (int r = move.row + DX[dirNum], c = move.col + DY[dirNum];
-                 r >= 0 && c >= 0 && r < 8 && c < 8;
-                 r += DX[dirNum], c += DY[dirNum])
-            {
-                if( m_cells[r][c] == move.color )
+                    r >= 0 && c >= 0 && r < 8 && c < 8;
+                    r += DX[dirNum], c += DY[dirNum]) {
+                if (m_cells[r][c] == move.color)
                     break;
                 setChipColor(KReversiMove(move.color, r, c));
                 m_changedChips.append(KReversiMove(move.color, r, c));
@@ -203,7 +191,7 @@ void KReversiGame::turnChips(const KReversiMove &move)
 bool KReversiGame::isMovePossible(const KReversiMove& move) const
 {
     // first - the trivial case:
-    if( m_cells[move.row][move.col] != NoColor || move.color == NoColor )
+    if (m_cells[move.row][move.col] != NoColor || move.color == NoColor)
         return false;
 
     for (int dirNum = 0; dirNum < DIRECTIONS_COUNT; dirNum++)
@@ -229,20 +217,15 @@ bool KReversiGame::hasChunk(int dirNum, const KReversiMove& move) const
     bool foundPlayerColor = false;
 
     for (int r = move.row + DX[dirNum], c = move.col + DY[dirNum];
-         r >= 0 && c >= 0 && r < 8 && c < 8;
-         r += DX[dirNum], c += DY[dirNum])
-    {
+            r >= 0 && c >= 0 && r < 8 && c < 8;
+            r += DX[dirNum], c += DY[dirNum]) {
         ChipColor color = m_cells[r][c];
-        if (color == opColor)
-        {
+        if (color == opColor) {
             opponentChipsNum++;
-        }
-        else if (color == move.color)
-        {
+        } else if (color == move.color) {
             foundPlayerColor = true;
             break;
-        }
-        else
+        } else
             break;
     }
 
@@ -255,7 +238,7 @@ bool KReversiGame::hasChunk(int dirNum, const KReversiMove& move) const
 bool KReversiGame::isGameOver() const
 {
     // trivial fast-check
-    if( m_score[White] + m_score[Black] == 64 )
+    if (m_score[White] + m_score[Black] == 64)
         return true; // the board is full
     else
         return !(isAnyPlayerMovePossible(White) || isAnyPlayerMovePossible(Black));
@@ -264,10 +247,8 @@ bool KReversiGame::isGameOver() const
 bool KReversiGame::isAnyPlayerMovePossible(ChipColor player) const
 {
     for (int r = 0; r < 8; ++r)
-        for (int c = 0; c < 8; ++c)
-        {
-            if (m_cells[r][c] == NoColor)
-            {
+        for (int c = 0; c < 8; ++c) {
+            if (m_cells[r][c] == NoColor) {
                 // let's see if we can put chip here
                 if (isMovePossible(KReversiMove(player, r, c)))
                     return true;
@@ -326,8 +307,7 @@ MoveList KReversiGame::possibleMoves() const
         return l;
 
     for (int r = 0; r < 8; ++r)
-        for (int c = 0; c < 8; ++c)
-        {
+        for (int c = 0; c < 8; ++c) {
             KReversiMove move(m_curPlayer, r, c);
             if (isMovePossible(move))
                 l.append(move);

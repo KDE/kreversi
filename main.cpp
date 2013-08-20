@@ -35,12 +35,12 @@ static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
-    KAboutData aboutData( "kreversi", 0, ki18n("KReversi"),
-                          "2.0", ki18n(description), KAboutData::License_GPL,
-                          ki18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
-                          KLocalizedString(), "http://games.kde.org/kreversi" );
-    aboutData.addAuthor(ki18n("Mario Weilguni"),ki18n("Original author"), "mweilguni@sime.com");
-    aboutData.addAuthor(ki18n("Inge Wallin"),ki18n("Original author"), "inge@lysator.liu.se");
+    KAboutData aboutData("kreversi", 0, ki18n("KReversi"),
+                         "2.0", ki18n(description), KAboutData::License_GPL,
+                         ki18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
+                         KLocalizedString(), "http://games.kde.org/kreversi");
+    aboutData.addAuthor(ki18n("Mario Weilguni"), ki18n("Original author"), "mweilguni@sime.com");
+    aboutData.addAuthor(ki18n("Inge Wallin"), ki18n("Original author"), "inge@lysator.liu.se");
     aboutData.addAuthor(ki18n("Dmitry Suzdalev"), ki18n("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
     aboutData.addCredit(ki18n("Simon Hürlimann"), ki18n("Action refactoring"));
     aboutData.addCredit(ki18n("Mats Luthman"), ki18n("Game engine, ported from his JAVA applet."));
@@ -49,23 +49,20 @@ int main(int argc, char **argv)
     aboutData.addCredit(ki18n("Brian Croom"), ki18n("Port rendering code to KGameRenderer"), "brian.s.croom@gmail.com");
     aboutData.addCredit(ki18n("Denis Kuplyakov"), ki18n("Port rendering code to QML"), "dener.kup@gmail.com");
 
-    KCmdLineArgs::init( argc, argv, &aboutData );
+    KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
-    options.add("demo", ki18n( "Start with demo game playing" ));
-    KCmdLineArgs::addCmdLineOptions( options );
+    options.add("demo", ki18n("Start with demo game playing"));
+    KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication application;
-    KGlobal::locale()->insertCatalog( QLatin1String( "libkdegames" ));
+    KGlobal::locale()->insertCatalog(QLatin1String("libkdegames"));
 
-    if( application.isSessionRestored() )
-    {
+    if (application.isSessionRestored()) {
         RESTORE(KReversiMainWindow)
-    }
-    else
-    {
+    } else {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        KReversiMainWindow *mainWin = new KReversiMainWindow( 0, args->isSet( "demo" ) );
+        KReversiMainWindow *mainWin = new KReversiMainWindow(0, args->isSet("demo"));
         args->clear();
         mainWin->show();
     }

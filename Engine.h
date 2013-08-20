@@ -136,30 +136,30 @@ class KReversiGame;
 class SquareStackEntry
 {
 public:
-  SquareStackEntry();
+    SquareStackEntry();
 
-  void setXY(int x, int y);
+    void setXY(int x, int y);
 
 public:
-  int  m_x;
-  int  m_y;
+    int  m_x;
+    int  m_y;
 };
 
 
 class SquareStack
 {
 public:
-  SquareStack();
-  SquareStack(int size);
+    SquareStack();
+    SquareStack(int size);
 
-  void              resize(int size);
-  void              init(int size);
-  SquareStackEntry  Pop();
-  void              Push(int x, int y);
+    void              resize(int size);
+    void              init(int size);
+    SquareStackEntry  Pop();
+    void              Push(int x, int y);
 
 private:
-  QVector<SquareStackEntry>  m_squarestack;
-  int                          m_top;
+    QVector<SquareStackEntry>  m_squarestack;
+    int                          m_top;
 };
 
 
@@ -168,15 +168,15 @@ private:
 class MoveAndValue
 {
 public:
-  MoveAndValue();
-  MoveAndValue(int x, int y, int value);
+    MoveAndValue();
+    MoveAndValue(int x, int y, int value);
 
-  void  setXYV(int x, int y, int value);
+    void  setXYV(int x, int y, int value);
 
 public:
-  int  m_x;
-  int  m_y;
-  int  m_value;
+    int  m_x;
+    int  m_y;
+    int  m_value;
 };
 
 class Score;
@@ -184,61 +184,72 @@ class Score;
 // The real beef of this program: the engine that finds good moves for
 // the computer player.
 //
-class Engine {
+class Engine
+{
 public:
-  Engine(int st, int sd);
-  Engine(int st);
-  Engine();
+    Engine(int st, int sd);
+    Engine(int st);
+    Engine();
 
-  ~Engine();
+    ~Engine();
 
-  KReversiMove     computeMove(const KReversiGame& game, bool competitive);
-  bool isThinking() const { return m_computingMove; }
+    KReversiMove     computeMove(const KReversiGame& game, bool competitive);
+    bool isThinking() const {
+        return m_computingMove;
+    }
 
-  void  setInterrupt(bool intr) { m_interrupt = intr; }
-  bool  interrupted() const     { return m_interrupt; }
+    void  setInterrupt(bool intr) {
+        m_interrupt = intr;
+    }
+    bool  interrupted() const     {
+        return m_interrupt;
+    }
 
-  void  setStrength(uint strength) { m_strength = strength; }
-  uint  strength() const { return m_strength; }
+    void  setStrength(uint strength) {
+        m_strength = strength;
+    }
+    uint  strength() const {
+        return m_strength;
+    }
 private:
-  KReversiMove     ComputeFirstMove(const KReversiGame& game);
-  int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
-  int      cutoffval,
-  quint64  colorbits, quint64 opponentbits);
+    KReversiMove     ComputeFirstMove(const KReversiGame& game);
+    int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
+                          int      cutoffval,
+                          quint64  colorbits, quint64 opponentbits);
 
-  int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
-  quint64  opponentbits, quint64 colorbits);
+    int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
+                         quint64  opponentbits, quint64 colorbits);
 
-  int      EvaluatePosition(ChipColor color);
-  void     SetupBcBoard();
-  void     SetupBits();
-  int      CalcBcScore(ChipColor color);
-  quint64  ComputeOccupiedBits(ChipColor color);
+    int      EvaluatePosition(ChipColor color);
+    void     SetupBcBoard();
+    void     SetupBits();
+    int      CalcBcScore(ChipColor color);
+    quint64  ComputeOccupiedBits(ChipColor color);
 
-  void yield();
+    void yield();
 
 private:
 
-  ChipColor        m_board[10][10];
-  int          m_bc_board[9][9];
-  Score*        m_score;
-  Score*        m_bc_score;
-  SquareStack  m_squarestack;
+    ChipColor        m_board[10][10];
+    int          m_bc_board[9][9];
+    Score*        m_score;
+    Score*        m_bc_score;
+    SquareStack  m_squarestack;
 
-  int          m_depth;
-  int          m_coeff;
-  int          m_nodes_searched;
-  bool         m_exhaustive;
-  bool         m_competitive;
+    int          m_depth;
+    int          m_coeff;
+    int          m_nodes_searched;
+    bool         m_exhaustive;
+    bool         m_competitive;
 
-  uint             m_strength;
-  KRandomSequence  m_random;
-  bool             m_interrupt;
+    uint             m_strength;
+    KRandomSequence  m_random;
+    bool             m_interrupt;
 
-  quint64      m_coord_bit[9][9];
-  quint64      m_neighbor_bits[9][9];
+    quint64      m_coord_bit[9][9];
+    quint64      m_neighbor_bits[9][9];
 
-  bool m_computingMove;
+    bool m_computingMove;
 };
 
 #endif

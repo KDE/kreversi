@@ -172,8 +172,8 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
     KReversiView::ChipsPrefix chipsPrefix = m_coloredChipsAct->isChecked() ?
-                KReversiView::Colored :
-                KReversiView::BlackWhite;
+                                            KReversiView::Colored :
+                                            KReversiView::BlackWhite;
     m_view->setChipsPrefix(chipsPrefix);
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();

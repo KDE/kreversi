@@ -24,7 +24,7 @@ namespace KExtHighscore
 ExtManager::ExtManager()
     : Manager(7)
 {
-    setShowMode( NeverShow );
+    setShowMode(NeverShow);
     setShowStatistics(true);
     setShowDrawGamesStatistic(true);
 
@@ -44,15 +44,15 @@ ExtManager::ExtManager()
 QString ExtManager::gameTypeLabel(uint gameType, LabelType type) const
 {
     switch (type) {
-        case Standard:
-            return QString::number(gameType);
-        case I18N:
-            return m_typeLabels.at(gameType);
-        case Icon:
-            // FIXME dimsuz: implement
-            break;
-        case WW:
-            break;
+    case Standard:
+        return QString::number(gameType);
+    case I18N:
+        return m_typeLabels.at(gameType);
+    case Icon:
+        // FIXME dimsuz: implement
+        break;
+    case WW:
+        break;
     }
 
     return QString();

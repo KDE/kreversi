@@ -26,22 +26,19 @@
 // noColor = empty
 enum ChipColor {White = 0, Black = 1, NoColor = 2};
 
-struct KReversiPos
-{
+struct KReversiPos {
     KReversiPos(int r = -1, int c = -1)
         : row(r), col(c) { }
 
     int row;
     int col;
 
-    bool isValid() const
-    {
+    bool isValid() const {
         return (row >= 0 && col >= 0 && row < 8 && col < 8);
     }
 };
 
-struct KReversiMove: public KReversiPos
-{
+struct KReversiMove: public KReversiPos {
     KReversiMove(ChipColor col = NoColor, int r = -1, int c = -1)
         : KReversiPos(r, c), color(col) { }
 
@@ -50,8 +47,7 @@ struct KReversiMove: public KReversiPos
 
     ChipColor color;
 
-    bool isValid() const
-    {
+    bool isValid() const {
         return (color != NoColor
                 && row >= 0 && col >= 0
                 && row < 8 && col < 8);
