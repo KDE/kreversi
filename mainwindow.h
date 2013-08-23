@@ -84,6 +84,7 @@ private:
     void loadSettings();
     QString opponentName() const;
     void updateScores();
+    void updateHistory();
     KReversiHumanPlayer *human;
     KReversiComputerPlayer *computer;
 

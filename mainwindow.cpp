@@ -300,7 +300,14 @@ void KReversiMainWindow::slotMoveFinished()
     //TODO check computer-computer
     m_undoAct->setEnabled(m_game->canUndo());
 
+    updateHistory();
 
+    //statusBar()->changeItem(m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0);
+
+    updateScores();
+}
+
+void KReversiMainWindow::updateHistory() {
     MoveList history = m_game->getHistory();
     m_historyView->clear();
 
@@ -312,23 +319,14 @@ void KReversiMainWindow::slotMoveFinished()
     QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
     m_historyView->setCurrentItem(last);
     m_historyView->scrollToItem(last);
-
-    //statusBar()->changeItem(m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0);
-
-    updateScores();
 }
 
 void KReversiMainWindow::slotUndo()
 {
     // scene will automatically notice that it needs to update
-    int numUndone = m_game->undo();
-    // remove last numUndone items from historyView
-    for (int i = 0; i < numUndone; ++i)
-        delete m_historyView->takeItem(m_historyView->count() - 1);
+    m_game->undo();
 
-    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
-    m_historyView->setCurrentItem(last);
-    m_historyView->scrollToItem(last);
+    updateHistory();
 
     updateScores();
 
