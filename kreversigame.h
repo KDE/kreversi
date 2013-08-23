@@ -112,6 +112,11 @@ public:
      *  Sets animation times from players
      */
     void setDelay(int delay);
+
+    /**
+     *  @return History of moves as MoveList
+     */
+    MoveList getHistory() const;
 private slots:
     /**
      *  Starts next player turn.

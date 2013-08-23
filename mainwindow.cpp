@@ -300,15 +300,20 @@ void KReversiMainWindow::slotMoveFinished()
     //TODO check computer-computer
     m_undoAct->setEnabled(m_game->canUndo());
 
-    // add last move to history list
-//    KReversiMove move = m_game->getLastMove();
-//    QString numStr = QString::number(m_historyView->count() + 1) + QLatin1String(". ");
-//    m_historyView->addItem(numStr + moveToString(move));
-//    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
-//    m_historyView->setCurrentItem(last);
-//    m_historyView->scrollToItem(last);
 
-//    statusBar()->changeItem(m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0);
+    MoveList history = m_game->getHistory();
+    m_historyView->clear();
+
+    for (int i = 0; i < history.size(); i++) {
+        QString numStr = QString::number(i + 1) + QLatin1String(". ");
+        m_historyView->addItem(numStr + moveToString(history.at(i)));
+    }
+
+    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
+    m_historyView->setCurrentItem(last);
+    m_historyView->scrollToItem(last);
+
+    //statusBar()->changeItem(m_game->isComputersTurn() ? opponentName() : i18n("Your turn."), 0);
 
     updateScores();
 }

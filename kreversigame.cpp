@@ -264,6 +264,14 @@ void KReversiGame::setDelay(int delay)
     m_delay = delay;
 }
 
+MoveList KReversiGame::getHistory() const
+{
+    MoveList l;
+    for (int i = 0; i < m_undoStack.size(); i++)
+        l.push_back(m_undoStack.at(i).at(0));
+    return l;
+}
+
 void KReversiGame::blackPlayerMove(KReversiMove move)
 {
     qDebug() << "Game: black move";
