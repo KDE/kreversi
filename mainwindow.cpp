@@ -254,6 +254,8 @@ void KReversiMainWindow::slotNewGame()
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
+
+    //TODO: only if it is not computer-computer match
     m_undoAct->setEnabled(true);
 
 //    if (m_view->isInDemoMode()) {
@@ -295,8 +297,8 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
-//    if (!m_demoAct->isChecked())
-//        m_undoAct->setEnabled(m_game->canUndo());
+    //TODO check computer-computer
+    m_undoAct->setEnabled(m_game->canUndo());
 
     // add last move to history list
 //    KReversiMove move = m_game->getLastMove();

@@ -159,6 +159,7 @@ int KReversiGame::undo()
         m_changedChips.clear();
 
     emit boardChanged();
+    kickCurrentPlayer();
 
     return movesUndone;
 }
