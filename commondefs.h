@@ -54,7 +54,7 @@ struct KReversiMove: public KReversiPos {
     }
 };
 
-static ChipColor opponentColorFor(ChipColor color)
+ChipColor opponentColorFor(ChipColor color)
 {
     if (color == NoColor)
         return NoColor;

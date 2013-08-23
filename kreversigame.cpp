@@ -28,6 +28,8 @@ const int KReversiGame::DY[KReversiGame::DIRECTIONS_COUNT] = {1, -1, 1, 0, -1, 1
 KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePlayer)
     : m_curPlayer(Black)
 {
+    m_isReady[White] = m_isReady[Black] = false;
+
     // reset board
     for (int r = 0; r < 8; ++r)
         for (int c = 0; c < 8; ++c)
@@ -38,7 +40,6 @@ KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePla
 
     m_score[White] = m_score[Black] = 2;
 
-    // TODO: prepare maybe long: need to make ready signal and wait until two such signals
     whitePlayer->prepare(this);
     blackPlayer->prepare(this);
 
@@ -49,15 +50,15 @@ KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePla
     connect(this, SIGNAL(blackPlayerTurn()), blackPlayer, SLOT(takeTurn()));
     connect(this, SIGNAL(gameOver()), blackPlayer, SLOT(gameOver()));
     connect(blackPlayer, SIGNAL(makeMove(KReversiMove)), this, SLOT(blackPlayerMove(KReversiMove)));
+    connect(blackPlayer, SIGNAL(ready()), this, SLOT(blackReady()));
 
     connect(this, SIGNAL(whitePlayerCantMove()), whitePlayer, SLOT(skipTurn()));
     connect(this, SIGNAL(whitePlayerTurn()), whitePlayer, SLOT(takeTurn()));
     connect(this, SIGNAL(gameOver()), whitePlayer, SLOT(gameOver()));
     connect(whitePlayer, SIGNAL(makeMove(KReversiMove)), this, SLOT(whitePlayerMove(KReversiMove)));
+    connect(whitePlayer, SIGNAL(ready()), this, SLOT(whiteReady()));
 
     m_engine = new Engine(1);
-
-    blackPlayer->takeTurn();
 }
 
 KReversiGame::~KReversiGame()
@@ -282,6 +283,20 @@ void KReversiGame::onDelayTimer()
 {
     qDebug() << "On Delay";
     startNextTurn();
+}
+
+void KReversiGame::blackReady()
+{
+    m_isReady[Black] = true;
+    if (m_isReady[White])
+        blackPlayer->takeTurn();
+}
+
+void KReversiGame::whiteReady()
+{
+    m_isReady[White] = true;
+    if (m_isReady[Black])
+        blackPlayer->takeTurn();
 }
 
 KReversiMove KReversiGame::getHint() const

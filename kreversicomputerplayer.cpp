@@ -15,6 +15,8 @@ void KReversiComputerPlayer::prepare(KReversiGame *game)
 {
     m_game = game;
     m_state = WAITING;
+
+    emit ready();
 }
 
 void KReversiComputerPlayer::takeTurn()

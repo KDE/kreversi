@@ -131,6 +131,15 @@ private slots:
      *  Slot to handle end of animations with m_delayTimer
      */
     void onDelayTimer();
+    /**
+     *  Slot to handle ready-status of black player
+     */
+    void blackReady();
+    /**
+     *  Slot to handle ready-status of white player
+     */
+    void whiteReady();
+
 signals:
     void gameOver();
     void boardChanged();
@@ -143,6 +152,9 @@ private:
     static const int DIRECTIONS_COUNT = 8;
     static const int DX[];
     static const int DY[];
+    /**
+     *  Used to make player think about his move again after unpossible move
+     */
     void kickCurrentPlayer();
     /**
      *  This will make the player move
@@ -177,6 +189,13 @@ private:
      *  Delay time
      */
     int m_delay;
+    /**
+     *  Status flags used to know when both players are ready
+     */
+    bool m_isReady[2];
+    /**
+     *  Last player who has made a move. Cannot be NoColor after first move
+     */
     ChipColor m_lastPlayer;
     /**
      *  The board itself
@@ -191,7 +210,8 @@ private:
      */
     Engine *m_engine;
     /**
-     *  Color of the current player
+     *  Color of the current player.
+     *  @c NoColor if it is interchange for animations
      */
     ChipColor m_curPlayer;
     // Well I'm not brief at all :). That's because I think that my
@@ -216,6 +236,9 @@ private:
      */
     QTimer m_delayTimer;
 
+    /**
+     *  Actual players, who play the game
+     */
     KReversiPlayer *m_player[2];
 };
 #endif

@@ -51,6 +51,11 @@ signals:
      */
     void makeMove(KReversiMove);
 
+    /**
+     * Player emit it after he has prepared after getting prepare command
+     */
+    void ready();
+
 protected:
     /**
      *  Game player is playing

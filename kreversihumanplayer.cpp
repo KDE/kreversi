@@ -10,6 +10,8 @@ void KReversiHumanPlayer::prepare(KReversiGame* game)
     // ready to start
     m_game = game;
     m_state = WAITING;
+
+    emit ready();
 }
 
 void KReversiHumanPlayer::takeTurn()

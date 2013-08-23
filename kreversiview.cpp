@@ -44,7 +44,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
 
 void KReversiView::setGame(KReversiGame *game)
 {
-    // disconnect signals from previous game if it exists,
+    // disconnect signals from previous game if they exist,
     // we are not interested in them anymore
     if (m_game) {
         disconnect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
@@ -105,7 +105,6 @@ void KReversiView::setAnimationSpeed(int speed)
     }
 
     m_delay = value;
-
     m_qml_root->setProperty("chipsAnimationTime", value);
 }
 
