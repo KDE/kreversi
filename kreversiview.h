@@ -74,8 +74,10 @@ public:
      *  Sets the animation speed
      *
      *  @param speed 0 - slow, 1 - normal, 2 - fast
+     *
+     *  @return time for animation in milliseconds to pass it to KReversiGame
      */
-    void setAnimationSpeed(int speed);
+    int setAnimationSpeed(int speed);
 
     /**
      *  Destructor used to delete game object owned by class

@@ -88,7 +88,7 @@ void KReversiView::setShowBoardLabels(bool show)
     updateBoard();
 }
 
-void KReversiView::setAnimationSpeed(int speed)
+int KReversiView::setAnimationSpeed(int speed)
 {
     int value = ANIMATION_SPEED_NORMAL;
     switch (speed) {
@@ -106,6 +106,7 @@ void KReversiView::setAnimationSpeed(int speed)
 
     m_delay = value;
     m_qml_root->setProperty("chipsAnimationTime", value);
+    return value;
 }
 
 KReversiView::~KReversiView()

@@ -164,7 +164,7 @@ void KReversiMainWindow::levelChanged()
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
-    m_view->setAnimationSpeed(speed);
+    m_game->setDelay(m_view->setAnimationSpeed(speed));
     Preferences::setAnimationSpeed(speed);
     Preferences::self()->writeConfig();
 }
@@ -239,7 +239,7 @@ void KReversiMainWindow::slotNewGame()
         QString chipsPrefix = Preferences::useColoredChips() ? QLatin1String("chip_color") : QLatin1String("chip_bw");
         m_view = new KReversiView(m_game, this);
         setCentralWidget(m_view);
-        m_view->setAnimationSpeed(Preferences::animationSpeed());
+        m_game->setDelay(m_view->setAnimationSpeed(Preferences::animationSpeed()));
         connect(m_view, SIGNAL(moveFinished()), SLOT(slotMoveFinished()));
     } else {
         m_view->setGame(m_game);

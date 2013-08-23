@@ -40,9 +40,6 @@ KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePla
 
     m_score[White] = m_score[Black] = 2;
 
-    whitePlayer->prepare(this);
-    blackPlayer->prepare(this);
-
     m_player[White] = whitePlayer;
     m_player[Black] = blackPlayer;
 
@@ -59,6 +56,9 @@ KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePla
     connect(whitePlayer, SIGNAL(ready()), this, SLOT(whiteReady()));
 
     m_engine = new Engine(1);
+
+    whitePlayer->prepare(this);
+    blackPlayer->prepare(this);
 }
 
 KReversiGame::~KReversiGame()
@@ -287,16 +287,18 @@ void KReversiGame::onDelayTimer()
 
 void KReversiGame::blackReady()
 {
+    qDebug() << "Black ready";
     m_isReady[Black] = true;
     if (m_isReady[White])
-        blackPlayer->takeTurn();
+        m_player[Black]->takeTurn();
 }
 
 void KReversiGame::whiteReady()
 {
+    qDebug() << "White ready";
     m_isReady[White] = true;
     if (m_isReady[Black])
-        blackPlayer->takeTurn();
+        m_player[Black]->takeTurn();
 }
 
 KReversiMove KReversiGame::getHint() const
