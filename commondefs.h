@@ -1,6 +1,7 @@
 /*******************************************************************
  *
  * Copyright 2006 Dmitry Suzdalev <dimsuz@gmail.com>
+ * Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
  *
  * This file is part of the KDE project "KReversi"
  *
