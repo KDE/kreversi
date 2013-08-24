@@ -23,12 +23,17 @@
 
 #include "kreversiplayer.h"
 
-KReversiPlayer::KReversiPlayer(ChipColor color):
-    m_state(UNKNOWN), m_color(color)
+KReversiPlayer::KReversiPlayer(ChipColor color, QString name):
+    m_state(UNKNOWN), m_color(color), m_name(name)
 {
 }
 
 ChipColor KReversiPlayer::getColor() const
 {
     return m_color;
+}
+
+QString KReversiPlayer::getName() const
+{
+    return m_name;
 }

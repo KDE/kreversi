@@ -23,8 +23,8 @@
 
 #include "kreversicomputerplayer.h"
 
-KReversiComputerPlayer::KReversiComputerPlayer(ChipColor color):
-    KReversiPlayer(color)
+KReversiComputerPlayer::KReversiComputerPlayer(ChipColor color, QString name):
+    KReversiPlayer(color, name)
 {
     m_engine = new Engine(1);
 }

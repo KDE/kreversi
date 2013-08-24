@@ -25,6 +25,8 @@
 #define KREVERSI_PLAYER_H
 
 #include "kreversigame.h"
+#include <QString>
+
 class KReversiGame;
 
 enum KReversiPlayerState {
@@ -37,13 +39,19 @@ class KReversiPlayer: public QObject
 {
     Q_OBJECT
 public:
-    explicit KReversiPlayer(ChipColor color);
+    explicit KReversiPlayer(ChipColor color, QString name);
 
     /**
-     * Used to get player color
-     * @return color of player
+     *  Used to get player color
+     *  @return color of player
      */
     ChipColor getColor() const;
+
+    /**
+     *  Used to get player's name
+     *  @return player's name
+     */
+    QString getName() const;
 
 public slots:
     /**
@@ -94,6 +102,11 @@ protected:
      *  Player's chip color
      */
     ChipColor m_color;
+
+    /**
+     *  Player's name to be shown at UI
+     */
+    QString m_name;
 };
 
 #endif // KREVERSIPLAYER_H

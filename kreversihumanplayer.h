@@ -31,7 +31,7 @@ class KReversiHumanPlayer : public KReversiPlayer
 {
     Q_OBJECT
 public:
-    explicit KReversiHumanPlayer(ChipColor color);
+    explicit KReversiHumanPlayer(ChipColor color, QString name);
 
     /**
      *  Overriden slots from @see KReversiPlayer

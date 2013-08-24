@@ -23,8 +23,8 @@
 
 #include "kreversihumanplayer.h"
 
-KReversiHumanPlayer::KReversiHumanPlayer(ChipColor color):
-    KReversiPlayer(color)
+KReversiHumanPlayer::KReversiHumanPlayer(ChipColor color, QString name):
+    KReversiPlayer(color, name)
 {
 }
 

@@ -31,7 +31,7 @@ class KReversiComputerPlayer : public KReversiPlayer
 {
     Q_OBJECT
 public:
-    explicit KReversiComputerPlayer(ChipColor color);
+    explicit KReversiComputerPlayer(ChipColor color, QString name);
     ~KReversiComputerPlayer();
 
     /**

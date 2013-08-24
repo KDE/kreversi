@@ -227,10 +227,10 @@ void KReversiMainWindow::slotNewGame()
     if (m_historyView)
         m_historyView->clear();
 
-    human = new KReversiHumanPlayer(Black);
-    computer = new KReversiComputerPlayer(White);
+    human = new KReversiHumanPlayer(White, "Player");
+    computer = new KReversiComputerPlayer(Black, "Computer");
     /// TODO: DELETE HUMAN AND COMPUTER
-    m_game = new KReversiGame(human, computer);
+    m_game = new KReversiGame(computer, human);
     levelChanged();
     connect(m_game, SIGNAL(gameOver()), SLOT(slotGameOver()));
     m_game->setDelay(300);
@@ -253,6 +253,8 @@ void KReversiMainWindow::slotNewGame()
 
 void KReversiMainWindow::slotGameOver()
 {
+    delete human;
+    delete computer;
     m_hintAct->setEnabled(false);
 
     //TODO: only if it is not computer-computer match
