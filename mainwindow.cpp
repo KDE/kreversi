@@ -90,15 +90,14 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(levelChanged()));
 
     // initialize history dock
-//    m_historyView = new QListWidget(this);
-//    m_historyView->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Expanding);
-//    m_historyDock = new QDockWidget(i18n("Move History"));
-//    m_historyDock->setWidget(m_historyView);
-//    m_historyDock->setObjectName("history_dock");
+    m_historyView = new QListWidget(this);
+    m_historyView->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Expanding);
+    m_historyDock = new QDockWidget(i18n("Move History"));
+    m_historyDock->setWidget(m_historyView);
+    m_historyDock->setObjectName("history_dock");
 
-//    m_historyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-//    addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
-//    m_historyDock->hide();
+    m_historyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
 
     // create main game view
     m_view = new KReversiView(m_game, this);
@@ -112,6 +111,8 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     loadSettings();
 
     setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
+
+    m_historyDock->hide();
 
     // initialise dialog handlers
     connect(&m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
@@ -156,11 +157,11 @@ void KReversiMainWindow::setupActionsInit()
 //    actionCollection()->addAction(QLatin1String("use_colored_chips"), m_coloredChipsAct);
 //    connect(m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)));
 
-//    // Move history
-//    // NOTE: read/write this from/to config file? Or not necessary?
-//    m_showMovesAct = new KToggleAction(KIcon(QLatin1String("view-history")), i18n("Show Move History"), this);
-//    actionCollection()->addAction(QLatin1String("show_moves"), m_showMovesAct);
-//    connect(m_showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)));
+    // Move history
+    // NOTE: read/write this from/to config file? Or not necessary?
+    m_showMovesAct = new KToggleAction(KIcon(QLatin1String("view-history")), i18n("Show Move History"), this);
+    actionCollection()->addAction(QLatin1String("show_moves"), m_showMovesAct);
+    connect(m_showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)));
 }
 
 void KReversiMainWindow::loadSettings()
@@ -197,8 +198,8 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
 
 void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 {
-//    m_historyDock->setVisible(toggled);
-//    m_view->setShowBoardLabels(toggled);
+    m_historyDock->setVisible(toggled);
+    m_view->setShowBoardLabels(toggled);
 }
 
 //void KReversiMainWindow::slotToggleDemoMode()
@@ -237,9 +238,6 @@ void KReversiMainWindow::slotNewGame()
 
 //    if (m_undoAct)
 //        m_undoAct->setEnabled(false);
-
-//    if (m_historyView)
-//        m_historyView->clear();
 
     m_startDialog.exec();
 }
@@ -322,7 +320,7 @@ void KReversiMainWindow::slotMoveFinished()
 {
 //    m_undoAct->setEnabled(m_game->canUndo());
 
-//    updateHistory();
+    updateHistory();
 
 //    statusBar()->changeItem(m_game->currentPlayer() == White
 //                            ? i18n("White turn") : i18n("Black turn."), 0);
@@ -331,17 +329,17 @@ void KReversiMainWindow::slotMoveFinished()
 }
 
 void KReversiMainWindow::updateHistory() {
-//    MoveList history = m_game->getHistory();
-//    m_historyView->clear();
+    MoveList history = m_game->getHistory();
+    m_historyView->clear();
 
-//    for (int i = 0; i < history.size(); i++) {
-//        QString numStr = QString::number(i + 1) + QLatin1String(". ");
-//        m_historyView->addItem(numStr + moveToString(history.at(i)));
-//    }
+    for (int i = 0; i < history.size(); i++) {
+        QString numStr = QString::number(i + 1) + QLatin1String(". ");
+        m_historyView->addItem(numStr + moveToString(history.at(i)));
+    }
 
-//    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
-//    m_historyView->setCurrentItem(last);
-//    m_historyView->scrollToItem(last);
+    QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
+    m_historyView->setCurrentItem(last);
+    m_historyView->scrollToItem(last);
 }
 
 void KReversiMainWindow::slotUndo()
@@ -376,7 +374,7 @@ void KReversiMainWindow::showEvent(QShowEvent*)
         startDemo();
     }
     else if (m_firstShow) {
-        // showing start game dialog
+        // TODO: showing start game dialog
     }
     m_firstShow = false;
 }
@@ -429,8 +427,6 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
     m_view->setGame(m_game);
 
-    qDebug() << "ololo";
-
     connect(m_game, SIGNAL(gameOver()), SLOT(slotGameOver()));
     connect(m_game, SIGNAL(moveFinished()), SLOT(slotMoveFinished()));
 
@@ -441,4 +437,5 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
 //    statusBar()->changeItem(i18n("Your turn."), 0);
 //    updateScores();
+    updateHistory();
 }
