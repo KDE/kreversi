@@ -113,8 +113,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
 
     // initialise dialog handlers
-    connect(&m_startDialog, SIGNAL(startGame()),
-            this, SLOT(slotDialogReady()));
+    connect(&m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
 }
 
 void KReversiMainWindow::setupActionsInit()
@@ -252,29 +251,67 @@ void KReversiMainWindow::slotGameOver()
 
 //    statusBar()->changeItem(i18n("GAME OVER"), 0);
 
-//    int blackScore = m_game->playerScore(Black);
-//    int whiteScore = m_game->playerScore(White);
+    int blackScore = m_game->playerScore(Black);
+    int whiteScore = m_game->playerScore(White);
 
 //    KExtHighscore::setGameType(m_lowestSkill);
 //    KExtHighscore::Score score;
 //    score.setScore(blackScore);
 
-//    QString res;
-//    if (blackScore == whiteScore) {
-//        res = i18n("Game is drawn!");
-//        score.setType(KExtHighscore::Draw);
-//    } else if (blackScore > whiteScore) {
-//        res = i18n("You win!");
-//        score.setType(KExtHighscore::Won);
-//    } else {
-//        res = i18n("You have lost!");
-//        score.setType(KExtHighscore::Lost);
-//    }
+    QString res;
+    if (m_nowPlayingInfo.type[Black] == GameStartInformation::Human
+            && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // we are playing black
+        if (blackScore == whiteScore) {
+            res = i18n("Game is drawn!");
+            //score.setType(KExtHighscore::Draw);
+        } else if (blackScore > whiteScore) {
+            res = i18n("You win!");
+            //score.setType(KExtHighscore::Won);
+        } else {
+            res = i18n("You have lost!");
+            //score.setType(KExtHighscore::Lost);
+        }
+    } else if (m_nowPlayingInfo.type[White] == GameStartInformation::Human
+                   && m_nowPlayingInfo.type[Black] == GameStartInformation::AI) { // we are playing white
+       if (blackScore == whiteScore) {
+           res = i18n("Game is drawn!");
+           //score.setType(KExtHighscore::Draw);
+       } else if (blackScore < whiteScore) {
+           res = i18n("You win!");
+           //score.setType(KExtHighscore::Won);
+       } else {
+           res = i18n("You have lost!");
+           //score.setType(KExtHighscore::Lost);
+       }
+    } else if (m_nowPlayingInfo.type[Black] == GameStartInformation::Human
+               && m_nowPlayingInfo.type[White] == GameStartInformation::Human) { // friends match
+       if (blackScore == whiteScore) {
+           res = i18n("Game is drawn!");
+           //score.setType(KExtHighscore::Draw);
+       } else if (blackScore > whiteScore) {
+           res = i18n("%1 has won!", m_nowPlayingInfo.name[Black]);
+           //score.setType(KExtHighscore::Won);
+       } else {
+           res = i18n("%1 has won!", m_nowPlayingInfo.name[White]);
+           //score.setType(KExtHighscore::Lost);
+       }
+    } else { // using Black White names in other cases
+        if (blackScore == whiteScore) {
+            res = i18n("Game is drawn!");
+            //score.setType(KExtHighscore::Draw);
+        } else if (blackScore > whiteScore) {
+            res = i18n("Black has won!");
+            //score.setType(KExtHighscore::Won);
+        } else {
+            res = i18n("White has won!");
+            //score.setType(KExtHighscore::Lost);
+        }
+    }
 
 //    res += i18n("\nBlack: %1", blackScore);
 //    res += i18n("\nWhite: %2", whiteScore);
 
-//    KMessageBox::information(this, res, i18n("Game over"));
+    KMessageBox::information(this, res, i18n("Game over"));
 //    // FIXME dimsuz: don't submit if in demo mode!
 //    KExtHighscore::submitScore(score, this);
 }
