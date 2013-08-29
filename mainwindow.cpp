@@ -100,15 +100,16 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 //    addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
 //    m_historyDock->hide();
 
+    // create main game view
+    m_view = new KReversiView(m_game, this);
+//    m_view->setChipsPrefix(Preferences::useColoredChips() ? Colored : BlackWhite);
+    setCentralWidget(m_view);
+
     // initialise actions
     setupActionsInit();
 
     // load saved settings
     loadSettings();
-
-    m_view = new KReversiView(m_game, this);
-//    m_view->setChipsPrefix(Preferences::useColoredChips() ? Colored : BlackWhite);
-    setCentralWidget(m_view);
 
     setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
 
@@ -141,14 +142,14 @@ void KReversiMainWindow::setupActionsInit()
 //    actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
 //    connect(m_showLegal, SIGNAL(triggered(bool)), m_view, SLOT(setShowLegalMoves(bool)));
 
-//    // Animation speed
-//    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
-//    actionCollection()->addAction(QLatin1String("anim_speed"), m_animSpeedAct);
+    // Animation speed
+    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
+    actionCollection()->addAction(QLatin1String("anim_speed"), m_animSpeedAct);
 
-//    QStringList acts;
-//    acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
-//    m_animSpeedAct->setItems(acts);
-//    connect(m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)));
+    QStringList acts;
+    acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
+    m_animSpeedAct->setItems(acts);
+    connect(m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)));
 
 //    // Chip's color
 //    m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
@@ -164,8 +165,9 @@ void KReversiMainWindow::setupActionsInit()
 
 void KReversiMainWindow::loadSettings()
 {
-//    // Animation speed
-//    m_animSpeedAct->setCurrentItem(Preferences::animationSpeed());
+    // Animation speed
+    m_animSpeedAct->setCurrentItem(Preferences::animationSpeed());
+    m_view->setAnimationSpeed(Preferences::animationSpeed());
 
 //    // Chip's color
 //    m_coloredChipsAct->setChecked(Preferences::useColoredChips());
@@ -178,9 +180,9 @@ void KReversiMainWindow::levelChanged()
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
-//    m_game->setDelay(m_view->setAnimationSpeed(speed));
-//    Preferences::setAnimationSpeed(speed);
-//    Preferences::self()->writeConfig();
+    m_view->setAnimationSpeed(speed);
+    Preferences::setAnimationSpeed(speed);
+    Preferences::self()->writeConfig();
 }
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
@@ -400,6 +402,7 @@ void KReversiMainWindow::clearPlayers() {
     for (int i = 0; i < 2; i++) // iterating through white to black
         if (m_player[i])
         {
+            m_player[i]->disconnect();
             delete m_player[i];
             m_player[i] = 0;
         }

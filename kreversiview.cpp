@@ -63,8 +63,9 @@ void KReversiView::setGame(KReversiGame *game)
         connect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
         connect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
         connect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
-    }
 
+        m_game->setDelay(m_delay);
+    }
 
     m_hint = KReversiMove();
 
@@ -88,7 +89,7 @@ void KReversiView::setShowBoardLabels(bool show)
     updateBoard();
 }
 
-int KReversiView::setAnimationSpeed(int speed)
+void KReversiView::setAnimationSpeed(int speed)
 {
     int value = ANIMATION_SPEED_NORMAL;
     switch (speed) {
@@ -105,8 +106,11 @@ int KReversiView::setAnimationSpeed(int speed)
     }
 
     m_delay = value;
+
+    if (m_game)
+        m_game->setDelay(value);
+
     m_qml_root->setProperty("chipsAnimationTime", value);
-    return value;
 }
 
 KReversiView::~KReversiView()

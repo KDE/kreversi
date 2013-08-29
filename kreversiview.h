@@ -77,7 +77,7 @@ public:
      *
      *  @return time for animation in milliseconds to pass it to KReversiGame
      */
-    int setAnimationSpeed(int speed);
+    void setAnimationSpeed(int speed);
 
     /**
      *  Destructor used to delete game object owned by class
