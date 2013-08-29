@@ -221,7 +221,6 @@ void KReversiView::gameMoveFinished()
 {
     m_hint = KReversiMove();
     updateBoard();
-    emit moveFinished();
 }
 
 void KReversiView::gameOver()

@@ -51,6 +51,8 @@
 #include "kreversihumanplayer.h"
 #include "kreversicomputerplayer.h"
 
+#include "startgamedialog.h"
+
 #include "kreversigame.h"
 #include "kreversiview.h"
 
@@ -75,19 +77,26 @@ public slots:
     void slotUndo();
     void slotMoveFinished();
     void slotGameOver();
-    void slotToggleDemoMode();
     void slotUseColoredChips(bool);
     void slotShowMovesHistory(bool);
     void slotHighscores();
+    void slotDialogReady();
 private:
     virtual void showEvent(QShowEvent*);
-    void setupActions();
+    void setupActionsInit();
+    void setupActionsStart();
+    void setupActionsGame();
     void loadSettings();
-    QString opponentName() const;
     void updateScores();
     void updateHistory();
-    KReversiHumanPlayer *human;
-    KReversiComputerPlayer *computer;
+    void startDemo();
+    void clearPlayers();
+    void receivedGameStartInformation(GameStartInformation info);
+    KReversiPlayer *m_player[2];
+
+    StartGameDialog m_startDialog;
+    GameStartInformation m_nowPlayingInfo;
+
 
     KReversiView  *m_view;
     KReversiGame  *m_game;
@@ -97,17 +106,13 @@ private:
     bool m_firstShow;
     bool m_startInDemoMode;
 
-    /**
-     * Used for the high scores: if the player changes the difficulty level
-     * during a running game, we'll keep the lowest computer skill corresponding
-     * to the levels chosen.
-     */
-    int m_lowestSkill;
-
-    QAction* m_undoAct;
-    QAction* m_hintAct;
-    QAction* m_demoAct;
-    KSelectAction* m_animSpeedAct;
-    KToggleAction* m_coloredChipsAct;
+    QAction *m_undoAct;
+    QAction *m_hintAct;
+    QAction *m_demoAct;
+    KToggleAction *m_showLast;
+    KToggleAction *m_showLegal;
+    KToggleAction *m_showMovesAct;
+    KSelectAction *m_animSpeedAct;
+    KToggleAction *m_coloredChipsAct;
 };
 #endif

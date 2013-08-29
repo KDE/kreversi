@@ -122,11 +122,8 @@ private slots:
     void whitePlayerCantMove();
     void blackPlayerCantMove();
 signals:
-    /**
-     * The signal used to notify about end of the move
-     */
-    void moveFinished();
     void userMove(KReversiPos);
+
 private:
     /**
      *  40 ms time per frame for animation

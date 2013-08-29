@@ -63,6 +63,7 @@ static ChipColor opponentColorFor(ChipColor color)
         return (color == White ? Black : White);
 }
 
+
 typedef QList<KReversiMove> MoveList;
 
 #endif

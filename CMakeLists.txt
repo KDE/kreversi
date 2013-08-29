@@ -20,8 +20,7 @@ add_subdirectory( doc )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdegames/highscore )
 
-########### next target ###############
-
+########### next target ##############
 set(kreversi_SRCS
     colorscheme.cpp
     kreversigame.cpp
@@ -29,15 +28,19 @@ set(kreversi_SRCS
     kreversiplayer.cpp
     kreversihumanplayer.cpp
     kreversicomputerplayer.cpp
+    startgamedialog.cpp
     Engine.cpp
     highscores.cpp
     mainwindow.cpp
     main.cpp )
 
+kde4_add_ui_files(kreversi_SRCS startgamedialog.ui)
+
 kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 kde4_add_app_icon(kreversi_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-kreversi.png")
 kde4_add_executable(kreversi ${kreversi_SRCS})
+
 
 target_link_libraries(kreversi kdegames ${KDE4_KDEUI_LIBS}
 ${QT_QTXML_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} ${KDECLARATIVE_LIBRARIES})
