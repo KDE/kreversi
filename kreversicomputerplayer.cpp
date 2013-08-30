@@ -24,7 +24,7 @@
 #include "kreversicomputerplayer.h"
 
 KReversiComputerPlayer::KReversiComputerPlayer(ChipColor color, QString name):
-    KReversiPlayer(color, name)
+    KReversiPlayer(color, name), m_lowestSkill(100) // setting it big enough
 {
     m_engine = new Engine(1);
 }
@@ -64,6 +64,7 @@ void KReversiComputerPlayer::gameOver()
 void KReversiComputerPlayer::setSkill(int skill)
 {
     m_engine->setStrength(skill);
+    m_lowestSkill = qMin(m_lowestSkill, skill);
 }
 
 

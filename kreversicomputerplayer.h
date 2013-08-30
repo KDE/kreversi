@@ -53,6 +53,7 @@ signals:
 public slots:
 
 private:
+    int m_lowestSkill;
     Engine *m_engine;
 };
 
