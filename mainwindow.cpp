@@ -286,6 +286,7 @@ void KReversiMainWindow::slotGameOver()
            res = i18n("You have lost!");
            //score.setType(KExtHighscore::Lost);
        }
+
     } else if (m_nowPlayingInfo.type[Black] == GameStartInformation::Human
                && m_nowPlayingInfo.type[White] == GameStartInformation::Human) { // friends match
        if (blackScore == whiteScore) {
@@ -311,8 +312,16 @@ void KReversiMainWindow::slotGameOver()
         }
     }
 
-//    res += i18n("\nBlack: %1", blackScore);
-//    res += i18n("\nWhite: %2", whiteScore);
+    if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
+                   && m_nowPlayingInfo.type[White] == GameStartInformation::AI) {
+        res += i18n("\nBlack: %1", blackScore);
+        res += i18n("\nWhite: %1", whiteScore);
+    } else {
+        res += i18n("\n%1: %2", m_nowPlayingInfo.name[Black], blackScore);
+        res += i18n("\n%1: %2", m_nowPlayingInfo.name[White], whiteScore);
+    }
+
+
 
     KMessageBox::information(this, res, i18n("Game over"));
 //    // FIXME dimsuz: don't submit if in demo mode!
