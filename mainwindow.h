@@ -87,7 +87,7 @@ private:
     void setupActionsStart();
     void setupActionsGame();
     void loadSettings();
-    void updateScores();
+    void updateStatusBar();
     void updateHistory();
     void startDemo();
     void clearPlayers();

@@ -26,6 +26,7 @@
 
 static const int BLACK_STATUSBAR_ID = 1;
 static const int WHITE_STATUSBAR_ID = 2;
+static const int COMMON_STATUSBAR_ID = 0;
 
 static QString moveToString(const KReversiMove& move)
 {
@@ -80,6 +81,10 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
       m_undoAct(0), m_hintAct(0), m_demoAct(0)
 {
     memset(m_player, 0, sizeof(m_player));
+
+    statusBar()->insertItem(i18n("Press start game!"), COMMON_STATUSBAR_ID);
+    statusBar()->insertItem("", BLACK_STATUSBAR_ID);
+    statusBar()->insertItem("", WHITE_STATUSBAR_ID);
 
     // initialize difficulty stuff
     Kg::difficulty()->addStandardLevelRange(
@@ -249,8 +254,6 @@ void KReversiMainWindow::slotGameOver()
 //    //TODO: only if it is not computer-computer match
 //    m_undoAct->setEnabled(m_game->canUndo());
 
-//    statusBar()->changeItem(i18n("GAME OVER"), 0);
-
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);
 
@@ -318,14 +321,11 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
+    qDebug() << "sdfsdf";
 //    m_undoAct->setEnabled(m_game->canUndo());
 
     updateHistory();
-
-//    statusBar()->changeItem(m_game->currentPlayer() == White
-//                            ? i18n("White turn") : i18n("Black turn."), 0);
-
-//    updateScores();
+    updateStatusBar();
 }
 
 void KReversiMainWindow::updateHistory() {
@@ -348,7 +348,7 @@ void KReversiMainWindow::slotUndo()
 //    m_game->undo();
 
 //    updateHistory();
-//    updateScores();
+//    updateStatusBar();
 
 //    m_undoAct->setEnabled(m_game->canUndo());
 //    // if the user hits undo after game is over
@@ -379,10 +379,34 @@ void KReversiMainWindow::showEvent(QShowEvent*)
     m_firstShow = false;
 }
 
-void KReversiMainWindow::updateScores()
+void KReversiMainWindow::updateStatusBar()
 {
-//    statusBar()->changeItem(i18n("Black: %1", m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
-//    statusBar()->changeItem(i18n("White: %2", m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+    if (m_game->isGameOver()) {
+        statusBar()->changeItem(i18n("GAME OVER"), COMMON_STATUSBAR_ID);
+    }
+
+    if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
+            && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // using Black White names
+        statusBar()->changeItem(i18n("Black: %1",
+                                     m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
+        statusBar()->changeItem(i18n("White: %2", m_nowPlayingInfo.name[White],
+                                     m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+
+        if (!m_game->isGameOver()) {
+            statusBar()->changeItem(m_game->currentPlayer() == White
+                                ? i18n("White turn") : i18n("Black turn"), COMMON_STATUSBAR_ID);
+        }
+    } else { // using player's names
+        statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[Black],
+                                     m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
+        statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[White],
+                                     m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+
+        if (!m_game->isGameOver()) {
+            statusBar()->changeItem(i18n("%1's turn",
+                                         m_nowPlayingInfo.name[m_game->currentPlayer()]), COMMON_STATUSBAR_ID);
+        }
+    }
 }
 
 
@@ -435,7 +459,6 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
             connect(m_view, SIGNAL(userMove(KReversiPos)),
                     (KReversiHumanPlayer *)(m_player[i]), SLOT(onUICellClick(KReversiPos)));
 
-//    statusBar()->changeItem(i18n("Your turn."), 0);
-//    updateScores();
+    updateStatusBar();
     updateHistory();
 }
