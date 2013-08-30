@@ -133,15 +133,15 @@ void KReversiMainWindow::setupActionsInit()
 //    m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
 ////    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
-//    // Last move
-//    m_showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
-//    actionCollection()->addAction(QLatin1String("show_last_move"), m_showLast);
-//    connect(m_showLast, SIGNAL(triggered(bool)), m_view, SLOT(setShowLastMove(bool)));
+    // Last move
+    m_showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
+    actionCollection()->addAction(QLatin1String("show_last_move"), m_showLast);
+    connect(m_showLast, SIGNAL(triggered(bool)), m_view, SLOT(setShowLastMove(bool)));
 
-//    // Legal moves
-//    m_showLegal = new KToggleAction(KIcon(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
-//    actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
-//    connect(m_showLegal, SIGNAL(triggered(bool)), m_view, SLOT(setShowLegalMoves(bool)));
+    // Legal moves
+    m_showLegal = new KToggleAction(KIcon(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
+    actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
+    connect(m_showLegal, SIGNAL(triggered(bool)), m_view, SLOT(setShowLegalMoves(bool)));
 
     // Animation speed
     m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
