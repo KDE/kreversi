@@ -39,7 +39,8 @@ class KReversiPlayer: public QObject
 {
     Q_OBJECT
 public:
-    explicit KReversiPlayer(ChipColor color, QString name, bool hintAllowed);
+    explicit KReversiPlayer(ChipColor color, QString name,
+                            bool hintAllowed, bool undoAllowed);
 
     /**
      *  Used to get player color
@@ -64,9 +65,24 @@ public:
     void hintUsed();
 
     /**
-     * @return how many times player has used hints
+     *  @return how many times player has used hints
      */
     int getHintsCount();
+
+    /**
+     *  @return is undo allowed for player
+     */
+    bool isUndoAllowed() const;
+
+    /**
+     *  KReversiGame triggers it to to increase used undos count
+     */
+    void undoUsed();
+
+    /**
+     *  @return how many times player has used undo
+     */
+    int getUndoCount();
 
 public slots:
     /**
@@ -132,6 +148,16 @@ protected:
      *  How many times player has used hint
      */
     int m_hintCount;
+
+    /**
+     *  Can player request undo or not
+     */
+    bool m_undoAllowed;
+
+    /**
+     *  How many times player has used undo
+     */
+    int m_undoCount;
 };
 
 #endif // KREVERSIPLAYER_H

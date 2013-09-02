@@ -67,6 +67,13 @@ KReversiGame::~KReversiGame()
     delete m_engine;
 }
 
+bool KReversiGame::canUndo() const
+{
+    if (m_curPlayer == NoColor)
+        return false;
+    return (m_player[m_curPlayer]->isUndoAllowed() && !m_undoStack.isEmpty());
+}
+
 void KReversiGame::makeMove(const KReversiMove &move)
 {
     if (!move.isValid()) {
@@ -117,8 +124,7 @@ void KReversiGame::startNextTurn()
 
 int KReversiGame::undo()
 {
-    // TODO: calc number of undos for each player and use it
-
+    m_player[m_curPlayer]->undoUsed();
     // we're undoing all moves (if any) until we meet move done by a player.
     // We undo that player move too and we're done.
     // Simply put: we're undoing all_moves_of_computer + one_move_of_player

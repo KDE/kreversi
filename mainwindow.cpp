@@ -129,11 +129,11 @@ void KReversiMainWindow::setupActionsInit()
 //    KStandardGameAction::highscores(this, SLOT(slotHighscores()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-//    // Undo
-//    m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), actionCollection());
-//    m_undoAct->setEnabled(false);   // nothing to undo at the start of the game
+    // Undo
+    m_undoAct = KStandardGameAction::undo(this, SLOT(slotUndo()), actionCollection());
+    m_undoAct->setEnabled(false);   // nothing to undo at the start of the game
 
-//    // Hint
+    // Hint
     m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
     m_hintAct->setEnabled(false);
 //    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
@@ -249,6 +249,7 @@ void KReversiMainWindow::slotNewGame()
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
+    m_undoAct->setEnabled(m_game->canUndo());
 
 //    //TODO: only if it is not computer-computer match
 //    m_undoAct->setEnabled(m_game->canUndo());
@@ -335,6 +336,7 @@ void KReversiMainWindow::slotMoveFinished()
     updateStatusBar();
 
     m_hintAct->setEnabled(m_game->isHintAllowed());
+    m_undoAct->setEnabled(m_game->canUndo());
 }
 
 void KReversiMainWindow::updateHistory() {
@@ -353,16 +355,14 @@ void KReversiMainWindow::updateHistory() {
 
 void KReversiMainWindow::slotUndo()
 {
-//    // scene will automatically notice that it needs to update
-//    m_game->undo();
+    // scene will automatically notice that it needs to update
+    m_game->undo();
 
-//    updateHistory();
-//    updateStatusBar();
+    updateHistory();
+    updateStatusBar();
 
-//    m_undoAct->setEnabled(m_game->canUndo());
-//    // if the user hits undo after game is over
-//    // let's give him a chance to ask for a hint ;)
-//    m_hintAct->setEnabled(true);
+    m_undoAct->setEnabled(m_game->canUndo());
+    m_hintAct->setEnabled(m_game->isHintAllowed());
 }
 
 void KReversiMainWindow::slotHighscores()
@@ -472,4 +472,5 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
     updateHistory();
 
     m_hintAct->setEnabled(m_game->isHintAllowed());
+    m_undoAct->setEnabled(m_game->canUndo());
 }

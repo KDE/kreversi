@@ -57,9 +57,7 @@ public:
     /**
      *  @return if undo is possible
      */
-    bool canUndo() const {
-        return !m_undoStack.isEmpty();
-    }
+    bool canUndo() const;
     /**
      *  Undoes all the opponent of current player moves and one his move
      *  (so after calling this function it will be still current player turn)
