@@ -136,7 +136,7 @@ void KReversiMainWindow::setupActionsInit()
 
 //    // Hint
 //    m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
-////    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
+//    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
     // Last move
     m_showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
@@ -157,10 +157,10 @@ void KReversiMainWindow::setupActionsInit()
     m_animSpeedAct->setItems(acts);
     connect(m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)));
 
-//    // Chip's color
-//    m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
-//    actionCollection()->addAction(QLatin1String("use_colored_chips"), m_coloredChipsAct);
-//    connect(m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)));
+    // Chip's color
+    m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
+    actionCollection()->addAction(QLatin1String("use_colored_chips"), m_coloredChipsAct);
+    connect(m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)));
 
     // Move history
     // NOTE: read/write this from/to config file? Or not necessary?
@@ -175,8 +175,10 @@ void KReversiMainWindow::loadSettings()
     m_animSpeedAct->setCurrentItem(Preferences::animationSpeed());
     m_view->setAnimationSpeed(Preferences::animationSpeed());
 
-//    // Chip's color
-//    m_coloredChipsAct->setChecked(Preferences::useColoredChips());
+    // Chip's color
+    m_coloredChipsAct->setChecked(Preferences::useColoredChips());
+    m_view->setChipsPrefix(Preferences::useColoredChips() ?
+                KReversiView::Colored : KReversiView::BlackWhite);
 }
 
 void KReversiMainWindow::levelChanged()
@@ -193,12 +195,12 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
-//    KReversiView::ChipsPrefix chipsPrefix = m_coloredChipsAct->isChecked() ?
-//                                            KReversiView::Colored :
-//                                            KReversiView::BlackWhite;
-//    m_view->setChipsPrefix(chipsPrefix);
-//    Preferences::setUseColoredChips(toggled);
-//    Preferences::self()->writeConfig();
+    KReversiView::ChipsPrefix chipsPrefix = m_coloredChipsAct->isChecked() ?
+                                            KReversiView::Colored :
+                                            KReversiView::BlackWhite;
+    m_view->setChipsPrefix(chipsPrefix);
+    Preferences::setUseColoredChips(toggled);
+    Preferences::self()->writeConfig();
 }
 
 void KReversiMainWindow::slotShowMovesHistory(bool toggled)
