@@ -273,6 +273,13 @@ MoveList KReversiGame::getHistory() const
     return l;
 }
 
+bool KReversiGame::isHintAllowed() const
+{
+    if (m_curPlayer == NoColor)
+        return false;
+    return m_player[m_curPlayer]->isHintAllowed();
+}
+
 void KReversiGame::blackPlayerMove(KReversiMove move)
 {
     qDebug() << "Game: black move";
@@ -314,6 +321,7 @@ void KReversiGame::whiteReady()
 KReversiMove KReversiGame::getHint() const
 {
     /// FIXME: dimsuz: don't use true, use m_competitive
+    m_player[m_curPlayer]->hintUsed();
     return m_engine->computeMove(*this, true);
 }
 

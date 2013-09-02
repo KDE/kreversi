@@ -106,7 +106,6 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
     // create main game view
     m_view = new KReversiView(m_game, this);
-//    m_view->setChipsPrefix(Preferences::useColoredChips() ? Colored : BlackWhite);
     setCentralWidget(m_view);
 
     // initialise actions
@@ -135,7 +134,8 @@ void KReversiMainWindow::setupActionsInit()
 //    m_undoAct->setEnabled(false);   // nothing to undo at the start of the game
 
 //    // Hint
-//    m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
+    m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
+    m_hintAct->setEnabled(false);
 //    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
     // Last move
@@ -235,9 +235,6 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 
 void KReversiMainWindow::slotNewGame()
 {
-//    if (m_hintAct)
-//        m_hintAct->setEnabled(true);
-
 //    if (m_demoAct) {
 //        m_demoAct->setChecked(false);
 //        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-start")));
@@ -251,7 +248,7 @@ void KReversiMainWindow::slotNewGame()
 
 void KReversiMainWindow::slotGameOver()
 {
-//    m_hintAct->setEnabled(false);
+    m_hintAct->setEnabled(false);
 
 //    //TODO: only if it is not computer-computer match
 //    m_undoAct->setEnabled(m_game->canUndo());
@@ -332,11 +329,12 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
-    qDebug() << "sdfsdf";
 //    m_undoAct->setEnabled(m_game->canUndo());
 
     updateHistory();
     updateStatusBar();
+
+    m_hintAct->setEnabled(m_game->isHintAllowed());
 }
 
 void KReversiMainWindow::updateHistory() {
@@ -472,4 +470,6 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
     updateStatusBar();
     updateHistory();
+
+    m_hintAct->setEnabled(m_game->isHintAllowed());
 }

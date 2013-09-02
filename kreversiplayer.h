@@ -39,7 +39,7 @@ class KReversiPlayer: public QObject
 {
     Q_OBJECT
 public:
-    explicit KReversiPlayer(ChipColor color, QString name);
+    explicit KReversiPlayer(ChipColor color, QString name, bool hintAllowed);
 
     /**
      *  Used to get player color
@@ -52,6 +52,21 @@ public:
      *  @return player's name
      */
     QString getName() const;
+
+    /**
+     *  @return is hint allowed for player or not
+     */
+    bool isHintAllowed() const;
+
+    /**
+     *  KReversiGame triggers it to to increase used hints count
+     */
+    void hintUsed();
+
+    /**
+     * @return how many times player has used hints
+     */
+    int getHintsCount();
 
 public slots:
     /**
@@ -107,6 +122,16 @@ protected:
      *  Player's name to be shown at UI
      */
     QString m_name;
+
+    /**
+     *  Are hints enabled for player
+     */
+    bool m_hintAllowed;
+
+    /**
+     *  How many times player has used hint
+     */
+    int m_hintCount;
 };
 
 #endif // KREVERSIPLAYER_H

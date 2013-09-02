@@ -117,6 +117,11 @@ public:
      *  @return History of moves as MoveList
      */
     MoveList getHistory() const;
+
+    /**
+     *  @return Is hint allowed for current player
+     */
+    bool isHintAllowed() const;
 private slots:
     /**
      *  Starts next player turn.

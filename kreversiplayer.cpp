@@ -23,8 +23,8 @@
 
 #include "kreversiplayer.h"
 
-KReversiPlayer::KReversiPlayer(ChipColor color, QString name):
-    m_state(UNKNOWN), m_color(color), m_name(name)
+KReversiPlayer::KReversiPlayer(ChipColor color, QString name, bool hintAllowed):
+    m_state(UNKNOWN), m_color(color), m_name(name), m_hintAllowed(hintAllowed), m_hintCount(0)
 {
 }
 
@@ -36,4 +36,19 @@ ChipColor KReversiPlayer::getColor() const
 QString KReversiPlayer::getName() const
 {
     return m_name;
+}
+
+bool KReversiPlayer::isHintAllowed() const
+{
+    return m_hintAllowed;
+}
+
+void KReversiPlayer::hintUsed()
+{
+    m_hintCount++;
+}
+
+int KReversiPlayer::getHintsCount()
+{
+    return m_hintCount;
 }
