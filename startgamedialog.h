@@ -4,6 +4,7 @@
 #include <KDialog>
 #include "gamestartinformation.h"
 #include "commondefs.h"
+#include <KUser>
 
 namespace Ui {
 class StartGameDialog;
@@ -22,11 +23,15 @@ public:
 signals:
     void startGame();
 
+private slots:
+    void slotUpdateBlack(int clickedId);
+    void slotUpdateWhite(int clickedId);
+
 private:
+    void slotButtonClicked(int button);
     Ui::StartGameDialog *ui;
     QWidget *m_contents;
-    void slotButtonClicked(int button);
-
+    KUser m_user;
 };
 
 #endif // STARTGAMEDIALOG_H

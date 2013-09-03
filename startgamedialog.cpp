@@ -27,6 +27,12 @@ StartGameDialog::StartGameDialog(QWidget *parent) :
 
     ui->blackTypeGroup->setId(ui->blackHuman, GameStartInformation::Human);
     ui->blackTypeGroup->setId(ui->blackAI, GameStartInformation::AI);
+
+    connect(ui->blackTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateBlack(int)));
+    connect(ui->whiteTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateWhite(int)));
+
+    slotUpdateBlack(GameStartInformation::Human);
+    slotUpdateWhite(GameStartInformation::AI);
 }
 
 StartGameDialog::~StartGameDialog()
@@ -52,4 +58,25 @@ GameStartInformation StartGameDialog::createGameStartInformation() const
     info.skill[White] = ui->whiteSkill->currentIndex();
 
     return info;
+}
+
+
+void StartGameDialog::slotUpdateBlack(int clickedId)
+{
+    ui->blackSkill->setEnabled(clickedId == GameStartInformation::AI);
+    ui->blackName->setEnabled(clickedId == GameStartInformation::Human);
+    if (clickedId == GameStartInformation::Human)
+        ui->blackName->setText(m_user.loginName());
+    else
+        ui->blackName->setText("Computer");
+}
+
+void StartGameDialog::slotUpdateWhite(int clickedId)
+{
+    ui->whiteSkill->setEnabled(clickedId == GameStartInformation::AI);
+    ui->whiteName->setEnabled(clickedId == GameStartInformation::Human);
+    if (clickedId == GameStartInformation::Human)
+        ui->whiteName->setText(m_user.loginName());
+    else
+        ui->whiteName->setText("Computer");
 }
