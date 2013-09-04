@@ -78,9 +78,12 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     : KXmlGuiWindow(parent), m_view(0), m_game(0),
       m_historyDock(0), m_historyView(0),
       m_firstShow(true), m_startInDemoMode(startDemo), /*m_lowestSkill(6),*/
-      m_undoAct(0), m_hintAct(0), m_demoAct(0)
+      m_undoAct(0), m_hintAct(0), /*m_demoAct(0),*/ m_startDialog(0)
 {
     memset(m_player, 0, sizeof(m_player));
+
+    m_provider = new KgThemeProvider();
+    m_provider->discoverThemes("appdata", QLatin1String("pics"));
 
     statusBar()->insertItem(i18n("Press start game!"), COMMON_STATUSBAR_ID);
     statusBar()->insertItem("", BLACK_STATUSBAR_ID);
@@ -105,7 +108,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
 
     // create main game view
-    m_view = new KReversiView(m_game, this);
+    m_view = new KReversiView(m_game, this, m_provider);
     setCentralWidget(m_view);
 
     // initialise actions
@@ -118,8 +121,14 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
     m_historyDock->hide();
 
-    // initialise dialog handlers
-    connect(&m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
+    // initialise dialog handler
+    m_startDialog = new StartGameDialog(this, m_provider);
+    connect(m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
+}
+
+KReversiMainWindow::~KReversiMainWindow()
+{
+    delete m_provider;
 }
 
 void KReversiMainWindow::setupActionsInit()
@@ -222,7 +231,8 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
 //        if (m_game && m_game->isGameOver())
 //            slotNewGame();
 
-//        toggled = true;
+//        toggled = true
+//    m_undoAct->setEnabled(m_game->canUndo());;
 //        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-pause")));
 //        m_demoAct->setChecked(true);
 //    }
@@ -243,16 +253,13 @@ void KReversiMainWindow::slotNewGame()
 //    if (m_undoAct)
 //        m_undoAct->setEnabled(false);
 
-    m_startDialog.exec();
+    m_startDialog->exec();
 }
 
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
     m_undoAct->setEnabled(m_game->canUndo());
-
-//    //TODO: only if it is not computer-computer match
-//    m_undoAct->setEnabled(m_game->canUndo());
 
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);
@@ -330,8 +337,6 @@ void KReversiMainWindow::slotGameOver()
 
 void KReversiMainWindow::slotMoveFinished()
 {
-//    m_undoAct->setEnabled(m_game->canUndo());
-
     updateHistory();
     updateStatusBar();
 
@@ -372,7 +377,7 @@ void KReversiMainWindow::slotHighscores()
 
 void KReversiMainWindow::slotDialogReady()
 {
-    GameStartInformation info = m_startDialog.createGameStartInformation();
+    GameStartInformation info = m_startDialog->createGameStartInformation();
     receivedGameStartInformation(info);
 }
 

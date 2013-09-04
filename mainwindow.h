@@ -70,6 +70,7 @@ class KReversiMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit KReversiMainWindow(QWidget* parent = 0,  bool startDemo = false);
+    ~KReversiMainWindow();
 public slots:
     void slotNewGame();
     void levelChanged();
@@ -94,7 +95,7 @@ private:
     void receivedGameStartInformation(GameStartInformation info);
     KReversiPlayer *m_player[2];
 
-    StartGameDialog m_startDialog;
+    StartGameDialog *m_startDialog;
     GameStartInformation m_nowPlayingInfo;
 
 
@@ -106,9 +107,11 @@ private:
     bool m_firstShow;
     bool m_startInDemoMode;
 
+    KgThemeProvider *m_provider;
+
     QAction *m_undoAct;
     QAction *m_hintAct;
-    QAction *m_demoAct;
+//    QAction *m_demoAct;
     KToggleAction *m_showLast;
     KToggleAction *m_showLegal;
     KToggleAction *m_showMovesAct;

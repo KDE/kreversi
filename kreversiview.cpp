@@ -19,16 +19,14 @@
 
 #include "kreversiview.h"
 
-KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
+KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
     KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
     m_showLastMove(false), m_showLegalMoves(false),
-    m_showLabels(false)
+    m_showLabels(false), m_provider(provider)
 {
-    qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
-
-    m_provider = new KgThemeProvider();
-    m_provider->discoverThemes("appdata", QLatin1String("pics"));
     m_provider->setDeclarativeEngine("themeProvider", engine());
+
+    qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
     QString path =
         KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));

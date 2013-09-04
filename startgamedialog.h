@@ -5,6 +5,7 @@
 #include "gamestartinformation.h"
 #include "commondefs.h"
 #include <KUser>
+#include <KgThemeProvider>
 
 namespace Ui {
 class StartGameDialog;
@@ -15,7 +16,7 @@ class StartGameDialog : public KDialog
     Q_OBJECT
 
 public:
-    explicit StartGameDialog(QWidget *parent = 0);
+    explicit StartGameDialog(QWidget *parent, KgThemeProvider *provider);
     ~StartGameDialog();
 
     GameStartInformation createGameStartInformation() const;
@@ -32,6 +33,7 @@ private:
     Ui::StartGameDialog *ui;
     QWidget *m_contents;
     KUser m_user;
+    KgThemeProvider *m_provider;
 };
 
 #endif // STARTGAMEDIALOG_H

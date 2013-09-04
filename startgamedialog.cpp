@@ -3,10 +3,12 @@
 
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <KgDifficulty>
+#include <kdebug.h>
 
-StartGameDialog::StartGameDialog(QWidget *parent) :
+StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     KDialog(parent),
-    ui(new Ui::StartGameDialog)
+    ui(new Ui::StartGameDialog), m_provider(provider)
 {
     setModal(true);
 
@@ -27,6 +29,19 @@ StartGameDialog::StartGameDialog(QWidget *parent) :
 
     ui->blackTypeGroup->setId(ui->blackHuman, GameStartInformation::Human);
     ui->blackTypeGroup->setId(ui->blackAI, GameStartInformation::AI);
+
+    QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
+    const KIcon icon("games-difficult");
+
+    for (int i = 0; i < diffList.size(); i++) {
+        ui->blackSkill->addItem(icon, diffList.at(i)->title());
+        ui->whiteSkill->addItem(icon, diffList.at(i)->title());
+        if (diffList.at(i)->isDefault())
+        {
+            ui->whiteSkill->setCurrentIndex(i);
+            ui->blackSkill->setCurrentIndex(i);
+        }
+    }
 
     connect(ui->blackTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateBlack(int)));
     connect(ui->whiteTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateWhite(int)));

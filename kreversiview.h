@@ -44,7 +44,7 @@ class KReversiView : public KgDeclarativeView
     Q_OBJECT
 public:
     enum ChipsPrefix { Colored, BlackWhite };
-    explicit KReversiView(KReversiGame* game, QWidget *parent = 0);
+    explicit KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider);
 
     /**
      *  Sets the game object which this view will visualize/use
