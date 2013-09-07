@@ -5,6 +5,9 @@
 #include <QCloseEvent>
 #include <KgDifficulty>
 #include <kdebug.h>
+#include <QSvgRenderer>
+#include <QPainter>
+#include <KColorScheme>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     KDialog(parent),
@@ -23,6 +26,38 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     m_contents = new QWidget(this);
     setMainWidget(m_contents);
     ui->setupUi(m_contents);
+
+    QSvgRenderer svgRenderer;
+    svgRenderer.load(m_provider->currentTheme()->graphicsPath());
+
+    QPixmap blackChip(QSize(46, 46));
+    blackChip.fill(Qt::transparent);
+    QPixmap whiteChip(QSize(46, 46));
+    whiteChip.fill(Qt::transparent);
+
+    QPainter *painter = new QPainter(&blackChip);
+    svgRenderer.render(painter, "chip_bw_1");
+    delete painter;
+
+    painter = new QPainter(&whiteChip);
+    svgRenderer.render(painter, "chip_bw_12");
+    delete painter;
+
+    ui->blackLabel->setPixmap(blackChip);
+    ui->whiteLabel->setPixmap(whiteChip);
+
+    QGraphicsDropShadowEffect *blackShadow = new QGraphicsDropShadowEffect(this);
+    blackShadow->setBlurRadius(10.0);
+    blackShadow->setColor(Qt::black);
+    blackShadow->setOffset(0.0);
+
+    QGraphicsDropShadowEffect *whiteShadow = new QGraphicsDropShadowEffect(this);
+    whiteShadow->setBlurRadius(10.0);
+    whiteShadow->setColor(Qt::black);
+    whiteShadow->setOffset(0.0);
+
+    ui->blackLabel->setGraphicsEffect(blackShadow);
+    ui->whiteLabel->setGraphicsEffect(whiteShadow);
 
     ui->whiteTypeGroup->setId(ui->whiteHuman, GameStartInformation::Human);
     ui->whiteTypeGroup->setId(ui->whiteAI, GameStartInformation::AI);

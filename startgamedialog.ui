@@ -16,7 +16,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="blackLabel">
          <property name="text">
           <string>Black</string>
          </property>
@@ -142,7 +142,7 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="whiteLabel">
          <property name="text">
           <string>White</string>
          </property>
