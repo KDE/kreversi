@@ -47,31 +47,17 @@ static QString moveToString(const KReversiMove& move)
 }
 
 static int difficultyLevelToInt() {
-    switch (Kg::difficultyLevel()) {
-    case KgDifficultyLevel::VeryEasy:
-        return 0;
-        break;
-    case KgDifficultyLevel::Easy:
-    default:
-        return 1;
-        break;
-    case KgDifficultyLevel::Medium:
-        return 2;
-        break;
-    case KgDifficultyLevel::Hard:
-        return 3;
-        break;
-    case KgDifficultyLevel::VeryHard:
-        return 4;
-        break;
-    case KgDifficultyLevel::ExtremelyHard:
-        return 5;
-        break;
-    case KgDifficultyLevel::Impossible:
-        return 6;
-        break;
-    }
+
+    for (int i = 0; i < Kg::difficulty()->levels().size(); i++)
+        if (Kg::difficultyLevel()
+                == Kg::difficulty()->levels()[i]->standardLevel())
+            return i;
+
     return -1;
+}
+
+static const KgDifficultyLevel *intToDifficultyLevel(int skill) {
+    return Kg::difficulty()->levels()[skill];
 }
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
@@ -94,8 +80,10 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
         KgDifficultyLevel::VeryEasy, KgDifficultyLevel::Impossible,
         KgDifficultyLevel::Easy //default
     );
-    //KgDifficultyGUI::init(this);
+
+    KgDifficultyGUI::init(this);
     connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(levelChanged()));
+    Kg::difficulty()->setEditable(false);
 
     // initialize history dock
     m_historyView = new QListWidget(this);
@@ -192,7 +180,15 @@ void KReversiMainWindow::loadSettings()
 
 void KReversiMainWindow::levelChanged()
 {
-//    m_computer[White]->setSkill(skill);
+    // we are assuming that level can be changed here only when it is
+    // USER-AI or AI-USER match
+
+    int skill = difficultyLevelToInt();
+
+    if (m_nowPlayingInfo.type[White] == GameStartInformation::AI)
+        ((KReversiComputerPlayer *)(m_player[White]))->setSkill(skill);
+    else if (m_nowPlayingInfo.type[Black] == GameStartInformation::Human)
+        ((KReversiComputerPlayer *)(m_player[Black]))->setSkill(skill);
 }
 
 void KReversiMainWindow::slotAnimSpeedChanged(int speed)
@@ -416,7 +412,7 @@ void KReversiMainWindow::updateStatusBar()
         statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[White],
                                      m_game->playerScore(White)), WHITE_STATUSBAR_ID);
 
-        if (!m_game->isGameOver()) {
+        if (!m_game->isGameOver() && m_game->currentPlayer() != NoColor) {
             statusBar()->changeItem(i18n("%1's turn",
                                          m_nowPlayingInfo.name[m_game->currentPlayer()]), COMMON_STATUSBAR_ID);
         }
@@ -475,6 +471,19 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
     updateStatusBar();
     updateHistory();
+
+    if (info.type[White] == GameStartInformation::AI
+         && info.type[Black] == GameStartInformation::Human) {
+        Kg::difficulty()->setEditable(true);
+        Kg::difficulty()->select(intToDifficultyLevel(info.skill[White]));
+    }
+    else if (info.type[White] == GameStartInformation::Human
+         && info.type[Black] == GameStartInformation::AI) {
+        Kg::difficulty()->setEditable(true);
+        Kg::difficulty()->select(intToDifficultyLevel(info.skill[Black]));
+    }
+    else
+        Kg::difficulty()->setEditable(false);
 
     m_hintAct->setEnabled(m_game->isHintAllowed());
     m_undoAct->setEnabled(m_game->canUndo());
