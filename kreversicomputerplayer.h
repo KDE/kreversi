@@ -48,6 +48,11 @@ public:
      */
     void setSkill(int skill);
 
+    /**
+     *  @return lowest skill that has been set
+     */
+    int lowestSkill();
+
 signals:
 
 public slots:

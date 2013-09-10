@@ -67,4 +67,9 @@ void KReversiComputerPlayer::setSkill(int skill)
     m_lowestSkill = qMin(m_lowestSkill, skill);
 }
 
+int KReversiComputerPlayer::lowestSkill()
+{
+    return m_lowestSkill;
+}
+
 

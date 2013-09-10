@@ -18,10 +18,10 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     setFixedSize(width(), height());
 
     setButtons(Ok | Close);
-    setButtonText(Ok, "Start game");
-    setButtonToolTip(Ok, "Let's start playing!");
-    setButtonText(Close, "Quit");
-    setButtonToolTip(Close, "Quit KReversi");
+    setButtonText(Ok, i18n("Start game"));
+    setButtonToolTip(Ok, i18n("Let's start playing!"));
+    setButtonText(Close, i18n("Quit"));
+    setButtonToolTip(Close, i18n("Quit KReversi"));
 
     m_contents = new QWidget(this);
     setMainWidget(m_contents);
@@ -118,7 +118,7 @@ void StartGameDialog::slotUpdateBlack(int clickedId)
     if (clickedId == GameStartInformation::Human)
         ui->blackName->setText(m_user.loginName());
     else
-        ui->blackName->setText("Computer");
+        ui->blackName->setText(i18n("Computer"));
 }
 
 void StartGameDialog::slotUpdateWhite(int clickedId)
@@ -128,5 +128,5 @@ void StartGameDialog::slotUpdateWhite(int clickedId)
     if (clickedId == GameStartInformation::Human)
         ui->whiteName->setText(m_user.loginName());
     else
-        ui->whiteName->setText("Computer");
+        ui->whiteName->setText(i18n("Computer"));
 }
