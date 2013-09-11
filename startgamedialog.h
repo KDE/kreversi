@@ -8,8 +8,9 @@
 #include <KUser>
 #include <KgThemeProvider>
 
-namespace Ui {
-    class StartGameDialog;
+namespace Ui
+{
+class StartGameDialog;
 }
 
 class StartGameDialog : public KDialog

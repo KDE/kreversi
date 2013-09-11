@@ -60,12 +60,13 @@ struct KReversiMove: public KReversiPos {
     }
 };
 
-namespace Utils {
-    ChipColor opponentColorFor(ChipColor color);
-    QString colorToString(const ChipColor &color);
-    QString moveToString(const KReversiMove& move);
-    int difficultyLevelToInt();
-    const KgDifficultyLevel *intToDifficultyLevel(int skill);
+namespace Utils
+{
+ChipColor opponentColorFor(ChipColor color);
+QString colorToString(const ChipColor &color);
+QString moveToString(const KReversiMove& move);
+int difficultyLevelToInt();
+const KgDifficultyLevel *intToDifficultyLevel(int skill);
 }
 
 typedef QList<KReversiMove> MoveList;

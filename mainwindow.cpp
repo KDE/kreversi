@@ -156,7 +156,7 @@ void KReversiMainWindow::loadSettings()
     // Chip's color
     m_coloredChipsAct->setChecked(Preferences::useColoredChips());
     m_view->setChipsPrefix(Preferences::useColoredChips() ?
-                KReversiView::Colored : KReversiView::BlackWhite);
+                           KReversiView::Colored : KReversiView::BlackWhite);
     m_startDialog->setColoredChips(Preferences::useColoredChips());
 }
 
@@ -260,29 +260,29 @@ void KReversiMainWindow::slotGameOver()
             score.setType(KExtHighscore::Lost);
         }
     } else if (m_nowPlayingInfo.type[White] == GameStartInformation::Human
-                   && m_nowPlayingInfo.type[Black] == GameStartInformation::AI) { // we are playing white
+               && m_nowPlayingInfo.type[Black] == GameStartInformation::AI) { // we are playing white
         storeScore = true;
         KExtHighscore::setGameType(((KReversiComputerPlayer *)m_player[Black])->lowestSkill());
         score.setScore(whiteScore);
         if (blackScore == whiteScore) {
-           res = i18n("Game is drawn!");
-           score.setType(KExtHighscore::Draw);
+            res = i18n("Game is drawn!");
+            score.setType(KExtHighscore::Draw);
         } else if (blackScore < whiteScore) {
-           res = i18n("You win!");
-           score.setType(KExtHighscore::Won);
+            res = i18n("You win!");
+            score.setType(KExtHighscore::Won);
         } else {
-           res = i18n("You have lost!");
-           score.setType(KExtHighscore::Lost);
+            res = i18n("You have lost!");
+            score.setType(KExtHighscore::Lost);
         }
 
     } else if (m_nowPlayingInfo.type[Black] == GameStartInformation::Human
                && m_nowPlayingInfo.type[White] == GameStartInformation::Human) { // friends match
         if (blackScore == whiteScore) {
-           res = i18n("Game is drawn!");
+            res = i18n("Game is drawn!");
         } else if (blackScore > whiteScore) {
-           res = i18n("%1 has won!", m_nowPlayingInfo.name[Black]);
+            res = i18n("%1 has won!", m_nowPlayingInfo.name[Black]);
         } else {
-           res = i18n("%1 has won!", m_nowPlayingInfo.name[White]);
+            res = i18n("%1 has won!", m_nowPlayingInfo.name[White]);
         }
     } else { // using Black White names in other cases
         if (blackScore == whiteScore) {
@@ -295,7 +295,7 @@ void KReversiMainWindow::slotGameOver()
     }
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
-                   && m_nowPlayingInfo.type[White] == GameStartInformation::AI) {
+            && m_nowPlayingInfo.type[White] == GameStartInformation::AI) {
         res += i18n("\n%1: %2", Utils::colorToString(Black), blackScore);
         res += i18n("\n%1: %2", Utils::colorToString(White), whiteScore);
     } else {
@@ -318,7 +318,8 @@ void KReversiMainWindow::slotMoveFinished()
     m_undoAct->setEnabled(m_game->canUndo());
 }
 
-void KReversiMainWindow::updateHistory() {
+void KReversiMainWindow::updateHistory()
+{
     MoveList history = m_game->getHistory();
     m_historyView->clear();
 
@@ -360,8 +361,7 @@ void KReversiMainWindow::showEvent(QShowEvent*)
     if (m_firstShow && m_startInDemoMode) {
         kDebug() << "starting demo...";
         startDemo();
-    }
-    else if (m_firstShow) {
+    } else if (m_firstShow) {
         QTimer::singleShot(0, this, SLOT(slotNewGame()));
     }
     m_firstShow = false;
@@ -384,7 +384,7 @@ void KReversiMainWindow::updateStatusBar()
 
         if (!m_game->isGameOver()) {
             statusBar()->changeItem(i18n("%1 turn",
-                                    Utils::colorToString(m_game->currentPlayer())),
+                                         Utils::colorToString(m_game->currentPlayer())),
                                     COMMON_STATUSBAR_ID);
         }
     } else { // using player's names
@@ -402,7 +402,8 @@ void KReversiMainWindow::updateStatusBar()
 
 
 // TODO: test it!!!
-void KReversiMainWindow::startDemo() {
+void KReversiMainWindow::startDemo()
+{
     GameStartInformation info;
     info.name[0] = info.name[1] = i18n("Computer");
     info.type[0] = info.type[1] = GameStartInformation::AI;
@@ -411,10 +412,10 @@ void KReversiMainWindow::startDemo() {
     receivedGameStartInformation(info);
 }
 
-void KReversiMainWindow::clearPlayers() {
+void KReversiMainWindow::clearPlayers()
+{
     for (int i = 0; i < 2; i++) // iterating through white to black
-        if (m_player[i])
-        {
+        if (m_player[i]) {
             m_player[i]->disconnect();
             delete m_player[i];
             m_player[i] = 0;
@@ -427,14 +428,11 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
     m_nowPlayingInfo = info;
 
     for (int i = 0; i < 2; i++) // iterating through black and white
-        if (info.type[i] == GameStartInformation::AI)
-        {
+        if (info.type[i] == GameStartInformation::AI) {
             m_player[i] = new KReversiComputerPlayer(ChipColor(i), info.name[i]);
             ((KReversiComputerPlayer *)(m_player[i]))->setSkill(info.skill[i]);
             levelChanged();
-        }
-        else
-        {
+        } else {
             m_player[i] = new KReversiHumanPlayer(ChipColor(i), info.name[i]);
         }
 
@@ -454,16 +452,14 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
     updateHistory();
 
     if (info.type[White] == GameStartInformation::AI
-         && info.type[Black] == GameStartInformation::Human) {
+            && info.type[Black] == GameStartInformation::Human) {
         Kg::difficulty()->setEditable(true);
         Kg::difficulty()->select(Utils::intToDifficultyLevel(info.skill[White]));
-    }
-    else if (info.type[White] == GameStartInformation::Human
-         && info.type[Black] == GameStartInformation::AI) {
+    } else if (info.type[White] == GameStartInformation::Human
+               && info.type[Black] == GameStartInformation::AI) {
         Kg::difficulty()->setEditable(true);
         Kg::difficulty()->select(Utils::intToDifficultyLevel(info.skill[Black]));
-    }
-    else
+    } else
         Kg::difficulty()->setEditable(false);
 
     m_hintAct->setEnabled(m_game->isHintAllowed());

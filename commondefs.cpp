@@ -34,7 +34,8 @@ ChipColor Utils::opponentColorFor(ChipColor color)
 }
 
 
-QString Utils::colorToString(const ChipColor &color) {
+QString Utils::colorToString(const ChipColor &color)
+{
     if (Preferences::useColoredChips())
         return (color == Black ? i18n("Blue") : i18n("Red"));
     return (color == Black ? i18n("Black") : i18n("White"));
@@ -54,7 +55,8 @@ QString Utils::moveToString(const KReversiMove& move)
     return moveString;
 }
 
-int Utils::difficultyLevelToInt() {
+int Utils::difficultyLevelToInt()
+{
 
     for (int i = 0; i < Kg::difficulty()->levels().size(); i++)
         if (Kg::difficultyLevel()
@@ -64,6 +66,7 @@ int Utils::difficultyLevelToInt() {
     return -1;
 }
 
-const KgDifficultyLevel *Utils::intToDifficultyLevel(int skill) {
+const KgDifficultyLevel *Utils::intToDifficultyLevel(int skill)
+{
     return Kg::difficulty()->levels()[skill];
 }

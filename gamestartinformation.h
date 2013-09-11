@@ -3,7 +3,8 @@
 
 #include <QString>
 
-class GameStartInformation {
+class GameStartInformation
+{
 
 public:
     enum PlayerType {

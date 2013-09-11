@@ -42,8 +42,7 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     for (int i = 0; i < diffList.size(); i++) {
         ui->blackSkill->addItem(icon, diffList.at(i)->title());
         ui->whiteSkill->addItem(icon, diffList.at(i)->title());
-        if (diffList.at(i)->isDefault())
-        {
+        if (diffList.at(i)->isDefault()) {
             ui->whiteSkill->setCurrentIndex(i);
             ui->blackSkill->setCurrentIndex(i);
         }
