@@ -398,7 +398,7 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
     m_bc_score->set(Black, CalcBcScore(Black));
 
     quint64 colorbits    = ComputeOccupiedBits(color);
-    quint64 opponentbits = ComputeOccupiedBits(opponentColorFor(color));
+    quint64 opponentbits = ComputeOccupiedBits(Utils::opponentColorFor(color));
 
     int maxval = -LARGEINT;
     int max_x = 0;
@@ -524,7 +524,7 @@ int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 {
     int               number_of_turned = 0;
     SquareStackEntry  mse;
-    ChipColor             opponent = opponentColorFor(color);
+    ChipColor             opponent = Utils::opponentColorFor(color);
 
     m_nodes_searched++;
 
@@ -687,7 +687,7 @@ int Engine::EvaluatePosition(ChipColor color)
 {
     int retval;
 
-    ChipColor opponent = opponentColorFor(color);
+    ChipColor opponent = Utils::opponentColorFor(color);
 
     int    score_color    = m_score->score(color);
     int    score_opponent = m_score->score(opponent);

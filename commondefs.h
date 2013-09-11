@@ -24,6 +24,12 @@
 #ifndef COMMONDEFS_H
 #define COMMONDEFS_H
 
+#include <QString>
+#include <KgDifficulty>
+#include <KLocale>
+
+#include "preferences.h"
+
 // noColor = empty
 enum ChipColor {White = 0, Black = 1, NoColor = 2};
 
@@ -55,14 +61,13 @@ struct KReversiMove: public KReversiPos {
     }
 };
 
-static ChipColor opponentColorFor(ChipColor color)
-{
-    if (color == NoColor)
-        return NoColor;
-    else
-        return (color == White ? Black : White);
+namespace Utils {
+    ChipColor opponentColorFor(ChipColor color);
+    QString colorToString(const ChipColor &color);
+    QString moveToString(const KReversiMove& move);
+    int difficultyLevelToInt();
+    const KgDifficultyLevel *intToDifficultyLevel(int skill);
 }
-
 
 typedef QList<KReversiMove> MoveList;
 

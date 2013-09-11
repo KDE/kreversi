@@ -28,39 +28,7 @@ static const int BLACK_STATUSBAR_ID = 1;
 static const int WHITE_STATUSBAR_ID = 2;
 static const int COMMON_STATUSBAR_ID = 0;
 
-static QString colorToString(const ChipColor &color) {
-    if (Preferences::useColoredChips())
-        return (color == Black ? i18n("Blue") : i18n("Red"));
-    return (color == Black ? i18n("Black") : i18n("White"));
-}
 
-static QString moveToString(const KReversiMove& move)
-{
-    QString moveString = colorToString(move.color);
-
-    const char labelsHor[] = "ABCDEFGH";
-    const char labelsVer[] = "12345678";
-
-    moveString += QLatin1Char(' ');
-    moveString += QLatin1Char(labelsHor[move.col]);
-    moveString += QLatin1Char(labelsVer[move.row]);
-
-    return moveString;
-}
-
-static int difficultyLevelToInt() {
-
-    for (int i = 0; i < Kg::difficulty()->levels().size(); i++)
-        if (Kg::difficultyLevel()
-                == Kg::difficulty()->levels()[i]->standardLevel())
-            return i;
-
-    return -1;
-}
-
-static const KgDifficultyLevel *intToDifficultyLevel(int skill) {
-    return Kg::difficulty()->levels()[skill];
-}
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     : KXmlGuiWindow(parent), m_view(0), m_game(0),
@@ -188,7 +156,7 @@ void KReversiMainWindow::levelChanged()
     // we are assuming that level can be changed here only when it is
     // USER-AI or AI-USER match
 
-    int skill = difficultyLevelToInt();
+    int skill = Utils::difficultyLevelToInt();
 
     if (m_nowPlayingInfo.type[White] == GameStartInformation::AI)
         ((KReversiComputerPlayer *)(m_player[White]))->setSkill(skill);
@@ -311,16 +279,16 @@ void KReversiMainWindow::slotGameOver()
         if (blackScore == whiteScore) {
             res = i18n("Game is drawn!");
         } else if (blackScore > whiteScore) {
-            res = i18n("%1 has won!", colorToString(Black));
+            res = i18n("%1 has won!", Utils::colorToString(Black));
         } else {
-            res = i18n("%1 has won!", colorToString(White));
+            res = i18n("%1 has won!", Utils::colorToString(White));
         }
     }
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
                    && m_nowPlayingInfo.type[White] == GameStartInformation::AI) {
-        res += i18n("\n%1: %2", colorToString(Black), blackScore);
-        res += i18n("\n%1: %2", colorToString(White), whiteScore);
+        res += i18n("\n%1: %2", Utils::colorToString(Black), blackScore);
+        res += i18n("\n%1: %2", Utils::colorToString(White), whiteScore);
     } else {
         res += i18n("\n%1: %2", m_nowPlayingInfo.name[Black], blackScore);
         res += i18n("\n%1: %2", m_nowPlayingInfo.name[White], whiteScore);
@@ -347,7 +315,7 @@ void KReversiMainWindow::updateHistory() {
 
     for (int i = 0; i < history.size(); i++) {
         QString numStr = QString::number(i + 1) + QLatin1String(". ");
-        m_historyView->addItem(numStr + moveToString(history.at(i)));
+        m_historyView->addItem(numStr + Utils::moveToString(history.at(i)));
     }
 
     QListWidgetItem *last = m_historyView->item(m_historyView->count() - 1);
@@ -399,15 +367,15 @@ void KReversiMainWindow::updateStatusBar()
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
             && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // using Black White names
         statusBar()->changeItem(i18n("%1: %2",
-                                     colorToString(Black),
+                                     Utils::colorToString(Black),
                                      m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
         statusBar()->changeItem(i18n("%1: %2",
-                                     colorToString(White),
+                                     Utils::colorToString(White),
                                      m_game->playerScore(White)), WHITE_STATUSBAR_ID);
 
         if (!m_game->isGameOver()) {
             statusBar()->changeItem(i18n("%1 turn",
-                                    colorToString(m_game->currentPlayer())),
+                                    Utils::colorToString(m_game->currentPlayer())),
                                     COMMON_STATUSBAR_ID);
         }
     } else { // using player's names
@@ -429,7 +397,7 @@ void KReversiMainWindow::startDemo() {
     GameStartInformation info;
     info.name[0] = info.name[1] = i18n("Computer");
     info.type[0] = info.type[1] = GameStartInformation::AI;
-    info.skill[0] = info.skill[1] = difficultyLevelToInt();
+    info.skill[0] = info.skill[1] = Utils::difficultyLevelToInt();
 
     receivedGameStartInformation(info);
 }
@@ -479,12 +447,12 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
     if (info.type[White] == GameStartInformation::AI
          && info.type[Black] == GameStartInformation::Human) {
         Kg::difficulty()->setEditable(true);
-        Kg::difficulty()->select(intToDifficultyLevel(info.skill[White]));
+        Kg::difficulty()->select(Utils::intToDifficultyLevel(info.skill[White]));
     }
     else if (info.type[White] == GameStartInformation::Human
          && info.type[Black] == GameStartInformation::AI) {
         Kg::difficulty()->setEditable(true);
-        Kg::difficulty()->select(intToDifficultyLevel(info.skill[Black]));
+        Kg::difficulty()->select(Utils::intToDifficultyLevel(info.skill[Black]));
     }
     else
         Kg::difficulty()->setEditable(false);

@@ -20,8 +20,9 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-
 #include "colorscheme.h"
+
+#include <KColorScheme>
 
 ColorScheme::ColorScheme(QDeclarativeItem *parent) :
     QDeclarativeItem(parent)

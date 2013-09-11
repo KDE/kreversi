@@ -98,7 +98,7 @@ void KReversiGame::makeMove(const KReversiMove &move)
 
 void KReversiGame::startNextTurn()
 {
-    m_curPlayer = opponentColorFor(m_lastPlayer);
+    m_curPlayer = Utils::opponentColorFor(m_lastPlayer);
 
     emit moveFinished(); // previous move has just finished
 
@@ -149,7 +149,7 @@ int KReversiGame::undo()
 
         // and change back the color of the rest chips
         foreach(const KReversiMove & pos, lastUndo) {
-            ChipColor opponentColor = opponentColorFor(m_cells[pos.row][pos.col]);
+            ChipColor opponentColor = Utils::opponentColorFor(m_cells[pos.row][pos.col]);
             setChipColor(KReversiMove(opponentColor, pos.row, pos.col));
         }
 
@@ -221,7 +221,7 @@ bool KReversiGame::hasChunk(int dirNum, const KReversiMove& move) const
     //
     // Well, I wrote this description from my head, now lets produce some code for that ;)
 
-    ChipColor opColor = opponentColorFor(move.color);
+    ChipColor opColor = Utils::opponentColorFor(move.color);
     int opponentChipsNum = 0;
     bool foundPlayerColor = false;
 

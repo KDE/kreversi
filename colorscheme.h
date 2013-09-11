@@ -25,7 +25,6 @@
 #define COLORSCHEME_H
 
 #include <QDeclarativeItem>
-#include <KColorScheme>
 #include <QColor>
 
 class ColorScheme : public QDeclarativeItem
