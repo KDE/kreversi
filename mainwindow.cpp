@@ -93,8 +93,6 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
 
     m_historyDock->hide();
-
-    QTimer::singleShot(0, this, SLOT(slotNewGame()));
 }
 
 KReversiMainWindow::~KReversiMainWindow()
@@ -364,7 +362,7 @@ void KReversiMainWindow::showEvent(QShowEvent*)
         startDemo();
     }
     else if (m_firstShow) {
-        // TODO: showing start game dialog
+        QTimer::singleShot(0, this, SLOT(slotNewGame()));
     }
     m_firstShow = false;
 }
