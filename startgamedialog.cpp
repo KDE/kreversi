@@ -16,6 +16,8 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
 
     setFixedSize(width(), height());
 
+    setCaption(i18n("New game"));
+
     setButtons(Ok | Close);
     setButtonText(Ok, i18n("Start game"));
     setButtonToolTip(Ok, i18n("Let's start playing!"));
