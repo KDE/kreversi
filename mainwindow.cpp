@@ -28,13 +28,15 @@ static const int BLACK_STATUSBAR_ID = 1;
 static const int WHITE_STATUSBAR_ID = 2;
 static const int COMMON_STATUSBAR_ID = 0;
 
+static QString colorToString(const ChipColor &color) {
+    if (Preferences::useColoredChips())
+        return (color == Black ? i18n("Blue") : i18n("Red"));
+    return (color == Black ? i18n("Black") : i18n("White"));
+}
+
 static QString moveToString(const KReversiMove& move)
 {
-    QString moveString;
-    if (Preferences::useColoredChips())
-        moveString = (move.color == Black ? i18n("Blue") : i18n("Red"));
-    else
-        moveString = (move.color == Black ? i18n("Black") : i18n("White"));
+    QString moveString = colorToString(move.color);
 
     const char labelsHor[] = "ABCDEFGH";
     const char labelsVer[] = "12345678";
@@ -307,16 +309,16 @@ void KReversiMainWindow::slotGameOver()
         if (blackScore == whiteScore) {
             res = i18n("Game is drawn!");
         } else if (blackScore > whiteScore) {
-            res = i18n("Black has won!");
+            res = i18n("%1 has won!", colorToString(Black));
         } else {
-            res = i18n("White has won!");
+            res = i18n("%1 has won!", colorToString(White));
         }
     }
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
                    && m_nowPlayingInfo.type[White] == GameStartInformation::AI) {
-        res += i18n("\nBlack: %1", blackScore);
-        res += i18n("\nWhite: %1", whiteScore);
+        res += i18n("\n%1: %2", colorToString(Black), blackScore);
+        res += i18n("\n%1: %2", colorToString(White), whiteScore);
     } else {
         res += i18n("\n%1: %2", m_nowPlayingInfo.name[Black], blackScore);
         res += i18n("\n%1: %2", m_nowPlayingInfo.name[White], whiteScore);
@@ -394,14 +396,17 @@ void KReversiMainWindow::updateStatusBar()
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
             && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // using Black White names
-        statusBar()->changeItem(i18n("Black: %1",
+        statusBar()->changeItem(i18n("%1: %2",
+                                     colorToString(Black),
                                      m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
-        statusBar()->changeItem(i18n("White: %2", m_nowPlayingInfo.name[White],
+        statusBar()->changeItem(i18n("%1: %2",
+                                     colorToString(White),
                                      m_game->playerScore(White)), WHITE_STATUSBAR_ID);
 
         if (!m_game->isGameOver()) {
-            statusBar()->changeItem(m_game->currentPlayer() == White
-                                ? i18n("White turn") : i18n("Black turn"), COMMON_STATUSBAR_ID);
+            statusBar()->changeItem(i18n("%1 turn",
+                                    colorToString(m_game->currentPlayer())),
+                                    COMMON_STATUSBAR_ID);
         }
     } else { // using player's names
         statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[Black],
@@ -420,7 +425,7 @@ void KReversiMainWindow::updateStatusBar()
 // TODO: test it!!!
 void KReversiMainWindow::startDemo() {
     GameStartInformation info;
-    info.name[0] = info.name[1] = "Computer";
+    info.name[0] = info.name[1] = i18n("Computer");
     info.type[0] = info.type[1] = GameStartInformation::AI;
     info.skill[0] = info.skill[1] = difficultyLevelToInt();
 
