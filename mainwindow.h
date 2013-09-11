@@ -42,12 +42,6 @@
 
 class KReversiGame;
 class KReversiView;
-class QAction;
-class KAction;
-class KSelectAction;
-class KToggleAction;
-class QListWidget;
-class QLabel;
 
 class KReversiMainWindow : public KXmlGuiWindow
 {

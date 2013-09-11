@@ -26,6 +26,7 @@
 #include <KLocale>
 #include <KConfigGroup>
 #include <KConfig>
+#include <KgDifficulty>
 
 namespace KExtHighscore
 {
@@ -45,8 +46,13 @@ ExtManager::ExtManager()
 
     // FIXME dimsuz: somehow rearrange the code to be sure that this and in mainwindow.cpp are
     // always in sync
-    m_typeLabels << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
-    m_typeLabels << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
+//    m_typeLabels << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
+//    m_typeLabels << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
+
+    QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
+
+    for (int i = 0; i < diffList.size(); i++)
+        m_typeLabels << diffList.at(i)->title();
 }
 
 
