@@ -21,13 +21,10 @@
 
 #include <QTimer>
 
-#include <KLocalizedString>
 #include <KgDeclarativeView>
-#include <KStandardDirs>
 #include <KgThemeProvider>
 
-#include "colorscheme.h"
-#include "kreversigame.h"
+#include <kreversigame.h>
 
 /**
  *  This class provides graphical representation of KReversiGame

@@ -1,14 +1,15 @@
 #ifndef STARTGAMEDIALOG_H
 #define STARTGAMEDIALOG_H
 
+#include <gamestartinformation.h>
+#include <commondefs.h>
+
 #include <KDialog>
-#include "gamestartinformation.h"
-#include "commondefs.h"
 #include <KUser>
 #include <KgThemeProvider>
 
 namespace Ui {
-class StartGameDialog;
+    class StartGameDialog;
 }
 
 class StartGameDialog : public KDialog

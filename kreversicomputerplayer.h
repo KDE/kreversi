@@ -24,8 +24,7 @@
 #ifndef KREVERSICOMPUTERPLAYER_H
 #define KREVERSICOMPUTERPLAYER_H
 
-#include "kreversigame.h"
-#include "kreversiplayer.h"
+#include <kreversiplayer.h>
 
 class KReversiComputerPlayer : public KReversiPlayer
 {

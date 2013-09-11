@@ -22,14 +22,13 @@
  *******************************************************************
  */
 
-
 #include <KApplication>
 #include <KLocale>
 #include <KCmdLineArgs>
 #include <KAboutData>
 
-#include "highscores.h"
-#include "mainwindow.h"
+#include <highscores.h>
+#include <mainwindow.h>
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 

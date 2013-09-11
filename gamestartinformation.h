@@ -1,6 +1,8 @@
 #ifndef GAMESTARTINFORMATION_H
 #define GAMESTARTINFORMATION_H
 
+#include <QString>
+
 class GameStartInformation {
 
 public:

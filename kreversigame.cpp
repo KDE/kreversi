@@ -21,7 +21,9 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include "kreversigame.h"
+#include <kreversigame.h>
+
+#include <KDebug>
 
 const int KReversiGame::DX[KReversiGame::DIRECTIONS_COUNT] = {0, 0, 1, 1, 1, -1, -1, -1};
 const int KReversiGame::DY[KReversiGame::DIRECTIONS_COUNT] = {1, -1, 1, 0, -1, 1, 0, -1};

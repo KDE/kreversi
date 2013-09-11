@@ -26,9 +26,8 @@
 
 #include <QString>
 #include <KgDifficulty>
-#include <KLocale>
 
-#include "preferences.h"
+#include <preferences.h>
 
 // noColor = empty
 enum ChipColor {White = 0, Black = 1, NoColor = 2};

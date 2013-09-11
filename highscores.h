@@ -18,17 +18,8 @@
 #ifndef HIGHSCORES_H
 #define HIGHSCORES_H
 
-#include <QVector>
-#include <QDateTime>
 #include <QStringList>
-
 #include <KExtHighscore>
-#include <kdemacros.h>
-#include <KGlobal>
-#include <KLocale>
-#include <KConfigGroup>
-#include <KConfig>
-
 
 namespace KExtHighscore
 {

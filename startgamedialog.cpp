@@ -1,13 +1,12 @@
-#include "startgamedialog.h"
-#include "ui_startgamedialog.h"
+#include <startgamedialog.h>
+#include <ui_startgamedialog.h>
 
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <KgDifficulty>
-#include <kdebug.h>
+#include <KDebug>
 #include <QSvgRenderer>
 #include <QPainter>
-#include <KColorScheme>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     KDialog(parent),

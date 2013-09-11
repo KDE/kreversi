@@ -16,7 +16,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include "highscores.h"
+#include <highscores.h>
+
+#include <QVector>
+#include <QDateTime>
+
+#include <kdemacros.h>
+#include <KGlobal>
+#include <KLocale>
+#include <KConfigGroup>
+#include <KConfig>
 
 namespace KExtHighscore
 {

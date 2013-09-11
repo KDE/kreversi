@@ -22,13 +22,24 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include "mainwindow.h"
+#include <mainwindow.h>
+
+#include <KDebug>
+#include <KIcon>
+#include <KLocale>
+#include <KMessageBox>
+#include <KStandardDirs>
+#include <KStatusBar>
+#include <KActionCollection>
+#include <KStandardGameAction>
+#include <KExtHighscore>
+
+#include <kreversihumanplayer.h>
+#include <kreversicomputerplayer.h>
 
 static const int BLACK_STATUSBAR_ID = 1;
 static const int WHITE_STATUSBAR_ID = 2;
 static const int COMMON_STATUSBAR_ID = 0;
-
-
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     : KXmlGuiWindow(parent), m_view(0), m_game(0),

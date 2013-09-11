@@ -26,13 +26,12 @@
 
 #include <QObject>
 #include <QStack>
-#include <KDebug>
 #include <QTimer>
 
-#include "Engine.h"
+#include <Engine.h>
 class Engine;
-#include "commondefs.h"
-#include "kreversiplayer.h"
+#include <commondefs.h>
+#include <kreversiplayer.h>
 class KReversiPlayer;
 
 /**

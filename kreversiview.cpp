@@ -17,7 +17,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "kreversiview.h"
+#include <kreversiview.h>
+
+#include <KLocalizedString>
+#include <KStandardDirs>
+
+#include <colorscheme.h>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
     KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),

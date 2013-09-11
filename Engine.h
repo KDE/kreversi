@@ -119,14 +119,10 @@
 #ifndef KREVERSI_ENGINE_H
 #define KREVERSI_ENGINE_H
 
-#include <QVector>
-#include <QApplication>
-
 #include <KRandomSequence>
-#include <KDebug>
 
-#include "commondefs.h"
-#include "kreversigame.h"
+#include <commondefs.h>
+#include <kreversigame.h>
 class KReversiGame;
 
 
