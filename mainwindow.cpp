@@ -99,6 +99,10 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_view = new KReversiView(m_game, this, m_provider);
     setCentralWidget(m_view);
 
+    // initialise dialog handler
+    m_startDialog = new StartGameDialog(this, m_provider);
+    connect(m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
+
     // initialise actions
     setupActionsInit();
 
@@ -108,10 +112,6 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
 
     m_historyDock->hide();
-
-    // initialise dialog handler
-    m_startDialog = new StartGameDialog(this, m_provider);
-    connect(m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
 }
 
 KReversiMainWindow::~KReversiMainWindow()
@@ -176,6 +176,7 @@ void KReversiMainWindow::loadSettings()
     m_coloredChipsAct->setChecked(Preferences::useColoredChips());
     m_view->setChipsPrefix(Preferences::useColoredChips() ?
                 KReversiView::Colored : KReversiView::BlackWhite);
+    m_startDialog->setColoredChips(Preferences::useColoredChips());
 }
 
 void KReversiMainWindow::levelChanged()
@@ -204,6 +205,7 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
                                             KReversiView::Colored :
                                             KReversiView::BlackWhite;
     m_view->setChipsPrefix(chipsPrefix);
+    m_startDialog->setColoredChips(toggled);
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
 }

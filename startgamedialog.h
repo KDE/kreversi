@@ -20,6 +20,7 @@ public:
     ~StartGameDialog();
 
     GameStartInformation createGameStartInformation() const;
+    void setColoredChips(bool toogled);
 
 signals:
     void startGame();
@@ -34,6 +35,8 @@ private:
     QWidget *m_contents;
     KUser m_user;
     KgThemeProvider *m_provider;
+    bool m_useColoredChips;
+    void loadChipImages();
 };
 
 #endif // STARTGAMEDIALOG_H

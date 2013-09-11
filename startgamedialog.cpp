@@ -11,7 +11,7 @@
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     KDialog(parent),
-    ui(new Ui::StartGameDialog), m_provider(provider)
+    ui(new Ui::StartGameDialog), m_provider(provider), m_useColoredChips(false)
 {
     setModal(true);
 
@@ -27,37 +27,7 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     setMainWidget(m_contents);
     ui->setupUi(m_contents);
 
-    QSvgRenderer svgRenderer;
-    svgRenderer.load(m_provider->currentTheme()->graphicsPath());
-
-    QPixmap blackChip(QSize(46, 46));
-    blackChip.fill(Qt::transparent);
-    QPixmap whiteChip(QSize(46, 46));
-    whiteChip.fill(Qt::transparent);
-
-    QPainter *painter = new QPainter(&blackChip);
-    svgRenderer.render(painter, "chip_bw_1");
-    delete painter;
-
-    painter = new QPainter(&whiteChip);
-    svgRenderer.render(painter, "chip_bw_12");
-    delete painter;
-
-    ui->blackLabel->setPixmap(blackChip);
-    ui->whiteLabel->setPixmap(whiteChip);
-
-    QGraphicsDropShadowEffect *blackShadow = new QGraphicsDropShadowEffect(this);
-    blackShadow->setBlurRadius(10.0);
-    blackShadow->setColor(Qt::black);
-    blackShadow->setOffset(0.0);
-
-    QGraphicsDropShadowEffect *whiteShadow = new QGraphicsDropShadowEffect(this);
-    whiteShadow->setBlurRadius(10.0);
-    whiteShadow->setColor(Qt::black);
-    whiteShadow->setOffset(0.0);
-
-    ui->blackLabel->setGraphicsEffect(blackShadow);
-    ui->whiteLabel->setGraphicsEffect(whiteShadow);
+    loadChipImages();
 
     ui->whiteTypeGroup->setId(ui->whiteHuman, GameStartInformation::Human);
     ui->whiteTypeGroup->setId(ui->whiteAI, GameStartInformation::AI);
@@ -90,6 +60,43 @@ StartGameDialog::~StartGameDialog()
     delete ui;
 }
 
+
+void StartGameDialog::loadChipImages()
+{
+    QSvgRenderer svgRenderer;
+    svgRenderer.load(m_provider->currentTheme()->graphicsPath());
+
+    QPixmap blackChip(QSize(46, 46));
+    blackChip.fill(Qt::transparent);
+    QPixmap whiteChip(QSize(46, 46));
+    whiteChip.fill(Qt::transparent);
+
+    QPainter *painter = new QPainter(&blackChip);
+    QString prefix = m_useColoredChips ? "chip_color" : "chip_bw";
+    svgRenderer.render(painter, prefix + "_1");
+    delete painter;
+
+    painter = new QPainter(&whiteChip);
+    svgRenderer.render(painter, prefix + "_12");
+    delete painter;
+
+    ui->blackLabel->setPixmap(blackChip);
+    ui->whiteLabel->setPixmap(whiteChip);
+
+    QGraphicsDropShadowEffect *blackShadow = new QGraphicsDropShadowEffect(this);
+    blackShadow->setBlurRadius(10.0);
+    blackShadow->setColor(Qt::black);
+    blackShadow->setOffset(0.0);
+
+    QGraphicsDropShadowEffect *whiteShadow = new QGraphicsDropShadowEffect(this);
+    whiteShadow->setBlurRadius(10.0);
+    whiteShadow->setColor(Qt::black);
+    whiteShadow->setOffset(0.0);
+
+    ui->blackLabel->setGraphicsEffect(blackShadow);
+    ui->whiteLabel->setGraphicsEffect(whiteShadow);
+}
+
 void StartGameDialog::slotButtonClicked(int button)
 {
     if (button == KDialog::Ok)
@@ -108,6 +115,12 @@ GameStartInformation StartGameDialog::createGameStartInformation() const
     info.skill[White] = ui->whiteSkill->currentIndex();
 
     return info;
+}
+
+void StartGameDialog::setColoredChips(bool toogled)
+{
+    m_useColoredChips = toogled;
+    loadChipImages();
 }
 
 
