@@ -44,11 +44,6 @@ ExtManager::ExtManager()
     qCopy(RANGE, RANGE + 6, s.begin());
     setScoreHistogram(s, ScoreBound);
 
-    // FIXME dimsuz: somehow rearrange the code to be sure that this and in mainwindow.cpp are
-    // always in sync
-//    m_typeLabels << i18n("Very Easy") << i18n("Easy") << i18n("Normal");
-//    m_typeLabels << i18n("Hard") << i18n("Very Hard") << i18n("Unbeatable") << i18n("Champion");
-
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
 
     for (int i = 0; i < diffList.size(); i++)

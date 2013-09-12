@@ -32,12 +32,10 @@ Rectangle {
     property string iconName: "dialog-information"
     property alias showIcon: icon.visible
     property alias hideOnMouseClick: mouseArea.enabled
-    property bool useCustomTextColor: false
-    property color textColor: "white"
-    property bool useCustomBackgroundColor: false
-    property color backgroundColor: "black"
+    property alias textColor: text.color
+    property alias backgroundColor: popup.color
     property bool useCustomBorderColor: false
-    property color borderColor: "black"
+    property color borderColor: popup.border.color
     property int borderWidth: 1
     property bool isReplacing: false
 
@@ -49,7 +47,7 @@ Rectangle {
     height: row.height + 2 * marginOnSides
     width: row.width + 2 * marginOnSides
 
-    color: useCustomBackgroundColor ? backgroundColor : colorScheme.background
+    color: colorScheme.background
     border.color: useCustomBorderColor ? borderColor : colorScheme.border
     border.width: borderWidth
 
@@ -77,15 +75,14 @@ Rectangle {
 
     Row {
         id: row
-        x: marginOnSides
-        y: marginOnSides
+        anchors.centerIn: parent
         spacing: marginIconText
 
         Image {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
             width: visible ? 32 : 0
-            height: visible ? 32 : 0
+            height: width
 
             source: "image://icon/" + iconName
         }
