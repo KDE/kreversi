@@ -29,8 +29,13 @@
 
 #include <preferences.h>
 
-// noColor = empty
-enum ChipColor {White = 0, Black = 1, NoColor = 2};
+
+enum ChipColor {
+    White = 0,
+    Black = 1,
+    NoColor = 2 // noColor = empty
+};
+
 
 struct KReversiPos {
     KReversiPos(int r = -1, int c = -1)

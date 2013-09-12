@@ -35,7 +35,7 @@ class ColorScheme : public QDeclarativeItem
     Q_PROPERTY(QColor border READ border)
 
 public:
-    ColorScheme(QDeclarativeItem *parent = 0);
+    explicit ColorScheme(QDeclarativeItem *parent = 0);
 
     QColor background() const;
     QColor foreground() const;

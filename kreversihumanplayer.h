@@ -33,7 +33,7 @@ public:
     explicit KReversiHumanPlayer(ChipColor color, QString name);
 
     /**
-     *  Overriden slots from @see KReversiPlayer
+     *  Overridden slots from @see KReversiPlayer
      */
     void prepare(KReversiGame *game);
     void takeTurn();

@@ -146,7 +146,7 @@ class SquareStack
 {
 public:
     SquareStack();
-    SquareStack(int size);
+    explicit SquareStack(int size);
 
     void              resize(int size);
     void              init(int size);
@@ -184,7 +184,7 @@ class Engine
 {
 public:
     Engine(int st, int sd);
-    Engine(int st);
+    explicit Engine(int st);
     Engine();
 
     ~Engine();

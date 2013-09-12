@@ -40,8 +40,8 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     m_qml_root = (QObject*) rootObject();
     rootContext()->setContextProperty("container", this);
 
-    connect(m_qml_root, SIGNAL(cellClicked(int, int)),
-            this, SLOT(onPlayerMove(int, int)));
+    connect(m_qml_root, SIGNAL(cellClicked(int,int)),
+            this, SLOT(onPlayerMove(int,int)));
     setGame(game);
 }
 

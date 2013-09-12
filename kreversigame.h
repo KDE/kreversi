@@ -189,7 +189,7 @@ private:
      */
     void turnChips(const KReversiMove &move);
     /**
-     *  Sets the type of chip acording to KReversiMove
+     *  Sets the type of chip according to KReversiMove
      */
     void setChipColor(const KReversiMove &move);
     /**
