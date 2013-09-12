@@ -60,8 +60,13 @@ struct KReversiMove: public KReversiPos {
     }
 };
 
+typedef QList<KReversiMove> MoveList;
+
+enum ChipsPrefix { BlackWhite = 0, Colored = 1 };
+
 namespace Utils
 {
+QString chipPrefixToString(ChipsPrefix prefix);
 ChipColor opponentColorFor(ChipColor color);
 QString colorToString(const ChipColor &color);
 QString moveToString(const KReversiMove& move);
@@ -69,6 +74,5 @@ int difficultyLevelToInt();
 const KgDifficultyLevel *intToDifficultyLevel(int skill);
 }
 
-typedef QList<KReversiMove> MoveList;
 
 #endif

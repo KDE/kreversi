@@ -24,6 +24,7 @@
 #include <KgDeclarativeView>
 #include <KgThemeProvider>
 
+#include <commondefs.h>
 #include <kreversigame.h>
 
 /**
@@ -40,7 +41,6 @@ class KReversiView : public KgDeclarativeView
 {
     Q_OBJECT
 public:
-    enum ChipsPrefix { Colored, BlackWhite };
     explicit KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider);
 
     /**

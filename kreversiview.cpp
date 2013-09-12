@@ -77,13 +77,8 @@ void KReversiView::setGame(KReversiGame *game)
 
 void KReversiView::setChipsPrefix(ChipsPrefix chipsPrefix)
 {
-    QString string;
-    if (chipsPrefix == Colored)
-        string = "chip_color";
-    else
-        string = "chip_bw";
-
-    m_qml_root->setProperty("chipsImagePrefix", string);
+    m_qml_root->setProperty("chipsImagePrefix",
+                            Utils::chipPrefixToString(chipsPrefix));
 }
 
 void KReversiView::setShowBoardLabels(bool show)

@@ -25,6 +25,13 @@
 
 #include <KLocale>
 
+
+static QString chipPrefixString[2] = {"chip_bw", "chip_color"};
+
+QString Utils::chipPrefixToString(ChipsPrefix prefix) {
+    return chipPrefixString[prefix];
+}
+
 ChipColor Utils::opponentColorFor(ChipColor color)
 {
     if (color == NoColor)

@@ -22,7 +22,7 @@ public:
     ~StartGameDialog();
 
     GameStartInformation createGameStartInformation() const;
-    void setColoredChips(bool toogled);
+    void setChipsPrefix(ChipsPrefix prefix);
 
 signals:
     void startGame();
@@ -37,7 +37,7 @@ private:
     QWidget *m_contents;
     KUser m_user;
     KgThemeProvider *m_provider;
-    bool m_useColoredChips;
+    ChipsPrefix m_chipsPrefix;
     void loadChipImages();
 };
 

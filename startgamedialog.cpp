@@ -10,7 +10,7 @@
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     KDialog(parent),
-    ui(new Ui::StartGameDialog), m_provider(provider), m_useColoredChips(false)
+    ui(new Ui::StartGameDialog), m_provider(provider), m_chipsPrefix(BlackWhite)
 {
     setModal(true);
 
@@ -72,7 +72,7 @@ void StartGameDialog::loadChipImages()
     whiteChip.fill(Qt::transparent);
 
     QPainter *painter = new QPainter(&blackChip);
-    QString prefix = m_useColoredChips ? "chip_color" : "chip_bw";
+    QString prefix = Utils::chipPrefixToString(m_chipsPrefix);
     svgRenderer.render(painter, prefix + "_1");
     delete painter;
 
@@ -117,9 +117,9 @@ GameStartInformation StartGameDialog::createGameStartInformation() const
     return info;
 }
 
-void StartGameDialog::setColoredChips(bool toogled)
+void StartGameDialog::setChipsPrefix(ChipsPrefix prefix)
 {
-    m_useColoredChips = toogled;
+    m_chipsPrefix = prefix;
     loadChipImages();
 }
 

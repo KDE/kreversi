@@ -34,6 +34,7 @@
 #include <KStandardGameAction>
 #include <KExtHighscore>
 
+#include <commondefs.h>
 #include <kreversihumanplayer.h>
 #include <kreversicomputerplayer.h>
 
@@ -156,8 +157,9 @@ void KReversiMainWindow::loadSettings()
     // Chip's color
     m_coloredChipsAct->setChecked(Preferences::useColoredChips());
     m_view->setChipsPrefix(Preferences::useColoredChips() ?
-                           KReversiView::Colored : KReversiView::BlackWhite);
-    m_startDialog->setColoredChips(Preferences::useColoredChips());
+                           Colored : BlackWhite);
+    m_startDialog->setChipsPrefix(Preferences::useColoredChips() ?
+                                       Colored : BlackWhite);
 }
 
 void KReversiMainWindow::levelChanged()
@@ -182,11 +184,11 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
 {
-    KReversiView::ChipsPrefix chipsPrefix = m_coloredChipsAct->isChecked() ?
-                                            KReversiView::Colored :
-                                            KReversiView::BlackWhite;
+    ChipsPrefix chipsPrefix = m_coloredChipsAct->isChecked() ?
+                                            Colored :
+                                            BlackWhite;
     m_view->setChipsPrefix(chipsPrefix);
-    m_startDialog->setColoredChips(toggled);
+    m_startDialog->setChipsPrefix(chipsPrefix);
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->writeConfig();
 }
