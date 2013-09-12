@@ -290,7 +290,6 @@ bool KReversiGame::isHintAllowed() const
 
 void KReversiGame::blackPlayerMove(KReversiMove move)
 {
-    qDebug() << "Game: black move";
     if (move.color == White)
         return; // Black can't do White moves
     makeMove(move);
@@ -298,7 +297,6 @@ void KReversiGame::blackPlayerMove(KReversiMove move)
 
 void KReversiGame::whitePlayerMove(KReversiMove move)
 {
-    qDebug() << "Game: white move";
     if (move.color == Black)
         return; // White can't do Black moves
     makeMove(move);
@@ -306,13 +304,11 @@ void KReversiGame::whitePlayerMove(KReversiMove move)
 
 void KReversiGame::onDelayTimer()
 {
-    qDebug() << "On Delay";
     startNextTurn();
 }
 
 void KReversiGame::blackReady()
 {
-    qDebug() << "Black ready";
     m_isReady[Black] = true;
     if (m_isReady[White])
         m_player[Black]->takeTurn();
@@ -320,7 +316,6 @@ void KReversiGame::blackReady()
 
 void KReversiGame::whiteReady()
 {
-    qDebug() << "White ready";
     m_isReady[White] = true;
     if (m_isReady[Black])
         m_player[Black]->takeTurn();

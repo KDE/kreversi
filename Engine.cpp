@@ -316,10 +316,9 @@ void Engine::yield()
 
 KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
 {
-    if (m_computingMove) {
-        kDebug() << "I'm already computing move! Yours KReversi Engine.";
+    if (m_computingMove)
         return KReversiMove();
-    }
+
     m_computingMove = true;
 
     ChipColor color;

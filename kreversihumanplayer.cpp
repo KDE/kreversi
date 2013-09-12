@@ -54,7 +54,6 @@ void KReversiHumanPlayer::gameOver()
 
 void KReversiHumanPlayer::onUICellClick(KReversiPos pos)
 {
-    qDebug() << "UI CELL CLICK!" << ' ' << m_state;
     if (m_state != THINKING) {
         // it is not our turn ignore it
         return;
