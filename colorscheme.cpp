@@ -22,30 +22,90 @@
  ********************************************************************/
 #include <colorscheme.h>
 
-#include <KColorScheme>
-
 ColorScheme::ColorScheme(QDeclarativeItem *parent) :
     QDeclarativeItem(parent)
 {
 }
 
+KColorScheme::ColorSet ColorScheme::getColorSet() const
+{
+    return m_colorSet;
+}
+
+void ColorScheme::setColorSet(KColorScheme::ColorSet colorSet)
+{
+    m_colorSet = colorSet;
+    emit onBackgroundChange();
+    emit onForegroundChange();
+    emit onDecorationChange();
+}
+
+KColorScheme::BackgroundRole ColorScheme::getBackgroundRole() const
+{
+    return m_backgroundRole;
+}
+
+void ColorScheme::setBackgroundRole(KColorScheme::BackgroundRole role)
+{
+    m_backgroundRole = role;
+    emit onBackgroundChange();
+}
+
+KColorScheme::ForegroundRole ColorScheme::getForegroundRole() const
+{
+    return m_foregroundRole;
+}
+
+void ColorScheme::setForegroundRole(KColorScheme::ForegroundRole role)
+{
+    m_foregroundRole = role;
+    emit onForegroundChange();
+}
+
+KColorScheme::DecorationRole ColorScheme::getDecorationRole() const
+{
+    return m_decorationRole;
+}
+
+void ColorScheme::setDecorationRole(KColorScheme::DecorationRole role)
+{
+    m_decorationRole = role;
+    emit onDecorationChange();
+}
+
+KColorScheme::ShadeRole ColorScheme::getShadeRole() const
+{
+    return m_shadeRole;
+}
+
+void ColorScheme::setShadeRole(KColorScheme::ShadeRole role)
+{
+    m_shadeRole = role;
+    emit onShadeChange();
+}
+
 QColor ColorScheme::background() const
 {
-    return KStatefulBrush(KColorScheme::Tooltip,
-                          KColorScheme::NormalBackground)
-           .brush(QPalette::Active).color();
+    return KStatefulBrush(m_colorSet,
+                          m_backgroundRole)
+            .brush(QPalette::Active).color();
 }
 
 QColor ColorScheme::foreground() const
 {
-    return KStatefulBrush(KColorScheme::Tooltip,
-                          KColorScheme::NormalText)
-           .brush(QPalette::Active).color();
+    return KStatefulBrush(m_colorSet,
+                          m_foregroundRole)
+            .brush(QPalette::Active).color();
 }
 
-QColor ColorScheme::border() const
+QColor ColorScheme::decoration() const
 {
-    return KStatefulBrush(KColorScheme::View,
-                          KColorScheme::NormalText)
-           .brush(QPalette::Active).color();
+    return KStatefulBrush(m_colorSet,
+                          m_decorationRole)
+            .brush(QPalette::Active).color();
+}
+
+QColor ColorScheme::shade() const
+{
+    return KColorScheme(QPalette::Active).shade(m_shadeRole);
 }

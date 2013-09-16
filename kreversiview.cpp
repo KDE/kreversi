@@ -32,6 +32,8 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     m_provider->setDeclarativeEngine("themeProvider", engine());
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
+    qmlRegisterUncreatableType<KColorScheme>("KColorScheme", 1, 0, "KColorScheme",
+                                             "KColorScheme class is uncreatable. Use for enums only");
 
     QString path =
         KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));

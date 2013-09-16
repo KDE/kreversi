@@ -18,6 +18,7 @@
 
 import QtQuick 1.1
 import ColorScheme 1.0
+import KColorScheme 1.0
 
 Rectangle {
     id: popup
@@ -47,8 +48,8 @@ Rectangle {
     height: row.height + 2 * marginOnSides
     width: row.width + 2 * marginOnSides
 
-    color: colorScheme.background
-    border.color: useCustomBorderColor ? borderColor : colorScheme.border
+    color: backgroundTokken.background
+    border.color: useCustomBorderColor ? borderColor : borderTokken.foreground
     border.width: borderWidth
 
     function show(message, showing_state) {
@@ -60,7 +61,21 @@ Rectangle {
     }
 
     ColorScheme {
-        id: colorScheme
+        id: borderTokken
+        colorSet: KColorScheme.View
+        foregroundRole: KColorScheme.NormalText
+    }
+
+    ColorScheme {
+        id: backgroundTokken
+        colorSet: KColorScheme.Tooltip
+        backgroundRole: KColorScheme.NormalBackground
+    }
+
+    ColorScheme {
+        id: textColorTokken
+        colorSet: KColorScheme.Tooltip
+        foregroundRole: KColorScheme.NormalText
     }
 
     Timer {
@@ -91,7 +106,7 @@ Rectangle {
         Text {
             id: text
             anchors.verticalCenter: parent.verticalCenter
-            color: colorScheme.foreground
+            color: textColorTokken.foreground
             wrapMode: Text.WordWrap
 
             onLinkActivated: popup.linkActivated(link);
