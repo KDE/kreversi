@@ -24,6 +24,12 @@
 import QtQuick 1.1
 import org.kde.games.core 0.1 as KgCore
 
+/**
+  * CanvasItem
+  *
+  * Wrapper used for central access to themeProvider class.
+  */
+
 KgCore.KgItem  {
     provider: themeProvider
 }

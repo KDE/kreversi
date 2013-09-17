@@ -17,13 +17,42 @@
 
 import QtQuick 1.1
 
+/**
+  * Chip
+  *
+  * Represents chip on cell.
+  * Set state to:
+  *     "Black" to show black chip
+  *     "White" to show white chip
+  *     "" (empty string) to hide chip
+  */
+
 Item {
     id: chipContainer
+
+    //TODO export it to globals
+    /**
+      * Number of chip's animation framesCount
+      */
     property int framesCount: 12
+    /**
+      * Current chip's frame
+      */
     property int currentFrame: 1
+    /**
+      * Chips image's ID prefix at SVG theme file to use.
+      * Should already contain '_' at end of it.
+      */
     property string imagePrefix: "chip_bw_"
+    /**
+      * Duration of chip's turning animation
+      */
     property int animationTime: 25 * 12
 
+    //TODO export it to Cell
+    /**
+      * Emitted when user clicks this chip
+      */
     signal clicked
 
     CanvasItem {
