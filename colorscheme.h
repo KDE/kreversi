@@ -28,8 +28,32 @@
 #include <QColor>
 #include <KColorScheme>
 
+/**
+ * Wrapper to access KColorScheme color methods from QML code.
+ *
+ * Used to access KDE's current color theme's colors from QML code.
+ * To use it you must register KColorScheme and QPalette classes with
+ * qmlRegisterUncreatableType, as their enums are used to access KColorScheme
+ * methods.
+ *
+ * Example usage of class:
+ * \code{.qml}
+   Rectangle {
+       color: backgroundTokken.background
+
+       ColorScheme {
+            id: backgroundTokken
+            colorSet: KColorScheme.Tooltip
+            backgroundRole: KColorScheme.NormalBackground
+       }
+   }
+   \endcode
+ *
+ * @see KColorScheme
+ */
 class ColorScheme : public QDeclarativeItem
 {
+    //TODO: add QPalette::ColorGroup param
     Q_OBJECT
     Q_PROPERTY(KColorScheme::ColorSet colorSet
                READ getColorSet WRITE setColorSet)
@@ -49,19 +73,49 @@ class ColorScheme : public QDeclarativeItem
 public:
     explicit ColorScheme(QDeclarativeItem *parent = 0);
 
+    /**
+     * @return current KColorScheme::ColorSet parameter value
+     */
     KColorScheme::ColorSet getColorSet() const;
+    /**
+     * Sets KColorScheme::ColorSet parameter value to @p colorSet
+     */
     void setColorSet(KColorScheme::ColorSet colorSet);
 
+    /**
+     * @return current KColorScheme::BackgroundRole parameter value
+     */
     KColorScheme::BackgroundRole getBackgroundRole() const;
+    /**
+     * Sets KColorScheme::BackgroundRole parameter value to @p role
+     */
     void setBackgroundRole(KColorScheme::BackgroundRole role);
 
+    /**
+     * @return current KColorScheme::ForegroundRole parameter value
+     */
     KColorScheme::ForegroundRole getForegroundRole() const;
+    /**
+     * Sets KColorScheme::ForegroundRole parameter value to @p role
+     */
     void setForegroundRole(KColorScheme::ForegroundRole role);
 
+    /**
+     * @return current KColorScheme::DecorationRole parameter value
+     */
     KColorScheme::DecorationRole getDecorationRole() const;
+    /**
+     * Sets KColorScheme::DecorationRole parameter value to @p role
+     */
     void setDecorationRole(KColorScheme::DecorationRole role);
 
+    /**
+     * @return current KColorScheme::ShadeRole parameter value
+     */
     KColorScheme::ShadeRole getShadeRole() const;
+    /**
+     * Sets KColorScheme::ShadeRole parameter value to @p role
+     */
     void setShadeRole(KColorScheme::ShadeRole role);
 
     QColor background() const;
@@ -70,9 +124,25 @@ public:
     QColor shade() const;
 
 signals:
+    /**
+     * Emitted when one of parameters that affects background has been changed.
+     * @see colorSet backgroundRole
+     */
     void onBackgroundChange();
+    /**
+     * Emitted when one of parameters that affects foreground has been changed.
+     * @see colorSet foregroundRole
+     */
     void onForegroundChange();
+    /**
+     * Emitted when one of parameters that affects decoration has been changed.
+     * @see colorSet decorationRole
+     */
     void onDecorationChange();
+    /**
+     * Emitted when one of parameters that affects shade has been changed.
+     * @see shadeRole
+     */
     void onShadeChange();
 
 private:
