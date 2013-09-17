@@ -29,16 +29,29 @@
 
 class KReversiGame;
 
+/**
+ * Indicates current state of the player
+ */
 enum KReversiPlayerState {
+    /** Player is waiting for his move or smth else */
     WAITING,
+    /** Player is thinking about his move */
     THINKING,
+    /** Player state is unknown */
     UNKNOWN
 };
-
+/**
+ * Represents abstract player. It is interface.
+ */
 class KReversiPlayer: public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * Construct player with specified @p color and @p name.
+     * @param hintAllowed determines whether hints are allowed for player
+     * @param undoAllowed determines whether undos are allowed for player
+     */
     explicit KReversiPlayer(ChipColor color, QString name,
                             bool hintAllowed, bool undoAllowed);
 
@@ -85,8 +98,10 @@ public:
     int getUndoCount();
 
 public slots:
+    //TODO: do this with overriding to not bother user of assigning game
     /**
      *  Triggered by KReversiGame before game starts
+     *  Implementation should assign @p game to m_game
      */
     virtual void prepare(KReversiGame* game) = 0;
 
@@ -120,7 +135,7 @@ signals:
 
 protected:
     /**
-     *  Game player is playing
+     *  Game which player is playing
      */
     KReversiGame *m_game;
 
