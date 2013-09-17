@@ -46,3 +46,7 @@ var GRID_WIDTH_PERCENT = 0.8;
   * Playable area's height part of board's image's height
   */
 var GRID_HEIGHT_PERCENT = 0.8;
+/**
+  * Number of chip's animation framesCount
+  */
+var CHIP_ANIMATION_FRAMES_COUNT = 12

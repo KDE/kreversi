@@ -16,6 +16,7 @@
 */
 
 import QtQuick 1.1
+import "globals.js" as Globals
 
 /**
   * Chip
@@ -30,11 +31,6 @@ import QtQuick 1.1
 Item {
     id: chipContainer
 
-    //TODO export it to globals
-    /**
-      * Number of chip's animation framesCount
-      */
-    property int framesCount: 12
     /**
       * Current chip's frame
       */
@@ -125,7 +121,7 @@ Item {
 
             PropertyChanges {
                 target: chipContainer
-                currentFrame: framesCount
+                currentFrame: Globals.CHIP_ANIMATION_FRAMES_COUNT
             }
 
             PropertyChanges {
@@ -144,7 +140,7 @@ Item {
 
             PropertyChanges {
                 target: chipContainer
-                currentFrame: framesCount
+                currentFrame: Globals.CHIP_ANIMATION_FRAMES_COUNT
             }
 
             PropertyChanges {
