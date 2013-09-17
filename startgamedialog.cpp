@@ -101,6 +101,7 @@ void StartGameDialog::loadChipImages()
     delete painter;
 
     painter = new QPainter(&whiteChip);
+    // TODO: get 12 from some global constant that is shared with QML
     svgRenderer.render(painter, prefix + "_12");
     delete painter;
 

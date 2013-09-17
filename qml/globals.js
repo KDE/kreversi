@@ -15,6 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/* TODO: make this two constant below accessible through c++ to use them
+ everywhere instead of hardcoded 8 x 8 */
+
 /**
   * Number of columns on board
   */

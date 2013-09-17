@@ -233,7 +233,7 @@ void KReversiView::gameOver()
 
 void KReversiView::whitePlayerCantMove()
 {
-    /// TODO: use Computer, You and Opponent instead in message
+    // TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("White player can not perform any move. It is black turn again.")));
@@ -242,7 +242,7 @@ void KReversiView::whitePlayerCantMove()
 
 void KReversiView::blackPlayerCantMove()
 {
-    /// TODO: use Computer, You and Opponent instead in message
+    // TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("Black player can not perform any move. It is white turn again.")));
