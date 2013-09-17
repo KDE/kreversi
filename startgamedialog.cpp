@@ -1,9 +1,3 @@
-#include <startgamedialog.h>
-#include <ui_startgamedialog.h>
-
-#include <QMessageBox>
-#include <QCloseEvent>
-#include <KgDifficulty>
 /*******************************************************************
  *
  * Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
@@ -26,6 +20,13 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+
+#include <startgamedialog.h>
+#include <ui_startgamedialog.h>
+
+#include <QMessageBox>
+#include <QCloseEvent>
+#include <KgDifficulty>
 
 #include <KDebug>
 #include <QSvgRenderer>

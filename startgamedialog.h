@@ -1,12 +1,3 @@
-#ifndef STARTGAMEDIALOG_H
-#define STARTGAMEDIALOG_H
-
-#include <gamestartinformation.h>
-#include <commondefs.h>
-
-#include <KDialog>
-#include <KUser>
-#include <KgThemeProvider>
 /*******************************************************************
  *
  * Copyright 2013 Denis Kuplyakov <dener.kup@gmail.com>
@@ -29,6 +20,16 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+
+#ifndef STARTGAMEDIALOG_H
+#define STARTGAMEDIALOG_H
+
+#include <gamestartinformation.h>
+#include <commondefs.h>
+
+#include <KDialog>
+#include <KUser>
+#include <KgThemeProvider>
 
 namespace Ui
 {
