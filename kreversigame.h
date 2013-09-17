@@ -37,20 +37,25 @@ class KReversiPlayer;
 /**
  *  KReversiGame incapsulates all of the game logic.
  *  Whenever the board state changes it emits corresponding signals.
- *  The idea is also to abstract from any graphic representation of the game process
+ *  The idea is also to abstract from any graphic representation of the game
+ *  process
  *
- *  KReversiGame is supposed to be driven by someone from outside.
+ *  KReversiGame receives signals from KReversiPlayer classes.
  *  I.e. it receives commands and emits events when it's internal state changes
  *  due to this commands dispatching.
- *  The main commands are:
- *  startNextTurn() and  makePlayerMove()
  *
- *  See KReversiView for example of working with KReversiGame
+ *  See KReversiView, KReversiPlayer, KReversiHumanPlayer
+ *  and KReversiComputerPlayer for example of working with KReversiGame
+ *
+ *  @see KReversiView, KReversiPlayer, KReversiHumanPlayer
  */
 class KReversiGame : public QObject
 {
     Q_OBJECT
 public:
+    /**
+     * Constructs game with two specified players.
+     */
     KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePlayer);
     ~KReversiGame();
     /**
@@ -64,11 +69,11 @@ public:
      */
     int undo();
     /**
-     *  @return score (number of chips) of the player
+     *  @return score (number of chips) of the @p player
      */
     int playerScore(ChipColor player) const;
     /**
-     *  @return color of the chip at position [row, col]
+     *  @return color of the chip at position @p pos
      */
     ChipColor chipColorAt(KReversiPos pos) const;
     /**
@@ -106,7 +111,7 @@ public:
         return m_curPlayer;
     }
     /**
-     *  Sets animation times from players
+     *  Sets animation times from players to @p delay milliseconds
      */
     void setDelay(int delay);
 
@@ -121,7 +126,7 @@ public:
     bool isHintAllowed() const;
 private slots:
     /**
-     *  Starts next player turn.
+     *  Starts next player's turn.
      */
     void startNextTurn();
     /**
@@ -156,6 +161,7 @@ signals:
     void whitePlayerTurn();
     void blackPlayerTurn();
 private:
+    // predefined direction arrays for easy implementation
     static const int DIRECTIONS_COUNT = 8;
     static const int DX[];
     static const int DY[];
@@ -164,17 +170,16 @@ private:
      */
     void kickCurrentPlayer();
     /**
-     *  This will make the player move
-     *  If that is possible of course
+     *  This will make the player @p move
+     *  If that is possible, of course
      */
     void makeMove(const KReversiMove &move);
     /**
      * This function will tell you if the move is possible.
-     * That's why it was given such a name ;)
      */
     bool isMovePossible(const KReversiMove &move) const;
     /**
-     *  Searches for "chunk" in direction dir for move.
+     *  Searches for "chunk" in direction @p dirNum for @p move.
      *  As my English-skills are somewhat limited, let me introduce
      *  new terminology ;).
      *  I'll define a "chunk" of chips for color "C" as follows:
@@ -184,12 +189,12 @@ private:
      */
     bool hasChunk(int dirNum, const KReversiMove &move) const;
     /**
-     *  Performs move, i.e. marks all the chips that player wins with
+     *  Performs @p move, i.e. marks all the chips that player wins with
      *  this move with current player color
      */
     void turnChips(const KReversiMove &move);
     /**
-     *  Sets the type of chip according to KReversiMove
+     *  Sets the type of chip according to @p move
      */
     void setChipColor(const KReversiMove &move);
     /**
@@ -201,7 +206,7 @@ private:
      */
     bool m_isReady[2];
     /**
-     *  Last player who has made a move. Cannot be NoColor after first move
+     *  Last player who has made a move. Cannot be NoColor after the first move
      */
     ChipColor m_lastPlayer;
     /**
