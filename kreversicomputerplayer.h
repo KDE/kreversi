@@ -26,10 +26,18 @@
 
 #include <kreversiplayer.h>
 
+/**
+ * Represents computer or AI of this game. Implements KReversiPlayer.
+ *
+ * @see KReversiPlayer
+ */
 class KReversiComputerPlayer : public KReversiPlayer
 {
     Q_OBJECT
 public:
+    /**
+     * Constructs AI player of specified @p color and @p name
+     */
     explicit KReversiComputerPlayer(ChipColor color, QString name);
     ~KReversiComputerPlayer();
 
