@@ -26,10 +26,18 @@
 
 #include <kreversiplayer.h>
 
+/**
+ * Represents human player. Implements KReversiPlayer.
+ *
+ * @see KReversiPlayer
+ */
 class KReversiHumanPlayer : public KReversiPlayer
 {
     Q_OBJECT
 public:
+    /**
+     * Constructs Human player with specified @p color and @p name
+     */
     explicit KReversiHumanPlayer(ChipColor color, QString name);
 
     /**
