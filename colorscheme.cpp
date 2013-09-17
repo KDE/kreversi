@@ -27,6 +27,20 @@ ColorScheme::ColorScheme(QDeclarativeItem *parent) :
 {
 }
 
+QPalette::ColorGroup ColorScheme::getColorGroup() const
+{
+    return m_colorGroup;
+}
+
+void ColorScheme::setColorGroup(QPalette::ColorGroup colorGroup)
+{
+    m_colorGroup = colorGroup;
+    emit onBackgroundChange();
+    emit onDecorationChange();
+    emit onForegroundChange();
+    emit onShadeChange();
+}
+
 KColorScheme::ColorSet ColorScheme::getColorSet() const
 {
     return m_colorSet;
@@ -88,24 +102,24 @@ QColor ColorScheme::background() const
 {
     return KStatefulBrush(m_colorSet,
                           m_backgroundRole)
-            .brush(QPalette::Active).color();
+            .brush(m_colorGroup).color();
 }
 
 QColor ColorScheme::foreground() const
 {
     return KStatefulBrush(m_colorSet,
                           m_foregroundRole)
-            .brush(QPalette::Active).color();
+            .brush(m_colorGroup).color();
 }
 
 QColor ColorScheme::decoration() const
 {
     return KStatefulBrush(m_colorSet,
                           m_decorationRole)
-            .brush(QPalette::Active).color();
+            .brush(m_colorGroup).color();
 }
 
 QColor ColorScheme::shade() const
 {
-    return KColorScheme(QPalette::Active).shade(m_shadeRole);
+    return KColorScheme(m_colorGroup).shade(m_shadeRole);
 }

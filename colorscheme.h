@@ -53,8 +53,9 @@
  */
 class ColorScheme : public QDeclarativeItem
 {
-    //TODO: add QPalette::ColorGroup param
     Q_OBJECT
+    Q_PROPERTY(QPalette::ColorGroup colorGroup
+               READ getColorGroup WRITE setColorGroup)
     Q_PROPERTY(KColorScheme::ColorSet colorSet
                READ getColorSet WRITE setColorSet)
     Q_PROPERTY(KColorScheme::BackgroundRole backgroundRole
@@ -72,6 +73,15 @@ class ColorScheme : public QDeclarativeItem
     Q_PROPERTY(QColor shade READ shade NOTIFY onShadeChange)
 public:
     explicit ColorScheme(QDeclarativeItem *parent = 0);
+
+    /**
+     * @return current QPalette::ColorGroup parameter value
+     */
+    QPalette::ColorGroup getColorGroup() const;
+    /**
+     * Sets QPalette::ColorGroup parameter value to @p colorGroup
+     */
+    void setColorGroup(QPalette::ColorGroup colorGroup);
 
     /**
      * @return current KColorScheme::ColorSet parameter value
@@ -146,6 +156,7 @@ signals:
     void onShadeChange();
 
 private:
+    QPalette::ColorGroup m_colorGroup;
     KColorScheme::ColorSet m_colorSet;
     KColorScheme::BackgroundRole m_backgroundRole;
     KColorScheme::ForegroundRole m_foregroundRole;
