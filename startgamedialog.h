@@ -36,6 +36,10 @@ namespace Ui
 class StartGameDialog;
 }
 
+/**
+ * Dialog used to gather information about new game.
+ * @see GameStartInformation
+ */
 class StartGameDialog : public KDialog
 {
     Q_OBJECT
@@ -44,24 +48,61 @@ public:
     explicit StartGameDialog(QWidget *parent, KgThemeProvider *provider);
     ~StartGameDialog();
 
+    /**
+     * @return collected GameStartInformation
+     */
     GameStartInformation createGameStartInformation() const;
+    /**
+     * Sets chips color according to @p prefix
+     */
     void setChipsPrefix(ChipsPrefix prefix);
 
 signals:
+    /**
+     * Emitted when user has finished entering information
+     */
     void startGame();
 
 private slots:
+    /**
+     * Handles "User changed player type for black player" event
+     */
     void slotUpdateBlack(int clickedId);
+
+    /**
+     * Handles "User changed player type for white player" event
+     */
     void slotUpdateWhite(int clickedId);
 
 private:
+    /**
+     * Handles dialog button click
+     */
     void slotButtonClicked(int button);
-    Ui::StartGameDialog *ui;
-    QWidget *m_contents;
-    KUser m_user;
-    KgThemeProvider *m_provider;
-    ChipsPrefix m_chipsPrefix;
+    /**
+     * Updates chip images
+     */
     void loadChipImages();
+    /**
+     * Encapsulates UI
+     */
+    Ui::StartGameDialog *ui;
+    /**
+     * Main dialog widget
+     */
+    QWidget *m_contents;
+    /**
+     * Needed to get username
+     */
+    KUser m_user;
+    /**
+     * Used to draw chip
+     */
+    KgThemeProvider *m_provider;
+    /**
+     * Sets chip's color to use
+     */
+    ChipsPrefix m_chipsPrefix;
 };
 
 #endif // STARTGAMEDIALOG_H
