@@ -31,17 +31,18 @@
  *  This class provides graphical representation of KReversiGame
  *  using QML for graphics display.
  *  It displays the reversi board in its current state,
- *  receives a mouse events, translates them so KReversiGame can understand,
- *  sends them to it,
+ *  receives a mouse events, translates them with signals,
  *  receives board-changed notifications, nicely animates them.
- *  It also drives the gameflow, i.e. it tells KReversiGame when to make
- *  the next move.
  */
 class KReversiView : public KgDeclarativeView
 {
     Q_OBJECT
 public:
     explicit KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider);
+    /**
+     *  Destructor used to delete game object owned by class
+     */
+    ~KReversiView();
 
     /**
      *  Sets the game object which this view will visualize/use
@@ -52,10 +53,7 @@ public:
     void setGame(KReversiGame* game);
 
     /**
-     *  Sets the chips pixmap to be one found in chipsPrefix
-     *
-     *  @param chipsPrefix Use @c chip_color for colored chips
-     *                     and @c chip_bw for black-white chips
+     *  Sets the chips prefix to @p chipsPrefix
      */
     void setChipsPrefix(ChipsPrefix chipsPrefix);
 
@@ -76,10 +74,6 @@ public:
      */
     void setAnimationSpeed(int speed);
 
-    /**
-     *  Destructor used to delete game object owned by class
-     */
-    ~KReversiView();
 public slots:
     /**
     *   This will make view visually mark the last made move
@@ -106,8 +100,8 @@ private slots:
     /**
      *  Triggered on user click on board, connected to QML signal
      *
-     *  @param row index of the clicked cell row (starting from zero)
-     *  @param col index of the clicked cell column (starting from zero)
+     *  @param row index of the clicked cell row (starting from 0)
+     *  @param col index of the clicked cell column (starting from 0)
      */
     void onPlayerMove(int row, int col);
     /**
