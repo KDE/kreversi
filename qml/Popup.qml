@@ -55,15 +55,10 @@ Rectangle {
       * The popup angles sharpness
       */
     property alias sharpness: popup.radius
-    //TODO: if iconName == "" show no icon and get rid of showIcon
     /**
       * Name of the icon to show at popup
       */
     property string iconName: "dialog-information"
-    /**
-      * Show icon on message or not
-      */
-    property alias showIcon: icon.visible
     /**
       * Sets whether to hide this popup item on mouse click.
       *
@@ -164,6 +159,8 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             width: visible ? 32 : 0
             height: width
+
+            visible: iconName != ""
 
             source: "image://icon/" + iconName
         }
