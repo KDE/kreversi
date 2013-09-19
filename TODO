@@ -19,16 +19,16 @@ Fix important bugs
   *
 
 General enhancements
-  * Make it possible to play white                                       ------
+  * Make it possible to play white                                       [DONE]
   * Save settings of toggleactions in config file.			 ------
 
 Enhancements to the view
   * Show 'last move' during the animation of flipped pieces.             [DONE]
     That way the last move can be shown also in demo mode
-  * Make the demo mode not restart automatically                         ------
+  * Make the demo mode not restart automatically                         [DONE]
 
 Structural enhancements
-  * Improve separation of engine + game logic from the UI                ------
+  * Improve separation of engine + game logic from the UI                [DONE]
     This will let us create a QML based UI for Plasma Active
 
 Documentation
