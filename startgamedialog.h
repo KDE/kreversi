@@ -74,11 +74,12 @@ private slots:
      */
     void slotUpdateWhite(int clickedId);
 
-private:
     /**
      * Handles dialog button click
      */
     void slotButtonClicked(int button);
+
+private:
     /**
      * Updates chip images
      */
