@@ -98,7 +98,6 @@ public:
     int getUndoCount();
 
 public slots:
-    //TODO: do this with overriding to not bother user of assigning game
     /**
      *  Triggered by KReversiGame before game starts
      *  Implementation should assign @p game to m_game
