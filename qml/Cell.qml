@@ -79,7 +79,11 @@ Item {
 
         imagePrefix: parent.chipImagePrefix + "_"
         animationTime: parent.chipAnimationTime
+    }
 
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
         onClicked: cellContainer.clicked()
     }
 }

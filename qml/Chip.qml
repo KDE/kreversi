@@ -45,23 +45,11 @@ Item {
       */
     property int animationTime: 25 * 12
 
-    //TODO export it to Cell
-    /**
-      * Emitted when user clicks this chip
-      */
-    signal clicked
-
     CanvasItem {
         id: chipImage
         anchors.fill: parent
         visible: false
         spriteKey: imagePrefix + currentFrame
-    }
-
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        onClicked: chipContainer.clicked()
     }
 
     Timer {
