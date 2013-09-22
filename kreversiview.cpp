@@ -33,6 +33,8 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     qmlRegisterUncreatableType<KColorScheme>("KColorSchemeToken", 1, 0, "KColorScheme",
                                              "KColorScheme class is uncreatable. Use for enums only");
     qmlRegisterType<KColorSchemeToken>("KColorSchemeToken", 1, 0, "KColorSchemeToken");
+    qmlRegisterUncreatableType<QPalette>("KColorSchemeToken", 1, 0, "QPalette",
+                                         "QPalette class is uncreatable. Use for enums only");
 
     QString path =
         KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));

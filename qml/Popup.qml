@@ -108,9 +108,13 @@ Rectangle {
     height: row.height + 2 * marginOnSides
     width: row.width + 2 * marginOnSides
 
-    color: backgroundTokken.background
-    border.color: useCustomBorderColor ? borderColor : borderTokken.foreground
     border.width: borderWidth
+
+    Component.onCompleted: {
+        color = token.background(QPalette.Active, KColorScheme.Tooltip, KColorScheme.NormalBackground)
+        border.color = token.foreground(QPalette.Active, KColorScheme.View, KColorScheme.NormalText)
+        text.color = token.foreground(QPalette.Active, KColorScheme.Tooltip, KColorScheme.NormalText)
+    }
 
     function show(message, showing_state) {
         if (!timer.running || isReplacing) {
@@ -121,21 +125,7 @@ Rectangle {
     }
 
     KColorSchemeToken {
-        id: borderTokken
-        colorSet: KColorScheme.View
-        foregroundRole: KColorScheme.NormalText
-    }
-
-    KColorSchemeToken {
-        id: backgroundTokken
-        colorSet: KColorScheme.Tooltip
-        backgroundRole: KColorScheme.NormalBackground
-    }
-
-    KColorSchemeToken {
-        id: textColorTokken
-        colorSet: KColorScheme.Tooltip
-        foregroundRole: KColorScheme.NormalText
+        id: token
     }
 
     Timer {
@@ -168,7 +158,6 @@ Rectangle {
         Text {
             id: text
             anchors.verticalCenter: parent.verticalCenter
-            color: textColorTokken.foreground
             wrapMode: Text.WordWrap
 
             onLinkActivated: popup.linkActivated(link);
