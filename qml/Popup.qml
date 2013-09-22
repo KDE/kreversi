@@ -18,8 +18,7 @@
 */
 
 import QtQuick 1.1
-import ColorScheme 1.0
-import KColorScheme 1.0
+import KColorSchemeToken 1.0
 
 /**
   * Popup
@@ -121,19 +120,19 @@ Rectangle {
         }
     }
 
-    ColorScheme {
+    KColorSchemeToken {
         id: borderTokken
         colorSet: KColorScheme.View
         foregroundRole: KColorScheme.NormalText
     }
 
-    ColorScheme {
+    KColorSchemeToken {
         id: backgroundTokken
         colorSet: KColorScheme.Tooltip
         backgroundRole: KColorScheme.NormalBackground
     }
 
-    ColorScheme {
+    KColorSchemeToken {
         id: textColorTokken
         colorSet: KColorScheme.Tooltip
         foregroundRole: KColorScheme.NormalText

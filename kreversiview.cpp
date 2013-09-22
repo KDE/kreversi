@@ -21,19 +21,18 @@
 
 #include <KLocalizedString>
 #include <KStandardDirs>
-
-#include <colorscheme.h>
+#include <kcolorschemetoken.h>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
-    KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
-    m_showLastMove(false), m_showLegalMoves(false),
-    m_showLabels(false), m_provider(provider)
+    KgDeclarativeView(parent), m_provider(provider),
+    m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
+    m_showLastMove(false), m_showLegalMoves(false), m_showLabels(false)
 {
     m_provider->setDeclarativeEngine("themeProvider", engine());
 
-    qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
-    qmlRegisterUncreatableType<KColorScheme>("KColorScheme", 1, 0, "KColorScheme",
+    qmlRegisterUncreatableType<KColorScheme>("KColorSchemeToken", 1, 0, "KColorScheme",
                                              "KColorScheme class is uncreatable. Use for enums only");
+    qmlRegisterType<KColorSchemeToken>("KColorSchemeToken", 1, 0, "KColorSchemeToken");
 
     QString path =
         KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));
