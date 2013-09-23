@@ -21,7 +21,7 @@
 
 #include <KLocalizedString>
 #include <KStandardDirs>
-#include <kcolorschemetoken.h>
+#include <KColorSchemeToken>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
     KgDeclarativeView(parent), m_provider(provider),
