@@ -8,32 +8,32 @@ Legend
 + subtask
 - subsubtask
 
-----    Unassigned task
+------  Unassigned task
 [name]  Assigned task
 [DONE]  Finished task
 
 ----------------------------------------------------------------
 
 Fix important bugs
- * All crashes                                                          ----
- * 
+  * All crashes                                                          ------
+  *
 
 General enhancements
- * Make it possible to play white                                       ----
- * Save settings of toggleactions in config file.			----
+  * Make it possible to play white                                       ------
+  * Save settings of toggleactions in config file.			 ------
 
 Enhancements to the view
- * Show 'last move' during the animation of flipped pieces.             ----
-   That way the last move can be shown also in demo mode
- * Make the demo mode not restart automatically                         ----
+  * Show 'last move' during the animation of flipped pieces.             [DONE]
+    That way the last move can be shown also in demo mode
+  * Make the demo mode not restart automatically                         ------
 
 Structural enhancements
-* Improve separation of engine + game logic from the UI                 ----
-  This will let us create a QML based UI for Plasma Active
+  * Improve separation of engine + game logic from the UI                ------
+    This will let us create a QML based UI for Plasma Active
 
 Documentation
-  * Rewrite DESIGN totally.                                             ----
+  * Rewrite DESIGN totally.                                              [DONE]
     It was created when KReversi was still based on QWidget.
 
 Long term enhancements
-  * Navigate in the list of moves					----
+  * Navigate in the list of moves					 ------
