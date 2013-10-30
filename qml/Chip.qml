@@ -23,6 +23,7 @@ Item {
     property int currentFrame: 1
     property string imagePrefix: "chip_bw_"
     property int animationTime: 25 * 12
+    property int preAnimationTicks: 0
 
     signal clicked
 
@@ -126,9 +127,15 @@ Item {
     ]
 
     Behavior on currentFrame {
-        NumberAnimation {
-            duration: animationTime
-            easing.type: Easing.InOutQuad
+        SequentialAnimation {
+            PauseAnimation {
+                duration: preAnimationTicks * animationTime
+            }
+            
+            NumberAnimation {
+                duration: animationTime
+                easing.type: Easing.InOutQuad
+            }
         }
     }
 }

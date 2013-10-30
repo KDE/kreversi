@@ -41,6 +41,10 @@ Item {
     function setLastMove(row, column, value) {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).isLastMove = value
     }
+    
+    function setPreAnimationTicks(row, column, value) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).chipPreAnimationTicks = value
+    }
 
     CanvasItem {
         id: boardBackground

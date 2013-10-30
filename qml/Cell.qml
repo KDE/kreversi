@@ -25,6 +25,7 @@ Item {
     property bool isHint: false
     property string chipImagePrefix: "chip_bw"
     property int chipAnimationTime: 25 * 12
+    property int chipPreAnimationTicks: 0
     property string chipState: ""
 
     CanvasItem {
@@ -49,6 +50,7 @@ Item {
 
         imagePrefix: parent.chipImagePrefix + "_"
         animationTime: parent.chipAnimationTime
+        preAnimationTicks: parent.chipPreAnimationTicks
 
         onClicked: cellContainer.clicked()
     }

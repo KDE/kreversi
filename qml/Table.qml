@@ -43,6 +43,10 @@ Item {
     function setLastMove(row, column, value) {
         board.setLastMove(row, column, value)
     }
+    
+    function setPreAnimationTicks(row, column, value) {
+        board.setPreAnimationTicks(row, column, value);
+    }
 
     function showPopup(text) {
         popup.show(text, "SHOWING");

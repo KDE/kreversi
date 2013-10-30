@@ -22,7 +22,7 @@
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
     KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
     m_demoMode(false), m_showLastMove(false), m_showLegalMoves(false),
-    m_showLabels(false)
+    m_showLabels(false), m_maxDelay(0)
 {
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
@@ -111,6 +111,30 @@ KReversiView::~KReversiView()
 
 void KReversiView::updateBoard()
 {
+    KReversiPos lastmove = m_game ? m_game->getLastMove() : KReversiPos();
+    for (int i = 0; i < 8; i++)
+        for (int j = 0; j < 8; j++) {
+            int delay = 0;
+            if (lastmove.isValid())
+                delay = qMax(abs(i - lastmove.row), abs(j - lastmove.col));
+            QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTicks",
+                                    Q_ARG(QVariant, i),
+                                    Q_ARG(QVariant, j),
+                                    Q_ARG(QVariant, delay));
+        }
+        
+    m_maxDelay = 0;
+    if (m_game) {
+        PosList changed_chips = m_game->changedChips();
+        for (int i = 0; i < changed_chips.size(); i++) {
+            int delay = 0;
+            if (lastmove.isValid())
+                delay = qMax(abs(changed_chips[i].row - lastmove.row),
+                            abs(changed_chips[i].col - lastmove.col));
+            m_maxDelay = qMax(m_maxDelay, delay);
+        }
+    }
+        
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
             QString new_state = "";
@@ -235,13 +259,12 @@ void KReversiView::onPlayerMove(int row, int col)
     m_game->makePlayerMove(row, col, false);
 }
 
-
 void KReversiView::slotGameMoveFinished()
 {
     m_hint = KReversiPos();
     updateBoard();
     emit moveFinished();
-    m_delayTimer.singleShot(m_delay, this, SLOT(slotOnDelay()));
+    m_delayTimer.singleShot(m_delay * (m_maxDelay + 2), this, SLOT(slotOnDelay()));
 }
 
 void KReversiView::slotGameOver()

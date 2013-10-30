@@ -225,5 +225,10 @@ private:
      *  If true board labels will be rendered
      */
     bool m_showLabels;
+    
+    /**
+     *  Used to handle animation duration due to sequental turning of chips
+     */
+    int m_maxDelay;
 };
 #endif
