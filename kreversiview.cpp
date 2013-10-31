@@ -115,8 +115,10 @@ void KReversiView::updateBoard()
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
             int delay = 0;
-            if (lastmove.isValid())
+            if (lastmove.isValid()) {
                 delay = qMax(abs(i - lastmove.row), abs(j - lastmove.col));
+                delay = qMax(0, delay - 1);
+            }
             QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTicks",
                                     Q_ARG(QVariant, i),
                                     Q_ARG(QVariant, j),
@@ -128,9 +130,12 @@ void KReversiView::updateBoard()
         PosList changed_chips = m_game->changedChips();
         for (int i = 0; i < changed_chips.size(); i++) {
             int delay = 0;
-            if (lastmove.isValid())
+            if (lastmove.isValid()) {
                 delay = qMax(abs(changed_chips[i].row - lastmove.row),
                             abs(changed_chips[i].col - lastmove.col));
+                delay = qMax(0, delay - 1);
+            }
+            
             m_maxDelay = qMax(m_maxDelay, delay);
         }
     }
