@@ -51,12 +51,12 @@ Item {
     states: [
         State {
             name: "Black"
-
+            
             PropertyChanges {
                 target: chipImage
                 visible: true
             }
-
+            
             PropertyChanges {
                 target: chipContainer
                 currentFrame: 1
@@ -70,12 +70,12 @@ Item {
 
         State {
             name: "Black_blinking"
-
+            
             PropertyChanges {
                 target: chipImage
                 visible: true
             }
-
+            
             PropertyChanges {
                 target: chipContainer
                 currentFrame: 1
@@ -89,12 +89,12 @@ Item {
 
         State {
             name: "White"
-
+            
             PropertyChanges {
                 target: chipImage
                 visible: true
             }
-
+            
             PropertyChanges {
                 target: chipContainer
                 currentFrame: framesCount
@@ -108,7 +108,7 @@ Item {
 
         State {
             name: "White_blinking"
-
+            
             PropertyChanges {
                 target: chipImage
                 visible: true
@@ -138,4 +138,17 @@ Item {
             }
         }
     }
+    
+    transitions: [
+        Transition {
+            from: ""
+            to: "*"
+            reversible: false
+            
+            NumberAnimation {
+                property: "currentFrame"
+                duration: 0
+            }
+        }
+    ]
 }
