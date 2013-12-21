@@ -37,8 +37,8 @@ KReversiGame::KReversiGame()
     , m_computerColor(White)
 {
     // reset board
-    for(int r=0; r<8; ++r)
-        for(int c=0; c<8; ++c)
+    for (int r = 0; r < 8; ++r)
+        for(int c = 0; c < 8; ++c)
             m_cells[r][c] = NoColor;
     // initial pos
     m_cells[3][3] = m_cells[4][4] = White;
@@ -75,6 +75,8 @@ void KReversiGame::makePlayerMove(int row, int col, bool demoMode)
     }
     makeMove(move, changedChips);
     m_undoStack.push(changedChips);
+
+    emit moveFinished();
 }
 
 void KReversiGame::startNextTurn(bool demoMode)
@@ -129,6 +131,8 @@ void KReversiGame::makeComputerMove()
 
     makeMove(move, changedChips);
     m_undoStack.push(changedChips);
+
+    emit moveFinished();
 }
 
 int KReversiGame::undo()
@@ -183,8 +187,10 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
     changedChips.clear();
 
     setChipColor(move.color, move.row, move.col);
+
     // the first one is the move itself
     changedChips.append(move);
+
     // now turn color of all chips that were won
     if (hasChunk(Up, move)) {
         for (int r=move.row-1; r >= 0; --r) {
@@ -253,7 +259,6 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
 
     m_curPlayer = (m_curPlayer == White ? Black : White);
     //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black");
-    emit moveFinished();
 }
 
 PosList KReversiGame::changedChips() const
