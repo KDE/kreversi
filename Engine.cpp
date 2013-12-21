@@ -314,11 +314,11 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-KReversiPos Engine::computeMove(const KReversiGame& game, Color color, bool competitive)
+Move Engine::computeMove(const KReversiGame& game, Color color, bool competitive)
 {
     if (m_computingMove) {
-        //kDebug() << "I'm already computing move! Yours KReversi Engine.";
-        return KReversiPos();
+        kDebug() << "I'm already computing move! Yours KReversi Engine.";
+        return Move();
     }
     m_computingMove = true;
 
@@ -337,7 +337,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, Color color, bool comp
     // Check the color to get the move for.
     if (color == NoColor) {
         m_computingMove = false;
-        return KReversiPos();
+        return Move();
     }
 
     // Figure out the current score
@@ -480,18 +480,18 @@ KReversiPos Engine::computeMove(const KReversiGame& game, Color color, bool comp
     m_computingMove = false;
     // Return a suitable move.
     if (interrupted())
-        return KReversiPos(NoColor, -1, -1);
+        return Move(NoColor, -1, -1);
     else if (maxval != -LARGEINT)
-        return KReversiPos(color, max_y-1, max_x-1);
+        return Move(color, max_y-1, max_x-1);
     else
-        return KReversiPos(NoColor, -1, -1);
+        return Move(NoColor, -1, -1);
 }
 
 
 // Get the first move.  We can pick any move at random.
 //
 
-KReversiPos Engine::ComputeFirstMove(const KReversiGame& game)
+Move Engine::ComputeFirstMove(const KReversiGame& game)
 {
     int    r;
     Color  color = game.currentPlayer();
@@ -499,16 +499,16 @@ KReversiPos Engine::ComputeFirstMove(const KReversiGame& game)
     r = m_random.getLong(4) + 1;
 
     if (color == White) {
-        if (r == 1)      return  KReversiPos(color, 4, 2);
-        else if (r == 2) return  KReversiPos(color, 5, 3);
-        else if (r == 3) return  KReversiPos(color, 2, 4);
-        else             return  KReversiPos(color, 3, 5);
+        if (r == 1)      return  Move(color, 4, 2);
+        else if (r == 2) return  Move(color, 5, 3);
+        else if (r == 3) return  Move(color, 2, 4);
+        else             return  Move(color, 3, 5);
     }
     else {
-        if (r == 1)      return  KReversiPos(color, 3, 2);
-        else if (r == 2) return  KReversiPos(color, 5, 4);
-        else if (r == 3) return  KReversiPos(color, 2, 3);
-        else             return  KReversiPos(color, 4, 5);
+        if (r == 1)      return  Move(color, 3, 2);
+        else if (r == 2) return  Move(color, 5, 4);
+        else if (r == 3) return  Move(color, 2, 3);
+        else             return  Move(color, 4, 5);
     }
 }
 
@@ -525,7 +525,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
 {
     int               number_of_turned = 0;
     SquareStackEntry  mse;
-    Color         opponent = opponentColorFor(color);
+    Color             opponent = opponentColorFor(color);
 
     m_nodesSearched++;
 

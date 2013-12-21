@@ -38,6 +38,10 @@ Enhancements to the view
 Structural enhancements
   * Improve separation of engine + game logic from the UI               ----
     This will let us create a QML based UI for Plasma Active
+     + Collect all reversi logic into its own file                      Done
+     + Integrate the separated reversi logic into engine                Done
+     + Integrate the separated reversi logic into game                  ----
+     + Integrate the separated reversi logic into view                  ----
      + Remove all mentions of "Player" and "Computer" from KReversiGame ----
        This should be strictly about the game, using only Black/White
      + Remove all mentions of "Player" and "Computer" from the engine   ----
