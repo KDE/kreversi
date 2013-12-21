@@ -20,12 +20,15 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+
 #ifndef KREVERSI_GAME_H
 #define KREVERSI_GAME_H
 
+// Qt
 #include <QObject>
 #include <QStack>
 
+// KReversi
 #include "commondefs.h"
 
 class Engine;
@@ -147,12 +150,14 @@ public:
      *  @return a list of possible moves for current player
      */
     PosList possibleMoves() const;
+
 signals:
     void gameOver();
     void boardChanged();
     void moveFinished();
     void computerCantMove();
     void playerCantMove();
+
 private:
     enum Direction { Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight };
     /**
@@ -199,14 +204,12 @@ private:
      *  The color of the computer played chips
      */
     ChipColor m_computerColor;
+
     /**
      *  Our AI
      */
     Engine *m_engine;
-     // Well I'm not brief at all :). That's because I think that my
-     // English is not well shaped sometimes, so I try to describe things
-     // so that me and others can understand. Even simple things.
-     // Specially when I think that my description sucks :)
+
     /**
      *  This list holds chips that were changed/added during last move
      *  First of them will be the chip added to the board by the player
@@ -214,6 +217,7 @@ private:
      *  move.
      */
     PosList m_changedChips;
+
     /**
      *  This is an undo stack.
      *  It contains a lists of chips changed with each turn.
@@ -221,4 +225,5 @@ private:
      */
     QStack<PosList> m_undoStack;
 };
+
 #endif

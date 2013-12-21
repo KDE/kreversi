@@ -23,11 +23,17 @@
  *
  ********************************************************************/
 
+// Own
 #include "mainwindow.h"
-#include "kreversigame.h"
-#include "kreversiview.h"
-#include "preferences.h"
 
+// Qt
+#include <QApplication>
+#include <QListWidget>
+#include <QDockWidget>
+#include <QLabel>
+#include <QDesktopWidget>
+
+// KDE
 #include <kaction.h>
 #include <kactioncollection.h>
 #include <ktoggleaction.h>
@@ -42,13 +48,15 @@
 #include <kstandardgameaction.h>
 #include <kselectaction.h>
 #include <ktoolinvocation.h>
+
+// libkdegames
 #include <KgDifficulty>
 
-#include <QApplication>
-#include <QListWidget>
-#include <QDockWidget>
-#include <QLabel>
-#include <QDesktopWidget>
+// KReversi
+#include "kreversigame.h"
+#include "kreversiview.h"
+#include "preferences.h"
+
 
 static const int PLAYER_STATUSBAR_ID = 1;
 static const int COMP_STATUSBAR_ID = 2;

@@ -119,17 +119,17 @@
 #ifndef KREVERSI_ENGINE_H
 #define KREVERSI_ENGINE_H
 
-//#include "SuperEngine.h"
-//#include "Position.h"
-//#include "Game.h"
-//#include "Move.h"
-//#include "Score.h"
-
+// Qt
 #include <QVector>
+
+// KDE
 #include <krandomsequence.h>
+
+// KReversi
 #include "commondefs.h"
 
 class KReversiGame;
+
 
 static ChipColor opponentColorFor(ChipColor color)
 {
@@ -169,7 +169,7 @@ class SquareStack
 
  private:
     QVector<SquareStackEntry>  m_squarestack;
-    int                          m_top;
+    int                        m_top;
 };
 
 
@@ -212,10 +212,10 @@ class Engine
     void  setStrength(uint strength) { m_strength = strength; }
     uint  strength() const { return m_strength; }
  private:
-    KReversiPos     ComputeFirstMove(const KReversiGame& game);
+    KReversiPos ComputeFirstMove(const KReversiGame& game);
     int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
-                          int      cutoffval,
-                          quint64  colorbits, quint64 opponentbits);
+                          int utoffval,
+                          quint64 colorbits, quint64 opponentbits);
 
     int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
                          quint64  opponentbits, quint64 colorbits);
@@ -230,15 +230,15 @@ class Engine
 
  private:
 
-    ChipColor        m_board[10][10];
+    ChipColor    m_board[10][10];
     int          m_bc_board[9][9];
-    Score*        m_score;
-    Score*        m_bc_score;
+    Score*       m_score;
+    Score*       m_bc_score;
     SquareStack  m_squarestack;
 
     int          m_depth;
     int          m_coeff;
-    int          m_nodes_searched;
+    int          m_nodesSearched;
     bool         m_exhaustive;
     bool         m_competitive;
 
@@ -246,8 +246,8 @@ class Engine
     KRandomSequence  m_random;
     bool             m_interrupt;
 
-    quint64      m_coord_bit[9][9];
-    quint64      m_neighbor_bits[9][9];
+    quint64      m_coordBit[9][9];
+    quint64      m_neighborBits[9][9];
 
     bool m_computingMove;
 };

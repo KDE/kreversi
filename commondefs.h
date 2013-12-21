@@ -20,6 +20,7 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+
 #ifndef COMMONDEFS_H
 #define COMMONDEFS_H
 

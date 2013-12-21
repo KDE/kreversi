@@ -38,14 +38,13 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent)
     m_provider->discoverThemes("appdata", QLatin1String("pics"));
     m_provider->setDeclarativeEngine("themeProvider", engine());
 
-    QString path =
-        KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));
+    QString path = KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));
     setSource(QUrl::fromLocalFile(path));
 
-    m_qml_root = (QObject*) rootObject();
+    m_qmlRoot = (QObject*) rootObject();
     rootContext()->setContextProperty("container", this);
 
-    connect(m_qml_root, SIGNAL(cellClicked(int,int)),
+    connect(m_qmlRoot, SIGNAL(cellClicked(int,int)),
             this, SLOT(onPlayerMove(int,int)));
     setGame(game);
 }
@@ -81,7 +80,7 @@ void KReversiView::setGame(KReversiGame *game)
 
 void KReversiView::setChipsPrefix(const QString &chipsPrefix)
 {
-    m_qml_root->setProperty("chipsImagePrefix", chipsPrefix);
+    m_qmlRoot->setProperty("chipsImagePrefix", chipsPrefix);
 }
 
 void KReversiView::setShowBoardLabels(bool show)
@@ -108,7 +107,7 @@ void KReversiView::setAnimationSpeed(int speed)
 
     m_delay = value;
 
-    m_qml_root->setProperty("chipsAnimationTime", value);
+    m_qmlRoot->setProperty("chipsAnimationTime", value);
 }
 
 KReversiView::~KReversiView()
@@ -120,7 +119,7 @@ void KReversiView::updateBoard()
 {
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
-            QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTicks",
+            QMetaObject::invokeMethod(m_qmlRoot, "setPreAnimationTicks",
                                       Q_ARG(QVariant, i),
                                       Q_ARG(QVariant, j),
                                       Q_ARG(QVariant, 0));
@@ -130,7 +129,7 @@ void KReversiView::updateBoard()
     if (m_game) {
         PosList changed_chips = m_game->changedChips();
         for (int i = 1; i < changed_chips.size(); i++) { //i == 0 is new chip it don't need animation time
-            QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTicks",
+            QMetaObject::invokeMethod(m_qmlRoot, "setPreAnimationTicks",
                                       Q_ARG(QVariant, changed_chips[i].row),
                                       Q_ARG(QVariant, changed_chips[i].col),
                                       Q_ARG(QVariant, i - 1));
@@ -154,21 +153,21 @@ void KReversiView::updateBoard()
                     break;
                 }
 
-            QMetaObject::invokeMethod(m_qml_root, "setChipState",
+            QMetaObject::invokeMethod(m_qmlRoot, "setChipState",
                                       Q_ARG(QVariant, i),
                                       Q_ARG(QVariant, j),
                                       Q_ARG(QVariant, new_state));
 
             // clearing legal markers, hints and lastmove
-            QMetaObject::invokeMethod(m_qml_root, "setLegal",
+            QMetaObject::invokeMethod(m_qmlRoot, "setLegal",
                                       Q_ARG(QVariant, i),
                                       Q_ARG(QVariant, j),
                                       Q_ARG(QVariant, false));
-            QMetaObject::invokeMethod(m_qml_root, "setHint",
+            QMetaObject::invokeMethod(m_qmlRoot, "setHint",
                                       Q_ARG(QVariant, i),
                                       Q_ARG(QVariant, j),
                                       Q_ARG(QVariant, false));
-            QMetaObject::invokeMethod(m_qml_root, "setLastMove",
+            QMetaObject::invokeMethod(m_qmlRoot, "setLastMove",
                                       Q_ARG(QVariant, i),
                                       Q_ARG(QVariant, j),
                                       Q_ARG(QVariant, false));
@@ -178,21 +177,21 @@ void KReversiView::updateBoard()
     if (m_game && m_showLegalMoves) {
         PosList possible_moves = m_game->possibleMoves();
         for (int i = 0; i < possible_moves.size(); i++) {
-            QMetaObject::invokeMethod(m_qml_root, "setLegal",
+            QMetaObject::invokeMethod(m_qmlRoot, "setLegal",
                                       Q_ARG(QVariant, possible_moves.at(i).row),
                                       Q_ARG(QVariant, possible_moves.at(i).col),
                                       Q_ARG(QVariant, true));
         }
     }
 
-    m_qml_root->setProperty("isBoardShowingLabels", m_showLabels);
+    m_qmlRoot->setProperty("isBoardShowingLabels", m_showLabels);
 
     if (m_hint.isValid()) {
-        QMetaObject::invokeMethod(m_qml_root, "setChipState",
+        QMetaObject::invokeMethod(m_qmlRoot, "setChipState",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
                                   Q_ARG(QVariant, "Black"));
-        QMetaObject::invokeMethod(m_qml_root, "setHint",
+        QMetaObject::invokeMethod(m_qmlRoot, "setHint",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
                                   Q_ARG(QVariant, true));
@@ -201,7 +200,7 @@ void KReversiView::updateBoard()
     if (m_game && m_showLastMove) {
         KReversiPos lastmove = m_game->getLastMove();
         if (lastmove.isValid())
-            QMetaObject::invokeMethod(m_qml_root, "setLastMove",
+            QMetaObject::invokeMethod(m_qmlRoot, "setLastMove",
                                       Q_ARG(QVariant, lastmove.row),
                                       Q_ARG(QVariant, lastmove.col),
                                       Q_ARG(QVariant, true));
@@ -282,7 +281,7 @@ void KReversiView::slotGameOver()
 
 void KReversiView::slotComputerCantMove()
 {
-    QMetaObject::invokeMethod(m_qml_root, "showPopup",
+    QMetaObject::invokeMethod(m_qmlRoot, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("Computer can not move. It is your turn again.")));
     updateBoard();
@@ -290,7 +289,7 @@ void KReversiView::slotComputerCantMove()
 
 void KReversiView::slotPlayerCantMove()
 {
-    QMetaObject::invokeMethod(m_qml_root, "showPopup",
+    QMetaObject::invokeMethod(m_qmlRoot, "showPopup",
                               Q_ARG(QVariant,
                                     i18n("You can not perform any move. Computer takes next turn now.")));
     updateBoard();

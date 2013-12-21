@@ -21,11 +21,15 @@
  *
  ********************************************************************/
 
+// Own
 #include "kreversigame.h"
 
+// KDE
 #include <kdebug.h>
 
+// KReversi
 #include "Engine.h"
+
 
 KReversiGame::KReversiGame()
     : m_curPlayer(Black)
@@ -49,6 +53,7 @@ KReversiGame::~KReversiGame()
 {
     delete m_engine;
 }
+
 
 void KReversiGame::makePlayerMove(int row, int col, bool demoMode)
 {
