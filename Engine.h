@@ -128,16 +128,8 @@
 // KReversi
 #include "commondefs.h"
 
+
 class KReversiGame;
-
-
-static ChipColor opponentColorFor(ChipColor color)
-{
-    if (color == NoColor)
-        return color;
-    else
-        return (color == White ? Black : White);
-}
 
 
 // SquareStackEntry and SquareStack are used during search to keep
@@ -203,7 +195,7 @@ class Engine
 
     ~Engine();
 
-    KReversiPos     computeMove(const KReversiGame& game, bool competitive);
+    KReversiPos     computeMove(const KReversiGame& game, Color color, bool competitive);
     bool isThinking() const { return m_computingMove; }
 
     void  setInterrupt(bool intr) { m_interrupt = intr; }
@@ -213,24 +205,24 @@ class Engine
     uint  strength() const { return m_strength; }
  private:
     KReversiPos ComputeFirstMove(const KReversiGame& game);
-    int      ComputeMove2(int xplay, int yplay, ChipColor color, int level,
+    int      ComputeMove2(int xplay, int yplay, Color color, int level,
                           int utoffval,
                           quint64 colorbits, quint64 opponentbits);
 
-    int      TryAllMoves(ChipColor opponent, int level, int cutoffval,
+    int      TryAllMoves(Color opponent, int level, int cutoffval,
                          quint64  opponentbits, quint64 colorbits);
 
-    int      EvaluatePosition(ChipColor color);
+    int      EvaluatePosition(Color color);
     void     SetupBcBoard();
     void     SetupBits();
-    int      CalcBcScore(ChipColor color);
-    quint64  ComputeOccupiedBits(ChipColor color);
+    int      CalcBcScore(Color color);
+    quint64  ComputeOccupiedBits(Color color);
 
     void yield();
 
  private:
 
-    ChipColor    m_board[10][10];
+    Color        m_board[10][10];
     int          m_bc_board[9][9];
     Score*       m_score;
     Score*       m_bc_score;
