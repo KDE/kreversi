@@ -145,7 +145,7 @@ public:
      *  First of them will be the move itself, and the rest - chips which
      *  were turned by that move
      */
-    PosList changedChips() const { return m_changedChips; }
+    PosList changedChips() const;
     /**
      *  @return a list of possible moves for current player
      */
@@ -179,7 +179,7 @@ private:
      *  Performs move, i.e. marks all the chips that player wins with
      *  this move with current player color
      */
-    void makeMove(const KReversiPos& move);
+    void makeMove(const KReversiPos& move, PosList &changedChips);
     /**
      *  Sets the type of chip at (row,col)
      */
@@ -209,14 +209,6 @@ private:
      *  Our AI
      */
     Engine *m_engine;
-
-    /**
-     *  This list holds chips that were changed/added during last move
-     *  First of them will be the chip added to the board by the player
-     *  during last move. The rest of them - chips that were turned by that
-     *  move.
-     */
-    PosList m_changedChips;
 
     /**
      *  This is an undo stack.
