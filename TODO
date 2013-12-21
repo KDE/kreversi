@@ -15,25 +15,31 @@ Legend
 ----------------------------------------------------------------
 
 Fix important bugs
-  * All crashes                                                          ------
+  * All crashes                                                         ----
   *
 
+Cleanup
+  * Establish coding standards                                          ----
+     + Create a HACKING file that describes this (copy Krita's)         ----
+     + Enforce unified indentation, braces, parenthesis, etc            Done
+     + Enforce unified variable naming (fooBar instead of foo_bar)      ----
+
 General enhancements
-  * Make it possible to play white                                       ------
-  * Save settings of toggleactions in config file.			 ------
+  * Make it possible to play white                                      -----
+  * Save settings of toggleactions in config file.			-----
 
 Enhancements to the view
-  * Show 'last move' during the animation of flipped pieces.             [DONE]
+  * Show 'last move' during the animation of flipped pieces.            DONE
     That way the last move can be shown also in demo mode
-  * Make the demo mode not restart automatically                         ------
+  * Make the demo mode not restart automatically                        ----
 
 Structural enhancements
-  * Improve separation of engine + game logic from the UI                ------
+  * Improve separation of engine + game logic from the UI               ----
     This will let us create a QML based UI for Plasma Active
 
 Documentation
-  * Rewrite DESIGN totally.                                              [DONE]
+  * Rewrite DESIGN totally.                                             DONE
     It was created when KReversi was still based on QWidget.
 
 Long term enhancements
-  * Navigate in the list of moves					 ------
+  * Navigate in the list of moves					-----
