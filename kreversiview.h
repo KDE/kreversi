@@ -231,4 +231,5 @@ private:
      */
     int m_maxDelay;
 };
+
 #endif

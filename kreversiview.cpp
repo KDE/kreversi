@@ -121,9 +121,9 @@ void KReversiView::updateBoard()
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
             QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTicks",
-                                    Q_ARG(QVariant, i),
-                                    Q_ARG(QVariant, j),
-                                    Q_ARG(QVariant, 0));
+                                      Q_ARG(QVariant, i),
+                                      Q_ARG(QVariant, j),
+                                      Q_ARG(QVariant, 0));
         }
         
     m_maxDelay = 0;
@@ -131,14 +131,14 @@ void KReversiView::updateBoard()
         PosList changed_chips = m_game->changedChips();
         for (int i = 1; i < changed_chips.size(); i++) { //i == 0 is new chip it don't need animation time
             QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTicks",
-                                    Q_ARG(QVariant, changed_chips[i].row),
-                                    Q_ARG(QVariant, changed_chips[i].col),
-                                    Q_ARG(QVariant, i - 1));
+                                      Q_ARG(QVariant, changed_chips[i].row),
+                                      Q_ARG(QVariant, changed_chips[i].col),
+                                      Q_ARG(QVariant, i - 1));
         }
         m_maxDelay = qMax(0, (int)(changed_chips.size()) - 2);
     }
         
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             QString new_state = "";
             if (m_game) // showing empty board if has no game
@@ -173,6 +173,7 @@ void KReversiView::updateBoard()
                                       Q_ARG(QVariant, j),
                                       Q_ARG(QVariant, false));
         }
+    }
 
     if (m_game && m_showLegalMoves) {
         PosList possible_moves = m_game->possibleMoves();

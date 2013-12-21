@@ -29,10 +29,10 @@ namespace KExtHighscore
 
 class ExtManager : public Manager
 {
-public:
+ public:
     ExtManager();
 
-private:
+ private:
     virtual QString gameTypeLabel(uint gameTye, LabelType) const;
     QStringList m_typeLabels;
 };

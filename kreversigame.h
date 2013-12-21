@@ -116,11 +116,11 @@ public:
     /**
      *  @return score (number of chips) of the player
      */
-    int playerScore( ChipColor player ) const;
+    int playerScore(ChipColor player) const;
     /**
      *  @return color of the chip at position [row, col]
      */
-    ChipColor chipColorAt( int row, int col ) const;
+    ChipColor chipColorAt(int row, int col) const;
     /**
      *  @return if undo is possible
      */
@@ -159,7 +159,7 @@ private:
      * This function will tell you if the move is possible.
      * That's why it was given such a name ;)
      */
-    bool isMovePossible( const KReversiPos& move ) const;
+    bool isMovePossible(const KReversiPos& move) const;
     /**
      *  Searches for "chunk" in direction dir for move.
      *  As my English-skills are somewhat limited, let me introduce
@@ -174,7 +174,7 @@ private:
      *  Performs move, i.e. marks all the chips that player wins with
      *  this move with current player color
      */
-    void makeMove( const KReversiPos& move );
+    void makeMove(const KReversiPos& move);
     /**
      *  Sets the type of chip at (row,col)
      */

@@ -24,12 +24,19 @@
 #define COMMONDEFS_H
 
 // noColor = empty
-enum ChipColor { White = 0, Black = 1, NoColor = 2 };
+
+enum ChipColor {
+    White = 0,
+    Black = 1,
+    NoColor = 2
+};
+
 
 struct KReversiPos
 {
     KReversiPos( ChipColor col = NoColor, int r = -1, int c = -1 )
         : color(col), row(r), col(c) { }
+
     ChipColor color;
     int row;
     int col;

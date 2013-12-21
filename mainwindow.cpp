@@ -22,6 +22,7 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
+
 #include "mainwindow.h"
 #include "kreversigame.h"
 #include "kreversiview.h"
@@ -71,10 +72,15 @@ static QString moveToString(const KReversiPos& move)
 }
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
-    : KXmlGuiWindow(parent), m_view(0), m_game(0),
-      m_historyDock(0), m_historyView(0),
-      m_firstShow(true), m_startInDemoMode(startDemo), m_lowestSkill(6),
-      m_undoAct(0), m_hintAct(0), m_demoAct(0)
+    : KXmlGuiWindow(parent), m_view(0), m_game(0)
+    , m_historyDock(0)
+    , m_historyView(0)
+    , m_firstShow(true)
+    , m_startInDemoMode(startDemo)
+    , m_lowestSkill(6)
+    , m_undoAct(0)
+    , m_hintAct(0)
+    , m_demoAct(0)
 {
     statusBar()->insertItem(i18n("Your turn."), 0);
     statusBar()->insertItem(i18n("You: %1", 2), PLAYER_STATUSBAR_ID);
@@ -141,7 +147,8 @@ void KReversiMainWindow::setupActions()
     connect(m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)));
 
     // NOTE: read/write this from/to config file? Or not necessary?
-    KToggleAction *showMovesAct = new KToggleAction(KIcon(QLatin1String("view-history")), i18n("Show Move History"), this);
+    KToggleAction *showMovesAct = new KToggleAction(KIcon(QLatin1String("view-history")),
+                                                    i18n("Show Move History"), this);
     actionCollection()->addAction(QLatin1String("show_moves"), showMovesAct);
     connect(showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)));
 }
