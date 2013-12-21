@@ -302,7 +302,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 {
     if( m_computingMove )
     {
-        kDebug() << "I'm already computing move! Yours KReversi Engine.";
+        //kDebug() << "I'm already computing move! Yours KReversi Engine.";
         return KReversiPos();
     }
     m_computingMove = true;

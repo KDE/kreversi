@@ -355,7 +355,7 @@ void KReversiMainWindow::slotHighscores()
 void KReversiMainWindow::showEvent(QShowEvent*)
 {
     if (m_firstShow && m_startInDemoMode) {
-        kDebug() << "starting demo...";
+        //kDebug() << "starting demo...";
         slotToggleDemoMode();
     }
     m_firstShow = false;
