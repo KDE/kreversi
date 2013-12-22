@@ -189,6 +189,8 @@ private:
      *  Sets the type of chip at (row,col)
      */
     void setColor(Color type, int row, int col);
+
+    // The actual game (this is the part that will be switched to the new code).
     /**
      *  The board itself
      */
@@ -201,6 +203,8 @@ private:
      *  Color of the current player
      */
     Color m_curPlayer;
+
+    // Values from the UI
     /**
      *  The color of the human played chips
      */
@@ -226,7 +230,7 @@ private:
     // New code
 
     /**
-     * The current position.
+     * The current position of the game.
      */
     Position  m_position;
 

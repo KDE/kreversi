@@ -195,7 +195,7 @@ class Engine
 
     ~Engine();
 
-    Move  computeMove(const KReversiGame& game, Color color, bool competitive);
+    Move  computeMove(const Position& position, Color color, bool competitive);
     bool  isThinking() const { return m_computingMove; }
 
     void  setInterrupt(bool intr) { m_interrupt = intr; }
@@ -206,7 +206,7 @@ class Engine
 
  private:
     // These are all helper functions.
-    Move     ComputeFirstMove(const KReversiGame& game);
+    Move     ComputeFirstMove(Color color);
     int      ComputeMove2(int xplay, int yplay, Color color, int level,
                           int utoffval,
                           quint64 colorbits, quint64 opponentbits);
