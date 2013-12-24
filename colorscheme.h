@@ -25,143 +25,25 @@
 #define COLORSCHEME_H
 
 #include <QDeclarativeItem>
-#include <QColor>
 #include <KColorScheme>
+#include <QColor>
 
-/**
- * Wrapper to access KColorScheme color methods from QML code.
- *
- * Used to access KDE's current color theme's colors from QML code.
- * To use it you must register KColorScheme and QPalette classes with
- * qmlRegisterUncreatableType, as their enums are used to access KColorScheme
- * methods.
- *
- * Example usage of class:
- * \code{.qml}
-   Rectangle {
-       color: backgroundTokken.background
-
-       ColorScheme {
-            id: backgroundTokken
-            colorSet: KColorScheme.Tooltip
-            backgroundRole: KColorScheme.NormalBackground
-       }
-   }
-   \endcode
- *
- * @see KColorScheme
- */
 class ColorScheme : public QDeclarativeItem
 {
     Q_OBJECT
-    Q_PROPERTY(QPalette::ColorGroup colorGroup
-               READ getColorGroup WRITE setColorGroup)
-    Q_PROPERTY(KColorScheme::ColorSet colorSet
-               READ getColorSet WRITE setColorSet)
-    Q_PROPERTY(KColorScheme::BackgroundRole backgroundRole
-               READ getBackgroundRole WRITE setBackgroundRole)
-    Q_PROPERTY(KColorScheme::ForegroundRole foregroundRole
-               READ getForegroundRole WRITE setForegroundRole)
-    Q_PROPERTY(KColorScheme::DecorationRole decorationRole
-               READ getDecorationRole WRITE setDecorationRole)
-    Q_PROPERTY(KColorScheme::ShadeRole shadeRole
-               READ getShadeRole WRITE setShadeRole)
-
-    Q_PROPERTY(QColor background READ background NOTIFY onBackgroundChange)
-    Q_PROPERTY(QColor foreground READ foreground NOTIFY onForegroundChange)
-    Q_PROPERTY(QColor decoration READ decoration NOTIFY onDecorationChange)
-    Q_PROPERTY(QColor shade READ shade NOTIFY onShadeChange)
+    Q_PROPERTY(QColor background READ background NOTIFY placeHolder)
+    Q_PROPERTY(QColor foreground READ foreground NOTIFY placeHolder)
+    Q_PROPERTY(QColor border READ border NOTIFY placeHolder)
+    
 public:
-    explicit ColorScheme(QDeclarativeItem *parent = 0);
-
-    /**
-     * @return current QPalette::ColorGroup parameter value
-     */
-    QPalette::ColorGroup getColorGroup() const;
-    /**
-     * Sets QPalette::ColorGroup parameter value to @p colorGroup
-     */
-    void setColorGroup(QPalette::ColorGroup colorGroup);
-
-    /**
-     * @return current KColorScheme::ColorSet parameter value
-     */
-    KColorScheme::ColorSet getColorSet() const;
-    /**
-     * Sets KColorScheme::ColorSet parameter value to @p colorSet
-     */
-    void setColorSet(KColorScheme::ColorSet colorSet);
-
-    /**
-     * @return current KColorScheme::BackgroundRole parameter value
-     */
-    KColorScheme::BackgroundRole getBackgroundRole() const;
-    /**
-     * Sets KColorScheme::BackgroundRole parameter value to @p role
-     */
-    void setBackgroundRole(KColorScheme::BackgroundRole role);
-
-    /**
-     * @return current KColorScheme::ForegroundRole parameter value
-     */
-    KColorScheme::ForegroundRole getForegroundRole() const;
-    /**
-     * Sets KColorScheme::ForegroundRole parameter value to @p role
-     */
-    void setForegroundRole(KColorScheme::ForegroundRole role);
-
-    /**
-     * @return current KColorScheme::DecorationRole parameter value
-     */
-    KColorScheme::DecorationRole getDecorationRole() const;
-    /**
-     * Sets KColorScheme::DecorationRole parameter value to @p role
-     */
-    void setDecorationRole(KColorScheme::DecorationRole role);
-
-    /**
-     * @return current KColorScheme::ShadeRole parameter value
-     */
-    KColorScheme::ShadeRole getShadeRole() const;
-    /**
-     * Sets KColorScheme::ShadeRole parameter value to @p role
-     */
-    void setShadeRole(KColorScheme::ShadeRole role);
-
+    ColorScheme(QDeclarativeItem *parent = 0);
+    
     QColor background() const;
     QColor foreground() const;
-    QColor decoration() const;
-    QColor shade() const;
-
+    QColor border() const;
+    
 signals:
-    /**
-     * Emitted when one of parameters that affects background has been changed.
-     * @see colorSet backgroundRole
-     */
-    void onBackgroundChange();
-    /**
-     * Emitted when one of parameters that affects foreground has been changed.
-     * @see colorSet foregroundRole
-     */
-    void onForegroundChange();
-    /**
-     * Emitted when one of parameters that affects decoration has been changed.
-     * @see colorSet decorationRole
-     */
-    void onDecorationChange();
-    /**
-     * Emitted when one of parameters that affects shade has been changed.
-     * @see shadeRole
-     */
-    void onShadeChange();
-
-private:
-    QPalette::ColorGroup m_colorGroup;
-    KColorScheme::ColorSet m_colorSet;
-    KColorScheme::BackgroundRole m_backgroundRole;
-    KColorScheme::ForegroundRole m_foregroundRole;
-    KColorScheme::DecorationRole m_decorationRole;
-    KColorScheme::ShadeRole m_shadeRole;
+    void placeHolder();
 };
 
 #endif // COLORSCHEME_H
