@@ -88,6 +88,15 @@ Item {
         board.setLastMove(row, column, value)
     }
     /**
+     * Sets time to wait before starting animation
+     * @param row row index of cell (starting from 0)
+     * @param column column index of cell (starting from 0)
+     * @param value time to wait
+     */
+    function setPreAnimationTime(row, column, value) {
+        board.setPreAnimationTime(row, column, value);
+    }
+    /**
       * Shows popup with specified text
       * @param text Text to show
       */

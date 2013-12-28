@@ -90,6 +90,16 @@ Item {
     function setLastMove(row, column, value) {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).isLastMove = value
     }
+    
+    /**
+     * Sets time to wait before starting animation
+     * @param row row index of cell (starting from 0)
+     * @param column column index of cell (starting from 0)
+     * @param value time to wait
+     */
+    function setPreAnimationTime(row, column, value) {
+        cells.itemAt(row * Globals.COLUMN_COUNT + column).chipPreAnimationTime = value
+    }
 
     CanvasItem {
         id: boardBackground

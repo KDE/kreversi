@@ -114,7 +114,10 @@ public:
      *  Sets animation times from players to @p delay milliseconds
      */
     void setDelay(int delay);
-
+    /**
+     *  Get wait time for given cell before animating. Used for sequental turning of chips
+     */
+    int getPreAnimationDelay(KReversiPos pos) const;
     /**
      *  @return History of moves as MoveList
      */

@@ -118,6 +118,15 @@ KReversiView::~KReversiView()
 
 void KReversiView::updateBoard()
 {
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            QMetaObject::invokeMethod(m_qml_root, "setPreAnimationTime",
+                                      Q_ARG(QVariant, i),
+                                      Q_ARG(QVariant, j),
+                                      Q_ARG(QVariant, m_game ? m_game->getPreAnimationDelay(KReversiPos(i, j)) : 0));
+        }
+    }
+    
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
             QString new_state = "";

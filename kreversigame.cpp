@@ -93,9 +93,11 @@ void KReversiGame::makeMove(const KReversiMove &move)
 
     m_lastPlayer = m_curPlayer;
     m_curPlayer = NoColor; // both players wait for animations
-    m_delayTimer.singleShot(m_delay, this, SLOT(onDelayTimer()));
 
     turnChips(move);
+    
+    m_delayTimer.singleShot(m_delay * (qMax(1, m_changedChips.count() - 1)), this, SLOT(onDelayTimer()));
+    emit boardChanged();
 }
 
 void KReversiGame::startNextTurn()
@@ -195,8 +197,6 @@ void KReversiGame::turnChips(const KReversiMove &move)
     }
 
     m_undoStack.push(m_changedChips);
-
-    emit boardChanged();
 }
 
 bool KReversiGame::isMovePossible(const KReversiMove& move) const
@@ -271,6 +271,16 @@ bool KReversiGame::isAnyPlayerMovePossible(ChipColor player) const
 void KReversiGame::setDelay(int delay)
 {
     m_delay = delay;
+}
+
+int KReversiGame::getPreAnimationDelay(KReversiPos pos) const
+{
+    for (int i = 1; i < m_changedChips.size(); i++) {
+        if (m_changedChips[i].row == pos.row && m_changedChips[i].col == pos.col) {
+            return (i - 1) * m_delay;
+        }
+    }
+    return 0;
 }
 
 MoveList KReversiGame::getHistory() const

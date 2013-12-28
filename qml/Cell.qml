@@ -50,6 +50,10 @@ Item {
       */
     property int chipAnimationTime: 25 * 12
     /**
+     * How long to wait before start of animation
+     */
+    property int chipPreAnimationTime: 0
+    /**
       * Chips state:
       * "Black" turns chip to black side
       * "White" turns chip to white side
@@ -79,6 +83,7 @@ Item {
 
         imagePrefix: parent.chipImagePrefix + "_"
         animationTime: parent.chipAnimationTime
+        preAnimationTime: parent.chipPreAnimationTime
     }
 
     MouseArea {

@@ -32,6 +32,10 @@ Item {
     id: chipContainer
 
     /**
+     * Total frames in animation
+     */
+    property int framesCount: 12
+    /**
       * Current chip's frame
       */
     property int currentFrame: 1
@@ -44,6 +48,10 @@ Item {
       * Duration of chip's turning animation
       */
     property int animationTime: 25 * 12
+    /**
+     * How long to wait before start of animation
+     */
+    property int preAnimationTime: 0
 
     CanvasItem {
         id: chipImage
@@ -51,7 +59,13 @@ Item {
         visible: false
         spriteKey: imagePrefix + currentFrame
     }
-
+    
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        onClicked: chipContainer.clicked()
+    }
+    
     Timer {
         id: blinkingTimer
         interval: 500
@@ -59,89 +73,108 @@ Item {
         repeat: true
         onTriggered: chipImage.visible = !chipImage.visible
     }
-
+    
     states: [
-        State {
-            name: "Black"
-
-            PropertyChanges {
-                target: chipImage
-                visible: true
-            }
-
-            PropertyChanges {
-                target: chipContainer
-                currentFrame: 1
-            }
-
-            PropertyChanges {
-                target: blinkingTimer
-                running: false
-            }
-        },
-
-        State {
-            name: "Black_blinking"
-
-            PropertyChanges {
-                target: chipImage
-                visible: true
-            }
-
-            PropertyChanges {
-                target: chipContainer
-                currentFrame: 1
-            }
-
-            PropertyChanges {
-                target: blinkingTimer
-                running: true
-            }
-        },
-
-        State {
-            name: "White"
-
-            PropertyChanges {
-                target: chipImage
-                visible: true
-            }
-
-            PropertyChanges {
-                target: chipContainer
-                currentFrame: Globals.CHIP_ANIMATION_FRAMES_COUNT
-            }
-
-            PropertyChanges {
-                target: blinkingTimer
-                running: false
-            }
-        },
-
-        State {
-            name: "White_blinking"
-
-            PropertyChanges {
-                target: chipImage
-                visible: true
-            }
-
-            PropertyChanges {
-                target: chipContainer
-                currentFrame: Globals.CHIP_ANIMATION_FRAMES_COUNT
-            }
-
-            PropertyChanges {
-                target: blinkingTimer
-                running: true
-            }
+    State {
+        name: "Black"
+        
+        PropertyChanges {
+            target: chipImage
+            visible: true
         }
-    ]
-
-    Behavior on currentFrame {
-        NumberAnimation {
-            duration: animationTime
-            easing.type: Easing.InOutQuad
+        
+        PropertyChanges {
+            target: chipContainer
+            currentFrame: 1
+        }
+        
+        PropertyChanges {
+            target: blinkingTimer
+            running: false
+        }
+    },
+    
+    State {
+        name: "Black_blinking"
+        
+        PropertyChanges {
+            target: chipImage
+            visible: true
+        }
+        
+        PropertyChanges {
+            target: chipContainer
+            currentFrame: 1
+        }
+        
+        PropertyChanges {
+            target: blinkingTimer
+            running: true
+        }
+    },
+    
+    State {
+        name: "White"
+        
+        PropertyChanges {
+            target: chipImage
+            visible: true
+        }
+        
+        PropertyChanges {
+            target: chipContainer
+            currentFrame: framesCount
+        }
+        
+        PropertyChanges {
+            target: blinkingTimer
+            running: false
+        }
+    },
+    
+    State {
+        name: "White_blinking"
+        
+        PropertyChanges {
+            target: chipImage
+            visible: true
+        }
+        
+        PropertyChanges {
+            target: chipContainer
+            currentFrame: framesCount
+        }
+        
+        PropertyChanges {
+            target: blinkingTimer
+            running: true
         }
     }
+    ]
+    
+    Behavior on currentFrame {
+        SequentialAnimation {
+            PauseAnimation {
+                duration: preAnimationTime
+            }
+            
+            NumberAnimation {
+                duration: animationTime
+                easing.type: Easing.InOutQuad
+            }
+        }
+    }
+    
+    transitions: [
+    Transition {
+        from: ""
+        to: "*"
+        reversible: false
+        
+        NumberAnimation {
+            property: "currentFrame"
+            duration: 0
+        }
+    }
+    ]
 }
