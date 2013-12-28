@@ -56,9 +56,13 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
 
     ui->whiteTypeGroup->setId(ui->whiteHuman, GameStartInformation::Human);
     ui->whiteTypeGroup->setId(ui->whiteAI, GameStartInformation::AI);
+    ui->whiteAI->setIcon(KIcon("computer"));
+    ui->whiteHuman->setIcon(KIcon("user-identity"));
 
     ui->blackTypeGroup->setId(ui->blackHuman, GameStartInformation::Human);
     ui->blackTypeGroup->setId(ui->blackAI, GameStartInformation::AI);
+    ui->blackAI->setIcon(KIcon("computer"));
+    ui->blackHuman->setIcon(KIcon("user-identity"));
 
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
     const KIcon icon("games-difficult");
