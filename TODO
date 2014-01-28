@@ -40,9 +40,6 @@ Structural enhancements
     This will let us create a QML based UI for Plasma Active
      + Remove all mentions of "Player" and "Computer" from KReversiGame ----
        This should be strictly about the game, using only Black/White
-     + Remove all mentions of "Player" and "Computer" from the engine   ----
-       This should go to KReversiView (or perhaps introduce a new
-       class for that)
 
 Documentation
   * Rewrite DESIGN totally.                                             DONE
