@@ -174,7 +174,7 @@ private:
     /**
      *  Used to provide access to QML-implemented board
      */
-    QObject *m_qmlRoot;
+    QObject *m_qml_root;
 
     /**
      *  Used to access theme engine from QML
@@ -222,7 +222,7 @@ private:
     bool m_showLegalMoves;
 
     /**
-     *  If true, board labels will be rendered
+     *  If true board labels will be rendered
      */
     bool m_showLabels;
     

@@ -17,16 +17,12 @@
  */
 
 
-// Own
 #include "highscores.h"
 
-// Qt
-#include <QVector>
-#include <QDateTime>
-
-// KDE
 #include <klocale.h>
 #include <kconfig.h>
+#include <QVector>
+#include <QDateTime>
 #include <kglobal.h>
 #include <kconfiggroup.h>
 

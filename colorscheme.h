@@ -18,13 +18,9 @@
 #ifndef COLORSCHEME_H
 #define COLORSCHEME_H
 
-// Qt
 #include <QDeclarativeItem>
-#include <QColor>
-
-// KDE
 #include <KColorScheme>
-
+#include <QColor>
 
 class ColorScheme : public QDeclarativeItem
 {

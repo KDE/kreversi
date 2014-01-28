@@ -15,16 +15,14 @@ Legend
 ----------------------------------------------------------------
 
 Fix important bugs
-  * All crashes                                                         DONE
+  * All crashes                                                         ----
   *
 
 Cleanup
   * Establish coding standards                                          ----
      + Create a HACKING file that describes this (copy Krita's)         ----
      + Enforce unified indentation, braces, parenthesis, etc            Done
-     + Enforce unified variable naming (fooBar instead of foo_bar)      Done
-     + Fix comments (real sentences, add missing comments)              ----
-     + Name files consistently                                          ----
+     + Enforce unified variable naming (fooBar instead of foo_bar)      ----
 
 General enhancements
   * Make it possible to play white                                      -----
@@ -38,8 +36,6 @@ Enhancements to the view
 Structural enhancements
   * Improve separation of engine + game logic from the UI               ----
     This will let us create a QML based UI for Plasma Active
-     + Remove all mentions of "Player" and "Computer" from KReversiGame ----
-       This should be strictly about the game, using only Black/White
 
 Documentation
   * Rewrite DESIGN totally.                                             DONE

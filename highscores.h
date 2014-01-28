@@ -20,12 +20,9 @@
 #ifndef HIGHSCORES_H
 #define HIGHSCORES_H
 
-// Qt
-#include <QStringList>
-
-// KDE
 #include <kexthighscore.h>
 #include <kdemacros.h>
+#include <QStringList>
 
 namespace KExtHighscore
 {

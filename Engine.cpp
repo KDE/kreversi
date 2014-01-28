@@ -115,17 +115,10 @@
 // or nearly equal value after the search is completed.
 
 
-// Own
 #include "Engine.h"
-
-// Qt
-#include <QApplication>
-
-// KDE
-#include <KDebug>
-
-// Kreversi
 #include "kreversigame.h"
+#include <QApplication>
+#include <KDebug>
 
 
 // ================================================================
@@ -173,6 +166,7 @@ void SquareStack::resize(int size)
 // (Re)initialize the stack so that is empty, and at the same time
 // resize it to 'size'.
 //
+
 void SquareStack::init(int size)
 {
     resize(size);
@@ -215,7 +209,7 @@ inline void MoveAndValue::setXYV(int x, int y, int value)
 
 MoveAndValue::MoveAndValue()
 {
-    setXYV(0, 0, 0);
+    setXYV(0,0,0);
 }
 
 
@@ -226,7 +220,6 @@ MoveAndValue::MoveAndValue(int x, int y, int value)
 
 // ================================================================
 //                       class Score
-
 
 /* This class keeps track of the score for both colors.  Such a score
  * could be either the number of pieces, the score from the evaluation
@@ -276,7 +269,7 @@ Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
 }
 
 
-Engine::Engine(int st)
+Engine::Engine(int st) //: SuperEngine(st)
     : m_strength(st)
     , m_computingMove(false)
 {
@@ -420,13 +413,13 @@ KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
     // The main search loop.  Step through all possible moves and keep
     // track of the most valuable one.  This move is stored in
     // (max_x, max_y) and the value is stored in maxval.
-    m_nodesSearched = 0;
+    m_nodes_searched = 0;
     for (int x = 1; x < 9; x++) {
         for (int y = 1; y < 9; y++) {
             // Don't bother with non-empty squares and squares that aren't
             // neighbors to opponent pieces.
             if (m_board[x][y] != NoColor
-                || (m_neighborBits[x][y] & opponentbits) == null_bits)
+                || (m_neighbor_bits[x][y] & opponentbits) == null_bits)
                 continue;
 
             int val = ComputeMove2(x, y, color, 1, maxval, colorbits, opponentbits);
@@ -530,11 +523,11 @@ int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
     SquareStackEntry  mse;
     ChipColor         opponent = opponentColorFor(color);
 
-    m_nodesSearched++;
+    m_nodes_searched++;
 
     // Put the piece on the board and incrementally update scores and bitmaps.
     m_board[xplay][yplay] = color;
-    colorbits |= m_coordBit[xplay][yplay];
+    colorbits |= m_coord_bit[xplay][yplay];
     m_score->inc(color);
     m_bc_score->add(color, m_bc_board[xplay][yplay]);
 
@@ -558,8 +551,8 @@ int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
                 for (x -= xinc, y -= yinc; x != xplay || y != yplay;
                      x -= xinc, y -= yinc) {
                     m_board[x][y] = color;
-                    colorbits |= m_coordBit[x][y];
-                    opponentbits &= ~m_coordBit[x][y];
+                    colorbits |= m_coord_bit[x][y];
+                    opponentbits &= ~m_coord_bit[x][y];
 
                     m_squarestack.Push(x, y);
 
@@ -660,7 +653,7 @@ int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
     for (int x = 1; x < 9; x++) {
         for (int y = 1; y < 9; y++) {
             if (m_board[x][y] == NoColor
-                && (m_neighborBits[x][y] & colorbits) != null_bits) {
+                && (m_neighbor_bits[x][y] & colorbits) != null_bits) {
                 int val = ComputeMove2(x, y, opponent, level+1, maxval, opponentbits, colorbits);
 
                 if (val != ILLEGAL_VALUE && val > maxval) {
@@ -716,8 +709,8 @@ int Engine::EvaluatePosition(ChipColor color)
 
 void Engine::SetupBits()
 {
-    //m_coordBit = new long[9][9];
-    //m_neighborBits = new long[9][9];
+    //m_coord_bit = new long[9][9];
+    //m_neighbor_bits = new long[9][9];
 
     quint64 bits = 1;
 
@@ -725,20 +718,20 @@ void Engine::SetupBits()
     // each square.
     for (int i=1; i < 9; i++)
         for (int j=1; j < 9; j++) {
-            m_coordBit[i][j] = bits;
+            m_coord_bit[i][j] = bits;
             bits *= 2;
         }
 
     // Store a bitmap consisting of all neighbors for each square.
     for (int i=1; i < 9; i++)
         for (int j=1; j < 9; j++) {
-            m_neighborBits[i][j] = 0;
+            m_neighbor_bits[i][j] = 0;
 
             for (int xinc=-1; xinc<=1; xinc++)
                 for (int yinc=-1; yinc<=1; yinc++) {
                     if (xinc != 0 || yinc != 0)
                         if (i + xinc > 0 && i + xinc < 9 && j + yinc > 0 && j + yinc < 9)
-                            m_neighborBits[i][j] |= m_coordBit[i + xinc][j + yinc];
+                            m_neighbor_bits[i][j] |= m_coord_bit[i + xinc][j + yinc];
                 }
         }
 }
@@ -804,7 +797,7 @@ quint64 Engine::ComputeOccupiedBits(ChipColor color)
 
     for (int i=1; i < 9; i++)
         for (int j=1; j < 9; j++)
-            if (m_board[i][j] == color) retval |= m_coordBit[i][j];
+            if (m_board[i][j] == color) retval |= m_coord_bit[i][j];
 
     return retval;
 }
