@@ -195,18 +195,16 @@ class Engine
 
     ~Engine();
 
-    Move  computeMove(const KReversiGame& game, Color color, bool competitive);
-    bool  isThinking() const { return m_computingMove; }
+    KReversiPos     computeMove(const KReversiGame& game, Color color, bool competitive);
+    bool isThinking() const { return m_computingMove; }
 
     void  setInterrupt(bool intr) { m_interrupt = intr; }
     bool  interrupted() const     { return m_interrupt; }
 
     void  setStrength(uint strength) { m_strength = strength; }
     uint  strength() const { return m_strength; }
-
  private:
-    // These are all helper functions.
-    Move     ComputeFirstMove(const KReversiGame& game);
+    KReversiPos ComputeFirstMove(const KReversiGame& game);
     int      ComputeMove2(int xplay, int yplay, Color color, int level,
                           int utoffval,
                           quint64 colorbits, quint64 opponentbits);

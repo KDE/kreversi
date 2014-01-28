@@ -61,13 +61,11 @@ void KReversiGame::makePlayerMove(int row, int col, bool demoMode)
 
     m_curPlayer = m_playerColor;
     KReversiPos move;
-    Move  move2;
 
     if (!demoMode)
         move = KReversiPos(m_playerColor, row, col);
     else {
-        move2 = m_engine->computeMove(*this, m_playerColor, true);
-        move = KReversiPos(move2.color, move2.row, move2.col);
+        move = m_engine->computeMove(*this, m_playerColor, true);
         if (!move.isValid())
             return;
     }
@@ -123,8 +121,7 @@ void KReversiGame::makeComputerMove()
     m_curPlayer = m_computerColor;
     // FIXME dimsuz: m_competitive. Read from config.
     // (also there's computeMove in getHint)
-    Move        move2  = m_engine->computeMove(*this, m_computerColor, true);
-    KReversiPos move = KReversiPos(move2.color, move2.row, move2.col);
+    KReversiPos move = m_engine->computeMove(*this, m_computerColor, true);
     if (!move.isValid())
         return;
 
@@ -525,8 +522,7 @@ void KReversiGame::setComputerSkill(int skill)
 KReversiPos KReversiGame::getHint() const
 {
     // FIXME dimsuz: don't use true, use m_competitive
-    Move move = m_engine->computeMove(*this, m_playerColor, true);
-    return KReversiPos(move.color, move.row, move.col);
+    return m_engine->computeMove(*this, m_playerColor, true);
 }
 
 KReversiPos KReversiGame::getLastMove() const
