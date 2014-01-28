@@ -57,8 +57,6 @@ KReversiGame::~KReversiGame()
 
 void KReversiGame::makePlayerMove(int row, int col, bool demoMode)
 {
-    PosList changedChips;
-
     m_curPlayer = m_playerColor;
     KReversiPos move;
 
@@ -73,8 +71,8 @@ void KReversiGame::makePlayerMove(int row, int col, bool demoMode)
     if (!isMovePossible(move)) {
         return;
     }
-    makeMove(move, changedChips);
-    m_undoStack.push(changedChips);
+    makeMove(move);
+    m_undoStack.push(m_changedChips);
 }
 
 void KReversiGame::startNextTurn(bool demoMode)
@@ -114,7 +112,6 @@ void KReversiGame::startNextTurn(bool demoMode)
 
 void KReversiGame::makeComputerMove()
 {
-    PosList changedChips;
     m_curPlayer = m_computerColor;
     // FIXME dimsuz: m_competitive. Read from config.
     // (also there's computeMove in getHint)
@@ -127,8 +124,8 @@ void KReversiGame::makeComputerMove()
         return;
     }
 
-    makeMove(move, changedChips);
-    m_undoStack.push(changedChips);
+    makeMove(move);
+    m_undoStack.push(m_changedChips);
 }
 
 int KReversiGame::undo()
@@ -173,25 +170,30 @@ int KReversiGame::undo()
     //kDebug() << "Undone" << movesUndone << "moves.";
     //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black");
 
+    if (!m_undoStack.empty())
+        m_changedChips = m_undoStack.top();
+    else
+        m_changedChips.clear();
+
     emit boardChanged();
 
     return movesUndone;
 }
 
-void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
+void KReversiGame::makeMove(const KReversiPos& move)
 {
-    changedChips.clear();
+    m_changedChips.clear();
 
     setChipColor(move.color, move.row, move.col);
     // the first one is the move itself
-    changedChips.append(move);
+    m_changedChips.append(move);
     // now turn color of all chips that were won
     if (hasChunk(Up, move)) {
         for (int r=move.row-1; r >= 0; --r) {
             if (m_cells[r][move.col] == move.color)
                 break;
             setChipColor(move.color, r, move.col);
-            changedChips.append(KReversiPos(move.color, r, move.col));
+            m_changedChips.append(KReversiPos(move.color, r, move.col));
         }
     }
     if (hasChunk(Down, move)) {
@@ -199,7 +201,7 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[r][move.col] == move.color)
                 break;
             setChipColor(move.color, r, move.col);
-            changedChips.append(KReversiPos(move.color, r, move.col));
+            m_changedChips.append(KReversiPos(move.color, r, move.col));
         }
     }
     if (hasChunk(Left, move)) {
@@ -207,7 +209,7 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[move.row][c] == move.color)
                 break;
             setChipColor(move.color, move.row, c);
-            changedChips.append(KReversiPos(move.color, move.row, c));
+            m_changedChips.append(KReversiPos(move.color, move.row, c));
         }
     }
     if (hasChunk(Right, move)) {
@@ -215,7 +217,7 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[move.row][c] == move.color)
                 break;
             setChipColor(move.color, move.row, c);
-            changedChips.append(KReversiPos(move.color, move.row, c));
+            m_changedChips.append(KReversiPos(move.color, move.row, c));
         }
     }
     if (hasChunk(UpLeft, move)) {
@@ -223,7 +225,7 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[r][c] == move.color)
                 break;
             setChipColor(move.color, r, c);
-            changedChips.append(KReversiPos(move.color, r, c));
+            m_changedChips.append(KReversiPos(move.color, r, c));
         }
     }
     if (hasChunk(UpRight, move)) {
@@ -231,7 +233,7 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[r][c] == move.color)
                 break;
             setChipColor(move.color, r, c);
-            changedChips.append(KReversiPos(move.color, r, c));
+            m_changedChips.append(KReversiPos(move.color, r, c));
         }
     }
     if (hasChunk(DownLeft, move)) {
@@ -239,7 +241,7 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[r][c] == move.color)
                 break;
             setChipColor(move.color, r, c);
-            changedChips.append(KReversiPos(move.color, r, c));
+            m_changedChips.append(KReversiPos(move.color, r, c));
         }
     }
     if (hasChunk(DownRight, move)) {
@@ -247,21 +249,13 @@ void KReversiGame::makeMove(const KReversiPos& move, PosList &changedChips)
             if (m_cells[r][c] == move.color)
                 break;
             setChipColor(move.color, r, c);
-            changedChips.append(KReversiPos(move.color, r, c));
+            m_changedChips.append(KReversiPos(move.color, r, c));
         }
     }
 
     m_curPlayer = (m_curPlayer == White ? Black : White);
     //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black");
     emit moveFinished();
-}
-
-PosList KReversiGame::changedChips() const
-{
-    if (!m_undoStack.empty())
-        return m_undoStack.top();
-    else
-        return PosList();
 }
 
 bool KReversiGame::isMovePossible(const KReversiPos& move) const
@@ -496,11 +490,11 @@ KReversiPos KReversiGame::getHint() const
 KReversiPos KReversiGame::getLastMove() const
 {
     // we'll take this move from changed list
-    if (m_undoStack.isEmpty()) 
+    if (m_changedChips.isEmpty()) 
         return KReversiPos(NoColor, -1, -1); // invalid one
 
     // first item in this list is the actual move, rest is turned chips
-    return m_undoStack.top().first();
+    return m_changedChips.first();
 }
 
 PosList KReversiGame::possibleMoves() const
