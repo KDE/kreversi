@@ -19,15 +19,10 @@
 
 #include "kreversiview.h"
 
-KReversiView::KReversiView(KReversiGame* game, QWidget *parent)
-    : KgDeclarativeView(parent)
-    , m_delay(ANIMATION_SPEED_NORMAL)
-    , m_game(0)
-    , m_demoMode(false)
-    , m_showLastMove(false)
-    , m_showLegalMoves(false)
-    , m_showLabels(false)
-    , m_maxDelay(0)
+KReversiView::KReversiView(KReversiGame* game, QWidget *parent) :
+    KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
+    m_demoMode(false), m_showLastMove(false), m_showLegalMoves(false),
+    m_showLabels(false), m_maxDelay(0)
 {
     m_delayTimer.setSingleShot(true);
     connect(&m_delayTimer, SIGNAL(timeout()), this, SLOT(slotOnDelay()));
@@ -72,6 +67,7 @@ void KReversiView::setGame(KReversiGame *game)
         connect(m_game, SIGNAL(computerCantMove()), this, SLOT(slotComputerCantMove()));
         connect(m_game, SIGNAL(playerCantMove()), this, SLOT(slotPlayerCantMove()));
     }
+
 
     m_hint = KReversiPos();
     m_demoMode = false;

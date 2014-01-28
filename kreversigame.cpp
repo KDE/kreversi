@@ -63,8 +63,10 @@ void KReversiGame::makePlayerMove( int row, int col, bool demoMode )
 
     if( !isMovePossible(move) )
     {
+        kDebug() << "No move possible";
         return;
     }
+    //kDebug() << "Black (player) play ("<<move.row<<","<<move.col<<")";
     makeMove( move );
     m_undoStack.push( m_changedChips );
 }
@@ -85,7 +87,7 @@ void KReversiGame::startNextTurn(bool demoMode)
             }
             else // no comp move possible and not in demo mode
             {
-                //kDebug() << "Computer can't move!";
+                kDebug() << "Computer can't move!";
                 m_curPlayer = m_playerColor;
                 emit computerCantMove();
             }
@@ -106,7 +108,7 @@ void KReversiGame::startNextTurn(bool demoMode)
     }
     else
     {
-        //kDebug() << "GAME OVER";
+        kDebug() << "GAME OVER";
         emit gameOver();
     }
 }
@@ -122,7 +124,7 @@ void KReversiGame::makeComputerMove()
 
     if( move.color != m_computerColor )
     {
-        //kDebug() << "Strange! makeComputerMove() just got not computer move!";
+        kDebug() << "Strange! makeComputerMove() just got not computer move!";
         return;
     }
 
@@ -171,7 +173,7 @@ int KReversiGame::undo()
 
     m_curPlayer = m_playerColor;
 
-    //kDebug() << "Undone" << movesUndone << "moves.";
+    kDebug() << "Undone" << movesUndone << "moves.";
     //kDebug() << "Current player changed to" << (m_curPlayer == White ? "White" : "Black" );
 
     if (!m_undoStack.empty())
