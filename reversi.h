@@ -208,6 +208,10 @@ public:
     bool undoMove(Move &move, bool checkFirst = true);
 
 private:
+    enum Direction {
+        Up, Down, Right, Left, UpLeft, UpRight, DownLeft, DownRight,
+        LastDirection  // Sentinel to be used for loop counters only
+    };
 
     /**
      *  Searches for a "chunk" of opponent pieces in direction dir.

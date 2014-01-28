@@ -44,7 +44,7 @@ Structural enhancements
      + Integrate the separated reversi logic into view                  ----
      + Remove all mentions of "Player" and "Computer" from KReversiGame ----
        This should be strictly about the game, using only Black/White
-     + Remove all mentions of "Player" and "Computer" from the engine   Done
+     + Remove all mentions of "Player" and "Computer" from the engine   ----
        This should go to KReversiView (or perhaps introduce a new
        class for that)
 

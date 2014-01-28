@@ -264,11 +264,11 @@ static const int ILLEGAL_VALUE = 8888888;
 static const int BC_WEIGHT     = 3;
 
 
-Engine::Engine(int strength, int seed)/* : SuperEngine(st, sd) */
-    : m_strength(strength)
+Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
+    : m_strength(st)
     , m_computingMove(false)
 {
-    m_random.setSeed(seed);
+    m_random.setSeed(sd);
     m_score = new Score;
     m_bc_score = new Score;
     SetupBcBoard();
@@ -276,8 +276,8 @@ Engine::Engine(int strength, int seed)/* : SuperEngine(st, sd) */
 }
 
 
-Engine::Engine(int strength)
-    : m_strength(strength)
+Engine::Engine(int st)
+    : m_strength(st)
     , m_computingMove(false)
 {
     m_random.setSeed(0);
@@ -288,7 +288,7 @@ Engine::Engine(int strength)
 }
 
 
-Engine::Engine()
+Engine::Engine()// : SuperEngine(1)
     : m_strength(1)
     , m_computingMove(false)
 {
@@ -314,7 +314,7 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-Move Engine::computeMove(const Position &position, Color color, bool competitive)
+Move Engine::computeMove(const KReversiGame& game, Color color, bool competitive)
 {
     if (m_computingMove) {
         kDebug() << "I'm already computing move! Yours KReversi Engine.";
@@ -341,14 +341,14 @@ Move Engine::computeMove(const Position &position, Color color, bool competitive
     }
 
     // Figure out the current score
-    m_score->set(White, position.playerScore(White));
-    m_score->set(Black, position.playerScore(Black));
+    m_score->set(White, game.playerScore(White));
+    m_score->set(Black, game.playerScore(Black));
 
     // Treat the first move as a special case (we can basically just
     // pick a move at random).
     if (m_score->score(White) + m_score->score(Black) == 4) {
         m_computingMove = false;
-        return ComputeFirstMove(color);
+        return ComputeFirstMove(game);
     }
 
     // Let there be room for 3000 changes during the recursive search.
@@ -385,7 +385,7 @@ Move Engine::computeMove(const Position &position, Color color, bool competitive
         for (uint y = 0; y < 10; y++) {
             if (1 <= x && x <= 8
                 && 1 <= y && y <= 8)
-                m_board[x][y] = position.colorAt(y-1, x-1);
+                m_board[x][y] = game.chipColorAt(y-1, x-1);
             else
                 m_board[x][y] = NoColor;
         }
@@ -491,9 +491,12 @@ Move Engine::computeMove(const Position &position, Color color, bool competitive
 // Get the first move.  We can pick any move at random.
 //
 
-Move Engine::ComputeFirstMove(Color color)
+Move Engine::ComputeFirstMove(const KReversiGame& game)
 {
-    int  r = m_random.getLong(4) + 1;
+    int    r;
+    Color  color = game.currentPlayer();
+
+    r = m_random.getLong(4) + 1;
 
     if (color == White) {
         if (r == 1)      return  Move(color, 4, 2);
