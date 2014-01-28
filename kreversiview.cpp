@@ -126,7 +126,7 @@ void KReversiView::updateBoard()
                                       Q_ARG(QVariant, m_game ? m_game->getPreAnimationDelay(KReversiPos(i, j)) : 0));
         }
     }
-    
+        
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
             QString new_state = "";

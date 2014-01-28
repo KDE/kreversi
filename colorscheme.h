@@ -34,7 +34,6 @@ class ColorScheme : public QDeclarativeItem
     Q_PROPERTY(QColor background READ background NOTIFY placeHolder)
     Q_PROPERTY(QColor foreground READ foreground NOTIFY placeHolder)
     Q_PROPERTY(QColor border READ border NOTIFY placeHolder)
-    
 public:
     ColorScheme(QDeclarativeItem *parent = 0);
     

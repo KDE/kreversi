@@ -162,6 +162,7 @@ Item {
                 duration: animationTime
                 easing.type: Easing.InOutQuad
             }
+
         }
     }
     

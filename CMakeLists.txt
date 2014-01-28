@@ -44,7 +44,7 @@ kde4_add_executable(kreversi ${kreversi_SRCS})
 
 
 target_link_libraries(kreversi kdegames ${KDE4_KDEUI_LIBS}
-${QT_QTXML_LIBRARY} ${QT_QTDECLARATIVE_LIBRARY} ${KDECLARATIVE_LIBRARIES})
+${QT_QTDECLARATIVE_LIBRARY} ${KDECLARATIVE_LIBRARIES})
 install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
