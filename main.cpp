@@ -58,12 +58,14 @@ int main(int argc, char **argv)
     KApplication application;
     KGlobal::locale()->insertCatalog( QLatin1String( "libkdegames" ));
 
-    if (application.isSessionRestored()) {
-        RESTORE(KReversiMainWindow);
+    if( application.isSessionRestored() )
+    {
+        RESTORE(KReversiMainWindow)
     }
-    else {
+    else
+    {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        KReversiMainWindow *mainWin = new KReversiMainWindow(0, args->isSet("demo"));
+        KReversiMainWindow *mainWin = new KReversiMainWindow( 0, args->isSet( "demo" ) );
         args->clear();
         mainWin->show();
     }

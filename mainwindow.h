@@ -20,7 +20,6 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-
 #ifndef KREVERSI_MAIN_WINDOW_H
 #define KREVERSI_MAIN_WINDOW_H
 
@@ -79,5 +78,4 @@ private:
     KSelectAction* m_animSpeedAct;
     KToggleAction* m_coloredChipsAct;
 };
-
 #endif
