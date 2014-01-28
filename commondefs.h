@@ -24,17 +24,21 @@
 #ifndef COMMONDEFS_H
 #define COMMONDEFS_H
 
-#include "reversi.h"
+// noColor = empty
 
+enum ChipColor {
+    White = 0,
+    Black = 1,
+    NoColor = 2
+};
 
-using namespace Reversi;
 
 struct KReversiPos
 {
-    KReversiPos(Color col = NoColor, int r = -1, int c = -1 )
+    KReversiPos( ChipColor col = NoColor, int r = -1, int c = -1 )
         : color(col), row(r), col(c) { }
 
-    Color color;
+    ChipColor color;
     int row;
     int col;
 

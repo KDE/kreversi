@@ -30,11 +30,8 @@
 
 // KReversi
 #include "commondefs.h"
-#include "reversi.h"
 
 class Engine;
-
-using namespace Reversi;
 
 /**
  *  KReversiGame incapsulates all of the game logic.
@@ -117,17 +114,16 @@ public:
     /**
      *  @return a color of the current player
      */
-    //Color currentPlayer() const { return m_curPlayer; }
-    Color currentPlayer() const { return m_position.toMove(); }
+    ChipColor currentPlayer() const { return m_curPlayer; }
 
     /**
      *  @return score (number of chips) of the player
      */
-    int playerScore(Color player) const;
+    int playerScore(ChipColor player) const;
     /**
      *  @return color of the chip at position [row, col]
      */
-    Color chipColorAt(int row, int col) const;
+    ChipColor chipColorAt(int row, int col) const;
     /**
      *  @return if undo is possible
      */
@@ -143,8 +139,7 @@ public:
     /**
      *  @return true, if it's computer's turn now
      */
-    //bool isComputersTurn() const { return m_curPlayer == m_computerColor; }
-    bool isComputersTurn() const { return m_position.toMove() == m_computerColor; }
+    bool isComputersTurn() const { return m_curPlayer == m_computerColor; }
     /**
      *  @return a list of chips which were changed during last move.
      *  First of them will be the move itself, and the rest - chips which
@@ -188,11 +183,11 @@ private:
     /**
      *  Sets the type of chip at (row,col)
      */
-    void setColor(Color type, int row, int col);
+    void setChipColor(ChipColor type, int row, int col);
     /**
      *  The board itself
      */
-    Color m_cells[8][8];
+    ChipColor m_cells[8][8];
     /**
      *  Score of each player
      */
@@ -200,15 +195,15 @@ private:
     /**
      *  Color of the current player
      */
-    Color m_curPlayer;
+    ChipColor m_curPlayer;
     /**
      *  The color of the human played chips
      */
-    Color m_playerColor;
+    ChipColor m_playerColor;
     /**
      *  The color of the computer played chips
      */
-    Color m_computerColor;
+    ChipColor m_computerColor;
 
     /**
      *  Our AI
@@ -221,19 +216,6 @@ private:
      *  @see m_changedChips
      */
     QStack<PosList> m_undoStack;
-
-    // ----------------------------------------------------------------
-    // New code
-
-    /**
-     * The current position.
-     */
-    Position  m_position;
-
-    QStack<Move> m_newUndoStack;
-
-    // Checks if the board in m_cells is equal to the board in m_position
-    void checkBoard();
 };
 
 #endif

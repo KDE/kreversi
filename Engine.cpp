@@ -241,13 +241,13 @@ public:
         m_score[Black] = 0;
     }
 
-    uint score(Color color) const     { return m_score[color]; }
+    uint score(ChipColor color) const     { return m_score[color]; }
 
-    void set(Color color, uint score) { m_score[color] = score; }
-    void inc(Color color)             { m_score[color]++; }
-    void dec(Color color)             { m_score[color]--; }
-    void add(Color color, uint s)     { m_score[color] += s; }
-    void sub(Color color, uint s)     { m_score[color] -= s; }
+    void set(ChipColor color, uint score) { m_score[color] = score; }
+    void inc(ChipColor color)             { m_score[color]++; }
+    void dec(ChipColor color)             { m_score[color]--; }
+    void add(ChipColor color, uint s)     { m_score[color] += s; }
+    void sub(ChipColor color, uint s)     { m_score[color] -= s; }
 
 private:
     uint  m_score[2];
@@ -314,13 +314,15 @@ void Engine::yield()
 
 // Calculate the best move from the current position, and return it.
 
-KReversiPos Engine::computeMove(const KReversiGame& game, Color color, bool competitive)
+KReversiPos Engine::computeMove(const KReversiGame& game, bool competitive)
 {
     if (m_computingMove) {
         //kDebug() << "I'm already computing move! Yours KReversi Engine.";
         return KReversiPos();
     }
     m_computingMove = true;
+
+    ChipColor color;
 
     // A competitive game is one where we try our damnedest to make the
     // best move.  The opposite is a casual game where the engine might
@@ -334,7 +336,8 @@ KReversiPos Engine::computeMove(const KReversiGame& game, Color color, bool comp
     // but that case is determined further down.
     m_exhaustive = false;
 
-    // Check the color to get the move for.
+    // Get the color to calculate the move for.
+    color = game.currentPlayer();
     if (color == NoColor) {
         m_computingMove = false;
         return KReversiPos();
@@ -494,7 +497,7 @@ KReversiPos Engine::computeMove(const KReversiGame& game, Color color, bool comp
 KReversiPos Engine::ComputeFirstMove(const KReversiGame& game)
 {
     int    r;
-    Color  color = game.currentPlayer();
+    ChipColor  color = game.currentPlayer();
 
     r = m_random.getLong(4) + 1;
 
@@ -519,13 +522,13 @@ KReversiPos Engine::ComputeFirstMove(const KReversiGame& game)
 // search.
 //
 
-int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
+int Engine::ComputeMove2(int xplay, int yplay, ChipColor color, int level,
 			 int cutoffval, quint64 colorbits,
 			 quint64 opponentbits)
 {
     int               number_of_turned = 0;
     SquareStackEntry  mse;
-    Color         opponent = opponentColorFor(color);
+    ChipColor         opponent = opponentColorFor(color);
 
     m_nodesSearched++;
 
@@ -643,7 +646,7 @@ int Engine::ComputeMove2(int xplay, int yplay, Color color, int level,
 // most valuable move, but not the move itself.
 //
 
-int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
+int Engine::TryAllMoves(ChipColor opponent, int level, int cutoffval,
 			quint64 opponentbits, quint64 colorbits)
 {
     int maxval = -LARGEINT;
@@ -685,11 +688,11 @@ int Engine::TryAllMoves(Color opponent, int level, int cutoffval,
 // using the board control values.
 //
 
-int Engine::EvaluatePosition(Color color)
+int Engine::EvaluatePosition(ChipColor color)
 {
     int retval;
 
-    Color opponent = opponentColorFor(color);
+    ChipColor opponent = opponentColorFor(color);
 
     int    score_color    = m_score->score(color);
     int    score_opponent = m_score->score(opponent);
@@ -779,7 +782,7 @@ void Engine::SetupBcBoard()
 // Calculate the board control score.
 //
 
-int Engine::CalcBcScore(Color color)
+int Engine::CalcBcScore(ChipColor color)
 {
     int sum = 0;
 
@@ -795,7 +798,7 @@ int Engine::CalcBcScore(Color color)
 // Calculate a bitmap of the occupied squares for a certain color.
 //
 
-quint64 Engine::ComputeOccupiedBits(Color color)
+quint64 Engine::ComputeOccupiedBits(ChipColor color)
 {
     quint64 retval = 0;
 

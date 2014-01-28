@@ -23,7 +23,6 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdegames/highscore )
 ########### next target ###############
 
 set(kreversi_SRCS
-    reversi.cpp
     colorscheme.cpp
     kreversigame.cpp
     kreversiview.cpp
