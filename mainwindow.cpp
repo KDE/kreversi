@@ -45,8 +45,8 @@ static const int COMMON_STATUSBAR_ID = 0;
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     : KXmlGuiWindow(parent), m_view(0), m_game(0),
       m_historyDock(0), m_historyView(0),
-      m_firstShow(true), m_startInDemoMode(startDemo), /*m_lowestSkill(6),*/
-      m_undoAct(0), m_hintAct(0), /*m_demoAct(0),*/ m_startDialog(0)
+      m_firstShow(true), m_startInDemoMode(startDemo),
+      m_undoAct(0), m_hintAct(0), m_startDialog(0)
 {
     memset(m_player, 0, sizeof(m_player));
 
@@ -115,7 +115,6 @@ void KReversiMainWindow::setupActionsInit()
     // Hint
     m_hintAct = KStandardGameAction::hint(m_view, SLOT(slotHint()), actionCollection());
     m_hintAct->setEnabled(false);
-//    m_demoAct = KStandardGameAction::demo(this, SLOT(slotToggleDemoMode()), actionCollection());
 
     // Last move
     m_showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
@@ -199,38 +198,8 @@ void KReversiMainWindow::slotShowMovesHistory(bool toggled)
     m_view->setShowBoardLabels(toggled);
 }
 
-//void KReversiMainWindow::slotToggleDemoMode()
-//{
-//    bool toggled = false;
-//    if (m_view->isInDemoMode()) {
-//        toggled = false;
-//        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-start")));
-//        m_demoAct->setChecked(false);
-//    } else {
-//        // if game is over when user launched Demo, start new game
-//        // before Demo starts
-//        if (m_game && m_game->isGameOver())
-//            slotNewGame();
-
-//        toggled = true
-//    m_undoAct->setEnabled(m_game->canUndo());;
-//        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-pause")));
-//        m_demoAct->setChecked(true);
-//    }
-
-//    m_view->setDemoMode(toggled);
-
-//    m_undoAct->setEnabled(!toggled);
-//    m_hintAct->setEnabled(!toggled);
-//}
-
 void KReversiMainWindow::slotNewGame()
 {
-//    if (m_demoAct) {
-//        m_demoAct->setChecked(false);
-//        m_demoAct->setIcon(KIcon(QLatin1String("media-playback-start")));
-//    }
-
     m_startDialog->exec();
 }
 

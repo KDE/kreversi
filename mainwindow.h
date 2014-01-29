@@ -89,7 +89,6 @@ private:
 
     QAction *m_undoAct;
     QAction *m_hintAct;
-//    QAction *m_demoAct;
     KToggleAction *m_showLast;
     KToggleAction *m_showLegal;
     KToggleAction *m_showMovesAct;
