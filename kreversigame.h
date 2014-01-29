@@ -229,10 +229,6 @@ private:
      *  @c NoColor if it is interchange for animations
      */
     ChipColor m_curPlayer;
-    // Well I'm not brief at all :). That's because I think that my
-    // English is not well shaped sometimes, so I try to describe things
-    // so that me and others can understand. Even simple things.
-    // Specially when I think that my description sucks :)
     /**
      *  This list holds chips that were changed/added during last move
      *  First of them will be the chip added to the board by the player
