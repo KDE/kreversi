@@ -1,3 +1,3 @@
 #! /usr/bin/env bash
-$EXTRACTRC *.rc *.kcfg >> rc.cpp
+$EXTRACTRC *.rc *.ui *.kcfg >> rc.cpp
 $XGETTEXT *.cpp -o $podir/kreversi.pot
