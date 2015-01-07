@@ -40,6 +40,8 @@
 #include <kreversigame.h>
 #include <kreversiview.h>
 
+#include <QLabel>
+
 class KReversiGame;
 class KReversiView;
 
@@ -94,5 +96,9 @@ private:
     KToggleAction *m_showMovesAct;
     KSelectAction *m_animSpeedAct;
     KToggleAction *m_coloredChipsAct;
+
+    QPointer<QLabel> black = new QLabel;
+    QPointer<QLabel> white = new QLabel;
+    QPointer<QLabel> common = new QLabel;
 };
 #endif

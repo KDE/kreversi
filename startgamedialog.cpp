@@ -30,7 +30,10 @@
 
 #include <KDebug>
 #include <QSvgRenderer>
+#include <KLocalizedString>
 #include <QPainter>
+
+#include <QGraphicsDropShadowEffect>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     KDialog(parent),
@@ -56,16 +59,16 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
 
     ui->whiteTypeGroup->setId(ui->whiteHuman, GameStartInformation::Human);
     ui->whiteTypeGroup->setId(ui->whiteAI, GameStartInformation::AI);
-    ui->whiteAI->setIcon(KIcon("computer"));
-    ui->whiteHuman->setIcon(KIcon("user-identity"));
+    ui->whiteAI->setIcon(QIcon::fromTheme("computer"));
+    ui->whiteHuman->setIcon(QIcon::fromTheme("user-identity"));
 
     ui->blackTypeGroup->setId(ui->blackHuman, GameStartInformation::Human);
     ui->blackTypeGroup->setId(ui->blackAI, GameStartInformation::AI);
-    ui->blackAI->setIcon(KIcon("computer"));
-    ui->blackHuman->setIcon(KIcon("user-identity"));
+    ui->blackAI->setIcon(QIcon::fromTheme("computer"));
+    ui->blackHuman->setIcon(QIcon::fromTheme("user-identity"));
 
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
-    const KIcon icon("games-difficult");
+    const QIcon icon("games-difficult");
 
     for (int i = 0; i < diffList.size(); i++) {
         ui->blackSkill->addItem(icon, diffList.at(i)->title());

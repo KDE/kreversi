@@ -1,17 +1,52 @@
 project(kreversi)
+cmake_minimum_required(VERSION 2.8.12)
 
-if(NOT COMPILING_KDEGAMES)
-        find_package(KDE4 REQUIRED)
-        include(KDE4Defaults)
-        include(MacroLibrary)
-        find_package(KDEGames 4.9.0 REQUIRED)
+find_package(ECM 0.0.11 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-        add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-        add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-        include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore ${KDE4_INCLUDES} ${QDBUS_INCLUDE_DIRS})
-endif(NOT COMPILING_KDEGAMES)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test)
+find_package(KF5 REQUIRED COMPONENTS
+  CoreAddons 
+  Config 
+  ItemModels 
+  WidgetsAddons 
+  WindowSystem 
+  Codecs 
+  Archive
+  Config 
+  DBusAddons
+  DNSSD
+  Declarative
+  I18n
+  GuiAddons
+  Service
+  ConfigWidgets
+  ItemViews
+  IconThemes
+  Completion
+  JobWidgets
+  TextWidgets
+  GlobalAccel
+  XmlGui
+  Crash
+  Bookmarks
+  KIO
+  NotifyConfig
+  NewStuff
+  KDELibs4Support)
 
-find_package(KDeclarative REQUIRED)
+find_package(KF5KDEGames 4.9.0 REQUIRED)
+
+include(FeatureSummary)
+include(ECMInstallIcons)
+include(KDEInstallDirs)
+include(KDECompilerSettings)
+include(KDECMakeSettings)
+
+include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore ${KDE4_INCLUDES} ${QDBUS_INCLUDE_DIRS})
+
+
+#find_package(KDeclarative REQUIRED)
 
 add_subdirectory( pics )
 add_subdirectory( sounds )
@@ -35,21 +70,19 @@ set(kreversi_SRCS
     mainwindow.cpp
     main.cpp )
 
-kde4_add_ui_files(kreversi_SRCS startgamedialog.ui)
+qt5_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
-kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
+kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
-kde4_add_app_icon(kreversi_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-kreversi.png")
-kde4_add_executable(kreversi ${kreversi_SRCS})
+add_executable(kreversi ${kreversi_SRCS})
 
+target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames)
 
-target_link_libraries(kreversi kdegames ${KDE4_KDEUI_LIBS}
-${QT_QTDECLARATIVE_LIBRARY} ${KDECLARATIVE_LIBRARIES})
 install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
 install( PROGRAMS kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
-install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
+install( FILES kreversiui.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/kreversi )	
 install( DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kreversi )

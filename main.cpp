@@ -22,9 +22,8 @@
  *******************************************************************
  */
 
-#include <KApplication>
-#include <KLocale>
-#include <KCmdLineArgs>
+#include <QApplication>
+#include <KLocalizedString>
 #include <KAboutData>
 
 #include <highscores.h>
@@ -34,33 +33,28 @@ static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
-    KAboutData aboutData("kreversi", 0, ki18n("KReversi"),
-                         "2.0", ki18n(description), KAboutData::License_GPL,
-                         ki18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
-                         KLocalizedString(), "http://games.kde.org/kreversi");
-    aboutData.addAuthor(ki18n("Mario Weilguni"), ki18n("Original author"), "mweilguni@sime.com");
-    aboutData.addAuthor(ki18n("Inge Wallin"), ki18n("Original author"), "inge@lysator.liu.se");
-    aboutData.addAuthor(ki18n("Dmitry Suzdalev"), ki18n("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
-    aboutData.addCredit(ki18n("Simon Hürlimann"), ki18n("Action refactoring"));
-    aboutData.addCredit(ki18n("Mats Luthman"), ki18n("Game engine, ported from his JAVA applet."));
-    aboutData.addCredit(ki18n("Arne Klaassen"), ki18n("Original raytraced chips."));
-    aboutData.addCredit(ki18n("Mauricio Piacentini"), ki18n("Vector chips and background for KDE4."));
-    aboutData.addCredit(ki18n("Brian Croom"), ki18n("Port rendering code to KGameRenderer"), "brian.s.croom@gmail.com");
-    aboutData.addCredit(ki18n("Denis Kuplyakov"), ki18n("Port rendering code to QML, redesign and a lot of improvements"), "dener.kup@gmail.com");
+    QApplication application(argc, argv);
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    KAboutData aboutData(i18n("kreversi"), i18n("KReversi"),
+                         "2.0", i18n(description), KAboutLicense::GPL,
+                         i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
+                         QString(), i18n("http://games.kde.org/kreversi"));
+    aboutData.addAuthor(i18n("Mario Weilguni"), i18n("Original author"), "mweilguni@sime.com");
+    aboutData.addAuthor(i18n("Inge Wallin"), i18n("Original author"), "inge@lysator.liu.se");
+    aboutData.addAuthor(i18n("Dmitry Suzdalev"), i18n("Game rewrite for KDE4. Current maintainer."), "dimsuz@gmail.com");
+    aboutData.addCredit(i18n("Simon Hürlimann"), i18n("Action refactoring"));
+    aboutData.addCredit(i18n("Mats Luthman"), i18n("Game engine, ported from his JAVA applet."));
+    aboutData.addCredit(i18n("Arne Klaassen"), i18n("Original raytraced chips."));
+    aboutData.addCredit(i18n("Mauricio Piacentini"), i18n("Vector chips and background for KDE4."));
+    aboutData.addCredit(i18n("Brian Croom"), i18n("Port rendering code to KGameRenderer"), "brian.s.croom@gmail.com");
+    aboutData.addCredit(i18n("Denis Kuplyakov"), i18n("Port rendering code to QML, redesign and a lot of improvements"), "dener.kup@gmail.com");
 
-    KCmdLineOptions options;
-    options.add("demo", ki18n("Start with demo game playing"));
-    KCmdLineArgs::addCmdLineOptions(options);
+    KAboutData::setApplicationData(aboutData);
 
-    KApplication application;
-    KGlobal::locale()->insertCatalog(QLatin1String("libkdegames"));
 
     if (application.isSessionRestored()) {
         RESTORE(KReversiMainWindow)
     } else {
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         KReversiMainWindow *mainWin = new KReversiMainWindow(0, args->isSet("demo"));
         args->clear();
         mainWin->show();
@@ -70,4 +64,3 @@ int main(int argc, char **argv)
 
     return application.exec();
 }
-

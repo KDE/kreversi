@@ -29,7 +29,7 @@
 #include <KLocale>
 #include <KMessageBox>
 #include <KStandardDirs>
-#include <KStatusBar>
+#include <QStatusBar>
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KExtHighscore>
@@ -53,9 +53,12 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_provider = new KgThemeProvider();
     m_provider->discoverThemes("appdata", QLatin1String("pics"));
 
-    statusBar()->insertItem(i18n("Press start game!"), COMMON_STATUSBAR_ID);
-    statusBar()->insertItem("", BLACK_STATUSBAR_ID);
-    statusBar()->insertItem("", WHITE_STATUSBAR_ID);
+    common->setText(i18n("Press start game!"));
+    statusBar()->insertPermanentWidget(COMMON_STATUSBAR_ID, common);
+    black->setText(i18n(""));
+    statusBar()->insertPermanentWidget(BLACK_STATUSBAR_ID, black);
+    white->setText(i18n(""));
+    statusBar()->insertPermanentWidget(WHITE_STATUSBAR_ID, white);
 
     // initialize difficulty stuff
     Kg::difficulty()->addStandardLevelRange(
@@ -91,7 +94,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     // load saved settings
     loadSettings();
 
-    setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
+//    setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
 
     m_historyDock->hide();
 }
@@ -341,32 +344,23 @@ void KReversiMainWindow::showEvent(QShowEvent*)
 void KReversiMainWindow::updateStatusBar()
 {
     if (m_game->isGameOver()) {
-        statusBar()->changeItem(i18n("GAME OVER"), COMMON_STATUSBAR_ID);
+        common->setText(i18n("GAME OVER"));
     }
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
             && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // using Black White names
-        statusBar()->changeItem(i18n("%1: %2",
-                                     Utils::colorToString(Black),
-                                     m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
-        statusBar()->changeItem(i18n("%1: %2",
-                                     Utils::colorToString(White),
-                                     m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+        black->setText(i18n("%1: %2", Utils::colorToString(Black), m_game->playerScore(Black)));
+        white->setText(i18n("%1: %2", Utils::colorToString(White), m_game->playerScore(White)));
 
         if (!m_game->isGameOver()) {
-            statusBar()->changeItem(i18n("%1 turn",
-                                         Utils::colorToString(m_game->currentPlayer())),
-                                    COMMON_STATUSBAR_ID);
+            common->setText(i18n("%1 turn", Utils::colorToString(m_game->currentPlayer())));
         }
     } else { // using player's names
-        statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[Black],
-                                     m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
-        statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[White],
-                                     m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+        black->setText(i18n("%1: %2", m_nowPlayingInfo.name[Black], m_game->playerScore(Black)));
+        white->setText(i18n("%1: %2", m_nowPlayingInfo.name[White], m_game->playerScore(White)));
 
         if (!m_game->isGameOver() && m_game->currentPlayer() != NoColor) {
-            statusBar()->changeItem(i18n("%1's turn",
-                                         m_nowPlayingInfo.name[m_game->currentPlayer()]), COMMON_STATUSBAR_ID);
+            common->setText(i18n("%1's turn", m_nowPlayingInfo.name[m_game->currentPlayer()]));
         }
     }
 }
