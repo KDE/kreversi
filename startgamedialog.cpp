@@ -68,7 +68,7 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     ui->blackHuman->setIcon(QIcon::fromTheme("user-identity"));
 
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
-    const QIcon icon("games-difficult");
+    const QIcon icon = QIcon::fromTheme("games-difficult");
 
     for (int i = 0; i < diffList.size(); i++) {
         ui->blackSkill->addItem(icon, diffList.at(i)->title());
