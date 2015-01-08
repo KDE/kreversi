@@ -21,7 +21,7 @@
  *
  ********************************************************************/
 
-import QtQuick 1.1
+import QtQuick 2.3
 import org.kde.games.core 0.1 as KgCore
 
 /**
