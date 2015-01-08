@@ -30,12 +30,17 @@
 #include <highscores.h>
 #include <mainwindow.h>
 #include <QCommandLineOption>
+#include <kdelibs4configmigrator.h>
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
     QApplication application(argc, argv);
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("kreversi"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("kreversirc"));
+    migrate.setUiFiles(QStringList() << QStringLiteral("kreversiui.rc"));
+    migrate.migrate();
 
     KAboutData aboutData(i18n("kreversi"), i18n("KReversi"),
                          "2.0", i18n(description), KAboutLicense::GPL,
