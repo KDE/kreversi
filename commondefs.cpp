@@ -23,7 +23,7 @@
  ********************************************************************/
 #include <commondefs.h>
 
-#include <KLocale>
+#include <KLocalizedString>
 
 
 static QString chipPrefixString[2] = {"chip_bw", "chip_color"};

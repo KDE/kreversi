@@ -28,7 +28,6 @@
 #include <QCloseEvent>
 #include <KgDifficulty>
 
-#include <KDebug>
 #include <QSvgRenderer>
 #include <KLocalizedString>
 #include <QPainter>

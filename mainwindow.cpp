@@ -24,11 +24,10 @@
  ********************************************************************/
 #include <mainwindow.h>
 
-#include <KDebug>
+#include <QDebug>
 #include <QIcon>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KStandardDirs>
 #include <QStatusBar>
 #include <KActionCollection>
 #include <KStandardGameAction>
@@ -333,7 +332,7 @@ void KReversiMainWindow::slotDialogReady()
 void KReversiMainWindow::showEvent(QShowEvent*)
 {
     if (m_firstShow && m_startInDemoMode) {
-        kDebug() << "starting demo...";
+        qDebug() << "starting demo...";
         startDemo();
     } else if (m_firstShow) {
         QTimer::singleShot(0, this, SLOT(slotNewGame()));

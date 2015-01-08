@@ -119,8 +119,6 @@
 #include <QVector>
 #include <QApplication>
 
-#include <KDebug>
-
 // ================================================================
 //           Classes SquareStackEntry and SquareStack
 
