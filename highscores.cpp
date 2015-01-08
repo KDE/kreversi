@@ -79,7 +79,7 @@ void ExtManager::convertLegacy(uint gameType)
   if ( gameType!=0 )
     return;
 
-  KConfigGroup  cg(KGlobal::config(), "High Score");
+  KConfigGroup  cg(KSharedConfig::openConfig(), "High Score");
 
   for (uint i = 1; i <= 10; i++) {
     QString  key = "Pos" + QString::number(i);

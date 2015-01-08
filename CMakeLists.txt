@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8.12)
 find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test Declarative)
 find_package(KF5 REQUIRED COMPONENTS
   CoreAddons 
   Config 
@@ -76,7 +76,7 @@ kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames)
+target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::KDELibs4Support)
 
 install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 

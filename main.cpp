@@ -25,9 +25,11 @@
 #include <QApplication>
 #include <KLocalizedString>
 #include <KAboutData>
+#include <QCommandLineParser>
 
 #include <highscores.h>
 #include <mainwindow.h>
+#include <QCommandLineOption>
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
@@ -51,12 +53,21 @@ int main(int argc, char **argv)
 
     KAboutData::setApplicationData(aboutData);
 
+    QCommandLineParser parser;
+    QApplication app(argc, argv);
+    KAboutData::setApplicationData(aboutData);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.addOption(QCommandLineOption(QStringList() << QLatin1String("demo"), i18n("Start with demo game playing")));
+
+    aboutData.setupCommandLine(&parser);
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
 
     if (application.isSessionRestored()) {
         RESTORE(KReversiMainWindow)
     } else {
-        KReversiMainWindow *mainWin = new KReversiMainWindow(0, args->isSet("demo"));
-        args->clear();
+        KReversiMainWindow *mainWin = new KReversiMainWindow(0, parser.isSet("demo"));
         mainWin->show();
     }
 

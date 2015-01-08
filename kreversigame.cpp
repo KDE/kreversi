@@ -395,4 +395,3 @@ void KReversiGame::kickCurrentPlayer()
         emit blackPlayerTurn();
 }
 
-#include "kreversigame.moc"

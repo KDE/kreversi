@@ -25,7 +25,7 @@
 #include <mainwindow.h>
 
 #include <KDebug>
-#include <KIcon>
+#include <QIcon>
 #include <KLocale>
 #include <KMessageBox>
 #include <KStandardDirs>
@@ -120,12 +120,12 @@ void KReversiMainWindow::setupActionsInit()
     m_hintAct->setEnabled(false);
 
     // Last move
-    m_showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
+    m_showLast = new KToggleAction(QIcon::fromTheme(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
     actionCollection()->addAction(QLatin1String("show_last_move"), m_showLast);
     connect(m_showLast, SIGNAL(triggered(bool)), m_view, SLOT(setShowLastMove(bool)));
 
     // Legal moves
-    m_showLegal = new KToggleAction(KIcon(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
+    m_showLegal = new KToggleAction(QIcon::fromTheme(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
     actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
     connect(m_showLegal, SIGNAL(triggered(bool)), m_view, SLOT(setShowLegalMoves(bool)));
 
@@ -145,7 +145,7 @@ void KReversiMainWindow::setupActionsInit()
 
     // Move history
     // NOTE: read/write this from/to config file? Or not necessary?
-    m_showMovesAct = new KToggleAction(KIcon(QLatin1String("view-history")), i18n("Show Move History"), this);
+    m_showMovesAct = new KToggleAction(QIcon::fromTheme(QLatin1String("view-history")), i18n("Show Move History"), this);
     actionCollection()->addAction(QLatin1String("show_moves"), m_showMovesAct);
     connect(m_showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)));
 }
@@ -181,7 +181,7 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
     m_view->setAnimationSpeed(speed);
     Preferences::setAnimationSpeed(speed);
-    Preferences::self()->writeConfig();
+    Preferences::self()->save();
 }
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
@@ -192,7 +192,7 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
     m_view->setChipsPrefix(chipsPrefix);
     m_startDialog->setChipsPrefix(chipsPrefix);
     Preferences::setUseColoredChips(toggled);
-    Preferences::self()->writeConfig();
+    Preferences::self()->save();
 }
 
 void KReversiMainWindow::slotShowMovesHistory(bool toggled)
