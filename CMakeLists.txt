@@ -45,9 +45,6 @@ include(KDECMakeSettings)
 
 include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore ${KDE4_INCLUDES} ${QDBUS_INCLUDE_DIRS})
 
-
-#find_package(KDeclarative REQUIRED)
-
 add_subdirectory( pics )
 add_subdirectory( sounds )
 add_subdirectory( icons )
@@ -82,7 +79,7 @@ install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
-install( PROGRAMS kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 install( FILES kreversiui.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/kreversi )	
 install( DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kreversi )
