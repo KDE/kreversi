@@ -26,7 +26,7 @@
 
 #include <KDebug>
 #include <QIcon>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KStandardDirs>
 #include <QStatusBar>

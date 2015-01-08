@@ -31,7 +31,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="KPushButton" name="blackHuman">
+          <widget class="QPushButton" name="blackHuman">
            <property name="icon">
             <iconset theme="user-identity">
              <normaloff/>
@@ -55,7 +55,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="blackAI">
+          <widget class="QPushButton" name="blackAI">
            <property name="icon">
             <iconset theme="computer">
              <normaloff/>
@@ -157,7 +157,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="KPushButton" name="whiteHuman">
+          <widget class="QPushButton" name="whiteHuman">
            <property name="icon">
             <iconset theme="user-identity">
              <normaloff/>
@@ -178,7 +178,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="whiteAI">
+          <widget class="QPushButton" name="whiteAI">
            <property name="icon">
             <iconset theme="computer">
              <normaloff/>
@@ -249,11 +249,6 @@
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

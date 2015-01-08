@@ -31,7 +31,6 @@
 #include <QListWidget>
 #include <QDockWidget>
 
-#include <KAction>
 #include <KToggleAction>
 #include <KSelectAction>
 
@@ -44,6 +43,7 @@
 
 class KReversiGame;
 class KReversiView;
+class QAction;
 
 class KReversiMainWindow : public KXmlGuiWindow
 {

@@ -21,9 +21,7 @@
 #include <QVector>
 #include <QDateTime>
 
-#include <kdemacros.h>
-#include <KGlobal>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfigGroup>
 #include <KConfig>
 #include <KgDifficulty>
