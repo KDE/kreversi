@@ -33,25 +33,37 @@
 #include <QPainter>
 
 #include <QGraphicsDropShadowEffect>
+#include <KConfigGroup>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
-    KDialog(parent),
+    QDialog(parent),
     ui(new Ui::StartGameDialog), m_provider(provider), m_chipsPrefix(BlackWhite)
 {
     setModal(true);
 
     setFixedSize(width(), height());
 
-    setCaption(i18n("New game"));
+    setWindowTitle(i18n("New game"));
 
-    setButtons(Ok | Close);
-    setButtonText(Ok, i18n("Start game"));
-    setButtonToolTip(Ok, i18n("Let's start playing!"));
-    setButtonText(Close, i18n("Quit"));
-    setButtonToolTip(Close, i18n("Quit KReversi"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Close);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(slotAccepted()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    okButton->setText(i18n("Start game"));
+    okButton->setToolTip(i18n("Let's start playing!"));
+    buttonBox->button(QDialogButtonBox::Close)->setText(i18n("Quit"));
+    buttonBox->button(QDialogButtonBox::Close)->setToolTip(i18n("Quit KReversi"));
 
     m_contents = new QWidget(this);
-    setMainWidget(m_contents);
+    mainLayout->addWidget(m_contents);
+    mainLayout->addWidget(buttonBox);
     ui->setupUi(m_contents);
 
     loadChipImages();
@@ -128,11 +140,10 @@ void StartGameDialog::loadChipImages()
     ui->whiteLabel->setGraphicsEffect(whiteShadow);
 }
 
-void StartGameDialog::slotButtonClicked(int button)
+void StartGameDialog::slotAccepted()
 {
-    if (button == KDialog::Ok)
-        emit startGame();
-    KDialog::slotButtonClicked(button);
+    emit startGame();
+    accept();
 }
 
 GameStartInformation StartGameDialog::createGameStartInformation() const
