@@ -32,7 +32,7 @@
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KExtHighscore>
-
+#include <QDesktopWidget>
 #include <commondefs.h>
 #include <kreversihumanplayer.h>
 #include <kreversicomputerplayer.h>
@@ -93,7 +93,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     // load saved settings
     loadSettings();
 
-//    setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
+    setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
 
     m_historyDock->hide();
 }
