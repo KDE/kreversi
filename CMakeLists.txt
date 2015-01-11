@@ -43,14 +43,14 @@ include(KDEInstallDirs)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
 
-include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore ${KDE4_INCLUDES} ${QDBUS_INCLUDE_DIRS})
+include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore  ${QDBUS_INCLUDE_DIRS})
 
 add_subdirectory( pics )
 add_subdirectory( sounds )
 add_subdirectory( icons )
 add_subdirectory( doc )
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdegames/highscore )
+include_directories( ${CMAKE_SOURCE_DIR}/libKF5KDEGames/highscore )
 
 ########### next target ##############
 set(kreversi_SRCS
