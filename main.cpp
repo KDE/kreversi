@@ -31,6 +31,7 @@
 #include <mainwindow.h>
 #include <QCommandLineOption>
 #include <kdelibs4configmigrator.h>
+#include <KDBusService>
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
@@ -69,6 +70,7 @@ int main(int argc, char **argv)
     parser.process(app);
     aboutData.processCommandLine(&parser);
 
+    KDBusService service;
     if (application.isSessionRestored()) {
         RESTORE(KReversiMainWindow)
     } else {

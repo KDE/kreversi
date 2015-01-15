@@ -1,7 +1,7 @@
 project(kreversi)
 cmake_minimum_required(VERSION 2.8.12)
 
-find_package(ECM 0.0.11 REQUIRED NO_MODULE)
+find_package(ECM 1.3.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test Declarative)
@@ -11,8 +11,6 @@ find_package(KF5 REQUIRED COMPONENTS
   ItemModels 
   WidgetsAddons 
   WindowSystem 
-  Codecs 
-  Archive
   Config 
   DBusAddons
   DNSSD
@@ -26,10 +24,7 @@ find_package(KF5 REQUIRED COMPONENTS
   Completion
   JobWidgets
   TextWidgets
-  GlobalAccel
   XmlGui
-  Crash
-  Bookmarks
   KIO
   NotifyConfig
   NewStuff
@@ -67,13 +62,13 @@ set(kreversi_SRCS
     mainwindow.cpp
     main.cpp )
 
-qt5_wrap_ui(kreversi_SRCS startgamedialog.ui)
+ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
 kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::KDELibs4Support)
+target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::KDELibs4Support KF5::DBusAddons)
 
 install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
@@ -83,3 +78,4 @@ install( PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR}
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 install( FILES kreversiui.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/kreversi )	
 install( DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kreversi )
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
