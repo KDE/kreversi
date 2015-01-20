@@ -10,7 +10,6 @@ find_package(KF5 REQUIRED COMPONENTS
   Config 
   ItemModels 
   WidgetsAddons 
-  WindowSystem 
   Config 
   DBusAddons
   DNSSD
@@ -22,13 +21,10 @@ find_package(KF5 REQUIRED COMPONENTS
   ItemViews
   IconThemes
   Completion
-  JobWidgets
-  TextWidgets
   XmlGui
   KIO
-  NotifyConfig
   NewStuff
-  KDELibs4Support)
+  )
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 
@@ -68,7 +64,7 @@ kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::KDELibs4Support KF5::DBusAddons)
+target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::DBusAddons)
 
 install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 

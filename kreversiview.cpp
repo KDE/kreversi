@@ -20,9 +20,10 @@
 #include <kreversiview.h>
 
 #include <KLocalizedString>
-#include <KStandardDirs>
+
 
 #include <colorscheme.h>
+#include <QStandardPaths>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
     KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
@@ -33,8 +34,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
-    QString path =
-        KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));
+    QString path = QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("qml/Table.qml"));
     setSource(QUrl::fromLocalFile(path));
 
     m_qml_root = (QObject*) rootObject();
