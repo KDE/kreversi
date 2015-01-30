@@ -85,7 +85,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
     // initialise dialog handler
     m_startDialog = new StartGameDialog(this, m_provider);
-    connect(m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
+    connect(m_startDialog, &StartGameDialog::startGame, this, &KReversiMainWindow::slotDialogReady);
 
     // initialise actions
     setupActionsInit();
@@ -121,12 +121,12 @@ void KReversiMainWindow::setupActionsInit()
     // Last move
     m_showLast = new KToggleAction(QIcon::fromTheme(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
     actionCollection()->addAction(QLatin1String("show_last_move"), m_showLast);
-    connect(m_showLast, SIGNAL(triggered(bool)), m_view, SLOT(setShowLastMove(bool)));
+    connect(m_showLast, &KToggleAction::triggered, m_view, &KReversiView::setShowLastMove);
 
     // Legal moves
     m_showLegal = new KToggleAction(QIcon::fromTheme(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
     actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
-    connect(m_showLegal, SIGNAL(triggered(bool)), m_view, SLOT(setShowLegalMoves(bool)));
+    connect(m_showLegal, &KToggleAction::triggered, m_view, &KReversiView::setShowLegalMoves);
 
     // Animation speed
     m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
@@ -135,18 +135,18 @@ void KReversiMainWindow::setupActionsInit()
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
-    connect(m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)));
+    connect(m_animSpeedAct, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KReversiMainWindow::slotAnimSpeedChanged);
 
     // Chip's color
     m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
     actionCollection()->addAction(QLatin1String("use_colored_chips"), m_coloredChipsAct);
-    connect(m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)));
+    connect(m_coloredChipsAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotUseColoredChips);
 
     // Move history
     // NOTE: read/write this from/to config file? Or not necessary?
     m_showMovesAct = new KToggleAction(QIcon::fromTheme(QLatin1String("view-history")), i18n("Show Move History"), this);
     actionCollection()->addAction(QLatin1String("show_moves"), m_showMovesAct);
-    connect(m_showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)));
+    connect(m_showMovesAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotShowMovesHistory);
 }
 
 void KReversiMainWindow::loadSettings()
@@ -404,8 +404,8 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
     m_view->setGame(m_game);
 
-    connect(m_game, SIGNAL(gameOver()), SLOT(slotGameOver()));
-    connect(m_game, SIGNAL(moveFinished()), SLOT(slotMoveFinished()));
+    connect(m_game, &KReversiGame::gameOver, this, &KReversiMainWindow::slotGameOver);
+    connect(m_game, &KReversiGame::moveFinished, this, &KReversiMainWindow::slotMoveFinished);
 
     for (int i = 0; i < 2; i++) // iterating white to black
         if (info.type[i] == GameStartInformation::Human)

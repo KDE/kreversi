@@ -54,8 +54,8 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(slotAccepted()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &StartGameDialog::slotAccepted);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &StartGameDialog::reject);
     okButton->setText(i18n("Start game"));
     okButton->setToolTip(i18n("Let's start playing!"));
     buttonBox->button(QDialogButtonBox::Close)->setText(i18n("Quit"));
@@ -90,8 +90,8 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
         }
     }
 
-    connect(ui->blackTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateBlack(int)));
-    connect(ui->whiteTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateWhite(int)));
+    connect(ui->blackTypeGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateBlack);
+    connect(ui->whiteTypeGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateWhite);
 
     slotUpdateBlack(GameStartInformation::Human);
     slotUpdateWhite(GameStartInformation::AI);

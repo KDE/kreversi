@@ -42,6 +42,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
 
     connect(m_qml_root, SIGNAL(cellClicked(int,int)),
             this, SLOT(onPlayerMove(int,int)));
+
     setGame(game);
 }
 
@@ -50,22 +51,22 @@ void KReversiView::setGame(KReversiGame *game)
     // disconnect signals from previous game if they exist,
     // we are not interested in them anymore
     if (m_game) {
-        disconnect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-        disconnect(m_game, SIGNAL(moveFinished()), this, SLOT(gameMoveFinished()));
-        disconnect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
-        disconnect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
-        disconnect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
+        disconnect(m_game, &KReversiGame::boardChanged, this, &KReversiView::updateBoard);
+        disconnect(m_game, &KReversiGame::moveFinished, this, &KReversiView::gameMoveFinished);
+        disconnect(m_game, &KReversiGame::gameOver, this, &KReversiView::gameOver);
+        disconnect(m_game, &KReversiGame::whitePlayerCantMove, this, &KReversiView::whitePlayerCantMove);
+        disconnect(m_game, &KReversiGame::blackPlayerCantMove, this, &KReversiView::blackPlayerCantMove);
         delete m_game;
     }
 
     m_game = game;
 
     if (m_game) {
-        connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-        connect(m_game, SIGNAL(moveFinished()), this, SLOT(gameMoveFinished()));
-        connect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
-        connect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
-        connect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
+        connect(m_game, &KReversiGame::boardChanged, this, &KReversiView::updateBoard);
+        connect(m_game, &KReversiGame::moveFinished, this, &KReversiView::gameMoveFinished);
+        connect(m_game, &KReversiGame::gameOver, this, &KReversiView::gameOver);
+        connect(m_game, &KReversiGame::whitePlayerCantMove, this, &KReversiView::whitePlayerCantMove);
+        connect(m_game, &KReversiGame::blackPlayerCantMove, this, &KReversiView::blackPlayerCantMove);
 
         m_game->setDelay(m_delay);
     }
