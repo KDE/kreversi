@@ -60,14 +60,13 @@ int main(int argc, char **argv)
     KAboutData::setApplicationData(aboutData);
 
     QCommandLineParser parser;
-    QApplication app(argc, argv);
     KAboutData::setApplicationData(aboutData);
     parser.addVersionOption();
     parser.addHelpOption();
     parser.addOption(QCommandLineOption(QStringList() << QLatin1String("demo"), i18n("Start with demo game playing")));
 
     aboutData.setupCommandLine(&parser);
-    parser.process(app);
+    parser.process(application);
     aboutData.processCommandLine(&parser);
 
     KDBusService service;
