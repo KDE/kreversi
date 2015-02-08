@@ -43,8 +43,8 @@ int main(int argc, char **argv)
     migrate.setUiFiles(QStringList() << QStringLiteral("kreversiui.rc"));
     migrate.migrate();
 
-    KAboutData aboutData(i18n("kreversi"), i18n("KReversi"),
-                         "2.0", i18n(description), KAboutLicense::GPL,
+    KAboutData aboutData("kreversi", i18n("KReversi"),
+                         "2.1", i18n(description), KAboutLicense::GPL,
                          i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
                          QString(), i18n("http://games.kde.org/kreversi"));
     aboutData.addAuthor(i18n("Mario Weilguni"), i18n("Original author"), "mweilguni@sime.com");
