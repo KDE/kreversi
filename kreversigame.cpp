@@ -45,17 +45,17 @@ KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePla
     m_player[White] = whitePlayer;
     m_player[Black] = blackPlayer;
 
-    connect(this, SIGNAL(blackPlayerCantMove()), blackPlayer, SLOT(skipTurn()));
-    connect(this, SIGNAL(blackPlayerTurn()), blackPlayer, SLOT(takeTurn()));
-    connect(this, SIGNAL(gameOver()), blackPlayer, SLOT(gameOver()));
-    connect(blackPlayer, SIGNAL(makeMove(KReversiMove)), this, SLOT(blackPlayerMove(KReversiMove)));
-    connect(blackPlayer, SIGNAL(ready()), this, SLOT(blackReady()));
+    connect(this, &KReversiGame::blackPlayerCantMove, blackPlayer, &KReversiPlayer::skipTurn);
+    connect(this, &KReversiGame::blackPlayerTurn, blackPlayer, &KReversiPlayer::takeTurn);
+    connect(this, &KReversiGame::gameOver, blackPlayer, &KReversiPlayer::gameOver);
+    connect(blackPlayer, &KReversiPlayer::makeMove, this, &KReversiGame::blackPlayerMove);
+    connect(blackPlayer, &KReversiPlayer::ready, this, &KReversiGame::blackReady);
 
-    connect(this, SIGNAL(whitePlayerCantMove()), whitePlayer, SLOT(skipTurn()));
-    connect(this, SIGNAL(whitePlayerTurn()), whitePlayer, SLOT(takeTurn()));
-    connect(this, SIGNAL(gameOver()), whitePlayer, SLOT(gameOver()));
-    connect(whitePlayer, SIGNAL(makeMove(KReversiMove)), this, SLOT(whitePlayerMove(KReversiMove)));
-    connect(whitePlayer, SIGNAL(ready()), this, SLOT(whiteReady()));
+    connect(this, &KReversiGame::whitePlayerCantMove, whitePlayer, &KReversiPlayer::skipTurn);
+    connect(this, &KReversiGame::whitePlayerTurn, whitePlayer, &KReversiPlayer::takeTurn);
+    connect(this, &KReversiGame::gameOver, whitePlayer, &KReversiPlayer::gameOver);
+    connect(whitePlayer, &KReversiPlayer::makeMove, this, &KReversiGame::whitePlayerMove);
+    connect(whitePlayer, &KReversiPlayer::ready, this, &KReversiGame::whiteReady);
 
     m_engine = new Engine(1);
 

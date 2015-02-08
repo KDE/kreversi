@@ -66,7 +66,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     );
 
     KgDifficultyGUI::init(this);
-    connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(levelChanged()));
+    connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KReversiMainWindow::levelChanged);
     Kg::difficulty()->setEditable(false);
 
     // initialize history dock
@@ -409,8 +409,8 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
     for (int i = 0; i < 2; i++) // iterating white to black
         if (info.type[i] == GameStartInformation::Human)
-            connect(m_view, SIGNAL(userMove(KReversiPos)),
-                    (KReversiHumanPlayer *)(m_player[i]), SLOT(onUICellClick(KReversiPos)));
+            connect(m_view, &KReversiView::userMove,
+                    (KReversiHumanPlayer *)(m_player[i]), &KReversiHumanPlayer::onUICellClick);
 
     updateStatusBar();
     updateHistory();
