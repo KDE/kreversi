@@ -26,7 +26,7 @@
 #include <KLocalizedString>
 
 
-static QString chipPrefixString[2] = {"chip_bw", "chip_color"};
+static QString chipPrefixString[2] = {QLatin1Literal("chip_bw"), QLatin1Literal("chip_color")};
 
 QString Utils::chipPrefixToString(ChipsPrefix prefix) {
     return chipPrefixString[prefix];

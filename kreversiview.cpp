@@ -30,7 +30,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     m_showLastMove(false), m_showLegalMoves(false),
     m_showLabels(false), m_provider(provider)
 {
-    m_provider->setDeclarativeEngine("themeProvider", engine());
+    m_provider->setDeclarativeEngine(QLatin1Literal("themeProvider"), engine());
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
@@ -38,7 +38,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     setSource(QUrl::fromLocalFile(path));
 
     m_qml_root = (QObject*) rootObject();
-    rootContext()->setContextProperty("container", this);
+    rootContext()->setContextProperty(QLatin1Literal("container"), this);
 
     connect(m_qml_root, SIGNAL(cellClicked(int,int)),
             this, SLOT(onPlayerMove(int,int)));
@@ -130,17 +130,17 @@ void KReversiView::updateBoard()
         
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
-            QString new_state = "";
+            QString new_state;
             if (m_game) // showing empty board if has no game
                 switch (m_game->chipColorAt(KReversiMove(NoColor, i, j))) {
                 case Black:
-                    new_state = "Black";
+                    new_state = QLatin1Literal("Black");
                     break;
                 case White:
-                    new_state = "White";
+                    new_state = QLatin1Literal("White");
                     break;
                 case NoColor:
-                    new_state = "";
+                    new_state = QString();
                     break;
                 }
 
@@ -180,7 +180,7 @@ void KReversiView::updateBoard()
         QMetaObject::invokeMethod(m_qml_root, "setChipState",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
-                                  Q_ARG(QVariant, "Black"));
+                                  Q_ARG(QVariant, QLatin1Literal("Black")));
         QMetaObject::invokeMethod(m_qml_root, "setHint",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),

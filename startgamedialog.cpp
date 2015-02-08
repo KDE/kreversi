@@ -70,16 +70,16 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
 
     ui->whiteTypeGroup->setId(ui->whiteHuman, GameStartInformation::Human);
     ui->whiteTypeGroup->setId(ui->whiteAI, GameStartInformation::AI);
-    ui->whiteAI->setIcon(QIcon::fromTheme("computer"));
-    ui->whiteHuman->setIcon(QIcon::fromTheme("user-identity"));
+    ui->whiteAI->setIcon(QIcon::fromTheme(QLatin1Literal("computer")));
+    ui->whiteHuman->setIcon(QIcon::fromTheme(QLatin1Literal("user-identity")));
 
     ui->blackTypeGroup->setId(ui->blackHuman, GameStartInformation::Human);
     ui->blackTypeGroup->setId(ui->blackAI, GameStartInformation::AI);
-    ui->blackAI->setIcon(QIcon::fromTheme("computer"));
-    ui->blackHuman->setIcon(QIcon::fromTheme("user-identity"));
+    ui->blackAI->setIcon(QIcon::fromTheme(QLatin1Literal("computer")));
+    ui->blackHuman->setIcon(QIcon::fromTheme(QLatin1Literal("user-identity")));
 
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
-    const QIcon icon = QIcon::fromTheme("games-difficult");
+    const QIcon icon = QIcon::fromTheme(QLatin1Literal("games-difficult"));
 
     for (int i = 0; i < diffList.size(); ++i) {
         ui->blackSkill->addItem(icon, diffList.at(i)->title());
@@ -115,12 +115,12 @@ void StartGameDialog::loadChipImages()
 
     QPainter *painter = new QPainter(&blackChip);
     QString prefix = Utils::chipPrefixToString(m_chipsPrefix);
-    svgRenderer.render(painter, prefix + "_1");
+    svgRenderer.render(painter, prefix + QLatin1String("_1"));
     delete painter;
 
     painter = new QPainter(&whiteChip);
     // TODO: get 12 from some global constant that is shared with QML
-    svgRenderer.render(painter, prefix + "_12");
+    svgRenderer.render(painter, prefix + QLatin1String("_12"));
     delete painter;
 
     ui->blackLabel->setPixmap(blackChip);

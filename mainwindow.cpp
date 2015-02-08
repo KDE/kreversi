@@ -74,7 +74,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_historyView->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Expanding);
     m_historyDock = new QDockWidget(i18n("Move History"));
     m_historyDock->setWidget(m_historyView);
-    m_historyDock->setObjectName("history_dock");
+    m_historyDock->setObjectName(QLatin1Literal("history_dock"));
 
     m_historyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea, m_historyDock);

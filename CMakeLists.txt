@@ -34,7 +34,8 @@ include(KDEInstallDirs)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
 
-include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore  ${QDBUS_INCLUDE_DIRS})
+add_definitions("-DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII")
+
 
 add_subdirectory( pics )
 add_subdirectory( sounds )
