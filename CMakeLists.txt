@@ -1,7 +1,7 @@
 project(kreversi)
 cmake_minimum_required(VERSION 2.8.12)
 
-find_package(ECM 1.3.0 REQUIRED NO_MODULE)
+find_package(ECM 1.7.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test Declarative)
@@ -29,6 +29,7 @@ find_package(KF5 REQUIRED COMPONENTS
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 
 include(FeatureSummary)
+include(ECMAddAppIcon)
 include(ECMInstallIcons)
 include(KDEInstallDirs)
 include(KDECompilerSettings)
@@ -67,12 +68,12 @@ add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi Qt5::Svg Qt5::Declarative KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::DBusAddons)
 
-install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
-install( PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
-#install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
-install( FILES kreversiui.rc  DESTINATION  ${KXMLGUI_INSTALL_DIR}/kreversi )	
-install( DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kreversi )
+install( PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${KDE_INSTALL_APPDIR} )
+#install( FILES kreversi.kcfg  DESTINATION  ${KDE_INSTALL_KCFGDIR} )
+install( FILES kreversiui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kreversi )	
+install( DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kreversi )
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
