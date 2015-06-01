@@ -43,6 +43,7 @@ int main(int argc, char **argv)
     migrate.setUiFiles(QStringList() << QStringLiteral("kreversiui.rc"));
     migrate.migrate();
 
+    KLocalizedString::setApplicationDomain("kreversi");
     KAboutData aboutData(QLatin1Literal("kreversi"), i18n("KReversi"),
                          QLatin1Literal("2.1"), i18n(description), KAboutLicense::GPL,
                          i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
