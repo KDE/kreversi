@@ -19,7 +19,7 @@
 #define HIGHSCORES_H
 
 #include <QStringList>
-#include <KExtHighscore>
+#include "kexthighscore.h"
 
 namespace KExtHighscore
 {

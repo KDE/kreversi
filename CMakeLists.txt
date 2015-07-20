@@ -24,6 +24,7 @@ find_package(KF5 REQUIRED COMPONENTS
   XmlGui
   KIO
   NewStuff
+  KDELibs4Support
   )
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
@@ -57,6 +58,11 @@ set(kreversi_SRCS
     startgamedialog.cpp
     Engine.cpp
     highscores.cpp
+    kexthighscore.cpp
+    kexthighscore_gui.cpp
+    kexthighscore_internal.cpp
+    kexthighscore_item.cpp
+    kexthighscore_tab.cpp
     mainwindow.cpp
     main.cpp )
 
@@ -66,7 +72,7 @@ kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi Qt5::Svg KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::DBusAddons)
+target_link_libraries(kreversi Qt5::Svg KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::DBusAddons KF5::KDELibs4Support)
 
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 

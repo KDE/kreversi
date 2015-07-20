@@ -31,11 +31,12 @@
 #include <QStatusBar>
 #include <KActionCollection>
 #include <KStandardGameAction>
-#include <KExtHighscore>
 #include <QDesktopWidget>
 #include <commondefs.h>
 #include <kreversihumanplayer.h>
 #include <kreversicomputerplayer.h>
+
+#include "kexthighscore.h"
 
 static const int BLACK_STATUSBAR_ID = 1;
 static const int WHITE_STATUSBAR_ID = 2;
