@@ -51,7 +51,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     memset(m_player, 0, sizeof(m_player));
 
     m_provider = new KgThemeProvider();
-    m_provider->discoverThemes("appdata", QLatin1String("pics"));
+    m_provider->discoverThemes("appdata", QStringLiteral("pics"));
 
     common->setText(i18n("Press start game!"));
     statusBar()->insertPermanentWidget(COMMON_STATUSBAR_ID, common);
@@ -75,7 +75,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_historyView->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Expanding);
     m_historyDock = new QDockWidget(i18n("Move History"));
     m_historyDock->setWidget(m_historyView);
-    m_historyDock->setObjectName(QLatin1Literal("history_dock"));
+    m_historyDock->setObjectName(QStringLiteral("history_dock"));
 
     m_historyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
@@ -120,18 +120,18 @@ void KReversiMainWindow::setupActionsInit()
     m_hintAct->setEnabled(false);
 
     // Last move
-    m_showLast = new KToggleAction(QIcon::fromTheme(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
-    actionCollection()->addAction(QLatin1String("show_last_move"), m_showLast);
+    m_showLast = new KToggleAction(QIcon::fromTheme(QStringLiteral("lastmoves")), i18n("Show Last Move"), this);
+    actionCollection()->addAction(QStringLiteral("show_last_move"), m_showLast);
     connect(m_showLast, &KToggleAction::triggered, m_view, &KReversiView::setShowLastMove);
 
     // Legal moves
-    m_showLegal = new KToggleAction(QIcon::fromTheme(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
-    actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
+    m_showLegal = new KToggleAction(QIcon::fromTheme(QStringLiteral("legalmoves")), i18n("Show Legal Moves"), this);
+    actionCollection()->addAction(QStringLiteral("show_legal_moves"), m_showLegal);
     connect(m_showLegal, &KToggleAction::triggered, m_view, &KReversiView::setShowLegalMoves);
 
     // Animation speed
     m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
-    actionCollection()->addAction(QLatin1String("anim_speed"), m_animSpeedAct);
+    actionCollection()->addAction(QStringLiteral("anim_speed"), m_animSpeedAct);
 
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
@@ -140,13 +140,13 @@ void KReversiMainWindow::setupActionsInit()
 
     // Chip's color
     m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
-    actionCollection()->addAction(QLatin1String("use_colored_chips"), m_coloredChipsAct);
+    actionCollection()->addAction(QStringLiteral("use_colored_chips"), m_coloredChipsAct);
     connect(m_coloredChipsAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotUseColoredChips);
 
     // Move history
     // NOTE: read/write this from/to config file? Or not necessary?
-    m_showMovesAct = new KToggleAction(QIcon::fromTheme(QLatin1String("view-history")), i18n("Show Move History"), this);
-    actionCollection()->addAction(QLatin1String("show_moves"), m_showMovesAct);
+    m_showMovesAct = new KToggleAction(QIcon::fromTheme(QStringLiteral("view-history")), i18n("Show Move History"), this);
+    actionCollection()->addAction(QStringLiteral("show_moves"), m_showMovesAct);
     connect(m_showMovesAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotShowMovesHistory);
 }
 
@@ -298,7 +298,7 @@ void KReversiMainWindow::updateHistory()
     m_historyView->clear();
 
     for (int i = 0; i < history.size(); i++) {
-        QString numStr = QString::number(i + 1) + QLatin1String(". ");
+        QString numStr = QString::number(i + 1) + QStringLiteral(". ");
         m_historyView->addItem(numStr + Utils::moveToString(history.at(i)));
     }
 
@@ -336,7 +336,7 @@ void KReversiMainWindow::showEvent(QShowEvent*)
         qDebug() << "starting demo...";
         startDemo();
     } else if (m_firstShow) {
-        QTimer::singleShot(0, this, SLOT(slotNewGame()));
+        QTimer::singleShot(0, this, &KReversiMainWindow::slotNewGame);
     }
     m_firstShow = false;
 }

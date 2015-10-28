@@ -254,8 +254,8 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
         connect(hsw, SIGNAL(tabChanged(int)), SLOT(tabChanged(int)));
     }
 
-    connect(this, SIGNAL(currentPageChanged(KPageWidgetItem*,KPageWidgetItem*)),
-            SLOT(highscorePageChanged(KPageWidgetItem*,KPageWidgetItem*)));
+    connect(this, &KPageDialog::currentPageChanged,
+            this, &HighscoresDialog::highscorePageChanged);
     setCurrentPage(_pages[internal->gameType()]);
 }
 
@@ -440,10 +440,10 @@ ConfigDialog::ConfigDialog(QWidget *parent)
     QLabel *label = new QLabel(i18n("Nickname:"), page);
     pageTop->addWidget(label, 0, 0);
     _nickname = new QLineEdit(page);
-    connect(_nickname, SIGNAL(textChanged(QString)),
-            SLOT(modifiedSlot()));
-    connect(_nickname, SIGNAL(textChanged(QString)),
-            SLOT(nickNameChanged(QString)));
+    connect(_nickname, &QLineEdit::textChanged,
+            this, &ConfigDialog::modifiedSlot);
+    connect(_nickname, &QLineEdit::textChanged,
+            this, &ConfigDialog::nickNameChanged);
 
     _nickname->setMaxLength(16);
     pageTop->addWidget(_nickname, 0, 1);
@@ -451,16 +451,16 @@ ConfigDialog::ConfigDialog(QWidget *parent)
     label = new QLabel(i18n("Comment:"), page);
     pageTop->addWidget(label, 1, 0);
     _comment = new QLineEdit(page);
-    connect(_comment, SIGNAL(textChanged(QString)),
-            SLOT(modifiedSlot()));
+    connect(_comment, &QLineEdit::textChanged,
+            this, &ConfigDialog::modifiedSlot);
     _comment->setMaxLength(50);
     pageTop->addWidget(_comment, 1, 1);
 
     if (tab) {
         _WWHEnabled
             = new QCheckBox(i18n("World-wide highscores enabled"), page);
-        connect(_WWHEnabled, SIGNAL(toggled(bool)),
-                SLOT(modifiedSlot()));
+        connect(_WWHEnabled, &QAbstractButton::toggled,
+                this, &ConfigDialog::modifiedSlot);
         pageTop->addWidget(_WWHEnabled, 2, 0, 1, 2 );
 
         // advanced tab
@@ -493,14 +493,14 @@ ConfigDialog::ConfigDialog(QWidget *parent)
         _removeButton = new QPushButton(group);
 	KGuiItem::assign(_removeButton, gi);
 	groupLayout->addWidget(_removeButton, 2, 0);
-        connect(_removeButton, SIGNAL(clicked()), SLOT(removeSlot()));
+        connect(_removeButton, &QAbstractButton::clicked, this, &ConfigDialog::removeSlot);
     }
     
     buttonBox = new QDialogButtonBox(this);
     
     buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Apply | QDialogButtonBox::Cancel); 
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     // TODO mapping for Apply button
     pageTop->addWidget(buttonBox);
 
@@ -630,8 +630,8 @@ AskNameDialog::AskNameDialog(QWidget *parent)
     QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
     
     buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel); 
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     top->addWidget(buttonBox);
 
     nameChanged(buttonBox);

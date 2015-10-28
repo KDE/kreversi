@@ -209,14 +209,14 @@ class KDEGAMES_EXPORT Score
      *
      * Equivalent to <pre>data("score").toUInt()</pre>.
      */
-    uint score() const { return data(QLatin1String("score")).toUInt(); }
+    uint score() const { return data(QStringLiteral("score")).toUInt(); }
 
     /**
      * Set the score value.
      *
      * Equivalent to <pre>setData("score", score)</pre>.
      */
-    void setScore(uint score) { setData(QLatin1String("score"), score); }
+    void setScore(uint score) { setData(QStringLiteral("score"), score); }
 
     /**
      * @return true if this is the worst possible score (ie the default

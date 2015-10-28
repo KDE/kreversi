@@ -45,7 +45,7 @@ PlayersCombo::PlayersCombo(QWidget *parent)
     const PlayerInfos &p = internal->playerInfos();
     for (uint i = 0; i<p.nbEntries(); i++)
         addItem(p.prettyName(i));
-    addItem(QLatin1String("<") + i18n("all") + QLatin1Char( '>' ));
+    addItem(QStringLiteral("<") + i18n("all") + QLatin1Char( '>' ));
     connect(this, static_cast<void (PlayersCombo::*)(int)>(&PlayersCombo::activated), this, &PlayersCombo::activatedSlot);
 }
 
@@ -98,7 +98,7 @@ void AdditionalTab::allSelected()
 QString AdditionalTab::percent(uint n, uint total, bool withBraces)
 {
     if ( n==0 || total==0 ) return QString();
-    QString s =  QString::fromLatin1( "%1%").arg(100.0 * n / total, 0, 'f', 1);
+    QString s =  QStringLiteral( "%1%").arg(100.0 * n / total, 0, 'f', 1);
     return (withBraces ? QLatin1Char('(') + s + QLatin1Char( ')' ) : s);
 }
 
@@ -120,7 +120,7 @@ const char *StatisticsTab::TREND_LABELS[Nb_Trends] = {
 StatisticsTab::StatisticsTab(QWidget *parent)
     : AdditionalTab(parent)
 {
-    setObjectName( QLatin1String("statistics_tab" ));
+    setObjectName( QStringLiteral("statistics_tab" ));
     // construct GUI
     QVBoxLayout *top = static_cast<QVBoxLayout *>(layout());
 
@@ -163,17 +163,17 @@ void StatisticsTab::load()
     uint nb = pi.nbEntries();
     _data.resize(nb+1);
     for (int i=0; i<_data.size()-1; i++) {
-        _data[i].count[Total] = pi.item(QLatin1String( "nb games" ))->read(i).toUInt();
-        _data[i].count[Lost] = pi.item(QLatin1String( "nb lost games" ))->read(i).toUInt()
-                       + pi.item(QLatin1String( "nb black marks" ))->read(i).toUInt(); // legacy
-        _data[i].count[Draw] = pi.item(QLatin1String( "nb draw games" ))->read(i).toUInt();
+        _data[i].count[Total] = pi.item(QStringLiteral( "nb games" ))->read(i).toUInt();
+        _data[i].count[Lost] = pi.item(QStringLiteral( "nb lost games" ))->read(i).toUInt()
+                       + pi.item(QStringLiteral( "nb black marks" ))->read(i).toUInt(); // legacy
+        _data[i].count[Draw] = pi.item(QStringLiteral( "nb draw games" ))->read(i).toUInt();
         _data[i].count[Won] = _data[i].count[Total] - _data[i].count[Lost]
                               - _data[i].count[Draw];
         _data[i].trend[CurrentTrend] =
-            pi.item(QLatin1String( "current trend" ))->read(i).toInt();
-        _data[i].trend[WonTrend] = pi.item(QLatin1String( "max won trend" ))->read(i).toUInt();
+            pi.item(QStringLiteral( "current trend" ))->read(i).toInt();
+        _data[i].trend[WonTrend] = pi.item(QStringLiteral( "max won trend" ))->read(i).toUInt();
         _data[i].trend[LostTrend] =
-            -(int)pi.item(QLatin1String( "max lost trend" ))->read(i).toUInt();
+            -(int)pi.item(QStringLiteral( "max lost trend" ))->read(i).toUInt();
     }
 
     for (int k=0; k<Nb_Counts; k++) _data[nb].count[k] = 0;
@@ -216,7 +216,7 @@ void StatisticsTab::display(uint i)
 HistogramTab::HistogramTab(QWidget *parent)
     : AdditionalTab(parent)
 {
-    setObjectName( QLatin1String("histogram_tab" ));
+    setObjectName( QStringLiteral("histogram_tab" ));
     // construct GUI
     QVBoxLayout *top = static_cast<QVBoxLayout *>(layout());
 
@@ -237,13 +237,13 @@ HistogramTab::HistogramTab(QWidget *parent)
     for (int i=0; i<4; i++) _list->headerItem()->setTextAlignment(i, Qt::AlignRight);
     _list->headerItem()->setText(4,QString());
 
-    const Item *sitem = internal->scoreInfos().item(QLatin1String( "score" ))->item();
+    const Item *sitem = internal->scoreInfos().item(QStringLiteral( "score" ))->item();
     const PlayerInfos &pi = internal->playerInfos();
     const QVector<uint> &sh = pi.histogram();
     for (int k=1; k<( int )pi.histoSize(); k++) {
         QString s1 = sitem->pretty(0, sh[k-1]);
         QString s2;
-        if ( k==sh.size() ) s2 = QLatin1String( "..." );
+        if ( k==sh.size() ) s2 = QStringLiteral( "..." );
         else if ( sh[k]!=sh[k-1]+1 ) s2 = sitem->pretty(0, sh[k]);
 	QStringList items; items << s1 << s2;
         (void)new QTreeWidgetItem(_list, items);

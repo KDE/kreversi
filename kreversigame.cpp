@@ -95,7 +95,7 @@ void KReversiGame::makeMove(const KReversiMove &move)
 
     turnChips(move);
     
-    m_delayTimer.singleShot(m_delay * (qMax(1, m_changedChips.count() - 1)), this, SLOT(onDelayTimer()));
+    m_delayTimer.singleShot(m_delay * (qMax(1, m_changedChips.count() - 1)), this, &KReversiGame::onDelayTimer);
     emit boardChanged();
 }
 

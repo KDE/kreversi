@@ -108,7 +108,7 @@ Score firstScore()
 //-----------------------------------------------------------------------------
 Manager::Manager(uint nbGameTypes, uint maxNbEntries)
 {
-    QLoggingCategory::setFilterRules(QLatin1Literal("games.highscore.debug = true"));
+    QLoggingCategory::setFilterRules(QStringLiteral("games.highscore.debug = true"));
   
     Q_ASSERT(nbGameTypes);
     Q_ASSERT(maxNbEntries);
@@ -234,10 +234,10 @@ Item *Manager::createItem(ItemType type)
 void Manager::setScoreItem(uint worstScore, Item *item)
 {
     item->setDefaultValue(worstScore);
-    internal->scoreInfos().setItem(QLatin1String( "score" ), item);
-    internal->playerInfos().item(QLatin1String( "mean score" ))
+    internal->scoreInfos().setItem(QStringLiteral( "score" ), item);
+    internal->playerInfos().item(QStringLiteral( "mean score" ))
         ->item()->setDefaultValue(double(worstScore));
-    internal->playerInfos().item(QLatin1String( "best score" ))
+    internal->playerInfos().item(QStringLiteral( "best score" ))
         ->item()->setDefaultValue(worstScore);
 }
 
@@ -248,16 +248,16 @@ void Manager::addScoreItem(const QString &name, Item *item)
 
 void Manager::setPlayerItem(PlayerItemType type, Item *item)
 {
-    const Item *scoreItem = internal->scoreInfos().item(QLatin1String( "score" ))->item();
+    const Item *scoreItem = internal->scoreInfos().item(QStringLiteral( "score" ))->item();
     uint def = scoreItem->defaultValue().toUInt();
     QString name;
     switch (type) {
     case MeanScore:
-        name = QLatin1String( "mean score" );
+        name = QStringLiteral( "mean score" );
         item->setDefaultValue(double(def));
         break;
     case BestScore:
-        name = QLatin1String( "best score" );
+        name = QStringLiteral( "best score" );
         item->setDefaultValue(def);
         break;
     }
@@ -266,7 +266,7 @@ void Manager::setPlayerItem(PlayerItemType type, Item *item)
 
 QString Manager::gameTypeLabel(uint gameType, LabelType type) const
 {
-    QLoggingCategory::setFilterRules(QLatin1Literal("games.highscore.debug = true"));
+    QLoggingCategory::setFilterRules(QStringLiteral("games.highscore.debug = true"));
     
     if ( gameType!=0 )
     {
@@ -278,7 +278,7 @@ QString Manager::gameTypeLabel(uint gameType, LabelType type) const
     case Icon:
     case Standard:
     case I18N:     break;
-    case WW:       return QLatin1String( "normal" );
+    case WW:       return QStringLiteral( "normal" );
     }
     return QString();
 }

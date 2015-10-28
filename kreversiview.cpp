@@ -30,15 +30,15 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     m_showLastMove(false), m_showLegalMoves(false),
     m_showLabels(false), m_provider(provider)
 {
-    m_provider->setDeclarativeEngine(QLatin1Literal("themeProvider"), engine());
+    m_provider->setDeclarativeEngine(QStringLiteral("themeProvider"), engine());
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
-    QString path = QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1String("qml/Table.qml"));
+    QString path = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("qml/Table.qml"));
     setSource(QUrl::fromLocalFile(path));
 
     m_qml_root = (QObject*) rootObject();
-    rootContext()->setContextProperty(QLatin1Literal("container"), this);
+    rootContext()->setContextProperty(QStringLiteral("container"), this);
 
     connect(m_qml_root, SIGNAL(cellClicked(int,int)),
             this, SLOT(onPlayerMove(int,int)));
@@ -134,10 +134,10 @@ void KReversiView::updateBoard()
             if (m_game) // showing empty board if has no game
                 switch (m_game->chipColorAt(KReversiMove(NoColor, i, j))) {
                 case Black:
-                    new_state = QLatin1Literal("Black");
+                    new_state = QStringLiteral("Black");
                     break;
                 case White:
-                    new_state = QLatin1Literal("White");
+                    new_state = QStringLiteral("White");
                     break;
                 case NoColor:
                     new_state = QString();
