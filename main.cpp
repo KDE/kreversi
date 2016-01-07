@@ -80,5 +80,7 @@ int main(int argc, char **argv)
 
     KExtHighscore::ExtManager highscoresManager;
 
+    application.setWindowIcon(QIcon::fromTheme(QStringLiteral("kreversi")));
+
     return application.exec();
 }
