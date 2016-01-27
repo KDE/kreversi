@@ -25,10 +25,14 @@
 #include <colorscheme.h>
 #include <QStandardPaths>
 
-KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
-    KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
-    m_showLastMove(false), m_showLegalMoves(false),
-    m_showLabels(false), m_provider(provider)
+KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)
+    : KgDeclarativeView(parent),
+    m_provider(provider),
+    m_delay(ANIMATION_SPEED_NORMAL),
+    m_game(0),
+    m_showLastMove(false),
+    m_showLegalMoves(false),
+    m_showLabels(false)
 {
     m_provider->setDeclarativeEngine(QStringLiteral("themeProvider"), engine());
 

@@ -43,10 +43,16 @@ static const int WHITE_STATUSBAR_ID = 2;
 static const int COMMON_STATUSBAR_ID = 0;
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
-    : KXmlGuiWindow(parent), m_view(0), m_game(0),
-      m_historyDock(0), m_historyView(0),
-      m_firstShow(true), m_startInDemoMode(startDemo),
-      m_undoAct(0), m_hintAct(0), m_startDialog(0)
+    : KXmlGuiWindow(parent),
+    m_startDialog(0),
+    m_view(0),
+    m_game(0),
+    m_historyDock(0),
+    m_historyView(0),
+    m_firstShow(true),
+    m_startInDemoMode(startDemo),
+    m_undoAct(0),
+    m_hintAct(0)
 {
     memset(m_player, 0, sizeof(m_player));
 

@@ -28,7 +28,7 @@ const int KReversiGame::DX[KReversiGame::DIRECTIONS_COUNT] = {0, 0, 1, 1, 1, -1,
 const int KReversiGame::DY[KReversiGame::DIRECTIONS_COUNT] = {1, -1, 1, 0, -1, 1, 0, -1};
 
 KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePlayer)
-    : m_curPlayer(Black), m_delay(300)
+    : m_delay(300), m_curPlayer(Black)
 {
     m_isReady[White] = m_isReady[Black] = false;
 
