@@ -155,7 +155,7 @@ void Manager::setWWHighscores(const QUrl &url, const QString &version)
     const char *HS_WW_URL = "ww hs url";
     ConfigGroup cg;
     if ( cg.hasKey(HS_WW_URL) )
-        internal->serverURL = cg.readEntry(HS_WW_URL);
+        internal->serverURL = QUrl(cg.readEntry(HS_WW_URL));
     else cg.writeEntry(HS_WW_URL, url.url());
     internal->version = version;
 }
