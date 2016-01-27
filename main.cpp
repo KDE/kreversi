@@ -25,6 +25,7 @@
 #include <QApplication>
 #include <KLocalizedString>
 #include <KAboutData>
+#include <KCrash>
 #include <QCommandLineParser>
 
 #include <highscores.h>
@@ -62,6 +63,7 @@ int main(int argc, char **argv)
 
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
+    KCrash::initialize();
     parser.addVersionOption();
     parser.addHelpOption();
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("demo"), i18n("Start with demo game playing")));
