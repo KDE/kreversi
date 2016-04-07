@@ -38,7 +38,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
-    QString path = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("qml/Table.qml"));
+    QString path = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("qml/Table.qml"));
     setSource(QUrl::fromLocalFile(path));
 
     m_qml_root = (QObject*) rootObject();
@@ -131,7 +131,7 @@ void KReversiView::updateBoard()
                                       Q_ARG(QVariant, m_game ? m_game->getPreAnimationDelay(KReversiPos(i, j)) : 0));
         }
     }
-        
+
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
             QString new_state;
