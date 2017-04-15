@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component type="desktop-application">
+  <id>org.kde.kreversi.desktop</id>
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>KReversi</name>
+  <summary>Reversi Board Game</summary>
+    <description>
+    <p>
+      KReversi is a simple one player strategy game played against the computer.
+      If a player's piece is captured by an opposing player, that piece is turned over
+      to reveal the color of that player. A winner is declared when one player has more
+      pieces of his own color on the board and there are no more possible moves.
+    </p>
+  </description>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kreversi</url>
+  <url type="help">http://docs.kde.org/?application=kreversi</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://kde.org/images/screenshots/kreversi.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>kreversi</binary>
+  </provides>
+</component>

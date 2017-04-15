@@ -49,7 +49,8 @@ install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 ########### install files ###############
 
-install( PROGRAMS kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 #install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
 install( DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kreversi )
+install(FILES org.kde.kreversi.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/metainfo/ )
