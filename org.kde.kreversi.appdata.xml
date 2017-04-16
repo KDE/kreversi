@@ -4,14 +4,35 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>KReversi</name>
+  <name xml:lang="ca">KReversi</name>
+  <name xml:lang="ca-valencia">KReversi</name>
+  <name xml:lang="es">KReversi</name>
+  <name xml:lang="nl">KReversi</name>
+  <name xml:lang="sv">Othello</name>
+  <name xml:lang="uk">KReversi</name>
+  <name xml:lang="x-test">xxKReversixx</name>
   <summary>Reversi Board Game</summary>
-    <description>
+  <summary xml:lang="ca">Joc de taula Reversi</summary>
+  <summary xml:lang="ca-valencia">Joc de taula Reversi</summary>
+  <summary xml:lang="es">Juego de mesa Reversi</summary>
+  <summary xml:lang="nl">Reversi-bordspel</summary>
+  <summary xml:lang="sv">Othello brädspel</summary>
+  <summary xml:lang="uk">Гра на дошці (реверсі)</summary>
+  <summary xml:lang="x-test">xxReversi Board Gamexx</summary>
+  <description>
     <p>
       KReversi is a simple one player strategy game played against the computer.
       If a player's piece is captured by an opposing player, that piece is turned over
       to reveal the color of that player. A winner is declared when one player has more
       pieces of his own color on the board and there are no more possible moves.
     </p>
+    <p xml:lang="ca">El KReversi és un joc senzill d'estratègia per jugar individualment contra l'ordinador. Si una peça del jugador és capturada per un contrari, la peça es gira per mostrar el color d'aquest jugador. Es guanya la partida quan un jugador té més peces del seu color en el tauler i no hi ha més moviments possibles.</p>
+    <p xml:lang="ca-valencia">El KReversi és un joc senzill d'estratègia per jugar individualment contra l'ordinador. Si una peça del jugador és capturada per un contrari, la peça es gira per mostrar el color d'este jugador. Es guanya la partida quan un jugador té més peces del seu color en el tauler i no hi ha més moviments possibles.</p>
+    <p xml:lang="es">KReversi es un sencillo juego de estrategia para un único jugador que juega contra la computadora. Si una ficha de un jugador es capturada por el oponente, cambia al color de ese oponente. El ganador será el jugador que tenga más fichas de su propio color sobre el tablero cuando no existan más movimientos posibles.</p>
+    <p xml:lang="nl">KReversi is een eenvoudig strategiespel dat u tegen de computer speelt. Als een steen van een speler wordt gevangen door een tegenstander, dan wordt de steen omgedraaid en de kleur ervan verandert in die van de tegenstander. De winnaar wordt uitgeroepen als een van de spelers meer stenen in zijn kleur op het bord heeft en er geen zetten meer mogelijk zijn.</p>
+    <p xml:lang="sv">Othello är ett enkelt strategispel för en spelare som spelas mot datorn. Om en pjäs tas av motspelaren, vänds den för att visa motspelarens färg. Vinnaren utses när en spelare har fler pjäser med sin färg på brädet och inga fler drag är möjliga.</p>
+    <p xml:lang="uk">KReversi — проста стратегічна гра для одного гравця, суперником якого буде комп’ютер. Якщо фішка поміняє власника, її буде перевернуто, і вона показуватиме колір гравця-власника. Переможцем проголошується той з гравців, у якого буде більше власних фішок за такої позиції у грі, коли подальші ходи будуть неможливими.</p>
+    <p xml:lang="x-test">xxKReversi is a simple one player strategy game played against the computer. If a player's piece is captured by an opposing player, that piece is turned over to reveal the color of that player. A winner is declared when one player has more pieces of his own color on the board and there are no more possible moves.xx</p>
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kreversi</url>
   <url type="help">http://docs.kde.org/?application=kreversi</url>
