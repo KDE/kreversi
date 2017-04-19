@@ -6,6 +6,7 @@
   <name>KReversi</name>
   <name xml:lang="ca">KReversi</name>
   <name xml:lang="ca-valencia">KReversi</name>
+  <name xml:lang="cs">KReversi</name>
   <name xml:lang="es">KReversi</name>
   <name xml:lang="nl">KReversi</name>
   <name xml:lang="pt">Reversi</name>
@@ -16,6 +17,7 @@
   <summary>Reversi Board Game</summary>
   <summary xml:lang="ca">Joc de taula Reversi</summary>
   <summary xml:lang="ca-valencia">Joc de taula Reversi</summary>
+  <summary xml:lang="cs">Desková hra Reversi</summary>
   <summary xml:lang="es">Juego de mesa Reversi</summary>
   <summary xml:lang="nl">Reversi-bordspel</summary>
   <summary xml:lang="pt">Jogo de Tabuleiro Reversi</summary>
