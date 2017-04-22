@@ -62,9 +62,9 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
     common->setText(i18n("Press start game!"));
     statusBar()->insertPermanentWidget(COMMON_STATUSBAR_ID, common);
-    black->setText(i18n(""));
+    black->setText(QString());
     statusBar()->insertPermanentWidget(BLACK_STATUSBAR_ID, black);
-    white->setText(i18n(""));
+    white->setText(QString());
     statusBar()->insertPermanentWidget(WHITE_STATUSBAR_ID, white);
 
     // initialize difficulty stuff
