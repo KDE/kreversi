@@ -27,7 +27,7 @@
 #include <QString>
 #include <KgDifficulty>
 
-#include <preferences.h>
+#include "preferences.h"
 
 /**
  * Used to indicate chip's state.

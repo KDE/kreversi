@@ -21,22 +21,21 @@
  *
  ********************************************************************/
 
-#include <startgamedialog.h>
-#include <ui_startgamedialog.h>
+#include "startgamedialog.h"
+#include "ui_startgamedialog.h"
 
-#include <QMessageBox>
 #include <QCloseEvent>
-#include <KgDifficulty>
-
-#include <QSvgRenderer>
-#include <KLocalizedString>
-#include <QPainter>
-
 #include <QGraphicsDropShadowEffect>
-#include <KConfigGroup>
 #include <QDialogButtonBox>
+#include <QMessageBox>
 #include <QPushButton>
+#include <QPainter>
+#include <QSvgRenderer>
 #include <QVBoxLayout>
+
+#include <KConfigGroup>
+#include <KgDifficulty>
+#include <KLocalizedString>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     QDialog(parent),

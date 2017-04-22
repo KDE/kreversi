@@ -19,16 +19,15 @@
 
 #include "kexthighscore_item.h"
 
-#include <QLayout>
-//Added by qt3to4:
-#include <QLabel>
-#include <QHBoxLayout>
-#include <QtCore/QLocale>
-#include <QWidget>
 #include <QApplication>
+#include <QHBoxLayout>
+#include <QLayout>
+#include <QLabel>
+#include <QLocale>
+#include <QWidget>
 
-#include <kpagedialog.h>
 #include <KHighscore>
+#include <KPageDialog>
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"
 

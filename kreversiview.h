@@ -24,8 +24,8 @@
 #include <KgDeclarativeView>
 #include <KgThemeProvider>
 
-#include <commondefs.h>
-#include <kreversigame.h>
+#include "commondefs.h"
+#include "kreversigame.h"
 
 /**
  *  This class provides graphical representation of KReversiGame

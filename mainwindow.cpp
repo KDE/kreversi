@@ -22,20 +22,21 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include <mainwindow.h>
+#include "mainwindow.h"
 
 #include <QDebug>
+#include <QDesktopWidget>
 #include <QIcon>
+#include <QStatusBar>
+
+#include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <QStatusBar>
-#include <KActionCollection>
 #include <KStandardGameAction>
-#include <QDesktopWidget>
-#include <commondefs.h>
-#include <kreversihumanplayer.h>
-#include <kreversicomputerplayer.h>
 
+#include "commondefs.h"
+#include "kreversihumanplayer.h"
+#include "kreversicomputerplayer.h"
 #include "kexthighscore.h"
 
 static const int BLACK_STATUSBAR_ID = 1;

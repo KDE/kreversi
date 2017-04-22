@@ -25,7 +25,7 @@
 #include <QTreeWidget>
 #include <QDialogButtonBox>
 #include <QDialog>
-#include <kpagedialog.h>
+#include <KPageDialog>
 
 #include <QtCore/QList>
 

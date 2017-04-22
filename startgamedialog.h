@@ -24,8 +24,8 @@
 #ifndef STARTGAMEDIALOG_H
 #define STARTGAMEDIALOG_H
 
-#include <gamestartinformation.h>
-#include <commondefs.h>
+#include "gamestartinformation.h"
+#include "commondefs.h"
 
 #include <QDialog>
 #include <KUser>

@@ -39,10 +39,10 @@
 #include <kurllabel.h>
 #include <krun.h>
 
-#include <kio/netaccess.h>
-#include <kiconloader.h>
-#include <klineedit.h>
-#include <kguiitem.h>
+#include <KIO/NetAccess>
+#include <KIconLoader>
+#include <KLineEdit>
+#include <KGuiItem>
 
 #include "kexthighscore_internal.h"
 #include "kexthighscore.h"

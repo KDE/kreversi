@@ -20,8 +20,8 @@
 #ifndef KEXTHIGHSCORE_TAB_H
 #define KEXTHIGHSCORE_TAB_H
 
-#include <QtCore/QVector>
 #include <QComboBox>
+#include <QVector>
 
 class QLabel;
 class QTreeWidget;

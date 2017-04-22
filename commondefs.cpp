@@ -21,7 +21,7 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include <commondefs.h>
+#include "commondefs.h"
 
 #include <KLocalizedString>
 

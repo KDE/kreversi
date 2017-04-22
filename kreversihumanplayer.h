@@ -24,7 +24,7 @@
 #ifndef KREVERSIHUMANPLAYER_H
 #define KREVERSIHUMANPLAYER_H
 
-#include <kreversiplayer.h>
+#include "kreversiplayer.h"
 
 /**
  * Represents human player. Implements KReversiPlayer.

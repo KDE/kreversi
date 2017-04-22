@@ -20,7 +20,8 @@
 #ifndef KEXTHIGHSCORE_INTERNAL_H
 #define KEXTHIGHSCORE_INTERNAL_H
 
-#include <kconfig.h>
+#include <KConfig>
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KHighscore>
@@ -33,7 +34,6 @@
 #include <QtCore/QVector>
 #include <QtCore/QDateTime>
 #include <QtCore/QUrl>
-#include <kconfiggroup.h>
 
 class QTextStream;
 class QDomNamedNodeMap;

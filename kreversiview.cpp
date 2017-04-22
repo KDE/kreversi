@@ -17,12 +17,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <kreversiview.h>
+#include "kreversiview.h"
 
 #include <KLocalizedString>
 
 
-#include <colorscheme.h>
+#include "colorscheme.h"
 #include <QStandardPaths>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)

@@ -121,8 +121,8 @@
 
 #include <KRandomSequence>
 
-#include <commondefs.h>
-#include <kreversigame.h>
+#include "commondefs.h"
+#include "kreversigame.h"
 class KReversiGame;
 
 

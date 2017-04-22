@@ -23,16 +23,17 @@
  */
 
 #include <QApplication>
-#include <KLocalizedString>
-#include <KAboutData>
-#include <KCrash>
+#include <QCommandLineOption>
 #include <QCommandLineParser>
 
-#include <highscores.h>
-#include <mainwindow.h>
-#include <QCommandLineOption>
-#include <kdelibs4configmigrator.h>
+#include <KAboutData>
+#include <KLocalizedString>
+#include <KCrash>
 #include <KDBusService>
+#include <Kdelibs4ConfigMigrator>
+
+#include "highscores.h"
+#include "mainwindow.h"
 
 static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 

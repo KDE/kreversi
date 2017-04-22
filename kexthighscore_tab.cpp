@@ -20,15 +20,15 @@
 #include "kexthighscore_tab.h"
 
 
+#include <QApplication>
+#include <QDialog>
+#include <QGroupBox>
+#include <QHeaderView>
 #include <QLayout>
 #include <QLabel>
 #include <QPixmap>
 #include <QVector>
-#include <QGroupBox>
 #include <QTreeWidget>
-#include <QHeaderView>
-#include <QDialog>
-#include <QApplication>
 
 
 #include "kexthighscore.h"

@@ -24,7 +24,7 @@
 #ifndef KREVERSICOMPUTERPLAYER_H
 #define KREVERSICOMPUTERPLAYER_H
 
-#include <kreversiplayer.h>
+#include "kreversiplayer.h"
 
 /**
  * Represents computer or AI of this game. Implements KReversiPlayer.

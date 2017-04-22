@@ -24,20 +24,20 @@
 #ifndef KREVERSI_MAIN_WINDOW_H
 #define KREVERSI_MAIN_WINDOW_H
 
-#include <KXmlGuiWindow>
-#include <preferences.h>
 
 #include <QApplication>
-#include <QListWidget>
 #include <QDockWidget>
+#include <QListWidget>
 
-#include <KToggleAction>
 #include <KSelectAction>
+#include <KToggleAction>
+#include <KXmlGuiWindow>
 
-#include <startgamedialog.h>
+#include "preferences.h"
+#include "startgamedialog.h"
 
-#include <kreversigame.h>
-#include <kreversiview.h>
+#include "kreversigame.h"
+#include "kreversiview.h"
 
 #include <QLabel>
 

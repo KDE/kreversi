@@ -28,10 +28,11 @@
 #include <QStack>
 #include <QTimer>
 
-#include <Engine.h>
+#include "Engine.h"
+#include "commondefs.h"
+#include "kreversiplayer.h"
+
 class Engine;
-#include <commondefs.h>
-#include <kreversiplayer.h>
 class KReversiPlayer;
 
 /**
