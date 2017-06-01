@@ -77,7 +77,7 @@ class StatisticsTab : public AdditionalTab
  public:
     explicit StatisticsTab(QWidget *parent);
 
-    void load();
+    void load() Q_DECL_OVERRIDE;
 
  private:
     enum Count { Total = 0, Won, Lost, Draw, Nb_Counts };
@@ -92,7 +92,7 @@ class StatisticsTab : public AdditionalTab
     QLabel *_nbs[Nb_Counts], *_percents[Nb_Counts], *_trends[Nb_Trends];
 
     QString percent(const Data &, Count) const;
-    void display(uint i);
+    void display(uint i) Q_DECL_OVERRIDE;
 };
 
 //-----------------------------------------------------------------------------
@@ -102,14 +102,14 @@ class HistogramTab : public AdditionalTab
  public:
     HistogramTab(QWidget *parent);
 
-    void load();
+    void load() Q_DECL_OVERRIDE;
 
  private:
     QVector<uint> _counts;
     QVector<uint> _data;
     QTreeWidget   *_list;
 
-    void display(uint i);
+    void display(uint i) Q_DECL_OVERRIDE;
 };
 
 } // namespace

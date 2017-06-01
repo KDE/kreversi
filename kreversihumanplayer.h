@@ -43,10 +43,10 @@ public:
     /**
      *  Overridden slots from @see KReversiPlayer
      */
-    void prepare(KReversiGame *game);
-    void takeTurn();
-    void skipTurn();
-    void gameOver();
+    void prepare(KReversiGame *game) Q_DECL_OVERRIDE;
+    void takeTurn() Q_DECL_OVERRIDE;
+    void skipTurn() Q_DECL_OVERRIDE;
+    void gameOver() Q_DECL_OVERRIDE;
 
 signals:
 

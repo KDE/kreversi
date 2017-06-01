@@ -54,8 +54,8 @@ class RankItem : public Item
     RankItem()
         : Item((uint)0, i18n("Rank"), Qt::AlignRight) {}
 
-    QVariant read(uint i, const QVariant &value) const  { Q_UNUSED(value); return i; }
-    QString pretty(uint i, const QVariant &value) const
+    QVariant read(uint i, const QVariant &value) const  Q_DECL_OVERRIDE { Q_UNUSED(value); return i; }
+    QString pretty(uint i, const QVariant &value) const Q_DECL_OVERRIDE
         { Q_UNUSED(value); return QString::number(i+1); }
 };
 
@@ -171,7 +171,7 @@ class ScoreInfos : public ItemArray
  public:
     ScoreInfos(uint maxNbEntries, const PlayerInfos &infos);
 
-    uint nbEntries() const;
+    uint nbEntries() const Q_DECL_OVERRIDE;
     uint maxNbEntries() const { return _maxNbEntries; }
 
  private:
@@ -194,7 +194,7 @@ class PlayerInfos : public ItemArray
 
     bool isNewPlayer() const { return _newPlayer; }
     bool isOldLocalPlayer() const { return _oldLocalPlayer; }
-    uint nbEntries() const;
+    uint nbEntries() const Q_DECL_OVERRIDE;
     QString name() const { return item(QStringLiteral( "name" ))->read(_id).toString(); }
     bool isAnonymous() const;
     QString prettyName() const { return prettyName(_id); }
