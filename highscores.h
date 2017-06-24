@@ -30,7 +30,7 @@ public:
     ExtManager();
 
 private:
-    QString gameTypeLabel(uint gameTye, LabelType) const Q_DECL_OVERRIDE;
+    QString gameTypeLabel(uint gameTye, LabelType) const override;
     QStringList m_typeLabels;
 };
 

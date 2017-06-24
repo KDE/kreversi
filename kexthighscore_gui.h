@@ -80,7 +80,7 @@ class HighscoresList : public ScoresList
     void load(const ItemArray &, int highlight);
 
  protected:
-    QString itemText(const ItemContainer &, uint row) const Q_DECL_OVERRIDE;
+    QString itemText(const ItemContainer &, uint row) const override;
 };
 
 class HighscoresWidget : public QWidget
@@ -134,8 +134,8 @@ public:
     LastMultipleScoresList(const QVector<Score> &, QWidget *parent);
 
 private:
-    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) Q_DECL_OVERRIDE;
-    QString itemText(const ItemContainer &, uint row) const Q_DECL_OVERRIDE;
+    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) override;
+    QString itemText(const ItemContainer &, uint row) const override;
 
 private:
     const QVector<Score> &_scores;
@@ -148,8 +148,8 @@ public:
     TotalMultipleScoresList(const QVector<Score> &, QWidget *parent);
 
 private:
-    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) Q_DECL_OVERRIDE;
-    QString itemText(const ItemContainer &, uint row) const Q_DECL_OVERRIDE;
+    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) override;
+    QString itemText(const ItemContainer &, uint row) const override;
 
 private:
     const QVector<Score> &_scores;
@@ -167,7 +167,7 @@ class ConfigDialog : public QDialog
  private slots:
     void modifiedSlot();
     void removeSlot();
-    void accept() Q_DECL_OVERRIDE;
+    void accept() override;
     void slotApply() { save(); }
     void nickNameChanged(const QString &);
 

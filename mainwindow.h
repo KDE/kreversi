@@ -63,7 +63,7 @@ public slots:
     void slotHighscores();
     void slotDialogReady();
 private:
-    void showEvent(QShowEvent*) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent*) override;
     void setupActionsInit();
     void setupActionsStart();
     void setupActionsGame();

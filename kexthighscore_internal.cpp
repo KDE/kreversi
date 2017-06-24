@@ -231,7 +231,7 @@ class ScoreNameItem : public NameItem
     ScoreNameItem(const ScoreInfos &score, const PlayerInfos &infos)
         : _score(score), _infos(infos) {}
 
-    QString pretty(uint i, const QVariant &v) const Q_DECL_OVERRIDE {
+    QString pretty(uint i, const QVariant &v) const override {
         uint id = _score.item(QStringLiteral( "id" ))->read(i).toUInt();
         if ( id==0 ) return NameItem::pretty(i, v);
         return _infos.prettyName(id-1);
