@@ -203,12 +203,6 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
     Preferences::self()->save();
 }
 
-void KReversiMainWindow::slotShowMovesHistory(bool toggled)
-{
-    m_historyDock->setVisible(toggled);
-    m_view->setShowBoardLabels(toggled);
-}
-
 void KReversiMainWindow::slotNewGame()
 {
     m_startDialog->exec();
