@@ -59,6 +59,7 @@ public slots:
     void slotMoveFinished();
     void slotGameOver();
     void slotUseColoredChips(bool);
+    void slotToggleBoardLabels(bool);
     void slotHighscores();
     void slotDialogReady();
 private:

@@ -156,6 +156,7 @@ void KReversiMainWindow::setupActionsInit()
     m_showMovesAct->setIcon(QIcon::fromTheme(QStringLiteral("view-history")));
     m_showMovesAct->setText(i18n("Show Move History"));
     actionCollection()->addAction(QStringLiteral("show_moves"), m_showMovesAct);
+    connect(m_historyDock, &QDockWidget::visibilityChanged, this, &KReversiMainWindow::slotToggleBoardLabels);
 }
 
 void KReversiMainWindow::loadSettings()
@@ -201,6 +202,11 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
     m_startDialog->setChipsPrefix(chipsPrefix);
     Preferences::setUseColoredChips(toggled);
     Preferences::self()->save();
+}
+
+void KReversiMainWindow::slotToggleBoardLabels(bool toggled)
+{
+    m_view->setShowBoardLabels(toggled);
 }
 
 void KReversiMainWindow::slotNewGame()
