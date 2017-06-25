@@ -101,6 +101,13 @@ Item {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).chipPreAnimationTime = value
     }
 
+    CanvasItem {
+        id: boardLabels
+        anchors.fill: parent
+        visible: isShowingLabels
+        spriteKey: "board_numbers"
+    }
+
     Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter

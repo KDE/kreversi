@@ -98,6 +98,5 @@ private:
 
     enum { common = 1, black, white };
     QLabel *m_statusBarLabel[4];
-
 };
 #endif
