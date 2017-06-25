@@ -60,12 +60,12 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_provider = new KgThemeProvider();
     m_provider->discoverThemes("appdata", QStringLiteral("pics"));
 
-    common->setText(i18n("Press start game!"));
-    statusBar()->insertPermanentWidget(COMMON_STATUSBAR_ID, common);
-    black->setText(QString());
-    statusBar()->insertPermanentWidget(BLACK_STATUSBAR_ID, black);
-    white->setText(QString());
-    statusBar()->insertPermanentWidget(WHITE_STATUSBAR_ID, white);
+    for (auto &label : m_statusBarLabel) {
+       label = new QLabel(this);
+       label->setAlignment(Qt::AlignCenter);
+       statusBar()->addWidget(label, 1);
+    }
+    m_statusBarLabel[common]->setText(i18n("Press start game!"));
 
     // initialize difficulty stuff
     Kg::difficulty()->addStandardLevelRange(
@@ -346,23 +346,23 @@ void KReversiMainWindow::showEvent(QShowEvent*)
 void KReversiMainWindow::updateStatusBar()
 {
     if (m_game->isGameOver()) {
-        common->setText(i18n("GAME OVER"));
+        m_statusBarLabel[common]->setText(i18n("GAME OVER"));
     }
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
             && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // using Black White names
-        black->setText(i18n("%1: %2", Utils::colorToString(Black), m_game->playerScore(Black)));
-        white->setText(i18n("%1: %2", Utils::colorToString(White), m_game->playerScore(White)));
+        m_statusBarLabel[black]->setText(i18n("%1: %2", Utils::colorToString(Black), m_game->playerScore(Black)));
+        m_statusBarLabel[white]->setText(i18n("%1: %2", Utils::colorToString(White), m_game->playerScore(White)));
 
         if (!m_game->isGameOver()) {
-            common->setText(i18n("%1 turn", Utils::colorToString(m_game->currentPlayer())));
+            m_statusBarLabel[common]->setText(i18n("%1 turn", Utils::colorToString(m_game->currentPlayer())));
         }
     } else { // using player's names
-        black->setText(i18n("%1: %2", m_nowPlayingInfo.name[Black], m_game->playerScore(Black)));
-        white->setText(i18n("%1: %2", m_nowPlayingInfo.name[White], m_game->playerScore(White)));
+        m_statusBarLabel[black]->setText(i18n("%1: %2", m_nowPlayingInfo.name[Black], m_game->playerScore(Black)));
+        m_statusBarLabel[white]->setText(i18n("%1: %2", m_nowPlayingInfo.name[White], m_game->playerScore(White)));
 
         if (!m_game->isGameOver() && m_game->currentPlayer() != NoColor) {
-            common->setText(i18n("%1's turn", m_nowPlayingInfo.name[m_game->currentPlayer()]));
+            m_statusBarLabel[common]->setText(i18n("%1's turn", m_nowPlayingInfo.name[m_game->currentPlayer()]));
         }
     }
 }
