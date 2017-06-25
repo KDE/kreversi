@@ -93,7 +93,7 @@ private:
     QAction *m_hintAct;
     KToggleAction *m_showLast;
     KToggleAction *m_showLegal;
-    KToggleAction *m_showMovesAct;
+    QAction *m_showMovesAct;
     KSelectAction *m_animSpeedAct;
     KToggleAction *m_coloredChipsAct;
 

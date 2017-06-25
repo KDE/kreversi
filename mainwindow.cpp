@@ -152,9 +152,10 @@ void KReversiMainWindow::setupActionsInit()
 
     // Move history
     // NOTE: read/write this from/to config file? Or not necessary?
-    m_showMovesAct = new KToggleAction(QIcon::fromTheme(QStringLiteral("view-history")), i18n("Show Move History"), this);
+    m_showMovesAct = m_historyDock->toggleViewAction();
+    m_showMovesAct->setIcon(QIcon::fromTheme(QStringLiteral("view-history")));
+    m_showMovesAct->setText(i18n("Show Move History"));
     actionCollection()->addAction(QStringLiteral("show_moves"), m_showMovesAct);
-    connect(m_showMovesAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotShowMovesHistory);
 }
 
 void KReversiMainWindow::loadSettings()
