@@ -109,7 +109,7 @@ Rectangle {
     width: row.width + 2 * marginOnSides
 
     color: colorScheme.background
-    border.color: useCustomBorderColor ? borderColor : colorScheme.border
+    border.color: useCustomBorderColor ? black : colorScheme.border
     border.width: borderWidth
 
     function show(message, showing_state) {
