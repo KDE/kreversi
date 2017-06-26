@@ -257,6 +257,8 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
     connect(this, &KPageDialog::currentPageChanged,
             this, &HighscoresDialog::highscorePageChanged);
     setCurrentPage(_pages[internal->gameType()]);
+
+    setStandardButtons(QDialogButtonBox::Close);
 }
 
 void HighscoresDialog::highscorePageChanged(KPageWidgetItem* page, KPageWidgetItem* pageold)
