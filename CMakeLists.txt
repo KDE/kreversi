@@ -8,26 +8,19 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
-    Completion
     Config
     ConfigWidgets
     CoreAddons
     Crash
     DBusAddons
-    DNSSD
     Declarative
-    GuiAddons
     I18n
     IconThemes
-    ItemModels
-    ItemViews
-    KDELibs4Support
     KIO
-    NewStuff
-    Service
-    WidgetsAddons
     XmlGui
+    WidgetsAddons
 )
+find_package(KF5DocTools ${KF5_MIN_VERSION})
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 
@@ -51,7 +44,9 @@ add_definitions(
 add_subdirectory(pics)
 add_subdirectory(sounds)
 add_subdirectory(icons)
-add_subdirectory(doc)
+if (KF5DocTools_FOUND)
+    add_subdirectory(doc)
+endif()
 
 include_directories(${CMAKE_SOURCE_DIR}/libKF5KDEGames/highscore)
 
@@ -84,12 +79,16 @@ add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi
     Qt5::Svg
-    KF5::Completion
+    KF5::ConfigCore
+    KF5::ConfigGui
+    KF5::CoreAddons
     KF5::Crash
     KF5::DBusAddons
     KF5::Declarative
-    KF5::KDELibs4Support
-    KF5::TextWidgets
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOFileWidgets
+    KF5::WidgetsAddons
     KF5::XmlGui
     KF5KDEGames
 )

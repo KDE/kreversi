@@ -23,19 +23,20 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#include <QCryptographicHash>
+#include <QDomDocument>
 #include <QFile>
 #include <QLayout>
-#include <qdom.h>
-//Added by qt3to4:
+#include <QTemporaryFile>
 #include <QTextStream>
 #include <QVector>
-#include <QCryptographicHash>
 
-#include <kuser.h>
-#include <kio/netaccess.h>
-#include <kio/job.h>
-#include <kmessagebox.h>
-#include <kcodecs.h>
+#include <KIO/FileCopyJob>
+#include <KIO/SimpleJob>
+#include <KJobWidgets>
+#include <KMessageBox>
+#include <KUser>
+
 #include "kexthighscore.h"
 #include "kexthighscore_gui.h"
 #include "kemailsettings.h"
@@ -629,27 +630,27 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
 {
     KIO::http_update_cache(url, true, QDateTime::fromTime_t(0)); // remove cache !
 
-    QString tmpFile;
-    if ( !KIO::NetAccess::download(url, tmpFile, parent) ) {
-        QString details = i18n("Server URL: %1", url.host());
-        KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
-        return false;
-    }
-
-	QFile file(tmpFile);
-	if ( !file.open(QIODevice::ReadOnly) ) {
-        KIO::NetAccess::removeTempFile(tmpFile);
+    QTemporaryFile tmpFile;
+    if ( !tmpFile.open() ) {
         QString details = i18n("Unable to open temporary file.");
         KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
         return false;
     }
 
-	QTextStream t(&file);
-	QString content = t.readAll().trimmed();
-	file.close();
-    KIO::NetAccess::removeTempFile(tmpFile);
+    auto copyJob = KIO::file_copy(url, QUrl::fromLocalFile(tmpFile.fileName()));
+    KJobWidgets::setWindow(copyJob, parent);
+    copyJob->exec();
+    if( copyJob->error() ) {
+        QString details = i18n("Server URL: %1", url.host());
+        KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
+        return false;
+    }
 
-	QDomDocument doc;
+    QTextStream t(&tmpFile);
+    QString content = t.readAll().trimmed();
+    tmpFile.close();
+
+    QDomDocument doc;
     if ( doc.setContent(content) ) {
         QDomElement root = doc.documentElement();
         QDomElement element = root.firstChild().toElement();

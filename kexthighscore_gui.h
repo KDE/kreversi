@@ -32,7 +32,6 @@
 #include "kexthighscore.h"
 
 class QTabWidget;
-class KLineEdit;
 class KUrlLabel;
 
 namespace KExtHighscore
@@ -175,7 +174,7 @@ class ConfigDialog : public QDialog
     bool         _saved;
     QCheckBox   *_WWHEnabled;
     QLineEdit   *_nickname, *_comment;
-    KLineEdit   *_key, *_registeredName;
+    QLineEdit   *_key, *_registeredName;
     QPushButton *_removeButton;
     QDialogButtonBox *buttonBox;
 

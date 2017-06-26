@@ -19,30 +19,29 @@
 
 #include "kexthighscore_gui.h"
 
-
-#include <QLayout>
-#include <QTextStream>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QGroupBox>
-#include <QHeaderView>
-#include <QTabWidget>
-#include <QPushButton>
 #include <QApplication>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QHBoxLayout>
+#include <QHeaderView>
 #include <QIcon>
-#include <QtCore/QTemporaryFile>
+#include <QLabel>
+#include <QLayout>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QTemporaryFile>
+#include <QTextStream>
+#include <QVBoxLayout>
 
-#include <kmessagebox.h>
-#include <kurllabel.h>
-#include <krun.h>
-
-#include <KIO/NetAccess>
-#include <KIconLoader>
-#include <KLineEdit>
 #include <KGuiItem>
+#include <KIconLoader>
+#include <KIO/StatJob>
+#include <KIO/CopyJob>
+#include <KJobWidgets>
+#include <KMessageBox>
+#include <KRun>
+#include <KUrlLabel>
 
 #include "kexthighscore_internal.h"
 #include "kexthighscore.h"
@@ -248,7 +247,8 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
         QString icon = internal->manager.gameTypeLabel(i, Manager::Icon);
         HighscoresWidget *hsw = new HighscoresWidget(0);
         KPageWidgetItem *pageItem = new KPageWidgetItem( hsw, title);
-        pageItem->setIcon( QIcon( BarIcon(icon, KIconLoader::SizeLarge) ) );
+        pageItem->setIcon(QIcon::fromTheme(icon).pixmap(IconSize(KIconLoader::Toolbar)));
+//         pageItem->setIcon( QIcon( BarIcon(icon, KIconLoader::SizeLarge) ) );
         addPage( pageItem );
         _pages.append(pageItem);
         connect(hsw, SIGNAL(tabChanged(int)), SLOT(tabChanged(int)));
@@ -289,7 +289,10 @@ void HighscoresDialog::slotUser2()
 //   kDebug(11001) ;
     QUrl url = QFileDialog::getSaveFileUrl(this, tr("HighscoresDialog"), QUrl(), QString());
     if ( url.isEmpty() ) return;
-    if ( KIO::NetAccess::exists(url, KIO::NetAccess::SourceSide, this) ) {
+    auto job = KIO::stat(url, KIO::StatJob::SourceSide, 0);
+    KJobWidgets::setWindow(job, this);
+    job->exec();
+    if (!job->error()) {
         KGuiItem gi = KStandardGuiItem::save();
         gi.setText(i18n("Overwrite"));
         int res = KMessageBox::warningContinueCancel(this,
@@ -302,7 +305,9 @@ void HighscoresDialog::slotUser2()
     QTextStream stream(&tmp);
     internal->exportHighscores(stream);
     stream.flush();
-    KIO::NetAccess::upload(tmp.fileName(), url, this);
+//     KIO::NetAccess::upload(tmp.fileName(), url, this);
+    auto copyJob = KIO::copy(QUrl::fromLocalFile(tmp.fileName()), url);
+    copyJob->exec();
 }
 
 //-----------------------------------------------------------------------------
@@ -478,13 +483,13 @@ ConfigDialog::ConfigDialog(QWidget *parent)
 
         label = new QLabel(i18n("Nickname:"), group);
         groupLayout->addWidget(label, 0, 0);
-        _registeredName = new KLineEdit(group);
+        _registeredName = new QLineEdit(group);
         _registeredName->setReadOnly(true);
         groupLayout->addWidget(_registeredName, 0, 1);
 
         label = new QLabel(i18n("Key:"), group);
         groupLayout->addWidget(label, 1, 0);
-        _key = new KLineEdit(group);
+        _key = new QLineEdit(group);
         _key->setReadOnly(true);
         groupLayout->addWidget(_key, 1, 1);
 
