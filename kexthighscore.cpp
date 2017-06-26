@@ -20,9 +20,8 @@
 #include "kexthighscore.h"
 
 #include <QLayout>
-//Added by qt3to4:
-#include <QVector>
 #include <QUrlQuery>
+#include <QVector>
 
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"

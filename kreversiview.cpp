@@ -18,11 +18,10 @@
 */
 
 #include "kreversiview.h"
+#include "colorscheme.h"
 
 #include <KLocalizedString>
 
-
-#include "colorscheme.h"
 #include <QStandardPaths>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)

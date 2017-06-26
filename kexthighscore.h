@@ -24,11 +24,9 @@
 
 #include <libkdegames_export.h>
 
-#include <QtCore/QVector>
-#include <QtCore/QUrl>
-
 #include <QLoggingCategory>
-
+#include <QVector>
+#include <QUrl>
 
 namespace KExtHighscore
 {

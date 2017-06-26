@@ -18,8 +18,8 @@
 
 #include "highscores.h"
 
-#include <QVector>
 #include <QDateTime>
+#include <QVector>
 
 #include <KLocalizedString>
 #include <KConfigGroup>
