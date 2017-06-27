@@ -159,7 +159,7 @@ private:
     /**
      *  The SVG element prefix for the current chip set
      */
-    QString m_chipsPrefix;
+    ChipsPrefix m_ColouredChips;
 
     /**
      *  If true, then last made turn will be shown to the player

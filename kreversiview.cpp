@@ -81,6 +81,7 @@ void KReversiView::setGame(KReversiGame *game)
 
 void KReversiView::setChipsPrefix(ChipsPrefix chipsPrefix)
 {
+    m_ColouredChips = chipsPrefix;
     m_qml_root->setProperty("chipsImagePrefix",
                             Utils::chipPrefixToString(chipsPrefix));
 }
@@ -246,7 +247,8 @@ void KReversiView::whitePlayerCantMove()
 {
     // TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
-                              Q_ARG(QVariant,
+                              Q_ARG(QVariant, m_ColouredChips ?
+                                    i18n("Red can not perform any move. It is blue turn again.") :
                                     i18n("White can not perform any move. It is black turn again.")));
     updateBoard();
 }
@@ -255,7 +257,8 @@ void KReversiView::blackPlayerCantMove()
 {
     // TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
-                              Q_ARG(QVariant,
+                              Q_ARG(QVariant, m_ColouredChips ?
+                                    i18n("Blue can not perform any move. It is red turn again.") :
                                     i18n("Black can not perform any move. It is white turn again.")));
     updateBoard();
 }

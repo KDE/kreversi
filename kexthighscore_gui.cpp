@@ -239,8 +239,6 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
         setFaceType( KPageDialog::Plain );
 // TODO    setButtonGuiItem( User1, KGuiItem(i18n("Configure..."), QLatin1String( "configure" )) );
 // TODO    setButtonGuiItem( User2, KGuiItem(i18n("Export...")) );
-    connect( this, SIGNAL(user1Clicked()), SLOT(slotUser1()) );
-    connect( this, SIGNAL(user2Clicked()), SLOT(slotUser2()) );
 
     for (uint i=0; i<internal->nbGameTypes(); i++) {
         QString title = internal->manager.gameTypeLabel(i, Manager::I18N);
