@@ -19,7 +19,7 @@
 #define HIGHSCORES_H
 
 #include <QStringList>
-#include <KExtHighscore>
+#include "kexthighscore.h"
 
 namespace KExtHighscore
 {
@@ -30,7 +30,7 @@ public:
     ExtManager();
 
 private:
-    virtual QString gameTypeLabel(uint gameTye, LabelType) const;
+    QString gameTypeLabel(uint gameTye, LabelType) const override;
     QStringList m_typeLabels;
 };
 

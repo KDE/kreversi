@@ -21,12 +21,12 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include <commondefs.h>
+#include "commondefs.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 
 
-static QString chipPrefixString[2] = {"chip_bw", "chip_color"};
+static QString chipPrefixString[2] = {QStringLiteral("chip_bw"), QStringLiteral("chip_color")};
 
 QString Utils::chipPrefixToString(ChipsPrefix prefix) {
     return chipPrefixString[prefix];

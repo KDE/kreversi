@@ -21,15 +21,14 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include <kreversigame.h>
+#include "kreversigame.h"
 
-#include <KDebug>
 
 const int KReversiGame::DX[KReversiGame::DIRECTIONS_COUNT] = {0, 0, 1, 1, 1, -1, -1, -1};
 const int KReversiGame::DY[KReversiGame::DIRECTIONS_COUNT] = {1, -1, 1, 0, -1, 1, 0, -1};
 
 KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePlayer)
-    : m_curPlayer(Black), m_delay(300)
+    : m_delay(300), m_curPlayer(Black)
 {
     m_isReady[White] = m_isReady[Black] = false;
 
@@ -46,17 +45,17 @@ KReversiGame::KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePla
     m_player[White] = whitePlayer;
     m_player[Black] = blackPlayer;
 
-    connect(this, SIGNAL(blackPlayerCantMove()), blackPlayer, SLOT(skipTurn()));
-    connect(this, SIGNAL(blackPlayerTurn()), blackPlayer, SLOT(takeTurn()));
-    connect(this, SIGNAL(gameOver()), blackPlayer, SLOT(gameOver()));
-    connect(blackPlayer, SIGNAL(makeMove(KReversiMove)), this, SLOT(blackPlayerMove(KReversiMove)));
-    connect(blackPlayer, SIGNAL(ready()), this, SLOT(blackReady()));
+    connect(this, &KReversiGame::blackPlayerCantMove, blackPlayer, &KReversiPlayer::skipTurn);
+    connect(this, &KReversiGame::blackPlayerTurn, blackPlayer, &KReversiPlayer::takeTurn);
+    connect(this, &KReversiGame::gameOver, blackPlayer, &KReversiPlayer::gameOver);
+    connect(blackPlayer, &KReversiPlayer::makeMove, this, &KReversiGame::blackPlayerMove);
+    connect(blackPlayer, &KReversiPlayer::ready, this, &KReversiGame::blackReady);
 
-    connect(this, SIGNAL(whitePlayerCantMove()), whitePlayer, SLOT(skipTurn()));
-    connect(this, SIGNAL(whitePlayerTurn()), whitePlayer, SLOT(takeTurn()));
-    connect(this, SIGNAL(gameOver()), whitePlayer, SLOT(gameOver()));
-    connect(whitePlayer, SIGNAL(makeMove(KReversiMove)), this, SLOT(whitePlayerMove(KReversiMove)));
-    connect(whitePlayer, SIGNAL(ready()), this, SLOT(whiteReady()));
+    connect(this, &KReversiGame::whitePlayerCantMove, whitePlayer, &KReversiPlayer::skipTurn);
+    connect(this, &KReversiGame::whitePlayerTurn, whitePlayer, &KReversiPlayer::takeTurn);
+    connect(this, &KReversiGame::gameOver, whitePlayer, &KReversiPlayer::gameOver);
+    connect(whitePlayer, &KReversiPlayer::makeMove, this, &KReversiGame::whitePlayerMove);
+    connect(whitePlayer, &KReversiPlayer::ready, this, &KReversiGame::whiteReady);
 
     m_engine = new Engine(1);
 
@@ -96,7 +95,7 @@ void KReversiGame::makeMove(const KReversiMove &move)
 
     turnChips(move);
     
-    m_delayTimer.singleShot(m_delay * (qMax(1, m_changedChips.count() - 1)), this, SLOT(onDelayTimer()));
+    m_delayTimer.singleShot(m_delay * (qMax(1, m_changedChips.count() - 1)), this, &KReversiGame::onDelayTimer);
     emit boardChanged();
 }
 
@@ -152,7 +151,7 @@ int KReversiGame::undo()
         setChipColor(KReversiMove(NoColor, move.row, move.col));
 
         // and change back the color of the rest chips
-        foreach(const KReversiMove & pos, lastUndo) {
+        for (const KReversiMove & pos : qAsConst(lastUndo)) {
             ChipColor opponentColor = Utils::opponentColorFor(m_cells[pos.row][pos.col]);
             setChipColor(KReversiMove(opponentColor, pos.row, pos.col));
         }
@@ -395,4 +394,3 @@ void KReversiGame::kickCurrentPlayer()
         emit blackPlayerTurn();
 }
 
-#include "kreversigame.moc"

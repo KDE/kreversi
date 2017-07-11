@@ -24,7 +24,7 @@
 #ifndef KREVERSI_PLAYER_H
 #define KREVERSI_PLAYER_H
 
-#include <kreversigame.h>
+#include "kreversigame.h"
 #include <QString>
 
 class KReversiGame;

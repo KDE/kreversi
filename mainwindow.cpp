@@ -22,40 +22,50 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include <mainwindow.h>
+#include "mainwindow.h"
 
-#include <KDebug>
-#include <KIcon>
-#include <KLocale>
-#include <KMessageBox>
-#include <KStandardDirs>
-#include <KStatusBar>
+#include <QDebug>
+#include <QDesktopWidget>
+#include <QIcon>
+#include <QStatusBar>
+
 #include <KActionCollection>
+#include <KLocalizedString>
+#include <KMessageBox>
 #include <KStandardGameAction>
-#include <KExtHighscore>
 
-#include <commondefs.h>
-#include <kreversihumanplayer.h>
-#include <kreversicomputerplayer.h>
+#include "commondefs.h"
+#include "kreversihumanplayer.h"
+#include "kreversicomputerplayer.h"
+#include "kexthighscore.h"
 
 static const int BLACK_STATUSBAR_ID = 1;
 static const int WHITE_STATUSBAR_ID = 2;
 static const int COMMON_STATUSBAR_ID = 0;
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
-    : KXmlGuiWindow(parent), m_view(0), m_game(0),
-      m_historyDock(0), m_historyView(0),
-      m_firstShow(true), m_startInDemoMode(startDemo),
-      m_undoAct(0), m_hintAct(0), m_startDialog(0)
+    : KXmlGuiWindow(parent),
+    m_startDialog(0),
+    m_view(0),
+    m_game(0),
+    m_historyDock(0),
+    m_historyView(0),
+    m_firstShow(true),
+    m_startInDemoMode(startDemo),
+    m_undoAct(0),
+    m_hintAct(0)
 {
     memset(m_player, 0, sizeof(m_player));
 
     m_provider = new KgThemeProvider();
-    m_provider->discoverThemes("appdata", QLatin1String("pics"));
+    m_provider->discoverThemes("appdata", QStringLiteral("pics"));
 
-    statusBar()->insertItem(i18n("Press start game!"), COMMON_STATUSBAR_ID);
-    statusBar()->insertItem("", BLACK_STATUSBAR_ID);
-    statusBar()->insertItem("", WHITE_STATUSBAR_ID);
+    for (auto &label : m_statusBarLabel) {
+       label = new QLabel(this);
+       label->setAlignment(Qt::AlignCenter);
+       statusBar()->addWidget(label, 1);
+    }
+    m_statusBarLabel[common]->setText(i18n("Press start game!"));
 
     // initialize difficulty stuff
     Kg::difficulty()->addStandardLevelRange(
@@ -64,7 +74,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     );
 
     KgDifficultyGUI::init(this);
-    connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(levelChanged()));
+    connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KReversiMainWindow::levelChanged);
     Kg::difficulty()->setEditable(false);
 
     // initialize history dock
@@ -72,7 +82,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_historyView->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Expanding);
     m_historyDock = new QDockWidget(i18n("Move History"));
     m_historyDock->setWidget(m_historyView);
-    m_historyDock->setObjectName("history_dock");
+    m_historyDock->setObjectName(QStringLiteral("history_dock"));
 
     m_historyDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     addDockWidget(Qt::RightDockWidgetArea, m_historyDock);
@@ -83,7 +93,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
     // initialise dialog handler
     m_startDialog = new StartGameDialog(this, m_provider);
-    connect(m_startDialog, SIGNAL(startGame()), this, SLOT(slotDialogReady()));
+    connect(m_startDialog, &StartGameDialog::startGame, this, &KReversiMainWindow::slotDialogReady);
 
     // initialise actions
     setupActionsInit();
@@ -117,34 +127,36 @@ void KReversiMainWindow::setupActionsInit()
     m_hintAct->setEnabled(false);
 
     // Last move
-    m_showLast = new KToggleAction(KIcon(QLatin1String("lastmoves")), i18n("Show Last Move"), this);
-    actionCollection()->addAction(QLatin1String("show_last_move"), m_showLast);
-    connect(m_showLast, SIGNAL(triggered(bool)), m_view, SLOT(setShowLastMove(bool)));
+    m_showLast = new KToggleAction(QIcon::fromTheme(QStringLiteral("lastmoves")), i18n("Show Last Move"), this);
+    actionCollection()->addAction(QStringLiteral("show_last_move"), m_showLast);
+    connect(m_showLast, &KToggleAction::triggered, m_view, &KReversiView::setShowLastMove);
 
     // Legal moves
-    m_showLegal = new KToggleAction(KIcon(QLatin1String("legalmoves")), i18n("Show Legal Moves"), this);
-    actionCollection()->addAction(QLatin1String("show_legal_moves"), m_showLegal);
-    connect(m_showLegal, SIGNAL(triggered(bool)), m_view, SLOT(setShowLegalMoves(bool)));
+    m_showLegal = new KToggleAction(QIcon::fromTheme(QStringLiteral("legalmoves")), i18n("Show Legal Moves"), this);
+    actionCollection()->addAction(QStringLiteral("show_legal_moves"), m_showLegal);
+    connect(m_showLegal, &KToggleAction::triggered, m_view, &KReversiView::setShowLegalMoves);
 
     // Animation speed
     m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
-    actionCollection()->addAction(QLatin1String("anim_speed"), m_animSpeedAct);
+    actionCollection()->addAction(QStringLiteral("anim_speed"), m_animSpeedAct);
 
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
-    connect(m_animSpeedAct, SIGNAL(triggered(int)), SLOT(slotAnimSpeedChanged(int)));
+    connect(m_animSpeedAct, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KReversiMainWindow::slotAnimSpeedChanged);
 
     // Chip's color
     m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
-    actionCollection()->addAction(QLatin1String("use_colored_chips"), m_coloredChipsAct);
-    connect(m_coloredChipsAct, SIGNAL(triggered(bool)), SLOT(slotUseColoredChips(bool)));
+    actionCollection()->addAction(QStringLiteral("use_colored_chips"), m_coloredChipsAct);
+    connect(m_coloredChipsAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotUseColoredChips);
 
     // Move history
     // NOTE: read/write this from/to config file? Or not necessary?
-    m_showMovesAct = new KToggleAction(KIcon(QLatin1String("view-history")), i18n("Show Move History"), this);
-    actionCollection()->addAction(QLatin1String("show_moves"), m_showMovesAct);
-    connect(m_showMovesAct, SIGNAL(triggered(bool)), SLOT(slotShowMovesHistory(bool)));
+    m_showMovesAct = m_historyDock->toggleViewAction();
+    m_showMovesAct->setIcon(QIcon::fromTheme(QStringLiteral("view-history")));
+    m_showMovesAct->setText(i18n("Show Move History"));
+    actionCollection()->addAction(QStringLiteral("show_moves"), m_showMovesAct);
+    connect(m_historyDock, &QDockWidget::visibilityChanged, this, &KReversiMainWindow::slotToggleBoardLabels);
 }
 
 void KReversiMainWindow::loadSettings()
@@ -178,7 +190,7 @@ void KReversiMainWindow::slotAnimSpeedChanged(int speed)
 {
     m_view->setAnimationSpeed(speed);
     Preferences::setAnimationSpeed(speed);
-    Preferences::self()->writeConfig();
+    Preferences::self()->save();
 }
 
 void KReversiMainWindow::slotUseColoredChips(bool toggled)
@@ -189,12 +201,11 @@ void KReversiMainWindow::slotUseColoredChips(bool toggled)
     m_view->setChipsPrefix(chipsPrefix);
     m_startDialog->setChipsPrefix(chipsPrefix);
     Preferences::setUseColoredChips(toggled);
-    Preferences::self()->writeConfig();
+    Preferences::self()->save();
 }
 
-void KReversiMainWindow::slotShowMovesHistory(bool toggled)
+void KReversiMainWindow::slotToggleBoardLabels(bool toggled)
 {
-    m_historyDock->setVisible(toggled);
     m_view->setShowBoardLabels(toggled);
 }
 
@@ -295,7 +306,7 @@ void KReversiMainWindow::updateHistory()
     m_historyView->clear();
 
     for (int i = 0; i < history.size(); i++) {
-        QString numStr = QString::number(i + 1) + QLatin1String(". ");
+        QString numStr = QString::number(i + 1) + QStringLiteral(". ");
         m_historyView->addItem(numStr + Utils::moveToString(history.at(i)));
     }
 
@@ -330,10 +341,10 @@ void KReversiMainWindow::slotDialogReady()
 void KReversiMainWindow::showEvent(QShowEvent*)
 {
     if (m_firstShow && m_startInDemoMode) {
-        kDebug() << "starting demo...";
+        qDebug() << "starting demo...";
         startDemo();
     } else if (m_firstShow) {
-        QTimer::singleShot(0, this, SLOT(slotNewGame()));
+        QTimer::singleShot(0, this, &KReversiMainWindow::slotNewGame);
     }
     m_firstShow = false;
 }
@@ -341,32 +352,23 @@ void KReversiMainWindow::showEvent(QShowEvent*)
 void KReversiMainWindow::updateStatusBar()
 {
     if (m_game->isGameOver()) {
-        statusBar()->changeItem(i18n("GAME OVER"), COMMON_STATUSBAR_ID);
+        m_statusBarLabel[common]->setText(i18n("GAME OVER"));
     }
 
     if (m_nowPlayingInfo.type[Black] == GameStartInformation::AI
             && m_nowPlayingInfo.type[White] == GameStartInformation::AI) { // using Black White names
-        statusBar()->changeItem(i18n("%1: %2",
-                                     Utils::colorToString(Black),
-                                     m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
-        statusBar()->changeItem(i18n("%1: %2",
-                                     Utils::colorToString(White),
-                                     m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+        m_statusBarLabel[black]->setText(i18n("%1: %2", Utils::colorToString(Black), m_game->playerScore(Black)));
+        m_statusBarLabel[white]->setText(i18n("%1: %2", Utils::colorToString(White), m_game->playerScore(White)));
 
         if (!m_game->isGameOver()) {
-            statusBar()->changeItem(i18n("%1 turn",
-                                         Utils::colorToString(m_game->currentPlayer())),
-                                    COMMON_STATUSBAR_ID);
+            m_statusBarLabel[common]->setText(i18n("%1 turn", Utils::colorToString(m_game->currentPlayer())));
         }
     } else { // using player's names
-        statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[Black],
-                                     m_game->playerScore(Black)), BLACK_STATUSBAR_ID);
-        statusBar()->changeItem(i18n("%1: %2", m_nowPlayingInfo.name[White],
-                                     m_game->playerScore(White)), WHITE_STATUSBAR_ID);
+        m_statusBarLabel[black]->setText(i18n("%1: %2", m_nowPlayingInfo.name[Black], m_game->playerScore(Black)));
+        m_statusBarLabel[white]->setText(i18n("%1: %2", m_nowPlayingInfo.name[White], m_game->playerScore(White)));
 
         if (!m_game->isGameOver() && m_game->currentPlayer() != NoColor) {
-            statusBar()->changeItem(i18n("%1's turn",
-                                         m_nowPlayingInfo.name[m_game->currentPlayer()]), COMMON_STATUSBAR_ID);
+            m_statusBarLabel[common]->setText(i18n("%1's turn", m_nowPlayingInfo.name[m_game->currentPlayer()]));
         }
     }
 }
@@ -411,13 +413,13 @@ void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
 
     m_view->setGame(m_game);
 
-    connect(m_game, SIGNAL(gameOver()), SLOT(slotGameOver()));
-    connect(m_game, SIGNAL(moveFinished()), SLOT(slotMoveFinished()));
+    connect(m_game, &KReversiGame::gameOver, this, &KReversiMainWindow::slotGameOver);
+    connect(m_game, &KReversiGame::moveFinished, this, &KReversiMainWindow::slotMoveFinished);
 
     for (int i = 0; i < 2; i++) // iterating white to black
         if (info.type[i] == GameStartInformation::Human)
-            connect(m_view, SIGNAL(userMove(KReversiPos)),
-                    (KReversiHumanPlayer *)(m_player[i]), SLOT(onUICellClick(KReversiPos)));
+            connect(m_view, &KReversiView::userMove,
+                    (KReversiHumanPlayer *)(m_player[i]), &KReversiHumanPlayer::onUICellClick);
 
     updateStatusBar();
     updateHistory();

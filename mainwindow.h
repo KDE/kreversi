@@ -24,24 +24,26 @@
 #ifndef KREVERSI_MAIN_WINDOW_H
 #define KREVERSI_MAIN_WINDOW_H
 
-#include <KXmlGuiWindow>
-#include <preferences.h>
 
 #include <QApplication>
-#include <QListWidget>
 #include <QDockWidget>
+#include <QListWidget>
 
-#include <KAction>
-#include <KToggleAction>
 #include <KSelectAction>
+#include <KToggleAction>
+#include <KXmlGuiWindow>
 
-#include <startgamedialog.h>
+#include "preferences.h"
+#include "startgamedialog.h"
 
-#include <kreversigame.h>
-#include <kreversiview.h>
+#include "kreversigame.h"
+#include "kreversiview.h"
+
+#include <QLabel>
 
 class KReversiGame;
 class KReversiView;
+class QAction;
 
 class KReversiMainWindow : public KXmlGuiWindow
 {
@@ -57,11 +59,11 @@ public slots:
     void slotMoveFinished();
     void slotGameOver();
     void slotUseColoredChips(bool);
-    void slotShowMovesHistory(bool);
+    void slotToggleBoardLabels(bool);
     void slotHighscores();
     void slotDialogReady();
 private:
-    virtual void showEvent(QShowEvent*);
+    void showEvent(QShowEvent*) override;
     void setupActionsInit();
     void setupActionsStart();
     void setupActionsGame();
@@ -91,8 +93,11 @@ private:
     QAction *m_hintAct;
     KToggleAction *m_showLast;
     KToggleAction *m_showLegal;
-    KToggleAction *m_showMovesAct;
+    QAction *m_showMovesAct;
     KSelectAction *m_animSpeedAct;
     KToggleAction *m_coloredChipsAct;
+
+    enum { common = 1, black, white };
+    QLabel *m_statusBarLabel[4];
 };
 #endif

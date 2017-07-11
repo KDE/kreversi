@@ -21,53 +21,64 @@
  *
  ********************************************************************/
 
-#include <startgamedialog.h>
-#include <ui_startgamedialog.h>
+#include "startgamedialog.h"
+#include "ui_startgamedialog.h"
 
-#include <QMessageBox>
 #include <QCloseEvent>
-#include <KgDifficulty>
-
-#include <KDebug>
-#include <QSvgRenderer>
+#include <QGraphicsDropShadowEffect>
+#include <QDialogButtonBox>
+#include <QMessageBox>
+#include <QPushButton>
 #include <QPainter>
+#include <QSvgRenderer>
+#include <QVBoxLayout>
+
+#include <KConfigGroup>
+#include <KgDifficulty>
+#include <KLocalizedString>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
-    KDialog(parent),
+    QDialog(parent),
     ui(new Ui::StartGameDialog), m_provider(provider), m_chipsPrefix(BlackWhite)
 {
     setModal(true);
 
-    setFixedSize(width(), height());
+    setWindowTitle(i18n("New game"));
 
-    setCaption(i18n("New game"));
-
-    setButtons(Ok | Close);
-    setButtonText(Ok, i18n("Start game"));
-    setButtonToolTip(Ok, i18n("Let's start playing!"));
-    setButtonText(Close, i18n("Quit"));
-    setButtonToolTip(Close, i18n("Quit KReversi"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Close);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &StartGameDialog::slotAccepted);
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &StartGameDialog::reject);
+    okButton->setText(i18n("Start game"));
+    okButton->setToolTip(i18n("Let's start playing!"));
+    buttonBox->button(QDialogButtonBox::Close)->setText(i18n("Quit"));
+    buttonBox->button(QDialogButtonBox::Close)->setToolTip(i18n("Quit KReversi"));
 
     m_contents = new QWidget(this);
-    setMainWidget(m_contents);
+    mainLayout->addWidget(m_contents);
+    mainLayout->addWidget(buttonBox);
     ui->setupUi(m_contents);
 
     loadChipImages();
 
     ui->whiteTypeGroup->setId(ui->whiteHuman, GameStartInformation::Human);
     ui->whiteTypeGroup->setId(ui->whiteAI, GameStartInformation::AI);
-    ui->whiteAI->setIcon(KIcon("computer"));
-    ui->whiteHuman->setIcon(KIcon("user-identity"));
+    ui->whiteAI->setIcon(QIcon::fromTheme(QStringLiteral("computer")));
+    ui->whiteHuman->setIcon(QIcon::fromTheme(QStringLiteral("user-identity")));
 
     ui->blackTypeGroup->setId(ui->blackHuman, GameStartInformation::Human);
     ui->blackTypeGroup->setId(ui->blackAI, GameStartInformation::AI);
-    ui->blackAI->setIcon(KIcon("computer"));
-    ui->blackHuman->setIcon(KIcon("user-identity"));
+    ui->blackAI->setIcon(QIcon::fromTheme(QStringLiteral("computer")));
+    ui->blackHuman->setIcon(QIcon::fromTheme(QStringLiteral("user-identity")));
 
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
-    const KIcon icon("games-difficult");
+    const QIcon icon = QIcon::fromTheme(QStringLiteral("games-difficult"));
 
-    for (int i = 0; i < diffList.size(); i++) {
+    for (int i = 0; i < diffList.size(); ++i) {
         ui->blackSkill->addItem(icon, diffList.at(i)->title());
         ui->whiteSkill->addItem(icon, diffList.at(i)->title());
         if (diffList.at(i)->isDefault()) {
@@ -76,8 +87,8 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
         }
     }
 
-    connect(ui->blackTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateBlack(int)));
-    connect(ui->whiteTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(slotUpdateWhite(int)));
+    connect(ui->blackTypeGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateBlack);
+    connect(ui->whiteTypeGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateWhite);
 
     slotUpdateBlack(GameStartInformation::Human);
     slotUpdateWhite(GameStartInformation::AI);
@@ -101,12 +112,12 @@ void StartGameDialog::loadChipImages()
 
     QPainter *painter = new QPainter(&blackChip);
     QString prefix = Utils::chipPrefixToString(m_chipsPrefix);
-    svgRenderer.render(painter, prefix + "_1");
+    svgRenderer.render(painter, prefix + QStringLiteral("_1"));
     delete painter;
 
     painter = new QPainter(&whiteChip);
     // TODO: get 12 from some global constant that is shared with QML
-    svgRenderer.render(painter, prefix + "_12");
+    svgRenderer.render(painter, prefix + QStringLiteral("_12"));
     delete painter;
 
     ui->blackLabel->setPixmap(blackChip);
@@ -126,11 +137,10 @@ void StartGameDialog::loadChipImages()
     ui->whiteLabel->setGraphicsEffect(whiteShadow);
 }
 
-void StartGameDialog::slotButtonClicked(int button)
+void StartGameDialog::slotAccepted()
 {
-    if (button == KDialog::Ok)
-        emit startGame();
-    KDialog::slotButtonClicked(button);
+    emit startGame();
+    accept();
 }
 
 GameStartInformation StartGameDialog::createGameStartInformation() const

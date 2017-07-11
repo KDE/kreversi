@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.3
 import "globals.js" as Globals
 
 /**
@@ -26,7 +26,6 @@ import "globals.js" as Globals
 
 Item {
     id: tableContainer
-    anchors.fill: parent
 
     /**
       * Is board showing labels or not
@@ -108,6 +107,14 @@ Item {
         id: table_background
         anchors.fill: parent
         spriteKey: "background"
+    }
+
+    CanvasItem {
+        id: board_image
+        width: Math.min(parent.width, parent.height)
+        height: Math.min(parent.width, parent.height)
+        anchors.horizontalCenter: parent.horizontalCenter
+        spriteKey: "board"
     }
 
     Board {

@@ -24,7 +24,7 @@
 #ifndef KREVERSIHUMANPLAYER_H
 #define KREVERSIHUMANPLAYER_H
 
-#include <kreversiplayer.h>
+#include "kreversiplayer.h"
 
 /**
  * Represents human player. Implements KReversiPlayer.
@@ -43,10 +43,10 @@ public:
     /**
      *  Overridden slots from @see KReversiPlayer
      */
-    void prepare(KReversiGame *game);
-    void takeTurn();
-    void skipTurn();
-    void gameOver();
+    void prepare(KReversiGame *game) override;
+    void takeTurn() override;
+    void skipTurn() override;
+    void gameOver() override;
 
 signals:
 

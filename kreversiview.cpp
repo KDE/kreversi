@@ -17,31 +17,35 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <kreversiview.h>
+#include "kreversiview.h"
+#include "colorscheme.h"
 
 #include <KLocalizedString>
-#include <KStandardDirs>
 
-#include <colorscheme.h>
+#include <QStandardPaths>
 
-KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider) :
-    KgDeclarativeView(parent), m_delay(ANIMATION_SPEED_NORMAL), m_game(0),
-    m_showLastMove(false), m_showLegalMoves(false),
-    m_showLabels(false), m_provider(provider)
+KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)
+    : KgDeclarativeView(parent),
+    m_provider(provider),
+    m_delay(ANIMATION_SPEED_NORMAL),
+    m_game(0),
+    m_showLastMove(false),
+    m_showLegalMoves(false),
+    m_showLabels(false)
 {
-    m_provider->setDeclarativeEngine("themeProvider", engine());
+    m_provider->setDeclarativeEngine(QStringLiteral("themeProvider"), engine());
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 
-    QString path =
-        KStandardDirs::locate("appdata", QLatin1String("qml/Table.qml"));
+    QString path = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("qml/Table.qml"));
     setSource(QUrl::fromLocalFile(path));
 
     m_qml_root = (QObject*) rootObject();
-    rootContext()->setContextProperty("container", this);
+    rootContext()->setContextProperty(QStringLiteral("container"), this);
 
     connect(m_qml_root, SIGNAL(cellClicked(int,int)),
             this, SLOT(onPlayerMove(int,int)));
+
     setGame(game);
 }
 
@@ -50,22 +54,22 @@ void KReversiView::setGame(KReversiGame *game)
     // disconnect signals from previous game if they exist,
     // we are not interested in them anymore
     if (m_game) {
-        disconnect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-        disconnect(m_game, SIGNAL(moveFinished()), this, SLOT(gameMoveFinished()));
-        disconnect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
-        disconnect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
-        disconnect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
+        disconnect(m_game, &KReversiGame::boardChanged, this, &KReversiView::updateBoard);
+        disconnect(m_game, &KReversiGame::moveFinished, this, &KReversiView::gameMoveFinished);
+        disconnect(m_game, &KReversiGame::gameOver, this, &KReversiView::gameOver);
+        disconnect(m_game, &KReversiGame::whitePlayerCantMove, this, &KReversiView::whitePlayerCantMove);
+        disconnect(m_game, &KReversiGame::blackPlayerCantMove, this, &KReversiView::blackPlayerCantMove);
         delete m_game;
     }
 
     m_game = game;
 
     if (m_game) {
-        connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-        connect(m_game, SIGNAL(moveFinished()), this, SLOT(gameMoveFinished()));
-        connect(m_game, SIGNAL(gameOver()), this, SLOT(gameOver()));
-        connect(m_game, SIGNAL(whitePlayerCantMove()), this, SLOT(whitePlayerCantMove()));
-        connect(m_game, SIGNAL(blackPlayerCantMove()), this, SLOT(blackPlayerCantMove()));
+        connect(m_game, &KReversiGame::boardChanged, this, &KReversiView::updateBoard);
+        connect(m_game, &KReversiGame::moveFinished, this, &KReversiView::gameMoveFinished);
+        connect(m_game, &KReversiGame::gameOver, this, &KReversiView::gameOver);
+        connect(m_game, &KReversiGame::whitePlayerCantMove, this, &KReversiView::whitePlayerCantMove);
+        connect(m_game, &KReversiGame::blackPlayerCantMove, this, &KReversiView::blackPlayerCantMove);
 
         m_game->setDelay(m_delay);
     }
@@ -77,6 +81,7 @@ void KReversiView::setGame(KReversiGame *game)
 
 void KReversiView::setChipsPrefix(ChipsPrefix chipsPrefix)
 {
+    m_ColouredChips = chipsPrefix;
     m_qml_root->setProperty("chipsImagePrefix",
                             Utils::chipPrefixToString(chipsPrefix));
 }
@@ -126,20 +131,20 @@ void KReversiView::updateBoard()
                                       Q_ARG(QVariant, m_game ? m_game->getPreAnimationDelay(KReversiPos(i, j)) : 0));
         }
     }
-        
+
     for (int i = 0; i < 8; i++)
         for (int j = 0; j < 8; j++) {
-            QString new_state = "";
+            QString new_state;
             if (m_game) // showing empty board if has no game
                 switch (m_game->chipColorAt(KReversiMove(NoColor, i, j))) {
                 case Black:
-                    new_state = "Black";
+                    new_state = QStringLiteral("Black");
                     break;
                 case White:
-                    new_state = "White";
+                    new_state = QStringLiteral("White");
                     break;
                 case NoColor:
-                    new_state = "";
+                    new_state = QString();
                     break;
                 }
 
@@ -179,7 +184,7 @@ void KReversiView::updateBoard()
         QMetaObject::invokeMethod(m_qml_root, "setChipState",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
-                                  Q_ARG(QVariant, "Black"));
+                                  Q_ARG(QVariant, QLatin1Literal("Black")));
         QMetaObject::invokeMethod(m_qml_root, "setHint",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
@@ -242,7 +247,8 @@ void KReversiView::whitePlayerCantMove()
 {
     // TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
-                              Q_ARG(QVariant,
+                              Q_ARG(QVariant, m_ColouredChips ?
+                                    i18n("Red can not perform any move. It is blue turn again.") :
                                     i18n("White can not perform any move. It is black turn again.")));
     updateBoard();
 }
@@ -251,7 +257,8 @@ void KReversiView::blackPlayerCantMove()
 {
     // TODO: use Computer, You and Opponent instead in message
     QMetaObject::invokeMethod(m_qml_root, "showPopup",
-                              Q_ARG(QVariant,
+                              Q_ARG(QVariant, m_ColouredChips ?
+                                    i18n("Blue can not perform any move. It is red turn again.") :
                                     i18n("Black can not perform any move. It is white turn again.")));
     updateBoard();
 }

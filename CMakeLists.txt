@@ -1,24 +1,54 @@
 project(kreversi)
+cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+set (QT_MIN_VERSION "5.7.0")
+set (KF5_MIN_VERSION "5.15.0")
 
-if(NOT COMPILING_KDEGAMES)
-        find_package(KDE4 REQUIRED)
-        include(KDE4Defaults)
-        include(MacroLibrary)
-        find_package(KDEGames 4.9.0 REQUIRED)
+find_package(ECM 1.7.0 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-        add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-        add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-        include_directories(${KDEGAMES_INCLUDE_DIRS} ${KDEGAMES_INCLUDE_DIR}/highscore ${KDE4_INCLUDES} ${QDBUS_INCLUDE_DIRS})
-endif(NOT COMPILING_KDEGAMES)
+find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test)
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+    Config
+    ConfigWidgets
+    CoreAddons
+    Crash
+    DBusAddons
+    Declarative
+    I18n
+    IconThemes
+    KIO
+    XmlGui
+    WidgetsAddons
+)
+find_package(KF5DocTools ${KF5_MIN_VERSION})
 
-find_package(KDeclarative REQUIRED)
+find_package(KF5KDEGames 4.9.0 REQUIRED)
 
-add_subdirectory( pics )
-add_subdirectory( sounds )
-add_subdirectory( icons )
-add_subdirectory( doc )
+include(FeatureSummary)
+include(ECMAddAppIcon)
+include(ECMInstallIcons)
+include(KDEInstallDirs)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDECMakeSettings)
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdegames/highscore )
+add_definitions(
+    -DQT_USE_FAST_CONCATENATION
+    -DQT_USE_FAST_OPERATOR_PLUS
+    -DQT_NO_CAST_FROM_ASCII
+    -DQT_NO_CAST_TO_ASCII
+#    -DQT_NO_CAST_FROM_BYTEARRAY
+    -DQT_NO_URL_CAST_FROM_STRING
+    -DQT_USE_QSTRINGBUILDER
+)
+
+add_subdirectory(pics)
+add_subdirectory(sounds)
+add_subdirectory(icons)
+if (KF5DocTools_FOUND)
+    add_subdirectory(doc)
+endif()
+
+include_directories(${CMAKE_SOURCE_DIR}/libKF5KDEGames/highscore)
 
 ########### next target ##############
 set(kreversi_SRCS
@@ -32,25 +62,45 @@ set(kreversi_SRCS
     startgamedialog.cpp
     Engine.cpp
     highscores.cpp
+    kexthighscore.cpp
+    kexthighscore_gui.cpp
+    kexthighscore_internal.cpp
+    kexthighscore_item.cpp
+    kexthighscore_tab.cpp
     mainwindow.cpp
-    main.cpp )
+    main.cpp
+)
 
-kde4_add_ui_files(kreversi_SRCS startgamedialog.ui)
+ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
-kde4_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
+kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
-kde4_add_app_icon(kreversi_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-kreversi.png")
-kde4_add_executable(kreversi ${kreversi_SRCS})
+add_executable(kreversi ${kreversi_SRCS})
 
+target_link_libraries(kreversi
+    Qt5::Svg
+    KF5::ConfigCore
+    KF5::ConfigGui
+    KF5::CoreAddons
+    KF5::Crash
+    KF5::DBusAddons
+    KF5::Declarative
+    KF5::IconThemes
+    KF5::KIOCore
+    KF5::KIOFileWidgets
+    KF5::WidgetsAddons
+    KF5::XmlGui
+    KF5KDEGames
+)
 
-target_link_libraries(kreversi kdegames ${KDE4_KDEUI_LIBS}
-${QT_QTDECLARATIVE_LIBRARY} ${KDECLARATIVE_LIBRARIES})
-install(TARGETS kreversi  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install files ###############
 
-install( PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
-#install( FILES kreversi.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
-install( FILES kreversiui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kreversi )
-install( DIRECTORY qml DESTINATION ${DATA_INSTALL_DIR}/kreversi )
-install(FILES org.kde.kreversi.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/metainfo/ )
+install(PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${KDE_INSTALL_APPDIR})
+#install(FILES kreversi.kcfg  DESTINATION  ${KDE_INSTALL_KCFGDIR})
+install(FILES kreversiui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kreversi)
+install(DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kreversi)
+install(FILES org.kde.kreversi.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

@@ -24,10 +24,10 @@
 #ifndef STARTGAMEDIALOG_H
 #define STARTGAMEDIALOG_H
 
-#include <gamestartinformation.h>
-#include <commondefs.h>
+#include "gamestartinformation.h"
+#include "commondefs.h"
 
-#include <KDialog>
+#include <QDialog>
 #include <KUser>
 #include <KgThemeProvider>
 
@@ -40,7 +40,7 @@ class StartGameDialog;
  * Dialog used to gather information about new game.
  * @see GameStartInformation
  */
-class StartGameDialog : public KDialog
+class StartGameDialog : public QDialog
 {
     Q_OBJECT
 
@@ -74,10 +74,7 @@ private slots:
      */
     void slotUpdateWhite(int clickedId);
 
-    /**
-     * Handles dialog button click
-     */
-    void slotButtonClicked(int button);
+    void slotAccepted();
 
 private:
     /**

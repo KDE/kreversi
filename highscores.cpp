@@ -16,14 +16,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#include <highscores.h>
+#include "highscores.h"
 
-#include <QVector>
 #include <QDateTime>
+#include <QVector>
 
-#include <kdemacros.h>
-#include <KGlobal>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfigGroup>
 #include <KConfig>
 #include <KgDifficulty>
@@ -79,7 +77,7 @@ void ExtManager::convertLegacy(uint gameType)
   if ( gameType!=0 )
     return;
 
-  KConfigGroup  cg(KGlobal::config(), "High Score");
+  KConfigGroup  cg(KSharedConfig::openConfig(), "High Score");
 
   for (uint i = 1; i <= 10; i++) {
     QString  key = "Pos" + QString::number(i);

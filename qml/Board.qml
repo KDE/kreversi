@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-import QtQuick 1.1
+import QtQuick 2.3
 import "globals.js" as Globals
 
 /**
@@ -99,12 +99,6 @@ Item {
      */
     function setPreAnimationTime(row, column, value) {
         cells.itemAt(row * Globals.COLUMN_COUNT + column).chipPreAnimationTime = value
-    }
-
-    CanvasItem {
-        id: boardBackground
-        anchors.fill: parent
-        spriteKey: "board"
     }
 
     CanvasItem {

@@ -22,8 +22,8 @@
  ********************************************************************/
 #include "colorscheme.h"
 
-ColorScheme::ColorScheme(QDeclarativeItem *parent) :
-QDeclarativeItem(parent)
+ColorScheme::ColorScheme(QQuickItem *parent) :
+QQuickItem(parent)
 {
 }
 

@@ -21,7 +21,7 @@
  *
  ********************************************************************/
 
-#include <kreversiplayer.h>
+#include "kreversiplayer.h"
 
 KReversiPlayer::KReversiPlayer(ChipColor color, QString name,
                                bool hintAllowed, bool undoAllowed):

@@ -31,7 +31,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="KPushButton" name="blackHuman">
+          <widget class="QPushButton" name="blackHuman">
            <property name="icon">
             <iconset theme="user-identity">
              <normaloff/>
@@ -55,7 +55,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="blackAI">
+          <widget class="QPushButton" name="blackAI">
            <property name="icon">
             <iconset theme="computer">
              <normaloff/>
@@ -88,7 +88,7 @@
         </widget>
        </item>
        <item>
-        <widget class="KLineEdit" name="blackName">
+        <widget class="QLineEdit" name="blackName">
          <property name="text">
           <string notr="true">username</string>
          </property>
@@ -105,7 +105,7 @@
         </widget>
        </item>
        <item>
-        <widget class="KComboBox" name="blackSkill"/>
+        <widget class="QComboBox" name="blackSkill"/>
        </item>
       </layout>
      </item>
@@ -157,7 +157,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="KPushButton" name="whiteHuman">
+          <widget class="QPushButton" name="whiteHuman">
            <property name="icon">
             <iconset theme="user-identity">
              <normaloff/>
@@ -178,7 +178,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KPushButton" name="whiteAI">
+          <widget class="QPushButton" name="whiteAI">
            <property name="icon">
             <iconset theme="computer">
              <normaloff/>
@@ -214,7 +214,7 @@
         </widget>
        </item>
        <item>
-        <widget class="KLineEdit" name="whiteName">
+        <widget class="QLineEdit" name="whiteName">
          <property name="text">
           <string notr="true">username</string>
          </property>
@@ -231,7 +231,7 @@
         </widget>
        </item>
        <item>
-        <widget class="KComboBox" name="whiteSkill"/>
+        <widget class="QComboBox" name="whiteSkill"/>
        </item>
       </layout>
      </item>
@@ -239,23 +239,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>blackHuman</tabstop>
   <tabstop>blackAI</tabstop>

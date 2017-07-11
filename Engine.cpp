@@ -114,12 +114,10 @@
 // This makes it possible to select a random move among those with equal
 // or nearly equal value after the search is completed.
 
-#include <Engine.h>
+#include "Engine.h"
 
-#include <QVector>
 #include <QApplication>
-
-#include <KDebug>
+#include <QVector>
 
 // ================================================================
 //           Classes SquareStackEntry and SquareStack
