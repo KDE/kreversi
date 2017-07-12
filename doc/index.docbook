@@ -1,16 +1,13 @@
 <?xml version="1.0" ?>
 <!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY kappname "&kreversi;">
-  <!ENTITY kappversion "2.0"><!--Applicaion version. Use this variable everywhere it's needed.-->
-  <!ENTITY package "kdegames">  <!-- do not change this! -->
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY % addindex "IGNORE"> <!-- do not change this! -->
 ]>
  
 <book id="kreversi" lang="&language;"> <!-- do not change this! -->
 <bookinfo>
-	<title>The &kappname; Handbook</title> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+	<title>The &kreversi; Handbook</title> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
 <!-- List of immidiate authors begins here. -->
 <!--INPORTANT! - All other contributors: [to be determined] -->
 <authorgroup>
@@ -41,12 +38,12 @@
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 <legalnotice>&FDLNotice;</legalnotice>
-<date>2013-05-06</date><!-- Date of (re)writing, or update.-->
-<releaseinfo>&kappversion; (&kde; 4.11)</releaseinfo><!-- Application version number. Use the variable definitions within header to change this value.-->
+<date>2017-07-11</date><!-- Date of (re)writing, or update.-->
+<releaseinfo>2.1 (Applications 17.08)</releaseinfo>
  
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
-	<para>This documentation describes the game of &kappname; version &kappversion;</para>
+	<para>This documentation describes the game of &kreversi; version 2.1</para>
 </abstract>
  
 <!--List of relevan keywords-->
@@ -74,7 +71,7 @@
 	<note><title>Number of possible players:</title><para>One</para></note><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
  
 <!--Short game description starts here. 3-4 sentences (paragraphs)-->
-<para>&kappname; is a simple one player strategy game played against the
+<para>&kreversi; is a simple one player strategy game played against the
 computer. The playing field is an 8 by 8 square board divided into 64
 squares. The game pieces used are two sided stones, where each side has its own, distinctive color.
  If a piece is captured by an opposing player, that piece is turned over
@@ -88,10 +85,12 @@ moves.</para>
 	<note><title>Objective:</title><para>Get control over the majority of squares on the board.</para></note><!--Describe the objective of the game.-->
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
 	<para>
-	&kappname; loads directly into the game play mode. As a first player you have the right to move first.</para>
+	&kreversi; loads directly into the <guilabel>New game</guilabel> dialog where
+        you select the game mode, &ie; play against the computer or another human player.
+        As a first player you have the right to move first.</para>
 <note><title>Note:</title><para>By default the human player always has a right to the first move.</para></note>
 <para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more than one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
-<para>Every single move you do in &kappname; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
+<para>Every single move you do in &kreversi; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
 <note><title>Note:</title><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
 <para>The idea here is to fill the board with the stones of your own color. The player who manages to conquer the most of the game board is announced the winner.
 	</para>
@@ -110,14 +109,27 @@ mouse pointer over the desired square then &LMB; click.</para>
 row(s) of stone(s) is bordered at each end by a stone of your color. A row may be
 made up of one or more stones.</para>
 
-<para>The game starts with each player having two stones automatically placed
+<para>The game starts with the <guilabel>New game</guilabel> dialog.</para>
+
+<screenshot>
+<screeninfo>&kreversi; Game Mode Selection</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject><phrase>&kreversi; Game Mode Selection</phrase></textobject>
+<caption><para>Game Mode Selection</para></caption>
+</mediaobject>
+</screenshot>
+
+<para>To see a demo of the game select <guilabel>Computer</guilabel> for both players.</para>
+
+<para>Each player automatically has two stones placed
 in the center four squares of the board in the following pattern:</para>
 
 <screenshot>
-<screeninfo>&kappname; opening position</screeninfo>
+<screeninfo>&kreversi; opening position</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
-<textobject><phrase>&kappname; opening position</phrase></textobject>
+<imageobject><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject><phrase>&kreversi; opening position</phrase></textobject>
 <caption><para>Board Layout</para></caption>
 </mediaobject>
 </screenshot>
@@ -141,7 +153,7 @@ letter</keycap></keycombo> to show the drop-down menu.</para>
 <term><interface>Toolbar</interface></term>
 <listitem><para>Provides the player with icon shortcuts for commonly
 used actions. These are <guiicon>New</guiicon>,
-<guiicon>Undo</guiicon>, <guiicon>Hint</guiicon>, <guiicon>Demo</guiicon>,
+<guiicon>Undo</guiicon>, <guiicon>Hint</guiicon>,
 <guiicon>Show Last Move</guiicon>, and <guiicon>Show Legal Moves</guiicon>.
 Place the mouse pointer over any of these icons and click with the &LMB; to
 activate.</para></listitem>
@@ -245,18 +257,11 @@ action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
 <guibutton>Configure...</guibutton> to open a dialog to customize your 
 <guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.</para></listitem>
 </varlistentry>
-<!--
-<varlistentry>
-<term><menuchoice><shortcut><keycap>S</keycap></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Players and Seats</guimenuitem></menuchoice></term>
-<listitem><para>Option is currently disabled.</para></listitem>
-</varlistentry>
--->
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
 action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
 <guimenu>Game</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para>Exit &kappname;
+<listitem><para>Exit &kreversi;
 </para></listitem>
 </varlistentry>
 
@@ -274,12 +279,6 @@ move from the board.
 </menuchoice></term>
 <listitem><para>The computer will provide a hint for your next 
 move.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycap>D</keycap></shortcut>
-<guimenu>Move</guimenu><guimenuitem>Demo</guimenuitem></menuchoice></term>
-<listitem><para>Start/Stop the demo mode.</para></listitem>
 </varlistentry>
 
     <varlistentry>
@@ -321,7 +320,7 @@ move.</para></listitem>
   </varlistentry>
 </variablelist>
 <para>
-Additionally &kappname; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+Additionally &kreversi; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
 menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings"
 >Settings Menu</ulink> and <ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
 of the &kde; Fundamentals.
@@ -343,11 +342,11 @@ of the &kde; Fundamentals.
 </qandaentry>
 <qandaentry>
  <question><para>Can I use the keyboard to play the game?</para></question>
- <answer><para>No. &kappname; does not provide for the keyboard play.</para></answer>
+ <answer><para>No. &kreversi; does not provide for the keyboard play.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para></question>
-  <answer><para>No. &kappname; does not have a save feature.</para></answer>
+  <answer><para>No. &kreversi; does not have a save feature.</para></answer>
 </qandaentry>
 <!--Please add more Q&As if needed-->
  
@@ -358,7 +357,7 @@ of the &kde; Fundamentals.
 <!--This chapter is for credits and licenses.-->
  
 <para>
-&kappname;  <!-- do not change this! -->
+&kreversi;  <!-- do not change this! -->
 </para>
 
 <para>Program Copyright 1998-2000 &Mario.Weilguni;</para>
@@ -367,7 +366,7 @@ of the &kde; Fundamentals.
 <para>Original documentation by &Mario.Weilguni;</para>
 <para>Edited by Robert Williams</para>
 
-<para>Documentation re-written and updated for &kde; &kappversion; by &Clay.Pradarits;
+<para>Documentation re-written and updated for 2.0 by &Clay.Pradarits;
 &Clay.Pradarits.mail;</para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -378,19 +377,6 @@ of the &kde; Fundamentals.
  
 </chapter>
  
-<appendix id="installation">
-<title>Installation</title>
- 
-&install.intro.documentation;
- 
- 
-<sect1 id="Compilation">
-<title>Compilation and Installation</title>
- 
-&install.compile.documentation;
- 
-</sect1>
-</appendix>
  
 &documentation.index; 
 </book>
