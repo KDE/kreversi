@@ -10,6 +10,7 @@
   <name xml:lang="de">KReversi</name>
   <name xml:lang="es">KReversi</name>
   <name xml:lang="fr">KReversi</name>
+  <name xml:lang="gl">KReversi</name>
   <name xml:lang="nl">KReversi</name>
   <name xml:lang="pt">Reversi</name>
   <name xml:lang="sk">KReversi</name>
@@ -28,6 +29,7 @@
   <summary xml:lang="de">„Reversi“-Brettspiel</summary>
   <summary xml:lang="es">Juego de mesa Reversi</summary>
   <summary xml:lang="fr">Jeu de plateau Reversi</summary>
+  <summary xml:lang="gl">Xogo de taboleiro similar ao Reversi</summary>
   <summary xml:lang="nl">Reversi-bordspel</summary>
   <summary xml:lang="pt">Jogo de Tabuleiro Reversi</summary>
   <summary xml:lang="sk">Stolová hra Reversi</summary>
@@ -51,6 +53,7 @@
     <p xml:lang="de">KReversi ist ein einfaches Strategiespiel für einen Spieler, der gegen den Computer spielt. Falls ein Spieler einen gegnerischen Stein auf dem Brett erobert, wird dieser umgedreht und gehört diesem Spieler. Gewonnen hat, wer am meisten Steine seiner Farbe auf dem Brett hat, wenn kein weiterer Stein mehr gesetzt werden kann.</p>
     <p xml:lang="es">KReversi es un sencillo juego de estrategia para un único jugador que juega contra la computadora. Si una ficha de un jugador es capturada por el oponente, cambia al color de ese oponente. El ganador será el jugador que tenga más fichas de su propio color sobre el tablero cuando no existan más movimientos posibles.</p>
     <p xml:lang="fr">KReversi est un jeu de stratégie simple à un joueur qui se joue contre l'ordinateur. Si une pièce du joueur est capturée par un adversaire, cette pièce change de couleur pour prendre celle du joueur. Un gagnant est déclaré lorsqu'un joueur a plus de pièces de sa propre couleur que son adversaire et qu'il n'y a plus de mouvements possibles.</p>
+    <p xml:lang="gl">KReversi é un xogo de estratexia sinxelo para un único xogador que se enfronta ao computador. Se o opoñente captura a peza do xogador, a peza entrégase para descubrir a cor do xogador. O gañador declárase cando un dos xogadores ten máis pezas da súa cor no taboleiro e non hai máis movementos posíbeis.</p>
     <p xml:lang="nl">KReversi is een eenvoudig strategiespel dat u tegen de computer speelt. Als een steen van een speler wordt gevangen door een tegenstander, dan wordt de steen omgedraaid en de kleur ervan verandert in die van de tegenstander. De winnaar wordt uitgeroepen als een van de spelers meer stenen in zijn kleur op het bord heeft en er geen zetten meer mogelijk zijn.</p>
     <p xml:lang="pt">O KReversi é um jogo simples de estratégia para um jogador contra o computador. Se a peça de um jogador é capturada por um jogador adversário, essa peça é virada para revelar a cor desse jogador. É declarado um vencedor quando um jogador tem mais peças da sua própria cor no tabuleiro e não existem mais jogadas possíveis.</p>
     <p xml:lang="sl">KReversi je preprosta enoigralska strateška igra, ki se igra proti računalniku. Če nasprotni igralec zavzame vaš žeton, se ta obrne in razkrije barve nasprotnika. Ko ni več veljavnih potez, je igre konec, zmaga pa tisti, ki ima več žetonov njegove barve.</p>
