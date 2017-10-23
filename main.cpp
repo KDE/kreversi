@@ -64,8 +64,6 @@ int main(int argc, char **argv)
 
     QCommandLineParser parser;
     KCrash::initialize();
-    parser.addVersionOption();
-    parser.addHelpOption();
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("demo"), i18n("Start with demo game playing")));
 
     aboutData.setupCommandLine(&parser);
