@@ -70,7 +70,7 @@ set(kreversi_SRCS
     mainwindow.cpp
     main.cpp
 )
-
+qt5_add_resources(kreversi_SRCS kreversi.qrc)
 ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
 kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
@@ -98,8 +98,6 @@ install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ########### install files ###############
 
 install(PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${KDE_INSTALL_APPDIR})
-#install(FILES kreversi.kcfg  DESTINATION  ${KDE_INSTALL_KCFGDIR})
-install(FILES kreversiui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kreversi)
 install(DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kreversi)
 install(FILES org.kde.kreversi.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
