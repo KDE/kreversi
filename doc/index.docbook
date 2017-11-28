@@ -38,8 +38,8 @@
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 <legalnotice>&FDLNotice;</legalnotice>
-<date>2017-07-11</date><!-- Date of (re)writing, or update.-->
-<releaseinfo>2.1 (Applications 17.08)</releaseinfo>
+<date>2017-11-28</date><!-- Date of (re)writing, or update.-->
+<releaseinfo>2.1 (Applications 17.12)</releaseinfo>
  
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
@@ -253,9 +253,10 @@ action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
 <guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
 <listitem><para>Opens a dialog that displays different high score tables. 
-<guibutton>Export...</guibutton> the high scores into a file or click on 
+<!--<guibutton>Export...</guibutton> the high scores into a file or click on 
 <guibutton>Configure...</guibutton> to open a dialog to customize your 
-<guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.</para></listitem>
+<guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.-->
+</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><menuchoice><shortcut><keycombo 
