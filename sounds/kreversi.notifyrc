@@ -485,6 +485,7 @@ Name[tr]=Berabere
 Name[ug]=سىز
 Name[uk]=Нічия
 Name[x-test]=xxDrawxx
+Name[zh_CN]=平局
 Name[zh_TW]=發牌
 Comment=Draw
 Comment[ast]=Dibuxar
@@ -547,6 +548,7 @@ Comment[tr]=Beraberlik
 Comment[ug]=سىز
 Comment[uk]=Нічия
 Comment[x-test]=xxDrawxx
+Comment[zh_CN]=平局
 Comment[zh_TW]=發牌
 Action=None
 
