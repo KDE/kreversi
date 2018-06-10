@@ -16,6 +16,7 @@
   <name xml:lang="gl">KReversi</name>
   <name xml:lang="it">KReversi</name>
   <name xml:lang="nl">KReversi</name>
+  <name xml:lang="nn">KReversi</name>
   <name xml:lang="pl">KReversi</name>
   <name xml:lang="pt">Reversi</name>
   <name xml:lang="ru">KReversi</name>
@@ -41,6 +42,7 @@
   <summary xml:lang="gl">Xogo de taboleiro similar ao Reversi</summary>
   <summary xml:lang="it">Gioco da tavolo tipo Reversi</summary>
   <summary xml:lang="nl">Reversi-bordspel</summary>
+  <summary xml:lang="nn">Brettspelet reversi</summary>
   <summary xml:lang="pl">Gra planszowa Reversi</summary>
   <summary xml:lang="pt">Jogo de Tabuleiro Reversi</summary>
   <summary xml:lang="ru">Настольная игра «Реверси»</summary>
