@@ -42,6 +42,7 @@ Comment[sv]=Spelet Othello
 Comment[tr]=Reversi Oyunu
 Comment[uk]=Гра KReversi
 Comment[x-test]=xxKReversi Gamexx
+Comment[zh_CN]=KReversi 游戏
 Comment[zh_TW]=黑白棋棋盤遊戲
 
 [Event/click]
@@ -611,6 +612,7 @@ Name[tg]=Ҳаракати Нодуруст
 Name[tr]=Geçersiz Hamle
 Name[uk]=Недозволений хід
 Name[x-test]=xxIllegal Movexx
+Name[zh_CN]=无效移动
 Name[zh_TW]=移動不合法
 Comment=Illegal move
 Comment[ast]=Movimientu illegal
@@ -669,5 +671,6 @@ Comment[ta]=தவறான நகர்த்தல்
 Comment[tr]=Geçersiz hamle
 Comment[uk]=Недозволений хід
 Comment[x-test]=xxIllegal movexx
+Comment[zh_CN]=无效移动
 Comment[zh_TW]=移動不合法
 Action=None
