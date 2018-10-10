@@ -2,7 +2,6 @@
 Exec=kreversi -qwindowtitle %c
 Name=KReversi
 Name[af]=Kreversi
-Name[ast]=KReversi
 Name[be]=Рэверсі
 Name[bn]=কে-রিভার্সি
 Name[br]=KReversi
@@ -72,7 +71,6 @@ Name[zh_TW]=KReversi 黑白棋
 Type=Application
 X-DocPath=kreversi/index.html
 GenericName=Reversi Board Game
-GenericName[ast]=Xuegu de tableru Reversi
 GenericName[be]=Настольная гульня ў рэверсі
 GenericName[bn]=ছককেন্দ্রিক খেলা রিভার্সি
 GenericName[br]=Ur c'hoari taolenn Reversi
