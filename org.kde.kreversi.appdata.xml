@@ -90,6 +90,7 @@
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kreversi</url>
   <url type="help">http://docs.kde.org/?application=kreversi</url>
+  <url type="donation">https://www.kde.org/community/donations/?app=kreversi&amp;source=appdata</url>
   <screenshots>
     <screenshot type="default">
       <image>https://kde.org/images/screenshots/kreversi.png</image>
