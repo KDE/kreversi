@@ -108,6 +108,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
 KReversiMainWindow::~KReversiMainWindow()
 {
+    clearPlayers();
     delete m_provider;
 }
 
