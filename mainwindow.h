@@ -49,7 +49,7 @@ class KReversiMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 public:
-    explicit KReversiMainWindow(QWidget* parent = 0,  bool startDemo = false);
+    explicit KReversiMainWindow(QWidget* parent = nullptr,  bool startDemo = false);
     ~KReversiMainWindow();
 public slots:
     void slotNewGame();
