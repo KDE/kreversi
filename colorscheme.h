@@ -35,7 +35,7 @@ class ColorScheme : public QQuickItem
     Q_PROPERTY(QColor foreground READ foreground NOTIFY placeHolder)
     Q_PROPERTY(QColor border READ border NOTIFY placeHolder)
 public:
-    ColorScheme(QQuickItem *parent = 0);
+    explicit ColorScheme(QQuickItem *parent = nullptr);
     
     QColor background() const;
     QColor foreground() const;

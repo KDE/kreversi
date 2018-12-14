@@ -38,7 +38,7 @@ public:
     /**
      * Constructs Human player with specified @p color and @p name
      */
-    explicit KReversiHumanPlayer(ChipColor color, QString name);
+    explicit KReversiHumanPlayer(ChipColor color, const QString &name);
 
     /**
      *  Overridden slots from @see KReversiPlayer

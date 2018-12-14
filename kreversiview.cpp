@@ -28,7 +28,7 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     : KgDeclarativeView(parent),
     m_provider(provider),
     m_delay(ANIMATION_SPEED_NORMAL),
-    m_game(0),
+    m_game(nullptr),
     m_showLastMove(false),
     m_showLegalMoves(false),
     m_showLabels(false)
@@ -118,7 +118,7 @@ void KReversiView::setAnimationSpeed(int speed)
 
 KReversiView::~KReversiView()
 {
-    setGame(0);
+    setGame(nullptr);
 }
 
 void KReversiView::updateBoard()

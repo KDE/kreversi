@@ -45,15 +45,15 @@ static const int COMMON_STATUSBAR_ID = 0;
 
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     : KXmlGuiWindow(parent),
-    m_startDialog(0),
-    m_view(0),
-    m_game(0),
-    m_historyDock(0),
-    m_historyView(0),
+    m_startDialog(nullptr),
+    m_view(nullptr),
+    m_game(nullptr),
+    m_historyDock(nullptr),
+    m_historyView(nullptr),
     m_firstShow(true),
     m_startInDemoMode(startDemo),
-    m_undoAct(0),
-    m_hintAct(0)
+    m_undoAct(nullptr),
+    m_hintAct(nullptr)
 {
     memset(m_player, 0, sizeof(m_player));
 
@@ -108,6 +108,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
 KReversiMainWindow::~KReversiMainWindow()
 {
+    clearPlayers();
     delete m_provider;
 }
 
@@ -391,7 +392,7 @@ void KReversiMainWindow::clearPlayers()
         if (m_player[i]) {
             m_player[i]->disconnect();
             delete m_player[i];
-            m_player[i] = 0;
+            m_player[i] = nullptr;
         }
 }
 
