@@ -146,7 +146,7 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
 {
 //     kDebug(11001) << ": HighscoresWidget";
 
-    setObjectName( QLatin1String("show_highscores_widget" ));
+    setObjectName( QStringLiteral("show_highscores_widget" ));
     const ScoreInfos &s = internal->scoreInfos();
     const PlayerInfos &p = internal->playerInfos();
 
@@ -373,8 +373,8 @@ void TotalMultipleScoresList::addLineItem(const ItemArray &si,
     uint k = 1; // skip "id"
     for (uint i=0; i<4; i++) { // skip additional fields
         const ItemContainer *container;
-        if ( i==2 ) container = pi.item(QLatin1String( "nb games" ));
-        else if ( i==3 ) container = pi.item(QLatin1String( "mean score" ));
+        if ( i==2 ) container = pi.item(QStringLiteral( "nb games" ));
+        else if ( i==3 ) container = pi.item(QStringLiteral( "mean score" ));
         else {
             container = si[k];
             k++;
@@ -400,7 +400,7 @@ QString TotalMultipleScoresList::itemText(const ItemContainer &item,
     QString name = item.name();
     if ( name==QLatin1String( "rank" ) ) return QString::number(_scores.size()-row);
     else if ( name==QLatin1String( "nb games" ) )
-        return QString::number( _scores[row].data(QLatin1String( "nb won games" )).toUInt() );
+        return QString::number( _scores[row].data(QStringLiteral( "nb won games" )).toUInt() );
     QVariant v = _scores[row].data(name);
     if ( name==QLatin1String( "name" ) ) return v.toString();
     return item.item()->pretty(row, v);
