@@ -52,7 +52,7 @@ public:
      * @param hintAllowed determines whether hints are allowed for player
      * @param undoAllowed determines whether undos are allowed for player
      */
-    explicit KReversiPlayer(ChipColor color, QString name,
+    explicit KReversiPlayer(ChipColor color, const QString &name,
                             bool hintAllowed, bool undoAllowed);
 
     /**

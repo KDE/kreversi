@@ -72,7 +72,7 @@ private:
     void updateHistory();
     void startDemo();
     void clearPlayers();
-    void receivedGameStartInformation(GameStartInformation info);
+    void receivedGameStartInformation(const GameStartInformation &info);
     KReversiPlayer *m_player[2];
 
     StartGameDialog *m_startDialog;

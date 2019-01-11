@@ -38,7 +38,7 @@ public:
     /**
      * Constructs AI player of specified @p color and @p name
      */
-    explicit KReversiComputerPlayer(ChipColor color, QString name);
+    explicit KReversiComputerPlayer(ChipColor color, const QString &name);
     ~KReversiComputerPlayer();
 
     /**

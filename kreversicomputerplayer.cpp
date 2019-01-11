@@ -23,7 +23,7 @@
 
 #include "kreversicomputerplayer.h"
 
-KReversiComputerPlayer::KReversiComputerPlayer(ChipColor color, QString name):
+KReversiComputerPlayer::KReversiComputerPlayer(ChipColor color, const QString &name):
     KReversiPlayer(color, name, false, false), m_lowestSkill(100) // setting it big enough
 {
     m_engine = new Engine(1);

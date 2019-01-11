@@ -396,7 +396,7 @@ void KReversiMainWindow::clearPlayers()
         }
 }
 
-void KReversiMainWindow::receivedGameStartInformation(GameStartInformation info)
+void KReversiMainWindow::receivedGameStartInformation(const GameStartInformation &info)
 {
     clearPlayers();
     m_nowPlayingInfo = info;
