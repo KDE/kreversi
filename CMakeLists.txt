@@ -48,7 +48,6 @@ if (KF5DocTools_FOUND)
     add_subdirectory(doc)
 endif()
 
-include_directories(${CMAKE_SOURCE_DIR}/libKF5KDEGames/highscore)
 
 ########### next target ##############
 set(kreversi_SRCS
