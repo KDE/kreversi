@@ -32,6 +32,7 @@
   <name xml:lang="uk">KReversi</name>
   <name xml:lang="x-test">xxKReversixx</name>
   <name xml:lang="zh-CN">KReversi</name>
+  <name xml:lang="zh-TW">KReversi</name>
   <summary>Reversi Board Game</summary>
   <summary xml:lang="ca">Joc de taula Reversi</summary>
   <summary xml:lang="ca-valencia">Joc de taula Reversi</summary>
