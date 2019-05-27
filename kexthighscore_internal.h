@@ -271,7 +271,7 @@ class ManagerPrivate
 
     bool submitWorldWide(const Score &score, QWidget *parent) const;
     static bool doQuery(const QUrl &url, QWidget *parent,
-                        QDomNamedNodeMap *map = 0);
+                        QDomNamedNodeMap *map = nullptr);
     static bool getFromQuery(const QDomNamedNodeMap &map, const QString &name,
                              QString &value, QWidget *parent);
     void convertToGlobal();

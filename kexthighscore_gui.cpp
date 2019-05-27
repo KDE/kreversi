@@ -79,7 +79,7 @@ ScoresList::ScoresList(QWidget *parent)
 void ScoresList::addHeader(const ItemArray &items)
 {
 //   kDebug(11001) ;
-    addLineItem(items, 0, 0);
+    addLineItem(items, 0, nullptr);
 }
 
 QTreeWidgetItem *ScoresList::addLine(const ItemArray &items,
@@ -131,7 +131,7 @@ void HighscoresList::load(const ItemArray &items, int highlight)
 {
 //     kDebug(11001) ;
     clear();
-    QTreeWidgetItem *line = 0;
+    QTreeWidgetItem *line = nullptr;
     for (int j=items.nbEntries()-1; j>=0; j--) {
         QTreeWidgetItem *item = addLine(items, j, j==highlight);
         if ( j==highlight ) line = item;
@@ -141,8 +141,7 @@ void HighscoresList::load(const ItemArray &items, int highlight)
 
 //-----------------------------------------------------------------------------
 HighscoresWidget::HighscoresWidget(QWidget *parent)
-    : QWidget(parent),
-      _scoresUrl(0), _playersUrl(0), _statsTab(0), _histoTab(0)
+    : QWidget(parent)
 {
 //     kDebug(11001) << ": HighscoresWidget";
 
@@ -158,24 +157,24 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
     vbox->addWidget(_tw);
 
     // scores tab
-    _scoresList = new HighscoresList(0);
+    _scoresList = new HighscoresList(nullptr);
     _scoresList->addHeader(s);
     _tw->addTab(_scoresList, i18n("Best &Scores"));
 
     // players tab
-    _playersList = new HighscoresList(0);
+    _playersList = new HighscoresList(nullptr);
     _playersList->addHeader(p);
     _tw->addTab(_playersList, i18n("&Players"));
 
     // statistics tab
     if ( internal->showStatistics ) {
-        _statsTab = new StatisticsTab(0);
+        _statsTab = new StatisticsTab(nullptr);
         _tw->addTab(_statsTab, i18n("Statistics"));
     }
 
     // histogram tab
     if ( p.histogram().size()!=0 ) {
-        _histoTab = new HistogramTab(0);
+        _histoTab = new HistogramTab(nullptr);
         _tw->addTab(_histoTab, i18n("Histogram"));
     }
 
@@ -243,7 +242,7 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
     for (uint i=0; i<internal->nbGameTypes(); i++) {
         QString title = internal->manager.gameTypeLabel(i, Manager::I18N);
         QString icon = internal->manager.gameTypeLabel(i, Manager::Icon);
-        HighscoresWidget *hsw = new HighscoresWidget(0);
+        HighscoresWidget *hsw = new HighscoresWidget(nullptr);
         KPageWidgetItem *pageItem = new KPageWidgetItem( hsw, title);
         pageItem->setIcon(QIcon::fromTheme(icon).pixmap(IconSize(KIconLoader::Toolbar)));
 //         pageItem->setIcon( QIcon( BarIcon(icon, KIconLoader::SizeLarge) ) );
@@ -281,7 +280,7 @@ void HighscoresDialog::slotUser1()
 {
 //   kDebug(11001) ;
     if ( KExtHighscore::configure(this) )
-        highscorePageChanged(currentPage(), 0);//update data
+        highscorePageChanged(currentPage(), nullptr);//update data
 }
 
 void HighscoresDialog::slotUser2()
@@ -410,15 +409,15 @@ QString TotalMultipleScoresList::itemText(const ItemContainer &item,
 //-----------------------------------------------------------------------------
 ConfigDialog::ConfigDialog(QWidget *parent)
     : QDialog(parent),
-      _saved(false), _WWHEnabled(0)
+      _saved(false), _WWHEnabled(nullptr)
 {
 //     kDebug(11001) << ": ConfigDialog";
     
     setWindowTitle( i18n("Configure Highscores") );
     setModal( true );
     
-    QWidget *page = 0;
-    QTabWidget *tab = 0;
+    QWidget *page = nullptr;
+    QTabWidget *tab = nullptr;
     
     QVBoxLayout *layout = new QVBoxLayout;
     setLayout(layout);

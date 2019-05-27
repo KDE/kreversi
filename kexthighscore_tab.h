@@ -35,7 +35,7 @@ class PlayersCombo : public QComboBox
 {
  Q_OBJECT
  public:
-    PlayersCombo(QWidget *parent = 0);
+    PlayersCombo(QWidget *parent = nullptr);
 
     void load();
 

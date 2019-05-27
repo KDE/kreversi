@@ -101,10 +101,13 @@ class HighscoresWidget : public QWidget
     void tabChanged() { emit tabChanged(_tw->currentIndex()); }
 
  private:
-    QTabWidget     *_tw;
-    HighscoresList *_scoresList, *_playersList;
-    KUrlLabel      *_scoresUrl, *_playersUrl;
-    AdditionalTab  *_statsTab, *_histoTab;
+    QTabWidget     *_tw = nullptr;
+    HighscoresList *_scoresList = nullptr;
+    HighscoresList *_playersList = nullptr;
+    KUrlLabel      *_scoresUrl = nullptr;
+    KUrlLabel *_playersUrl = nullptr;
+    AdditionalTab  *_statsTab = nullptr;
+    AdditionalTab *_histoTab = nullptr;
 };
 
 class HighscoresDialog : public KPageDialog
@@ -121,7 +124,7 @@ class HighscoresDialog : public KPageDialog
 
  private:
     int _rank, _tab;
-    QWidget *_current;
+    QWidget *_current = nullptr;
     QList<KPageWidgetItem*> _pages;
 };
 
@@ -172,11 +175,13 @@ class ConfigDialog : public QDialog
 
  private:
     bool         _saved;
-    QCheckBox   *_WWHEnabled;
-    QLineEdit   *_nickname, *_comment;
-    QLineEdit   *_key, *_registeredName;
-    QPushButton *_removeButton;
-    QDialogButtonBox *buttonBox;
+    QCheckBox   *_WWHEnabled = nullptr;
+    QLineEdit   *_nickname = nullptr;
+    QLineEdit *_comment = nullptr;
+    QLineEdit   *_key = nullptr;
+    QLineEdit *_registeredName = nullptr;
+    QPushButton *_removeButton = nullptr;
+    QDialogButtonBox *buttonBox = nullptr;
 
     void load();
     bool save();
@@ -196,8 +201,8 @@ class AskNameDialog : public QDialog
     void nameChanged(QDialogButtonBox *box);
 
  private:
-    QLineEdit *_edit;
-    QCheckBox *_checkbox;
+    QLineEdit *_edit = nullptr;
+    QCheckBox *_checkbox = nullptr;
 };
 
 } // namespace
