@@ -25,8 +25,6 @@
 
 #include <QCryptographicHash>
 #include <QDomDocument>
-#include <QFile>
-#include <QLayout>
 #include <QTemporaryFile>
 #include <QTextStream>
 #include <QVector>

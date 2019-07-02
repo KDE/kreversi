@@ -117,7 +117,6 @@
 #include "Engine.h"
 
 #include <QApplication>
-#include <QVector>
 
 // ================================================================
 //           Classes SquareStackEntry and SquareStack

@@ -29,7 +29,6 @@
 #include "kexthighscore.h"
 
 #include <QDateTime>
-#include <QLoggingCategory>
 #include <QTextStream>
 #include <QUrl>
 #include <QVector>

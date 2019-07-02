@@ -19,7 +19,6 @@
 
 #include "kexthighscore.h"
 
-#include <QLayout>
 #include <QUrlQuery>
 #include <QVector>
 

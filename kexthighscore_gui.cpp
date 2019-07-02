@@ -27,7 +27,6 @@
 #include <QHeaderView>
 #include <QIcon>
 #include <QLabel>
-#include <QLayout>
 #include <QPushButton>
 #include <QTabWidget>
 #include <QTemporaryFile>

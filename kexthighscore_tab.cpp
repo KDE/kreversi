@@ -21,7 +21,6 @@
 
 
 #include <QApplication>
-#include <QDialog>
 #include <QGroupBox>
 #include <QHeaderView>
 #include <QLayout>

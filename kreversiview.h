@@ -19,7 +19,6 @@
 #ifndef KREVERSI_VIEW_H
 #define KREVERSI_VIEW_H
 
-#include <QTimer>
 
 #include <KgDeclarativeView>
 #include <KgThemeProvider>

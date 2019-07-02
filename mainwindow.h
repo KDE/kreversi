@@ -25,7 +25,6 @@
 #define KREVERSI_MAIN_WINDOW_H
 
 
-#include <QApplication>
 #include <QDockWidget>
 #include <QListWidget>
 

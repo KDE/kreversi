@@ -21,7 +21,6 @@
 
 #include <QApplication>
 #include <QHBoxLayout>
-#include <QLayout>
 #include <QLabel>
 #include <QLocale>
 #include <QWidget>

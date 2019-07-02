@@ -24,16 +24,13 @@
 #include "startgamedialog.h"
 #include "ui_startgamedialog.h"
 
-#include <QCloseEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QDialogButtonBox>
-#include <QMessageBox>
 #include <QPushButton>
 #include <QPainter>
 #include <QSvgRenderer>
 #include <QVBoxLayout>
 
-#include <KConfigGroup>
 #include <KgDifficulty>
 #include <KLocalizedString>
 

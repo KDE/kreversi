@@ -28,6 +28,7 @@
 #include <QDesktopWidget>
 #include <QIcon>
 #include <QStatusBar>
+#include <QApplication>
 
 #include <KActionCollection>
 #include <KLocalizedString>
