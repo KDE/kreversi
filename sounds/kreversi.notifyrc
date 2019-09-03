@@ -1,5 +1,6 @@
 [Global]
 IconName=kreversi
+DesktopEntry=org.kde.kreversi
 Comment=KReversi Game
 Comment[bs]=KReversi igra
 Comment[ca]=Joc KReversi
