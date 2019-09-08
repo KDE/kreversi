@@ -184,7 +184,7 @@ void KReversiView::updateBoard()
         QMetaObject::invokeMethod(m_qml_root, "setChipState",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
-                                  Q_ARG(QVariant, QLatin1Literal("Black")));
+                                  Q_ARG(QVariant, QLatin1String("Black")));
         QMetaObject::invokeMethod(m_qml_root, "setHint",
                                   Q_ARG(QVariant, m_hint.row),
                                   Q_ARG(QVariant, m_hint.col),
