@@ -29,6 +29,7 @@
 #include <QIcon>
 #include <QStatusBar>
 #include <QApplication>
+#include <QScreen>
 
 #include <KActionCollection>
 #include <KLocalizedString>
@@ -102,8 +103,11 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     // load saved settings
     loadSettings();
 
-    setupGUI(qApp->desktop()->availableGeometry().size() * 0.7);
-
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+    setupGUI(QApplication::screens().at(0)->availableGeometry().size() * 0.7);
+#else
+    setupGUI(screen()->availableGeometry().size() * 0.7);
+#endif
     m_historyDock->hide();
 }
 

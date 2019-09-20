@@ -626,7 +626,7 @@ const char *UNABLE_TO_CONTACT =
 bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
                                 QDomNamedNodeMap *map)
 {
-    KIO::http_update_cache(url, true, QDateTime::fromTime_t(0)); // remove cache !
+    KIO::http_update_cache(url, true, QDateTime::fromSecsSinceEpoch(0)); // remove cache !
 
     QTemporaryFile tmpFile;
     if ( !tmpFile.open() ) {

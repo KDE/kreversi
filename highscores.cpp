@@ -39,7 +39,7 @@ ExtManager::ExtManager()
     const uint       RANGE[6] = { 0, 32, 40, 48, 56, 64 };
     QVector<uint>  s;
     s.resize(6);
-    qCopy(RANGE, RANGE + 6, s.begin());
+    std::copy(RANGE, RANGE+6, s.begin());
     setScoreHistogram(s, ScoreBound);
 
     QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
