@@ -36,7 +36,7 @@ namespace KExtHighscore
  * a highscore element (such as the score, the date, ...) or a player
  * info (such as the player name, the best score, ...).
  */
-class KDEGAMES_EXPORT Item
+class  Item
 {
  public:
     /**
@@ -168,14 +168,14 @@ class KDEGAMES_EXPORT Item
 enum ScoreType { Won = 0, Lost = -1, Draw = -2 };
 
 class Score;
-KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream, const Score &score);
-KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, Score &score);
+ QDataStream &operator <<(QDataStream &stream, const Score &score);
+ QDataStream &operator >>(QDataStream &stream, Score &score);
 
 /**
  * This class contains data for a score. You should not inherit from
  * this class but reimplement the methods in Highscores.
  */
-class KDEGAMES_EXPORT Score
+class  Score
 {
  public:
     Score(ScoreType type = Won);
@@ -240,13 +240,13 @@ class KDEGAMES_EXPORT Score
 
     friend class MultiplayerScores;
 
-    friend KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream, const Score &score);
-    friend KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, Score &score);
+    friend  QDataStream &operator <<(QDataStream &stream, const Score &score);
+    friend  QDataStream &operator >>(QDataStream &stream, Score &score);
 };
 
 class MultiplayerScores;
-KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream, const MultiplayerScores &score);
-KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, MultiplayerScores &score);
+ QDataStream &operator <<(QDataStream &stream, const MultiplayerScores &score);
+ QDataStream &operator >>(QDataStream &stream, MultiplayerScores &score);
 
 /**
  * This class is used to store and show scores for multiplayer games.
@@ -268,7 +268,7 @@ KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream, MultiplayerScores 
  * ms.addScore(1, score);
  * </pre>
  */
-class KDEGAMES_EXPORT MultiplayerScores
+class  MultiplayerScores
 {
  public:
     MultiplayerScores();
@@ -307,9 +307,9 @@ class KDEGAMES_EXPORT MultiplayerScores
     class MultiplayerScoresPrivate;
     MultiplayerScoresPrivate *d;
 
-    friend KDEGAMES_EXPORT QDataStream &operator <<(QDataStream &stream,
+    friend  QDataStream &operator <<(QDataStream &stream,
                                     const MultiplayerScores &score);
-    friend KDEGAMES_EXPORT QDataStream &operator >>(QDataStream &stream,
+    friend  QDataStream &operator >>(QDataStream &stream,
                                     MultiplayerScores &score);
 };
 
