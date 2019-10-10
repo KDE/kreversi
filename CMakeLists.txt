@@ -81,6 +81,8 @@ ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
 kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
+file(GLOB ICON_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hicolor/*-apps-kreversi.png")
+ecm_add_app_icon(kreversi_SRCS ICONS ${ICON_SRCS})
 add_executable(kreversi ${kreversi_SRCS})
 
 target_link_libraries(kreversi
