@@ -20,7 +20,6 @@
 #include "kexthighscore_internal.h"
 
 #include <sys/types.h>
-#include <unistd.h>
 
 #include <QCryptographicHash>
 #include <QDomDocument>
