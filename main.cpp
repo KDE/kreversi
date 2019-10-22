@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
     KDBusService service;
     if (application.isSessionRestored()) {
-        RESTORE(KReversiMainWindow)
+        kRestoreMainWindows<KReversiMainWindow>();
     } else {
         KReversiMainWindow *mainWin = new KReversiMainWindow(0, parser.isSet(QStringLiteral("demo")));
         mainWin->show();
