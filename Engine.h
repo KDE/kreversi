@@ -41,7 +41,7 @@
  * child could beat easily. But with it it's a worthy opponent!
  *
  * If you are interested on the JAVA applet of Mr. Luthman take a
- * look at http://www.sylog.se/~mats/
+ * look at http://www.luthman.nu/Othello/Othello.html
  */
 
 // The class Engine produces moves from a Game object through calls to the
@@ -59,8 +59,8 @@
 // alpha-beta pruning to a fixed depth. In short this means that all possible
 // moves a predefined number of moves ahead are either searched or refuted
 // with a method called alpha-beta pruning. A more thorough explanation of
-// this method could be found at the world wide web at http:
-// //yoda.cis.temple.edu:8080/UGAIWWW/lectures96/search/minimax/alpha-beta.html
+// this method could be found at the world wide web at
+// https://cis.temple.edu/~ingargio/cis587/readings/alpha-beta.html
 // at the time this was written. Searching for "minimax" would also point
 // you to information on this subject. It is probably possible to understand
 // this method by reading the source code though, it is not that complicated.

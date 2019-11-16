@@ -49,7 +49,7 @@ int main(int argc, char **argv)
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),
                          QStringLiteral("2.1"), i18n(description), KAboutLicense::GPL,
                          i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
-                         QString(), i18n("http://games.kde.org/kreversi"));
+                         QString(), i18n("https://kde.org/applications/games/org.kde.kreversi"));
     aboutData.addAuthor(i18n("Mario Weilguni"), i18n("Original author"), QStringLiteral("mweilguni@sime.com"));
     aboutData.addAuthor(i18n("Inge Wallin"), i18n("Original author"), QStringLiteral("inge@lysator.liu.se"));
     aboutData.addAuthor(i18n("Dmitry Suzdalev"), i18n("Game rewrite for KDE4. Current maintainer."), QStringLiteral("dimsuz@gmail.com"));
