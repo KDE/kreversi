@@ -178,7 +178,7 @@ class Score;
 class  Score
 {
  public:
-    Score(ScoreType type = Won);
+    explicit Score(ScoreType type = Won);
 
     ~Score();
 
@@ -229,7 +229,7 @@ class  Score
      *
      * @see Manager::isStrictlyLess
      */
-    bool operator <(const Score &score);
+    bool operator <(const Score &score) const;
 
  private:
     ScoreType  _type;

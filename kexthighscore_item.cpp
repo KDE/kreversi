@@ -173,7 +173,7 @@ bool Score::isTheWorst() const
     return score()==s.score();
 }
 
-bool Score::operator <(const Score &score)
+bool Score::operator <(const Score &score) const
 {
     return internal->manager.isStrictlyLess(*this, score);
 }

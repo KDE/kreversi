@@ -56,7 +56,7 @@ class ScoresList : public QTreeWidget
 {
  Q_OBJECT
  public:
-    ScoresList(QWidget *parent);
+    explicit ScoresList(QWidget *parent);
 
     void addHeader(const ItemArray &);
 

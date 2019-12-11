@@ -180,7 +180,7 @@ class ScoreInfos : public ItemArray
 class ConfigGroup : public KConfigGroup
 {
  public:
-    ConfigGroup(const QString &group = QLatin1String( "" ))
+    explicit ConfigGroup(const QString &group = QLatin1String( "" ))
         : KConfigGroup(KSharedConfig::openConfig(), group) {}
 };
 

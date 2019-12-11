@@ -35,7 +35,7 @@ class PlayersCombo : public QComboBox
 {
  Q_OBJECT
  public:
-    PlayersCombo(QWidget *parent = nullptr);
+    explicit PlayersCombo(QWidget *parent = nullptr);
 
     void load();
 
@@ -53,7 +53,7 @@ class AdditionalTab : public QWidget
 {
  Q_OBJECT
  public:
-    AdditionalTab(QWidget *parent);
+    explicit AdditionalTab(QWidget *parent);
 
     virtual void load();
 
@@ -100,7 +100,7 @@ class HistogramTab : public AdditionalTab
 {
  Q_OBJECT
  public:
-    HistogramTab(QWidget *parent);
+    explicit HistogramTab(QWidget *parent);
 
     void load() override;
 
