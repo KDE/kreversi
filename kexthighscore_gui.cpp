@@ -243,7 +243,8 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
         QString icon = internal->manager.gameTypeLabel(i, Manager::Icon);
         HighscoresWidget *hsw = new HighscoresWidget(nullptr);
         KPageWidgetItem *pageItem = new KPageWidgetItem( hsw, title);
-        pageItem->setIcon(QIcon::fromTheme(icon).pixmap(IconSize(KIconLoader::Toolbar)));
+        const int iconSize = style()->pixelMetric(QStyle::PM_ToolBarIconSize);
+        pageItem->setIcon(QIcon::fromTheme(icon).pixmap(iconSize));
 //         pageItem->setIcon( QIcon( BarIcon(icon, KIconLoader::SizeLarge) ) );
         addPage( pageItem );
         _pages.append(pageItem);
