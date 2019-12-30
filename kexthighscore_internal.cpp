@@ -41,6 +41,16 @@
 // a build time HIGHSCORE_DIRECTORY or not
 // #include <config-highscore.h>
 
+namespace {
+auto returnEndLine() {
+#if (QT_VERSION < QT_VERSION_CHECK(5, 15, 0))
+     return endl;
+#else
+     return Qt::endl;
+#endif
+}
+}
+
 namespace KExtHighscore
 {
 
@@ -217,7 +227,7 @@ void ItemArray::exportToText(QTextStream &s) const
                 else s << at(i)->pretty(k-1);
             }
         }
-        s << endl;
+        s << returnEndLine();
     }
 }
 
@@ -868,16 +878,16 @@ void ManagerPrivate::exportHighscores(QTextStream &s)
     for (uint i=0; i<_nbGameTypes; i++) {
         setGameType(i);
         if ( _nbGameTypes>1 ) {
-            if ( i!=0 ) s << endl;
-            s << "--------------------------------" << endl;
+            if ( i!=0 ) s << returnEndLine();
+            s << "--------------------------------" << returnEndLine();
             s << "Game type: "
-              << manager.gameTypeLabel(_gameType, Manager::I18N) << endl;
-            s << endl;
+              << manager.gameTypeLabel(_gameType, Manager::I18N) << returnEndLine();
+            s << returnEndLine();
         }
-        s << "Players list:" << endl;
+        s << "Players list:" << returnEndLine();
         _playerInfos->exportToText(s);
-        s << endl;
-        s << "Highscores list:" << endl;
+        s << returnEndLine();
+        s << "Highscores list:" << returnEndLine();
         _scoreInfos->exportToText(s);
     }
 
