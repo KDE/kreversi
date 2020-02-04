@@ -30,7 +30,7 @@
 #include <QDialog>
 #include <KUser>
 #include <KgThemeProvider>
-
+class QAbstractButton;
 namespace Ui
 {
 class StartGameDialog;
@@ -67,12 +67,12 @@ private slots:
     /**
      * Handles "User changed player type for black player" event
      */
-    void slotUpdateBlack(int clickedId);
+    void slotUpdateBlack(QAbstractButton *button);
 
     /**
      * Handles "User changed player type for white player" event
      */
-    void slotUpdateWhite(int clickedId);
+    void slotUpdateWhite(QAbstractButton *button);
 
     void slotAccepted();
 

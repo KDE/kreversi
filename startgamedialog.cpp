@@ -84,11 +84,11 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
         }
     }
 
-    connect(ui->blackTypeGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateBlack);
-    connect(ui->whiteTypeGroup, static_cast<void (QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateWhite);
+    connect(ui->blackTypeGroup, static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateBlack);
+    connect(ui->whiteTypeGroup, static_cast<void (QButtonGroup::*)(QAbstractButton *)>(&QButtonGroup::buttonClicked), this, &StartGameDialog::slotUpdateWhite);
 
-    slotUpdateBlack(GameStartInformation::Human);
-    slotUpdateWhite(GameStartInformation::AI);
+    slotUpdateBlack(ui->blackTypeGroup->button(GameStartInformation::Human));
+    slotUpdateWhite(ui->whiteTypeGroup->button(GameStartInformation::AI));
 }
 
 StartGameDialog::~StartGameDialog()
@@ -160,22 +160,29 @@ void StartGameDialog::setChipsPrefix(ChipsPrefix prefix)
 }
 
 
-void StartGameDialog::slotUpdateBlack(int clickedId)
+void StartGameDialog::slotUpdateBlack(QAbstractButton *button)
 {
-    ui->blackSkill->setEnabled(clickedId == GameStartInformation::AI);
-    ui->blackName->setEnabled(clickedId == GameStartInformation::Human);
-    if (clickedId == GameStartInformation::Human)
-        ui->blackName->setText(m_user.loginName());
-    else
-        ui->blackName->setText(i18n("Computer"));
+    if (button) {
+        const int clickedId = ui->blackTypeGroup->id(button);
+        ui->blackSkill->setEnabled(clickedId == GameStartInformation::AI);
+        ui->blackName->setEnabled(clickedId == GameStartInformation::Human);
+        if (clickedId == GameStartInformation::Human)
+            ui->blackName->setText(m_user.loginName());
+        else
+            ui->blackName->setText(i18n("Computer"));
+    }
 }
 
-void StartGameDialog::slotUpdateWhite(int clickedId)
+void StartGameDialog::slotUpdateWhite(QAbstractButton *button)
 {
-    ui->whiteSkill->setEnabled(clickedId == GameStartInformation::AI);
-    ui->whiteName->setEnabled(clickedId == GameStartInformation::Human);
-    if (clickedId == GameStartInformation::Human)
-        ui->whiteName->setText(m_user.loginName());
-    else
-        ui->whiteName->setText(i18n("Computer"));
+    if (button) {
+        const int clickedId = ui->whiteTypeGroup->id(button);
+
+        ui->whiteSkill->setEnabled(clickedId == GameStartInformation::AI);
+        ui->whiteName->setEnabled(clickedId == GameStartInformation::Human);
+        if (clickedId == GameStartInformation::Human)
+            ui->whiteName->setText(m_user.loginName());
+        else
+            ui->whiteName->setText(i18n("Computer"));
+    }
 }
