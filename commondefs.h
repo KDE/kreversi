@@ -41,6 +41,9 @@ enum ChipColor {
     NoColor = 2
 };
 
+static const int nRows = 8;
+static const int nCols = 8;
+
 /**
  * Represents position on board.
  */
@@ -52,7 +55,7 @@ struct KReversiPos {
     int col;
 
     bool isValid() const {
-        return (row >= 0 && col >= 0 && row < 8 && col < 8);
+        return (row >= 0 && col >= 0 && row < nRows && col < nCols);
     }
 };
 
@@ -72,7 +75,7 @@ struct KReversiMove: public KReversiPos {
     bool isValid() const {
         return (color != NoColor
                 && row >= 0 && col >= 0
-                && row < 8 && col < 8);
+                && row < nRows && col < nCols);
     }
 };
 
