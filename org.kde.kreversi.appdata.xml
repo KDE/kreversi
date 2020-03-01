@@ -101,11 +101,11 @@
     <p xml:lang="x-test">xxKReversi is a simple one player strategy game played against the computer. If a player's piece is captured by an opposing player, that piece is turned over to reveal the color of that player. A winner is declared when one player has more pieces of his own color on the board and there are no more possible moves.xx</p>
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kreversi</url>
-  <url type="help">http://docs.kde.org/?application=kreversi</url>
+  <url type="help">https://docs.kde.org/?application=kreversi</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kreversi&amp;source=appdata</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://kde.org/images/screenshots/kreversi.png</image>
+      <image>https://cdn.kde.org/screenshots/kreversi/kreversi.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
