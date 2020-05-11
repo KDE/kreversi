@@ -39,6 +39,8 @@ static const char description[] = I18N_NOOP("KDE Reversi Board Game");
 
 int main(int argc, char **argv)
 {
+    // Fixes blurry icons with fractional scaling
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     QApplication application(argc, argv);
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kreversi"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kreversirc"));
