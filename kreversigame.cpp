@@ -75,7 +75,7 @@ bool KReversiGame::canUndo() const
     return (m_player[m_curPlayer]->isUndoAllowed() && !m_undoStack.isEmpty());
 }
 
-void KReversiGame::makeMove(const KReversiMove &move)
+void KReversiGame::makeMove(KReversiMove move)
 {
     if (!move.isValid()) {
         kickCurrentPlayer();
@@ -174,7 +174,7 @@ int KReversiGame::undo()
     return movesUndone;
 }
 
-void KReversiGame::turnChips(const KReversiMove &move)
+void KReversiGame::turnChips(KReversiMove move)
 {
     m_changedChips.clear();
 
@@ -198,7 +198,7 @@ void KReversiGame::turnChips(const KReversiMove &move)
     m_undoStack.push(m_changedChips);
 }
 
-bool KReversiGame::isMovePossible(const KReversiMove& move) const
+bool KReversiGame::isMovePossible(KReversiMove move) const
 {
     // first - the trivial case:
     if (m_cells[move.row][move.col] != NoColor || move.color == NoColor)
@@ -211,7 +211,7 @@ bool KReversiGame::isMovePossible(const KReversiMove& move) const
     return false;
 }
 
-bool KReversiGame::hasChunk(int dirNum, const KReversiMove& move) const
+bool KReversiGame::hasChunk(int dirNum, KReversiMove move) const
 {
     // On each step (as we proceed) we must ensure that current chip is of the
     // opponent color.
@@ -367,7 +367,7 @@ int KReversiGame::playerScore(ChipColor player) const
     return m_score[player];
 }
 
-void KReversiGame::setChipColor(const KReversiMove &move)
+void KReversiGame::setChipColor(KReversiMove move)
 {
     // first: if the current cell already contains a chip we remove it
     if (m_cells[move.row][move.col] != NoColor)

@@ -41,14 +41,14 @@ ChipColor Utils::opponentColorFor(ChipColor color)
 }
 
 
-QString Utils::colorToString(const ChipColor &color)
+QString Utils::colorToString(ChipColor color)
 {
     if (Preferences::useColoredChips())
         return (color == Black ? i18n("Blue") : i18n("Red"));
     return (color == Black ? i18n("Black") : i18n("White"));
 }
 
-QString Utils::moveToString(const KReversiMove& move)
+QString Utils::moveToString(KReversiMove move)
 {
     QString moveString = colorToString(move.color);
 

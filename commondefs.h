@@ -67,7 +67,7 @@ struct KReversiMove: public KReversiPos {
     KReversiMove(ChipColor col = NoColor, int r = -1, int c = -1)
         : KReversiPos(r, c), color(col) { }
 
-    KReversiMove(ChipColor col, const KReversiPos &pos)
+    KReversiMove(ChipColor col, KReversiPos pos)
         : KReversiPos(pos), color(col) { }
 
     ChipColor color;
@@ -109,11 +109,11 @@ ChipColor opponentColorFor(ChipColor color);
 /**
  * @return Human-readable string representing @p color
  */
-QString colorToString(const ChipColor &color);
+QString colorToString(ChipColor color);
 /**
  * @return Human-readable string representing @p move
  */
-QString moveToString(const KReversiMove& move);
+QString moveToString(KReversiMove move);
 /**
  * @return Index of current difficulty level in increasing order
  */

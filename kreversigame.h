@@ -177,11 +177,11 @@ private:
      *  This will make the player @p move
      *  If that is possible, of course
      */
-    void makeMove(const KReversiMove &move);
+    void makeMove(KReversiMove move);
     /**
      * This function will tell you if the move is possible.
      */
-    bool isMovePossible(const KReversiMove &move) const;
+    bool isMovePossible(KReversiMove move) const;
     /**
      *  Searches for "chunk" in direction @p dirNum for @p move.
      *  As my English-skills are somewhat limited, let me introduce
@@ -191,16 +191,16 @@ private:
      *  CO[O]C <-- this is a chunk
      *  where [O] is one or more opponent's pieces
      */
-    bool hasChunk(int dirNum, const KReversiMove &move) const;
+    bool hasChunk(int dirNum, KReversiMove move) const;
     /**
      *  Performs @p move, i.e. marks all the chips that player wins with
      *  this move with current player color
      */
-    void turnChips(const KReversiMove &move);
+    void turnChips(KReversiMove move);
     /**
      *  Sets the type of chip according to @p move
      */
-    void setChipColor(const KReversiMove &move);
+    void setChipColor(KReversiMove move);
     /**
      *  Delay time
      */

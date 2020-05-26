@@ -41,10 +41,6 @@
 #include "kreversicomputerplayer.h"
 #include "kexthighscore.h"
 
-static const int BLACK_STATUSBAR_ID = 1;
-static const int WHITE_STATUSBAR_ID = 2;
-static const int COMMON_STATUSBAR_ID = 0;
-
 KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     : KXmlGuiWindow(parent),
     m_startDialog(nullptr),
