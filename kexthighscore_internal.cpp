@@ -35,7 +35,7 @@
 
 #include "kexthighscore.h"
 #include "kexthighscore_gui.h"
-#include "kemailsettings.h"
+#include <KEMailSettings>
 
 // TODO Decide if want to support
 // a build time HIGHSCORE_DIRECTORY or not
