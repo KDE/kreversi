@@ -59,7 +59,7 @@ const char ItemContainer::ANONYMOUS[] = "_";
 const char ItemContainer::ANONYMOUS_LABEL[] = I18N_NOOP("anonymous");
 
 ItemContainer::ItemContainer()
-    : _item(0)
+    : _item(nullptr)
 {}
 
 ItemContainer::~ItemContainer()
@@ -543,7 +543,7 @@ ManagerPrivate::ManagerPrivate(uint nbGameTypes, Manager &m)
 
 void ManagerPrivate::init(uint maxNbEntries)
 {
-    _hsConfig = new KHighscore(false, 0);
+    _hsConfig = new KHighscore(false, nullptr);
     _playerInfos = new PlayerInfos;
     _scoreInfos = new ScoreInfos(maxNbEntries, *_playerInfos);
 }
@@ -748,7 +748,7 @@ void ManagerPrivate::convertToGlobal()
 {
     // read old highscores
     KHighscore *tmp = _hsConfig;
-    _hsConfig = new KHighscore(true, 0);
+    _hsConfig = new KHighscore(true, nullptr);
     QVector<Score> scores(_scoreInfos->nbEntries());
     for (int i=0; i<scores.count(); i++)
         scores[i] = readScore(i);

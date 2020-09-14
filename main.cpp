@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     if (application.isSessionRestored()) {
         kRestoreMainWindows<KReversiMainWindow>();
     } else {
-        KReversiMainWindow *mainWin = new KReversiMainWindow(0, parser.isSet(QStringLiteral("demo")));
+        KReversiMainWindow *mainWin = new KReversiMainWindow(nullptr, parser.isSet(QStringLiteral("demo")));
         mainWin->show();
     }
 
