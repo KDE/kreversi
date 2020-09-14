@@ -121,7 +121,7 @@ QString Item::pretty(uint, const QVariant &value) const
         if ( value.toString()==QLatin1String( ItemContainer::ANONYMOUS ) )
             return i18n(ItemContainer::ANONYMOUS_LABEL);
         break;
-    case NoFormat:
+    case NoSpecial:
         break;
     }
 
@@ -135,7 +135,7 @@ QString Item::pretty(uint, const QVariant &value) const
     case DateTime:
         if ( value.toDateTime().isNull() ) return QStringLiteral( "--" );
         return QLocale().toString(value.toDateTime());
-    case NoSpecial:
+    case NoFormat:
         break;
     }
 
