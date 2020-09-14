@@ -265,9 +265,10 @@ static const int BC_WEIGHT     = 3;
 
 
 Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
-    : m_strength(st), m_computingMove(false)
+    : m_strength(st)
+    , m_random(sd)
+    , m_computingMove(false)
 {
-    m_random.setSeed(sd);
     m_score = new Score;
     m_bc_score = new Score;
     SetupBcBoard();
@@ -276,9 +277,10 @@ Engine::Engine(int st, int sd)/* : SuperEngine(st, sd) */
 
 
 Engine::Engine(int st) //: SuperEngine(st)
-    : m_strength(st), m_computingMove(false)
+    : m_strength(st)
+    , m_random(QRandomGenerator::global()->generate())
+    , m_computingMove(false)
 {
-    m_random.setSeed(0);
     m_score = new Score;
     m_bc_score = new Score;
     SetupBcBoard();
@@ -287,9 +289,10 @@ Engine::Engine(int st) //: SuperEngine(st)
 
 
 Engine::Engine()// : SuperEngine(1)
-    : m_strength(1), m_computingMove(false)
+    : m_strength(1)
+    , m_random(QRandomGenerator::global()->generate())
+    , m_computingMove(false)
 {
-    m_random.setSeed(0);
     m_score = new Score;
     m_bc_score = new Score;
     SetupBcBoard();
@@ -441,7 +444,7 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
                     // and not always lose.  However, we only do this if the
                     // user wants a casual game, which is set in the settings
                     // dialog.
-                    int randi = m_random.getLong(7);
+                    int randi = m_random.bounded(7);
                     if (maxval == -LARGEINT
                             || m_competitive
                             || randi < (int) m_strength) {
@@ -465,7 +468,7 @@ KReversiMove Engine::computeMove(const KReversiGame& game, bool competitive)
 
     // If there are more than one best move, the pick one randomly.
     if (number_of_maxval > 1) {
-        int  r = m_random.getLong(number_of_maxval) + 1;
+        int  r = m_random.bounded(number_of_maxval) + 1;
         int  i;
 
         for (i = 0; i < number_of_moves; ++i) {
@@ -496,7 +499,7 @@ KReversiMove Engine::ComputeFirstMove(const KReversiGame& game)
     int    r;
     ChipColor  color = game.currentPlayer();
 
-    r = m_random.getLong(4) + 1;
+    r = m_random.bounded(4) + 1;
 
     if (color == White) {
         if (r == 1)      return  KReversiMove(color, 4, 2);

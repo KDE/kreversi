@@ -119,7 +119,7 @@
 #ifndef KREVERSI_ENGINE_H
 #define KREVERSI_ENGINE_H
 
-#include <KRandomSequence>
+#include <QRandomGenerator>
 
 #include "commondefs.h"
 #include "kreversigame.h"
@@ -239,7 +239,7 @@ private:
     bool         m_competitive;
 
     uint             m_strength;
-    KRandomSequence  m_random;
+    QRandomGenerator m_random;
     bool             m_interrupt;
 
     quint64      m_coord_bit[9][9];
