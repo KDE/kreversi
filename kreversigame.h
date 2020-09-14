@@ -128,7 +128,7 @@ public:
      *  @return Is hint allowed for current player
      */
     bool isHintAllowed() const;
-private slots:
+private Q_SLOTS:
     /**
      *  Starts next player's turn.
      */
@@ -156,7 +156,7 @@ private slots:
      */
     void whiteReady();
 
-signals:
+Q_SIGNALS:
     void gameOver();
     void boardChanged();
     void moveFinished();

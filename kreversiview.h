@@ -73,7 +73,7 @@ public:
      */
     void setAnimationSpeed(int speed);
 
-public slots:
+public Q_SLOTS:
     /**
     *   This will make view visually mark the last made move
     *
@@ -95,7 +95,7 @@ public slots:
      */
     void slotHint();
 
-private slots:
+private Q_SLOTS:
     /**
      *  Triggered on user click on board, connected to QML signal
      *
@@ -111,7 +111,7 @@ private slots:
     void gameOver();
     void whitePlayerCantMove();
     void blackPlayerCantMove();
-signals:
+Q_SIGNALS:
     void userMove(KReversiPos);
 
 private:

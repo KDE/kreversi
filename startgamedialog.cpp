@@ -136,7 +136,7 @@ void StartGameDialog::loadChipImages()
 
 void StartGameDialog::slotAccepted()
 {
-    emit startGame();
+    Q_EMIT startGame();
     accept();
 }
 

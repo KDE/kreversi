@@ -51,9 +51,9 @@ PlayersCombo::PlayersCombo(QWidget *parent)
 void PlayersCombo::activatedSlot(int i)
 {
     const PlayerInfos &p = internal->playerInfos();
-    if ( i==(int)p.nbEntries() ) emit allSelected();
-    else if ( i==(int)p.nbEntries()+1 ) emit noneSelected();
-    else emit playerSelected(i);
+    if ( i==(int)p.nbEntries() ) Q_EMIT allSelected();
+    else if ( i==(int)p.nbEntries()+1 ) Q_EMIT noneSelected();
+    else Q_EMIT playerSelected(i);
 }
 
 void PlayersCombo::load()

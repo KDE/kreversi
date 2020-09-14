@@ -39,12 +39,12 @@ class PlayersCombo : public QComboBox
 
     void load();
 
- signals:
+ Q_SIGNALS:
     void playerSelected(uint i);
     void allSelected();
     void noneSelected();
 
- private slots:
+ private Q_SLOTS:
     void activatedSlot(int i);
 };
 
@@ -57,7 +57,7 @@ class AdditionalTab : public QWidget
 
     virtual void load();
 
- private slots:
+ private Q_SLOTS:
     void playerSelected(uint i) { display(i) ; }
     void allSelected();
 

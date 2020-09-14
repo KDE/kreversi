@@ -229,7 +229,7 @@ void KReversiView::onPlayerMove(int row, int col)
     if (!m_game)
         return;
 
-    emit userMove(KReversiPos(row, col));
+    Q_EMIT userMove(KReversiPos(row, col));
 }
 
 

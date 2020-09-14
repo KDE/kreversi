@@ -48,9 +48,9 @@ public:
     void skipTurn() override;
     void gameOver() override;
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
     /**
      *  Using it to get information from UI.
      *  @param move Move that player has made.

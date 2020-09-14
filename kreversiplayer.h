@@ -97,7 +97,7 @@ public:
      */
     int getUndoCount();
 
-public slots:
+public Q_SLOTS:
     /**
      *  Triggered by KReversiGame before game starts
      *  Implementation should assign @p game to m_game
@@ -121,7 +121,7 @@ public slots:
      */
     virtual void gameOver() = 0;
 
-signals:
+Q_SIGNALS:
     /**
      *  Player emit it when want to notify about his move
      */

@@ -34,7 +34,7 @@ void KReversiHumanPlayer::prepare(KReversiGame* game)
     m_game = game;
     m_state = WAITING;
 
-    emit ready();
+    Q_EMIT ready();
 }
 
 void KReversiHumanPlayer::takeTurn()
@@ -60,5 +60,5 @@ void KReversiHumanPlayer::onUICellClick(KReversiPos pos)
     }
 
     m_state = WAITING;
-    emit makeMove(KReversiMove(m_color, pos));
+    Q_EMIT makeMove(KReversiMove(m_color, pos));
 }

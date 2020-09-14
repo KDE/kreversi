@@ -39,7 +39,7 @@ void KReversiComputerPlayer::prepare(KReversiGame *game)
     m_game = game;
     m_state = WAITING;
 
-    emit ready();
+    Q_EMIT ready();
 }
 
 void KReversiComputerPlayer::takeTurn()
@@ -48,7 +48,7 @@ void KReversiComputerPlayer::takeTurn()
     KReversiMove move = m_engine->computeMove(*m_game, true);
     move.color = m_color;
     m_state = WAITING;
-    emit makeMove(move);
+    Q_EMIT makeMove(move);
 }
 
 void KReversiComputerPlayer::skipTurn()

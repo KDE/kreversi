@@ -50,7 +50,7 @@ class KReversiMainWindow : public KXmlGuiWindow
 public:
     explicit KReversiMainWindow(QWidget* parent = nullptr,  bool startDemo = false);
     ~KReversiMainWindow();
-public slots:
+public Q_SLOTS:
     void slotNewGame();
     void levelChanged();
     void slotAnimSpeedChanged(int);

@@ -96,32 +96,32 @@ void KReversiGame::makeMove(KReversiMove move)
     turnChips(move);
     
     m_delayTimer.singleShot(m_delay * (qMax(1, m_changedChips.count() - 1)), this, &KReversiGame::onDelayTimer);
-    emit boardChanged();
+    Q_EMIT boardChanged();
 }
 
 void KReversiGame::startNextTurn()
 {
     m_curPlayer = Utils::opponentColorFor(m_lastPlayer);
 
-    emit moveFinished(); // previous move has just finished
+    Q_EMIT moveFinished(); // previous move has just finished
 
     if (!isGameOver()) {
         if (isAnyPlayerMovePossible(m_curPlayer)) {
             if (m_curPlayer == White)
-                emit whitePlayerTurn();
+                Q_EMIT whitePlayerTurn();
             else
-                emit blackPlayerTurn();
+                Q_EMIT blackPlayerTurn();
         } else {
             if (m_curPlayer == White)
-                emit whitePlayerCantMove();
+                Q_EMIT whitePlayerCantMove();
             else
-                emit blackPlayerCantMove();
+                Q_EMIT blackPlayerCantMove();
 
             m_lastPlayer = m_curPlayer;
             startNextTurn();
         }
     } else { //Game is over
-        emit gameOver();
+        Q_EMIT gameOver();
     }
 }
 
@@ -168,7 +168,7 @@ int KReversiGame::undo()
     else
         m_changedChips.clear();
 
-    emit boardChanged();
+    Q_EMIT boardChanged();
     kickCurrentPlayer();
 
     return movesUndone;
@@ -389,8 +389,8 @@ ChipColor KReversiGame::chipColorAt(KReversiPos pos) const
 void KReversiGame::kickCurrentPlayer()
 {
     if (m_curPlayer == White)
-        emit whitePlayerTurn();
+        Q_EMIT whitePlayerTurn();
     else
-        emit blackPlayerTurn();
+        Q_EMIT blackPlayerTurn();
 }
 

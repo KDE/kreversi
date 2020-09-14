@@ -57,13 +57,13 @@ public:
      */
     void setChipsPrefix(ChipsPrefix prefix);
 
-signals:
+Q_SIGNALS:
     /**
      * Emitted when user has finished entering information
      */
     void startGame();
 
-private slots:
+private Q_SLOTS:
     /**
      * Handles "User changed player type for black player" event
      */

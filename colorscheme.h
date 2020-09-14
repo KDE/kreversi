@@ -41,7 +41,7 @@ public:
     QColor foreground() const;
     QColor border() const;
     
-signals:
+Q_SIGNALS:
     void placeHolder();
 };
 

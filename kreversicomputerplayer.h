@@ -60,9 +60,9 @@ public:
      */
     int lowestSkill();
 
-signals:
+Q_SIGNALS:
 
-public slots:
+public Q_SLOTS:
 
 private:
     int m_lowestSkill;

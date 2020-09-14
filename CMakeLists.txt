@@ -41,6 +41,7 @@ add_definitions(
 #    -DQT_NO_CAST_FROM_BYTEARRAY
     -DQT_NO_URL_CAST_FROM_STRING
     -DQT_USE_QSTRINGBUILDER
+    -DQT_NO_KEYWORDS
 )
 if (${KF5Config_VERSION} STRGREATER "5.56.0")
         add_definitions(-DQT_NO_FOREACH)

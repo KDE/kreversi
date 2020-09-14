@@ -90,15 +90,15 @@ class HighscoresWidget : public QWidget
 
     void load(int rank);
 
- signals:
+ Q_SIGNALS:
     void tabChanged(int i);
 
- public slots:
+ public Q_SLOTS:
     void changeTab(int i);
 
- private slots:
+ private Q_SLOTS:
     void showURL(const QString &);
-    void tabChanged() { emit tabChanged(_tw->currentIndex()); }
+    void tabChanged() { Q_EMIT tabChanged(_tw->currentIndex()); }
 
  private:
     QTabWidget     *_tw = nullptr;
@@ -116,7 +116,7 @@ class HighscoresDialog : public KPageDialog
  public:
     HighscoresDialog(int rank, QWidget *parent);
 
- private slots:
+ private Q_SLOTS:
     void slotUser1();
     void slotUser2();
     void tabChanged(int i) { _tab = i; }
@@ -166,7 +166,7 @@ class ConfigDialog : public QDialog
 
     bool hasBeenSaved() const { return _saved; }
 
- private slots:
+ private Q_SLOTS:
     void modifiedSlot();
     void removeSlot();
     void accept() override;
@@ -197,7 +197,7 @@ class AskNameDialog : public QDialog
     QString name() const { return _edit->text(); }
     bool dontAskAgain() const { return _checkbox->isChecked(); }
 
- private slots:
+ private Q_SLOTS:
     void nameChanged(QDialogButtonBox *box);
 
  private:
