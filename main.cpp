@@ -35,8 +35,6 @@
 #include "highscores.h"
 #include "mainwindow.h"
 
-static const char description[] = I18N_NOOP("KDE Reversi Board Game");
-
 int main(int argc, char **argv)
 {
     // Fixes blurry icons with fractional scaling
@@ -49,7 +47,9 @@ int main(int argc, char **argv)
 
     KLocalizedString::setApplicationDomain("kreversi");
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),
-                         QStringLiteral("2.1"), i18n(description), KAboutLicense::GPL,
+                         QStringLiteral("2.1"),
+                         i18n("KDE Reversi Board Game"),
+                         KAboutLicense::GPL,
                          i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
                          QString(), i18n("https://kde.org/applications/games/org.kde.kreversi"));
     aboutData.addAuthor(i18n("Mario Weilguni"), i18n("Original author"), QStringLiteral("mweilguni@sime.com"));
