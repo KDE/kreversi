@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 
-project(kreversi)
+# Release Service version, managed by release script
+set (RELEASE_SERVICE_VERSION_MAJOR "20")
+set (RELEASE_SERVICE_VERSION_MINOR "11")
+set (RELEASE_SERVICE_VERSION_MICRO "70")
+set (RELEASE_SERVICE_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_SERVICE_VERSION_MINOR}${RELEASE_SERVICE_VERSION_MICRO}")
+
+# Bump KREVERSI_BASE_VERSION once new features are added
+set(KREVERSI_BASE_VERSION "2.1")
+set(KREVERSI_VERSION "${KREVERSI_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
+
+project(kreversi VERSION ${KREVERSI_VERSION})
 
 set (QT_MIN_VERSION "5.10.0")
 set (KF5_MIN_VERSION "5.55.0")
@@ -32,6 +42,8 @@ include(ECMInstallIcons)
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
+include(ECMSetupVersion)
+
 set(CMAKE_CXX_STANDARD 14)
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
@@ -80,6 +92,11 @@ set(kreversi_SRCS
     mainwindow.cpp
     main.cpp
 )
+ecm_setup_version(${KREVERSI_VERSION}
+    VARIABLE_PREFIX KREVERSI
+    VERSION_HEADER kreversi_version.h
+)
+
 qt5_add_resources(kreversi_SRCS kreversi.qrc)
 ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 

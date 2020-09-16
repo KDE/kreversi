@@ -34,6 +34,7 @@
 
 #include "highscores.h"
 #include "mainwindow.h"
+#include "kreversi_version.h"
 
 int main(int argc, char **argv)
 {
@@ -47,7 +48,7 @@ int main(int argc, char **argv)
 
     KLocalizedString::setApplicationDomain("kreversi");
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),
-                         QStringLiteral("2.1"),
+                         QStringLiteral(KREVERSI_VERSION_STRING),
                          i18n("KDE Reversi Board Game"),
                          KAboutLicense::GPL,
                          i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
