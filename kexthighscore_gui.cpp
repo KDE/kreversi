@@ -33,6 +33,8 @@
 #include <QTextStream>
 #include <QVBoxLayout>
 
+#include <KIO/OpenUrlJob>
+#include <KIO/JobUiDelegate>
 #include <KGuiItem>
 #include <KIconLoader>
 #include <kio_version.h>
@@ -40,7 +42,6 @@
 #include <KIO/CopyJob>
 #include <KJobWidgets>
 #include <KMessageBox>
-#include <KRun>
 #include <KUrlLabel>
 
 #include "kexthighscore_internal.h"
@@ -207,7 +208,9 @@ void HighscoresWidget::changeTab(int i)
 void HighscoresWidget::showURL(const QString &url)
 {
 //   kDebug(11001) ;
-    (void)new KRun(QUrl(url), this);
+    auto *job = new KIO::OpenUrlJob(QUrl(url));
+    job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
+    job->start();
 }
 
 void HighscoresWidget::load(int rank)
