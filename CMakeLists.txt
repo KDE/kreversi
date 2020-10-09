@@ -26,13 +26,13 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Crash
     DBusAddons
     Declarative
+    DocTools
     I18n
     IconThemes
     KIO
     XmlGui
     WidgetsAddons
 )
-find_package(KF5DocTools ${KF5_MIN_VERSION})
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 
@@ -67,9 +67,7 @@ endif()
 add_subdirectory(pics)
 add_subdirectory(sounds)
 add_subdirectory(icons)
-if (KF5DocTools_FOUND)
-    add_subdirectory(doc)
-endif()
+add_subdirectory(doc)
 
 
 ########### next target ##############
