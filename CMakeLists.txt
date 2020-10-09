@@ -129,5 +129,6 @@ install(DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kreversi)
 install(FILES org.kde.kreversi.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 ki18n_install(po)
+kdoctools_install(po)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
