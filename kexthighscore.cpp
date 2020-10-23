@@ -20,7 +20,6 @@
 #include "kexthighscore.h"
 
 #include <QUrlQuery>
-#include <QVector>
 
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"

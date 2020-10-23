@@ -26,7 +26,6 @@
 #include <QLayout>
 #include <QLabel>
 #include <QPixmap>
-#include <QVector>
 #include <QTreeWidget>
 
 

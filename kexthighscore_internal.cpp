@@ -24,8 +24,6 @@
 #include <QCryptographicHash>
 #include <QDomDocument>
 #include <QTemporaryFile>
-#include <QTextStream>
-#include <QVector>
 
 #include <KIO/FileCopyJob>
 #include <KIO/SimpleJob>
@@ -33,7 +31,6 @@
 #include <KMessageBox>
 #include <KUser>
 
-#include "kexthighscore.h"
 #include "kexthighscore_gui.h"
 #include <KEMailSettings>
 

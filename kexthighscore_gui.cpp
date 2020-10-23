@@ -45,7 +45,6 @@
 #include <KUrlLabel>
 
 #include "kexthighscore_internal.h"
-#include "kexthighscore.h"
 #include "kexthighscore_tab.h"
 
 
