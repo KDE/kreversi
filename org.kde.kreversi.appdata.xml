@@ -119,4 +119,7 @@
   <provides>
     <binary>kreversi</binary>
   </provides>
+  <releases>
+    <release version="2.1.20120" date="2020-12-10"/>
+  </releases>
 </component>
