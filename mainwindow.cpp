@@ -30,7 +30,8 @@
 #include <QStatusBar>
 #include <QApplication>
 #include <QScreen>
-
+// KF
+#include <kwidgetsaddons_version.h>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
@@ -145,7 +146,11 @@ void KReversiMainWindow::setupActionsInit()
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 78, 0)
+    connect(m_animSpeedAct, &KSelectAction::indexTriggered, this, &KReversiMainWindow::slotAnimSpeedChanged);
+#else
     connect(m_animSpeedAct, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KReversiMainWindow::slotAnimSpeedChanged);
+#endif
 
     // Chip's color
     m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
