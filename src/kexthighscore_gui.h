@@ -84,8 +84,8 @@ class HighscoresWidget : public QWidget
     void changeTab(int i);
 
  private Q_SLOTS:
-    void showURL(const QString &);
-    void tabChanged() { Q_EMIT tabChanged(_tw->currentIndex()); }
+    void handleUrlClicked();
+    void handleTabChanged() { Q_EMIT tabChanged(_tw->currentIndex()); }
 
  private:
     QTabWidget     *_tw = nullptr;
@@ -185,9 +185,10 @@ class AskNameDialog : public QDialog
     bool dontAskAgain() const { return _checkbox->isChecked(); }
 
  private Q_SLOTS:
-    void nameChanged(QDialogButtonBox *box);
+    void nameChanged();
 
  private:
+    QDialogButtonBox *_buttonBox = nullptr;
     QLineEdit *_edit = nullptr;
     QCheckBox *_checkbox = nullptr;
 };

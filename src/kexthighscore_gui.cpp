@@ -140,7 +140,7 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
     vbox->setSpacing(QApplication::fontMetrics().lineSpacing());
 
     _tw = new QTabWidget(this);
-    connect(_tw, SIGNAL(currentChanged(int)), SLOT(tabChanged()));
+    connect(_tw, &QTabWidget::currentChanged, this, &HighscoresWidget::handleTabChanged);
     vbox->addWidget(_tw);
 
     // scores tab
@@ -170,15 +170,15 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
         QUrl url = internal->queryUrl(ManagerPrivate::Scores);
         _scoresUrl = new KUrlLabel(url.url(),
                                    i18n("View world-wide highscores"), this);
-        connect(_scoresUrl, SIGNAL(leftClickedUrl(QString)),
-                SLOT(showURL(QString)));
+        connect(_scoresUrl, QOverload<>::of(&KUrlLabel::leftClickedUrl),
+                this, &HighscoresWidget::handleUrlClicked);
         vbox->addWidget(_scoresUrl);
 
         url = internal->queryUrl(ManagerPrivate::Players);
         _playersUrl = new KUrlLabel(url.url(),
                                     i18n("View world-wide players"), this);
-        connect(_playersUrl, SIGNAL(leftClickedUrl(QString)),
-                SLOT(showURL(QString)));
+        connect(_playersUrl, QOverload<>::of(&KUrlLabel::leftClickedUrl),
+                this, &HighscoresWidget::handleUrlClicked);
         vbox->addWidget(_playersUrl);
     }
     load(-1);
@@ -191,10 +191,14 @@ void HighscoresWidget::changeTab(int i)
         _tw->setCurrentIndex(i);
 }
 
-void HighscoresWidget::showURL(const QString &url)
+void HighscoresWidget::handleUrlClicked()
 {
+    auto* label = qobject_cast<KUrlLabel*>(sender());
+    if (!label) {
+        return;
+    }
 //   kDebug(11001) ;
-    auto *job = new KIO::OpenUrlJob(QUrl(url));
+    auto *job = new KIO::OpenUrlJob(QUrl(label->url()));
     job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
     job->start();
 }
@@ -238,7 +242,7 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
 //         pageItem->setIcon( QIcon( BarIcon(icon, KIconLoader::SizeLarge) ) );
         addPage( pageItem );
         _pages.append(pageItem);
-        connect(hsw, SIGNAL(tabChanged(int)), SLOT(tabChanged(int)));
+        connect(hsw, &HighscoresWidget::tabChanged, this, &HighscoresDialog::tabChanged);
     }
 
     connect(this, &KPageDialog::currentPageChanged,
@@ -497,7 +501,7 @@ ConfigDialog::ConfigDialog(QWidget *parent)
     buttonBox = new QDialogButtonBox(this);
     
     buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Apply | QDialogButtonBox::Cancel); 
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
     // TODO mapping for Apply button
     pageTop->addWidget(buttonBox);
@@ -618,26 +622,26 @@ AskNameDialog::AskNameDialog(QWidget *parent)
     hbox->addWidget(label);
     _edit = new QLineEdit(this);
     _edit->setFocus();
-    connect(_edit, SIGNAL(textChanged(QString)), SLOT(nameChanged()));
+    connect(_edit, &QLineEdit::textChanged, this, &AskNameDialog::nameChanged);
     hbox->addWidget(_edit);
 
     //top->addSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
     _checkbox = new QCheckBox(i18n("Do not ask again."),  this);
     top->addWidget(_checkbox);
     
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
+    _buttonBox = new QDialogButtonBox(this);
     
-    buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel); 
-    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
-    top->addWidget(buttonBox);
+    _buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    connect(_buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(_buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    top->addWidget(_buttonBox);
 
-    nameChanged(buttonBox);
+    nameChanged();
 }
 
-void AskNameDialog::nameChanged(QDialogButtonBox *box)
+void AskNameDialog::nameChanged()
 {
-    box->button(QDialogButtonBox::Ok)->setEnabled( !name().isEmpty()
+    _buttonBox->button(QDialogButtonBox::Ok)->setEnabled( !name().isEmpty()
                       && !internal->playerInfos().isNameUsed(name())); 
 }
 
