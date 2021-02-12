@@ -16,13 +16,13 @@ set(kreversi_SRCS
     kexthighscore_tab.cpp
     mainwindow.cpp
     main.cpp
+    kreversi.qrc
 )
 ecm_setup_version(${KREVERSI_VERSION}
     VARIABLE_PREFIX KREVERSI
     VERSION_HEADER kreversi_version.h
 )
 
-qt5_add_resources(kreversi_SRCS kreversi.qrc)
 ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
 kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
