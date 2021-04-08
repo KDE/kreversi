@@ -20,7 +20,6 @@
 #include <QUrl>
 #include <QVector>
 
-class QTextStream;
 class QDomNamedNodeMap;
 
 
