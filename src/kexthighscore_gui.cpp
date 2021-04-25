@@ -23,7 +23,6 @@
 #include <KIO/OpenUrlJob>
 #include <KIO/JobUiDelegate>
 #include <KGuiItem>
-#include <KIconLoader>
 #include <kio_version.h>
 #include <KIO/StatJob>
 #include <KIO/CopyJob>
@@ -239,7 +238,6 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
         KPageWidgetItem *pageItem = new KPageWidgetItem( hsw, title);
         const int iconSize = style()->pixelMetric(QStyle::PM_ToolBarIconSize);
         pageItem->setIcon(QIcon::fromTheme(icon).pixmap(iconSize));
-//         pageItem->setIcon( QIcon( BarIcon(icon, KIconLoader::SizeLarge) ) );
         addPage( pageItem );
         _pages.append(pageItem);
         connect(hsw, &HighscoresWidget::tabChanged, this, &HighscoresDialog::tabChanged);

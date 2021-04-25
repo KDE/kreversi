@@ -38,7 +38,6 @@ target_link_libraries(kreversi
     KF5::Crash
     KF5::DBusAddons
     KF5::Declarative
-    KF5::IconThemes
     KF5::KIOCore
     KF5::KIOFileWidgets
     KF5::WidgetsAddons

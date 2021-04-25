@@ -28,7 +28,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Declarative
     DocTools
     I18n
-    IconThemes
     KIO
     XmlGui
     WidgetsAddons
