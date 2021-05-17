@@ -1,4 +1,11 @@
-set(kreversi_SRCS
+ecm_setup_version(${KREVERSI_VERSION}
+    VARIABLE_PREFIX KREVERSI
+    VERSION_HEADER kreversi_version.h
+)
+
+add_executable(kreversi)
+
+target_sources(kreversi PRIVATE
     commondefs.cpp
     colorscheme.cpp
     kreversigame.cpp
@@ -16,22 +23,19 @@ set(kreversi_SRCS
     kexthighscore_tab.cpp
     mainwindow.cpp
     main.cpp
+
     kreversi.qrc
 )
-ecm_setup_version(${KREVERSI_VERSION}
-    VARIABLE_PREFIX KREVERSI
-    VERSION_HEADER kreversi_version.h
-)
 
-ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
+ki18n_wrap_ui(kreversi startgamedialog.ui)
 
-kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
+kconfig_add_kcfg_files(kreversi preferences.kcfgc)
 
 file(GLOB ICON_SRCS "${CMAKE_SOURCE_DIR}/icons/hicolor/*-apps-kreversi.png")
-ecm_add_app_icon(kreversi_SRCS ICONS ${ICON_SRCS})
-add_executable(kreversi ${kreversi_SRCS})
+ecm_add_app_icon(kreversi ICONS ${ICON_SRCS})
 
 target_link_libraries(kreversi
+    KF5KDEGames
     KF5::ConfigCore
     KF5::ConfigGui
     KF5::CoreAddons
@@ -42,7 +46,6 @@ target_link_libraries(kreversi
     KF5::KIOFileWidgets
     KF5::WidgetsAddons
     KF5::XmlGui
-    KF5KDEGames
     Qt5::Svg
 )
 
