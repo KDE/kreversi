@@ -280,11 +280,7 @@ void HighscoresDialog::slotUser2()
 //   kDebug(11001) ;
     QUrl url = QFileDialog::getSaveFileUrl(this, tr("HighscoresDialog"), QUrl(), QString());
     if ( url.isEmpty() ) return;
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 69, 0)
     auto job = KIO::statDetails(url, KIO::StatJob::SourceSide, KIO::StatNoDetails);
-#else
-    auto job = KIO::stat(url, KIO::StatJob::SourceSide, 0);
-#endif
     KJobWidgets::setWindow(job, this);
     job->exec();
     if (!job->error()) {

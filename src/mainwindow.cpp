@@ -84,11 +84,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     // load saved settings
     loadSettings();
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-    setupGUI(QApplication::screens().at(0)->availableGeometry().size() * 0.7);
-#else
     setupGUI(screen()->availableGeometry().size() * 0.7);
-#endif
     m_historyDock->hide();
 }
 
@@ -130,11 +126,7 @@ void KReversiMainWindow::setupActionsInit()
     QStringList acts;
     acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
     m_animSpeedAct->setItems(acts);
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 78, 0)
     connect(m_animSpeedAct, &KSelectAction::indexTriggered, this, &KReversiMainWindow::slotAnimSpeedChanged);
-#else
-    connect(m_animSpeedAct, static_cast<void (KSelectAction::*)(int)>(&KSelectAction::triggered), this, &KReversiMainWindow::slotAnimSpeedChanged);
-#endif
 
     // Chip's color
     m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
