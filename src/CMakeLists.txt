@@ -46,7 +46,7 @@ target_link_libraries(kreversi
     KF5::KIOFileWidgets
     KF5::WidgetsAddons
     KF5::XmlGui
-    Qt5::Svg
+    Qt::Svg
 )
 
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
