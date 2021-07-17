@@ -23,7 +23,6 @@
 #include <KIO/OpenUrlJob>
 #include <KIO/JobUiDelegate>
 #include <KGuiItem>
-#include <kio_version.h>
 #include <KIO/StatJob>
 #include <KIO/CopyJob>
 #include <KJobWidgets>

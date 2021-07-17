@@ -15,7 +15,6 @@
 #include <QApplication>
 #include <QScreen>
 // KF
-#include <kwidgetsaddons_version.h>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
