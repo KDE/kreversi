@@ -4,7 +4,7 @@
   <!ENTITY % English "INCLUDE" > <!-- change language only here -->
   <!ENTITY % addindex "IGNORE"> <!-- do not change this! -->
 ]>
- 
+
 <book id="kreversi" lang="&language;"> <!-- do not change this! -->
 <bookinfo>
 	<title>The &kreversi; Handbook</title> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
@@ -38,14 +38,14 @@
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 <legalnotice>&FDLNotice;</legalnotice>
-<date>2017-11-28</date><!-- Date of (re)writing, or update.-->
-<releaseinfo>2.1 (Applications 17.12)</releaseinfo>
- 
+<date>2021-08-12</date><!-- Date of (re)writing, or update.-->
+<releaseinfo>2.1 (KDE Gear 21.08)</releaseinfo>
+
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
 	<para>This documentation describes the game of &kreversi; version 2.1</para>
 </abstract>
- 
+
 <!--List of relevan keywords-->
 <keywordset>
 	<keyword>KDE</keyword> <!-- do not change this! -->
@@ -69,7 +69,7 @@
 <chapter id="introduction"><title>Introduction</title> <!-- do not change this! -->
 	<note><title>Gametype:</title><para>Board, Arcade</para></note><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
 	<note><title>Number of possible players:</title><para>One</para></note><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
- 
+
 <!--Short game description starts here. 3-4 sentences (paragraphs)-->
 <para>&kreversi; is a simple one player strategy game played against the
 computer. The playing field is an 8 by 8 square board divided into 64
@@ -79,7 +79,7 @@ to reveal the color of that player. A winner is declared when one player has
 more pieces of his own color on the board and there are no more possible
 moves.</para>
 </chapter>
- 
+
 <chapter id="howto"><title>How to Play</title> <!-- do not change this! -->
 <!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
 	<note><title>Objective:</title><para>Get control over the majority of squares on the board.</para></note><!--Describe the objective of the game.-->
@@ -88,17 +88,17 @@ moves.</para>
 	&kreversi; loads directly into the <guilabel>New game</guilabel> dialog where
         you select the game mode, &ie; play against the computer or another human player.
         As a first player you have the right to move first.</para>
-<note><title>Note:</title><para>By default the human player always has a right to the first move.</para></note>
+<note><para>By default the human player always has a right to the first move.</para></note>
 <para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more than one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
 <para>Every single move you do in &kreversi; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
-<note><title>Note:</title><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
+<note><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
 <para>The idea here is to fill the board with the stones of your own color. The player who manages to conquer the most of the game board is announced the winner.
 	</para>
 </chapter>
- 
+
 <chapter id="rules_and_tips"><title>Game Rules, Strategies and Tips</title> <!-- do not change this! -->
 	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
-<sect1 id="basics">                 
+<sect1 id="basics">
 <title>Game Basics</title>
 
 <para>A move consists  of outflanking your opponents stone(s),  then flipping the
@@ -135,44 +135,41 @@ in the center four squares of the board in the following pattern:</para>
 </screenshot>
 
 <variablelist>
-<varlistentry>
-<term><interface>Menu Bar</interface></term>
-<listitem>
-<para>The <interface>Menu Bar</interface> contains several choices of
-drop-down menus. These are <guimenu>Game</guimenu>, <guimenu>Move</guimenu>, 
-<guimenu>View</guimenu>, <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>. 
-Click with the &LMB; or
-<keycombo action="simul">&Alt;<keycap>the underlined
-letter</keycap></keycombo> to show the drop-down menu.</para>
-</listitem>
-</varlistentry>
-</variablelist>
+  <varlistentry>
+    <term><interface>Menu Bar</interface></term>
+    <listitem><para>The <interface>Menu Bar</interface> contains several choices of
+    drop-down menus. These are <guimenu>Game</guimenu>, <guimenu>Move</guimenu>,
+    <guimenu>View</guimenu>, <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>.
+    Click with the &LMB; or <keycombo action="simul">&Alt;<keycap>the underlined letter</keycap></keycombo>
+    to show the drop-down menu.</para></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term><interface>Toolbar</interface></term>
-<listitem><para>Provides the player with icon shortcuts for commonly
-used actions. These are <guiicon>New</guiicon>,
-<guiicon>Undo</guiicon>, <guiicon>Hint</guiicon>,
-<guiicon>Show Last Move</guiicon>, and <guiicon>Show Legal Moves</guiicon>.
-Place the mouse pointer over any of these icons and click with the &LMB; to
-activate.</para></listitem>
-</varlistentry>
-</variablelist>
+  <varlistentry>
+    <term><interface>Toolbar</interface></term>
+    <listitem><para>Provides the player with icon shortcuts for commonly
+    used actions. These are <inlinemediaobject><imageobject><imagedata
+    fileref="document-new.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>New</guiicon>, <inlinemediaobject><imageobject><imagedata
+    fileref="edit-undo.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Undo</guiicon>, <inlinemediaobject><imageobject><imagedata
+    fileref="games-hint.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Hint</guiicon>, <inlinemediaobject><imageobject><imagedata
+    fileref="actions-lastmoves.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Show Last Move</guiicon>, and <inlinemediaobject><imageobject><imagedata
+    fileref="actions-legalmoves.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Show Legal Moves</guiicon>. Place the mouse pointer over any
+    of these icons and click with the &LMB; to activate.</para></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term><interface>Game Board</interface></term>
-<listitem><para>The game board consists of a 8 by 8 square board
-divided into 64 squares.</para></listitem>
-</varlistentry>
-</variablelist>
+  <varlistentry>
+    <term><interface>Game Board</interface></term>
+    <listitem><para>Consists of a 8 by 8 square board divided into 64 squares.</para></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term><interface>Status Bar</interface></term>
-<listitem><para>The status bar displays whose turn it is.</para></listitem>
-</varlistentry>
+  <varlistentry>
+    <term><interface>Status Bar</interface></term>
+    <listitem><para>Displays whose turn it is. As well as a drop-down box to choose the level of difficulty.</para></listitem>
+  </varlistentry>
 </variablelist>
 </sect1>
 
@@ -189,7 +186,7 @@ your turn.</para>
 <para>A stone may outflank any number of stones in one or more rows in
 any number of directions at the same time - horizontally, vertically
 or diagonally. A row is defined as one or more stones in a continuous
-straight line. </para>
+straight line.</para>
 
 <para>You may not skip over your own color stone to outflank an
 opposing stone.</para>
@@ -233,93 +230,77 @@ of a corner.</para>
 
 </sect1>
 </chapter>
-  
+
 <chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
 <!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist> and <varlistentry>. Split the chapter into sections using <sect1(2,3)> for better viewing.-->
 <sect1 id="menu">
 <title>Menu Items</title>
 
 <variablelist>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>New</guimenuitem></menuchoice></term>
-<listitem><para>Starts a new game.
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
-<listitem><para>Opens a dialog that displays different high score tables. 
-<!--<guibutton>Export...</guibutton> the high scores into a file or click on 
-<guibutton>Configure...</guibutton> to open a dialog to customize your 
-<guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.-->
-</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
-<guimenu>Game</guimenu><guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para>Exit &kreversi;
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycombo 
-action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
-<guimenu>Move</guimenu><guimenuitem>Undo</guimenuitem></menuchoice></term>
-<listitem><para>Removes your last move as well as the computer's last 
-move from the board.
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><shortcut><keycap>H</keycap></shortcut><guimenu>Move</guimenu><guimenuitem>Hint</guimenuitem>
-</menuchoice></term>
-<listitem><para>The computer will provide a hint for your next 
-move.</para></listitem>
-</varlistentry>
-
-    <varlistentry>
-      <term><menuchoice>
-	<guimenu>View</guimenu><guimenuitem>Show Last Move</guimenuitem>
-      </menuchoice></term>
-      <listitem><para>Highlights your opponent's last move.</para></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><menuchoice>
-	<guimenu>View</guimenu><guimenuitem>Show Legal Moves</guimenuitem>
-      </menuchoice></term>
-      <listitem><para>Highlights all the moves available for your current move.</para></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><menuchoice>
-	<guimenu>View</guimenu><guimenuitem>Show Move History</guimenuitem>
-      </menuchoice></term>
-      <listitem><para>Enables/Disables the move history sidebar.</para></listitem>
-    </varlistentry>
-
   <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Animation Speed</guisubmenu><guimenuitem>Slow</guimenuitem>
-    </menuchoice></term>
-    <listitem><para>Set the game animation speed from <guimenuitem>Slow</guimenuitem> to <guimenuitem>Fast</guimenuitem>.</para></listitem>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+    <guimenu>Game</guimenu> <guimenuitem>New</guimenuitem></menuchoice></term>
+    <listitem><para><action>Starts a new game.</action></para></listitem>
   </varlistentry>
+
   <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guimenuitem>Use Colored Chips</guimenuitem>
-    </menuchoice></term>
-    <listitem><para><action>Toggle</action> the color of the stones between black and white (default), and red and blue.</para></listitem>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
+    <guimenu>Game</guimenu> <guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
+    <listitem><para><action>Opens a dialog that displays different high score tables.</action>
+    <!--<guibutton>Export...</guibutton> the high scores into a file or click on
+    <guibutton>Configure...</guibutton> to open a dialog to customize your
+    <guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.--></para></listitem>
   </varlistentry>
+
   <varlistentry>
-    <term><menuchoice>
-      <guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu>
-    </menuchoice></term>
-    <listitem><para>Set the difficulty to be <guimenuitem>Very Easy</guimenuitem> up to <guimenuitem>Impossible</guimenuitem>.</para></listitem>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
+    <guimenu>Game</guimenu> <guimenuitem>Quit</guimenuitem></menuchoice></term>
+    <listitem><para><action>Exit &kreversi;.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+    <guimenu>Move</guimenu> <guimenuitem>Undo</guimenuitem></menuchoice></term>
+    <listitem><para><action>Removes your last move</action> as well as the computer's last move from the board.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><shortcut><keycap>H</keycap></shortcut>
+    <guimenu>Move</guimenu> <guimenuitem>Hint</guimenuitem></menuchoice></term>
+    <listitem><para>The computer will <action>provide a hint for your next move.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>View</guimenu> <guimenuitem>Show Last Move</guimenuitem></menuchoice></term>
+    <listitem><para><action>Highlights your opponent's last move.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>View</guimenu> <guimenuitem>Show Legal Moves</guimenuitem></menuchoice></term>
+    <listitem><para><action>Highlights all the moves available</action> for your current move.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>View</guimenu> <guimenuitem>Show Move History</guimenuitem></menuchoice></term>
+    <listitem><para><action>Enables/Disables the move history sidebar.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>Settings</guimenu> <guisubmenu>Animation Speed</guisubmenu></menuchoice></term>
+    <listitem><para><action>A submenu to set the game animation speed</action> between <guimenuitem>Slow</guimenuitem>, <guimenuitem>Normal</guimenuitem>, and <guimenuitem>Fast</guimenuitem> options.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>Settings</guimenu> <guimenuitem>Use Colored Chips</guimenuitem></menuchoice></term>
+    <listitem><para><action>Toggle the color of the stones between black and white (default),</action> and red and blue.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>Settings</guimenu> <guisubmenu>Difficulty</guisubmenu></menuchoice></term>
+    <listitem><para><action>Set the difficulty</action> from <guimenuitem>Very Easy</guimenuitem> to <guimenuitem>Impossible</guimenuitem>.</para></listitem>
   </varlistentry>
 </variablelist>
+
 <para>
 Additionally &kreversi; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
 menu items, for more information read the sections about the <ulink url="help:/fundamentals/menus.html#menus-settings"
@@ -329,17 +310,14 @@ of the &kde; Fundamentals.
 
 </sect1>
 </chapter>
- 
+
  <chapter id="faq"><title>Frequently asked questions</title> <!-- do not change this! -->
 <!--This chapter is for frequently asked questions. Please use <qandaset> <qandaentry> only!-->
 <qandaset>
 <!--Following is a standard list of FAQ questions.-->
 <qandaentry>
  <question><para>I want to change the way this game looks. Can I? </para></question>
- <answer><para>The only part of the game that can be changed is the color of the stones. To change the color of the stones use <menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Use Colored Chips</guimenuitem>
-</menuchoice> on the menubar.</para></answer>
+ <answer><para>The only part of the game that can be changed is the color of the stones. To change the color of the stones use the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Use Colored Chips</guimenuitem></menuchoice> menu item.</para></answer>
 </qandaentry>
 <qandaentry>
  <question><para>Can I use the keyboard to play the game?</para></question>
@@ -347,16 +325,16 @@ of the &kde; Fundamentals.
 </qandaentry>
 <qandaentry>
  <question><para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para></question>
-  <answer><para>No. &kreversi; does not have a save feature.</para></answer>
+ <answer><para>No. &kreversi; does not have a <quote>Save</quote> feature.</para></answer>
 </qandaentry>
 <!--Please add more Q&As if needed-->
- 
+
 </qandaset>
 </chapter>
- 
+
 <chapter id="credits"><title>Credits and License</title> <!-- do not change this! -->
 <!--This chapter is for credits and licenses.-->
- 
+
 <para>
 &kreversi;  <!-- do not change this! -->
 </para>
@@ -375,11 +353,11 @@ of the &kde; Fundamentals.
 
 &underFDL;
 &underGPL;
- 
+
 </chapter>
- 
- 
-&documentation.index; 
+
+
+&documentation.index;
 </book>
 <!--
 Local Variables:
