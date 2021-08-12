@@ -220,7 +220,7 @@ HighscoresDialog::HighscoresDialog(int rank, QWidget *parent)
 {
 //     kDebug(11001) << ": HighscoresDialog";
 
-    setWindowTitle( i18n("Highscores") );
+    setWindowTitle(i18nc("@title:window", "Highscores"));
 // TODO    setButtons( Close|User1|User2 );
 // TODO    setDefaultButton( Close );
     if ( internal->nbGameTypes()>1 )
@@ -404,7 +404,7 @@ ConfigDialog::ConfigDialog(QWidget *parent)
 {
 //     kDebug(11001) << ": ConfigDialog";
     
-    setWindowTitle( i18n("Configure Highscores") );
+    setWindowTitle(i18nc("@title:window", "Configure Highscores"));
     setModal( true );
     
     QWidget *page = nullptr;
@@ -597,7 +597,7 @@ AskNameDialog::AskNameDialog(QWidget *parent)
 {
 //     kDebug(11001) << ": AskNameDialog";
 
-    setWindowTitle( i18n("Enter Your Nickname") );
+    setWindowTitle(i18nc("@title:window", "Enter Your Nickname"));
 
     internal->hsConfig().readCurrentConfig();
     QVBoxLayout *top = new QVBoxLayout;

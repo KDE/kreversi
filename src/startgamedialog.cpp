@@ -23,7 +23,7 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
 {
     setModal(true);
 
-    setWindowTitle(i18n("New game"));
+    setWindowTitle(i18nc("@title:window", "New game"));
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Close);
     QVBoxLayout *mainLayout = new QVBoxLayout;
