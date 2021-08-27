@@ -135,7 +135,7 @@ int KReversiGame::undo()
         setChipColor(KReversiMove(NoColor, move.row, move.col));
 
         // and change back the color of the rest chips
-        for (const KReversiMove & pos : qAsConst(lastUndo)) {
+        for (const KReversiMove & pos : std::as_const(lastUndo)) {
             ChipColor opponentColor = Utils::opponentColorFor(m_cells[pos.row][pos.col]);
             setChipColor(KReversiMove(opponentColor, pos.row, pos.col));
         }
