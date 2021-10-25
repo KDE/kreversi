@@ -33,7 +33,7 @@ class KReversiMainWindow : public KXmlGuiWindow
     Q_OBJECT
 public:
     explicit KReversiMainWindow(QWidget* parent = nullptr,  bool startDemo = false);
-    ~KReversiMainWindow();
+    ~KReversiMainWindow() override;
 public Q_SLOTS:
     void slotNewGame();
     void levelChanged();

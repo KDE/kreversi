@@ -29,7 +29,7 @@ class StartGameDialog : public QDialog
 
 public:
     explicit StartGameDialog(QWidget *parent, KgThemeProvider *provider);
-    ~StartGameDialog();
+    ~StartGameDialog() override;
 
     /**
      * @return collected GameStartInformation

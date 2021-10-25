@@ -31,7 +31,7 @@ public:
     /**
      *  Destructor used to delete game object owned by class
      */
-    ~KReversiView();
+    ~KReversiView() override;
 
     /**
      *  Sets the game object which this view will visualize/use

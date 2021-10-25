@@ -42,7 +42,7 @@ public:
      * Constructs game with two specified players.
      */
     KReversiGame(KReversiPlayer *blackPlayer, KReversiPlayer *whitePlayer);
-    ~KReversiGame();
+    ~KReversiGame() override;
     /**
      *  @return if undo is possible
      */
