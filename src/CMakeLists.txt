@@ -6,23 +6,41 @@ ecm_setup_version(${KREVERSI_VERSION}
 add_executable(kreversi)
 
 target_sources(kreversi PRIVATE
-    commondefs.cpp
     colorscheme.cpp
-    kreversigame.cpp
-    kreversiview.cpp
-    kreversiplayer.cpp
-    kreversihumanplayer.cpp
-    kreversicomputerplayer.cpp
-    startgamedialog.cpp
+    colorscheme.h
+    commondefs.cpp
+    commondefs.h
     Engine.cpp
+    Engine.h
+    gamestartinformation.h
     highscores.cpp
+    highscores.h
     kexthighscore.cpp
     kexthighscore_gui.cpp
+    kexthighscore_gui.h
+    kexthighscore.h
     kexthighscore_internal.cpp
+    kexthighscore_internal.h
     kexthighscore_item.cpp
+    kexthighscore_item.h
     kexthighscore_tab.cpp
-    mainwindow.cpp
+    kexthighscore_tab.h
+    kreversicomputerplayer.cpp
+    kreversicomputerplayer.h
+    kreversigame.cpp
+    kreversigame.h
+    kreversihumanplayer.cpp
+    kreversihumanplayer.h
+    kreversiplayer.cpp
+    kreversiplayer.h
+    kreversiview.cpp
+    kreversiview.h
     main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    startgamedialog.cpp
+    startgamedialog.h
+
 
     kreversi.qrc
 )
