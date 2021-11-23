@@ -106,7 +106,11 @@ QString Item::pretty(uint, const QVariant &value) const
         break;
     case Anonymous:
         if ( value.toString()==QLatin1String( ItemContainer::ANONYMOUS ) )
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+            return ItemContainer::ANONYMOUS_LABEL.toString();
+#else
             return i18n(ItemContainer::ANONYMOUS_LABEL);
+#endif
         break;
     case NoSpecial:
         break;

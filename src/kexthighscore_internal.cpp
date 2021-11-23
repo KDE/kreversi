@@ -25,12 +25,21 @@
 // a build time HIGHSCORE_DIRECTORY or not
 // #include <config-highscore.h>
 
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+#undef I18N_NOOP
+#define I18N_NOOP kli18n
+#endif
+
 namespace KExtHighscore
 {
 
 //-----------------------------------------------------------------------------
 const char ItemContainer::ANONYMOUS[] = "_";
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+const KLazyLocalizedString ItemContainer::ANONYMOUS_LABEL = kli18n("anonymous");
+#else
 const char ItemContainer::ANONYMOUS_LABEL[] = I18N_NOOP("anonymous");
+#endif
 
 ItemContainer::ItemContainer()
     : _item(nullptr)
@@ -458,7 +467,11 @@ bool PlayerInfos::isNameUsed(const QString &newName) const
     if ( newName==name() ) return false; // own name...
     for (uint i=0; i<nbEntries(); i++)
         if ( newName.toLower()==item(QStringLiteral( "name" ))->read(i).toString().toLower() ) return true;
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+    if ( newName==ItemContainer::ANONYMOUS_LABEL.toString() ) return true;
+#else
     if ( newName==i18n(ItemContainer::ANONYMOUS_LABEL) ) return true;
+#endif
     return false;
 }
 
@@ -583,7 +596,11 @@ QUrl ManagerPrivate::queryUrl(QueryType type, const QString &newName) const
 }
 
 // strings that needs to be translated (coming from the highscores server)
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+const KLazyLocalizedString DUMMY_STRINGS[] = {
+#else
 const char *DUMMY_STRINGS[] = {
+#endif
     I18N_NOOP("Undefined error."),
     I18N_NOOP("Missing argument(s)."),
     I18N_NOOP("Invalid argument(s)."),
@@ -602,7 +619,11 @@ const char *DUMMY_STRINGS[] = {
     I18N_NOOP("Invalid score.")
 };
 
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+const KLazyLocalizedString UNABLE_TO_CONTACT =
+#else
 const char *UNABLE_TO_CONTACT =
+#endif
     I18N_NOOP("Unable to contact world-wide highscore server");
 
 bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
@@ -613,7 +634,11 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
     QTemporaryFile tmpFile;
     if ( !tmpFile.open() ) {
         QString details = i18n("Unable to open temporary file.");
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+        KMessageBox::detailedSorry(parent, UNABLE_TO_CONTACT.toString(), details);
+#else
         KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
+#endif
         return false;
     }
 
@@ -622,7 +647,11 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
     copyJob->exec();
     if( copyJob->error() ) {
         QString details = i18n("Server URL: %1", url.host());
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+        KMessageBox::detailedSorry(parent, UNABLE_TO_CONTACT.toString(), details);
+#else
         KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
+#endif
         return false;
     }
 
@@ -641,6 +670,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
         if ( element.tagName()==QLatin1String( "error" ) ) {
             QDomAttr attr = element.attributes().namedItem(QStringLiteral( "label" )).toAttr();
             if ( !attr.isNull() ) {
+                // see DUMMY_STRINGS
                 QString msg = i18n(attr.value().toLatin1());
                 QString caption = i18n("Message from world-wide highscores "
                                        "server");

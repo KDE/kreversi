@@ -7,6 +7,13 @@
 #ifndef KEXTHIGHSCORE_TAB_H
 #define KEXTHIGHSCORE_TAB_H
 
+#include <QtGlobal> // for QT_VERSION_CHECK
+// KF
+#include <ki18n_version.h>
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+#include <KLazyLocalizedString>
+#endif
+// Qt
 #include <QComboBox>
 #include <QVector>
 
@@ -68,9 +75,17 @@ class StatisticsTab : public AdditionalTab
 
  private:
     enum Count { Total = 0, Won, Lost, Draw, Nb_Counts };
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+    static const KLazyLocalizedString COUNT_LABELS[Nb_Counts];
+#else
     static const char *COUNT_LABELS[Nb_Counts];
+#endif
     enum Trend { CurrentTrend = 0, WonTrend, LostTrend, Nb_Trends };
+#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
+    static const KLazyLocalizedString TREND_LABELS[Nb_Trends];
+#else
     static const char *TREND_LABELS[Nb_Trends];
+#endif
     struct Data {
         uint count[Nb_Counts];
         double trend[Nb_Trends];
