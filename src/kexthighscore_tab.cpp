@@ -109,7 +109,7 @@ const char *StatisticsTab::COUNT_LABELS[Nb_Counts] = {
 #if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 const KLazyLocalizedString StatisticsTab::TREND_LABELS[Nb_Trends] = {
 #else
--const char *StatisticsTab::TREND_LABELS[Nb_Trends] = {
+const char *StatisticsTab::TREND_LABELS[Nb_Trends] = {
 #endif
     I18N_NOOP("Current:"), I18N_NOOP("Max won:"), I18N_NOOP("Max lost:")
 };
