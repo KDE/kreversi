@@ -25,21 +25,12 @@
 // a build time HIGHSCORE_DIRECTORY or not
 // #include <config-highscore.h>
 
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
-#undef I18N_NOOP
-#define I18N_NOOP kli18n
-#endif
-
 namespace KExtHighscore
 {
 
 //-----------------------------------------------------------------------------
 const char ItemContainer::ANONYMOUS[] = "_";
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 const KLazyLocalizedString ItemContainer::ANONYMOUS_LABEL = kli18n("anonymous");
-#else
-const char ItemContainer::ANONYMOUS_LABEL[] = I18N_NOOP("anonymous");
-#endif
 
 ItemContainer::ItemContainer()
     : _item(nullptr)
@@ -596,35 +587,27 @@ QUrl ManagerPrivate::queryUrl(QueryType type, const QString &newName) const
 }
 
 // strings that needs to be translated (coming from the highscores server)
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 const KLazyLocalizedString DUMMY_STRINGS[] = {
-#else
-const char *DUMMY_STRINGS[] = {
-#endif
-    I18N_NOOP("Undefined error."),
-    I18N_NOOP("Missing argument(s)."),
-    I18N_NOOP("Invalid argument(s)."),
+    kli18n("Undefined error."),
+    kli18n("Missing argument(s)."),
+    kli18n("Invalid argument(s)."),
 
-    I18N_NOOP("Unable to connect to MySQL server."),
-    I18N_NOOP("Unable to select database."),
-    I18N_NOOP("Error on database query."),
-    I18N_NOOP("Error on database insert."),
+    kli18n("Unable to connect to MySQL server."),
+    kli18n("Unable to select database."),
+    kli18n("Error on database query."),
+    kli18n("Error on database insert."),
 
-    I18N_NOOP("Nickname already registered."),
-    I18N_NOOP("Nickname not registered."),
-    I18N_NOOP("Invalid key."),
-    I18N_NOOP("Invalid submit key."),
+    kli18n("Nickname already registered."),
+    kli18n("Nickname not registered."),
+    kli18n("Invalid key."),
+    kli18n("Invalid submit key."),
 
-    I18N_NOOP("Invalid level."),
-    I18N_NOOP("Invalid score.")
+    kli18n("Invalid level."),
+    kli18n("Invalid score.")
 };
 
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 const KLazyLocalizedString UNABLE_TO_CONTACT =
-#else
-const char *UNABLE_TO_CONTACT =
-#endif
-    I18N_NOOP("Unable to contact world-wide highscore server");
+    kli18n("Unable to contact world-wide highscore server");
 
 bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
                                 QDomNamedNodeMap *map)
@@ -634,11 +617,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
     QTemporaryFile tmpFile;
     if ( !tmpFile.open() ) {
         QString details = i18n("Unable to open temporary file.");
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
         KMessageBox::detailedSorry(parent, UNABLE_TO_CONTACT.toString(), details);
-#else
-        KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
-#endif
         return false;
     }
 
@@ -647,11 +626,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
     copyJob->exec();
     if( copyJob->error() ) {
         QString details = i18n("Server URL: %1", url.host());
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
         KMessageBox::detailedSorry(parent, UNABLE_TO_CONTACT.toString(), details);
-#else
-        KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
-#endif
         return false;
     }
 

@@ -19,11 +19,6 @@
 #include "kexthighscore.h"
 #include "kexthighscore_internal.h"
 
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
-#undef I18N_NOOP
-#define I18N_NOOP kli18n
-#endif
-
 namespace KExtHighscore
 {
 
@@ -98,20 +93,12 @@ void AdditionalTab::load()
 
 
 //-----------------------------------------------------------------------------
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 const KLazyLocalizedString StatisticsTab::COUNT_LABELS[Nb_Counts] = {
-#else
-const char *StatisticsTab::COUNT_LABELS[Nb_Counts] = {
-#endif
-    I18N_NOOP("Total:"), I18N_NOOP("Won:"), I18N_NOOP("Lost:"),
-    I18N_NOOP("Draw:")
+    kli18n("Total:"), kli18n("Won:"), kli18n("Lost:"),
+    kli18n("Draw:")
 };
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 const KLazyLocalizedString StatisticsTab::TREND_LABELS[Nb_Trends] = {
-#else
-const char *StatisticsTab::TREND_LABELS[Nb_Trends] = {
-#endif
-    I18N_NOOP("Current:"), I18N_NOOP("Max won:"), I18N_NOOP("Max lost:")
+    kli18n("Current:"), kli18n("Max won:"), kli18n("Max lost:")
 };
 
 StatisticsTab::StatisticsTab(QWidget *parent)
@@ -132,11 +119,7 @@ StatisticsTab::StatisticsTab(QWidget *parent)
     //gridLay->setSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
     for (uint k=0; k<Nb_Counts; k++) {
         if ( Count(k)==Draw && !internal->showDrawGames ) continue;
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
         gridLay->addWidget(new QLabel(COUNT_LABELS[k].toString(), group), k, 0);
-#else
-        gridLay->addWidget(new QLabel(i18n(COUNT_LABELS[k]), group), k, 0);
-#endif
         _nbs[k] = new QLabel(group);
         gridLay->addWidget(_nbs[k], k, 1);
         _percents[k] = new QLabel(group);
@@ -148,11 +131,7 @@ StatisticsTab::StatisticsTab(QWidget *parent)
     gridLay = new QGridLayout(group);
     //gridLay->setSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
     for (uint k=0; k<Nb_Trends; k++) {
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
         gridLay->addWidget(new QLabel(TREND_LABELS[k].toString(), group), k, 0);
-#else
-        gridLay->addWidget(new QLabel(i18n(TREND_LABELS[k]), group), k, 0);
-#endif
         _trends[k] = new QLabel(group);
         gridLay->addWidget(_trends[k], k, 1);
     }
