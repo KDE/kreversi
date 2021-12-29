@@ -9,7 +9,6 @@
 #include "mainwindow.h"
 
 #include <QDebug>
-#include <QDesktopWidget>
 #include <QIcon>
 #include <QStatusBar>
 #include <QApplication>
