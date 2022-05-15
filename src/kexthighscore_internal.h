@@ -15,9 +15,7 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KHighscore>
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
 #include <KLazyLocalizedString>
-#endif
 
 #include <QDateTime>
 #include <QTextStream>
@@ -96,11 +94,7 @@ class ItemContainer
     bool canHaveSubGroup() const { return !_subGroup.isNull(); }
 
     static const char ANONYMOUS[]; // name assigned to anonymous players
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
     static const KLazyLocalizedString ANONYMOUS_LABEL;
-#else
-    static const char ANONYMOUS_LABEL[];
-#endif
 
     QVariant read(uint i) const;
     QString pretty(uint i) const;

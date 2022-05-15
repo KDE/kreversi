@@ -458,11 +458,7 @@ bool PlayerInfos::isNameUsed(const QString &newName) const
     if ( newName==name() ) return false; // own name...
     for (uint i=0; i<nbEntries(); i++)
         if ( newName.toLower()==item(QStringLiteral( "name" ))->read(i).toString().toLower() ) return true;
-#if KI18N_VERSION >= QT_VERSION_CHECK(5, 89, 0)
     if ( newName==ItemContainer::ANONYMOUS_LABEL.toString() ) return true;
-#else
-    if ( newName==i18n(ItemContainer::ANONYMOUS_LABEL) ) return true;
-#endif
     return false;
 }
 
