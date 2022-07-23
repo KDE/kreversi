@@ -613,7 +613,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
     QTemporaryFile tmpFile;
     if ( !tmpFile.open() ) {
         QString details = i18n("Unable to open temporary file.");
-        KMessageBox::detailedSorry(parent, UNABLE_TO_CONTACT.toString(), details);
+        KMessageBox::detailedError(parent, UNABLE_TO_CONTACT.toString(), details);
         return false;
     }
 
@@ -622,7 +622,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
     copyJob->exec();
     if( copyJob->error() ) {
         QString details = i18n("Server URL: %1", url.host());
-        KMessageBox::detailedSorry(parent, UNABLE_TO_CONTACT.toString(), details);
+        KMessageBox::detailedError(parent, UNABLE_TO_CONTACT.toString(), details);
         return false;
     }
 
@@ -645,14 +645,14 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
                 QString msg = i18n(attr.value().toLatin1());
                 QString caption = i18n("Message from world-wide highscores "
                                        "server");
-                KMessageBox::sorry(parent, msg, caption);
+                KMessageBox::error(parent, msg, caption);
                 return false;
             }
         }
     }
     QString msg = i18n("Invalid answer from world-wide highscores server.");
     QString details = i18n("Raw message: %1", content);
-    KMessageBox::detailedSorry(parent, msg, details);
+    KMessageBox::detailedError(parent, msg, details);
     return false;
 }
 
@@ -662,7 +662,7 @@ bool ManagerPrivate::getFromQuery(const QDomNamedNodeMap &map,
 {
     QDomAttr attr = map.namedItem(name).toAttr();
     if ( attr.isNull() ) {
-	    KMessageBox::sorry(parent,
+	    KMessageBox::error(parent,
                i18n("Invalid answer from world-wide "
                     "highscores server (missing item: %1).", name));
 		return false;

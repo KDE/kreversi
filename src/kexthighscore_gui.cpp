@@ -572,11 +572,11 @@ bool ConfigDialog::save()
          && !enabled ) return true;
 
     if ( newName.isEmpty() ) {
-        KMessageBox::sorry(this, i18n("Please choose a non empty nickname."));
+        KMessageBox::error(this, i18n("Please choose a non empty nickname."));
         return false;
     }
     if ( internal->playerInfos().isNameUsed(newName) ) {
-        KMessageBox::sorry(this, i18n("Nickname already in use. Please "
+        KMessageBox::error(this, i18n("Nickname already in use. Please "
                                       "choose another one"));
         return false;
     }
