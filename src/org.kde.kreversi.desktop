@@ -137,7 +137,6 @@ GenericName[wa]=Djeu d' platea Reversi
 GenericName[x-test]=xxReversi Board Gamexx
 GenericName[zh_CN]=黑白棋游戏
 GenericName[zh_TW]=黑白棋棋盤遊戲
-Terminal=false
 Icon=kreversi
 StartupNotify=true
 X-DBUS-StartupType=Multi
