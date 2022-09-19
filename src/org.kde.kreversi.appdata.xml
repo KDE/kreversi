@@ -125,6 +125,7 @@
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
+  <launchable type="desktop-id">org.kde.kreversi.desktop</launchable>
   <provides>
     <binary>kreversi</binary>
   </provides>
