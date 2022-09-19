@@ -40,7 +40,8 @@ int main(int argc, char **argv)
                          i18n("KDE Reversi Board Game"),
                          KAboutLicense::GPL,
                          i18n("(c) 1997-2000, Mario Weilguni\n(c) 2004-2006, Inge Wallin\n(c) 2006, Dmitry Suzdalev"),
-                         QString(), i18n("https://kde.org/applications/games/org.kde.kreversi"));
+                         QString(),
+                         QStringLiteral("https://apps.kde.org/kreversi"));
     aboutData.addAuthor(i18n("Mario Weilguni"), i18n("Original author"), QStringLiteral("mweilguni@sime.com"));
     aboutData.addAuthor(i18n("Inge Wallin"), i18n("Original author"), QStringLiteral("inge@lysator.liu.se"));
     aboutData.addAuthor(i18n("Dmitry Suzdalev"), i18n("Game rewrite for KDE4. Current maintainer."), QStringLiteral("dimsuz@gmail.com"));
