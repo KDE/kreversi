@@ -7,14 +7,18 @@
 */
 
 #include "kreversiview.h"
+
+// game
 #include "colorscheme.h"
-
+// KF
 #include <KLocalizedString>
-
+#include <KLocalizedContext>
+// Qt
 #include <QStandardPaths>
+#include <QQmlContext>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)
-    : KgDeclarativeView(parent),
+    : QQuickWidget(parent),
     m_provider(provider),
     m_delay(ANIMATION_SPEED_NORMAL),
     m_game(nullptr),
@@ -22,7 +26,14 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider 
     m_showLegalMoves(false),
     m_showLabels(false)
 {
-    m_provider->setDeclarativeEngine(QStringLiteral("themeProvider"), engine());
+    QQmlEngine *engine = this->engine();
+
+    auto *localizedContextObject = new KLocalizedContext(engine);
+    engine->rootContext()->setContextObject(localizedContextObject);
+
+    setResizeMode(SizeRootObjectToView);
+
+    m_provider->setDeclarativeEngine(QStringLiteral("themeProvider"), engine);
 
     qmlRegisterType<ColorScheme>("ColorScheme", 1, 0, "ColorScheme");
 

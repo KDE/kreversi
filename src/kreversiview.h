@@ -9,12 +9,13 @@
 #ifndef KREVERSI_VIEW_H
 #define KREVERSI_VIEW_H
 
-
-#include <KgDeclarativeView>
-#include <KgThemeProvider>
-
+// game
 #include "commondefs.h"
 #include "kreversigame.h"
+// KDEGames
+#include <KgThemeProvider>
+// Qt
+#include <QQuickWidget>
 
 /**
  *  This class provides graphical representation of KReversiGame
@@ -23,7 +24,7 @@
  *  receives a mouse events, translates them with signals,
  *  receives board-changed notifications, nicely animates them.
  */
-class KReversiView : public KgDeclarativeView
+class KReversiView : public QQuickWidget
 {
     Q_OBJECT
 public:
