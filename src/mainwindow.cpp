@@ -11,7 +11,6 @@
 #include <QDebug>
 #include <QIcon>
 #include <QStatusBar>
-#include <QApplication>
 #include <QScreen>
 // KF
 #include <KActionCollection>

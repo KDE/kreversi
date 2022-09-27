@@ -15,7 +15,6 @@
 #include <KLocalizedContext>
 // Qt
 #include <QStandardPaths>
-#include <QQmlContext>
 
 KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)
     : QQuickWidget(parent),
