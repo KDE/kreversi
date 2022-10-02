@@ -1,0 +1,705 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Brazilian-Portuguese "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+ 
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Manual do &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Desenvolvedor</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Revisor</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Stephen</firstname
+><surname
+>Killing</surname
+><affiliation
+><address
+><email
+>stephen.killing@kdemail.net</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>28/11/2017</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (Applications 17.12)</releaseinfo>
+ 
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Esta documentação descreve o jogo &kreversi; na versão 2.1</para>
+</abstract>
+ 
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>jogo</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kreversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>tabuleiro</keyword>
+	<keyword
+>arcade</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>um jogador</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>pedras</keyword>
+	<keyword
+>branco</keyword>
+	<keyword
+>preto</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Introdução</title
+> <!-- do not change this! -->
+	<note
+><title
+>Tipo de jogo:</title
+><para
+>Tabuleiro, arcade</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Número de possíveis jogadores:</title
+><para
+>Um</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+ 
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>O &kreversi; é um jogo simples de estratégia para um jogador que pratica contra o computador. O campo de jogo é um tabuleiro quadrado de 8 por 8 casas, dividido equitativamente em 64 quadrados. A peça de jogo usada é uma pedra colorida - um dos seus lados é vermelho, enquanto o outro é azul. Se uma peça for capturada por um jogador adversário, essa peça é virada para revelar a cor desse jogador. É declarado um vencedor quando esse jogador ficar com mais peças da sua cor no tabuleiro e se não existirem mais jogadas possíveis.</para>
+</chapter>
+ 
+<chapter id="howto"
+><title
+>Como jogar</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Objetivo:</title
+><para
+>O objetivo do jogo é controlar a maioria dos quadrados do tabuleiro.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>O &kreversi; inicia diretamente na janela <guilabel
+>Novo jogo</guilabel
+> onde você pode selecionar o modo de jogo, &ie;  jogar contra o computador ou outro jogador. Como primeiro jogador, você terá o direito a jogar primeiro.</para>
+<note
+><title
+>Nota:</title
+><para
+>Por padrão, o jogador humano tem sempre o direito à primeira jogada.</para
+></note>
+<para
+>Agora, imagine com cada jogada que a sua pedra tem que saltar por cima da pedra ou pedras do adversário. De qualquer forma, a sua pedra não muda de posição após a jogada; em vez disso, é colocada uma pedra nova no local onde deveria aparecer a sua pedra, se pudesse saltar de fato. Logo que termine a jogada, todas as peças inimigas que tiver passado por cima passam a ser suas, mudando a sua respectiva cor.</para>
+<para
+>Cada jogada individual que fizer no &kreversi; tem que ser feita desta forma. O jogador pode saltar as suas pedras na horizontal, vertical ou diagonal. Porém, no caso de não existir nada para saltar, a sua vez será cedida automaticamente.</para>
+<note
+><title
+>Nota:</title
+><para
+>A mesma regra aplica-se ao seu inimigo. Se não existir a possibilidade de fazer uma jogada, a vez dele é cedida.</para
+></note>
+<para
+>A ideia aqui é preencher o tabuleiro com as pedras da sua cor. O jogador que conseguir conquistar a maior parte do tabuleiro de jogo é anunciado como vencedor. </para>
+</chapter>
+ 
+<chapter id="rules_and_tips"
+><title
+>Regras do jogo, estratégias e dicas</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics"
+>                 
+<title
+>Fundamentos do Jogo</title>
+
+<para
+>Uma jogada consiste em flanquear por fora as padras do seu adversário, virando então as pedras flanqueadas para revelar a sua cor. A jogada é efetuada, colocando o cursor do mouse em cima do quadrado desejado e clicando então com o &LMB;.</para>
+
+<para
+>'Flanquear por fora' significa colocar uma pedra no tabuleiro, de modo a que as fileiras de pedras do seu adversário fiquem contornadas em cada extremo por uma pedra da sua cor. Uma fileira poderá ser criada a partir de uma ou mais pedras.</para>
+
+<para
+>O jogo começa com a janela <guilabel
+>Novo jogo</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Seleção de modo de jogo do &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Seleção de modo de jogo do &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Seleção de modo de jogo</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Para ver uma demonstração do jogo, selecione <guilabel
+>Computador</guilabel
+> para ambos os jogadores.</para>
+
+<para
+>Cada jogador automaticamente tem duas pedras colocadas nos quatro quadrados do centro do tabuleiro, seguindo o seguinte padrão:</para>
+
+<screenshot>
+<screeninfo
+>Posição de abertura do &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Posição de abertura do &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Disposição do tabuleiro</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Barra de Menu</interface
+></term>
+<listitem>
+<para
+>A <interface
+>Barra de menus</interface
+> contém vários menus. Estes são o <guimenu
+>Jogo</guimenu
+>, <guimenu
+>Mover</guimenu
+>, <guimenu
+>Exibir</guimenu
+>, <guimenu
+>Configurações</guimenu
+> e <guimenu
+>Ajuda</guimenu
+>. Clicar com o &LMB; ou pressionar <keycombo action="simul"
+>&Alt;<keycap
+>a tecla sublinhada</keycap
+></keycombo
+>, irá abrir o menu correspondente.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Barra de ferramentas</interface
+></term>
+<listitem
+><para
+>Oferece ao jogador alguns atalhos com ícones para as ações mais usadas. Estas são o <guiicon
+>Novo</guiicon
+>, <guiicon
+>Desfazer</guiicon
+>, <guiicon
+>Dica</guiicon
+>, <guiicon
+>Mostrar a última Jogada</guiicon
+> e <guiicon
+>Mostrar os movimentos válidos</guiicon
+>. Coloque o cursor do mouse sobre qualquer um desses ícones e clique com o &LMB; para ativá-lo.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Tabuleiro do jogo</interface
+></term>
+<listitem
+><para
+>O tabuleiro do jogo é um tabuleiro quadrado 8 por 8 dividido em 64 quadrados.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Barra de status</interface
+></term>
+<listitem
+><para
+>A barra de estado mostra de quem é vez.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Regras do jogo</title>
+
+<para
+>As suas peças movem-se sempre primeiro.</para>
+
+<para
+>Se, na sua jogada, não conseguir flanquear por fora pelo menos uma pedra adversária, a sua vez é descartada e o seu adversário volta a jogar. Todavia, se for possível efetuar uma jogada, você não poderá descartá-la.</para>
+
+<para
+>Uma pedra poderá flanquear um número qualquer de pedras numa ou mais fileiras em qualquer direção - horizontalmente, verticalmente ou na diagonal. Uma fileira é definida através de uma ou mais pedras numa linha contínua e direta. </para>
+
+<para
+>Você não poderá saltar por cima de uma pedra da sua cor para flanquear por fora uma pedra adversária.</para>
+
+<para
+>Pedras só podem ser cercadas como resultado direto de uma jogada e devem estar na mesma linha da pedra colocada.</para>
+
+<para
+>Todas as pedras cercadas em qualquer jogada devem ser viradas, mesmo que haja vantagem para o jogador em não virá-las.</para>
+
+<para
+>Uma vez que uma pedra é colocada em um quadrado ela nunca pode ser movida para outro quadrado depois durante o jogo.</para>
+
+<para
+>Quando não for mais possível para nenhum jogador fazer jogadas o jogo acabou. As pedras então são contadas e o jogador com a maior quantidade de peças de sua cor é o vencedor.</para>
+
+<note
+><para
+>É possível que um jogo acabe antes de serem preenchidos todos os 64 quadrados.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Estratégias e dicas</title>
+
+<para
+>Tente colocar pedras nas bordas sempre que possível. O seu adversário não as pode cercar.</para>
+
+<para
+>Evite colocar pedras em algum dos três quadrados próximos de um canto, a menos que você esteja absolutamente certo de que seu adversário não conseguirá colocar uma pedra no canto.</para>
+
+<para
+>Às vezes é melhor deixar o adversário capturar algumas pedras.</para>
+
+<para
+>Tente colocar pedras nos quadrados que impedem o seu adversário de se mexer.</para>
+
+<para
+>Tente forçar seu adversário a colocar uma pedra em um quadrado próximo ao de um canto.</para>
+
+</sect1>
+</chapter>
+  
+<chapter id="interface"
+><title
+>Resumo da interface</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Itens dos menus</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Novo</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Inicia um novo jogo. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mostrar recordes</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Abre uma janela que exibe as diferentes tabelas de recordes. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Sair</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Sai do &kreversi; </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mover</guimenu
+><guimenuitem
+>Desfazer</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Desfaz a sua última jogada bem como a última jogada do computador. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Mover</guimenu
+><guimenuitem
+>Dica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>O computador fornece uma dica para sua próxima jogada.</para
+></listitem>
+</varlistentry>
+
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Ver</guimenu
+><guimenuitem
+>Mostrar a Última Jogada</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Realça a última jogada do seu adversário.</para
+></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Ver</guimenu
+><guimenuitem
+>Mostrar os Movimentos Possíveis</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Realça todas as jogadas disponíveis para a sua jogada atual.</para
+></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Ver</guimenu
+><guimenuitem
+>Mostrar o Histórico de Movimentos</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Ativa/desativa a barra lateral do histórico de movimentos.</para
+></listitem>
+    </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+><guisubmenu
+>Velocidade de Animação</guisubmenu
+><guimenuitem
+>Lenta</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>A velocidade da animação do jogo pode ser definida de <guimenuitem
+>Lenta</guimenuitem
+> até <guimenuitem
+>Rápida</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Usar Peças Coloridas</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ativa/desativa</action
+> a cor das pedras entre preto e branco (por padrão) ou vermelho e azul.</para
+></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+><guisubmenu
+>Dificuldade</guisubmenu
+> </menuchoice
+></term>
+    <listitem
+><para
+>Configura a dificuldade para ser <guimenuitem
+>Muito fácil</guimenuitem
+> até <guimenuitem
+>Impossível</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+<para
+>O &kreversi; possui os itens dos menus <guimenu
+>Configurações</guimenu
+> e <guimenu
+>Ajuda</guimenu
+>, comuns do &kde;. Para mais informações, consulte as seções sobre o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Configurações</ulink
+> e o <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+
+</sect1>
+</chapter>
+ 
+ <chapter id="faq"
+><title
+>Perguntas frequentes</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Eu quero alterar o visual do jogo. É possível? </para
+></question>
+ <answer
+><para
+>A única parte do jogo que pode ser alterada é a cor das pedras. Para mudar a cor das pedras, use a opção <menuchoice
+> <guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Usar Peças Coloridas</guimenuitem
+> </menuchoice
+> no menu.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Posso usar o teclado para jogar?</para
+></question>
+ <answer
+><para
+>Não. O &kreversi; não oferece nenhuma forma de jogar com o teclado.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Eu tenho que sair do jogo agora, mas ainda não terminei. Posso salvar a minha situação atual?</para
+></question>
+  <answer
+><para
+>Não. O &kreversi; não tem uma funcionalidade de gravação.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+ 
+</qandaset>
+</chapter>
+ 
+<chapter id="credits"
+><title
+>Créditos e licença</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+ 
+<para
+>&kreversi; </para>
+
+<para
+>Direitos autorais do programa 1998-2000 &Mario.Weilguni;</para>
+<para
+>Mats Luthman - desenvolvedor do mecanismo de jogadas.</para>
+
+<para
+>Documentação original por &Mario.Weilguni;</para>
+<para
+>Editado por Robert Williams</para>
+
+<para
+>Documentação reescrita e atualizada para o 2.0 por &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Tradução de Stephen Killing <email
+>stephen.killing@kdemail.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+ 
+ 
+&documentation.index; 
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

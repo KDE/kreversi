@@ -1,0 +1,772 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Italian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Manuale di &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Sviluppatore</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Reviewer</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Valter</firstname
+><surname
+>Mura</surname
+><affiliation
+><address
+><email
+>valtermura@gmail.com</email
+></address
+></affiliation
+><contrib
+>Traduzione e revisione della documentazione</contrib
+><firstname
+>Andrea</firstname
+><surname
+>Celli</surname
+><affiliation
+><address
+><email
+>andrea.celli@libero.it</email
+></address
+></affiliation
+><contrib
+>Traduzione della documentazione</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2021-08-12</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Questa documentazione descrive il gioco di &kreversi; versione 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>gioco</keyword
+> <!-- do not change this! -->
+	<keyword
+>KReversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>da tavolo</keyword>
+	<keyword
+>arcade</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>un giocatore</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>pedine</keyword>
+	<keyword
+>bianco</keyword>
+	<keyword
+>nero</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Introduzione</title
+> <!-- do not change this! -->
+	<note
+><title
+>Tipo di gioco:</title
+><para
+>Da tavolo, arcade</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Numero di possibili giocatori:</title
+><para
+>Uno</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; è un semplice gioco di strategia che viene giocato da un solo giocatore contro il computer. Il campo di gioco è un tavoliere quadrato diviso in 64 (8x8) caselle. I pezzi con cui si gioca sono delle pedine a due facce, le quali sono di colore diverso. Se una pedina viene catturata dal giocatore avversario, viene girata per assumere il colore di chi l'ha catturata. Viene dichiarato un vincitore quando non è più possibile fare delle mosse e un giocatore ha dato il proprio colore alla maggioranza delle pedine sul tavoliere.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Come si gioca</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Scopo del gioco:</title
+><para
+>Ottenere il controllo della maggior parte delle caselle del tavoliere.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kappname; si avvia direttamente con la finestra di dialogo <guilabel
+>Nuova partita</guilabel
+>, in cui puoi selezionare la modalità di gioco, ossia giocare contro il computer o contro un altro giocatore. Come primo giocatore hai diritto di muovere per primo.</para>
+<note
+><para
+>Per impostazione predefinita, il giocatore umano ha il diritto di muovere per primo.</para
+></note>
+<para
+>Ora, immagina che con ciascuna mossa la tua pedina debba oltrepassare (saltare) la pedina dell'avversario (o le pedine, dato che possono essere più d'una). La tua pedina non viene riposizionata dopo la mossa ma viene inserita una nuova pedina sul tavoliere nel punto in cui essa sarebbe apparsa se avesse saltato realmente. Dopo aver eseguito la mossa, tutte le pedine avversarie saltate diventano tue e cambiano il loro colore.</para>
+<para
+>Ogni singola mossa che esegui in &kreversi; deve essere compiuta in questo modo: puoi far saltare le tue pedine verticalmente, orizzontalmente e diagonalmente; nel caso in cui non vi sia alcun punto in cui saltare, il tuo turno sarà automaticamente saltato.</para>
+<note
+><para
+>La medesima regola è applicata al tuo avversario: se non ha possibilità di eseguire una mossa, il suo turno è saltato.</para
+></note>
+<para
+>L'idea è riempire il tavoliere con le pedine del tuo colore. Il giocatore che riesce a conquistare la maggior parte del tavoliere è proclamato vincitore. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Regole del gioco, strategie e suggerimenti</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Fondamentali di gioco</title>
+
+<para
+>Una mossa consiste nell'accerchiare una o più pedine avversarie e quindi girarle per renderle del proprio colore. Per muovere si posiziona il puntatore del mouse su una casella e poi si preme il &LMB;.</para>
+
+<para
+>Accerchiare significa collocare una pedina sul tavoliere in modo tale che una o più righe di pedine avversarie siano delimitate ad entrambe le estremità da pedine del tuo colore. Una riga può essere composta da una o più pedine.</para>
+
+<para
+>Il gioco inizia con la finestra di dialogo <guilabel
+>Nuova partita</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Selezione della modalità di gioco di &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Selezione della modalità di gioco di &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Selezione della modalità di gioco</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Per vedere una dimostrazione del gioco, selezionate <guilabel
+>Computer</guilabel
+> per entrambi i giocatori.</para>
+
+<para
+>Ciascun giocatore possiede automaticamente due pedine collocate nelle quattro caselle centrali del tavoliere con la seguente disposizione:</para>
+
+<screenshot>
+<screeninfo
+>Disposizione di partenza per &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Disposizione di partenza per &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Aspetto del tavoliere</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Barra dei menu</interface
+></term>
+    <listitem
+><para
+>La <interface
+>Barra dei menu</interface
+> contiene diversi menu a tendina. Essi sono: <guimenu
+>Gioco</guimenu
+>, <guimenu
+>Mosse</guimenu
+><guimenu
+>Vista</guimenu
+><guimenu
+>Impostazioni</guimenu
+><guimenu
+>Aiuto</guimenu
+>. Usa il &LMB; o premi contemporaneamente <keycombo action="simul"
+>&Alt;<keycap
+>la lettera sottolineata</keycap
+></keycombo
+> per far apparire il menu a tendina.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barra degli strumenti</interface
+></term>
+    <listitem
+><para
+>Fornisce al giocatore alcune icone per avviare rapidamente le azioni più comuni. Esse sono: <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Nuovo</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Annulla</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Suggerimento</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostra ultima mossa</guiicon
+> e <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostra mosse consentite</guiicon
+>. Per attivarle, basta porvi sopra il puntatore del mouse e premere il &LMB;.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Tavoliere</interface
+></term>
+    <listitem
+><para
+>Consiste di una tavola quadrata 8x8, divisa in 64 riquadri.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barra di stato</interface
+></term>
+    <listitem
+><para
+>Mostra a chi tocca giocare, e anche un menu a tendina per scegliere il livello di difficoltà.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Regole del gioco</title>
+
+<para
+>Tu muovi sempre per primo.</para>
+
+<para
+>Se, quando tocca a te, non puoi circondare e rovesciare almeno una pedina avversaria, il tuo turno salta e tocca nuovamente al tuo avversario. Viceversa, se tu puoi fare una mossa, non puoi saltare il turno.</para>
+
+<para
+>Una pedina può servire contemporaneamente a circondare un qualsiasi numero di pedine, lungo una o più righe, in qualsiasi direzione (orizzontale, verticale o diagonale). Una linea è definita come un insieme di una o più pedine attraversate, senza interruzioni, da una retta.</para>
+
+<para
+>Non puoi metterti su una tua pedina per accerchiarne una avversaria.</para>
+
+<para
+>Le pedine risultano circondate solo come diretto risultato di una mossa. Ossia se sono allineate con la pedina appena collocata.</para>
+
+<para
+>Tutte le pedine che risultano circondate dopo una mossa devono essere rovesciate. Anche se non convenisse a chi a fatto la mossa.</para>
+
+<para
+>Una volta che una pedina è stata posta in una casella, non può più essere spostata su un'altra casella nel corso del gioco.</para>
+
+<para
+>Quando non è più possibile per entrambi i giocatori effettuare mosse, la partita termina. A questo punto si contano le pedine e chi ha più pedine del proprio colore sul tavoliere viene dichiarato vincitore.</para>
+
+<note
+><para
+>È possibile che una partita termini senza che siano state riempite tutte le 64 caselle.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategie e suggerimenti</title>
+
+<para
+>Cerca, per quanto possibile, di piazzare le tue pedine negli angoli. Il tuo avversario non potrà circondare quelle pedine.</para>
+
+<para
+>Evita assolutamente di mettere una pedina nelle tre caselle vicine ad una d'angolo, a meno che tu non sia assolutamente sicuro che il tuo avversario non possa metterne una nell'angolo.</para>
+
+<para
+>Certe volte può essere conveniente lasciare delle pedine all'avversario.</para>
+
+<para
+>Cerca di collocare le pedine in posti che impediscano al tuo avversario di muovere.</para>
+
+<para
+>Cerca di obbligare il tuo avversario a mettere una pedina in una casella vicina a un angolo.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Panoramica dell'interfaccia</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Elementi del menu</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Partita</guimenu
+> <guimenuitem
+>Nuova</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Inizia una nuova partita.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Partita</guimenu
+> <guimenuitem
+>Mostra la classifica</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Apre una finestra di dialogo che mostra diverse classifiche.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Partita</guimenu
+> <guimenuitem
+>Esci</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Esce da &kreversi;.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mossa</guimenu
+> <guimenuitem
+>Annulla</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Toglie</action
+> dal tavoliere l'ultima pedina che hai messo tu e l'ultima messa dal computer.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mossa</guimenu
+> <guimenuitem
+>Suggerimento</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>Il computer ti <action
+>darà un consiglio per la tua prossima mossa</action
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Vista</guimenu
+> <guimenuitem
+>Mostra ultima mossa</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Evidenzia l'ultima mossa del tuo avversario.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Vista</guimenu
+> <guimenuitem
+>Mostra mosse consentite</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Evidenzia tutte le mosse disponibili</action
+> per la tua mossa corrente.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Vista</guimenu
+> <guimenuitem
+>Mostra cronologia mosse</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Attiva/disattiva la barra della cronologia mosse.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Velocità di animazione</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Menu secondario che imposta la velocità di animazione del gioco</action
+> da <guimenuitem
+>Lenta</guimenuitem
+> a <guimenuitem
+>Normale</guimenuitem
+> a <guimenuitem
+>Veloce</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Usa pedine colorate</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Alterna il colore delle pedine da bianco e nero (predefinito)</action
+> a rosso e blu.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guisubmenu
+>Difficoltà</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Imposta la difficoltà</action
+> da <guimenuitem
+>Molto facile</guimenuitem
+> a <guimenuitem
+>Impossibile</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>In aggiunta, &kreversi; contiene gli elementi di menu <guimenu
+>Impostazioni</guimenu
+> e <guimenu
+>Aiuto</guimenu
+>, comuni di &kde;, per ulteriori informazioni leggi le sezioni relative al <ulink url="help:/fundamentals/menus.html#menus-settings"
+>menu Impostazioni</ulink
+> e <ulink url="help:/fundamentals/menus.html#menus-help"
+>menu Aiuto</ulink
+> dei Fondamentali di &kde;. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Domande ricorrenti</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Come posso cambiare l'aspetto del gioco? </para
+></question>
+ <answer
+><para
+>L'unica parte del gioco modificabile è il colore delle pedine. Per cambiare il colore delle pedine scegli l'elemento del menu <menuchoice
+> <guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Usa pedine colorate</guimenuitem
+></menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Posso usare la tastiera per giocare?</para
+></question>
+ <answer
+><para
+>No. &kreversi; non prevede il gioco con tastiera.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Devo uscire dal gioco ma non ho ancora finito. Posso salvare la mia partita?</para
+></question>
+ <answer
+><para
+>No. &kreversi; non possiede un'opzione di <quote
+>salvataggio</quote
+>.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Riconoscimenti e licenza</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Copyright 1998-2000 sul programma: &Mario.Weilguni;</para>
+<para
+>Mats Luthman - Progettatore del meccanismo di movimento.</para>
+
+<para
+>Documentazione originale: &Mario.Weilguni;</para>
+<para
+>Supervisione di Robert Williams</para>
+
+<para
+>Documentazione riscritta e aggiornata per 2.0 da &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Traduzione della documentazione: Andrea Celli <email
+>andrea.celli@libero.it</email
+> e Valter Mura <email
+>valtermura@gmail.com</email
+></para
+> <para
+>Traduzione dell'interfaccia grafica: Andrea Celli <email
+>andrea.celli@libero.it</email
+> e Andrea Rizzi <email
+>rizzi@kde.org</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

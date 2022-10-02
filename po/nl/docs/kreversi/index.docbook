@@ -1,0 +1,734 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Dutch "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Het handboek van &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Ontwikkelaar</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Nalezer</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+&Niels.Reedijk;&Rinse.Devries;&Sander.Koning; 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2021-08-12</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Deze documentatie beschrijft het spel van &kreversi; versie 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>spel</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kreversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>bord</keyword>
+	<keyword
+>arcade</keyword>
+	<keyword
+>GA</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>één speler</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>stenen</keyword>
+	<keyword
+>wit</keyword>
+	<keyword
+>zwart</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Inleiding</title
+> <!-- do not change this! -->
+	<note
+><title
+>Speltype:</title
+><para
+>Bord, Arcade</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Aantal mogelijke spelers:</title
+><para
+>Eén</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; is een eenvoudig strategiespel dat u tegen de computer speelt. Het speelveld is een 8 x 8 vierkant bord dat is opgedeeld in 64 vakjes. De speelstukken zijn tweezijdige stenen - waar elke zijde zijn eigen onderscheidende kleur heeft. Als een steen wordt overgenomen door een tegenstander, dan wordt de steen omgedraaid en de kleur ervan verandert in die van de tegenstander. De winnaar wordt uitgeroepen als een van de spelers meer stenen in zijn kleur op het bord heeft en er geen zetten meer mogelijk zijn.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Hoe te spelen</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Doel:</title
+><para
+>Krijg de controle over de meeste vakjes op het bord.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kreversi; laadt direct in de dialoog <guilabel
+>Nieuw spel</guilabel
+> wanneer u de spelmodus selecteert, &ie; spelen tegen de computer of een andere menselijke speler. Als eerste speler hebt u het recht de eerste zet doet.</para>
+<note
+><para
+>Standaard heeft de menselijke speler altijd het recht op de eerste zet.</para
+></note>
+<para
+>Stelt u zichzelf voor dat u bij elke zet uw steen over die van uw tegenstander moet springen (of meer dan één omdat er meer dan één steen is). Uw steen gaat gaat niet terug naar zijn vorige plaats na de zet, in plaats daarvan wordt er een nieuwe steen op het bord geplaatst daar waar uw steen zou zijn verschenen als deze echt kon springen. Nadat de zet is gedaan worden alle stenen, waar u overheen sprong, van u en wijzigt hun kleur overeenkomstig.</para>
+<para
+>Elke zet die u doet in &kreversi; moet op deze manier worden gedaan. U kunt met uw stenen verticaal, horizontaal en diagonaal springen. Maar als u nergens naar toe kunt springen, dan wordt uw beurt automatisch overgeslagen.</para>
+<note
+><para
+>De zelfde regels gelden voor uw tegenstander. Als er geen zet gedaan kan worden slaat u uw beurt over.</para
+></note>
+<para
+>Het idee is hier om het bord met de stenen van uw eigen kleur te vullen. De speler die het grootste deel van het speelbord verovert is de winnaar. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Spelregels, strategieën en tips</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Grondbeginselen</title>
+
+<para
+>Een zet bestaat uit het insluiten van een of enkele stenen van uw tegenstander, en dan de ingesloten stenen omdraaien naar uw kleur. U voert een zet uit door de muisaanwijzer op het gewenste vakje te plaatsen en met de &LMB; te klikken.</para>
+
+<para
+>Insluiten houdt in dat u een steen zo op het bord plaatst dat een steen of rij stenen van uw tegenstander aan beide zijden een steen van uw kleur heeft. Een rij bestaat uit één of meer stenen.</para>
+
+<para
+>Het spel begint met de dialoog <guilabel
+>Nieuw spel</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Selectie van spelmodus van &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Selectie van spelmodus van &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Selectie van spelmodus</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Om een demo te zien van de spelselectie <guilabel
+>Computer</guilabel
+> voor beide spelers.</para>
+
+<para
+>Elke speler begint automatisch met twee stenen geplaatst in de middelste vier vierkantjes van het bord in het volgende patroon:</para>
+
+<screenshot>
+<screeninfo
+>Openingspositie van &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Openingspositie van &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Indeling van het bord</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Menubalk</interface
+></term>
+    <listitem
+><para
+>De <interface
+>menubalk</interface
+> de volgende keuzes of afrolmenu's: Deze zijn <guimenu
+>Spel</guimenu
+>, <guimenu
+>Zet</guimenu
+>, <guimenu
+>Beeld</guimenu
+>, <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+>. Klik er met de &LMB; op of druk op de toetsen <keycombo action="simul"
+>&Alt;<keycap
+>onderstreepte letter</keycap
+></keycombo
+> om het afrolmenu te tonen.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Werkbalk</interface
+></term>
+    <listitem
+><para
+>Levert de gebruiker sneltoetspictogrammen voor de meest gebruikte handelingen. Dit zijn <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Nieuw</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Undo</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Tip</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Laatste zet tonen</guiicon
+> en <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Toegestane zetten tonen</guiicon
+>. Plaats de muiswijzer boven een van deze pictogrammen en klik met de &LMB; om te activeren.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Spelbord</interface
+></term>
+    <listitem
+><para
+>Bestaat uit een 8 bij 8 vierkant bord dat is opgedeeld in 64 vakjes.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Statusbalk</interface
+></term>
+    <listitem
+><para
+>Toont wiens beurt het is. Evenals een afrolvak om de moeilijkheidsgraad te kiezen.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Spelregels</title>
+
+<para
+>U begint als eerste.</para>
+
+<para
+>Als u aan beurt bent, maar u kunt geen steen van de tegenstander insluiten en omdraaien, dan gaat uw beurt over en mag de tegenstander weer. U kunt geen beurten overslaan als u wel stenen kunt insluiten.</para>
+
+<para
+>Een steen kan een willekeurig aantal stenen in een of meer rijen in elke richting tegelijkertijd insluiten - horizontaal, verticaal en diagonaal. Met een rij bedoelen we 1 of meer stenen achter elkaar.</para>
+
+<para
+>U kunt niet over stenen van uw eigen kleur springen om een steen van de tegenstander in te sluiten.</para>
+
+<para
+>U kunt alleen stenen op het bord plaatsen als deze onmiddellijk stenen van de tegenstander insluiten.</para>
+
+<para
+>Alle ingesloten stenen worden meteen omgedraaid, zelfs als het in de speler zijn voordeel is als dat niet gebeurt.</para>
+
+<para
+>Zodra een steen op een vakje is gelegd kan het niet meer worden verplaatst.</para>
+
+<para
+>Als geen van beide spelers meer een zet kan uitvoeren is het spel afgelopen. De stenen worden dan geteld en de speler met de meeste stenen in zijn/haar kleur is de winnaar.</para>
+
+<note
+><para
+>Het is mogelijk dat een spel stopt voordat alle 64 vakjes zijn gevuld.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategieën en tips</title>
+
+<para
+>Probeer wanneer mogelijk om stenen aan de randen te leggen. Uw tegenstander kan deze stenen niet insluiten.</para>
+
+<para
+>Voorkom het plaatsen van stenen op een van de drie aangrenzende stenen van een hoeksteen, tenzij u zeker weet dat uw tegenstander geen steen in de hoek kan plaatsen.</para>
+
+<para
+>Soms is het beter om stenen op te offeren.</para>
+
+<para
+>Probeer de stenen zo op het bord te plaatsen dat de tegenstander geen zet kan uitvoeren.</para>
+
+<para
+>Probeer uw tegenstander te dwingen om een steen in een aangrenzend vakje van een hoek te leggen.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Overzicht van het interface</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Menu-items</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Nieuw</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Start een nieuw spel.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Topscores tonen</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Toont een dialoog met de verschillende tabellen van de topscore.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>&kreversi; afsluiten.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Zet</guimenu
+> <guimenuitem
+>Ongedaan maken</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Maakt uw laatste zet ongedaan</action
+> als ook die van de computer.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Zet</guimenu
+><guimenuitem
+>Tip</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>De computer geeft <action
+>een tip voor uw volgende zet.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Laatste zet tonen</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Accentueert de laatste zet van uw tegenstander.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Geldige zetten tonen</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Accentueert alle beschikbare zetten</action
+> voor de huidige zet.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Beeld</guimenu
+><guimenuitem
+>Zettengeschiedenis tonen</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Activeert/deactiveert de zijbalk met de geschiedenis van de zetten.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Animatiesnelheid</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Een submenu om de animatiesnelheid in te stellen</action
+> tussen opties <guimenuitem
+>Langzaam</guimenuitem
+>, <guimenuitem
+>Normal</guimenuitem
+> en <guimenuitem
+>Snel</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+><guimenuitem
+>Gekleurde stenen gebruiken</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>De kleur van de stenen wisselen tussen zwart en wit (standaard)</action
+> en rood en blauw.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Moeilijkheidsgraad</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Stel de moeilijkheidsgraad in</action
+> op <guimenuitem
+>Erg makkelijk</guimenuitem
+> tot <guimenuitem
+>Onmogelijk</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Bovendien heeft &kreversi; de gezamenlijke menu-items van &kde; <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+>, voor meer informatie lees de secties over de <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Instellingen</ulink
+> en <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Help</ulink
+> van &kde;-fundamentals. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Veel voorkomende vragen</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Ik wil het uiterlijk van dit spel wijzigen. Kan dat? </para
+></question>
+ <answer
+><para
+>Het enige onderdeel van het spel dat kan worden gewijzigd is de kleur van de stenen. Om de kleur van de stenen te wijzigen gebruikt u menu-item <menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guimenuitem
+>Gekleurde stenen gebruiken</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Kan ik het toetsenbord gebruiken om het spel te spelen?</para
+></question>
+ <answer
+><para
+>Nee. &kreversi; kan niet met het toetsenbord worden gespeeld.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Ik moet het spel nu beëindigen, maar ik ben nog niet klaar. Kan ik mijn spel opslaan?</para
+></question>
+ <answer
+><para
+>Nee. &kreversi; heeft geen mogelijkheid voor <action
+>Opslaan</action
+>.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Dankbetuigingen en licentie</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Programma Copyright 1998-2000 &Mario.Weilguni;</para>
+<para
+>Mats Luthman - ontwerp van de move engine.</para>
+
+<para
+>Oorspronkelijke documentatie door &Mario.Weilguni;</para>
+<para
+>Bewerkt door Robert Williams</para>
+
+<para
+>Documentatie herschreven en bijgewerkt voor 2.0 door &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+&meld.fouten;&vertaling.niels;&vertaling.rinse;&vertaling.sander; &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

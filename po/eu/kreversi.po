@@ -1,0 +1,783 @@
+# Translation for kreversi.po to Euskara/Basque (eu).
+# Copyright (C) 2000-2017, Free Software Foundation, Inc.
+# Copyright (C) 2018-2021, This file is copyright:
+# This file is distributed under the same license as the kreversi package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# Iñaki Ibarrola Atxa <etxaurre@teleline.es>, 2000.
+# Ion Gaztañaga <igaztanaga@gmail.com>, 2005, 2006.
+# Marcos <marcos@euskalgnu.org>, 2006.
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2009.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2017, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kreversi\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"PO-Revision-Date: 2021-08-15 16:43+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.08.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Iñaki Ibarrola Atxa, Ion Gaztañaga"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "etxaurre@teleline.es, igaztanaga@gmail.com"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Blue"
+msgstr "Urdina"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Red"
+msgstr "Gorria"
+
+#. i18n: ectx: property (text), widget (QLabel, blackLabel)
+#: commondefs.cpp:32 startgamedialog.ui:24
+#, kde-format
+msgid "Black"
+msgstr "Beltza"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteLabel)
+#: commondefs.cpp:32 startgamedialog.ui:150
+#, kde-format
+msgid "White"
+msgstr "Zuria"
+
+#: kexthighscore.cpp:198
+#, kde-format
+msgid "Score"
+msgstr "Puntuazioa"
+
+#: kexthighscore.cpp:201
+#, kde-format
+msgid "Mean Score"
+msgstr "Batezbesteko puntuazioa "
+
+#: kexthighscore.cpp:206
+#, kde-format
+msgid "Best Score"
+msgstr "Puntuazio onena"
+
+#: kexthighscore.cpp:210
+#, kde-format
+msgid "Elapsed Time"
+msgstr "Igarotako denbora"
+
+#: kexthighscore_gui.cpp:152
+#, kde-format
+msgid "Best &Scores"
+msgstr "&Puntuazio onenak"
+
+#: kexthighscore_gui.cpp:157
+#, kde-format
+msgid "&Players"
+msgstr "&Jokalariak"
+
+#: kexthighscore_gui.cpp:162
+#, kde-format
+msgid "Statistics"
+msgstr "Estatistikak"
+
+#: kexthighscore_gui.cpp:168
+#, kde-format
+msgid "Histogram"
+msgstr "Histograma"
+
+#: kexthighscore_gui.cpp:175
+#, kde-format
+msgid "View world-wide highscores"
+msgstr "Ikusi mundu osoko puntuazio altuenak"
+
+#: kexthighscore_gui.cpp:182
+#, kde-format
+msgid "View world-wide players"
+msgstr "Ikusi mundu osoko jokalariak"
+
+#: kexthighscore_gui.cpp:232
+#, kde-format
+msgctxt "@title:window"
+msgid "Highscores"
+msgstr "Puntuazio onenak"
+
+#: kexthighscore_gui.cpp:296
+#, kde-format
+msgid "Overwrite"
+msgstr "Gainidatzi"
+
+#: kexthighscore_gui.cpp:298
+#, kde-format
+msgid "The file already exists. Overwrite?"
+msgstr "Fitxategia badago. Gainidatzi?"
+
+#: kexthighscore_gui.cpp:299
+#, kde-format
+msgid "Export"
+msgstr "Esportatu"
+
+#: kexthighscore_gui.cpp:350
+#, kde-format
+msgid "Winner"
+msgstr "Irabazlea"
+
+#: kexthighscore_gui.cpp:388
+#, kde-format
+msgid "Won Games"
+msgstr "Irabazitako jokoak"
+
+#: kexthighscore_gui.cpp:416
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Highscores"
+msgstr "Konfiguratu puntuazio onenak"
+
+#: kexthighscore_gui.cpp:429
+#, kde-format
+msgid "Main"
+msgstr "Nagusia"
+
+#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#, kde-format
+msgid "Nickname:"
+msgstr "Goitizena:"
+
+#: kexthighscore_gui.cpp:455
+#, kde-format
+msgid "Comment:"
+msgstr "Iruzkina:"
+
+#: kexthighscore_gui.cpp:465
+#, kde-format
+msgid "World-wide highscores enabled"
+msgstr "Mundu osoko puntuazio altuenak gaituta"
+
+#: kexthighscore_gui.cpp:472
+#, kde-format
+msgid "Advanced"
+msgstr "Aurreratua"
+
+#: kexthighscore_gui.cpp:478
+#, kde-format
+msgid "Registration Data"
+msgstr "Erregistro datuak"
+
+#: kexthighscore_gui.cpp:489
+#, kde-format
+msgid "Key:"
+msgstr "Gakoa:"
+
+#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#, kde-format
+msgid "Remove"
+msgstr "Kendu"
+
+#: kexthighscore_gui.cpp:541
+#, kde-format
+msgid ""
+"This will permanently remove your registration key. You will not be able to "
+"use the currently registered nickname anymore."
+msgstr ""
+"Honek betirako ezabatuko du zure erregistro gakoa. Ezingo duzu "
+"erregistratutako uneko goitizena berriz inoiz erabili."
+
+#: kexthighscore_gui.cpp:584
+#, kde-format
+msgid "Please choose a non empty nickname."
+msgstr "Hautatu hutsa ez den goitizen bat."
+
+#: kexthighscore_gui.cpp:588
+#, kde-format
+msgid "Nickname already in use. Please choose another one"
+msgstr "Goitizena jada hartuta dago. Hautatu beste bat"
+
+#: kexthighscore_gui.cpp:609
+#, kde-format
+msgctxt "@title:window"
+msgid "Enter Your Nickname"
+msgstr "Sartu zure goitizena"
+
+#: kexthighscore_gui.cpp:618
+#, kde-format
+msgid "Congratulations, you have won!"
+msgstr "Zorionak, irabazi duzu!"
+
+#: kexthighscore_gui.cpp:623
+#, kde-format
+msgid "Enter your nickname:"
+msgstr "Sartu zure goitizena:"
+
+#: kexthighscore_gui.cpp:631
+#, kde-format
+msgid "Do not ask again."
+msgstr "Ez galdetu berriro."
+
+#: kexthighscore_internal.cpp:33
+msgid "anonymous"
+msgstr "Anonimoa"
+
+#: kexthighscore_internal.cpp:258
+#, kde-format
+msgid "Games Count"
+msgstr "Jokoen zenbaketa"
+
+#: kexthighscore_internal.cpp:265
+#, kde-format
+msgid "Comment"
+msgstr "Iruzkina"
+
+#: kexthighscore_internal.cpp:587
+msgid "Undefined error."
+msgstr "Identifikatu gabeko errorea."
+
+#: kexthighscore_internal.cpp:588
+msgid "Missing argument(s)."
+msgstr "Argumentua(k) falta d(ir)a."
+
+#: kexthighscore_internal.cpp:589
+msgid "Invalid argument(s)."
+msgstr "Argumentu baliogabea(k)."
+
+#: kexthighscore_internal.cpp:591
+msgid "Unable to connect to MySQL server."
+msgstr "Ezin da konektatu MySQL zerbitzarira."
+
+#: kexthighscore_internal.cpp:592
+msgid "Unable to select database."
+msgstr "Ezin da datu-basea aukeratu."
+
+#: kexthighscore_internal.cpp:593
+msgid "Error on database query."
+msgstr "Errorea datu-basea itauntzean."
+
+#: kexthighscore_internal.cpp:594
+msgid "Error on database insert."
+msgstr "Errorea datu-basean txertatzean."
+
+#: kexthighscore_internal.cpp:596
+msgid "Nickname already registered."
+msgstr "Goitizena aurrez erregistratuta dago."
+
+#: kexthighscore_internal.cpp:597
+msgid "Nickname not registered."
+msgstr "Goitizena ez dago erregistratuta."
+
+#: kexthighscore_internal.cpp:598
+msgid "Invalid key."
+msgstr "Gako baliogabea."
+
+#: kexthighscore_internal.cpp:599
+msgid "Invalid submit key."
+msgstr "Bidaltzeko gako baliogabea."
+
+#: kexthighscore_internal.cpp:601
+msgid "Invalid level."
+msgstr "Maila baliogabea."
+
+#: kexthighscore_internal.cpp:602
+msgid "Invalid score."
+msgstr "Puntuazio baliogabea."
+
+#: kexthighscore_internal.cpp:606
+msgid "Unable to contact world-wide highscore server"
+msgstr "Ezin da kontaktatu mundu osoko puntuazio altuenen zerbitzaria"
+
+#: kexthighscore_internal.cpp:615
+#, kde-format
+msgid "Unable to open temporary file."
+msgstr "Ezin da ireki aldi baterako fitxategia."
+
+#: kexthighscore_internal.cpp:624
+#, kde-format
+msgid "Server URL: %1"
+msgstr "Zerbitzariaren URL: %1"
+
+#: kexthighscore_internal.cpp:646
+#, kde-format
+msgid "Message from world-wide highscores server"
+msgstr "Mezua mundu osoko puntuazio altuenen zerbitzaritik"
+
+#: kexthighscore_internal.cpp:653
+#, kde-format
+msgid "Invalid answer from world-wide highscores server."
+msgstr "Erantzun baliogabea mundu osoko puntuazio altuenen zerbitzaritik"
+
+#: kexthighscore_internal.cpp:654
+#, kde-format
+msgid "Raw message: %1"
+msgstr "Mezu gordina: %1"
+
+#: kexthighscore_internal.cpp:666
+#, kde-format
+msgid "Invalid answer from world-wide highscores server (missing item: %1)."
+msgstr ""
+"Erantzun baliogabea mundu osoko puntuazio altuenen zerbitzaritik (elementua "
+"falta da: %1)."
+
+#: kexthighscore_item.cpp:266
+#, kde-format
+msgctxt "@title:window"
+msgid "Multiplayers Scores"
+msgstr "Jokalari anitzekoan puntuazioak"
+
+#: kexthighscore_item.cpp:277
+#, kde-format
+msgid "No game played."
+msgstr "Ez da jokorik jokatu."
+
+#: kexthighscore_item.cpp:279
+#, kde-format
+msgid "Scores for last game:"
+msgstr "Azken jokoaren puntuazioak:"
+
+#: kexthighscore_item.cpp:286
+#, kde-format
+msgid "Scores for the last %1 games:"
+msgstr "Azken %1 jokoen puntuazioak:"
+
+#: kexthighscore_tab.cpp:32
+#, kde-format
+msgid "all"
+msgstr "Denak"
+
+#: kexthighscore_tab.cpp:61
+#, kde-format
+msgid "Select player:"
+msgstr "Aukeratu jokalaria:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Total:"
+msgstr "Guztira:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Won:"
+msgstr "Irabazi:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Lost:"
+msgstr "Galdu:"
+
+#: kexthighscore_tab.cpp:98
+msgid "Draw:"
+msgstr "Berdindu:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Current:"
+msgstr "Unekoa:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Max won:"
+msgstr "Gehien irabazi:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Max lost:"
+msgstr "Gehien galdu:"
+
+#: kexthighscore_tab.cpp:116
+#, kde-format
+msgid "Game Counts"
+msgstr "Joko zenbaketa"
+
+#: kexthighscore_tab.cpp:129
+#, kde-format
+msgid "Trends"
+msgstr "Joerak"
+
+#: kexthighscore_tab.cpp:217
+#, kde-format
+msgid "From"
+msgstr "Hemendik:"
+
+#: kexthighscore_tab.cpp:218
+#, kde-format
+msgid "To"
+msgstr "Hona: "
+
+#: kexthighscore_tab.cpp:219
+#, kde-format
+msgid "Count"
+msgstr "Zenbaketa"
+
+#: kexthighscore_tab.cpp:220
+#, kde-format
+msgid "Percent"
+msgstr "Ehunekoa"
+
+#. i18n: ectx: label, entry (AnimationSpeed), group (Game)
+#: kreversi.kcfg:9
+#, kde-format
+msgid "The speed of the animations."
+msgstr "Animazioen abiadura."
+
+#. i18n: ectx: label, entry (CompetitiveGameChoice), group (Game)
+#: kreversi.kcfg:18
+#, kde-format
+msgid "Whether to play competitively in contrast to casually."
+msgstr "Profesional moduan jokatu behar den ala ez."
+
+#. i18n: ectx: label, entry (UseColoredChips), group (Game)
+#: kreversi.kcfg:22
+#, kde-format
+msgid "Whether to use colored chips instead of black and white ones."
+msgstr "Koloretako fitxak erabli behar diren zuri-beltzekoen ordez edo ez."
+
+#. i18n: ectx: Menu (view)
+#: kreversiui.rc:13
+#, kde-format
+msgid "&View"
+msgstr "&Ikusi"
+
+#. i18n: ectx: Menu (settings)
+#: kreversiui.rc:18
+#, kde-format
+msgid "&Settings"
+msgstr "E&zarpenak"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kreversiui.rc:25
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Tresna-barra nagusia"
+
+#: kreversiview.cpp:251
+#, kde-format
+msgid "Red can not perform any move. It is blue turn again."
+msgstr "Gorriak ezin du mugimendurik egin. Urdinaren txanda da berriro."
+
+#: kreversiview.cpp:252
+#, kde-format
+msgid "White can not perform any move. It is black turn again."
+msgstr "Zuriak ezin du mugimendurik egin. Beltzaren txanda da berriro."
+
+#: kreversiview.cpp:261
+#, kde-format
+msgid "Blue can not perform any move. It is red turn again."
+msgstr "Urdinak ezin du mugimendurik egin. Gorriaren txanda da berriro."
+
+#: kreversiview.cpp:262
+#, kde-format
+msgid "Black can not perform any move. It is white turn again."
+msgstr "Beltzak ezin du mugimendurik egin. Zuriaren txanda da berriro."
+
+#: main.cpp:38
+#, kde-format
+msgid "KReversi"
+msgstr "KReversi"
+
+#: main.cpp:40
+#, kde-format
+msgid "KDE Reversi Board Game"
+msgstr "KDE-ren Reversi taula jokoa"
+
+#: main.cpp:42
+#, kde-format
+msgid ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+msgstr ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+
+#: main.cpp:45
+#, kde-format
+msgid "Mario Weilguni"
+msgstr "Mario Weilguni"
+
+#: main.cpp:45 main.cpp:46
+#, kde-format
+msgid "Original author"
+msgstr "Jatorrizko egilea"
+
+#: main.cpp:46
+#, kde-format
+msgid "Inge Wallin"
+msgstr "Inge Wallin"
+
+#: main.cpp:47
+#, kde-format
+msgid "Dmitry Suzdalev"
+msgstr "Dmitry Suzdalev"
+
+#: main.cpp:47
+#, kde-format
+msgid "Game rewrite for KDE4. Current maintainer."
+msgstr "Jokoa KDE 4rako berriro garatuta. Uneko mantentzailea."
+
+#: main.cpp:48
+#, kde-format
+msgid "Simon Hürlimann"
+msgstr "Simon Hürlimann"
+
+#: main.cpp:48
+#, kde-format
+msgid "Action refactoring"
+msgstr "Berridazketaren ekintza"
+
+#: main.cpp:49
+#, kde-format
+msgid "Mats Luthman"
+msgstr "Mats Luthman"
+
+#: main.cpp:49
+#, kde-format
+msgid "Game engine, ported from his JAVA applet."
+msgstr "Jokoaren motorea, bere JAVA appliet-etik moldatutakoa."
+
+#: main.cpp:50
+#, kde-format
+msgid "Arne Klaassen"
+msgstr "Arne Klaassen"
+
+#: main.cpp:50
+#, kde-format
+msgid "Original raytraced chips."
+msgstr "Jatorrizko 3D fitxak."
+
+#: main.cpp:51
+#, kde-format
+msgid "Mauricio Piacentini"
+msgstr "Mauricio Piacentini"
+
+#: main.cpp:51
+#, kde-format
+msgid "Vector chips and background for KDE4."
+msgstr "Fitxaen bektoreak eta KDE 4rako atzeko planoa."
+
+#: main.cpp:52
+#, kde-format
+msgid "Brian Croom"
+msgstr "Brian Croom"
+
+#: main.cpp:52
+#, kde-format
+msgid "Port rendering code to KGameRenderer"
+msgstr "Errendatzeko kodea KGameRenderer-rera egokitu"
+
+#: main.cpp:53
+#, kde-format
+msgid "Denis Kuplyakov"
+msgstr "Denis Kuplyakov"
+
+#: main.cpp:53
+#, kde-format
+msgid "Port rendering code to QML, redesign and a lot of improvements"
+msgstr "Errendatzeko kodea QMLra egokitu, birdiseinatu eta hobekuntza asko"
+
+#: main.cpp:59
+#, kde-format
+msgid "Start with demo game playing"
+msgstr "Hasi probako jokoa jokatzen"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Press start game!"
+msgstr "Sakatu Hasi jokoa!"
+
+#: mainwindow.cpp:69
+#, kde-format
+msgid "Move History"
+msgstr "Mugimenduen historia"
+
+#: mainwindow.cpp:116
+#, kde-format
+msgid "Show Last Move"
+msgstr "Erakutsi azken mugimendua"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Show Legal Moves"
+msgstr "Erakutsi legezko mugimenduak"
+
+#: mainwindow.cpp:126
+#, kde-format
+msgid "Animation Speed"
+msgstr "Animazioaren abiadura"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Slow"
+msgstr "Mantsoa"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Normal"
+msgstr "Arrunta"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Fast"
+msgstr "Azkarra"
+
+#: mainwindow.cpp:135
+#, kde-format
+msgid "Use Colored Chips"
+msgstr "Erabili margotutako fitxak"
+
+#: mainwindow.cpp:143
+#, kde-format
+msgid "Show Move History"
+msgstr "Erakutsi mugimenduen historia"
+
+#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#, kde-format
+msgid "Game is drawn!"
+msgstr "Jokoa berdinduta."
+
+#: mainwindow.cpp:224 mainwindow.cpp:239
+#, kde-format
+msgid "You win!"
+msgstr "Irabazi duzu!"
+
+#: mainwindow.cpp:227 mainwindow.cpp:242
+#, kde-format
+msgid "You have lost!"
+msgstr "Galdu duzu."
+
+#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#, kde-format
+msgid "%1 has won!"
+msgstr "%1-(e)k irabazi du!"
+
+#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#, kde-format
+msgid ""
+"\n"
+"%1: %2"
+msgstr ""
+"\n"
+"%1: %2"
+
+#: mainwindow.cpp:274
+#, kde-format
+msgid "Game over"
+msgstr "Jokoa amaitu da"
+
+#: mainwindow.cpp:341
+#, kde-format
+msgid "GAME OVER"
+msgstr "JOKOA AMAITU DA"
+
+#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: mainwindow.cpp:350
+#, kde-format
+msgid "%1 turn"
+msgstr "%1 txanda"
+
+#: mainwindow.cpp:357
+#, kde-format
+msgid "%1's turn"
+msgstr "%1ren txanda"
+
+#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#, kde-format
+msgid "Computer"
+msgstr "Ordenagailua"
+
+#: startgamedialog.cpp:26
+#, kde-format
+msgctxt "@title:window"
+msgid "New game"
+msgstr "Joko berria"
+
+#: startgamedialog.cpp:36
+#, kde-format
+msgid "Start game"
+msgstr "Hasi jokoa"
+
+#: startgamedialog.cpp:37
+#, kde-format
+msgid "Let's start playing!"
+msgstr "Jokoa hasi dezagun!"
+
+#: startgamedialog.cpp:38
+#, kde-format
+msgid "Quit"
+msgstr "Irten"
+
+#: startgamedialog.cpp:39
+#, kde-format
+msgid "Quit KReversi"
+msgstr "Itxi KReversi"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: startgamedialog.ui:83 startgamedialog.ui:209
+#, kde-format
+msgid "Name:"
+msgstr "Izena:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: startgamedialog.ui:100 startgamedialog.ui:226
+#, kde-format
+msgid "Skill level:"
+msgstr "Gaitasun maila:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: startgamedialog.ui:128
+#, kde-format
+msgid "VS"
+msgstr "VS"
+
+#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
+#~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
+
+#~ msgid "Very Easy"
+#~ msgstr "Oso erraza"
+
+#~ msgid "Easy"
+#~ msgstr "Erraza"
+
+#~ msgid "Hard"
+#~ msgstr "Zaila"
+
+#~ msgid "Very Hard"
+#~ msgstr "Oso zaila"
+
+#~ msgid "Unbeatable"
+#~ msgstr "Garaitezina"
+
+#~ msgid "Champion"
+#~ msgstr "Txapelduna"
+
+#~ msgid "Your turn."
+#~ msgstr "Zure txanda."
+
+#~ msgid "You: %1"
+#~ msgstr "Zu: %1"
+
+#~ msgid ""
+#~ "\n"
+#~ "You: %1"
+#~ msgstr ""
+#~ "\n"
+#~ "Zu: %1"
+
+#~ msgid "Difficulty level"
+#~ msgstr "Zailtasun maila"
+
+#, fuzzy
+#~| msgid "Players and Seats"
+#~ msgid "Players && Seats"
+#~ msgstr "Jokalariak eta eserlekuak"
+
+#~ msgid "Opponent"
+#~ msgstr "Aurkaria"

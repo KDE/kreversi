@@ -1,0 +1,707 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+ 
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Das Handbuch zu &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Entwickler</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Korrektur</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Maren</firstname
+><surname
+>Pakura</surname
+><affiliation
+><address
+><email
+>maren@kde.org</email
+></address
+></affiliation
+><contrib
+>Deutsche Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2017-11-28</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (Applications 17.12)</releaseinfo>
+ 
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Dieses Handbuch beschreibt das Spiel &kreversi; in der Version 2.1</para>
+</abstract>
+ 
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>Spiel</keyword
+> <!-- do not change this! -->
+	<keyword
+>KReversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>Brettspiel</keyword>
+	<keyword
+>Arcade</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>Reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>ein Spieler</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>Steine</keyword>
+	<keyword
+>weiß</keyword>
+	<keyword
+>schwarz</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Einführung</title
+> <!-- do not change this! -->
+	<note
+><title
+>Spieltyp:</title
+><para
+>Brettspiel, Arcade</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Anzahl der Spieler:</title
+><para
+>Einer</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+ 
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; ist ein einfaches Strategiespiel für einen Spieler, der gegen den Computer spielt. Das Spielfeld ist ein 8 mal 8 großes Quadrat, das in 64 Felder aufgeteilt ist. Die Spielsteine haben verschiedene Farben auf der Vorder- und Rückseite. Falls ein Spieler einen gegnerischen Stein auf dem Brett erobert, wird dieser umgedreht und gehört diesem Spieler. Gewonnen hat, wer am meisten Steine seiner Farbe auf dem Brett hat, wenn kein weiterer Stein mehr gesetzt werden kann.</para>
+</chapter>
+ 
+<chapter id="howto"
+><title
+>Spielanleitung</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Ziel des Spiels:</title
+><para
+>Ziel des Spiels ist es, am Ende eine möglichst große Anzahl von eigenen Steinen auf dem Brett zu haben.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kreversi; startet mit dem Dialog <guilabel
+>Neues Spiel</guilabel
+>, in dem Sie den Spielmodus auswählen können, &ie; gegen den Rechner oder gegen eine andere Person. Als erster Spieler haben Sie den ersten Zug.</para>
+<note
+><title
+>Hinweis:</title
+><para
+>Der menschliche Spieler darf immer den ersten Zug ausführen.</para
+></note>
+<para
+>Ein Spieler muss seinen Stein auf ein leeres Feld legen, das horizontal, vertikal oder diagonal an ein bereits belegtes Feld angrenzt. Wird ein Stein gelegt, werden alle gegnerischen Steine, die sich zwischen dem neuen Spielstein und einem bereits gelegten Stein der eigenen Farbe befinden, umgedreht. </para>
+<para
+>Jeder Zug in &kreversi; wird nach dieser Regel ausgeführt. Können Sie keinen Stein setzen, sodass Steine des Gegner eingeschlossen werden, müssen Sie aussetzen.</para>
+<note
+><title
+>Hinweis:</title
+><para
+>Diese Regeln gelten auch für Ihren Gegner. Kann kein Zug ausgeführt werden, setzt der Spieler aus.</para
+></note>
+<para
+>Ziel ist es, das Spielfeld mit Steinen in Ihrer Farbe zu belegen. Der Spieler mit der größten Zahl von eigenen Steinen gewinnt das Spiel. </para>
+</chapter>
+ 
+<chapter id="rules_and_tips"
+><title
+>Spielregeln, Spielstrategien und Tipps</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics"
+>                 
+<title
+>Grundlagen des Spiels</title>
+
+<para
+>Ein Zug besteht darin, Spielsteine des Gegners <quote
+>einzuschließen</quote
+>, die dann umgedreht werden und daraufhin die Farbe des Spielers zeigen. Ein Zug wird ausgeführt, indem Sie mit der &LMBn; an die Stelle klicken, an die der neue Stein gelegt werden soll.</para>
+
+<para
+>Einschließen heißt, einen Stein so auf das Brett zu setzen, dass nach dem Setzen eine Reihe (oder Reihen) der Spielsteine des Gegners an beiden Enden von Steinen des Spielers begrenzt wird. Eine Reihe kann waagerecht, senkrecht oder diagonal sein.</para>
+
+<para
+>Das Spiel beginnt mit dem Dialog <guilabel
+>Neues Spiel</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Dialog zur Modusauswahl von &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Dialog zur Modusauswahl von &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Spielmodusauswahl</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Um eine Demonstration des Spiels zu sehen, wählen Sie <guilabel
+>Rechner</guilabel
+> für beide Spieler.</para>
+
+<para
+>Für jeden Spieler werden zwei Steine in der Mitte des Spielfeldes folgendermaßen angeordnet:</para>
+
+<screenshot>
+<screeninfo
+>Ausgangsposition bei &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Ausgangsposition bei &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Spielfeldaufbau</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Menüleiste</interface
+></term>
+<listitem>
+<para
+>Die <interface
+>Menüleiste</interface
+> enthält mehrere Menüs. Das sind die Menüs <guimenu
+>Spiel</guimenu
+>, <guimenu
+>Zug</guimenu
+>, <guimenu
+>Ansicht</guimenu
+>, <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>. Klicken Sie mit der &LMBn; darauf oder drücken Sie <keycombo action="simul"
+>&Alt;<keycap
+> den unterstrichenen Buchstaben</keycap
+> </keycombo
+>, um ein Menü zu öffnen.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Werkzeugleiste</interface
+></term>
+<listitem
+><para
+>Bietet dem Spieler Symbole für häufig gebrauchte Tastenkürzel und Aktionen. Das sind <guiicon
+>Neu</guiicon
+>, <guiicon
+>Zurücknehmen</guiicon
+>, <guiicon
+>Tipp</guiicon
+>, <guiicon
+>Letzten Zug anzeigen</guiicon
+> und <guiicon
+>Gültige Züge anzeigen</guiicon
+>. Klicken Sie mit der &LMBn; auf ein Symbol, um es zu aktivieren. </para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Spielfeld</interface
+></term>
+<listitem
+><para
+>Das Spielfeld ist ein 8 mal 8 großes Quadrat, das in 64 Felder aufgeteilt ist. </para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Statusleiste</interface
+></term>
+<listitem
+><para
+>In der Statusleiste wird angezeigt, wer am Zug ist.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Spielregeln</title>
+
+<para
+>Sie beginnen immer das Spiel.</para>
+
+<para
+>Falls Sie, wenn Sie dran sind, keinen gegnerischen Stein einschließen können, müssen Sie aussetzen, und der Gegner ist wieder dran. Ist ein Zug möglich, dürfen Sie nicht aussetzen.</para>
+
+<para
+>Ein Stein kann beliebig viele Spielsteine in einer oder mehreren Reihen in beliebiger Richtung einschließen - waagerecht, senkrecht oder diagonal. (Eine Reihe ist definiert als ein oder mehrere Spielsteine in einer durchgehenden, geraden Linie) </para>
+
+<para
+>Sie dürfen nicht Ihre eigenen Steine mit einschließen, um die gegnerischen Steine zu erhalten.</para>
+
+<para
+>Steine können nur durch den gesetzten Stein selbst eingeschlossen werden und müssen in einer Reihe mit diesem liegen.</para>
+
+<para
+>Alle eingeschlossenen Steine müssen umgedreht werden, auch wenn der Spieler einen Vorteil davon hätte, einige nicht umzudrehen.</para>
+
+<para
+>Nachdem ein Stein auf ein Feld gesetzt wurde, kann er im Verlauf des Spieles auf kein anderes mehr gesetzt werden.</para>
+
+<para
+>Wenn keiner der Spieler mehr einen Zug machen kann, ist das Spiel beendet. Die Steine werden gezählt, und der Spieler, der am meisten Steine seiner Farbe auf dem Brett hat, gewinnt das Spiel.</para>
+
+<note
+><para
+>Hinweis: Es ist möglich, dass ein Spiel endet, bevor alle 64 Felder besetzt sind.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Spielstrategien und Tipps</title>
+
+<para
+>Versuchen Sie, die Steine nach Möglichkeit in die Ecken zu platzieren. Ihr Gegner kann diese Steine dann nicht einschließen.</para>
+
+<para
+>Vermeiden Sie es, die Steine in eines der drei, den Ecken benachbarten Felder zu setzen, außer Sie sind sicher, dass Ihr Gegner nicht in der Lage ist, einen Stein in die Ecke zu setzen.</para>
+
+<para
+>Manchmal ist es sinnvoll, einige Steine dem Gegner anzubieten.</para>
+
+<para
+>Versuchen Sie, die Steine so auf das Brett zu setzen, dass der Gegner keinen Zug mehr machen kann.</para>
+
+<para
+>Versuchen Sie, Ihren Gegner zu zwingen, einen Stein in ein Feld neben einer Spielbrettecke zu setzen.</para>
+
+</sect1>
+</chapter>
+  
+<chapter id="interface"
+><title
+>Die Benutzeroberfläche</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Menüeinträge</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spiel</guimenu
+><guimenuitem
+>Neu</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Startet ein neues Spiel. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Bestenliste anzeigen</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Öffnet einen Dialog mit der Anzeige der verschiedenen Bestenlisten. </para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spiel</guimenu
+> <guimenuitem
+>Beenden</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Beendet &kreversi;. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Zug</guimenu
+> <guimenuitem
+>Zurücknehmen</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Macht Ihren letzten Zug und auch den letzten Zug des Computers rückgängig. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>H</keycap
+> </shortcut
+> <guimenu
+>Zug</guimenu
+> <guimenuitem
+>Tipp</guimenuitem
+>  </menuchoice
+></term>
+<listitem
+><para
+>Zeigt Ihnen einen Vorschlag des Computers an.</para
+></listitem>
+</varlistentry>
+
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Letzten Zug anzeigen</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Markiert den letzten Zug des Gegners.</para
+></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Gültige Züge anzeigen</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Zeigt alle Ihre gültigen Züge für die Spielstellung an.</para
+></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Ansicht</guimenu
+><guimenuitem
+>Spielverlauf anzeigen</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Blendet die Seitenleiste mit dem Zugarchiv ein oder aus.</para
+></listitem>
+    </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guisubmenu
+>Animationsgeschwindigkeit</guisubmenu
+> <guimenuitem
+>Langsam</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Stellt die Animationsgeschwindigkeit auf Werte von <guisubmenu
+>Langsam</guisubmenu
+> bis <guimenuitem
+>Schnell</guimenuitem
+> ein.</para
+></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Farbige Spielsteine verwenden</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Schaltet</action
+> die Farben der Spielsteinen zwischen der Standardeinstellung Schwarz-Weiß und Rot-Blau um.</para
+></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guisubmenu
+>Schwierigkeitsgrad</guisubmenu
+> </menuchoice
+></term>
+    <listitem
+><para
+>Stellt einen Schwierigkeitsgrad von <guimenuitem
+>Sehr einfach</guimenuitem
+> bis <guimenuitem
+>Unmöglich</guimenuitem
+> ein.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+<para
+>Zusätzlich hat &kreversi; die bekannten &kde;-Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Einstellungen</ulink
+> und <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
+
+</sect1>
+</chapter>
+ 
+ <chapter id="faq"
+><title
+>Häufig gestellte Fragen</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Kann ich das Erscheinungsbild des Spiels ändern? </para
+></question>
+ <answer
+><para
+>In diesem Spiel können Sie nur die Farbe der Steine ändern. Wählen Sie dazu in der Menüleiste <menuchoice
+> <guimenu
+>Einstellungen</guimenu
+> <guimenuitem
+>Farbige Spielsteine benutzen</guimenuitem
+> </menuchoice
+></para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Kann ich mit der Tastatur spielen?</para
+></question>
+ <answer
+><para
+>Nein, &kreversi; kann nicht mit der Tastatur gespielt werden.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Ich muss das Spiel unterbrechen, kann ich den aktuellen Spielstand speichern?</para
+></question>
+  <answer
+><para
+>Nein, in &kreversi; kann der aktuelle Spielstand nicht gespeichert werden.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+ 
+</qandaset>
+</chapter>
+ 
+<chapter id="credits"
+><title
+>Danksagungen und Lizenz</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+ 
+<para
+>&kreversi; </para>
+
+<para
+>Programm Copyright 1998-2000 &Mario.Weilguni;</para>
+<para
+>Mats Luthman - Entwickler der Bewegungsalgorithmen.</para>
+
+<para
+>Original-Dokumentation von &Mario.Weilguni;</para>
+<para
+>Überarbeitet von Robert Williams</para>
+
+<para
+>Dokumentation neugeschrieben und für Version 2.0 überarbeitet von &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Deutsche Übersetzung von Maren Pakura <email
+>maren@kde.org</email
+></para
+> &underFDL; &underGPL; </chapter>
+ 
+ 
+&documentation.index; 
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

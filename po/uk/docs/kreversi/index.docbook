@@ -1,0 +1,750 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Ukrainian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Підручник з &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Розробник</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Рецензент</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>12 серпня 2021 року</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>У цій документації описано гру &kreversi; версії 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>гра</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kreversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>дошка</keyword>
+	<keyword
+>аркада</keyword>
+	<keyword
+>Го</keyword>
+	<keyword
+>реверсі</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>один гравець</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>камені</keyword>
+	<keyword
+>білі</keyword>
+	<keyword
+>чорні</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Вступ</title
+> <!-- do not change this! -->
+	<note
+><title
+>Тип гри:</title
+><para
+>Гра на дошці, аркада</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Можлива кількість гравців:</title
+><para
+>Один</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; — проста стратегічна гра для одного гравця, суперником якого буде комп’ютер. Ігрове поле розміром 8 рядків на 8 стовпчиків поділено на 64 клітинок. Фішками у грі слугують двобічні камінці, кожен з боків яких має власний колір. Якщо фішка поміняє власника, її буде перевернуто, і вона показуватиме колір гравця-власника. Переможцем проголошується той з гравців, у якого буде більше власних фішок за такої позиції у грі, коли подальші ходи будуть неможливими.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Як грати</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Мета:</title
+><para
+>Захопити більшість клітинок на ігровій дошці.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>Після запуску &kreversi; відкриває діалогове вікно <guilabel
+>Нова гра</guilabel
+>, за допомогою якого ви можете вибрати режим гри, тобто зіграти з комп’ютером чи з іншим гравцем-людиною. Перший гравець матиме право ходити першим.</para>
+<note
+><para
+>Типово, гравець-людина завжди має ходити першим.</para
+></note>
+<para
+>Тепер уявіть, що кожного ходу ваш камінь має перестрибнути ворожий камінь (або декілька каменів, оскільки між ним і потрібним місцем може бути декілька каменів). Крім того, ваш камінь після стрибка не пересувається, замість цього на місце, куди він мав стрибнути ставлять ще один камінь вашого кольору. Після завершення такого ходу всі ворожі камені, які перестрибнув ваш камінь стають вашими і відповідно змінюють свій колір.</para>
+<para
+>Кожен з ходів у &kreversi; здійснюється у подібний спосіб. Ваші камені можуть стрибати вертикально, горизонтально або вздовж діагоналі. Але, якщо вашим каменям нікуди стрибати, ви автоматично пропускаєте хід.</para>
+<note
+><para
+>Ті самі правила стосуються і вашого суперника. Якщо йому нікуди зробити хід, його хід теж буде пропущено.</para
+></note>
+<para
+>Завдання у грі полягає у нарощуванні кількості каменів вашого кольору на дошці. Гравець, якому вдасться стати власником більшої кількості каменів, проголошується переможцем. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Правила гри, стратегія та поради</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Основи гри</title>
+
+<para
+>Хід складається з перестрибування каменя (або каменів) вашого суперника і перевертання перестрибнутих каменів для того, щоб вони набули ваших кольорів. Виконати хід можна наведенням вказівника миші на бажану клітинку з наступним клацанням лівою кнопкою миші.</para>
+
+<para
+>Перестрибування означає розташування на дошці каменя таким чином, що рядок (або рядки) каменів вашого суперника було оточено з обох сторін каменями вашого кольору. Рядок може складатися з одного або декількох каменів.</para>
+
+<para
+>Гра розпочинається з діалогового вікна <guilabel
+>Нова гра</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Вибір режиму гри у &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Вибір режиму гри у &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Вибір режиму гри</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Щоб переглянути демонстрацію гри, виберіть режим <guilabel
+>Комп’ютер</guilabel
+> для обох гравців.</para>
+
+<para
+>На початку гри у кожного з гравців буде два камені, які буде автоматично розташовано у центральних чотирьох клітинках дошки у вигляді наступного візерунка:</para>
+
+<screenshot>
+<screeninfo
+>Початкова позиція у &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Початкова позиція у &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Компонування дошки</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Смужка меню</interface
+></term>
+    <listitem
+><para
+>На <interface
+>смужці меню</interface
+> міститься декілька спадних меню. Це меню <guimenu
+>Гра</guimenu
+>, <guimenu
+>Хід</guimenu
+>, <guimenu
+>Перегляд</guimenu
+>, <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Наведіть вказівник миші на один з цих написів і клацніть лівою кнопкою миші або натисніть комбінацію клавіш <keycombo action="simul"
+>&Alt;<keycap
+>підкреслена літера</keycap
+></keycombo
+>, щоб відкрити відповідне спадне меню.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Пенал</interface
+></term>
+    <listitem
+><para
+>Надає у розпорядження гравця кнопки, що відповідають найвикористовуванішим діям у грі. Серед цих дій <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Створити</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Вернути</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Підказка</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Показати останній хід</guiicon
+> і <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Показати можливі ходи</guiicon
+>. Наведіть вказівник миші на одну з цих піктограм і натисніть ліву кнопку миші, щоб програма виконала відповідну дію.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Дошка для гри</interface
+></term>
+    <listitem
+><para
+>Ігрова дошка має розміри 8 на 8 клітинок, отже, її розділено на 64 клітинки.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Смужка стану</interface
+></term>
+    <listitem
+><para
+>Показує дані щодо того, чий хід. Також тут за допомогою спадного списку можна вибрати рівень складності.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Правила гри</title>
+
+<para
+>Ви завжди ходитимете першим.</para>
+
+<para
+>Якщо у вас не буде жодного ходу, яким ви можете перевернути один з каменів суперника, ваш хід буде пропущено, і право ходу перейде до вашого суперника. Але якщо такий хід існує, ви не можете відмовитися від права ходу.</para>
+
+<para
+>Один камінь може перестрибувати будь-яку кількість каменів у одному або декількох рядках, у будь-якій кількості напрямків одночасно — горизонтально, вертикально або вздовж діагоналі. Рядком вважається один або декілька каменів вздовж неперервного прямого відрізка.</para>
+
+<para
+>Під час перестрибування ви не можете пропускати поле з каменем вашого кольору для того, щоб оточити більшу кількість каменів суперника.</para>
+
+<para
+>Перевертати камені можна лише у результаті ходу, ці камені мають лежати на одній прямій лінії з каменем, який було додано на дошку в результаті ходу.</para>
+
+<para
+>Всі перестрибнуті під час ходу камені слід перевертати, навіть якщо перевертання деяких з них невигідне гравцеві, який виконав хід.</para>
+
+<para
+>Після викладання каменя на клітинку дошки його вже не можна пересувати на іншу клітинку протягом гри.</para>
+
+<para
+>Якщо жоден з гравців не може більше зробити ходу, гра вважається завершеною. Після цього відбувається підрахунок фішок, переможцем оголошується гравець, який має на дошці більше каменів свого кольору, ніж має таких каменів його суперник.</para>
+
+<note
+><para
+>Гра може завершитися і до того, як буде заповнено всі 64 клітинки ігрового поля.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Стратегія та поради</title>
+
+<para
+>Намагайтеся за можливості розташовувати ваші камені у кутах дошки. Такі камені неможливо перестрибнути.</para>
+
+<para
+>Уникайте ходів у будь-яку з трьох клітинок, сусідніх з кутами поля, інакше ваш суперник зможе заволодіти цим кутом.</para>
+
+<para
+>Іноді можна жертвувати частиною ваших каменів.</para>
+
+<para
+>Намагайтеся викладати ваші камені так, щоб позбавити вашого суперника права ходу.</para>
+
+<para
+>Намагайтеся змусити вашого суперника викласти камінь у клітинку, сусідню з кутом поля.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Огляд інтерфейсу</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Пункти меню</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+><guimenuitem
+>Створити</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Починає нову гру.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Показати найкращі результати</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Відкриває діалогове вікно найкращих результатів, у якому буде показано різноманітні таблиці найкращих результатів.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+><guimenuitem
+>Вийти</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Вийти з &kreversi;.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Хід</guimenu
+><guimenuitem
+>Вернути</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Вилучає результати вашого останнього ходу</action
+>, а також останнього ходу комп’ютерного гравця з дошки.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Хід</guimenu
+> <guimenuitem
+>Підказка</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>Наказує комп’ютеру <action
+>показати підказку щодо вашого наступного ходу</action
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Показати останній хід</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Підсвічує останній хід суперника.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Показати можливі ходи</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Підсвічує всі можливі ходи, які можна зробити</action
+> у поточній позиції.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Перегляд</guimenu
+> <guimenuitem
+>Показати історію ходів</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Вмикає або вимикає бічну панель історії ходів.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guisubmenu
+>Швидкість анімації</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Підменю для встановлення швидкості анімації.</action
+> Можливі значення: <guimenuitem
+>Повільна</guimenuitem
+>, <guimenuitem
+>Звичайна</guimenuitem
+>, <guimenuitem
+>Швидка</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Використовувати кольорові фішки</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Перемикає колір фішок з чорного і білого (типових кольорів)</action
+> на червоний і синій.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+><guisubmenu
+>Складність</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Встановити складність гри</action
+> від <guimenuitem
+>Дуже проста</guimenuitem
+> до <guimenuitem
+>Неможливо складна</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Крім того, у &kreversi; передбачено типові для &kde; пункти меню <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Щоб дізнатися більше, ознайомтеся з розділами щодо <ulink url="help:/fundamentals/menus.html#menus-settings"
+>меню «Параметри»</ulink
+> та <ulink url="help:/fundamentals/menus.html#menus-help"
+>меню «Довідка»</ulink
+> підручника з основ роботи у &kde;. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Часті запитання</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Я хочу змінити вигляд цієї гри. Як це зробити? </para
+></question>
+ <answer
+><para
+>Єдиною річчю у грі, яку можна змінити, є колір каменів. Щоб змінити колір каменів, скористайтеся пунктом меню <menuchoice
+> <guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Використовувати кольорові фішки</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Чи можна використовувати для гри клавіатуру?</para
+></question>
+ <answer
+><para
+>Ні. У &kreversi; неможливо грати лише за допомогою клавіатури.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Я змушений (змушена) перервати гру, але гру ще не завершено. Чи можу я зберегти поточний стан?</para
+></question>
+ <answer
+><para
+>Ні. У &kreversi; немає функціональної можливості збереження.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Подяки і ліцензія</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Авторські права на програму належать &Mario.Weilguni;, ©1998–2000</para>
+<para
+>Mats Luthman — розробник рушія ходів.</para>
+
+<para
+>Автором початкової версії документації є &Mario.Weilguni;</para>
+<para
+>Під редакцією Robert Williams</para>
+
+<para
+>Документацію було переписано і оновлено для версії 2.0 &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

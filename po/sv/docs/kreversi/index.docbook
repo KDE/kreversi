@@ -1,0 +1,748 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Swedish "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Handbok Othello</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Utvecklare</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Granskare</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2021-08-12</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Denna dokumentation beskriver spelet Othello, version 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>spel</keyword
+> <!-- do not change this! -->
+	<keyword
+>Othello</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>bräde</keyword>
+	<keyword
+>spelhall</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>en spelare</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>pjäser</keyword>
+	<keyword
+>vit</keyword>
+	<keyword
+>svart</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Inledning</title
+> <!-- do not change this! -->
+	<note
+><title
+>Speltyp:</title
+><para
+>Brädspel, spelhall</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Antal möjliga spelare:</title
+><para
+>En</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>Othello är ett enkelt strategispel för en spelare som spelas mot datorn. Spelplanen är ett 8 gånger 8 fyrkantigt bräde som är uppdelat i 64 fyrkanter. Spelpjäserna som används är dubbelsidiga stenar, där varje sida har sin egen särskiljande färg. Om en pjäs tas av motspelaren, vänds den för att visa motspelarens färg. Vinnaren utses när en spelare har fler pjäser med sin färg på brädet och inga fler drag är möjliga.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Hur man spelar</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Syfte:</title
+><para
+>Ta kontroll över de flesta fyrkanterna på brädet.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>Othello startas direkt med dialogrutan <guilabel
+>Nytt spel</guilabel
+> där spelläget väljes, dvs. spela mot datorn eller en annan mänsklig spelare. Som första spelare har du rätt att göra det första draget.</para>
+<note
+><para
+>Normalt har den mänskliga spelaren alltid rätt till det första draget.</para
+></note>
+<para
+>Föreställ dig nu att din pjäs måste hoppa över fiendens pjäs (eller pjäser, eftersom det kan vara fler än en) vid varje drag. Dock flyttas inte din pjäs efter draget, istället placeras en ny pjäs på brädet där din pjäs skulle ha hamnat om den verkligen hade kunnat hoppa. När draget väl är gjort blir alla fiendens pjäser som du hoppar över dina, och ändrar sina färger på motsvarande sätt.</para>
+<para
+>Varenda drag du gör i Othello måste göras på detta sätt, och du kan hoppa vertikalt, horisontellt eller diagonalt med dina pjäser. Men om det inte finns någonstans att hoppa, hoppas din tur automatiskt över.</para>
+<note
+><para
+>Samma regel gäller din fiende. Om det inte finns någon möjlighet att göra ett drag hoppas det draget över.</para
+></note>
+<para
+>Idén är att fylla brädet med pjäser av din egen färg. Spelaren som lyckas erövra den största delen av spelbrädet deklareras som vinnare. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Spelets regler, strategi och tips</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Spelets grunder</title>
+
+<para
+>Ett drag består av att omringa din motspelares pjäser, och sedan vända de omringade pjäserna för att visa din färg. Ett drag utförs genom att placera muspekaren över den önskade fyrkanten och sedan klicka med vänster musknapp.</para>
+
+<para
+>Att omringa betyder att placera en pjäs på brädet så att din motspelares rad av pjäser omges av en pjäs i din färg i varje ända. En rad kan bestå av en eller flera pjäser.</para>
+
+<para
+>Spelet startar med dialogrutan <guilabel
+>Nytt spel</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Othellos val av spelläge</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Othellos val av spelläge</phrase
+></textobject>
+<caption
+><para
+>Val av spelläge</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>För att se en demonstration av spelet välj <guilabel
+>Dator</guilabel
+> för båda spelarna.</para>
+
+<para
+>Varje spelare får automatiskt två pjäser i de fyra fyrkanterna i mitten av brädet i följande mönster:</para>
+
+<screenshot>
+<screeninfo
+>Othellos startposition</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Othellos startposition</phrase
+></textobject>
+<caption
+><para
+>Brädets utseende</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Menyrad</interface
+></term>
+    <listitem
+><para
+><interface
+>Menyraden</interface
+> innehåller flera möjliga menyval. De är <guimenu
+>Spel</guimenu
+>, <guimenu
+>Flytta</guimenu
+>, <guimenu
+>Visa</guimenu
+>, <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+>. Vänsterklicka eller tryck på <keycombo action="simul"
+>&Alt; <keycap
+>understruken bokstav</keycap
+></keycombo
+> för att visa menyn.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Verktygsrad</interface
+></term>
+    <listitem
+><para
+>Tillhandahåller spelaren med ikongenvägar för ofta använda åtgärder. De är <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Ny</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Ångra</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Tips</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Visa senaste drag</guiicon
+> och <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Visa tillåtna drag</guiicon
+>. Placera muspekaren över någon av ikonerna och klicka med vänster musknapp för att aktivera den.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Spelplan</interface
+></term>
+    <listitem
+><para
+>Består av ett 8 gånger 8 bräde uppdelat i 64 fyrkanter.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Statusrad</interface
+></term>
+    <listitem
+><para
+>Visar vems tur det är. Samt en kombinationsruta för att välja svårighetsnivå.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Spelregler</title>
+
+<para
+>Du flyttar alltid först.</para>
+
+<para
+>Om du inte kan omringa och vända åtminstone en av motståndarens pjäser, förlorar du din tur och det är motspelarens drag igen. Om det finns ett drag som du kan göra, får du inte låta bli att göra ett drag.</para>
+
+<para
+>En pjäs kan omringa hur många pjäser som helst i en eller flera rader i hur många riktningar som helst på samma gång, horisontellt, vertikalt eller diagonalt. En rad definieras som en eller fler pjäser i en obruten rak linje.</para>
+
+<para
+>Du kan inte hoppa över pjäser med din egen färg för att omringa en av motspelarens pjäser.</para>
+
+<para
+>Pjäser får bara bli omringade som ett direkt resultat av ett drag och måste vara direkt i linje med pjäsen som placeras ut.</para>
+
+<para
+>Alla pjäser som omringas vid något drag måste vändas, även om det är fördelaktigt för spelaren att inte vända dem.</para>
+
+<para
+>Så fort en pjäs har placerats på en fyrkant kan den aldrig flyttas till en annan fyrkant senare i spelet.</para>
+
+<para
+>När det inte längre är möjligt för endera spelaren att göra ett drag, är spelet slut. Pjäserna räknas då och spelaren med flest pjäser av sin färg på brädet utropas till vinnare.</para>
+
+<note
+><para
+>Det är möjligt att ett spel tar slut innan alla 64 fyrkanter är fyllda.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategi och tips</title>
+
+<para
+>Försök att placera pjäser vid kanterna så fort det är möjligt. Din motspelare kan inte omringa de pjäserna.</para>
+
+<para
+>Undvik att placera pjäser på en av de tre fyrkanterna som gränsar till hörnen, om du inte är helt säker på att motspelaren inte kan placera en pjäs i hörnet.</para>
+
+<para
+>Ibland är det bättre att offra några pjäser till motspelaren.</para>
+
+<para
+>Försök att placera pjäser på fält som hindrar din motspelare från att flytta.</para>
+
+<para
+>Försök att tvinga din motspelare att placera en pjäs i ett fält som gränsar till ett hörn.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Översikt av gränssnittet</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Menyalternativ</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Ny</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Startar ett nytt spel.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Visa bästa resultat</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Öppnar en dialogruta som visar en annan tabell över bästa resultat.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Avsluta Othello.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Ångra</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Tar bort ditt senaste drag</action
+>, samt datorns senaste drag, från brädet.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Tips</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>Datorn <action
+>ger en ledtråd för ditt nästa drag.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa senaste drag</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Markerar motståndarens senaste drag.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa tillåtna drag</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Markerar alla tillgängliga drag</action
+> för ditt aktuella drag.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Visa</guimenu
+> <guimenuitem
+>Visa tidigare drag</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Aktiverar eller inaktiverar sidoraden med tidigare drag.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Animeringshastighet</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>En undermeny för att ställa in spelets animeringshastighet</action
+> mellan alternativen <guimenuitem
+>Långsam</guimenuitem
+> och <guimenuitem
+>Snabb</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Använd färgade pjäser</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Växla pjäsernas färg mellan svarta och vita (normalt)</action
+> eller röda och blåa.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+><guisubmenu
+>Svårighetsnivå</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+>Ställ in svårighetsnivån att vara från <guimenuitem
+>Mycket lätt</guimenuitem
+> upp till <guimenuitem
+>Omöjligt</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Dessutom har Othello de vanliga menyalternativen <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+> i &kde;. För mer information, läs avsnitten  <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menyn Inställningar</ulink
+> och <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menyn Hjälp</ulink
+> i &kde;:s Grunder. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Vanliga frågor</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Jag vill ändra hur spelet ser ut. Kan man göra det? </para
+></question>
+ <answer
+><para
+>Den enda delen av spelet som kan ändras är pjäsernas färg. Använd menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Använd färgade pjäser</guimenuitem
+></menuchoice
+> för att ändra pjäsernas färger.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Kan man använda tangentbordet för att spela?</para
+></question>
+ <answer
+><para
+>Nej, Othello tillhandahåller ingen möjlighet att spela med tangentbordet.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Jag måste avsluta spelet nu, men jag är inte klar än. Kan man spara det man har gjort?</para
+></question>
+ <answer
+><para
+>Nej, Othello har ingen funktion för <quote
+>Spara</quote
+>.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Tack till och licens</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Program Copyright 1998-2000 &Mario.Weilguni;</para>
+<para
+>Mats Luthman - Upphovsman till dragmotorn.</para>
+
+<para
+>Originaldokumentation av &Mario.Weilguni;</para>
+<para
+>Redigerad av Robert Williams</para>
+
+<para
+>Dokumentation omskriven och uppdaterad för 2.0 av &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

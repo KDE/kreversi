@@ -1,0 +1,814 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Spanish "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Manual de &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Desarrollador</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Revisor</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+> <firstname
+>Rocío</firstname
+> <surname
+>Gallego</surname
+> <affiliation
+><address
+><email
+>traducciones@rociogallego.com</email
+></address
+></affiliation
+> <contrib
+>Traductora</contrib
+> </othercredit
+><othercredit role="translator"
+> <firstname
+>Rafael</firstname
+> <surname
+>Osuna</surname
+> <affiliation
+><address
+><email
+>rosuna@wol.es</email
+> </address
+></affiliation
+> <contrib
+>Traductor</contrib
+> </othercredit
+> <othercredit role="translator"
+> <firstname
+>Miguel</firstname
+> <surname
+>Revilla Rodríguez</surname
+> <affiliation
+><address
+><email
+>yo@miguelrevilla.com</email
+></address
+> </affiliation
+> <contrib
+>Traductor</contrib
+> </othercredit
+> <othercredit role="translator"
+> <firstname
+>Santiago</firstname
+> <surname
+>Fernández</surname
+> <affiliation
+><address
+><email
+>santi@kde-es.org</email
+></address
+> </affiliation
+> <contrib
+>Traductor</contrib
+> </othercredit
+> <othercredit role="translator"
+><firstname
+>Kira</firstname
+><surname
+>J. Fernández</surname
+><affiliation
+><address
+><email
+>kirajfdez@gmail.com</email
+></address
+></affiliation
+><contrib
+>Traductora</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2021-08-12</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Esta documentación describe el juego &kreversi; versión 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>juego</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kreversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>tablero</keyword>
+	<keyword
+>recreativo</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>un jugador</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>piedras</keyword>
+	<keyword
+>blanco</keyword>
+	<keyword
+>negro</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Introducción</title
+> <!-- do not change this! -->
+	<note
+><title
+>Tipo de juego:</title
+><para
+>Tablero, Recreativo</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Número de posibles jugadores:</title
+><para
+>Uno</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; es un sencillo juego de estrategia para un jugador, que se enfrentará a la máquina. El campo de juego es un tablero de 8 por 8 cuadros dividido en 64 cuadros. Las fichas tienen cada cara de un color distintivo. Si se captura una ficha del oponente, la ficha se vuelve del color de ese jugador. Gana la partida aquel jugador que tienen más fichas de su color cuando ya no queden más movimientos posibles.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Cómo jugar</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Objetivo:</title
+><para
+>Controlar la mayor parte de los cuadros del tablero.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kreversi; carga directamente el diálogo de <guilabel
+>Nueva partida</guilabel
+>, donde puede seleccionar el modo de juego (&ie;, jugar contra la computadora o contra otro jugador humano). Como primer jugador, tiene derecho a mover en primer lugar.</para>
+<note
+><para
+>De forma predeterminada el jugador humano siempre hace el primer movimiento.</para
+></note>
+<para
+>Ahora, imagínese que con cada movimiento su piedra tiene que saltar sobre la del enemigo (o las del enemigo, porque podría haber más de una). Sin embargo, su piedra no se reubica tras el movimiento. En su lugar, se coloca una nueva piedra en el tablero donde su piedra debería haber aparecido de haber podido saltar. Una vez hecho el movimiento, todas las piedras enemigas sobre las que ha saltado pasan a ser suyas y cambian de color respectivamente.</para>
+<para
+>Cada vez que haga un movimiento en &kreversi; se hará de esta manera. Puede saltar con sus fichas vertical, horizontal y diagonalmente. En el caso de que no pueda saltar se saltará su turno automáticamente.</para>
+<note
+><para
+>La misma regla se aplica a su enemigo. Si no es posible hacer un movimiento su turno se saltará.</para
+></note>
+<para
+>La idea es rellenar el tablero de juego con las fichas de su propio color. El jugador que consiga la mayor parte del tablero de juego será el ganador. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Reglas del juego, estrategias y consejos</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Conceptos básicos</title>
+
+<para
+>Un movimiento consiste en rodear las fichas del contrario y después dar la vuelta a las fichas rodeadas para que muestren el color propio. Los movimientos se realizan colocando el puntero del ratón sobre el cuadro deseado y después pulsando con el &LMB;.</para>
+
+<para
+>Rodear significa colocar una ficha en el tablero de forma de las filas de fichas del oponente estén bordeadas por fichas del color propio por cada extremo. Una fila puede tener una o más fichas.</para>
+
+<para
+>La partida empieza con el diálogo de <guilabel
+>Nueva partida</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Selección del modo de juego de &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Selección del modo de juego de &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Selección del modo de juego</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Para ver una demostración del juego, seleccione <guilabel
+>Computadora</guilabel
+> para ambos jugadores.</para>
+
+<para
+>Cada jugador tiene dos fichas que están automáticamente colocadas en los cuatro cuadros centrales del tablero con la siguiente disposición:</para>
+
+<screenshot>
+<screeninfo
+>Posición inicial de &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Posición inicial de &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Disposición del tablero</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Barra de menús</interface
+></term>
+    <listitem
+><para
+>La <interface
+>barra de menús</interface
+> contiene varias opciones de menú desplegables: <guimenu
+>Partida</guimenu
+>, <guimenu
+>Mover</guimenu
+>, <guimenu
+>Ver</guimenu
+>, <guimenu
+>Preferencias</guimenu
+> y <guimenu
+>Ayuda</guimenu
+>. Utilice el &LMB; o <keycombo action="simul"
+>&Alt;<keycap
+>letra subrayada</keycap
+></keycombo
+> para mostrar estos menús desplegables.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barra de herramientas</interface
+></term>
+    <listitem
+><para
+>Proporciona al jugador accesos rápidos con iconos para las acciones de uso más común. Estas acciones son: <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Nuevo</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Deshacer</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Pista</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostrar el último movimiento</guiicon
+> y <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostrar los movimientos legales</guiicon
+>. Sitúe el puntero del ratón sobre cualquiera de estos iconos y haga clic con el &LMB; para activarla.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Tablero de juego</interface
+></term>
+    <listitem
+><para
+>Consta de un tablero de 8 por 8 cuadros dividido en 64 cuadros.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barra de estado</interface
+></term>
+    <listitem
+><para
+>Muestra de quién es el turno, así como una lista desplegable para escoger el nivel de dificultad.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Reglas del juego</title>
+
+<para
+>Usted siempre moverá primero.</para>
+
+<para
+>Si en su turno no puede rodear y girar al menos una ficha del oponente, se saltará el turno y el contrario volverá a mover. Sin embargo, siempre que haya un movimiento posible, no se podrá saltar el turno.</para>
+
+<para
+>Una ficha puede rodear a cualquier número de fichas en una o más filas y en cualquier dirección de forma simultánea: horizontal, vertical o diagonal. Una fila se define como una o más fichas que forma una línea recta continua.</para>
+
+<para
+>No es posible saltar sobre el color propio para rodear una ficha del oponente.</para>
+
+<para
+>La fichas únicamente pueden ser rodeadas como resultado directo de un movimiento y deben estar en la línea directa con la nueva ficha colocada.</para>
+
+<para
+>Todas las fichas rodeadas en cualquier movimiento deben darse la vuelta, incluso aunque sea mejor para el jugador no girarlas.</para>
+
+<para
+>Una vez que se ha colocado una ficha en un cuadro, no se podrá mover a otro cuadro durante el resto del juego.</para>
+
+<para
+>Cuando ninguno de los dos jugadores pueda realizar ningún movimiento, se da el juego por terminado. Se cuentan las fichas y el jugador con más fichas de su color sobre el tablero se proclama vencedor.</para>
+
+<note
+><para
+>Es posible que una partida finalice antes de que se hayan llenado los 64 cuadros.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Estrategias y consejos</title>
+
+<para
+>Trate de colocar las fichas en las esquinas siempre que sea posible. El oponente no puede rodear esas fichas.</para>
+
+<para
+>Evite colocar fichas en las tres casillas más cercanas a las esquinas, salvo que tenga la certeza absoluta de que su oponente no podrá colocar una ficha en la esquina.</para>
+
+<para
+>En ocasiones es mejor permitir que el oponente se haga con algunas de sus fichas.</para>
+
+<para
+>Trate de colocar las fichas en casillas que impidan mover al oponente.</para>
+
+<para
+>Trate de obligar al oponente a colocar una ficha en una casilla cercana a una esquina.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Visión general de la interfaz</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Opciones de menú</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Nuevo</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Inicia una nueva partida.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Mostrar mejores puntuaciones</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Abre un diálogo que muestra distintas tablas de mejores puntuaciones.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Juego</guimenu
+> <guimenuitem
+>Salir</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Salir de &kreversi;.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mover</guimenu
+> <guimenuitem
+>Deshacer</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Elimina el último movimiento del jugador</action
+> así como el último movimiento del ordenador.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mover</guimenu
+> <guimenuitem
+>Pista</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>El ordenador <action
+>dará un consejo sobre el siguiente movimiento del jugador</action
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Mostrar último movimiento</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Resalta el último movimiento de su oponente.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Mostrar movimientos posibles</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Resalta todos los movimientos disponibles</action
+> para su movimiento actual.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Ver</guimenu
+> <guimenuitem
+>Mostrar historial de movimientos</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Activa o desactiva la barra lateral del historial de movimientos.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Velocidad de las animaciones</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Un submenú para asignar la velocidad de animación del juego</action
+> entre las opciones <guimenuitem
+>Lenta</guimenuitem
+>, <guimenuitem
+>Normal</guimenuitem
+> y <guimenuitem
+>Rápida</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Usar fichas coloreadas</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Cambia el color de las fichas entre blanco y negro (predeterminado)</action
+> y rojo y azul.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Dificultad</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Define la dificultad</action
+> desde <guimenuitem
+>Muy fácil</guimenuitem
+> hasta <guimenuitem
+>Imposible</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Además &kreversi; tiene las opciones de menú <guimenu
+>Preferencias</guimenu
+> y <guimenu
+>Ayuda</guimenu
+> comunes de &kde;. Para obtener más información, consulte las secciones sobre el <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menú «Preferencias»</ulink
+> y <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menú «Ayuda» </ulink
+> de «Aspectos básicos de &kde;». </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Preguntas frecuentes</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Deseo cambiar el aspecto del juego ¿puedo? </para
+></question>
+ <answer
+><para
+>La única parte del juego que se puede cambiar es el color de las fichas. Para cambiar el color, use la opción del menú <menuchoice
+><guimenu
+>Preferencias</guimenu
+> <guimenuitem
+>Usar fichas de color</guimenuitem
+></menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>¿Puedo utilizar el teclado para jugar?</para
+></question>
+ <answer
+><para
+>No. &kreversi; no está diseñado para jugarse con teclado.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Tengo que abandonar la partida, pero todavía no la he finalizado ¿puedo guardar mi progreso?</para
+></question>
+ <answer
+><para
+>No. &kreversi; no dispone de la función de «guardar».</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Créditos y licencia</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Derechos de autor del programa. 1998-2000. &Mario.Weilguni;.</para>
+<para
+>Mats Luthman - Diseñador del motor de movimiento.</para>
+
+<para
+>Documentación original de &Mario.Weilguni;.</para>
+<para
+>Editada por Robert Williams.</para>
+
+<para
+>Documentación reescrita y actualizada para la versión 2.0 por &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Traducido por Rocío Gallego <email
+>traducciones@rociogallego.com</email
+>, Rafael Osuna <email
+>rosuna@wol.es</email
+>, Miguel Revilla Rodríguez <email
+>yo@miguelrevilla.com</email
+>, Santiago Fernández <email
+>santi@kde-es.org</email
+> y Kira J. Fernández <email
+>kirajfdez@gmail.com</email
+>.</para
+>  &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

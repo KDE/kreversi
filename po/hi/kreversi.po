@@ -1,0 +1,785 @@
+# translation of kreversi.po to Hindi
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Ravishankar Shrivastava <raviratlami@yahoo.com>, 2007.
+# G Karunakar <karunakar@indlinux.org>, 2020.
+# Raghavendra Kamath <raghu@raghukamath.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kreversi\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"PO-Revision-Date: 2021-08-21 16:25+0530\n"
+"Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
+"Language-Team: kde-hindi\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.08.0\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "करुणाकर गुंटुपल्ली"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "karunakar@indlinux.org"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Blue"
+msgstr "नीला"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Red"
+msgstr "लाल"
+
+#. i18n: ectx: property (text), widget (QLabel, blackLabel)
+#: commondefs.cpp:32 startgamedialog.ui:24
+#, kde-format
+msgid "Black"
+msgstr "काला"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteLabel)
+#: commondefs.cpp:32 startgamedialog.ui:150
+#, kde-format
+msgid "White"
+msgstr "सफेद"
+
+#: kexthighscore.cpp:198
+#, kde-format
+msgid "Score"
+msgstr "अंक"
+
+#: kexthighscore.cpp:201
+#, kde-format
+msgid "Mean Score"
+msgstr "मध्यांक"
+
+#: kexthighscore.cpp:206
+#, kde-format
+msgid "Best Score"
+msgstr "उच्च अंक"
+
+#: kexthighscore.cpp:210
+#, kde-format
+msgid "Elapsed Time"
+msgstr "बीता समय"
+
+#: kexthighscore_gui.cpp:152
+#, kde-format
+msgid "Best &Scores"
+msgstr "उच्च अंक (&S)"
+
+#: kexthighscore_gui.cpp:157
+#, kde-format
+msgid "&Players"
+msgstr "खिलाडी (&P)"
+
+#: kexthighscore_gui.cpp:162
+#, kde-format
+msgid "Statistics"
+msgstr "आंकड़े"
+
+#: kexthighscore_gui.cpp:168
+#, kde-format
+msgid "Histogram"
+msgstr "हिस्टोग्राम"
+
+#: kexthighscore_gui.cpp:175
+#, kde-format
+msgid "View world-wide highscores"
+msgstr "दुनिया भर के अधिकतम अंक देखें"
+
+#: kexthighscore_gui.cpp:182
+#, kde-format
+msgid "View world-wide players"
+msgstr "दुनिया भर के खिलाडी देखें"
+
+#: kexthighscore_gui.cpp:232
+#, fuzzy, kde-format
+#| msgid "Highscores"
+msgctxt "@title:window"
+msgid "Highscores"
+msgstr "उच्च अंक"
+
+#: kexthighscore_gui.cpp:296
+#, kde-format
+msgid "Overwrite"
+msgstr "मिटाकर लिखें"
+
+#: kexthighscore_gui.cpp:298
+#, kde-format
+msgid "The file already exists. Overwrite?"
+msgstr "एक फ़ाइल पहले से है। मिटाकर लिखें?"
+
+#: kexthighscore_gui.cpp:299
+#, kde-format
+msgid "Export"
+msgstr "निर्यात"
+
+#: kexthighscore_gui.cpp:350
+#, kde-format
+msgid "Winner"
+msgstr "विजेता"
+
+#: kexthighscore_gui.cpp:388
+#, kde-format
+msgid "Won Games"
+msgstr "जीते खेल"
+
+#: kexthighscore_gui.cpp:416
+#, fuzzy, kde-format
+#| msgid "Configure Highscores"
+msgctxt "@title:window"
+msgid "Configure Highscores"
+msgstr "उच्च अंक जमाएँ"
+
+#: kexthighscore_gui.cpp:429
+#, kde-format
+msgid "Main"
+msgstr "मुख्य"
+
+#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#, kde-format
+msgid "Nickname:"
+msgstr "उपनामः"
+
+#: kexthighscore_gui.cpp:455
+#, kde-format
+msgid "Comment:"
+msgstr "टिप्पणीः"
+
+#: kexthighscore_gui.cpp:465
+#, kde-format
+msgid "World-wide highscores enabled"
+msgstr "दुनिया भर के अधिकतम अंक सक्षम"
+
+#: kexthighscore_gui.cpp:472
+#, kde-format
+msgid "Advanced"
+msgstr "उन्नत"
+
+#: kexthighscore_gui.cpp:478
+#, kde-format
+msgid "Registration Data"
+msgstr "पंजीकरण डाटा"
+
+#: kexthighscore_gui.cpp:489
+#, kde-format
+msgid "Key:"
+msgstr "कुंजीः"
+
+#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#, kde-format
+msgid "Remove"
+msgstr "हटाएँ"
+
+#: kexthighscore_gui.cpp:541
+#, kde-format
+msgid ""
+"This will permanently remove your registration key. You will not be able to "
+"use the currently registered nickname anymore."
+msgstr ""
+
+#: kexthighscore_gui.cpp:584
+#, kde-format
+msgid "Please choose a non empty nickname."
+msgstr "कृपया अरिक्त उपनाम चुनें."
+
+#: kexthighscore_gui.cpp:588
+#, kde-format
+msgid "Nickname already in use. Please choose another one"
+msgstr "उपनाम पहले से ही उपयोग में है. कृपया कोई अन्य चुनें"
+
+#: kexthighscore_gui.cpp:609
+#, fuzzy, kde-format
+#| msgid "Enter Your Nickname"
+msgctxt "@title:window"
+msgid "Enter Your Nickname"
+msgstr "अपना उपनाम भरें"
+
+#: kexthighscore_gui.cpp:618
+#, kde-format
+msgid "Congratulations, you have won!"
+msgstr "बधाईयाँ! आप जीत गए!"
+
+#: kexthighscore_gui.cpp:623
+#, kde-format
+msgid "Enter your nickname:"
+msgstr "अपना उपनाम भरें:"
+
+#: kexthighscore_gui.cpp:631
+#, kde-format
+msgid "Do not ask again."
+msgstr "दोबारा मत पूछें"
+
+#: kexthighscore_internal.cpp:33
+msgid "anonymous"
+msgstr "अज्ञातनाम"
+
+#: kexthighscore_internal.cpp:258
+#, kde-format
+msgid "Games Count"
+msgstr "खेल गिनती"
+
+#: kexthighscore_internal.cpp:265
+#, kde-format
+msgid "Comment"
+msgstr "टिप्पणी"
+
+#: kexthighscore_internal.cpp:587
+msgid "Undefined error."
+msgstr "अपारिभाषित त्रुटि"
+
+#: kexthighscore_internal.cpp:588
+msgid "Missing argument(s)."
+msgstr "छूटे आर्गुमेंट"
+
+#: kexthighscore_internal.cpp:589
+msgid "Invalid argument(s)."
+msgstr "अवैध आर्गुमेंट"
+
+#: kexthighscore_internal.cpp:591
+msgid "Unable to connect to MySQL server."
+msgstr "MySQL सर्वर से जुड़ने में असमर्थ"
+
+#: kexthighscore_internal.cpp:592
+msgid "Unable to select database."
+msgstr "डाटाबेस चुनने में असमर्थ"
+
+#: kexthighscore_internal.cpp:593
+msgid "Error on database query."
+msgstr "डाटाबेस प्रश्न पर त्रुटि"
+
+#: kexthighscore_internal.cpp:594
+msgid "Error on database insert."
+msgstr "डाटाबेस प्रविष्टि पर त्रुटि"
+
+#: kexthighscore_internal.cpp:596
+msgid "Nickname already registered."
+msgstr "उपनाम पहले से पंजीकृत है"
+
+#: kexthighscore_internal.cpp:597
+msgid "Nickname not registered."
+msgstr "उपनाम पंजीकृत नही है"
+
+#: kexthighscore_internal.cpp:598
+msgid "Invalid key."
+msgstr "अवैध कुंजी"
+
+#: kexthighscore_internal.cpp:599
+msgid "Invalid submit key."
+msgstr "अवैध जमा कुंजी"
+
+#: kexthighscore_internal.cpp:601
+msgid "Invalid level."
+msgstr "अवैध सतर"
+
+#: kexthighscore_internal.cpp:602
+msgid "Invalid score."
+msgstr "अवैध अंक"
+
+#: kexthighscore_internal.cpp:606
+msgid "Unable to contact world-wide highscore server"
+msgstr ""
+
+#: kexthighscore_internal.cpp:615
+#, kde-format
+msgid "Unable to open temporary file."
+msgstr "अस्थायी फ़ाइल खोलने में असमर्थ"
+
+#: kexthighscore_internal.cpp:624
+#, kde-format
+msgid "Server URL: %1"
+msgstr "सर्वर URL: %1"
+
+#: kexthighscore_internal.cpp:646
+#, kde-format
+msgid "Message from world-wide highscores server"
+msgstr ""
+
+#: kexthighscore_internal.cpp:653
+#, kde-format
+msgid "Invalid answer from world-wide highscores server."
+msgstr ""
+
+#: kexthighscore_internal.cpp:654
+#, kde-format
+msgid "Raw message: %1"
+msgstr "कच्चा संदेश: %1"
+
+#: kexthighscore_internal.cpp:666
+#, kde-format
+msgid "Invalid answer from world-wide highscores server (missing item: %1)."
+msgstr ""
+
+#: kexthighscore_item.cpp:266
+#, fuzzy, kde-format
+#| msgid "Multiplayers Scores"
+msgctxt "@title:window"
+msgid "Multiplayers Scores"
+msgstr "बहु खिलाडी अंक"
+
+#: kexthighscore_item.cpp:277
+#, kde-format
+msgid "No game played."
+msgstr "खेल खेला नही गया"
+
+#: kexthighscore_item.cpp:279
+#, kde-format
+msgid "Scores for last game:"
+msgstr "पिछले खेल के अंक:"
+
+#: kexthighscore_item.cpp:286
+#, kde-format
+msgid "Scores for the last %1 games:"
+msgstr "पिछले %1 खेल के अंक:"
+
+#: kexthighscore_tab.cpp:32
+#, kde-format
+msgid "all"
+msgstr "सभी"
+
+#: kexthighscore_tab.cpp:61
+#, kde-format
+msgid "Select player:"
+msgstr "खिलाड़ी चुनें:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Total:"
+msgstr "कुलः"
+
+#: kexthighscore_tab.cpp:97
+msgid "Won:"
+msgstr "जीता:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Lost:"
+msgstr "हारे:"
+
+#: kexthighscore_tab.cpp:98
+msgid "Draw:"
+msgstr "बराबरी:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Current:"
+msgstr "मौज़ूदा:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Max won:"
+msgstr "अधिकतम जीता:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Max lost:"
+msgstr "अधिकतम हारे:"
+
+#: kexthighscore_tab.cpp:116
+#, kde-format
+msgid "Game Counts"
+msgstr "खेल गणना"
+
+#: kexthighscore_tab.cpp:129
+#, kde-format
+msgid "Trends"
+msgstr "रुझान"
+
+#: kexthighscore_tab.cpp:217
+#, kde-format
+msgid "From"
+msgstr "से"
+
+#: kexthighscore_tab.cpp:218
+#, kde-format
+msgid "To"
+msgstr "को"
+
+#: kexthighscore_tab.cpp:219
+#, kde-format
+msgid "Count"
+msgstr "गिनती"
+
+#: kexthighscore_tab.cpp:220
+#, kde-format
+msgid "Percent"
+msgstr "प्रतिशत"
+
+#. i18n: ectx: label, entry (AnimationSpeed), group (Game)
+#: kreversi.kcfg:9
+#, kde-format
+msgid "The speed of the animations."
+msgstr "चलचित्र गति"
+
+#. i18n: ectx: label, entry (CompetitiveGameChoice), group (Game)
+#: kreversi.kcfg:18
+#, kde-format
+msgid "Whether to play competitively in contrast to casually."
+msgstr "क्या सामान्य खेल खेलें या गंभीरता से खेलना है."
+
+#. i18n: ectx: label, entry (UseColoredChips), group (Game)
+#: kreversi.kcfg:22
+#, kde-format
+msgid "Whether to use colored chips instead of black and white ones."
+msgstr "काला सफेद के बजाए क्या रंगीन चिप इस्तेमाल करना है."
+
+#. i18n: ectx: Menu (view)
+#: kreversiui.rc:13
+#, kde-format
+msgid "&View"
+msgstr "देखें (&V)"
+
+#. i18n: ectx: Menu (settings)
+#: kreversiui.rc:18
+#, kde-format
+msgid "&Settings"
+msgstr "विन्यास (&S)"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kreversiui.rc:25
+#, kde-format
+msgid "Main Toolbar"
+msgstr "मुख्य औज़ार पट्टी"
+
+#: kreversiview.cpp:251
+#, kde-format
+msgid "Red can not perform any move. It is blue turn again."
+msgstr "लाल अब चाल नहीं चल सकता. फिर से नीले की बारी है."
+
+#: kreversiview.cpp:252
+#, kde-format
+msgid "White can not perform any move. It is black turn again."
+msgstr "सफेद अब चाल नहीं चल सकता. अब काले की बारी है."
+
+#: kreversiview.cpp:261
+#, kde-format
+msgid "Blue can not perform any move. It is red turn again."
+msgstr "नीला और खेल नहीं कर सकता. अब लाल की बारी है."
+
+#: kreversiview.cpp:262
+#, kde-format
+msgid "Black can not perform any move. It is white turn again."
+msgstr "काला अब खेल नहीं कर सकता. अब सफेद की बारी है."
+
+#: main.cpp:38
+#, kde-format
+msgid "KReversi"
+msgstr "के-रिवर्सी"
+
+#: main.cpp:40
+#, kde-format
+msgid "KDE Reversi Board Game"
+msgstr "के-रिवर्सी बिसात का खेल"
+
+#: main.cpp:42
+#, kde-format
+msgid ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+msgstr ""
+"(c) 1997-2000,मारियो वेइलगुनि\n"
+"(c) 2004-2006, इन्गे वालिन\n"
+"(c) 2006, दमित्रि सुज्दालेव"
+
+#: main.cpp:45
+#, kde-format
+msgid "Mario Weilguni"
+msgstr "मारियो वेइलगुनी"
+
+#: main.cpp:45 main.cpp:46
+#, kde-format
+msgid "Original author"
+msgstr "मूल लेखक"
+
+#: main.cpp:46
+#, kde-format
+msgid "Inge Wallin"
+msgstr "इंग वालिन"
+
+#: main.cpp:47
+#, kde-format
+msgid "Dmitry Suzdalev"
+msgstr "दमित्रि सुज्दालेव"
+
+#: main.cpp:47
+#, kde-format
+msgid "Game rewrite for KDE4. Current maintainer."
+msgstr "केडीई४ के लिए फिर से लिखा. वर्तमान मेंटेनर"
+
+#: main.cpp:48
+#, kde-format
+msgid "Simon Hürlimann"
+msgstr "साइमन हर्लिमैन"
+
+#: main.cpp:48
+#, kde-format
+msgid "Action refactoring"
+msgstr "एक्शन रीफ्रेक्टरिंग"
+
+#: main.cpp:49
+#, kde-format
+msgid "Mats Luthman"
+msgstr "मैट्स लुथमैन"
+
+#: main.cpp:49
+#, kde-format
+msgid "Game engine, ported from his JAVA applet."
+msgstr "खेल इंजिन, उसके जावा ऐपलेट से पोर्टेड."
+
+#: main.cpp:50
+#, kde-format
+msgid "Arne Klaassen"
+msgstr "आर्ने क्लासेन"
+
+#: main.cpp:50
+#, kde-format
+msgid "Original raytraced chips."
+msgstr "मूल रेट्रेस्ड चिप्स."
+
+#: main.cpp:51
+#, kde-format
+msgid "Mauricio Piacentini"
+msgstr "मारिसियो पियासेन्टिनी"
+
+#: main.cpp:51
+#, kde-format
+msgid "Vector chips and background for KDE4."
+msgstr "केडीई४ के लिए वेक्टर चिप्स तथा पृष्ठभूमि."
+
+#: main.cpp:52
+#, kde-format
+msgid "Brian Croom"
+msgstr "Brian Croom"
+
+#: main.cpp:52
+#, kde-format
+msgid "Port rendering code to KGameRenderer"
+msgstr ""
+
+#: main.cpp:53
+#, kde-format
+msgid "Denis Kuplyakov"
+msgstr "Denis Kuplyakov"
+
+#: main.cpp:53
+#, kde-format
+msgid "Port rendering code to QML, redesign and a lot of improvements"
+msgstr ""
+
+#: main.cpp:59
+#, kde-format
+msgid "Start with demo game playing"
+msgstr "डेमो खेल खेलने से प्रारंभ करें"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Press start game!"
+msgstr "आरंभ करने के लिए दबाएँ !"
+
+#: mainwindow.cpp:69
+#, kde-format
+msgid "Move History"
+msgstr "चालों का इतिहास"
+
+#: mainwindow.cpp:116
+#, kde-format
+msgid "Show Last Move"
+msgstr "पिछली चाल दिखाएँ"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Show Legal Moves"
+msgstr "वैध चाल दिखाएँ"
+
+#: mainwindow.cpp:126
+#, kde-format
+msgid "Animation Speed"
+msgstr "चलचित्र गति"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Slow"
+msgstr "धीमा"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Normal"
+msgstr "सामान्य"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Fast"
+msgstr "तेज"
+
+#: mainwindow.cpp:135
+#, kde-format
+msgid "Use Colored Chips"
+msgstr "रंगीन चिप्स इस्तेमाल करें"
+
+#: mainwindow.cpp:143
+#, kde-format
+msgid "Show Move History"
+msgstr "चालों का इतिहास दिखाएँ"
+
+#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#, kde-format
+msgid "Game is drawn!"
+msgstr "खेल बराबरी पर रहा!"
+
+#: mainwindow.cpp:224 mainwindow.cpp:239
+#, kde-format
+msgid "You win!"
+msgstr "आप जीते!"
+
+#: mainwindow.cpp:227 mainwindow.cpp:242
+#, kde-format
+msgid "You have lost!"
+msgstr "आप हार गए!"
+
+#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#, kde-format
+msgid "%1 has won!"
+msgstr "%1 ने जीता!"
+
+#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#, kde-format
+msgid ""
+"\n"
+"%1: %2"
+msgstr ""
+"\n"
+"%1: %2"
+
+#: mainwindow.cpp:274
+#, kde-format
+msgid "Game over"
+msgstr "खेल ख़त्म"
+
+#: mainwindow.cpp:341
+#, kde-format
+msgid "GAME OVER"
+msgstr "खेल ख़त्म"
+
+#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: mainwindow.cpp:350
+#, kde-format
+msgid "%1 turn"
+msgstr "%1 चाल"
+
+#: mainwindow.cpp:357
+#, kde-format
+msgid "%1's turn"
+msgstr "%1 की बारी"
+
+#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#, kde-format
+msgid "Computer"
+msgstr "कम्प्यूटर"
+
+#: startgamedialog.cpp:26
+#, fuzzy, kde-format
+#| msgid "New game"
+msgctxt "@title:window"
+msgid "New game"
+msgstr "नया खेल"
+
+#: startgamedialog.cpp:36
+#, kde-format
+msgid "Start game"
+msgstr "खेल आरंभ करें"
+
+#: startgamedialog.cpp:37
+#, kde-format
+msgid "Let's start playing!"
+msgstr "चलिए खेल आरंभ करें"
+
+#: startgamedialog.cpp:38
+#, kde-format
+msgid "Quit"
+msgstr "बाहर जाएँ"
+
+#: startgamedialog.cpp:39
+#, kde-format
+msgid "Quit KReversi"
+msgstr "के-रिवर्सी छोडें"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: startgamedialog.ui:83 startgamedialog.ui:209
+#, kde-format
+msgid "Name:"
+msgstr "नाम:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: startgamedialog.ui:100 startgamedialog.ui:226
+#, kde-format
+msgid "Skill level:"
+msgstr "हुनर स्तर:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: startgamedialog.ui:128
+#, kde-format
+msgid "VS"
+msgstr "बनाम"
+
+#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
+#~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
+
+#~ msgid "Very Easy"
+#~ msgstr "अति आसान"
+
+#~ msgid "Easy"
+#~ msgstr "आसान"
+
+#~ msgid "Hard"
+#~ msgstr "कठिन"
+
+#~ msgid "Very Hard"
+#~ msgstr "अत्यंत कठिन"
+
+#~ msgid "Unbeatable"
+#~ msgstr "अपराजेय"
+
+#~ msgid "Champion"
+#~ msgstr "चैम्पियन"
+
+#~ msgid "Your turn."
+#~ msgstr "आपकी बारी."
+
+#~ msgid "You: %1"
+#~ msgstr "आप: %1"
+
+#~ msgid ""
+#~ "\n"
+#~ "You: %1"
+#~ msgstr ""
+#~ "\n"
+#~ "आप: %1"
+
+#, fuzzy
+#~| msgid "Players and Seats"
+#~ msgid "Players && Seats"
+#~ msgstr "खिलाड़ी तथा सीट"
+
+#~ msgid "Opponent"
+#~ msgstr "प्रतिद्वन्दी"
+
+#~ msgid "Very easy"
+#~ msgstr "अति आसान"
+
+#~ msgid "Computer Skill"
+#~ msgstr "कम्प्यूटर निपुणता"
+
+#~ msgid "The strength of the computer player."
+#~ msgstr "कम्प्यूटर खिलाड़ी का सामर्थ्य."

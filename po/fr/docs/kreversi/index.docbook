@@ -1,0 +1,736 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Manuel utilisateur de &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Développeur</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Relecture</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+&traducteurEricBischoff;&traducteurYohannHamon;&traducteurStanislasZeller; 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>12-08-2021</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Cette documentation décrit le jeu &kreversi; en version 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>jeu</keyword
+> <!-- do not change this! -->
+	<keyword
+>KReversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>plateau</keyword>
+	<keyword
+>arcade</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>Reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>un joueur</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>jetons</keyword>
+	<keyword
+>blanc</keyword>
+	<keyword
+>noir</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Introduction</title
+> <!-- do not change this! -->
+	<note
+><title
+>Type de jeu : </title
+><para
+>Plateau, arcade</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Nombre possible de joueurs : </title
+><para
+>Un</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; est un jeu de stratégie simple se jouant seul contre l'ordinateur. Le plateau de jeu se compose de 64 cases disposées en un carré de 8 cases sur 8. Les jetons sont des jetons dont un côté est rouge et l'autre bleu. Si un jeton est capturé par l'adversaire, ce jeton est retourné de manière à afficher la couleur de cet adversaire. Est déclaré vainqueur celui ayant le plus de jetons que son adversaire lorsque plus aucun coup ne peut être joué.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Comment jouer</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Objectif : </title
+><para
+>Le but du jeu est de contrôler la majorité des cases du plateau de jeu.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kreversi; se charge directement dans la boîte de dialogue <guilabel
+>Nouvelle partie</guilabel
+>, où vous sélectionnez le mode de jeu, &pex; jouer contre l'ordinateur ou contre un autre joueur humain. Étant le premier joueur, vous pouvez jouer le premier coup.</para>
+<note
+><para
+>Par défaut, le joueur humain a toujours le droit de débuter la partie.</para
+></note>
+<para
+>Pour chaque mouvement, votre jeton saute par dessus un ennemi - un jeton (ou plusieurs, il peut y avoir plus qu'un jeton). Maintenant, votre jeton n'est pas déplacé après le mouvement, à la place, un nouveau jeton est placé sur le plateau où votre jeton doit apparaître si il doit effectivement sauter. Une fois le mouvement effectué, tous les jetons ennemis que vous sautez, deviennent les votre et la couleur de ces jetons est modifié pour la votre.</para>
+<para
+>Chaque mouvement simple que vous réalisez dans &kreversi; a été fait de cette manière. Et vous pouvez déplacer vos jetons verticalement, horizontalement et en diagonale. Mais, dans certains cas, il n'y a aucun endroit où se placer, votre tour sera automatiquement passé.</para>
+<note
+><para
+>La même règle s'applique à votre adversaire. S'il n'y a aucune possibilité de réaliser un mouvement, le tour est sauté.</para
+></note>
+<para
+>L'idée ici est de remplir le plateau avec des jetons de votre propre couleur. Le joueur qui arrive à conquérir le plus grands nombres de jetons est considéré comme le vainqueur. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Règles du jeu, stratégies et astuces</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Notions élémentaires</title>
+
+<para
+>Un coup consiste à encadrer un ou plusieurs jetons de votre adversaire, puis de retourner ces jetons pour qu'ils montrent votre couleur. Un coup se joue en plaçant le pointeur de la souris au-dessus de la case désirée et en cliquant avec le &BGS;.</para>
+
+<para
+>Encadrer signifie placer un jeton sur le plateau de manière à ce qu'un ou plusieurs alignements de jetons de votre adversaire soit flanqué à chaque extrémité par un jeton de votre couleur. Un tel alignement peut se composer d'un ou plusieurs jetons.</para>
+
+<para
+>Le jeu commence avec la boîte de dialogue <guilabel
+>Nouvelle partie</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Sélection du mode de jeu de &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Sélection du mode de jeu de &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Sélection du mode de jeu</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Pour voir une démonstration du jeu, veuillez sélectionner <guilabel
+>Ordinateur</guilabel
+> pour les deux joueurs.</para>
+
+<para
+>La partie démarre avec deux jetons pour chaque joueur placés sur le plateau de jeu dans le carré central de 4 cases comme suit :</para>
+
+<screenshot>
+<screeninfo
+>Position de départ de &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Position de départ de &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Composition du plateau de jeu</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Barre de menus</interface
+></term>
+    <listitem
+><para
+>La <interface
+>barre de menu</interface
+> donne accès à plusieurs menus déroulants. Il s'agit de <guimenu
+>Partie</guimenu
+>, <guimenu
+>Déplacement</guimenu
+>, <guimenu
+>Affichage</guimenu
+>, <guimenu
+>Configuration</guimenu
+> et <guimenu
+>Aide</guimenu
+>. Veuillez cliquer avec le &BGS; ou sur <keycombo action="simul"
+>&Alt;<keycap
+>la lettre soulignée</keycap
+></keycombo
+> pour afficher le menu à liste déroulante.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barre d'outils</interface
+></term>
+    <listitem
+><para
+>Fournit au joueur des raccourcis d’icônes pour les actions couramment utilisées. Ce sont <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Nouveau</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Annuler</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Astuce</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Afficher le dernier coup</guiicon
+> et <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Afficher les coups valables</guiicon
+>. Veuillez placer le pointeur de souris sur n'importe quelle de ces icônes puis cliquer avec le &BGS; pour l'activer.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Le plateau de jeu</interface
+></term>
+    <listitem
+><para
+>Consiste en une grille de 8 cases sur 8 cases, divisée en 64 cases.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>La barre d'état</interface
+></term>
+    <listitem
+><para
+>Affiche celui dont c'est le tour. Ainsi qu’une liste déroulante pour choisir le niveau de difficulté.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Règles du jeu</title>
+
+<para
+>Vous jouez toujours en premier.</para>
+
+<para
+>Si, lorsque c'est votre tour, vous ne pouvez pas encadrer et retourner au moins un jeton de votre adversaire, vous perdez votre tour et votre adversaire rejoue. En revanche, si vous pouvez jouer, vous ne pouvez pas sauter votre tour.</para>
+
+<para
+>Un jeton peut encadrer en même temps n'importe quel nombre de jetons alignés sur une ou plusieurs lignes dans n'importe quel nombre de directions - horizontalement, verticalement ou en diagonale. Un alignement est défini comme un ou plusieurs jetons en ligne droite sans interruption.</para>
+
+<para
+>Vous ne pouvez pas passer par-dessus un jeton de votre propre couleur pour encadrer un jeton de l'adversaire.</para>
+
+<para
+>Les jetons ne peuvent être encadrés que directement suite à un coup et doivent être alignés avec le jeton déposé.</para>
+
+<para
+>Tous les jetons encadrés lorsqu'un coup est joué doivent être retournés, même si le joueur a intérêt à ce qu'ils ne le soient pas.</para>
+
+<para
+>Une fois qu'un jeton a été déposé sur une case, il ne peut être déplacé vers une autre case.</para>
+
+<para
+>Quand plus aucun joueur ne peut jouer, la partie est finie. Les jetons sont alors comptés et le joueur qui a le plus de jetons de sa couleur sur le plateau de jeu est déclaré vainqueur.</para>
+
+<note
+><para
+>Il se peut que le jeu s'arrête avant que les 64 cases ne soient remplies.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Stratégies et astuces</title>
+
+<para
+>Essayez de placer des jetons sur les coins quand c'est possible. Votre adversaire ne pourra pas encadrer ces jetons.</para>
+
+<para
+>Évitez de placer des jetons sur l'une des trois cases bordant un coin à moins d'être absolument sûr que votre adversaire ne pourra pas placer un jeton dans ce coin.</para>
+
+<para
+>Il vaut parfois mieux offrir des jetons à votre adversaire.</para>
+
+<para
+>Essayez de placer vos jetons sur des cases qui empêchent votre adversaire de jouer.</para>
+
+<para
+>Essayez de forcer votre adversaire à placer un jeton dans une case avoisinant un coin.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Vue d'ensemble de l'interface</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Éléments de menu</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jeu</guimenu
+><guimenuitem
+>Nouveau</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Démarre une nouvelle partie.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jeu</guimenu
+><guimenuitem
+>Afficher les meilleurs scores</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ouvre une boîte de dialogue affichant les tables des meilleurs scores.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jeu</guimenu
+><guimenuitem
+>Quitter</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Quitter &kreversi;</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Déplacer</guimenu
+><guimenuitem
+>Annuler</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Annule votre dernier coup</action
+> ainsi que celui de l'ordinateur du plateau.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Déplacer</guimenu
+><guimenuitem
+>Conseil</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>L'ordinateur vous <action
+>fournira un conseil pour votre prochain coup.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Vue</guimenu
+><guimenuitem
+>Afficher le dernier coup</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Surligner le dernier mouvement de votre adversaire.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Vue</guimenu
+><guimenuitem
+>Afficher les coups autorisés</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Surligne tous les mouvements disponibles</action
+> pour votre coup actuel.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Vue</guimenu
+><guimenuitem
+>Afficher l'historique des coups</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Active ou désactive la barre d'historique des mouvements.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Configuration</guimenu
+><guisubmenu
+>Vitesse d'animation</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Un sous-menu pour définir la vitesse d'animation du jeu</action
+> parmi les options <guimenuitem
+>Lent</guimenuitem
+>, <guimenuitem
+>Normal</guimenuitem
+> et <guimenuitem
+>Rapide</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Configuration</guimenu
+><guimenuitem
+>Utiliser les jetons colorés</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Basculer la couleur des jetons entre le noir et le blanc (défaut)</action
+> et le rouge et le bleu.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Configuration</guimenu
+><guisubmenu
+>Difficulté</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Définir la difficulté</action
+> à partir de <guimenuitem
+>Très facile</guimenuitem
+> à <guimenuitem
+>Impossible</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>De plus, &kreversi; possède des éléments communs de menu &kde; <guimenu
+>Configuration</guimenu
+> et <guimenu
+>Aide</guimenu
+>. Pour plus d'informations, veuillez consulter les sections <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu de configuration</ulink
+> et <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu d'aide</ulink
+> des fondamentaux de &kde;. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Foire aux questions</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Je veux modifier la façon dont le jeu s'affiche. Est-ce possible ? </para
+></question>
+ <answer
+><para
+>Le seul élément du jeu qui peut être modifié est la couleur des jetons. Pour cela, veuillez utiliser l'élément de menu  <menuchoice
+> <guimenu
+>Configuration</guimenu
+> <guimenuitem
+>Utiliser les jetons colorés</guimenuitem
+> </menuchoice
+> sur la barre de menu.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Puis-je utiliser le clavier pour jouer à ce jeu ?</para
+></question>
+ <answer
+><para
+>Non. &kreversi; ne fournit aucun moyen de jouer avec le clavier.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Je veux quitter le jeu maintenant, mais ma partie n'est pas terminée. Puis je l'enregistrer ?</para
+></question>
+ <answer
+><para
+>Non. &kreversi; ne possède aucune fonctionnalité <quote
+>Enregistrer</quote
+> .</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Remerciements et licence</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Copyright du programme 1998-2000 Mario Weilguni.</para>
+<para
+>Mats Luthman - Concepteur du moteur de résolution de coups.</para>
+
+<para
+>Documentation originelle par Mario Weilguni.</para>
+<para
+>Mise en forme par Robert Williams.</para>
+
+<para
+>Documentation ré-écrite et mise à jour pour la version 2.0 par &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Traduction française par &EricBischoff;, &YohannHamon; et &StanislasZeller;.</para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

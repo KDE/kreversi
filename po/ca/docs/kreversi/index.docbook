@@ -1,0 +1,734 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Catalan  "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>El manual del &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Desenvolupador</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Revisor</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+&traductor.Antoni.Bella; 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>12 d'agost de 2021</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Aquesta documentació descriu el joc &kreversi; versió 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>joc</keyword
+> <!-- do not change this! -->
+	<keyword
+>KReversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>tauler</keyword>
+	<keyword
+>arcade</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>un jugador</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>pedres</keyword>
+	<keyword
+>blanca</keyword>
+	<keyword
+>negra</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Introducció</title
+> <!-- do not change this! -->
+	<note
+><title
+>Tipus de joc:</title
+><para
+>Tauler, arcade</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Nombre de possibles jugadors:</title
+><para
+>Un</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>El &kreversi; és un joc d'estratègia senzill d'un jugador jugat contra l'ordinador. El camp de joc és un tauler de 8 per 8 quadres dividit en 64 quadres. Les peces del joc utilitzades són dues pedres de costat, on cada costat té el seu propi color distintiu. Si una peça és capturada per un jugador contrari, aquesta peça es capgirarà per a revelar el color d'aquest jugador. Es declararà un guanyador quan un jugador tingui més peces del seu propi color en el tauler i no hi hagi més moviments possibles.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Com jugar</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Objectiu:</title
+><para
+>Obtenir el control de la majoria de quadres en el tauler.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>El &kreversi; carrega directament en el diàleg <guilabel
+>Partida nova</guilabel
+>, des d'on seleccionareu el mode de joc, &ead;, jugar contra l'ordinador o un altre jugador humà. Com a primer jugador, tindreu dret a moure primer.</para>
+<note
+><para
+>De manera predeterminada, el jugador humà sempre tindrà dret al primer moviment.</para
+></note>
+<para
+>Ara, imagineu que amb cada moviment, la vostra pedra ha de saltar per sobre de l'enemic (o unes quantes, ja que podria haver-hi més d'una pedra). No obstant això, la vostra pedra no es reubicarà després del moviment, en canvi, es col·locarà una pedra nova en el tauler on hauria aparegut aquesta si realment pogués saltar. Una vegada es fa el moviment, totes les pedres enemigues que salteu esdevindran vostres i canviaran al vostre color respectivament.</para>
+<para
+>Cada moviment que feu en el &kreversi; s'ha de fer d'aquesta manera. I es pot saltar amb les pedres en vertical, horitzontal i diagonal. Però, en cas que no hi hagi cap lloc on saltar, se saltarà automàticament el vostre torn.</para>
+<note
+><para
+>La mateixa regla s'aplica a l'oponent. Si no hi ha possibilitat de fer un moviment, se saltarà el torn.</para
+></note>
+<para
+>La idea és omplir el tauler amb les pedres del vostre propi color. El jugador que aconsegueixi conquistar la major part del tauler de joc s'anunciarà com a guanyador. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Les regles del joc, estratègies i consells</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Conceptes bàsics del joc</title>
+
+<para
+>Un moviment consisteix a flanquejar la/es pedra/es de l'oponent, després es donarà la volta a la/es pedra/es flanquejada/es per a revelar el vostre color. Un moviment es realitza col·locant el punter del ratolí a sobre del quadre desitjat i després fer-hi clic amb el &BER;.</para>
+
+<para
+>Flanquejar vol dir col·locar una pedra en el tauler de manera que la/es fila/es de la/es pedra/es de l'oponent estigui/n vorejades a cada costat per una pedra del vostre color. Una fila pot estar formada per una o més pedres.</para>
+
+<para
+>El joc comença amb el diàleg <guilabel
+>Partida nova</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Seleccionant el mode de joc del &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Seleccionant el mode de joc del &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Selecció del mode de joc</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Per a veure una demostració del joc, seleccioneu <guilabel
+>Ordinador</guilabel
+> per a ambdós jugadors.</para>
+
+<para
+>Cada jugador tindrà col·locades automàticament dues pedres en quatre quadres en el centre del tauler seguint el patró següent:</para>
+
+<screenshot>
+<screeninfo
+>Posició en obrir el &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Posició en obrir el &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Disposició del tauler</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Barra de menús</interface
+></term>
+    <listitem
+><para
+>La <interface
+>Barra de menús</interface
+> conté diverses opcions en menús desplegables. Aquests són <guimenu
+>Joc</guimenu
+>, <guimenu
+>Mou</guimenu
+>, <guimenu
+>Visualitza</guimenu
+>, <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Feu clic amb el &BER; o <keycombo action="simul"
+>&Alt;<keycap
+>la lletra subratllada</keycap
+></keycombo
+> per a mostrar el menú desplegable.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barra d'eines</interface
+></term>
+    <listitem
+><para
+>Proporciona al jugador les dreceres d'icona per a les accions d'ús comú. Aquestes són <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Nova</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Desfés</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Consell</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostra l'últim moviment</guiicon
+> i <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostra els moviments legals</guiicon
+>. Col·loqueu el punter del ratolí a sobre de qualsevol d'aquestes icones i feu clic amb el &BER; per a activar-la.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Tauler de joc</interface
+></term>
+    <listitem
+><para
+>Consisteix en un tauler de 8 per 8 quadres dividit en 64 quadres.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Barra d'estat</interface
+></term>
+    <listitem
+><para
+>Mostra quin torn és. Així com una llista desplegable per a triar el nivell de dificultat.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Les regles del joc</title>
+
+<para
+>Sempre moureu primer.</para>
+
+<para
+>Si esteu en el vostre torn i no podeu flanquejar ni capgirar almenys una pedra de l'oponent, perdreu el torn i l'oponent mourà de nou. No obstant això, si teniu disponible un moviment, és possible que no hàgiu perdut el torn.</para>
+
+<para
+>Una pedra pot superar qualsevol nombre de pedres en una o més files en qualsevol nombre de direccions al mateix temps: en horitzontal, vertical o diagonal. Una fila es defineix com una o més pedres en una línia recta contínua.</para>
+
+<para
+>No podreu saltar per sobre de la vostra pròpia pedra per a flanquejar una pedra de l'oponent.</para>
+
+<para
+>Les pedres només es poden instal·lar com un resultat directe d'un moviment i han de caure en la línia directa de la pedra col·locada.</para>
+
+<para
+>Totes les pedres flanquejades en qualsevol moviment s'han de capgirar, fins i tot si es tracta de l'avantatge del jugador el no capgirar-les.</para>
+
+<para
+>Una vegada es col·loca una pedra en un quadre, en la partida mai es podrà moure a un altre quadre.</para>
+
+<para
+>Quan ja no sigui possible que mogui cap dels jugadors, la partida s'haurà acabat. Després es comptaran les pedres i es declararà guanyador el jugador amb la majoria dels discs del seu color.</para>
+
+<note
+><para
+>És possible que una partida acabi abans que s'omplin els 64 quadres.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Les estratègies i consells</title>
+
+<para
+>Intenteu col·locar pedres a les cantonades sempre que sigui possible. El vostre oponent no podrà flanquejar-les.</para>
+
+<para
+>Eviteu col·locar pedres en un dels tres camps veïns d'una cantonada a menys que esteu absolutament segur que el vostre oponent no podrà posar una pedra en una cantonada.</para>
+
+<para
+>De vegades és millor oferir algunes pedres al vostre oponent.</para>
+
+<para
+>Intenteu posar pedres en els camps que eviten que el vostre oponent es mogui.</para>
+
+<para
+>Intenteu forçar el vostre oponent a posar una pedra en un camp veí d'una cantonada.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Resum de la interfície</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Elements de menú</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Comença una partida nova.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Mostra les puntuacions</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Obre un diàleg que mostra les diferents taules de puntuació.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Surt del &kreversi;.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Desfés</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Elimina l'últim moviment,</action
+> així com l'últim moviment de l'ordinador.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Consell</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>L'ordinador <action
+>proporcionarà una pista per al moviment següent.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra l'últim moviment</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ressalta l'últim moviment del vostre oponent.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra els moviments legals</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ressalta tots els moviments disponibles</action
+> per al vostre moviment actual.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Visualitza</guimenu
+> <guimenuitem
+>Mostra l'historial de moviments</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Habilita/Inhabilita la barra lateral que mostra l'historial de moviments.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Velocitat de l'animació</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>Un submenú per a establir la velocitat d'animació del joc entre les opcions <guimenuitem
+>Lenta</guimenuitem
+>, <guimenuitem
+>Normal</guimenuitem
+> i <guimenuitem
+>Ràpida</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Usa peces acolorides</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Alterna el color de les pedres entre blanc i negre (predeterminat),</action
+> i vermell i blau.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Dificultat</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Estableix la dificultat</action
+> des de <guimenuitem
+>Molt fàcil</guimenuitem
+> fins a <guimenuitem
+>Impossible</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>De manera addicional, el &kreversi; té la configuració comuna al &kde; i els elements dels menús <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu les seccions sobre <ulink url="help:/fundamentals/menus.html#menus-settings"
+>El menú Arranjament</ulink
+> i <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Preguntes més freqüents</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Vull canviar l'aparença d'aquest joc. Puc fer-ho? </para
+></question>
+ <answer
+><para
+>L'única part del joc que es pot canviar és el color de les pedres. Per a canviar el color de les pedres, utilitzeu l'element de menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Usa peces acolorides</guimenuitem
+> </menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Puc utilitzar el teclat per a jugar a aquest joc?</para
+></question>
+ <answer
+><para
+>No. El &kreversi; encara no compta amb un mode per a jugar amb el teclat.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>He de sortir del joc ara, però encara no he acabat. Puc desar el meu progrés?</para
+></question>
+ <answer
+><para
+>No. El &kreversi; no té una característica <quote
+>Desa</quote
+>.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Crèdits i llicència</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Copyright del programa 1998-2000 &Mario.Weilguni;</para>
+<para
+>Mats Luthman - Dissenyador del motor de moviment.</para>
+
+<para
+>Documentació original per en &Mario.Weilguni;</para>
+<para
+>Editada per en Robert Williams</para>
+
+<para
+>Documentació reescrita i actualitzada per al 2.0 per en &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

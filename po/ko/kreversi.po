@@ -1,0 +1,767 @@
+# Translation of kreversi to Korean.
+# Copyright (C) 1999, 2007 Free Software Foundation, Inc.
+# LinuxKorea Co. <kde@linuxkorea.co.kr>, 1999.
+# Shinjo Park <kde@peremen.name>, 2007, 2011, 2014, 2015, 2019, 2020, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kreversi\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"PO-Revision-Date: 2021-11-12 00:39+0100\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 21.08.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "박신조"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "peremen@gmail.cim"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Blue"
+msgstr "청"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Red"
+msgstr "적"
+
+#. i18n: ectx: property (text), widget (QLabel, blackLabel)
+#: commondefs.cpp:32 startgamedialog.ui:24
+#, kde-format
+msgid "Black"
+msgstr "흑"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteLabel)
+#: commondefs.cpp:32 startgamedialog.ui:150
+#, kde-format
+msgid "White"
+msgstr "백"
+
+#: kexthighscore.cpp:198
+#, kde-format
+msgid "Score"
+msgstr "점수"
+
+#: kexthighscore.cpp:201
+#, kde-format
+msgid "Mean Score"
+msgstr "평균 점수"
+
+#: kexthighscore.cpp:206
+#, kde-format
+msgid "Best Score"
+msgstr "최고 점수"
+
+#: kexthighscore.cpp:210
+#, kde-format
+msgid "Elapsed Time"
+msgstr "경과 시간"
+
+#: kexthighscore_gui.cpp:152
+#, kde-format
+msgid "Best &Scores"
+msgstr "최고 기록(&S)"
+
+#: kexthighscore_gui.cpp:157
+#, kde-format
+msgid "&Players"
+msgstr "플레이어(&P)"
+
+#: kexthighscore_gui.cpp:162
+#, kde-format
+msgid "Statistics"
+msgstr "통계"
+
+#: kexthighscore_gui.cpp:168
+#, kde-format
+msgid "Histogram"
+msgstr "히스토그램"
+
+#: kexthighscore_gui.cpp:175
+#, kde-format
+msgid "View world-wide highscores"
+msgstr "전세계 최고 점수 보기"
+
+#: kexthighscore_gui.cpp:182
+#, kde-format
+msgid "View world-wide players"
+msgstr "전세계 플레이어 보기"
+
+#: kexthighscore_gui.cpp:232
+#, kde-format
+msgctxt "@title:window"
+msgid "Highscores"
+msgstr "최고 기록"
+
+#: kexthighscore_gui.cpp:296
+#, kde-format
+msgid "Overwrite"
+msgstr "덮어쓰기"
+
+#: kexthighscore_gui.cpp:298
+#, kde-format
+msgid "The file already exists. Overwrite?"
+msgstr "파일이 이미 존재합니다. 덮어쓰시겠습니까?"
+
+#: kexthighscore_gui.cpp:299
+#, kde-format
+msgid "Export"
+msgstr "내보내기"
+
+#: kexthighscore_gui.cpp:350
+#, kde-format
+msgid "Winner"
+msgstr "승리자"
+
+#: kexthighscore_gui.cpp:388
+#, kde-format
+msgid "Won Games"
+msgstr "이긴 게임"
+
+#: kexthighscore_gui.cpp:416
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Highscores"
+msgstr "최고 기록 설정"
+
+#: kexthighscore_gui.cpp:429
+#, kde-format
+msgid "Main"
+msgstr "주"
+
+#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#, kde-format
+msgid "Nickname:"
+msgstr "별명:"
+
+#: kexthighscore_gui.cpp:455
+#, kde-format
+msgid "Comment:"
+msgstr "설명:"
+
+#: kexthighscore_gui.cpp:465
+#, kde-format
+msgid "World-wide highscores enabled"
+msgstr "전세계 최고 기록 활성화됨"
+
+#: kexthighscore_gui.cpp:472
+#, kde-format
+msgid "Advanced"
+msgstr "고급"
+
+#: kexthighscore_gui.cpp:478
+#, kde-format
+msgid "Registration Data"
+msgstr "등록 데이터"
+
+#: kexthighscore_gui.cpp:489
+#, kde-format
+msgid "Key:"
+msgstr "키:"
+
+#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#, kde-format
+msgid "Remove"
+msgstr "삭제"
+
+#: kexthighscore_gui.cpp:541
+#, kde-format
+msgid ""
+"This will permanently remove your registration key. You will not be able to "
+"use the currently registered nickname anymore."
+msgstr ""
+"등록 키를 영원히 삭제합니다. 현재 등록된 별명을 더 이상 사용할 수 없습니다."
+
+#: kexthighscore_gui.cpp:584
+#, kde-format
+msgid "Please choose a non empty nickname."
+msgstr "사용 중이 아닌 별명을 지정하십시오."
+
+#: kexthighscore_gui.cpp:588
+#, kde-format
+msgid "Nickname already in use. Please choose another one"
+msgstr "별명이 사용 중입니다. 다른 별명을 지정하십시오"
+
+#: kexthighscore_gui.cpp:609
+#, kde-format
+msgctxt "@title:window"
+msgid "Enter Your Nickname"
+msgstr "별명을 입력하십시오"
+
+#: kexthighscore_gui.cpp:618
+#, kde-format
+msgid "Congratulations, you have won!"
+msgstr "축하합니다! 이겼습니다!"
+
+#: kexthighscore_gui.cpp:623
+#, kde-format
+msgid "Enter your nickname:"
+msgstr "별명을 입력하십시오:"
+
+#: kexthighscore_gui.cpp:631
+#, kde-format
+msgid "Do not ask again."
+msgstr "다시 묻지 않습니다."
+
+#: kexthighscore_internal.cpp:33
+msgid "anonymous"
+msgstr "익명"
+
+#: kexthighscore_internal.cpp:258
+#, kde-format
+msgid "Games Count"
+msgstr "게임 수"
+
+#: kexthighscore_internal.cpp:265
+#, kde-format
+msgid "Comment"
+msgstr "설명"
+
+#: kexthighscore_internal.cpp:587
+msgid "Undefined error."
+msgstr "정의되지 않은 오류입니다."
+
+#: kexthighscore_internal.cpp:588
+msgid "Missing argument(s)."
+msgstr "인자가 없습니다."
+
+#: kexthighscore_internal.cpp:589
+msgid "Invalid argument(s)."
+msgstr "인자가 잘못되었습니다."
+
+#: kexthighscore_internal.cpp:591
+msgid "Unable to connect to MySQL server."
+msgstr "MySQL 서버에 연결할 수 없습니다."
+
+#: kexthighscore_internal.cpp:592
+msgid "Unable to select database."
+msgstr "데이터베이스를 선택할 수 없습니다."
+
+#: kexthighscore_internal.cpp:593
+msgid "Error on database query."
+msgstr "데이터베이스 질의 오류입니다."
+
+#: kexthighscore_internal.cpp:594
+msgid "Error on database insert."
+msgstr "데이터베이스 삽입 오류입니다."
+
+#: kexthighscore_internal.cpp:596
+msgid "Nickname already registered."
+msgstr "별명이 이미 등록되었습니다."
+
+#: kexthighscore_internal.cpp:597
+msgid "Nickname not registered."
+msgstr "별명이 등록되지 않았습니다."
+
+#: kexthighscore_internal.cpp:598
+msgid "Invalid key."
+msgstr "키가 잘못되었습니다."
+
+#: kexthighscore_internal.cpp:599
+msgid "Invalid submit key."
+msgstr "제출 키가 잘못되었습니다."
+
+#: kexthighscore_internal.cpp:601
+msgid "Invalid level."
+msgstr "단계가 잘못되었습니다."
+
+#: kexthighscore_internal.cpp:602
+msgid "Invalid score."
+msgstr "점수가 잘못되었습니다."
+
+#: kexthighscore_internal.cpp:606
+msgid "Unable to contact world-wide highscore server"
+msgstr "전세계 최고 기록 서버와 통신할 수 없음"
+
+#: kexthighscore_internal.cpp:615
+#, kde-format
+msgid "Unable to open temporary file."
+msgstr "임시 파일을 열 수 없습니다."
+
+#: kexthighscore_internal.cpp:624
+#, kde-format
+msgid "Server URL: %1"
+msgstr "서버 URL: %1"
+
+#: kexthighscore_internal.cpp:646
+#, kde-format
+msgid "Message from world-wide highscores server"
+msgstr "전세계 최고 기록 서버의 메시지"
+
+#: kexthighscore_internal.cpp:653
+#, kde-format
+msgid "Invalid answer from world-wide highscores server."
+msgstr "전세계 최고 기록 서버에서 잘못된 응답을 반환했습니다."
+
+#: kexthighscore_internal.cpp:654
+#, kde-format
+msgid "Raw message: %1"
+msgstr "원래 메시지: %1"
+
+#: kexthighscore_internal.cpp:666
+#, kde-format
+msgid "Invalid answer from world-wide highscores server (missing item: %1)."
+msgstr "전세계 최고 기록 서버에서 잘못된 응답을 반환했습니다(빠진 항목: %1)."
+
+#: kexthighscore_item.cpp:266
+#, kde-format
+msgctxt "@title:window"
+msgid "Multiplayers Scores"
+msgstr "멀티 플레이어 점수"
+
+#: kexthighscore_item.cpp:277
+#, kde-format
+msgid "No game played."
+msgstr "플레이한 게임이 없습니다."
+
+#: kexthighscore_item.cpp:279
+#, kde-format
+msgid "Scores for last game:"
+msgstr "마지막 게임 점수:"
+
+#: kexthighscore_item.cpp:286
+#, kde-format
+msgid "Scores for the last %1 games:"
+msgstr "마지막 게임 %1판 점수:"
+
+#: kexthighscore_tab.cpp:32
+#, kde-format
+msgid "all"
+msgstr "모두"
+
+#: kexthighscore_tab.cpp:61
+#, kde-format
+msgid "Select player:"
+msgstr "플레이어 선택:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Total:"
+msgstr "합계:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Won:"
+msgstr "승:"
+
+#: kexthighscore_tab.cpp:97
+msgid "Lost:"
+msgstr "패:"
+
+#: kexthighscore_tab.cpp:98
+msgid "Draw:"
+msgstr "무승부:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Current:"
+msgstr "현재:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Max won:"
+msgstr "최대 승:"
+
+#: kexthighscore_tab.cpp:101
+msgid "Max lost:"
+msgstr "최대 패:"
+
+#: kexthighscore_tab.cpp:116
+#, kde-format
+msgid "Game Counts"
+msgstr "게임 수"
+
+#: kexthighscore_tab.cpp:129
+#, kde-format
+msgid "Trends"
+msgstr "경향"
+
+#: kexthighscore_tab.cpp:217
+#, kde-format
+msgid "From"
+msgstr "시작"
+
+#: kexthighscore_tab.cpp:218
+#, kde-format
+msgid "To"
+msgstr "끝"
+
+#: kexthighscore_tab.cpp:219
+#, kde-format
+msgid "Count"
+msgstr "개수"
+
+#: kexthighscore_tab.cpp:220
+#, kde-format
+msgid "Percent"
+msgstr "백분율"
+
+#. i18n: ectx: label, entry (AnimationSpeed), group (Game)
+#: kreversi.kcfg:9
+#, kde-format
+msgid "The speed of the animations."
+msgstr "애니메이션 속도입니다."
+
+#. i18n: ectx: label, entry (CompetitiveGameChoice), group (Game)
+#: kreversi.kcfg:18
+#, kde-format
+msgid "Whether to play competitively in contrast to casually."
+msgstr "전투적으로 게임을 진행할지 여부입니다."
+
+#. i18n: ectx: label, entry (UseColoredChips), group (Game)
+#: kreversi.kcfg:22
+#, kde-format
+msgid "Whether to use colored chips instead of black and white ones."
+msgstr "흑백 칩 대신 컬러 칩을 사용할지 여부입니다."
+
+#. i18n: ectx: Menu (view)
+#: kreversiui.rc:13
+#, kde-format
+msgid "&View"
+msgstr "보기(&V)"
+
+#. i18n: ectx: Menu (settings)
+#: kreversiui.rc:18
+#, kde-format
+msgid "&Settings"
+msgstr "설정(&S)"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kreversiui.rc:25
+#, kde-format
+msgid "Main Toolbar"
+msgstr "주 도구 모음"
+
+#: kreversiview.cpp:251
+#, kde-format
+msgid "Red can not perform any move. It is blue turn again."
+msgstr "빨간색이 둘 수 없습니다. 다시 파란색 차례입니다."
+
+#: kreversiview.cpp:252
+#, kde-format
+msgid "White can not perform any move. It is black turn again."
+msgstr "흰색이 둘 수 없습니다. 검은색 차례입니다."
+
+#: kreversiview.cpp:261
+#, kde-format
+msgid "Blue can not perform any move. It is red turn again."
+msgstr "파란색이 둘 수 없습니다. 빨간색 차례입니다."
+
+#: kreversiview.cpp:262
+#, kde-format
+msgid "Black can not perform any move. It is white turn again."
+msgstr "검은색이 둘 수 없습니다. 흰색 차례입니다."
+
+#: main.cpp:38
+#, kde-format
+msgid "KReversi"
+msgstr "KReversi"
+
+#: main.cpp:40
+#, kde-format
+msgid "KDE Reversi Board Game"
+msgstr "KDE 리버시 보드 게임"
+
+#: main.cpp:42
+#, kde-format
+msgid ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+msgstr ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+
+#: main.cpp:45
+#, kde-format
+msgid "Mario Weilguni"
+msgstr "Mario Weilguni"
+
+#: main.cpp:45 main.cpp:46
+#, kde-format
+msgid "Original author"
+msgstr "원 작성자"
+
+#: main.cpp:46
+#, kde-format
+msgid "Inge Wallin"
+msgstr "Inge Wallin"
+
+#: main.cpp:47
+#, kde-format
+msgid "Dmitry Suzdalev"
+msgstr "Dmitry Suzdalev"
+
+#: main.cpp:47
+#, kde-format
+msgid "Game rewrite for KDE4. Current maintainer."
+msgstr "KDE 4용으로 재작성. 현재 관리자."
+
+#: main.cpp:48
+#, kde-format
+msgid "Simon Hürlimann"
+msgstr "Simon Hürlimann"
+
+#: main.cpp:48
+#, kde-format
+msgid "Action refactoring"
+msgstr "액션 리팩토링"
+
+#: main.cpp:49
+#, kde-format
+msgid "Mats Luthman"
+msgstr "Mats Luthman"
+
+#: main.cpp:49
+#, kde-format
+msgid "Game engine, ported from his JAVA applet."
+msgstr "게임 엔진. 그의 자바 애플릿에서 포팅함."
+
+#: main.cpp:50
+#, kde-format
+msgid "Arne Klaassen"
+msgstr "Arne Klaassen"
+
+#: main.cpp:50
+#, kde-format
+msgid "Original raytraced chips."
+msgstr "원본 레이트레이싱 칩."
+
+#: main.cpp:51
+#, kde-format
+msgid "Mauricio Piacentini"
+msgstr "Mauricio Piacentini"
+
+#: main.cpp:51
+#, kde-format
+msgid "Vector chips and background for KDE4."
+msgstr "KDE 4용 벡터 칩과 배경."
+
+#: main.cpp:52
+#, kde-format
+msgid "Brian Croom"
+msgstr "Brian Croom"
+
+#: main.cpp:52
+#, kde-format
+msgid "Port rendering code to KGameRenderer"
+msgstr "렌더링 코드 KGameRenderer 포팅"
+
+#: main.cpp:53
+#, kde-format
+msgid "Denis Kuplyakov"
+msgstr "Denis Kuplyakov"
+
+#: main.cpp:53
+#, kde-format
+msgid "Port rendering code to QML, redesign and a lot of improvements"
+msgstr "렌더링 코드 QML 포팅, 재설계 및 기타 개선"
+
+#: main.cpp:59
+#, kde-format
+msgid "Start with demo game playing"
+msgstr "데모 게임 플레이로 시작하기"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Press start game!"
+msgstr "게임을 시작하십시오!"
+
+#: mainwindow.cpp:69
+#, kde-format
+msgid "Move History"
+msgstr "움직임 기록"
+
+#: mainwindow.cpp:116
+#, kde-format
+msgid "Show Last Move"
+msgstr "마지막 움직임 표시"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Show Legal Moves"
+msgstr "올바른 이동 표시"
+
+#: mainwindow.cpp:126
+#, kde-format
+msgid "Animation Speed"
+msgstr "애니메이션 속도"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Slow"
+msgstr "느림"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Normal"
+msgstr "일반"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Fast"
+msgstr "빠름"
+
+#: mainwindow.cpp:135
+#, kde-format
+msgid "Use Colored Chips"
+msgstr "색깔 있는 칩 사용하기"
+
+#: mainwindow.cpp:143
+#, kde-format
+msgid "Show Move History"
+msgstr "움직인 기록 보기"
+
+#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#, kde-format
+msgid "Game is drawn!"
+msgstr "무승부로 끝났습니다!"
+
+#: mainwindow.cpp:224 mainwindow.cpp:239
+#, kde-format
+msgid "You win!"
+msgstr "게임에서 이겼습니다!"
+
+#: mainwindow.cpp:227 mainwindow.cpp:242
+#, kde-format
+msgid "You have lost!"
+msgstr "게임에서 졌습니다!"
+
+#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#, kde-format
+msgid "%1 has won!"
+msgstr "%1이(가) 이겼습니다!"
+
+#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#, kde-format
+msgid ""
+"\n"
+"%1: %2"
+msgstr ""
+"\n"
+"%1: %2"
+
+#: mainwindow.cpp:274
+#, kde-format
+msgid "Game over"
+msgstr "게임 끝"
+
+#: mainwindow.cpp:341
+#, kde-format
+msgid "GAME OVER"
+msgstr "게임 끝"
+
+#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: mainwindow.cpp:350
+#, kde-format
+msgid "%1 turn"
+msgstr "%1 차례"
+
+#: mainwindow.cpp:357
+#, kde-format
+msgid "%1's turn"
+msgstr "%1 차례"
+
+#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#, kde-format
+msgid "Computer"
+msgstr "컴퓨터"
+
+#: startgamedialog.cpp:26
+#, kde-format
+msgctxt "@title:window"
+msgid "New game"
+msgstr "새 게임"
+
+#: startgamedialog.cpp:36
+#, kde-format
+msgid "Start game"
+msgstr "게임 시작하기"
+
+#: startgamedialog.cpp:37
+#, kde-format
+msgid "Let's start playing!"
+msgstr "게임을 시작합니다!"
+
+#: startgamedialog.cpp:38
+#, kde-format
+msgid "Quit"
+msgstr "끝내기"
+
+#: startgamedialog.cpp:39
+#, kde-format
+msgid "Quit KReversi"
+msgstr "KReversi 끝내기"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: startgamedialog.ui:83 startgamedialog.ui:209
+#, kde-format
+msgid "Name:"
+msgstr "이름:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: startgamedialog.ui:100 startgamedialog.ui:226
+#, kde-format
+msgid "Skill level:"
+msgstr "익숙함 수준:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: startgamedialog.ui:128
+#, kde-format
+msgid "VS"
+msgstr "대"
+
+#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
+#~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
+
+#~ msgid "Very Easy"
+#~ msgstr "매우 쉬움"
+
+#~ msgid "Easy"
+#~ msgstr "쉬움"
+
+#~ msgid "Hard"
+#~ msgstr "어려움"
+
+#~ msgid "Very Hard"
+#~ msgstr "매우 어려움"
+
+#~ msgid "Unbeatable"
+#~ msgstr "꺾을 수 없음"
+
+#~ msgid "Champion"
+#~ msgstr "챔피언"
+
+#, fuzzy
+#~| msgid "Port rendering code to KGameRenderer"
+#~ msgid "Port rendering code to QML"
+#~ msgstr "렌더링 코드 KGameRenderer 포팅"
+
+#~ msgid "Your turn."
+#~ msgstr "당신의 차례입니다."
+
+#~ msgid "You: %1"
+#~ msgstr "나: %1"
+
+#~ msgid ""
+#~ "\n"
+#~ "You: %1"
+#~ msgstr ""
+#~ "\n"
+#~ "나: %1"

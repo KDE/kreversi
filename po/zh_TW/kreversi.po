@@ -1,0 +1,738 @@
+# translation of kreversi.po to Chinese Traditional
+# Hydonsingore Sie <hydonsingore@mail.educities.edu.tw>, 2003.
+# Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2006, 2008, 2009.
+# Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007.
+# Franklin Weng <franklin@mail.everfocus.com.tw>, 2010, 2013, 2014.
+# pan93412 <pan93412@gmail.com>, 2018, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kreversi\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"PO-Revision-Date: 2019-11-22 01:46+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 19.11.80\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "薛景中,Hydonsingore Sie, Frank Weng(a.k.a. Franklin), pan93412"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"shyue@sonoma.com.tw, hydonsingore@mail.educities.edu.tw, franklin@goodhorse."
+"idv.tw, pan93412@gmail.com"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Blue"
+msgstr "藍"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Red"
+msgstr "紅"
+
+#. i18n: ectx: property (text), widget (QLabel, blackLabel)
+#: commondefs.cpp:32 startgamedialog.ui:24
+#, kde-format
+msgid "Black"
+msgstr "黑"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteLabel)
+#: commondefs.cpp:32 startgamedialog.ui:150
+#, kde-format
+msgid "White"
+msgstr "白"
+
+#: kexthighscore.cpp:198
+#, kde-format
+msgid "Score"
+msgstr "分數"
+
+#: kexthighscore.cpp:201
+#, kde-format
+msgid "Mean Score"
+msgstr "平均分數"
+
+#: kexthighscore.cpp:206
+#, kde-format
+msgid "Best Score"
+msgstr "最佳分數"
+
+#: kexthighscore.cpp:210
+#, kde-format
+msgid "Elapsed Time"
+msgstr "剩餘時間"
+
+#: kexthighscore_gui.cpp:152
+#, kde-format
+msgid "Best &Scores"
+msgstr "最佳分數（&S）"
+
+#: kexthighscore_gui.cpp:157
+#, kde-format
+msgid "&Players"
+msgstr "玩家 (&P)"
+
+#: kexthighscore_gui.cpp:162
+#, kde-format
+msgid "Statistics"
+msgstr "統計"
+
+#: kexthighscore_gui.cpp:168
+#, kde-format
+msgid "Histogram"
+msgstr "直方圖"
+
+#: kexthighscore_gui.cpp:175
+#, kde-format
+msgid "View world-wide highscores"
+msgstr "顯示世界各地的高分榜"
+
+#: kexthighscore_gui.cpp:182
+#, kde-format
+msgid "View world-wide players"
+msgstr "顯示世界各地的玩家"
+
+#: kexthighscore_gui.cpp:232
+#, fuzzy, kde-format
+#| msgid "Highscores"
+msgctxt "@title:window"
+msgid "Highscores"
+msgstr "高分榜"
+
+#: kexthighscore_gui.cpp:296
+#, kde-format
+msgid "Overwrite"
+msgstr "覆寫"
+
+#: kexthighscore_gui.cpp:298
+#, kde-format
+msgid "The file already exists. Overwrite?"
+msgstr "這個檔案已經存在。確定覆蓋？"
+
+#: kexthighscore_gui.cpp:299
+#, kde-format
+msgid "Export"
+msgstr "匯出"
+
+#: kexthighscore_gui.cpp:350
+#, kde-format
+msgid "Winner"
+msgstr "贏家"
+
+#: kexthighscore_gui.cpp:388
+#, kde-format
+msgid "Won Games"
+msgstr "贏的遊戲"
+
+#: kexthighscore_gui.cpp:416
+#, fuzzy, kde-format
+#| msgid "Configure Highscores"
+msgctxt "@title:window"
+msgid "Configure Highscores"
+msgstr "配置高分榜"
+
+#: kexthighscore_gui.cpp:429
+#, kde-format
+msgid "Main"
+msgstr "主要的"
+
+#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#, kde-format
+msgid "Nickname:"
+msgstr "暱稱："
+
+#: kexthighscore_gui.cpp:455
+#, kde-format
+msgid "Comment:"
+msgstr "留言："
+
+#: kexthighscore_gui.cpp:465
+#, kde-format
+msgid "World-wide highscores enabled"
+msgstr "「世界各地的高分榜」已經啟用"
+
+#: kexthighscore_gui.cpp:472
+#, kde-format
+msgid "Advanced"
+msgstr "進階"
+
+#: kexthighscore_gui.cpp:478
+#, kde-format
+msgid "Registration Data"
+msgstr "註冊資訊"
+
+#: kexthighscore_gui.cpp:489
+#, kde-format
+msgid "Key:"
+msgstr "金鑰："
+
+#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#, kde-format
+msgid "Remove"
+msgstr "移除"
+
+#: kexthighscore_gui.cpp:541
+#, kde-format
+msgid ""
+"This will permanently remove your registration key. You will not be able to "
+"use the currently registered nickname anymore."
+msgstr "這將會永久性的移除你的註冊金鑰。你將再也不能使用目前註冊的暱稱。"
+
+#: kexthighscore_gui.cpp:584
+#, kde-format
+msgid "Please choose a non empty nickname."
+msgstr "請選擇一個非空白的暱稱。"
+
+#: kexthighscore_gui.cpp:588
+#, kde-format
+msgid "Nickname already in use. Please choose another one"
+msgstr "暱稱已經被使用。請選擇其他暱稱。"
+
+#: kexthighscore_gui.cpp:609
+#, fuzzy, kde-format
+#| msgid "Enter Your Nickname"
+msgctxt "@title:window"
+msgid "Enter Your Nickname"
+msgstr "輸入暱稱："
+
+#: kexthighscore_gui.cpp:618
+#, kde-format
+msgid "Congratulations, you have won!"
+msgstr "恭喜，你贏了！"
+
+#: kexthighscore_gui.cpp:623
+#, kde-format
+msgid "Enter your nickname:"
+msgstr "輸入你的暱稱："
+
+#: kexthighscore_gui.cpp:631
+#, kde-format
+msgid "Do not ask again."
+msgstr "不要再問我。"
+
+#: kexthighscore_internal.cpp:33
+msgid "anonymous"
+msgstr "匿名"
+
+#: kexthighscore_internal.cpp:258
+#, kde-format
+msgid "Games Count"
+msgstr "遊戲計次"
+
+#: kexthighscore_internal.cpp:265
+#, kde-format
+msgid "Comment"
+msgstr "留言"
+
+#: kexthighscore_internal.cpp:587
+msgid "Undefined error."
+msgstr "未定義的錯誤。"
+
+#: kexthighscore_internal.cpp:588
+msgid "Missing argument(s)."
+msgstr "不存在的參數。"
+
+#: kexthighscore_internal.cpp:589
+msgid "Invalid argument(s)."
+msgstr "不正確的參數。"
+
+#: kexthighscore_internal.cpp:591
+msgid "Unable to connect to MySQL server."
+msgstr "無法連線 MySQL 伺服器。"
+
+#: kexthighscore_internal.cpp:592
+msgid "Unable to select database."
+msgstr "無法選擇資料庫。"
+
+#: kexthighscore_internal.cpp:593
+msgid "Error on database query."
+msgstr "資料庫查詢時錯誤"
+
+#: kexthighscore_internal.cpp:594
+msgid "Error on database insert."
+msgstr "資料庫插入時錯誤。"
+
+#: kexthighscore_internal.cpp:596
+msgid "Nickname already registered."
+msgstr "暱稱已經被註冊過。"
+
+#: kexthighscore_internal.cpp:597
+msgid "Nickname not registered."
+msgstr "暱稱尚未被註冊。"
+
+#: kexthighscore_internal.cpp:598
+msgid "Invalid key."
+msgstr "無效金鑰。"
+
+#: kexthighscore_internal.cpp:599
+msgid "Invalid submit key."
+msgstr "無效提交金鑰。"
+
+#: kexthighscore_internal.cpp:601
+msgid "Invalid level."
+msgstr "無效等級。"
+
+#: kexthighscore_internal.cpp:602
+msgid "Invalid score."
+msgstr "無效分數。"
+
+#: kexthighscore_internal.cpp:606
+msgid "Unable to contact world-wide highscore server"
+msgstr "無法連接世界高分榜伺服器"
+
+#: kexthighscore_internal.cpp:615
+#, kde-format
+msgid "Unable to open temporary file."
+msgstr "無法開啟暫存檔案"
+
+#: kexthighscore_internal.cpp:624
+#, kde-format
+msgid "Server URL: %1"
+msgstr "伺服器連結：%1"
+
+#: kexthighscore_internal.cpp:646
+#, kde-format
+msgid "Message from world-wide highscores server"
+msgstr "來自世界高分榜伺服器的訊息"
+
+#: kexthighscore_internal.cpp:653
+#, kde-format
+msgid "Invalid answer from world-wide highscores server."
+msgstr "來自世界高分榜伺服器的無效回答。"
+
+#: kexthighscore_internal.cpp:654
+#, kde-format
+msgid "Raw message: %1"
+msgstr "原始訊息：%1"
+
+#: kexthighscore_internal.cpp:666
+#, kde-format
+msgid "Invalid answer from world-wide highscores server (missing item: %1)."
+msgstr "來自世界高分榜伺服器的無效回答。（遺失項目： %1）"
+
+#: kexthighscore_item.cpp:266
+#, fuzzy, kde-format
+#| msgid "Multiplayers Scores"
+msgctxt "@title:window"
+msgid "Multiplayers Scores"
+msgstr "多人遊戲成績"
+
+#: kexthighscore_item.cpp:277
+#, kde-format
+msgid "No game played."
+msgstr "沒有遊戲被玩過。"
+
+#: kexthighscore_item.cpp:279
+#, kde-format
+msgid "Scores for last game:"
+msgstr "上次遊戲的分數："
+
+#: kexthighscore_item.cpp:286
+#, kde-format
+msgid "Scores for the last %1 games:"
+msgstr "上次 %1 遊戲的分數："
+
+#: kexthighscore_tab.cpp:32
+#, kde-format
+msgid "all"
+msgstr "所有"
+
+#: kexthighscore_tab.cpp:61
+#, kde-format
+msgid "Select player:"
+msgstr "選擇玩家："
+
+#: kexthighscore_tab.cpp:97
+msgid "Total:"
+msgstr "總計："
+
+#: kexthighscore_tab.cpp:97
+msgid "Won:"
+msgstr "贏："
+
+#: kexthighscore_tab.cpp:97
+msgid "Lost:"
+msgstr "輸："
+
+#: kexthighscore_tab.cpp:98
+msgid "Draw:"
+msgstr "平手："
+
+#: kexthighscore_tab.cpp:101
+msgid "Current:"
+msgstr "目前："
+
+#: kexthighscore_tab.cpp:101
+msgid "Max won:"
+msgstr "最多贏次："
+
+#: kexthighscore_tab.cpp:101
+msgid "Max lost:"
+msgstr "最多輸此："
+
+#: kexthighscore_tab.cpp:116
+#, kde-format
+msgid "Game Counts"
+msgstr "遊戲計次"
+
+#: kexthighscore_tab.cpp:129
+#, kde-format
+msgid "Trends"
+msgstr "趨勢"
+
+#: kexthighscore_tab.cpp:217
+#, kde-format
+msgid "From"
+msgstr "來自"
+
+#: kexthighscore_tab.cpp:218
+#, kde-format
+msgid "To"
+msgstr "至"
+
+#: kexthighscore_tab.cpp:219
+#, kde-format
+msgid "Count"
+msgstr "次數"
+
+#: kexthighscore_tab.cpp:220
+#, kde-format
+msgid "Percent"
+msgstr "百分率"
+
+#. i18n: ectx: label, entry (AnimationSpeed), group (Game)
+#: kreversi.kcfg:9
+#, kde-format
+msgid "The speed of the animations."
+msgstr "動畫的速度"
+
+#. i18n: ectx: label, entry (CompetitiveGameChoice), group (Game)
+#: kreversi.kcfg:18
+#, kde-format
+msgid "Whether to play competitively in contrast to casually."
+msgstr "讓電腦認真玩還是隨便玩。"
+
+#. i18n: ectx: label, entry (UseColoredChips), group (Game)
+#: kreversi.kcfg:22
+#, kde-format
+msgid "Whether to use colored chips instead of black and white ones."
+msgstr "是否要用彩色的棋子。"
+
+#. i18n: ectx: Menu (view)
+#: kreversiui.rc:13
+#, kde-format
+msgid "&View"
+msgstr "檢視(&V)"
+
+#. i18n: ectx: Menu (settings)
+#: kreversiui.rc:18
+#, kde-format
+msgid "&Settings"
+msgstr "設定(&S)"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kreversiui.rc:25
+#, kde-format
+msgid "Main Toolbar"
+msgstr "主工具列"
+
+#: kreversiview.cpp:251
+#, kde-format
+msgid "Red can not perform any move. It is blue turn again."
+msgstr "紅方沒有地方可以下。再次換藍方。"
+
+#: kreversiview.cpp:252
+#, kde-format
+msgid "White can not perform any move. It is black turn again."
+msgstr "白方沒有地方可以下。再次換黑方。"
+
+#: kreversiview.cpp:261
+#, kde-format
+msgid "Blue can not perform any move. It is red turn again."
+msgstr "藍方沒有地方可以下。再次換紅方。"
+
+#: kreversiview.cpp:262
+#, kde-format
+msgid "Black can not perform any move. It is white turn again."
+msgstr "黑方沒有地方可以下。再次換白方。"
+
+#: main.cpp:38
+#, kde-format
+msgid "KReversi"
+msgstr "KReversi"
+
+#: main.cpp:40
+#, kde-format
+msgid "KDE Reversi Board Game"
+msgstr "KDE 黑白棋遊戲"
+
+#: main.cpp:42
+#, kde-format
+msgid ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+msgstr ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+
+#: main.cpp:45
+#, kde-format
+msgid "Mario Weilguni"
+msgstr "Mario Weilguni"
+
+#: main.cpp:45 main.cpp:46
+#, kde-format
+msgid "Original author"
+msgstr "原始作者"
+
+#: main.cpp:46
+#, kde-format
+msgid "Inge Wallin"
+msgstr "Inge Wallin"
+
+#: main.cpp:47
+#, kde-format
+msgid "Dmitry Suzdalev"
+msgstr "Dmitry Suzdalev"
+
+#: main.cpp:47
+#, kde-format
+msgid "Game rewrite for KDE4. Current maintainer."
+msgstr "為 KDE4 重寫遊戲，目前維護者。"
+
+#: main.cpp:48
+#, kde-format
+msgid "Simon Hürlimann"
+msgstr "Simon Hürlimann"
+
+#: main.cpp:48
+#, kde-format
+msgid "Action refactoring"
+msgstr "動作"
+
+#: main.cpp:49
+#, kde-format
+msgid "Mats Luthman"
+msgstr "Mats Luthman"
+
+#: main.cpp:49
+#, kde-format
+msgid "Game engine, ported from his JAVA applet."
+msgstr "遊戲引擎，從其 JAVA applet 移植過來的。"
+
+#: main.cpp:50
+#, kde-format
+msgid "Arne Klaassen"
+msgstr "Arne Klaassen"
+
+#: main.cpp:50
+#, kde-format
+msgid "Original raytraced chips."
+msgstr "原始的會反射光線的棋子。"
+
+#: main.cpp:51
+#, kde-format
+msgid "Mauricio Piacentini"
+msgstr "Mauricio Piacentini"
+
+#: main.cpp:51
+#, kde-format
+msgid "Vector chips and background for KDE4."
+msgstr "KDE4 的向量棋子與背景。"
+
+#: main.cpp:52
+#, kde-format
+msgid "Brian Croom"
+msgstr "Brian Croom"
+
+#: main.cpp:52
+#, kde-format
+msgid "Port rendering code to KGameRenderer"
+msgstr "修改程式碼，使用 KGameRenderer"
+
+#: main.cpp:53
+#, kde-format
+msgid "Denis Kuplyakov"
+msgstr "Denis Kuplyakov"
+
+#: main.cpp:53
+#, kde-format
+msgid "Port rendering code to QML, redesign and a lot of improvements"
+msgstr "將繪製程式碼移植到 QML，重新設計，還有許多改進"
+
+#: main.cpp:59
+#, kde-format
+msgid "Start with demo game playing"
+msgstr "以示範模式開始遊戲"
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Press start game!"
+msgstr "按下開始遊戲！"
+
+#: mainwindow.cpp:69
+#, kde-format
+msgid "Move History"
+msgstr "移動歷史"
+
+#: mainwindow.cpp:116
+#, kde-format
+msgid "Show Last Move"
+msgstr "顯示上一步"
+
+#: mainwindow.cpp:121
+#, kde-format
+msgid "Show Legal Moves"
+msgstr "顯示合法移動"
+
+#: mainwindow.cpp:126
+#, kde-format
+msgid "Animation Speed"
+msgstr "動畫速度"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Slow"
+msgstr "慢"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Normal"
+msgstr "正常"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Fast"
+msgstr "快"
+
+#: mainwindow.cpp:135
+#, kde-format
+msgid "Use Colored Chips"
+msgstr "使用彩色棋子"
+
+#: mainwindow.cpp:143
+#, kde-format
+msgid "Show Move History"
+msgstr "顯示移動歷史"
+
+#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#, kde-format
+msgid "Game is drawn!"
+msgstr "本局平手"
+
+#: mainwindow.cpp:224 mainwindow.cpp:239
+#, kde-format
+msgid "You win!"
+msgstr "您贏了"
+
+#: mainwindow.cpp:227 mainwindow.cpp:242
+#, kde-format
+msgid "You have lost!"
+msgstr "您輸了"
+
+#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#, kde-format
+msgid "%1 has won!"
+msgstr "%1 贏了！"
+
+#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#, kde-format
+msgid ""
+"\n"
+"%1: %2"
+msgstr ""
+"\n"
+"%1：%2"
+
+#: mainwindow.cpp:274
+#, kde-format
+msgid "Game over"
+msgstr "遊戲結束"
+
+#: mainwindow.cpp:341
+#, kde-format
+msgid "GAME OVER"
+msgstr "遊戲結束。"
+
+#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#, kde-format
+msgid "%1: %2"
+msgstr "%1：%2"
+
+#: mainwindow.cpp:350
+#, kde-format
+msgid "%1 turn"
+msgstr "輪到 %1"
+
+#: mainwindow.cpp:357
+#, kde-format
+msgid "%1's turn"
+msgstr "輪到 %1 了"
+
+#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#, kde-format
+msgid "Computer"
+msgstr "電腦"
+
+#: startgamedialog.cpp:26
+#, fuzzy, kde-format
+#| msgid "New game"
+msgctxt "@title:window"
+msgid "New game"
+msgstr "新遊戲"
+
+#: startgamedialog.cpp:36
+#, kde-format
+msgid "Start game"
+msgstr "開始遊戲"
+
+#: startgamedialog.cpp:37
+#, kde-format
+msgid "Let's start playing!"
+msgstr "開始玩吧！"
+
+#: startgamedialog.cpp:38
+#, kde-format
+msgid "Quit"
+msgstr "離開"
+
+#: startgamedialog.cpp:39
+#, kde-format
+msgid "Quit KReversi"
+msgstr "離開 KReversi"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: startgamedialog.ui:83 startgamedialog.ui:209
+#, kde-format
+msgid "Name:"
+msgstr "名稱："
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: startgamedialog.ui:100 startgamedialog.ui:226
+#, kde-format
+msgid "Skill level:"
+msgstr "技能等級："
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: startgamedialog.ui:128
+#, kde-format
+msgid "VS"
+msgstr "對決"
+
+#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
+#~ msgstr "https://kde.org/applications/games/org.kde.kreversi"

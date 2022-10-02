@@ -1,0 +1,935 @@
+# translation of kreversi.po to English
+# translation of kreversi.po to
+# Copyright (C) 2004 Free Software Foundation, Inc.
+#
+# root <root@localhost.localdomain>, 2004.
+# root <root@intranet.ddsl>, 2004.
+# Kishore G <kishore96@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kreversi\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"PO-Revision-Date: 2021-01-18 19:17+0530\n"
+"Last-Translator: Kishore G <kishore96@gmail.com>\n"
+"Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.12.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "உங்கள் பெயர்கள்"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "tamilpc@ambalam.com"
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Blue"
+msgstr ""
+
+#: commondefs.cpp:31
+#, kde-format
+msgid "Red"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, blackLabel)
+#: commondefs.cpp:32 startgamedialog.ui:24
+#, kde-format
+msgid "Black"
+msgstr "கறுப்பு"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteLabel)
+#: commondefs.cpp:32 startgamedialog.ui:150
+#, kde-format
+msgid "White"
+msgstr "வெள்ளை"
+
+#: kexthighscore.cpp:198
+#, kde-format
+msgid "Score"
+msgstr ""
+
+#: kexthighscore.cpp:201
+#, kde-format
+msgid "Mean Score"
+msgstr ""
+
+#: kexthighscore.cpp:206
+#, kde-format
+msgid "Best Score"
+msgstr ""
+
+#: kexthighscore.cpp:210
+#, kde-format
+msgid "Elapsed Time"
+msgstr ""
+
+#: kexthighscore_gui.cpp:152
+#, kde-format
+msgid "Best &Scores"
+msgstr ""
+
+#: kexthighscore_gui.cpp:157
+#, kde-format
+msgid "&Players"
+msgstr ""
+
+#: kexthighscore_gui.cpp:162
+#, kde-format
+msgid "Statistics"
+msgstr ""
+
+#: kexthighscore_gui.cpp:168
+#, kde-format
+msgid "Histogram"
+msgstr ""
+
+#: kexthighscore_gui.cpp:175
+#, kde-format
+msgid "View world-wide highscores"
+msgstr ""
+
+#: kexthighscore_gui.cpp:182
+#, kde-format
+msgid "View world-wide players"
+msgstr ""
+
+#: kexthighscore_gui.cpp:232
+#, kde-format
+msgctxt "@title:window"
+msgid "Highscores"
+msgstr ""
+
+#: kexthighscore_gui.cpp:296
+#, kde-format
+msgid "Overwrite"
+msgstr ""
+
+#: kexthighscore_gui.cpp:298
+#, kde-format
+msgid "The file already exists. Overwrite?"
+msgstr ""
+
+#: kexthighscore_gui.cpp:299
+#, kde-format
+msgid "Export"
+msgstr ""
+
+#: kexthighscore_gui.cpp:350
+#, fuzzy, kde-format
+#| msgid "Beginner"
+msgid "Winner"
+msgstr "தொடங்குபவர்"
+
+#: kexthighscore_gui.cpp:388
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgid "Won Games"
+msgstr "உங்கள் பெயர்கள்"
+
+#: kexthighscore_gui.cpp:416
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Highscores"
+msgstr ""
+
+#: kexthighscore_gui.cpp:429
+#, kde-format
+msgid "Main"
+msgstr ""
+
+#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#, kde-format
+msgid "Nickname:"
+msgstr ""
+
+#: kexthighscore_gui.cpp:455
+#, kde-format
+msgid "Comment:"
+msgstr ""
+
+#: kexthighscore_gui.cpp:465
+#, kde-format
+msgid "World-wide highscores enabled"
+msgstr ""
+
+#: kexthighscore_gui.cpp:472
+#, kde-format
+msgid "Advanced"
+msgstr ""
+
+#: kexthighscore_gui.cpp:478
+#, kde-format
+msgid "Registration Data"
+msgstr ""
+
+#: kexthighscore_gui.cpp:489
+#, kde-format
+msgid "Key:"
+msgstr ""
+
+#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#, kde-format
+msgid "Remove"
+msgstr ""
+
+#: kexthighscore_gui.cpp:541
+#, kde-format
+msgid ""
+"This will permanently remove your registration key. You will not be able to "
+"use the currently registered nickname anymore."
+msgstr ""
+
+#: kexthighscore_gui.cpp:584
+#, kde-format
+msgid "Please choose a non empty nickname."
+msgstr ""
+
+#: kexthighscore_gui.cpp:588
+#, kde-format
+msgid "Nickname already in use. Please choose another one"
+msgstr ""
+
+#: kexthighscore_gui.cpp:609
+#, fuzzy, kde-format
+#| msgctxt "NAME OF TRANSLATORS"
+#| msgid "Your names"
+msgctxt "@title:window"
+msgid "Enter Your Nickname"
+msgstr "உங்கள் பெயர்கள்"
+
+#: kexthighscore_gui.cpp:618
+#, fuzzy, kde-format
+#| msgid ""
+#| "Congratulations, you have won!\n"
+#| "\n"
+#| "You     : %1\n"
+#| "Computer: %2"
+msgid "Congratulations, you have won!"
+msgstr ""
+"வாழ்த்துக்கள், நீங்கள் வெற்றி அடைந்தீர்கள்!\n"
+"\n"
+"நீங்கள்\t:%1\n"
+"கணினி :%2"
+
+#: kexthighscore_gui.cpp:623
+#, kde-format
+msgid "Enter your nickname:"
+msgstr ""
+
+#: kexthighscore_gui.cpp:631
+#, kde-format
+msgid "Do not ask again."
+msgstr ""
+
+#: kexthighscore_internal.cpp:33
+msgid "anonymous"
+msgstr "அநாமதேய"
+
+#: kexthighscore_internal.cpp:258
+#, fuzzy, kde-format
+msgid "Games Count"
+msgstr "சேமிக்கப்பட்டது."
+
+#: kexthighscore_internal.cpp:265
+#, kde-format
+msgid "Comment"
+msgstr ""
+
+#: kexthighscore_internal.cpp:587
+msgid "Undefined error."
+msgstr ""
+
+#: kexthighscore_internal.cpp:588
+msgid "Missing argument(s)."
+msgstr ""
+
+#: kexthighscore_internal.cpp:589
+msgid "Invalid argument(s)."
+msgstr ""
+
+#: kexthighscore_internal.cpp:591
+msgid "Unable to connect to MySQL server."
+msgstr ""
+
+#: kexthighscore_internal.cpp:592
+msgid "Unable to select database."
+msgstr ""
+
+#: kexthighscore_internal.cpp:593
+msgid "Error on database query."
+msgstr ""
+
+#: kexthighscore_internal.cpp:594
+msgid "Error on database insert."
+msgstr ""
+
+#: kexthighscore_internal.cpp:596
+msgid "Nickname already registered."
+msgstr ""
+
+#: kexthighscore_internal.cpp:597
+msgid "Nickname not registered."
+msgstr ""
+
+#: kexthighscore_internal.cpp:598
+msgid "Invalid key."
+msgstr ""
+
+#: kexthighscore_internal.cpp:599
+msgid "Invalid submit key."
+msgstr ""
+
+#: kexthighscore_internal.cpp:601
+msgid "Invalid level."
+msgstr ""
+
+#: kexthighscore_internal.cpp:602
+msgid "Invalid score."
+msgstr ""
+
+#: kexthighscore_internal.cpp:606
+msgid "Unable to contact world-wide highscore server"
+msgstr ""
+
+#: kexthighscore_internal.cpp:615
+#, kde-format
+msgid "Unable to open temporary file."
+msgstr ""
+
+#: kexthighscore_internal.cpp:624
+#, kde-format
+msgid "Server URL: %1"
+msgstr ""
+
+#: kexthighscore_internal.cpp:646
+#, kde-format
+msgid "Message from world-wide highscores server"
+msgstr ""
+
+#: kexthighscore_internal.cpp:653
+#, kde-format
+msgid "Invalid answer from world-wide highscores server."
+msgstr ""
+
+#: kexthighscore_internal.cpp:654
+#, kde-format
+msgid "Raw message: %1"
+msgstr ""
+
+#: kexthighscore_internal.cpp:666
+#, kde-format
+msgid "Invalid answer from world-wide highscores server (missing item: %1)."
+msgstr ""
+
+#: kexthighscore_item.cpp:266
+#, kde-format
+msgctxt "@title:window"
+msgid "Multiplayers Scores"
+msgstr ""
+
+#: kexthighscore_item.cpp:277
+#, kde-format
+msgid "No game played."
+msgstr ""
+
+#: kexthighscore_item.cpp:279
+#, kde-format
+msgid "Scores for last game:"
+msgstr ""
+
+#: kexthighscore_item.cpp:286
+#, kde-format
+msgid "Scores for the last %1 games:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:32
+#, kde-format
+msgid "all"
+msgstr ""
+
+#: kexthighscore_tab.cpp:61
+#, kde-format
+msgid "Select player:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:97
+msgid "Total:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:97
+msgid "Won:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:97
+msgid "Lost:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:98
+#, fuzzy
+#| msgid "Draw!"
+msgid "Draw:"
+msgstr "வரை!"
+
+#: kexthighscore_tab.cpp:101
+msgid "Current:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:101
+msgid "Max won:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:101
+msgid "Max lost:"
+msgstr ""
+
+#: kexthighscore_tab.cpp:116
+#, fuzzy, kde-format
+msgid "Game Counts"
+msgstr "சேமிக்கப்பட்டது."
+
+#: kexthighscore_tab.cpp:129
+#, kde-format
+msgid "Trends"
+msgstr ""
+
+#: kexthighscore_tab.cpp:217
+#, kde-format
+msgid "From"
+msgstr ""
+
+#: kexthighscore_tab.cpp:218
+#, kde-format
+msgid "To"
+msgstr ""
+
+#: kexthighscore_tab.cpp:219
+#, kde-format
+msgid "Count"
+msgstr ""
+
+#: kexthighscore_tab.cpp:220
+#, kde-format
+msgid "Percent"
+msgstr ""
+
+#. i18n: ectx: label, entry (AnimationSpeed), group (Game)
+#: kreversi.kcfg:9
+#, kde-format
+msgid "The speed of the animations."
+msgstr "உயிர் இயக்கங்களின் வேகம்"
+
+#. i18n: ectx: label, entry (CompetitiveGameChoice), group (Game)
+#: kreversi.kcfg:18
+#, kde-format
+msgid "Whether to play competitively in contrast to casually."
+msgstr "வழக்கமாக விளையாடுவதற்கு பதிலாக போட்டியாக விளையாடலாம்."
+
+#. i18n: ectx: label, entry (UseColoredChips), group (Game)
+#: kreversi.kcfg:22
+#, fuzzy, kde-format
+msgid "Whether to use colored chips instead of black and white ones."
+msgstr "வண்ணங்களுக்கு பதிலாக சாம்பல் நிற பலகையை உபயோகிக்க வேண்டுமா."
+
+#. i18n: ectx: Menu (view)
+#: kreversiui.rc:13
+#, kde-format
+msgid "&View"
+msgstr ""
+
+#. i18n: ectx: Menu (settings)
+#: kreversiui.rc:18
+#, fuzzy, kde-format
+msgid "&Settings"
+msgstr "அமைத்தல்கள்"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: kreversiui.rc:25
+#, kde-format
+msgid "Main Toolbar"
+msgstr "பிரதான கருவிப்பட்டை"
+
+#: kreversiview.cpp:251
+#, kde-format
+msgid "Red can not perform any move. It is blue turn again."
+msgstr ""
+
+#: kreversiview.cpp:252
+#, kde-format
+msgid "White can not perform any move. It is black turn again."
+msgstr ""
+
+#: kreversiview.cpp:261
+#, kde-format
+msgid "Blue can not perform any move. It is red turn again."
+msgstr ""
+
+#: kreversiview.cpp:262
+#, kde-format
+msgid "Black can not perform any move. It is white turn again."
+msgstr ""
+
+#: main.cpp:38
+#, kde-format
+msgid "KReversi"
+msgstr "KReversi"
+
+#: main.cpp:40
+#, fuzzy, kde-format
+msgid "KDE Reversi Board Game"
+msgstr "கெடிஇ பலகை விளையாட்டு"
+
+#: main.cpp:42
+#, kde-format
+msgid ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
+msgstr ""
+
+#: main.cpp:45
+#, kde-format
+msgid "Mario Weilguni"
+msgstr ""
+
+#: main.cpp:45 main.cpp:46
+#, kde-format
+msgid "Original author"
+msgstr ""
+
+#: main.cpp:46
+#, kde-format
+msgid "Inge Wallin"
+msgstr ""
+
+#: main.cpp:47
+#, kde-format
+msgid "Dmitry Suzdalev"
+msgstr ""
+
+#: main.cpp:47
+#, kde-format
+msgid "Game rewrite for KDE4. Current maintainer."
+msgstr ""
+
+#: main.cpp:48
+#, kde-format
+msgid "Simon Hürlimann"
+msgstr ""
+
+#: main.cpp:48
+#, kde-format
+msgid "Action refactoring"
+msgstr ""
+
+#: main.cpp:49
+#, kde-format
+msgid "Mats Luthman"
+msgstr ""
+
+#: main.cpp:49
+#, kde-format
+msgid "Game engine, ported from his JAVA applet."
+msgstr "அவனது JAVA appletயிலுருந்து விளையாட்டு இடம்மாற்றப்பட்டது."
+
+#: main.cpp:50
+#, kde-format
+msgid "Arne Klaassen"
+msgstr ""
+
+#: main.cpp:50
+#, fuzzy, kde-format
+msgid "Original raytraced chips."
+msgstr "கதிர்சார்ந்த சில்லுகள்"
+
+#: main.cpp:51
+#, kde-format
+msgid "Mauricio Piacentini"
+msgstr ""
+
+#: main.cpp:51
+#, kde-format
+msgid "Vector chips and background for KDE4."
+msgstr ""
+
+#: main.cpp:52
+#, kde-format
+msgid "Brian Croom"
+msgstr ""
+
+#: main.cpp:52
+#, kde-format
+msgid "Port rendering code to KGameRenderer"
+msgstr ""
+
+#: main.cpp:53
+#, kde-format
+msgid "Denis Kuplyakov"
+msgstr ""
+
+#: main.cpp:53
+#, kde-format
+msgid "Port rendering code to QML, redesign and a lot of improvements"
+msgstr ""
+
+#: main.cpp:59
+#, kde-format
+msgid "Start with demo game playing"
+msgstr ""
+
+#: mainwindow.cpp:54
+#, kde-format
+msgid "Press start game!"
+msgstr ""
+
+#: mainwindow.cpp:69
+#, fuzzy, kde-format
+msgid "Move History"
+msgstr "செல்லும்படியாகும் நகர்வுகளை காட்டு"
+
+#: mainwindow.cpp:116
+#, fuzzy, kde-format
+msgid "Show Last Move"
+msgstr "கடைசி நகர்வைக் காட்டு"
+
+#: mainwindow.cpp:121
+#, fuzzy, kde-format
+msgid "Show Legal Moves"
+msgstr "செல்லும்படியாகும் நகர்வுகளை காட்டு"
+
+#: mainwindow.cpp:126
+#, kde-format
+msgid "Animation Speed"
+msgstr "உயிர் இயக்கத்தின் வேகம்"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Slow"
+msgstr "மெதுவாக"
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Normal"
+msgstr ""
+
+#: mainwindow.cpp:130
+#, kde-format
+msgid "Fast"
+msgstr "வேகமாக"
+
+#: mainwindow.cpp:135
+#, kde-format
+msgid "Use Colored Chips"
+msgstr ""
+
+#: mainwindow.cpp:143
+#, fuzzy, kde-format
+msgid "Show Move History"
+msgstr "செல்லும்படியாகும் நகர்வுகளை காட்டு"
+
+#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#, fuzzy, kde-format
+msgid "Game is drawn!"
+msgstr "விளையாட்டில் வெற்றி!"
+
+#: mainwindow.cpp:224 mainwindow.cpp:239
+#, kde-format
+msgid "You win!"
+msgstr ""
+
+#: mainwindow.cpp:227 mainwindow.cpp:242
+#, fuzzy, kde-format
+msgid "You have lost!"
+msgstr "விளையாட்டை இழந்தீர்!"
+
+#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#, kde-format
+msgid "%1 has won!"
+msgstr ""
+
+#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#, kde-format
+msgid ""
+"\n"
+"%1: %2"
+msgstr ""
+
+#: mainwindow.cpp:274
+#, fuzzy, kde-format
+msgid "Game over"
+msgstr "சேமிக்கப்பட்டது."
+
+#: mainwindow.cpp:341
+#, kde-format
+msgid "GAME OVER"
+msgstr ""
+
+#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#, kde-format
+msgid "%1: %2"
+msgstr ""
+
+#: mainwindow.cpp:350
+#, kde-format
+msgid "%1 turn"
+msgstr ""
+
+#: mainwindow.cpp:357
+#, kde-format
+msgid "%1's turn"
+msgstr ""
+
+#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#, fuzzy, kde-format
+msgid "Computer"
+msgstr "கணினியின் முறை"
+
+#: startgamedialog.cpp:26
+#, kde-format
+msgctxt "@title:window"
+msgid "New game"
+msgstr ""
+
+#: startgamedialog.cpp:36
+#, kde-format
+msgid "Start game"
+msgstr ""
+
+#: startgamedialog.cpp:37
+#, kde-format
+msgid "Let's start playing!"
+msgstr ""
+
+#: startgamedialog.cpp:38
+#, kde-format
+msgid "Quit"
+msgstr ""
+
+#: startgamedialog.cpp:39
+#, fuzzy, kde-format
+#| msgid "KReversi"
+msgid "Quit KReversi"
+msgstr "KReversi"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: startgamedialog.ui:83 startgamedialog.ui:209
+#, kde-format
+msgid "Name:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: startgamedialog.ui:100 startgamedialog.ui:226
+#, kde-format
+msgid "Skill level:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: startgamedialog.ui:128
+#, kde-format
+msgid "VS"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Your turn."
+#~ msgstr "உங்கள் முறை"
+
+#, fuzzy
+#~ msgid "You: %1"
+#~ msgstr "நீங்கள்"
+
+#, fuzzy
+#~ msgid "Computer Skill"
+#~ msgstr "&கணினியின் திறமை."
+
+#~ msgid "The strength of the computer player."
+#~ msgstr "கணினி விளையாடுபவரின் பலம்."
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "Computer: %1"
+#~ msgstr "கணினியின் முறை"
+
+#, fuzzy
+#~ msgid "Computer turn."
+#~ msgstr "கணினியின் முறை"
+
+#~ msgid "Click"
+#~ msgstr "சொடுக்கு"
+
+#~ msgid "1 (Beginner)"
+#~ msgstr "1 (தொடங்குபவர்)"
+
+#~ msgid "2"
+#~ msgstr "2"
+
+#~ msgid "3"
+#~ msgstr "3"
+
+#~ msgid "4 (Average)"
+#~ msgstr "4 (சராசரி)"
+
+#~ msgid "5"
+#~ msgstr "5"
+
+#~ msgid "6"
+#~ msgstr "6"
+
+#~ msgid "7 (Expert)"
+#~ msgstr "7 (நிபுணர்)"
+
+#~ msgid "&Stop Thinking"
+#~ msgstr "யோசனை செய்வதை நிறுத்து"
+
+#~ msgid "&Continue Thinking"
+#~ msgstr "யோசனையை தொடரவும்"
+
+#~ msgid "S&witch Sides"
+#~ msgstr "பக்கத்தை மாற்று"
+
+#~ msgid ""
+#~ "You are already running an unfinished game.  If you abort the old game to "
+#~ "start a new one, the old game will be registered as a loss in the "
+#~ "highscore file.\n"
+#~ "What do you want to do?"
+#~ msgstr ""
+#~ "நீங்கள் ஏற்கெனவே ஒரு முடிக்கப்படாத விளையாட்டை இயக்கிக் கொண்டிருக்கிறீர்கள். ஒரு புதிய "
+#~ "விளையாட்டை துவக்க பழைய விளையாட்டை நிறுத்தினால், பழைய விளையாட்டு புள்ளிவிவரப்பட்டிக் "
+#~ "கோப்பில் ஒரு இழப்பாக பதிவாகும்.\n"
+#~ "நீங்கள் என்ன செய்ய விரும்புகிறீர்கள்?"
+
+#, fuzzy
+#~ msgid "Abort Current Game?"
+#~ msgstr "தற்போதைய விளையாட்டை நிறுத்தவா?"
+
+#, fuzzy
+#~ msgid "Abort Old Game"
+#~ msgstr "பழைய விளையாட்டை நிறுத்து"
+
+#, fuzzy
+#~ msgid "Continue Old Game"
+#~ msgstr "பழைய விளையாட்டை தொடரு"
+
+#~ msgid "You cannot switch sides in the middle of the computer's move."
+#~ msgstr "கணினியில் நகர்வின்போது பக்கங்களின் நடுவில் செல்லமுடியாது."
+
+#~ msgid "Notice"
+#~ msgstr "அறிவிப்பு"
+
+#~ msgid "If you switch side, your score will not be added to the highscores."
+#~ msgstr "நீங்கள் ஓரத்திற்கு மாறினால், உங்கள் மதிப்பெண் அதிக மதிப்பெண்ணுடன் சேர்க்கப்படாது."
+
+#~ msgid " (interrupted)"
+#~ msgstr "(தடங்கல் ஏற்பட்டுள்ளது)"
+
+#~ msgid "Illegal move"
+#~ msgstr "செல்லாத நகர்வு"
+
+#~ msgid "End of game"
+#~ msgstr "விளையாட்டின் முடிவு."
+
+#~ msgid ""
+#~ "Game is drawn!\n"
+#~ "\n"
+#~ "You     : %1\n"
+#~ "Computer: %2"
+#~ msgstr ""
+#~ "வெற்றி தோல்வி இல்லாத முடிந்த போட்டி!\n"
+#~ " \n"
+#~ "  நீங்கள்:%1\n"
+#~ "கணினி:%2"
+
+#~ msgid "Game Ended"
+#~ msgstr "விளையாட்டு முடிந்தது."
+
+#~ msgid ""
+#~ "You have lost the game!\n"
+#~ "\n"
+#~ "You     : %1\n"
+#~ "Computer: %2"
+#~ msgstr ""
+#~ "நீங்கள் போட்டியில் தோல்வி அடைந்தீர்கள்!\n"
+#~ "\n"
+#~ " நீங்கள் :%1\n"
+#~ " கணினி:%2"
+
+#~ msgid "General"
+#~ msgstr "பொது"
+
+#~ msgid "Comments and bugfixes."
+#~ msgstr "விளக்கங்கள் மற்றும் பிழை அமை."
+
+#~ msgid "Cleaning, bugfixes, some enhancements."
+#~ msgstr "துடைத்தல், பிழைநீக்குதல், சில செயல்கள்"
+
+#, fuzzy
+#~ msgid "Moves"
+#~ msgstr "நகர்ந்தது"
+
+#~ msgid "&Move"
+#~ msgstr "நகர்ந்தது"
+
+#~ msgid "&Grayscale chips"
+#~ msgstr "&பழுப்புநிர அட்டைகள்"
+
+#~ msgid "Play Game"
+#~ msgstr "விளையாட்டை விளையாடு"
+
+#~ msgid "Casually"
+#~ msgstr "தற்செயலாக"
+
+#~ msgid "Competitively"
+#~ msgstr "போட்டியாக"
+
+#~ msgid "Expert"
+#~ msgstr "நிபுணர்"
+
+#~ msgid "Average"
+#~ msgstr "சராசரி"
+
+#~ msgid "&Animation"
+#~ msgstr "&உயிர் இயக்கம்"
+
+#~ msgid "&Background"
+#~ msgstr "&பின்னணி"
+
+#~ msgid "Color:"
+#~ msgstr "வண்ணம்:"
+
+#~ msgid "&Image:"
+#~ msgstr "&பிம்பம்:"
+
+#~ msgid "The human color."
+#~ msgstr "மனிதன் வண்ணம்"
+
+#~ msgid "The computer color."
+#~ msgstr "கணினி வண்ணம்"
+
+#~ msgid "Whether to use animations."
+#~ msgstr "உயிர் இயக்கத்தை உபயோகப்படுத்த வேண்டுமா."
+
+#~ msgid "The zoom factor of the board."
+#~ msgstr "பலகையின் விரிவாக்க அளவு"
+
+#~ msgid "Whether to use a background image."
+#~ msgstr "பின்னணி பிம்பத்தை உபயோகப்படுத்த வேண்டுமா."
+
+#~ msgid "The background color to use."
+#~ msgstr "பின்னணி வண்ணமாக உபயோகி"
+
+#~ msgid "Image to use as background."
+#~ msgstr "பிம்பத்தை பின்னணியாக உபயோகி."
+
+#~ msgid "Whether the menubar is visible."
+#~ msgstr "பட்டியல் பட்டி தெரியவேண்டும்."

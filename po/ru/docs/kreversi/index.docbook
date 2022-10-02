@@ -1,0 +1,770 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>Руководство пользователя &kreversi;</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Разработчик</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Редактор</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Валя</firstname
+><surname
+>Ванеева</surname
+><affiliation
+><address
+><email
+>fattie@altlinux.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Обновление перевода</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>12 августа 2021 г.</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>Это руководство описывает игру &kreversi; версии 2.1.</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>игра</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kreversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>настольная</keyword>
+	<keyword
+>аркада</keyword>
+	<keyword
+>ГО</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>один игрок</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>фишки</keyword>
+	<keyword
+>белые</keyword>
+	<keyword
+>чёрные</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Введение</title
+> <!-- do not change this! -->
+	<note
+><title
+>Жанр:</title
+><para
+>Настольная, аркада</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Количество игроков:</title
+><para
+>Один</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kreversi; &mdash; это простая настольная игра для одного человека, в которую он играет против компьютера. Партия разыгрывается на квадратном поле 8х8 клеток. В игре используются двухсторонние фишки (стороны разного цвета). Если фишка окружена фишками соперника, она переворачивается и переходит к сопернику. Победителем объявляется тот, у кого больше фишек, когда доска заполнена и больше ходов делать нельзя.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>Правила игры</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Цель:</title
+><para
+>Захватить как можно больше клеток на поле.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>После запуска &kreversi; сразу же открывает диалоговое окно <guilabel
+>Новая игра</guilabel
+>, в котором возможно выбрать режим игры (с компьютером или с другим игроком-человеком). Пользователю, как первому игроку, принадлежит право первого хода.</para>
+<note
+><para
+>По умолчанию игрок-человек всегда ходит первым.</para
+></note>
+<para
+>Теперь представьте, что на каждому ходу фишка должна перепрыгнуть фишку (или несколько фишек) соперника. Но фишка не перемещается после выполнения хода; вместо этого на место, куда она должна прыгнуть, ставится ещё одна фишка такого же цвета. После завершения хода все фишки соперника, которые были перепрыгнуты, становятся фишками пользователя и соответственно меняют свой цвет.</para>
+<para
+>Таким образом в игре &kreversi; выполняются все ходы. Перепрыгивать фишки соперника возможно по вертикали, горизонтали и диагонали. Но в том случае, если фишке некуда прыгнуть, пользователь автоматически пропускает ход.</para>
+<note
+><para
+>Соперник играет по этим же правилам. Если его фишке некуда ходить, его ход также будет пропущен.</para
+></note>
+<para
+>Задача игры — заполнить доску фишками своего цвета. Игрок, которому удастся разместить свои фишки на большей части игрового поля, объявляется победителем. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Основные правила, стратегия и советы</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>Основы игры</title>
+
+<para
+>Ход состоит из помещения фишки на свободную клетку так, чтобы захватить часть фишек соперника, и переворачивания захваченных фишек. Чтобы поставить фишку, щёлкните по нужной клетке левой кнопкой мыши.</para>
+
+<para
+>Чтобы захватить фишки соперника, следует сделать ход так, чтобы с двух сторон ограничить своими фишками горизонтальную, вертикальную или диагональную линию его фишек. Захватывать можно несколько фишек за раз.</para>
+
+<para
+>Игра начинается с появления диалога <guilabel
+>Новая игра</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>Выбор режима игры &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Выбор режима игры &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Выбор режима игры</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>Чтобы увидеть демонстрацию игры, выберите режим <guilabel
+>Компьютер</guilabel
+> для обоих игроков.</para>
+
+<para
+>В начале игры у каждого из игроков есть две фишки, размещённые в центре поля следующим образом:</para>
+
+<screenshot>
+<screeninfo
+>Расположение фишек в начале игры &kreversi;</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>Расположение фишек в начале игры &kreversi;</phrase
+></textobject>
+<caption
+><para
+>Игровое поле</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>Меню</interface
+></term>
+    <listitem
+><para
+><interface
+>Строка меню</interface
+> содержит несколько раскрывающихся меню: <guimenu
+>Игра</guimenu
+>, <guimenu
+>Ход</guimenu
+>, <guimenu
+>Вид</guimenu
+>, <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>. Для просмотра меню щёлкните левой кнопкой мыши по одному из заголовков или нажмите <keycombo action="simul"
+>&Alt;<keycap
+>подчёркнутая буква</keycap
+></keycombo
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Панель инструментов</interface
+></term>
+    <listitem
+><para
+>Предоставляет игроку кнопки, соответствующие наиболее часто используемым действиям в игре: <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Начать игру</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Отменить</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Подсказка</guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Показать последний ход</guiicon
+> и <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Показать возможные ходы</guiicon
+>. Наведите указатель мыши на любую из них и щёлкните левой кнопкой мыши, чтобы программа выполнила соответствующее действие.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Поле</interface
+></term>
+    <listitem
+><para
+>Поле состоит из 64 клеток: 8 по вертикали и 8 по горизонтали.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>Строка состояния</interface
+></term>
+    <listitem
+><para
+>Показывает, кто ходит, а также содержит раскрывающееся меню для выбора уровня сложности.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Основные правила</title>
+
+<para
+>Пользователь всегда ходит первым.</para>
+
+<para
+>Если пользователь не может захватить ни одной фишки соперника на своём ходу, он пропускает ход, то есть соперник совершает два хода подряд. Однако если пользователь может захватить хотя бы одну фишку, он не может пропустить свой ход.</para>
+
+<para
+>Одна фишка может захватить несколько в нескольких линиях разных направлений: по горизонтали, вертикали или диагонали. Линия фишек &mdash; несколько фишек одного цвета, выстроенных в ряд по прямой.</para>
+
+<para
+>Во время захвата фишек соперника нельзя перепрыгивать через свои.</para>
+
+<para
+>Фишки могут быть захвачены только в результате совершения хода и должны находиться на одной прямой с только что поставленной пользователем фишкой.</para>
+
+<para
+>Все захваченные фишки должны сразу же переворачиваться, даже если самому захватившему их игроку это невыгодно.</para>
+
+<para
+>Поставленная фишка больше не может быть перемещена со своей клетки.</para>
+
+<para
+>Если ни один из игроков больше не может совершить ход, игра окончена. Подсчитываются фишки, и тот, у кого их больше, объявляется победителем.</para>
+
+<note
+><para
+>Игра может закончиться и до того, как будут заполнены все 64 клетки поля.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Стратегия и советы</title>
+
+<para
+>При первой возможности ставьте фишки в углы. Соперник не сможет их захватить.</para>
+
+<para
+>Старайтесь не ставить фишки в одну из трёх клеток, соседних с угловой, если нет стопроцентной уверенности в том, что соперник не сможет поставить туда свою.</para>
+
+<para
+>Иногда выгодно отдать несколько своих фишек сопернику.</para>
+
+<para
+>Постарайтесь ставить фишки так, чтобы это затрудняло сопернику выбор клеток.</para>
+
+<para
+>Попытайтесь заставить соперника ставить фишки в клетки, соседние с угловыми.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Обзор интерфейса</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Пункты меню</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Начать игру</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Начало новой игры.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Показать лучшие результаты</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Открытие диалога с таблицами лучших результатов.</action>
+    <!--<guibutton
+>Export...</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure...</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Выход</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Выход из &kreversi;.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ход</guimenu
+> <guimenuitem
+>Отменить</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Отмена последнего хода</action
+> игрока-человека или компьютера.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Ход</guimenu
+> <guimenuitem
+>Подсказка</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>Компьютер <action
+>подскажет игроку-человеку следующий ход.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показать последний ход</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Выделение последнего хода соперника.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показать возможные ходы</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Выделяет все возможные ходы</action
+> в текущей позиции.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Вид</guimenu
+> <guimenuitem
+>Показать историю ходов</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Включает или отключает боковую панель истории ходов.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Скорость анимации</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Вложенное меню для настройки скорости анимации игры</action
+>. Доступные варианты: <guimenuitem
+>Медленно</guimenuitem
+>, <guimenuitem
+>Обычная</guimenuitem
+> и <guimenuitem
+>Быстро</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Использовать цветные фишки</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Переключение цвета фишек между чёрно-белым (по умолчанию)</action
+> и красно-синим.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Уровень сложности</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Установка уровня сложности</action
+>: от <guimenuitem
+>Очень лёгкого</guimenuitem
+> до <guimenuitem
+>Невозможного</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Кроме того, меню &kreversi; содержит общие для приложений &kde; пункты <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>. Сведения о них доступны в разделах <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Меню «Настройка»</ulink
+> и <ulink url="help:/fundamentals/menus.html#menus-help"
+>Меню «Справка»</ulink
+> «Основ &kde;». </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>Вопросы и ответы</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Можно ли изменить оформление игры? </para
+></question>
+ <answer
+><para
+>В игре возможно изменить только цвет фишек. Для этого следует воспользоваться пунктом меню <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Использовать цветные фишки</guimenuitem
+></menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Можно ли играть с помощью клавиатуры?</para
+></question>
+ <answer
+><para
+>Нет. &kreversi; не поддерживает игру с помощью клавиатуры.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Нужно закрыть программу, но игра ещё не закончена. Можно ли сохранить игру?</para
+></question>
+ <answer
+><para
+>Нет. В &kreversi; не предусмотрена опция <quote
+>Сохранить</quote
+>.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>Авторские права и лицензия</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>&kreversi; </para>
+
+<para
+>Авторские права на программу принадлежат &Mario.Weilguni;, 1998—2000.</para>
+<para
+>Автор механизма совершения ходов &mdash; Mats Luthman.</para>
+
+<para
+>Автор первой версии документации — &Mario.Weilguni;.</para>
+<para
+>Редактор &mdash; Robert Williams.</para>
+
+<para
+>Обновление документации для &kde; 2.0 &mdash; &Clay.Pradarits; &Clay.Pradarits.mail;.</para>
+
+<para
+>Валя Ванеева <email
+>fattie@altlinux.ru</email
+></para
+><para
+>Олеся Герасименко<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->

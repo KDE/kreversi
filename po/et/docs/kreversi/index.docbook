@@ -1,0 +1,740 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&kreversi;">
+  <!ENTITY kappversion "2.0"
+><!--Applicaion version. Use this variable everywhere it's needed.-->
+  <!ENTITY package "kdegames"
+>  <!-- do not change this! -->
+  <!ENTITY % Estonian  "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+ 
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>&kappname; käsiraamat</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>Arendaja</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>Korrigeerija</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+> <surname
+>Laane</surname
+> <affiliation
+><address
+><email
+>bald@smail.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2013-05-06</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>&kappversion; (&kde; 4.11)</releaseinfo
+><!-- Application version number. Use the variable definitions within header to change this value.-->
+ 
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>See käsiraamat kirjeldab mängu &kappname; versiooni &kappversion;.</para>
+</abstract>
+ 
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>KDE</keyword
+> <!-- do not change this! -->
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>mäng</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kreversi</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>lauamäng</keyword>
+	<keyword
+>arkaadmäng</keyword>
+	<keyword
+>GO</keyword>
+	<keyword
+>reversi</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>üks mängija</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>kivid</keyword>
+	<keyword
+>valge</keyword>
+	<keyword
+>must</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>Sissejuhatus</title
+> <!-- do not change this! -->
+	<note
+><title
+>Mängu tüüp:</title
+><para
+>lauamäng, arkaadmäng</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Mängijate arv:</title
+><para
+>Üks</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+ 
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>&kappname; on lihtne ühe mängijaga strateegiamäng, kus sinu vastaseks on arvuti. Mänguväli on ristkülik suurusega 8x8, jagunedes 64 ruuduks. Mängus kasutatakse värvilisi nuppe, mis eri pooltel on eri värvi. Kui vastane hõivab sinu nupu, vahetab see värvi. Võitja on see, kellel on rohkem oma värvi nuppe hetkel, kui enam käia ei saa.</para>
+</chapter>
+ 
+<chapter id="howto"
+><title
+>Kuidas mängida</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Eesmärk:</title
+><para
+>saada oma kontrolli alla enamik mänguvälja ruutudest.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kappname; alustab otsekohe mänguolukorras. Esimese mängijana on sul õigus teha esimene käik.</para>
+<note
+><title
+>Märkus:</title
+><para
+>Vaikimisi sooritab esimese käigu alati inimmängija.</para
+></note>
+<para
+>Nüüd kujuta ette, et pead iga käiguga hüppama üle vastase nupu või nuppude. Tegelikult aga sinu nupu asukoht ei muutu, vaid asetatakse uus nupp kohta, kuhu sa soovisid hüpata. Selle peale muudavad kõik vastase nupud, millest sa justkui üle hüppasid, värvi ning neist saavad sinu nupud.</para>
+<para
+>Kõik &kappname; käigud just nii sooritataksegi, Hüpata saab sealjuures nii püst- ja rõhtsuunas kui ka diagonaalselt. Kui aga pole kuhugi hüpata, jääb su käik automaatselt vahele.</para>
+<note
+><title
+>Märkus:</title
+><para
+>Samad reeglid kehtivad vastasele. Kui ta ei saa kuhugi hüpata, jääb tema käik vahele.</para
+></note>
+<para
+>Eesmärk on täita mänguväli enda värvi nuppudega. Mängija, kes suudab hõivata enamiku mänguväljast, on võitja. </para>
+</chapter>
+ 
+<chapter id="rules_and_tips"
+><title
+>Mängureeglid, strateegia ja nõuanded</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics"
+>                 
+<title
+>Põhiasjad</title>
+
+<para
+>Käik koosneb vastase nupu/nuppude ümberpiiramisest, et see/need omandaksid sinu värvi. Käik sooritatakse hiirekursori asetamisega soovitud ruudu kohale, millele järgneb klõps &HVNga;.</para>
+
+<para
+>Ümberpiiramine tähendab nupu asetamist lauale nii, et vastase nupp või nupurida on mõlemalt poolt piiratud sinu värvi nupuga.</para>
+
+<para
+>Mängu alguses on mõlemal mängijal automaatselt kaks nuppu asetatud mänguvälja keskele järgmiselt:</para>
+
+<screenshot>
+<screeninfo
+>&kappname; avapositsioon</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>&kappname; avapositsioon</phrase
+></textobject>
+<caption
+><para
+>Mängulaud</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Menüüriba</interface
+></term>
+<listitem>
+<para
+><interface
+>Menüüriba</interface
+> koosneb mitmest menüüst: <guimenu
+>Mäng</guimenu
+>, <guimenu
+>Liikumine</guimenu
+>, <guimenu
+>Vaade</guimenu
+>, <guimenu
+>Seadistused</guimenu
+> ja <guimenu
+>Abi</guimenu
+>. Klõps &HVNga; või <keycombo action="simul"
+>&Alt;<keycap
+>allakriipsutatud täht</keycap
+></keycombo
+> avab menüü.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Tööriistariba</interface
+></term>
+<listitem
+><para
+>Pakub mängijale ikooniviitu sagedamini kasutatavate tegevustega, nimelt: <guiicon
+>Uus</guiicon
+>, <guiicon
+>Võta tagasi</guiicon
+>, <guiicon
+>Vihje</guiicon
+>, <guiicon
+>Näita viimast käiku</guiicon
+> ja <guiicon
+>Näita lubatud käike</guiicon
+>. Nende kasutamiseks vii hiirekursor ikooni kohale ja klõpsa &HVNga;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Mänguväli</interface
+></term>
+<listitem
+><para
+>Mänguväli on jagatud 64 ruuduks (8x8).</para
+></listitem>
+</varlistentry>
+</variablelist>
+
+<variablelist>
+<varlistentry>
+<term
+><interface
+>Olekuriba</interface
+></term>
+<listitem
+><para
+>Olekuriba näitab, kelle kord on käia.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>Mängureeglid</title>
+
+<para
+>Sina käid alati esimesena.</para>
+
+<para
+>Kui sa ei saa oma käigul vähemalt üht vastase nuppu ümber piirata ja enda värvi muuta, jääb käik vahele ning vastane saab uuesti käia. Kui aga käik on võimalik, ei saa seda vahele jätta.</para>
+
+<para
+>Nupp võib piirata ümber suvalise hulga nupuridu igas suunas korraga (nii rõhtsalt, püstiselt kui diagonaalis). Rida tähendab antud juhul üht või enamat nuppu, mis asetsevad sirgjoonel. </para>
+
+<para
+>Vastase nuppu ei saa ümber piirata üle oma värvi nupu.</para>
+
+<para
+>Nuppe saab ümber piirata ainult konkreetse käiguga ning selle mõju avaldub nupu asetamiskohast igas suunas.</para>
+
+<para
+>Kõik ümberpiiratud nupud vahetavad värvi sõltumata sellest, kas see käigulolijale kasuks tuleb või mitte.</para>
+
+<para
+>Kui nupp on mingile ruudule asetatud, ei saa seda edaspidi enam liigutada.</para>
+
+<para
+>Kui kumbki pool ei saa enam käia, on mäng läbi. Seejärel loetakse nupud kokku ning see, kelle värvi nuppe on laual rohkem, on võitja.</para>
+
+<note
+><para
+>Mäng võib lõppeda ka enne seda, kui kõik 64 ruutu on täidetud.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strateegia ja nõuanded</title>
+
+<para
+>Püüa asetada nuppe võimaluse korral nurka. Seal ei saa vastane neid ümber piirata.</para>
+
+<para
+>Väldi nupu asetamist nurgavälja kolmele naaberväljale, kui sa ei ole just täiesti kindel, et vastane ei saa oma nuppu nurka käia.</para>
+
+<para
+>Vahel võib olla kasulik mõned nupud vastasele ette sööta.</para>
+
+<para
+>Püüa asetada nupud väljadele nii, et vastasel ei oleks käiguvõimalust.</para>
+
+<para
+>Püüa sundida vastast asetama oma nuppu nurgavälja naaberväljale.</para>
+
+</sect1>
+</chapter>
+  
+<chapter id="interface"
+><title
+>Liidese tutvustus</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>Menüükirjed</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mäng</guimenu
+> <guimenuitem
+>Uus</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Alustab uut mängu. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mäng</guimenu
+><guimenuitem
+>Näita rekordeid</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Avab dialoogi erinevate edetabelitega. Sa võid <guibutton
+>eksport</guibutton
+>ida rekordid faili või klõpsata nupule <guibutton
+>Seadista</guibutton
+>, mis avab dialoogi, kus saad muuta oma <guilabel
+>hüüdnime</guilabel
+> ja lisada <guilabel
+>kommentaari</guilabel
+>.</para
+></listitem>
+</varlistentry>
+<!--
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut>
+<guimenu
+>Game</guimenu
+><guimenuitem
+>Players and Seats</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Option is currently disabled.</para
+></listitem>
+</varlistentry>
+-->
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Mäng</guimenu
+><guimenuitem
+>Välju</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Lõpetab &kappname; töö. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+> </keycombo
+> </shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Võta tagasi</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Tühistab nii sinu kui arvuti viimase käigu. </para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycap
+>H</keycap
+> </shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Vihje</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Arvuti pakub soovituse järgmiseks käiguks.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycap
+>D</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+><guimenuitem
+>Demo</guimenuitem
+></menuchoice
+></term>
+<listitem
+><para
+>Käivitab või peatab demorežiimi.</para
+></listitem>
+</varlistentry>
+
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+> <guimenuitem
+>Näita viimast käiku</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Tõstab esile vastase viimase käigu.</para
+></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+> <guimenuitem
+>Näita lubatud käike</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Tõstab esile kõik sinu võimalused aktiivsel käigul.</para
+></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term
+><menuchoice
+><guimenu
+>Vaade</guimenu
+> <guimenuitem
+>Näita käikude ajalugu</guimenuitem
+> </menuchoice
+></term>
+      <listitem
+><para
+>Lülitab sisse või välja käikude ajaloo külgriba.</para
+></listitem>
+    </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guisubmenu
+>Animatsiooni kiirus</guisubmenu
+> <guimenuitem
+>Aeglane</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Määrab mängu animatsioonile kiiruse vahemikus <guimenuitem
+>aeglane</guimenuitem
+> kuni <guimenuitem
+>kiire</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Värviliste nuppude kasutamine</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Lülitab</action
+> nuppude värvi musta ja valge (vaikimisi) ning punase ja sinise vahel.</para
+></listitem>
+  </varlistentry>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+><guisubmenu
+>Raskusaste</guisubmenu
+> </menuchoice
+></term>
+    <listitem
+><para
+>Määrab raskusastme vahemikus <guimenuitem
+>väga lihtne</guimenuitem
+> kuni <guimenuitem
+>võimatu</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+<para
+>Lisaks on &kappname;l tavapärased &kde; <guimenu
+>seadistuste</guimenu
+> ja <guimenu
+>abi</guimenu
+>menüü elemendid, mille kohta leiab rohkem teavet &kde; põhialuste käsiraamatu osadest <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Menüü Seadistused</ulink
+> ja <ulink url="help:/fundamentals/ui.html#menus-help"
+>Menüü Abi</ulink
+>. </para>
+
+</sect1>
+</chapter>
+ 
+ <chapter id="faq"
+><title
+>Korduma kippuvad küsimused</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>Ma soovin muuta mängu välimust. On see võimalik? </para
+></question>
+ <answer
+><para
+>Muuta saab ainult nuppude värvi. Selleks kasuta menüükäsku <guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>Värviliste nuppude kasutamine</guimenuitem
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Kas mängida saab ka klaviatuuri abil?</para
+></question>
+ <answer
+><para
+>Ei, &kappname;t ei saa klaviatuuri abil mängida.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>Ma pean mängust väljuma, aga mäng ei ole veel läbi. Kas ma saan oma seisu salvestada?</para
+></question>
+  <answer
+><para
+>Ei, &kappname; ei paku salvestamise võimalust.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+ 
+</qandaset>
+</chapter>
+ 
+<chapter id="credits"
+><title
+>Autorid ja litsents</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+ 
+<para
+>&kappname; </para>
+
+<para
+>Rakenduse autoriõigus 1998-2000: &Mario.Weilguni;</para>
+<para
+>Mats Luthman - käigumootori disain.</para>
+
+<para
+>Algne dokumentatsioon: &Mario.Weilguni;</para>
+<para
+>Toimetas: Robert Williams</para>
+
+<para
+>Dokumentatsiooni kirjutas ümber ja uuendas &kde; &kappversion; tarbeks: &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@smail.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+ 
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+ 
+&install.intro.documentation;
+ 
+ 
+<sect1 id="Compilation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.compile.documentation; </sect1>
+</appendix>
+ 
+&documentation.index; 
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->
