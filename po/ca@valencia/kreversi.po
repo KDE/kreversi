@@ -439,7 +439,7 @@ msgstr "Si utilitzar peces acolorides en lloc de les blanques i negres."
 #: kreversiui.rc:13
 #, kde-format
 msgid "&View"
-msgstr "&Visualitza"
+msgstr "Vi&sualitza"
 
 #. i18n: ectx: Menu (settings)
 #: kreversiui.rc:18
@@ -740,6 +740,3 @@ msgstr "Nivell d'habilitats:"
 #, kde-format
 msgid "VS"
 msgstr "VS"
-
-#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
-#~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
