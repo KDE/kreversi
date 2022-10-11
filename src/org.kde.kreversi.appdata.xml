@@ -21,6 +21,7 @@
   <name xml:lang="id">KReversi</name>
   <name xml:lang="is">KReversi</name>
   <name xml:lang="it">KReversi</name>
+  <name xml:lang="ka">KReversi</name>
   <name xml:lang="ko">KReversi</name>
   <name xml:lang="nl">KReversi</name>
   <name xml:lang="nn">KReversi</name>
@@ -58,6 +59,7 @@
   <summary xml:lang="id">Permainan Papan Membalik-balik</summary>
   <summary xml:lang="is">Reversi/Othello-viðsnúningsleikur</summary>
   <summary xml:lang="it">Gioco da tavolo tipo Reversi</summary>
+  <summary xml:lang="ka">სამაგიდო თამაში Reversi</summary>
   <summary xml:lang="ko">리버시 보드 게임</summary>
   <summary xml:lang="nl">Reversi-bordspel</summary>
   <summary xml:lang="nn">Brettspelet reversi</summary>
