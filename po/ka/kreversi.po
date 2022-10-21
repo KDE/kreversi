@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"POT-Creation-Date: 2022-10-21 00:44+0000\n"
 "PO-Revision-Date: 2022-10-10 04:50+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -215,102 +215,102 @@ msgstr "შეიყვანეთ თქვენი მეტსახელ�
 msgid "Do not ask again."
 msgstr "აღარ მკითხო."
 
-#: kexthighscore_internal.cpp:33
+#: kexthighscore_internal.cpp:34
 msgid "anonymous"
 msgstr "ანონიმური"
 
-#: kexthighscore_internal.cpp:258
+#: kexthighscore_internal.cpp:259
 #, kde-format
 msgid "Games Count"
 msgstr "თამაშების რაოდენობა"
 
-#: kexthighscore_internal.cpp:265
+#: kexthighscore_internal.cpp:266
 #, kde-format
 msgid "Comment"
 msgstr "კომენტარი"
 
-#: kexthighscore_internal.cpp:587
+#: kexthighscore_internal.cpp:588
 msgid "Undefined error."
 msgstr "აღუწერელი შეცდომა."
 
-#: kexthighscore_internal.cpp:588
+#: kexthighscore_internal.cpp:589
 msgid "Missing argument(s)."
 msgstr "ნაკლული არგუმენტები."
 
-#: kexthighscore_internal.cpp:589
+#: kexthighscore_internal.cpp:590
 msgid "Invalid argument(s)."
 msgstr "არასწორი არგუმენტები."
 
-#: kexthighscore_internal.cpp:591
+#: kexthighscore_internal.cpp:592
 msgid "Unable to connect to MySQL server."
 msgstr "MySQL სერვერთან მიერთების შეცდომა."
 
-#: kexthighscore_internal.cpp:592
+#: kexthighscore_internal.cpp:593
 msgid "Unable to select database."
 msgstr "ბაზის არჩევის შეცდომა."
 
-#: kexthighscore_internal.cpp:593
+#: kexthighscore_internal.cpp:594
 msgid "Error on database query."
 msgstr "ბაზაში მოთხოვნის გაგზავნის შეცდომა."
 
-#: kexthighscore_internal.cpp:594
+#: kexthighscore_internal.cpp:595
 msgid "Error on database insert."
 msgstr "ბაზაში ჩასმის შეცდომა."
 
-#: kexthighscore_internal.cpp:596
+#: kexthighscore_internal.cpp:597
 msgid "Nickname already registered."
 msgstr "მეტსახელი უკვე რეგისტრირებულია."
 
-#: kexthighscore_internal.cpp:597
+#: kexthighscore_internal.cpp:598
 msgid "Nickname not registered."
 msgstr "მეტსახელი ჯერ რეგისტრირებული არაა."
 
-#: kexthighscore_internal.cpp:598
+#: kexthighscore_internal.cpp:599
 msgid "Invalid key."
 msgstr "არასწორი გასაღები."
 
-#: kexthighscore_internal.cpp:599
+#: kexthighscore_internal.cpp:600
 msgid "Invalid submit key."
 msgstr "არასწორი გადასაცემი გასაღები."
 
-#: kexthighscore_internal.cpp:601
+#: kexthighscore_internal.cpp:602
 msgid "Invalid level."
 msgstr "არასწორი დონე."
 
-#: kexthighscore_internal.cpp:602
+#: kexthighscore_internal.cpp:603
 msgid "Invalid score."
 msgstr "არასწორი ქულები."
 
-#: kexthighscore_internal.cpp:606
+#: kexthighscore_internal.cpp:607
 msgid "Unable to contact world-wide highscore server"
 msgstr "ქულების საერთაშორისო სერვერთან მიერთების შეცდომა"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "დროებითი ფაილის გახსნის შეცდომა."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "სერვერის URL: %1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgid "Message from world-wide highscores server"
 msgstr ""
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr ""
 
-#: kexthighscore_internal.cpp:654
+#: kexthighscore_internal.cpp:655
 #, kde-format
 msgid "Raw message: %1"
 msgstr "დაუმუშავებელი შეყობინება: %1"
 
-#: kexthighscore_internal.cpp:666
+#: kexthighscore_internal.cpp:667
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""

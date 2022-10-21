@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"POT-Creation-Date: 2022-10-21 00:44+0000\n"
 "PO-Revision-Date: 2019-11-22 01:46+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -221,102 +221,102 @@ msgstr "輸入你的暱稱："
 msgid "Do not ask again."
 msgstr "不要再問我。"
 
-#: kexthighscore_internal.cpp:33
+#: kexthighscore_internal.cpp:34
 msgid "anonymous"
 msgstr "匿名"
 
-#: kexthighscore_internal.cpp:258
+#: kexthighscore_internal.cpp:259
 #, kde-format
 msgid "Games Count"
 msgstr "遊戲計次"
 
-#: kexthighscore_internal.cpp:265
+#: kexthighscore_internal.cpp:266
 #, kde-format
 msgid "Comment"
 msgstr "留言"
 
-#: kexthighscore_internal.cpp:587
+#: kexthighscore_internal.cpp:588
 msgid "Undefined error."
 msgstr "未定義的錯誤。"
 
-#: kexthighscore_internal.cpp:588
+#: kexthighscore_internal.cpp:589
 msgid "Missing argument(s)."
 msgstr "不存在的參數。"
 
-#: kexthighscore_internal.cpp:589
+#: kexthighscore_internal.cpp:590
 msgid "Invalid argument(s)."
 msgstr "不正確的參數。"
 
-#: kexthighscore_internal.cpp:591
+#: kexthighscore_internal.cpp:592
 msgid "Unable to connect to MySQL server."
 msgstr "無法連線 MySQL 伺服器。"
 
-#: kexthighscore_internal.cpp:592
+#: kexthighscore_internal.cpp:593
 msgid "Unable to select database."
 msgstr "無法選擇資料庫。"
 
-#: kexthighscore_internal.cpp:593
+#: kexthighscore_internal.cpp:594
 msgid "Error on database query."
 msgstr "資料庫查詢時錯誤"
 
-#: kexthighscore_internal.cpp:594
+#: kexthighscore_internal.cpp:595
 msgid "Error on database insert."
 msgstr "資料庫插入時錯誤。"
 
-#: kexthighscore_internal.cpp:596
+#: kexthighscore_internal.cpp:597
 msgid "Nickname already registered."
 msgstr "暱稱已經被註冊過。"
 
-#: kexthighscore_internal.cpp:597
+#: kexthighscore_internal.cpp:598
 msgid "Nickname not registered."
 msgstr "暱稱尚未被註冊。"
 
-#: kexthighscore_internal.cpp:598
+#: kexthighscore_internal.cpp:599
 msgid "Invalid key."
 msgstr "無效金鑰。"
 
-#: kexthighscore_internal.cpp:599
+#: kexthighscore_internal.cpp:600
 msgid "Invalid submit key."
 msgstr "無效提交金鑰。"
 
-#: kexthighscore_internal.cpp:601
+#: kexthighscore_internal.cpp:602
 msgid "Invalid level."
 msgstr "無效等級。"
 
-#: kexthighscore_internal.cpp:602
+#: kexthighscore_internal.cpp:603
 msgid "Invalid score."
 msgstr "無效分數。"
 
-#: kexthighscore_internal.cpp:606
+#: kexthighscore_internal.cpp:607
 msgid "Unable to contact world-wide highscore server"
 msgstr "無法連接世界高分榜伺服器"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "無法開啟暫存檔案"
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "伺服器連結：%1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgid "Message from world-wide highscores server"
 msgstr "來自世界高分榜伺服器的訊息"
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "來自世界高分榜伺服器的無效回答。"
 
-#: kexthighscore_internal.cpp:654
+#: kexthighscore_internal.cpp:655
 #, kde-format
 msgid "Raw message: %1"
 msgstr "原始訊息：%1"
 
-#: kexthighscore_internal.cpp:666
+#: kexthighscore_internal.cpp:667
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "來自世界高分榜伺服器的無效回答。（遺失項目： %1）"

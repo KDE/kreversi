@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-30 00:41+0000\n"
+"POT-Creation-Date: 2022-10-21 00:44+0000\n"
 "PO-Revision-Date: 2021-08-13 08:55+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -222,102 +222,102 @@ msgstr "Введіть ваш псевдонім:"
 msgid "Do not ask again."
 msgstr "Не запитувати знов."
 
-#: kexthighscore_internal.cpp:33
+#: kexthighscore_internal.cpp:34
 msgid "anonymous"
 msgstr "анонім"
 
-#: kexthighscore_internal.cpp:258
+#: kexthighscore_internal.cpp:259
 #, kde-format
 msgid "Games Count"
 msgstr "Кількість ігор"
 
-#: kexthighscore_internal.cpp:265
+#: kexthighscore_internal.cpp:266
 #, kde-format
 msgid "Comment"
 msgstr "Коментар"
 
-#: kexthighscore_internal.cpp:587
+#: kexthighscore_internal.cpp:588
 msgid "Undefined error."
 msgstr "Невідома помилка."
 
-#: kexthighscore_internal.cpp:588
+#: kexthighscore_internal.cpp:589
 msgid "Missing argument(s)."
 msgstr "Бракує аргументів."
 
-#: kexthighscore_internal.cpp:589
+#: kexthighscore_internal.cpp:590
 msgid "Invalid argument(s)."
 msgstr "Невірні аргумент(и)."
 
-#: kexthighscore_internal.cpp:591
+#: kexthighscore_internal.cpp:592
 msgid "Unable to connect to MySQL server."
 msgstr "Неможливо з'єднатися з сервером MySQL."
 
-#: kexthighscore_internal.cpp:592
+#: kexthighscore_internal.cpp:593
 msgid "Unable to select database."
 msgstr "Неможливо вибрати базу даних."
 
-#: kexthighscore_internal.cpp:593
+#: kexthighscore_internal.cpp:594
 msgid "Error on database query."
 msgstr "Помилка в запиті до бази даних."
 
-#: kexthighscore_internal.cpp:594
+#: kexthighscore_internal.cpp:595
 msgid "Error on database insert."
 msgstr "Помилка під час додавання до бази даних."
 
-#: kexthighscore_internal.cpp:596
+#: kexthighscore_internal.cpp:597
 msgid "Nickname already registered."
 msgstr "Такий псевдонім вже зареєстровано."
 
-#: kexthighscore_internal.cpp:597
+#: kexthighscore_internal.cpp:598
 msgid "Nickname not registered."
 msgstr "Такий псевдонім не зареєстровано."
 
-#: kexthighscore_internal.cpp:598
+#: kexthighscore_internal.cpp:599
 msgid "Invalid key."
 msgstr "Невірний ключ."
 
-#: kexthighscore_internal.cpp:599
+#: kexthighscore_internal.cpp:600
 msgid "Invalid submit key."
 msgstr "Невірна клавіша відправлення."
 
-#: kexthighscore_internal.cpp:601
+#: kexthighscore_internal.cpp:602
 msgid "Invalid level."
 msgstr "Невірний рівень."
 
-#: kexthighscore_internal.cpp:602
+#: kexthighscore_internal.cpp:603
 msgid "Invalid score."
 msgstr "Невірний рахунок."
 
-#: kexthighscore_internal.cpp:606
+#: kexthighscore_internal.cpp:607
 msgid "Unable to contact world-wide highscore server"
 msgstr "Неможливо приєднатися до всесвітнього сервера найкращих результатів"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Неможливо відкрити тимчасовий файл."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "URL сервера: %1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgid "Message from world-wide highscores server"
 msgstr "Повідомлення від всесвітнього сервера найкращих результатів"
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Від всесвітнього сервера результатів надійшла невірна відповідь."
 
-#: kexthighscore_internal.cpp:654
+#: kexthighscore_internal.cpp:655
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Сире повідомлення: %1"
 
-#: kexthighscore_internal.cpp:666
+#: kexthighscore_internal.cpp:667
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
