@@ -265,7 +265,7 @@ msgstr "S'ha produït un error en la consulta de la base de dades."
 
 #: kexthighscore_internal.cpp:595
 msgid "Error on database insert."
-msgstr "S'ha produït un error en inserir a la base de dades."
+msgstr "S'ha produït un error en inserir en la base de dades."
 
 #: kexthighscore_internal.cpp:597
 msgid "Nickname already registered."
