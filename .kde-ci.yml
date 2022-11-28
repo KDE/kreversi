@@ -13,7 +13,7 @@ Dependencies:
     'frameworks/kdbusaddons': '@stable'
     'frameworks/kdoctools': '@stable'
     'frameworks/ki18n': '@stable'
-    'frameworks/kkio': '@stable'
+    'frameworks/kio': '@stable'
     'frameworks/kxmlgui': '@stable'
     'frameworks/kwidgetsaddons': '@stable'
 Options:
