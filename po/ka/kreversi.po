@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:44+0000\n"
-"PO-Revision-Date: 2022-10-10 04:50+0200\n"
+"PO-Revision-Date: 2022-12-24 07:11+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -58,12 +58,12 @@ msgstr "ქულები"
 #: kexthighscore.cpp:201
 #, kde-format
 msgid "Mean Score"
-msgstr ""
+msgstr "საშუალო ქულა"
 
 #: kexthighscore.cpp:206
 #, kde-format
 msgid "Best Score"
-msgstr ""
+msgstr "საუკეთესო ქულა"
 
 #: kexthighscore.cpp:210
 #, kde-format
@@ -73,7 +73,7 @@ msgstr "გასული დრო"
 #: kexthighscore_gui.cpp:152
 #, kde-format
 msgid "Best &Scores"
-msgstr ""
+msgstr "საუკეთესო &ქულები"
 
 #: kexthighscore_gui.cpp:157
 #, kde-format
@@ -576,17 +576,17 @@ msgstr ""
 #: mainwindow.cpp:69
 #, kde-format
 msgid "Move History"
-msgstr ""
+msgstr "სვლების ისტორია"
 
 #: mainwindow.cpp:116
 #, kde-format
 msgid "Show Last Move"
-msgstr ""
+msgstr "ბოლო სვლის ჩვენება"
 
 #: mainwindow.cpp:121
 #, kde-format
 msgid "Show Legal Moves"
-msgstr ""
+msgstr "დაშვებული სვლების ჩვენება"
 
 #: mainwindow.cpp:126
 #, kde-format
@@ -611,17 +611,17 @@ msgstr "სწრაფი"
 #: mainwindow.cpp:135
 #, kde-format
 msgid "Use Colored Chips"
-msgstr ""
+msgstr "ფერადი ჩიპების ჩვენება"
 
 #: mainwindow.cpp:143
 #, kde-format
 msgid "Show Move History"
-msgstr ""
+msgstr "სვლების ისტორიის ჩვენება"
 
 #: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
 #, kde-format
 msgid "Game is drawn!"
-msgstr ""
+msgstr "თამაში ფრედ დასრულდა!"
 
 #: mainwindow.cpp:224 mainwindow.cpp:239
 #, kde-format
@@ -715,7 +715,7 @@ msgstr "სახელი:"
 #: startgamedialog.ui:100 startgamedialog.ui:226
 #, kde-format
 msgid "Skill level:"
-msgstr ""
+msgstr "ცოდნის დონე:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: startgamedialog.ui:128
