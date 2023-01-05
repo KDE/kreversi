@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:44+0000\n"
-"PO-Revision-Date: 2022-12-24 07:11+0100\n"
+"PO-Revision-Date: 2023-01-03 09:39+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -93,12 +93,12 @@ msgstr "ჰისტოგრამა"
 #: kexthighscore_gui.cpp:175
 #, kde-format
 msgid "View world-wide highscores"
-msgstr ""
+msgstr "მსოფლიოში საუკეთესო ქულების ნახვა"
 
 #: kexthighscore_gui.cpp:182
 #, kde-format
 msgid "View world-wide players"
-msgstr ""
+msgstr "მსოფლიოში საუკეთესო მოთამაშეების ნახვა"
 
 #: kexthighscore_gui.cpp:232
 #, kde-format
@@ -114,7 +114,7 @@ msgstr "თავზე გადაწერა"
 #: kexthighscore_gui.cpp:298
 #, kde-format
 msgid "The file already exists. Overwrite?"
-msgstr ""
+msgstr "ფაილი უკვე არსებობს. გადავაწერო?"
 
 #: kexthighscore_gui.cpp:299
 #, kde-format
@@ -155,7 +155,7 @@ msgstr "კომენტარი:"
 #: kexthighscore_gui.cpp:465
 #, kde-format
 msgid "World-wide highscores enabled"
-msgstr ""
+msgstr "მსოფლიოში საუკეთესო ქულების ჩვენება ჩართულია"
 
 #: kexthighscore_gui.cpp:472
 #, kde-format
@@ -183,16 +183,18 @@ msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr ""
+"ეს სამუდამოდ წაშლის თქვენს რეგისტრაციის გასაღებს. ამჟამად რეგისტრირებულ "
+"მეტსახელს ვეღარ გამოიყენებთ."
 
 #: kexthighscore_gui.cpp:584
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr ""
+msgstr "აირჩიეთ არა-ცარიელი მეტსახელი."
 
 #: kexthighscore_gui.cpp:588
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr ""
+msgstr "მეტსახელი უკვე გამოიყენება. შეიყვანეთ რამე სხვა"
 
 #: kexthighscore_gui.cpp:609
 #, kde-format
@@ -298,12 +300,12 @@ msgstr "სერვერის URL: %1"
 #: kexthighscore_internal.cpp:647
 #, kde-format
 msgid "Message from world-wide highscores server"
-msgstr ""
+msgstr "შეტყობინება მსოფლიო ქულების სერვერიდან"
 
 #: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
-msgstr ""
+msgstr "მსოფლიო ქულების სერვერის არასწორი პასუხი."
 
 #: kexthighscore_internal.cpp:655
 #, kde-format
@@ -313,13 +315,13 @@ msgstr "დაუმუშავებელი შეყობინება: 
 #: kexthighscore_internal.cpp:667
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
-msgstr ""
+msgstr "მსოფლიო ქულების სერვერის არასწორი პასუხი (აკლია ჩანაწერი: %1)."
 
 #: kexthighscore_item.cpp:266
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
-msgstr ""
+msgstr "მრავალმოთამაშიანი ქულები"
 
 #: kexthighscore_item.cpp:277
 #, kde-format
@@ -414,13 +416,13 @@ msgstr "ანიმაციების სიჩქარე."
 #: kreversi.kcfg:18
 #, kde-format
 msgid "Whether to play competitively in contrast to casually."
-msgstr ""
+msgstr "თამაშის ტიპი: შემთხვევითი თუ ხელით მითითებული."
 
 #. i18n: ectx: label, entry (UseColoredChips), group (Game)
 #: kreversi.kcfg:22
 #, kde-format
 msgid "Whether to use colored chips instead of black and white ones."
-msgstr ""
+msgstr "შავთეთრის მაგიერ ფერადი მონეტების გამოყენება."
 
 #. i18n: ectx: Menu (view)
 #: kreversiui.rc:13
@@ -443,22 +445,22 @@ msgstr "ხელსაწყოთა მთავარი ზოლი"
 #: kreversiview.cpp:251
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
-msgstr ""
+msgstr "წითელს სვლის გაკეთება არ შეუძლია. ისევ ლურჯის ჯერია."
 
 #: kreversiview.cpp:252
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
-msgstr ""
+msgstr "თეთრს სვლის გაკეთება არ შეუძლია. ისევ შავის ჯერია."
 
 #: kreversiview.cpp:261
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
-msgstr ""
+msgstr "ლურჯს სვლის გაკეთება არ შეუძლია. ისევ წითლის ჯერია."
 
 #: kreversiview.cpp:262
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
-msgstr ""
+msgstr "შავს სვლის გაკეთება არ შეუძლია. ისევ თეთრის ჯერია."
 
 #: main.cpp:38
 #, kde-format
@@ -468,7 +470,7 @@ msgstr "KReversi"
 #: main.cpp:40
 #, kde-format
 msgid "KDE Reversi Board Game"
-msgstr ""
+msgstr "სამაგიდო თამაში Reversi, KDE-სგან"
 
 #: main.cpp:42
 #, kde-format
@@ -477,6 +479,9 @@ msgid ""
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 msgstr ""
+"(c) 1997-2000, Mario Weilguni\n"
+"(c) 2004-2006, Inge Wallin\n"
+"(c) 2006, Dmitry Suzdalev"
 
 #: main.cpp:45
 #, kde-format
@@ -501,7 +506,7 @@ msgstr "Dmitry Suzdalev"
 #: main.cpp:47
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
-msgstr ""
+msgstr "KDE4-სთვის გადაწერა. მიმდინარე ლიდერი."
 
 #: main.cpp:48
 #, kde-format
@@ -511,7 +516,7 @@ msgstr "Simon Hürlimann"
 #: main.cpp:48
 #, kde-format
 msgid "Action refactoring"
-msgstr ""
+msgstr "ქმედებების გადაწერა"
 
 #: main.cpp:49
 #, kde-format
@@ -521,7 +526,7 @@ msgstr "Mats Luthman"
 #: main.cpp:49
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
-msgstr ""
+msgstr "თამაშის ძრავა. გადმოტანილია მისი JAVA-ის აპლეტიდან."
 
 #: main.cpp:50
 #, kde-format
@@ -531,7 +536,7 @@ msgstr "Arne Klaassen"
 #: main.cpp:50
 #, kde-format
 msgid "Original raytraced chips."
-msgstr ""
+msgstr "საწყისი 3D მონეტები."
 
 #: main.cpp:51
 #, kde-format
@@ -541,7 +546,7 @@ msgstr "Mauricio Piacentini"
 #: main.cpp:51
 #, kde-format
 msgid "Vector chips and background for KDE4."
-msgstr ""
+msgstr "ვექტორული მონეტები და ფონი KDE4-სთვის."
 
 #: main.cpp:52
 #, kde-format
@@ -551,7 +556,7 @@ msgstr "Brian Croom"
 #: main.cpp:52
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
-msgstr ""
+msgstr "KGameRenderer-ის გამოყენება რენდერისთვის"
 
 #: main.cpp:53
 #, kde-format
@@ -561,17 +566,17 @@ msgstr "Denis Kuplyakov"
 #: main.cpp:53
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
-msgstr ""
+msgstr "QML-ზე გადატანა, დიზაინის შეცვლა და ბევრი გაუმჯობესება"
 
 #: main.cpp:59
 #, kde-format
 msgid "Start with demo game playing"
-msgstr ""
+msgstr "გაშვებისას დემო ვერსიის გაშვება"
 
 #: mainwindow.cpp:54
 #, kde-format
 msgid "Press start game!"
-msgstr ""
+msgstr "დააწექით თამაშის დაწყებას!"
 
 #: mainwindow.cpp:69
 #, kde-format
