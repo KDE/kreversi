@@ -1,692 +1,363 @@
 <?xml version="1.0" ?>
 <!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!ENTITY % German "INCLUDE"
-> <!-- change language only here -->
-  <!ENTITY % addindex "IGNORE"
-> <!-- do not change this! -->
+  <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"> <!-- do not change this! -->
 ]>
- 
-<book id="kreversi" lang="&language;"
-> <!-- do not change this! -->
+
+<book id="kreversi" lang="&language;"> <!-- do not change this! -->
 <bookinfo>
-	<title
->Das Handbuch zu &kreversi;</title
-> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+	<title>The &kreversi; Handbook</title> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
 <!-- List of immidiate authors begins here. -->
 <!--INPORTANT! - All other contributors: [to be determined] -->
 <authorgroup>
-<author
-><firstname
->Clay</firstname
-> <surname
->Pradarits</surname
-> <affiliation
-> <address
->&Clay.Pradarits.mail;</address>
+<author>
+<firstname>Clay</firstname>
+<surname>Pradarits</surname>
+<affiliation>
+<address>&Clay.Pradarits.mail;</address>
 </affiliation>
 </author>
 
-<othercredit role="developer"
-><firstname
->Mario</firstname
-> <surname
->Weilguni</surname
-> <affiliation
-> <address
->&Mario.Weilguni.mail;</address
-></affiliation>
-<contrib
->Entwickler</contrib>
+<othercredit role="developer">
+<firstname>Mario</firstname>
+<surname>Weilguni</surname>
+<affiliation>
+<address>&Mario.Weilguni.mail;</address></affiliation>
+<contrib>Developer</contrib>
 </othercredit>
 
-<othercredit role="reviewer"
-><firstname
->Lauri</firstname
-> <surname
->Watts</surname
-> <contrib
->Korrektur</contrib>
-<affiliation
-><address
->&Lauri.Watts.mail; </address
-></affiliation>
+<othercredit role="reviewer">
+<firstname>Lauri</firstname>
+<surname>Watts</surname>
+<contrib>Reviewer</contrib>
+<affiliation><address>
+&Lauri.Watts.mail;
+</address></affiliation>
 </othercredit>
-<othercredit role="translator"
-><firstname
->Maren</firstname
-><surname
->Pakura</surname
-><affiliation
-><address
-><email
->maren@kde.org</email
-></address
-></affiliation
-><contrib
->Deutsche Übersetzung</contrib
-></othercredit
-> 
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
-<legalnotice
->&FDLNotice;</legalnotice>
-<date
->2017-11-28</date
-><!-- Date of (re)writing, or update.-->
-<releaseinfo
->2.1 (Applications 17.12)</releaseinfo>
- 
+<legalnotice>&FDLNotice;</legalnotice>
+<date>2021-08-12</date><!-- Date of (re)writing, or update.-->
+<releaseinfo>2.1 (KDE Gear 21.08)</releaseinfo>
+
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
-	<para
->Dieses Handbuch beschreibt das Spiel &kreversi; in der Version 2.1</para>
+	<para>This documentation describes the game of &kreversi; version 2.1</para>
 </abstract>
- 
+
 <!--List of relevan keywords-->
 <keywordset>
-	<keyword
->KDE</keyword
-> <!-- do not change this! -->
-	<keyword
->kdegames</keyword
-> <!-- do not change this! -->
-	<keyword
->Spiel</keyword
-> <!-- do not change this! -->
-	<keyword
->KReversi</keyword
-><!--Application name goes here-->
+	<keyword>KDE</keyword> <!-- do not change this! -->
+	<keyword>kdegames</keyword> <!-- do not change this! -->
+	<keyword>game</keyword> <!-- do not change this! -->
+	<keyword>Kreversi</keyword><!--Application name goes here-->
 <!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
-	<keyword
->Brettspiel</keyword>
-	<keyword
->Arcade</keyword>
-	<keyword
->GO</keyword>
-	<keyword
->Reversi</keyword>
+	<keyword>board</keyword>
+	<keyword>arcade</keyword>
+	<keyword>GO</keyword>
+	<keyword>reversi</keyword>
 <!--Number of possible players. It can be: One, Two,..., Multiplayer-->
-	<keyword
->ein Spieler</keyword>
+	<keyword>one player</keyword>
 <!--All other relevant keywords-->
-	<keyword
->Steine</keyword>
-	<keyword
->weiß</keyword>
-	<keyword
->schwarz</keyword>
+	<keyword>stones</keyword>
+	<keyword>white</keyword>
+	<keyword>black</keyword>
 </keywordset>
 </bookinfo>
 <!--Content begins here: -->
-<chapter id="introduction"
-><title
->Einführung</title
-> <!-- do not change this! -->
-	<note
-><title
->Spieltyp:</title
-><para
->Brettspiel, Arcade</para
-></note
-><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
-	<note
-><title
->Anzahl der Spieler:</title
-><para
->Einer</para
-></note
-><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
- 
+<chapter id="introduction"><title>Introduction</title> <!-- do not change this! -->
+	<note><title>Gametype:</title><para>Board, Arcade</para></note><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note><title>Number of possible players:</title><para>One</para></note><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
 <!--Short game description starts here. 3-4 sentences (paragraphs)-->
-<para
->&kreversi; ist ein einfaches Strategiespiel für einen Spieler, der gegen den Computer spielt. Das Spielfeld ist ein 8 mal 8 großes Quadrat, das in 64 Felder aufgeteilt ist. Die Spielsteine haben verschiedene Farben auf der Vorder- und Rückseite. Falls ein Spieler einen gegnerischen Stein auf dem Brett erobert, wird dieser umgedreht und gehört diesem Spieler. Gewonnen hat, wer am meisten Steine seiner Farbe auf dem Brett hat, wenn kein weiterer Stein mehr gesetzt werden kann.</para>
+<para>&kreversi; is a simple one player strategy game played against the
+computer. The playing field is an 8 by 8 square board divided into 64
+squares. The game pieces used are two sided stones, where each side has its own, distinctive color.
+ If a piece is captured by an opposing player, that piece is turned over
+to reveal the color of that player. A winner is declared when one player has
+more pieces of his own color on the board and there are no more possible
+moves.</para>
 </chapter>
- 
-<chapter id="howto"
-><title
->Spielanleitung</title
-> <!-- do not change this! -->
+
+<chapter id="howto"><title>How to Play</title> <!-- do not change this! -->
 <!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
-	<note
-><title
->Ziel des Spiels:</title
-><para
->Ziel des Spiels ist es, am Ende eine möglichst große Anzahl von eigenen Steinen auf dem Brett zu haben.</para
-></note
-><!--Describe the objective of the game.-->
+	<note><title>Objective:</title><para>Get control over the majority of squares on the board.</para></note><!--Describe the objective of the game.-->
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
-	<para
->&kreversi; startet mit dem Dialog <guilabel
->Neues Spiel</guilabel
->, in dem Sie den Spielmodus auswählen können, &ie; gegen den Rechner oder gegen eine andere Person. Als erster Spieler haben Sie den ersten Zug.</para>
-<note
-><title
->Hinweis:</title
-><para
->Der menschliche Spieler darf immer den ersten Zug ausführen.</para
-></note>
-<para
->Ein Spieler muss seinen Stein auf ein leeres Feld legen, das horizontal, vertikal oder diagonal an ein bereits belegtes Feld angrenzt. Wird ein Stein gelegt, werden alle gegnerischen Steine, die sich zwischen dem neuen Spielstein und einem bereits gelegten Stein der eigenen Farbe befinden, umgedreht. </para>
-<para
->Jeder Zug in &kreversi; wird nach dieser Regel ausgeführt. Können Sie keinen Stein setzen, sodass Steine des Gegner eingeschlossen werden, müssen Sie aussetzen.</para>
-<note
-><title
->Hinweis:</title
-><para
->Diese Regeln gelten auch für Ihren Gegner. Kann kein Zug ausgeführt werden, setzt der Spieler aus.</para
-></note>
-<para
->Ziel ist es, das Spielfeld mit Steinen in Ihrer Farbe zu belegen. Der Spieler mit der größten Zahl von eigenen Steinen gewinnt das Spiel. </para>
+	<para>
+	&kreversi; loads directly into the <guilabel>New game</guilabel> dialog where
+        you select the game mode, &ie; play against the computer or another human player.
+        As a first player you have the right to move first.</para>
+<note><para>By default the human player always has a right to the first move.</para></note>
+<para>Now, imagine yourself that with each move your stone has to hop (jump) over the enemy's one (or ones, as there might be more than one stone). Yet, your stone does not relocate after the move, instead a new stone is placed on the board onto where your stone would have appeared if it indeed could jump. Once the move is done, all the enemy stones that you jump over, become yours and change their color respectively.</para>
+<para>Every single move you do in &kreversi; has to be done in this manner. And you can jump your stones vertically, horizontally and diagonally. But, in case there is nowhere to jump, your turn will automatically skip.</para>
+<note><para>The same rule applies to your enemy. If there is no possibility to make a move the turn is skipped.</para></note>
+<para>The idea here is to fill the board with the stones of your own color. The player who manages to conquer the most of the game board is announced the winner.
+	</para>
 </chapter>
- 
-<chapter id="rules_and_tips"
-><title
->Spielregeln, Spielstrategien und Tipps</title
-> <!-- do not change this! -->
+
+<chapter id="rules_and_tips"><title>Game Rules, Strategies and Tips</title> <!-- do not change this! -->
 	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
-<sect1 id="basics"
->                 
-<title
->Grundlagen des Spiels</title>
+<sect1 id="basics">
+<title>Game Basics</title>
 
-<para
->Ein Zug besteht darin, Spielsteine des Gegners <quote
->einzuschließen</quote
->, die dann umgedreht werden und daraufhin die Farbe des Spielers zeigen. Ein Zug wird ausgeführt, indem Sie mit der &LMBn; an die Stelle klicken, an die der neue Stein gelegt werden soll.</para>
+<para>A move consists  of outflanking your opponents stone(s),  then flipping the
+outflanked stone(s)  to reveal  your color.  A move is  performed by  placing the
+mouse pointer over the desired square then &LMB; click.</para>
 
-<para
->Einschließen heißt, einen Stein so auf das Brett zu setzen, dass nach dem Setzen eine Reihe (oder Reihen) der Spielsteine des Gegners an beiden Enden von Steinen des Spielers begrenzt wird. Eine Reihe kann waagerecht, senkrecht oder diagonal sein.</para>
+<para>To outflank means to place a stone on the board so that your opponent's
+row(s) of stone(s) is bordered at each end by a stone of your color. A row may be
+made up of one or more stones.</para>
 
-<para
->Das Spiel beginnt mit dem Dialog <guilabel
->Neues Spiel</guilabel
->.</para>
+<para>The game starts with the <guilabel>New game</guilabel> dialog.</para>
 
 <screenshot>
-<screeninfo
->Dialog zur Modusauswahl von &kreversi;</screeninfo>
+<screeninfo>&kreversi; Game Mode Selection</screeninfo>
 <mediaobject>
-<imageobject
-><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
-<textobject
-><phrase
->Dialog zur Modusauswahl von &kreversi;</phrase
-></textobject>
-<caption
-><para
->Spielmodusauswahl</para
-></caption>
+<imageobject><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject><phrase>&kreversi; Game Mode Selection</phrase></textobject>
+<caption><para>Game Mode Selection</para></caption>
 </mediaobject>
 </screenshot>
 
-<para
->Um eine Demonstration des Spiels zu sehen, wählen Sie <guilabel
->Rechner</guilabel
-> für beide Spieler.</para>
+<para>To see a demo of the game select <guilabel>Computer</guilabel> for both players.</para>
 
-<para
->Für jeden Spieler werden zwei Steine in der Mitte des Spielfeldes folgendermaßen angeordnet:</para>
+<para>Each player automatically has two stones placed
+in the center four squares of the board in the following pattern:</para>
 
 <screenshot>
-<screeninfo
->Ausgangsposition bei &kreversi;</screeninfo>
+<screeninfo>&kreversi; opening position</screeninfo>
 <mediaobject>
-<imageobject
-><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
-<textobject
-><phrase
->Ausgangsposition bei &kreversi;</phrase
-></textobject>
-<caption
-><para
->Spielfeldaufbau</para
-></caption>
+<imageobject><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject><phrase>&kreversi; opening position</phrase></textobject>
+<caption><para>Board Layout</para></caption>
 </mediaobject>
 </screenshot>
 
 <variablelist>
-<varlistentry>
-<term
-><interface
->Menüleiste</interface
-></term>
-<listitem>
-<para
->Die <interface
->Menüleiste</interface
-> enthält mehrere Menüs. Das sind die Menüs <guimenu
->Spiel</guimenu
->, <guimenu
->Zug</guimenu
->, <guimenu
->Ansicht</guimenu
->, <guimenu
->Einstellungen</guimenu
-> und <guimenu
->Hilfe</guimenu
->. Klicken Sie mit der &LMBn; darauf oder drücken Sie <keycombo action="simul"
->&Alt;<keycap
-> den unterstrichenen Buchstaben</keycap
-> </keycombo
->, um ein Menü zu öffnen.</para>
-</listitem>
-</varlistentry>
-</variablelist>
+  <varlistentry>
+    <term><interface>Menu Bar</interface></term>
+    <listitem><para>The <interface>Menu Bar</interface> contains several choices of
+    drop-down menus. These are <guimenu>Game</guimenu>, <guimenu>Move</guimenu>,
+    <guimenu>View</guimenu>, <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>.
+    Click with the &LMB; or <keycombo action="simul">&Alt;<keycap>the underlined letter</keycap></keycombo>
+    to show the drop-down menu.</para></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term
-><interface
->Werkzeugleiste</interface
-></term>
-<listitem
-><para
->Bietet dem Spieler Symbole für häufig gebrauchte Tastenkürzel und Aktionen. Das sind <guiicon
->Neu</guiicon
->, <guiicon
->Zurücknehmen</guiicon
->, <guiicon
->Tipp</guiicon
->, <guiicon
->Letzten Zug anzeigen</guiicon
-> und <guiicon
->Gültige Züge anzeigen</guiicon
->. Klicken Sie mit der &LMBn; auf ein Symbol, um es zu aktivieren. </para
-></listitem>
-</varlistentry>
-</variablelist>
+  <varlistentry>
+    <term><interface>Toolbar</interface></term>
+    <listitem><para>Provides the player with icon shortcuts for commonly
+    used actions. These are <inlinemediaobject><imageobject><imagedata
+    fileref="document-new.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>New</guiicon>, <inlinemediaobject><imageobject><imagedata
+    fileref="edit-undo.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Undo</guiicon>, <inlinemediaobject><imageobject><imagedata
+    fileref="games-hint.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Hint</guiicon>, <inlinemediaobject><imageobject><imagedata
+    fileref="actions-lastmoves.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Show Last Move</guiicon>, and <inlinemediaobject><imageobject><imagedata
+    fileref="actions-legalmoves.png" format="PNG"/></imageobject></inlinemediaobject>
+    <guiicon>Show Legal Moves</guiicon>. Place the mouse pointer over any
+    of these icons and click with the &LMB; to activate.</para></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term
-><interface
->Spielfeld</interface
-></term>
-<listitem
-><para
->Das Spielfeld ist ein 8 mal 8 großes Quadrat, das in 64 Felder aufgeteilt ist. </para
-></listitem>
-</varlistentry>
-</variablelist>
+  <varlistentry>
+    <term><interface>Game Board</interface></term>
+    <listitem><para>Consists of a 8 by 8 square board divided into 64 squares.</para></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term
-><interface
->Statusleiste</interface
-></term>
-<listitem
-><para
->In der Statusleiste wird angezeigt, wer am Zug ist.</para
-></listitem>
-</varlistentry>
+  <varlistentry>
+    <term><interface>Status Bar</interface></term>
+    <listitem><para>Displays whose turn it is. As well as a drop-down box to choose the level of difficulty.</para></listitem>
+  </varlistentry>
 </variablelist>
 </sect1>
 
 <sect1 id="Rules">
-<title
->Spielregeln</title>
+<title>Game Rules</title>
 
-<para
->Sie beginnen immer das Spiel.</para>
+<para>You always move first.</para>
 
-<para
->Falls Sie, wenn Sie dran sind, keinen gegnerischen Stein einschließen können, müssen Sie aussetzen, und der Gegner ist wieder dran. Ist ein Zug möglich, dürfen Sie nicht aussetzen.</para>
+<para>If on your turn you cannot outflank and flip at least one
+opposing stone, your turn is forfeited and your opponent moves
+again. However, if a move is available to you, you may not forfeit
+your turn.</para>
 
-<para
->Ein Stein kann beliebig viele Spielsteine in einer oder mehreren Reihen in beliebiger Richtung einschließen - waagerecht, senkrecht oder diagonal. (Eine Reihe ist definiert als ein oder mehrere Spielsteine in einer durchgehenden, geraden Linie) </para>
+<para>A stone may outflank any number of stones in one or more rows in
+any number of directions at the same time - horizontally, vertically
+or diagonally. A row is defined as one or more stones in a continuous
+straight line.</para>
 
-<para
->Sie dürfen nicht Ihre eigenen Steine mit einschließen, um die gegnerischen Steine zu erhalten.</para>
+<para>You may not skip over your own color stone to outflank an
+opposing stone.</para>
 
-<para
->Steine können nur durch den gesetzten Stein selbst eingeschlossen werden und müssen in einer Reihe mit diesem liegen.</para>
+<para>Stones may only be outflanked as a direct result of a move and
+must fall in the direct line of the stone placed down.</para>
 
-<para
->Alle eingeschlossenen Steine müssen umgedreht werden, auch wenn der Spieler einen Vorteil davon hätte, einige nicht umzudrehen.</para>
+<para>All stones outflanked in any one move must be flipped, even if it
+is to the player's advantage not to flip them.</para>
 
-<para
->Nachdem ein Stein auf ein Feld gesetzt wurde, kann er im Verlauf des Spieles auf kein anderes mehr gesetzt werden.</para>
+<para>Once a stone is placed on a square, it can never be moved to
+another square later in the game.</para>
 
-<para
->Wenn keiner der Spieler mehr einen Zug machen kann, ist das Spiel beendet. Die Steine werden gezählt, und der Spieler, der am meisten Steine seiner Farbe auf dem Brett hat, gewinnt das Spiel.</para>
+<para>When it is no longer possible for either player to move, the
+game is over. Stones are then counted and the player with the majority
+of his or her color discs on the board is declared the winner.</para>
 
-<note
-><para
->Hinweis: Es ist möglich, dass ein Spiel endet, bevor alle 64 Felder besetzt sind.</para
-></note>
+<note><para>It is possible for a game to end before all 64 squares are
+filled.</para></note>
 
 </sect1>
 
 <sect1 id="tips">
-<title
->Spielstrategien und Tipps</title>
+<title>Strategies and Tips</title>
 
-<para
->Versuchen Sie, die Steine nach Möglichkeit in die Ecken zu platzieren. Ihr Gegner kann diese Steine dann nicht einschließen.</para>
+<para>Try to place stones on the corners whenever possible. Your
+opponent cannot outflank these stones.</para>
 
-<para
->Vermeiden Sie es, die Steine in eines der drei, den Ecken benachbarten Felder zu setzen, außer Sie sind sicher, dass Ihr Gegner nicht in der Lage ist, einen Stein in die Ecke zu setzen.</para>
+<para>Avoid placing stones on one of the three neighbor fields of a
+corner unless you are absolutely sure that your opponent will not be
+able to put a stone on a corner.</para>
 
-<para
->Manchmal ist es sinnvoll, einige Steine dem Gegner anzubieten.</para>
+<para>Sometimes it is better to offer some stones to your
+opponent.</para>
 
-<para
->Versuchen Sie, die Steine so auf das Brett zu setzen, dass der Gegner keinen Zug mehr machen kann.</para>
+<para>Try to put stones on fields which prevent your opponent from
+moving.</para>
 
-<para
->Versuchen Sie, Ihren Gegner zu zwingen, einen Stein in ein Feld neben einer Spielbrettecke zu setzen.</para>
+<para>Try to force your opponent to put a stone in a neighboring field
+of a corner.</para>
 
 </sect1>
 </chapter>
-  
-<chapter id="interface"
-><title
->Die Benutzeroberfläche</title
-> <!-- do not change this! -->
-<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
-> and <varlistentry
->. Split the chapter into sections using <sect1(2,3)
-> for better viewing.-->
+
+<chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist> and <varlistentry>. Split the chapter into sections using <sect1(2,3)> for better viewing.-->
 <sect1 id="menu">
-<title
->Menüeinträge</title>
+<title>Menu Items</title>
 
 <variablelist>
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->N</keycap
-></keycombo
-></shortcut
-> <guimenu
->Spiel</guimenu
-><guimenuitem
->Neu</guimenuitem
-></menuchoice
-></term>
-<listitem
-><para
->Startet ein neues Spiel. </para
-></listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-> <keycombo action="simul"
->&Ctrl;<keycap
->H</keycap
-></keycombo
-> </shortcut
-> <guimenu
->Spiel</guimenu
-> <guimenuitem
->Bestenliste anzeigen</guimenuitem
-></menuchoice
-></term>
-<listitem
-><para
->Öffnet einen Dialog mit der Anzeige der verschiedenen Bestenlisten. </para
-></listitem>
-</varlistentry>
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->Q</keycap
-></keycombo
-> </shortcut
-> <guimenu
->Spiel</guimenu
-> <guimenuitem
->Beenden</guimenuitem
-></menuchoice
-></term>
-<listitem
-><para
->Beendet &kreversi;. </para
-></listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-><keycombo action="simul"
->&Ctrl;<keycap
->Z</keycap
-></keycombo
-></shortcut
-> <guimenu
->Zug</guimenu
-> <guimenuitem
->Zurücknehmen</guimenuitem
-></menuchoice
-></term>
-<listitem
-><para
->Macht Ihren letzten Zug und auch den letzten Zug des Computers rückgängig. </para
-></listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><menuchoice
-><shortcut
-> <keycap
->H</keycap
-> </shortcut
-> <guimenu
->Zug</guimenu
-> <guimenuitem
->Tipp</guimenuitem
->  </menuchoice
-></term>
-<listitem
-><para
->Zeigt Ihnen einen Vorschlag des Computers an.</para
-></listitem>
-</varlistentry>
-
-    <varlistentry>
-      <term
-><menuchoice
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Letzten Zug anzeigen</guimenuitem
-> </menuchoice
-></term>
-      <listitem
-><para
->Markiert den letzten Zug des Gegners.</para
-></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term
-><menuchoice
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Gültige Züge anzeigen</guimenuitem
-> </menuchoice
-></term>
-      <listitem
-><para
->Zeigt alle Ihre gültigen Züge für die Spielstellung an.</para
-></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term
-><menuchoice
-><guimenu
->Ansicht</guimenu
-><guimenuitem
->Spielverlauf anzeigen</guimenuitem
-> </menuchoice
-></term>
-      <listitem
-><para
->Blendet die Seitenleiste mit dem Zugarchiv ein oder aus.</para
-></listitem>
-    </varlistentry>
-
   <varlistentry>
-    <term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guisubmenu
->Animationsgeschwindigkeit</guisubmenu
-> <guimenuitem
->Langsam</guimenuitem
-> </menuchoice
-></term>
-    <listitem
-><para
->Stellt die Animationsgeschwindigkeit auf Werte von <guisubmenu
->Langsam</guisubmenu
-> bis <guimenuitem
->Schnell</guimenuitem
-> ein.</para
-></listitem>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+    <guimenu>Game</guimenu> <guimenuitem>New</guimenuitem></menuchoice></term>
+    <listitem><para><action>Starts a new game.</action></para></listitem>
   </varlistentry>
+
   <varlistentry>
-    <term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Farbige Spielsteine verwenden</guimenuitem
-> </menuchoice
-></term>
-    <listitem
-><para
-><action
->Schaltet</action
-> die Farben der Spielsteinen zwischen der Standardeinstellung Schwarz-Weiß und Rot-Blau um.</para
-></listitem>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
+    <guimenu>Game</guimenu> <guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
+    <listitem><para><action>Opens a dialog that displays different high score tables.</action>
+    <!--<guibutton>Export...</guibutton> the high scores into a file or click on
+    <guibutton>Configure...</guibutton> to open a dialog to customize your
+    <guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.--></para></listitem>
   </varlistentry>
+
   <varlistentry>
-    <term
-><menuchoice
-><guimenu
->Einstellungen</guimenu
-><guisubmenu
->Schwierigkeitsgrad</guisubmenu
-> </menuchoice
-></term>
-    <listitem
-><para
->Stellt einen Schwierigkeitsgrad von <guimenuitem
->Sehr einfach</guimenuitem
-> bis <guimenuitem
->Unmöglich</guimenuitem
-> ein.</para
-></listitem>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
+    <guimenu>Game</guimenu> <guimenuitem>Quit</guimenuitem></menuchoice></term>
+    <listitem><para><action>Exit &kreversi;.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+    <guimenu>Move</guimenu> <guimenuitem>Undo</guimenuitem></menuchoice></term>
+    <listitem><para><action>Removes your last move</action> as well as the computer's last move from the board.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><shortcut><keycap>H</keycap></shortcut>
+    <guimenu>Move</guimenu> <guimenuitem>Hint</guimenuitem></menuchoice></term>
+    <listitem><para>The computer will <action>provide a hint for your next move.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>View</guimenu> <guimenuitem>Show Last Move</guimenuitem></menuchoice></term>
+    <listitem><para><action>Highlights your opponent's last move.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>View</guimenu> <guimenuitem>Show Legal Moves</guimenuitem></menuchoice></term>
+    <listitem><para><action>Highlights all the moves available</action> for your current move.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>View</guimenu> <guimenuitem>Show Move History</guimenuitem></menuchoice></term>
+    <listitem><para><action>Enables/Disables the move history sidebar.</action></para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>Settings</guimenu> <guisubmenu>Animation Speed</guisubmenu></menuchoice></term>
+    <listitem><para><action>A submenu to set the game animation speed</action> between <guimenuitem>Slow</guimenuitem>, <guimenuitem>Normal</guimenuitem>, and <guimenuitem>Fast</guimenuitem> options.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>Settings</guimenu> <guimenuitem>Use Colored Chips</guimenuitem></menuchoice></term>
+    <listitem><para><action>Toggle the color of the stones between black and white (default),</action> and red and blue.</para></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term><menuchoice><guimenu>Settings</guimenu> <guisubmenu>Difficulty</guisubmenu></menuchoice></term>
+    <listitem><para><action>Set the difficulty</action> from <guimenuitem>Very Easy</guimenuitem> to <guimenuitem>Impossible</guimenuitem>.</para></listitem>
   </varlistentry>
 </variablelist>
-<para
->Zusätzlich hat &kreversi; die bekannten &kde;-Einträge im Menü <guimenu
->Einstellungen</guimenu
-> und <guimenu
->Hilfe</guimenu
->, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
->Einstellungen</ulink
-> und <ulink url="help:/fundamentals/menus.html#menus-help"
->Hilfe</ulink
-> der &kde;-Grundlagen. </para>
+
+<para>
+Additionally &kreversi; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+menu items, for more information read the sections about the <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Settings Menu</ulink> and <ulink url="help:/fundamentals/menus.html#menus-help">Help Menu</ulink>
+of the &kde; Fundamentals.
+</para>
 
 </sect1>
 </chapter>
- 
- <chapter id="faq"
-><title
->Häufig gestellte Fragen</title
-> <!-- do not change this! -->
-<!--This chapter is for frequently asked questions. Please use <qandaset
-> <qandaentry
-> only!-->
+
+ <chapter id="faq"><title>Frequently asked questions</title> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset> <qandaentry> only!-->
 <qandaset>
 <!--Following is a standard list of FAQ questions.-->
 <qandaentry>
- <question
-><para
->Kann ich das Erscheinungsbild des Spiels ändern? </para
-></question>
- <answer
-><para
->In diesem Spiel können Sie nur die Farbe der Steine ändern. Wählen Sie dazu in der Menüleiste <menuchoice
-> <guimenu
->Einstellungen</guimenu
-> <guimenuitem
->Farbige Spielsteine benutzen</guimenuitem
-> </menuchoice
-></para
-></answer>
+ <question><para>I want to change the way this game looks. Can I? </para></question>
+ <answer><para>The only part of the game that can be changed is the color of the stones. To change the color of the stones use the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Use Colored Chips</guimenuitem></menuchoice> menu item.</para></answer>
 </qandaentry>
 <qandaentry>
- <question
-><para
->Kann ich mit der Tastatur spielen?</para
-></question>
- <answer
-><para
->Nein, &kreversi; kann nicht mit der Tastatur gespielt werden.</para
-></answer>
+ <question><para>Can I use the keyboard to play the game?</para></question>
+ <answer><para>No. &kreversi; does not provide for the keyboard play.</para></answer>
 </qandaentry>
 <qandaentry>
- <question
-><para
->Ich muss das Spiel unterbrechen, kann ich den aktuellen Spielstand speichern?</para
-></question>
-  <answer
-><para
->Nein, in &kreversi; kann der aktuelle Spielstand nicht gespeichert werden.</para
-></answer>
+ <question><para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para></question>
+ <answer><para>No. &kreversi; does not have a <quote>Save</quote> feature.</para></answer>
 </qandaentry>
 <!--Please add more Q&As if needed-->
- 
+
 </qandaset>
 </chapter>
- 
-<chapter id="credits"
-><title
->Danksagungen und Lizenz</title
-> <!-- do not change this! -->
+
+<chapter id="credits"><title>Credits and License</title> <!-- do not change this! -->
 <!--This chapter is for credits and licenses.-->
- 
-<para
->&kreversi; </para>
 
-<para
->Programm Copyright 1998-2000 &Mario.Weilguni;</para>
-<para
->Mats Luthman - Entwickler der Bewegungsalgorithmen.</para>
+<para>
+&kreversi;  <!-- do not change this! -->
+</para>
 
-<para
->Original-Dokumentation von &Mario.Weilguni;</para>
-<para
->Überarbeitet von Robert Williams</para>
+<para>Program Copyright 1998-2000 &Mario.Weilguni;</para>
+<para>Mats Luthman - Designer of the move engine.</para>
 
-<para
->Dokumentation neugeschrieben und für Version 2.0 überarbeitet von &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+<para>Original documentation by &Mario.Weilguni;</para>
+<para>Edited by Robert Williams</para>
 
-<para
->Deutsche Übersetzung von Maren Pakura <email
->maren@kde.org</email
-></para
-> &underFDL; &underGPL; </chapter>
- 
- 
-&documentation.index; 
+<para>Documentation re-written and updated for 2.0 by &Clay.Pradarits;
+&Clay.Pradarits.mail;</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+
+&underFDL;
+&underGPL;
+
+</chapter>
+
+
+&documentation.index;
 </book>
 <!--
 Local Variables:
