@@ -54,15 +54,15 @@ ecm_add_app_icon(kreversi ICONS ${ICON_SRCS})
 
 target_link_libraries(kreversi
     KF5KDEGames
-    KF5::ConfigCore
-    KF5::ConfigGui
-    KF5::CoreAddons
-    KF5::Crash
-    KF5::DBusAddons
-    KF5::KIOCore
-    KF5::KIOFileWidgets
-    KF5::WidgetsAddons
-    KF5::XmlGui
+    KF${KF_MAJOR_VERSION}::ConfigCore
+    KF${KF_MAJOR_VERSION}::ConfigGui
+    KF${KF_MAJOR_VERSION}::CoreAddons
+    KF${KF_MAJOR_VERSION}::Crash
+    KF${KF_MAJOR_VERSION}::DBusAddons
+    KF${KF_MAJOR_VERSION}::KIOCore
+    KF${KF_MAJOR_VERSION}::KIOFileWidgets
+    KF${KF_MAJOR_VERSION}::WidgetsAddons
+    KF${KF_MAJOR_VERSION}::XmlGui
     Qt${QT_MAJOR_VERSION}::Svg
 )
 
