@@ -52,7 +52,7 @@ find_package(KF${KF_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
 find_package(KF5KDEGames 7.3.0 REQUIRED)
 
 ecm_set_disabled_deprecation_versions(QT 5.15.2
-     KF 5.101.0
+     KF 5.103.0
     )
 # added by KDE_COMPILERSETTINGS_LEVEL 5.85
 remove_definitions(
