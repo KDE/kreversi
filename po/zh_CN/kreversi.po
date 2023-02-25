@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:44+0000\n"
-"PO-Revision-Date: 2023-02-15 11:04\n"
+"PO-Revision-Date: 2023-02-24 12:43\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -181,7 +181,7 @@ msgstr "删除"
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
-msgstr "这将永久删除您的注册密钥。您将无法再使用目前注册的昵称。"
+msgstr "这将彻底删除您的注册密钥。您将无法再使用目前注册的昵称。"
 
 #: kexthighscore_gui.cpp:584
 #, kde-format
