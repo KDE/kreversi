@@ -468,7 +468,7 @@ msgstr "KReversi"
 #: main.cpp:40
 #, fuzzy, kde-format
 msgid "KDE Reversi Board Game"
-msgstr "كدي لوح لعبة"
+msgstr "كِيدِي لوح لعبة"
 
 #: main.cpp:42
 #, fuzzy, kde-format
