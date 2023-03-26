@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: kreversi 1.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:44+0000\n"
-"PO-Revision-Date: 2002-03-09 21:31GMT\n"
-"Last-Translator: Wolfram Diestel <wolfram@steloj.de>\n"
+"PO-Revision-Date: 2023-03-25 16:19+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -122,16 +122,14 @@ msgid "Export"
 msgstr ""
 
 #: kexthighscore_gui.cpp:350
-#, fuzzy, kde-format
+#, kde-format
 msgid "Winner"
-msgstr "Nivelo 2 (Komencanto)"
+msgstr ""
 
 #: kexthighscore_gui.cpp:388
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgid "Won Games"
-msgstr "Wolfram Diestel"
+msgstr ""
 
 #: kexthighscore_gui.cpp:416
 #, kde-format
@@ -197,22 +195,15 @@ msgid "Nickname already in use. Please choose another one"
 msgstr ""
 
 #: kexthighscore_gui.cpp:609
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "Wolfram Diestel"
+msgstr ""
 
 #: kexthighscore_gui.cpp:618
-#, fuzzy, kde-format
+#, kde-format
 msgid "Congratulations, you have won!"
 msgstr ""
-"Gratulon, vi venkis!\n"
-"\n"
-"Vi   : %1\n"
-"Komp.: %2\n"
-"Via rezulto %3%"
 
 #: kexthighscore_gui.cpp:623
 #, kde-format
@@ -229,9 +220,9 @@ msgid "anonymous"
 msgstr ""
 
 #: kexthighscore_internal.cpp:259
-#, fuzzy, kde-format
+#, kde-format
 msgid "Games Count"
-msgstr "Ludo sekurigita."
+msgstr ""
 
 #: kexthighscore_internal.cpp:266
 #, kde-format
@@ -384,9 +375,9 @@ msgid "Max lost:"
 msgstr ""
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game Counts"
-msgstr "Ludo sekurigita."
+msgstr ""
 
 #: kexthighscore_tab.cpp:129
 #, kde-format
@@ -475,9 +466,9 @@ msgid "KReversi"
 msgstr "Renverso"
 
 #: main.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 msgid "KDE Reversi Board Game"
-msgstr "KDEa Tabulludo"
+msgstr ""
 
 #: main.cpp:42
 #, kde-format
@@ -628,9 +619,9 @@ msgid "Show Move History"
 msgstr ""
 
 #: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game is drawn!"
-msgstr "Ludo finita"
+msgstr ""
 
 #: mainwindow.cpp:224 mainwindow.cpp:239
 #, kde-format
@@ -657,9 +648,9 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:274
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game over"
-msgstr "Ludo sekurigita."
+msgstr ""
 
 #: mainwindow.cpp:341
 #, kde-format
@@ -708,10 +699,9 @@ msgid "Quit"
 msgstr ""
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "KReversi"
+#, kde-format
 msgid "Quit KReversi"
-msgstr "Renverso"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
@@ -732,121 +722,3 @@ msgstr ""
 #, kde-format
 msgid "VS"
 msgstr ""
-
-#~ msgid "Easy"
-#~ msgstr "Facila"
-
-#~ msgid "Hard"
-#~ msgstr "Malfacila"
-
-#, fuzzy
-#~ msgid "Your turn."
-#~ msgstr "Via nomo:"
-
-#~ msgid "Difficulty level"
-#~ msgstr "Facileca nivelo"
-
-#~ msgid "Opponent"
-#~ msgstr "Kontraŭanto"
-
-#, fuzzy
-#~ msgid "Computer Skill"
-#~ msgstr "Bluo je la vico"
-
-#, fuzzy
-#~ msgid ""
-#~ "\n"
-#~ "Computer: %1"
-#~ msgstr "Bluo je la vico"
-
-#, fuzzy
-#~ msgid "Computer turn."
-#~ msgstr "Bluo je la vico"
-
-#, fuzzy
-#~ msgid "1 (Beginner)"
-#~ msgstr "Nivelo 2 (Komencanto)"
-
-#, fuzzy
-#~ msgid "4 (Average)"
-#~ msgstr "Nivelo 4 (Averaĝulo)"
-
-#, fuzzy
-#~ msgid "7 (Expert)"
-#~ msgstr "Nivelo 6 (Lertulo)"
-
-#~ msgid "&Stop Thinking"
-#~ msgstr "&Ĉesu pensi"
-
-#, fuzzy
-#~ msgid "&Continue Thinking"
-#~ msgstr "&Ĉesu pensi"
-
-#, fuzzy
-#~ msgid "S&witch Sides"
-#~ msgstr "Ŝanĝu &flankojn"
-
-#, fuzzy
-#~ msgid "Continue Old Game"
-#~ msgstr "&Daŭrigu"
-
-#~ msgid "End of game"
-#~ msgstr "Fino de la ludo"
-
-#~ msgid ""
-#~ "Game is drawn!\n"
-#~ "\n"
-#~ "You     : %1\n"
-#~ "Computer: %2"
-#~ msgstr ""
-#~ "Neniu venkis!\n"
-#~ "\n"
-#~ "Vi   : %1\n"
-#~ "Komp.: %2"
-
-#, fuzzy
-#~ msgid "Game Ended"
-#~ msgstr "Ludo finita"
-
-#~ msgid ""
-#~ "You have lost the game!\n"
-#~ "\n"
-#~ "You     : %1\n"
-#~ "Computer: %2"
-#~ msgstr ""
-#~ "Vi malvenkis!\n"
-#~ "\n"
-#~ "Vi   : %1\n"
-#~ "Komp.: %2"
-
-#, fuzzy
-#~ msgid "Moves"
-#~ msgstr "&Malfaru movon"
-
-#, fuzzy
-#~ msgid "&Move"
-#~ msgstr "&Malfaru movon"
-
-#, fuzzy
-#~ msgid "&Grayscale chips"
-#~ msgstr "G&rizoj"
-
-#, fuzzy
-#~ msgid "Play Game"
-#~ msgstr "&Konservu ludon"
-
-#, fuzzy
-#~ msgid "&Animation"
-#~ msgstr "&Animaĵoj"
-
-#, fuzzy
-#~ msgid "&Background"
-#~ msgstr "Elektu fonbildon"
-
-#, fuzzy
-#~ msgid "Color:"
-#~ msgstr "Koloro"
-
-#, fuzzy
-#~ msgid "The background color to use."
-#~ msgstr "Elektu &fonkoloron..."
