@@ -5,13 +5,13 @@
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2009, 2015, 2017.
 # Xosé <xosecalvo@gmail.com>, 2012.
 # Marce Villarino <mvillarino@kde-espana.org>, 2013, 2014.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:44+0000\n"
-"PO-Revision-Date: 2019-11-26 22:49+0100\n"
+"PO-Revision-Date: 2023-04-28 17:31+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -106,8 +106,7 @@ msgid "View world-wide players"
 msgstr "Ver xogadores de todo o mundo"
 
 #: kexthighscore_gui.cpp:232
-#, fuzzy, kde-format
-#| msgid "Highscores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "As mellores puntuacións"
@@ -138,8 +137,7 @@ msgid "Won Games"
 msgstr "Partidas gañadas"
 
 #: kexthighscore_gui.cpp:416
-#, fuzzy, kde-format
-#| msgid "Configure Highscores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Configurar as mellores puntuacións"
@@ -204,8 +202,7 @@ msgid "Nickname already in use. Please choose another one"
 msgstr "O alcume xa está a usarse. Escolle outro"
 
 #: kexthighscore_gui.cpp:609
-#, fuzzy, kde-format
-#| msgid "Enter Your Nickname"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Insire o teu alcume"
@@ -328,8 +325,7 @@ msgstr ""
 "elemento %1)."
 
 #: kexthighscore_item.cpp:266
-#, fuzzy, kde-format
-#| msgid "Multiplayers Scores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Puntuacións colectivas"
@@ -699,8 +695,7 @@ msgid "Computer"
 msgstr "Computador"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
 msgstr "Nova partida"
