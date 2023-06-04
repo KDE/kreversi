@@ -258,7 +258,7 @@
 ></term>
     <listitem
 ><para
->Fournit au joueur des raccourcis d’icônes pour les actions couramment utilisées. Ce sont <inlinemediaobject
+>Fournit au joueur des raccourcis d'icônes pour les actions couramment utilisées. Ce sont <inlinemediaobject
 ><imageobject
 ><imagedata fileref="document-new.png" format="PNG"/></imageobject
 ></inlinemediaobject
@@ -310,7 +310,7 @@
 ></term>
     <listitem
 ><para
->Affiche celui dont c'est le tour. Ainsi qu’une liste déroulante pour choisir le niveau de difficulté.</para
+>Affiche celui dont c'est le tour. Ainsi qu'une liste déroulante pour choisir le niveau de difficulté.</para
 ></listitem>
   </varlistentry>
 </variablelist>
