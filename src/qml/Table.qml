@@ -103,6 +103,7 @@ Item {
         width: Math.min(parent.width, parent.height)
         height: Math.min(parent.width, parent.height)
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.verticalCenter: parent.verticalCenter
         spriteKey: "board"
     }
 
