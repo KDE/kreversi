@@ -55,8 +55,8 @@ else()
     find_package(KF5KDEGames 7.3.0 REQUIRED)
 endif()
 
-ecm_set_disabled_deprecation_versions(QT 5.15.2
-     KF 5.103.0
+ecm_set_disabled_deprecation_versions(QT 5.15.10
+     KF 5.107.0
     )
 # added by KDE_COMPILERSETTINGS_LEVEL 5.85
 remove_definitions(
