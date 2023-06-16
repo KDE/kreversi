@@ -643,7 +643,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
             QDomAttr attr = element.attributes().namedItem(QStringLiteral( "label" )).toAttr();
             if ( !attr.isNull() ) {
                 // see DUMMY_STRINGS
-                QString msg = i18n(attr.value().toLatin1());
+                QString msg = i18n(attr.value().toLatin1().constData());
                 QString caption = i18n("Message from world-wide highscores "
                                        "server");
                 KMessageBox::error(parent, msg, caption);
