@@ -11,6 +11,7 @@
   <name xml:lang="de">KReversi</name>
   <name xml:lang="el">KReversi</name>
   <name xml:lang="en-GB">KReversi</name>
+  <name xml:lang="eo">KReversi</name>
   <name xml:lang="es">KReversi</name>
   <name xml:lang="et">KReversi</name>
   <name xml:lang="eu">KReversi</name>
@@ -49,6 +50,7 @@
   <summary xml:lang="de">„Reversi“-Brettspiel</summary>
   <summary xml:lang="el">Reversi επιτραπέζιο παιχνίδι</summary>
   <summary xml:lang="en-GB">Reversi Board Game</summary>
+  <summary xml:lang="eo">Reversi-bretludo</summary>
   <summary xml:lang="es">Juego de mesa Reversi</summary>
   <summary xml:lang="et">Reversi lauamäng</summary>
   <summary xml:lang="eu">«Reversi» mahai-jokoa</summary>
