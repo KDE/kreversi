@@ -598,12 +598,12 @@ msgstr "Historial de movementos"
 #: mainwindow.cpp:116
 #, kde-format
 msgid "Show Last Move"
-msgstr "Mostrar o último movemento"
+msgstr "Amosar o último movemento"
 
 #: mainwindow.cpp:121
 #, kde-format
 msgid "Show Legal Moves"
-msgstr "Mostrar os movementos legais"
+msgstr "Amosar os movementos legais"
 
 #: mainwindow.cpp:126
 #, kde-format
@@ -633,7 +633,7 @@ msgstr "Usar chips coloridos"
 #: mainwindow.cpp:143
 #, kde-format
 msgid "Show Move History"
-msgstr "Mostrar o historial de movementos"
+msgstr "Amosar o historial de movementos"
 
 #: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
 #, kde-format
