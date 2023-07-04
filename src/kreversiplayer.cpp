@@ -53,3 +53,5 @@ int KReversiPlayer::getUndoCount()
 {
     return m_undoCount;
 }
+
+#include "moc_kreversiplayer.cpp"

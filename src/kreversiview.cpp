@@ -262,3 +262,5 @@ void KReversiView::blackPlayerCantMove()
                                     i18n("Black can not perform any move. It is white turn again.")));
     updateBoard();
 }
+
+#include "moc_kreversiview.cpp"

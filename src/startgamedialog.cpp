@@ -169,3 +169,5 @@ void StartGameDialog::slotUpdateWhite(QAbstractButton *button)
             ui->whiteName->setText(i18n("Computer"));
     }
 }
+
+#include "moc_startgamedialog.cpp"

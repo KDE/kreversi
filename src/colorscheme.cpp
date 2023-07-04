@@ -35,3 +35,5 @@ QColor ColorScheme::border() const
                           KColorScheme::NormalText)
     .brush(QPalette::Active).color();
 }
+
+#include "moc_colorscheme.cpp"

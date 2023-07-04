@@ -45,3 +45,5 @@ void KReversiHumanPlayer::onUICellClick(KReversiPos pos)
     m_state = WAITING;
     Q_EMIT makeMove(KReversiMove(m_color, pos));
 }
+
+#include "moc_kreversihumanplayer.cpp"

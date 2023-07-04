@@ -648,3 +648,5 @@ void AskNameDialog::nameChanged()
 }
 
 } // namespace
+
+#include "moc_kexthighscore_gui.cpp"

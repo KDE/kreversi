@@ -378,3 +378,4 @@ void KReversiGame::kickCurrentPlayer()
         Q_EMIT blackPlayerTurn();
 }
 
+#include "moc_kreversigame.cpp"

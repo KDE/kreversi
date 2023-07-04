@@ -55,4 +55,4 @@ int KReversiComputerPlayer::lowestSkill()
     return m_lowestSkill;
 }
 
-
+#include "moc_kreversicomputerplayer.cpp"

@@ -424,3 +424,5 @@ void KReversiMainWindow::receivedGameStartInformation(const GameStartInformation
     m_hintAct->setEnabled(m_game->isHintAllowed());
     m_undoAct->setEnabled(m_game->canUndo());
 }
+
+#include "moc_mainwindow.cpp"

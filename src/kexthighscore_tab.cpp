@@ -276,3 +276,5 @@ void HistogramTab::display(uint i)
 }
 
 } // namespace
+
+#include "moc_kexthighscore_tab.cpp"
