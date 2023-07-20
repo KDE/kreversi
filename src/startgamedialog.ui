@@ -33,9 +33,7 @@
          <item>
           <widget class="QPushButton" name="blackHuman">
            <property name="icon">
-            <iconset theme="user-identity">
-             <normaloff/>
-            </iconset>
+            <iconset theme="user-identity"/>
            </property>
            <property name="iconSize">
             <size>
@@ -57,9 +55,7 @@
          <item>
           <widget class="QPushButton" name="blackAI">
            <property name="icon">
-            <iconset theme="computer">
-             <normaloff/>
-            </iconset>
+            <iconset theme="computer"/>
            </property>
            <property name="iconSize">
             <size>
@@ -159,9 +155,7 @@
          <item>
           <widget class="QPushButton" name="whiteHuman">
            <property name="icon">
-            <iconset theme="user-identity">
-             <normaloff/>
-            </iconset>
+            <iconset theme="user-identity"/>
            </property>
            <property name="iconSize">
             <size>
@@ -180,9 +174,7 @@
          <item>
           <widget class="QPushButton" name="whiteAI">
            <property name="icon">
-            <iconset theme="computer">
-             <normaloff/>
-            </iconset>
+            <iconset theme="computer"/>
            </property>
            <property name="iconSize">
             <size>
