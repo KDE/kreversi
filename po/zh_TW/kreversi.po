@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2019-11-22 01:46+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -48,7 +48,7 @@ msgid "Black"
 msgstr "黑"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteLabel)
-#: commondefs.cpp:32 startgamedialog.ui:150
+#: commondefs.cpp:32 startgamedialog.ui:146
 #, kde-format
 msgid "White"
 msgstr "白"
@@ -716,20 +716,20 @@ msgstr "離開 KReversi"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: startgamedialog.ui:83 startgamedialog.ui:209
+#: startgamedialog.ui:79 startgamedialog.ui:201
 #, kde-format
 msgid "Name:"
 msgstr "名稱："
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: startgamedialog.ui:100 startgamedialog.ui:226
+#: startgamedialog.ui:96 startgamedialog.ui:218
 #, kde-format
 msgid "Skill level:"
 msgstr "技能等級："
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: startgamedialog.ui:128
+#: startgamedialog.ui:124
 #, kde-format
 msgid "VS"
 msgstr "對決"

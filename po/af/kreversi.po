@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2002-11-07 11:32+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -43,7 +43,7 @@ msgid "Black"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, whiteLabel)
-#: commondefs.cpp:32 startgamedialog.ui:150
+#: commondefs.cpp:32 startgamedialog.ui:146
 #, kde-format
 msgid "White"
 msgstr ""
@@ -711,20 +711,20 @@ msgstr "Kreversi"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: startgamedialog.ui:83 startgamedialog.ui:209
+#: startgamedialog.ui:79 startgamedialog.ui:201
 #, kde-format
 msgid "Name:"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: startgamedialog.ui:100 startgamedialog.ui:226
+#: startgamedialog.ui:96 startgamedialog.ui:218
 #, kde-format
 msgid "Skill level:"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: startgamedialog.ui:128
+#: startgamedialog.ui:124
 #, kde-format
 msgid "VS"
 msgstr ""

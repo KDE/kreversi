@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-07-21 00:46+0000\n"
 "PO-Revision-Date: 2023-06-11 22:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -52,7 +52,7 @@ msgid "Black"
 msgstr "Siyah"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteLabel)
-#: commondefs.cpp:32 startgamedialog.ui:150
+#: commondefs.cpp:32 startgamedialog.ui:146
 #, kde-format
 msgid "White"
 msgstr "Beyaz"
@@ -719,20 +719,20 @@ msgstr "K Reversi'den Çık"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: startgamedialog.ui:83 startgamedialog.ui:209
+#: startgamedialog.ui:79 startgamedialog.ui:201
 #, kde-format
 msgid "Name:"
 msgstr "Ad:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: startgamedialog.ui:100 startgamedialog.ui:226
+#: startgamedialog.ui:96 startgamedialog.ui:218
 #, kde-format
 msgid "Skill level:"
 msgstr "Yetenek düzeyi:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: startgamedialog.ui:128
+#: startgamedialog.ui:124
 #, kde-format
 msgid "VS"
 msgstr "VS"
