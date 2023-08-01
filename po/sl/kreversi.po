@@ -2,7 +2,7 @@
 # Translation of kreversi.po to Slovenian
 # -*- mode:po; coding:iso-latin-2; -*- Slovenian msg. catalog for Kreversi
 # Copyright (C) 2001, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-# $Id: kreversi.po 1656281 2023-07-21 01:35:33Z scripty $
+# $Id: kreversi.po 1657240 2023-08-01 01:27:39Z scripty $
 # $Source$
 #
 # Marko Samastur <markos@elite.org>, 1999.
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-21 00:46+0000\n"
+"POT-Creation-Date: 2023-08-01 00:42+0000\n"
 "PO-Revision-Date: 2021-08-16 06:23+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -120,78 +120,78 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Vrhunski rezultati"
 
-#: kexthighscore_gui.cpp:296
+#: kexthighscore_gui.cpp:300
 #, kde-format
 msgid "Overwrite"
 msgstr "Prepiši"
 
-#: kexthighscore_gui.cpp:298
+#: kexthighscore_gui.cpp:302
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Datoteka že obstaja. Ali jo želite prepisati?"
 
-#: kexthighscore_gui.cpp:299
+#: kexthighscore_gui.cpp:303
 #, kde-format
 msgid "Export"
 msgstr "Izvozi"
 
-#: kexthighscore_gui.cpp:350
+#: kexthighscore_gui.cpp:354
 #, kde-format
 msgid "Winner"
 msgstr "Zmagovalec"
 
-#: kexthighscore_gui.cpp:388
+#: kexthighscore_gui.cpp:392
 #, kde-format
 msgid "Won Games"
 msgstr "Število zmag"
 
-#: kexthighscore_gui.cpp:416
+#: kexthighscore_gui.cpp:420
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Nastavi vrhunske rezultate"
 
-#: kexthighscore_gui.cpp:429
+#: kexthighscore_gui.cpp:433
 #, kde-format
 msgid "Main"
 msgstr "Glavno"
 
-#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#: kexthighscore_gui.cpp:448 kexthighscore_gui.cpp:487
 #, kde-format
 msgid "Nickname:"
 msgstr "Vzdevek:"
 
-#: kexthighscore_gui.cpp:455
+#: kexthighscore_gui.cpp:459
 #, kde-format
 msgid "Comment:"
 msgstr "Opomba:"
 
-#: kexthighscore_gui.cpp:465
+#: kexthighscore_gui.cpp:469
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Vrhunski rezultati na svetu omogočeni"
 
-#: kexthighscore_gui.cpp:472
+#: kexthighscore_gui.cpp:476
 #, kde-format
 msgid "Advanced"
 msgstr "Napredno"
 
-#: kexthighscore_gui.cpp:478
+#: kexthighscore_gui.cpp:482
 #, kde-format
 msgid "Registration Data"
 msgstr "Podatki za registracijo"
 
-#: kexthighscore_gui.cpp:489
+#: kexthighscore_gui.cpp:493
 #, kde-format
 msgid "Key:"
 msgstr "Ključ:"
 
-#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#: kexthighscore_gui.cpp:500 kexthighscore_gui.cpp:543
 #, kde-format
 msgid "Remove"
 msgstr "Odstrani"
 
-#: kexthighscore_gui.cpp:541
+#: kexthighscore_gui.cpp:545
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -200,33 +200,33 @@ msgstr ""
 "To bo trajno odstranilo vaš registracijski ključ. Brez njega ne boste mogli "
 "več uporabljati trenutno registriranega vzdevka."
 
-#: kexthighscore_gui.cpp:584
+#: kexthighscore_gui.cpp:588
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Izberite vzdevek, ki ni prazen."
 
-#: kexthighscore_gui.cpp:588
+#: kexthighscore_gui.cpp:592
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Vzdevek je že v uporabi, poskusite z drugim"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:613
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Vnesite vaš vzdevek"
 
-#: kexthighscore_gui.cpp:618
+#: kexthighscore_gui.cpp:622
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Čestitke, zmagali ste!"
 
-#: kexthighscore_gui.cpp:623
+#: kexthighscore_gui.cpp:627
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Vnesite vaš vzdevek:"
 
-#: kexthighscore_gui.cpp:631
+#: kexthighscore_gui.cpp:635
 #, kde-format
 msgid "Do not ask again."
 msgstr "Ne vprašaj več."

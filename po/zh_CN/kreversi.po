@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-21 00:46+0000\n"
+"POT-Creation-Date: 2023-08-01 00:42+0000\n"
 "PO-Revision-Date: 2023-07-30 07:09\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -105,111 +105,111 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "高分"
 
-#: kexthighscore_gui.cpp:296
+#: kexthighscore_gui.cpp:300
 #, kde-format
 msgid "Overwrite"
 msgstr "覆盖"
 
-#: kexthighscore_gui.cpp:298
+#: kexthighscore_gui.cpp:302
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "文件已经存在。覆盖吗？"
 
-#: kexthighscore_gui.cpp:299
+#: kexthighscore_gui.cpp:303
 #, kde-format
 msgid "Export"
 msgstr "导出"
 
-#: kexthighscore_gui.cpp:350
+#: kexthighscore_gui.cpp:354
 #, kde-format
 msgid "Winner"
 msgstr "赢家"
 
-#: kexthighscore_gui.cpp:388
+#: kexthighscore_gui.cpp:392
 #, kde-format
 msgid "Won Games"
 msgstr "获胜计数"
 
-#: kexthighscore_gui.cpp:416
+#: kexthighscore_gui.cpp:420
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "配置排行榜"
 
-#: kexthighscore_gui.cpp:429
+#: kexthighscore_gui.cpp:433
 #, kde-format
 msgid "Main"
 msgstr "主体"
 
-#: kexthighscore_gui.cpp:444 kexthighscore_gui.cpp:483
+#: kexthighscore_gui.cpp:448 kexthighscore_gui.cpp:487
 #, kde-format
 msgid "Nickname:"
 msgstr "昵称："
 
-#: kexthighscore_gui.cpp:455
+#: kexthighscore_gui.cpp:459
 #, kde-format
 msgid "Comment:"
 msgstr "注释："
 
-#: kexthighscore_gui.cpp:465
+#: kexthighscore_gui.cpp:469
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "启用全球排行榜"
 
-#: kexthighscore_gui.cpp:472
+#: kexthighscore_gui.cpp:476
 #, kde-format
 msgid "Advanced"
 msgstr "高级"
 
-#: kexthighscore_gui.cpp:478
+#: kexthighscore_gui.cpp:482
 #, kde-format
 msgid "Registration Data"
 msgstr "注册资料"
 
-#: kexthighscore_gui.cpp:489
+#: kexthighscore_gui.cpp:493
 #, kde-format
 msgid "Key:"
 msgstr "键："
 
-#: kexthighscore_gui.cpp:496 kexthighscore_gui.cpp:539
+#: kexthighscore_gui.cpp:500 kexthighscore_gui.cpp:543
 #, kde-format
 msgid "Remove"
 msgstr "删除"
 
-#: kexthighscore_gui.cpp:541
+#: kexthighscore_gui.cpp:545
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr "这将彻底删除您的注册密钥。您将无法再使用目前注册的昵称。"
 
-#: kexthighscore_gui.cpp:584
+#: kexthighscore_gui.cpp:588
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "请勿使用空昵称。"
 
-#: kexthighscore_gui.cpp:588
+#: kexthighscore_gui.cpp:592
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "此昵称已被占用，请选择其他昵称。"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:613
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "输入您的昵称"
 
-#: kexthighscore_gui.cpp:618
+#: kexthighscore_gui.cpp:622
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "恭喜！您赢了！"
 
-#: kexthighscore_gui.cpp:623
+#: kexthighscore_gui.cpp:627
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "输入您的昵称："
 
-#: kexthighscore_gui.cpp:631
+#: kexthighscore_gui.cpp:635
 #, kde-format
 msgid "Do not ask again."
 msgstr "不再询问."
