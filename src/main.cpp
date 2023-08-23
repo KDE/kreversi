@@ -12,6 +12,7 @@
 #include <KLocalizedString>
 #include <KCrash>
 #include <KDBusService>
+#include <KXmlGui5ConfigMigration>
 
 #include "highscores.h"
 #include "mainwindow.h"
@@ -20,6 +21,7 @@
 int main(int argc, char **argv)
 {
     QApplication application(argc, argv);
+    KXmlGui5ConfigMigration::migrate(QStringLiteral("kreversi"), {QStringLiteral("kreversiui.rc")});
 
     KLocalizedString::setApplicationDomain("kreversi");
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),
