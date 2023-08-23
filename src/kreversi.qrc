@@ -1,5 +1,5 @@
 <RCC>
-<qresource prefix="/kxmlgui5/kreversi">
+<qresource prefix="/kreversi/kxmlgui6">
 <file>kreversiui.rc</file>
 </qresource>
 </RCC>
