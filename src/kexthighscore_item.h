@@ -102,7 +102,7 @@ class  Item
     /**
      * @return the alignment.
      */
-    int alignment() const { return _alignment; }
+    Qt::AlignmentFlag alignment() const { return _alignment; }
 
     /**
      * Set default value.
