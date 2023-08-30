@@ -67,7 +67,7 @@ class  Item
      *              is not shown.
      * @param alignment the alignment of the item.
      */
-    explicit Item(const QVariant &def = QVariant::Invalid,
+    explicit Item(const QVariant &def = QVariant(),
          const QString &label = QString(), Qt::AlignmentFlag alignment = Qt::AlignRight);
 
     virtual ~Item();
