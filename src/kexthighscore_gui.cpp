@@ -140,7 +140,7 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
     const PlayerInfos &p = internal->playerInfos();
 
     QVBoxLayout *vbox = new QVBoxLayout(this);
-    vbox->setSpacing(QApplication::fontMetrics().lineSpacing());
+    vbox->setSpacing(fontMetrics().lineSpacing());
 
     _tw = new QTabWidget(this);
     connect(_tw, &QTabWidget::currentChanged, this, &HighscoresWidget::handleTabChanged);
