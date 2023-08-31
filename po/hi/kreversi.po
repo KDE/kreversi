@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2021-08-21 16:25+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -320,24 +320,24 @@ msgstr "कच्चा संदेश: %1"
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, fuzzy, kde-format
 #| msgid "Multiplayers Scores"
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "बहु खिलाडी अंक"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr "खेल खेला नही गया"
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr "पिछले खेल के अंक:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "पिछले %1 खेल के अंक:"

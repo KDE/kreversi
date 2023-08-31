@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi (KDE 3.5)\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2006-04-04 13:30+0600\n"
 "Last-Translator: Progga <progga@BengaLinux.Org>\n"
 "Language-Team: Bangla <kde-translation@BengaLinux.Org>\n"
@@ -329,23 +329,23 @@ msgstr ""
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr ""
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr ""
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr ""
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr ""

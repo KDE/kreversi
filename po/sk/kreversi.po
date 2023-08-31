@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2021-11-20 21:35+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -319,23 +319,23 @@ msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
 "Neplatná odpoved zo svetového servera najvyššieho skóre (chýba položka: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Body multiplayera"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr "Žiadna odohraná hra."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Body z poslednej hry:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Body z posledných %1 hier:"

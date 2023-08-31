@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2022-08-19 20:36+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: https://t.me/Localizations_KDE_Indonesia\n"
@@ -321,24 +321,24 @@ msgstr ""
 "Jawaban tidak absah dari server tingkat skor seluruh dunia (item yang "
 "hilang: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, fuzzy, kde-format
 #| msgid "Multiplayers Scores"
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Skor Multiplayer"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr "Tidak ada permainan yang dimainkan."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Skor untuk permainan yang terakhir kali:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Skor untuk permainan %1 yang terakhir kali:"

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2021-08-15 16:43+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -326,23 +326,23 @@ msgstr ""
 "Erantzun baliogabea mundu osoko puntuazio altuenen zerbitzaritik (elementua "
 "falta da: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Jokalari anitzekoan puntuazioak"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr "Ez da jokorik jokatu."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Azken jokoaren puntuazioak:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Azken %1 jokoen puntuazioak:"

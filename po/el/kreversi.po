@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2021-09-05 10:53+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -326,23 +326,23 @@ msgstr ""
 "Μη έγκυρη απάντηση από τον εξυπηρετητή υψηλών βαθμολογιών παγκόσμιας "
 "κλίμακας (λείπει το αντικείμενο: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Βαθμολογίες πολλών παικτών"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr "Δεν παίχθηκαν παιχνίδια."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Βαθμολογίες για το τελευταίο παιχνίδι:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Βαθμολογίες για τα τελευταία %1 παιχνίδια:"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-01 00:42+0000\n"
+"POT-Creation-Date: 2023-08-31 00:43+0000\n"
 "PO-Revision-Date: 2021-08-18 19:27+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -328,23 +328,23 @@ msgstr ""
 "Virheellinen vastaus kansainväliseltä tulospalvelimelta (puuttuva tietue: "
 "%1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:290
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Monen pelaajan pelien tulokset"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:301
 #, kde-format
 msgid "No game played."
 msgstr "Ei pelattuja pelejä."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:303
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Viime pelin pisteet:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:310
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "%1 viime pelin pisteet:"
