@@ -18,7 +18,6 @@
 #include <KMessageBox>
 // KDEGames
 #include <KStandardGameAction>
-#include <kdegames_version.h>
 
 #include "commondefs.h"
 #include "kreversihumanplayer.h"
@@ -40,11 +39,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     memset(m_player, 0, sizeof(m_player));
 
     m_provider = new KgThemeProvider();
-#if KDEGAMES_VERSION >= QT_VERSION_CHECK(7, 4, 0)
     m_provider->discoverThemes(QStringLiteral("pics"));
-#else
-    m_provider->discoverThemes("appdata", QStringLiteral("pics"));
-#endif
 
     for (auto &label : m_statusBarLabel) {
        label = new QLabel(this);

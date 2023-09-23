@@ -37,15 +37,9 @@ QVariant Item::read(uint, const QVariant &value) const
 
 void Item::setPrettyFormat(Format format)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     bool buint = (_default.metaType().id() == QMetaType::UInt);
     bool bdouble = (_default.metaType().id() == QMetaType::Double);
     bool bnum = (buint || bdouble || _default.metaType().id() == QMetaType::Int);
-#else
-    bool buint = ( _default.type()==QVariant::UInt );
-    bool bdouble = ( _default.type()==QVariant::Double );
-    bool bnum = ( buint || bdouble || _default.type()==QVariant::Int );
-#endif
 
     switch (format) {
     case OneDecimal:
@@ -56,11 +50,7 @@ void Item::setPrettyFormat(Format format)
         Q_ASSERT(bnum);
         break;
     case DateTime:
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         Q_ASSERT(_default.metaType().id() == QMetaType::QDateTime);
-#else
-    	Q_ASSERT( _default.type()==QVariant::DateTime );
-#endif
 	break;
     case NoFormat:
         break;
@@ -71,15 +61,9 @@ void Item::setPrettyFormat(Format format)
 
 void Item::setPrettySpecial(Special special)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     bool buint = (_default.metaType().id() == QMetaType::UInt);
     bool bnum = (buint || _default.metaType().id() == QMetaType::Double
                  || _default.metaType().id() == QMetaType::Int);
-#else
-    bool buint = ( _default.type()==QVariant::UInt );
-    bool bnum = ( buint || _default.type()==QVariant::Double
-                  || _default.type()==QVariant::Int );
-#endif
 
     switch (special) {
     case ZeroNotDefined:
@@ -91,11 +75,7 @@ void Item::setPrettySpecial(Special special)
     case DefaultNotDefined:
         break;
     case Anonymous:
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         Q_ASSERT(_default.metaType().id() == QMetaType::QString);
-#else
-        Q_ASSERT( _default.type()==QVariant::String );
-#endif
         break;
     case NoSpecial:
         break;
@@ -170,11 +150,7 @@ QVariant Score::data(const QString &name) const
 void Score::setData(const QString &name, const QVariant &value)
 {
     Q_ASSERT( _data.contains(name) );
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     Q_ASSERT(_data[name].metaType() == value.metaType());
-#else
-    Q_ASSERT( _data[name].type()==value.type() );
-#endif
     _data[name] = value;
 }
 

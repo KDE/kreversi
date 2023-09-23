@@ -7,9 +7,7 @@
 #ifndef KEXTHIGHSCORE_TAB_H
 #define KEXTHIGHSCORE_TAB_H
 
-#include <QtGlobal> // for QT_VERSION_CHECK
 // KF
-#include <ki18n_version.h>
 #include <KLazyLocalizedString>
 // Qt
 #include <QComboBox>

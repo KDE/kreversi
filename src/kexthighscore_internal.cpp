@@ -12,7 +12,6 @@
 #include <QDomDocument>
 #include <QTemporaryFile>
 
-#include <kwidgetsaddons_version.h>
 #include <KIO/FileCopyJob>
 #include <KIO/SimpleJob>
 #include <KJobWidgets>
@@ -792,21 +791,12 @@ int ManagerPrivate::submitScore(const Score &ascore,
     QString newName;
     KMessageBox::ButtonCode dummy;
     if ( score.type()==Won && askIfAnonymous && _playerInfos->isAnonymous()
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
      && KMessageBox::shouldBeShownTwoActions(dontAskAgainName, dummy) ) {
-#else
-     && KMessageBox::shouldBeShownYesNo(dontAskAgainName, dummy) ) {
-#endif
          AskNameDialog d(widget);
          if ( d.exec()==QDialog::Accepted ) newName = d.name();
          if ( d.dontAskAgain() )
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
              KMessageBox::saveDontShowAgainTwoActions(dontAskAgainName,
                                                       KMessageBox::SecondaryAction);
-#else
-             KMessageBox::saveDontShowAgainYesNo(dontAskAgainName,
-                                                 KMessageBox::No);
-#endif
     }
 
     int rank = -1;

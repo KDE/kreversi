@@ -9,7 +9,6 @@
 
 #include "kexthighscore.h"
 
-#include <ki18n_version.h>
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>

@@ -12,9 +12,6 @@
 #include <KLocalizedString>
 #include <KCrash>
 #include <KDBusService>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <Kdelibs4ConfigMigrator>
-#endif
 
 #include "highscores.h"
 #include "mainwindow.h"
@@ -22,17 +19,7 @@
 
 int main(int argc, char **argv)
 {
-    // Fixes blurry icons with fractional scaling
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
     QApplication application(argc, argv);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("kreversi"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("kreversirc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("kreversiui.rc"));
-    migrate.migrate();
-#endif
 
     KLocalizedString::setApplicationDomain("kreversi");
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),

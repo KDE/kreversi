@@ -21,12 +21,7 @@
 #include <QVBoxLayout>
 
 #include <KIO/OpenUrlJob>
-#include <kio_version.h>
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
 #include <KIO/JobUiDelegateFactory>
-#else
-#include <KIO/JobUiDelegate>
-#endif
 #include <KGuiItem>
 #include <KIO/StatJob>
 #include <KIO/CopyJob>
@@ -202,11 +197,7 @@ void HighscoresWidget::handleUrlClicked()
     }
 //   kDebug(11001) ;
     auto *job = new KIO::OpenUrlJob(QUrl(label->url()));
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 98, 0)
     job->setUiDelegate(KIO::createDefaultJobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-#else
-    job->setUiDelegate(new KIO::JobUiDelegate(KJobUiDelegate::AutoHandlingEnabled, this));
-#endif
     job->start();
 }
 
@@ -288,11 +279,7 @@ void HighscoresDialog::slotUser2()
 //   kDebug(11001) ;
     QUrl url = QFileDialog::getSaveFileUrl(this, tr("HighscoresDialog"), QUrl(), QString());
     if ( url.isEmpty() ) return;
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 240, 0)
     auto job = KIO::stat(url, KIO::StatJob::SourceSide, KIO::StatNoDetails);
-#else
-    auto job = KIO::statDetails(url, KIO::StatJob::SourceSide, KIO::StatNoDetails);
-#endif
     KJobWidgets::setWindow(job, this);
     job->exec();
     if (!job->error()) {

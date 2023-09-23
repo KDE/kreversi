@@ -52,23 +52,18 @@ kconfig_add_kcfg_files(kreversi preferences.kcfgc)
 file(GLOB ICON_SRCS "${CMAKE_SOURCE_DIR}/icons/hicolor/*-apps-kreversi.png")
 ecm_add_app_icon(kreversi ICONS ${ICON_SRCS})
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(kreversi KDEGames6)
-else()
-    target_link_libraries(kreversi KF5KDEGames)
-endif()
-
 target_link_libraries(kreversi
-    KF${KF_MAJOR_VERSION}::ConfigCore
-    KF${KF_MAJOR_VERSION}::ConfigGui
-    KF${KF_MAJOR_VERSION}::CoreAddons
-    KF${KF_MAJOR_VERSION}::Crash
-    KF${KF_MAJOR_VERSION}::DBusAddons
-    KF${KF_MAJOR_VERSION}::KIOCore
-    KF${KF_MAJOR_VERSION}::KIOFileWidgets
-    KF${KF_MAJOR_VERSION}::WidgetsAddons
-    KF${KF_MAJOR_VERSION}::XmlGui
-    Qt${QT_MAJOR_VERSION}::Svg
+    KDEGames6
+    KF6::ConfigCore
+    KF6::ConfigGui
+    KF6::CoreAddons
+    KF6::Crash
+    KF6::DBusAddons
+    KF6::KIOCore
+    KF6::KIOFileWidgets
+    KF6::WidgetsAddons
+    KF6::XmlGui
+    Qt6::Svg
 )
 
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
