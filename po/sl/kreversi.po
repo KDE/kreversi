@@ -2,7 +2,7 @@
 # Translation of kreversi.po to Slovenian
 # -*- mode:po; coding:iso-latin-2; -*- Slovenian msg. catalog for Kreversi
 # Copyright (C) 2001, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-# $Id: kreversi.po 1659296 2023-08-31 01:26:34Z scripty $
+# $Id: kreversi.po 1660889 2023-09-25 02:02:18Z scripty $
 # $Source$
 #
 # Marko Samastur <markos@elite.org>, 1999.
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-31 00:43+0000\n"
+"POT-Creation-Date: 2023-09-25 01:40+0000\n"
 "PO-Revision-Date: 2021-08-16 06:23+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -84,114 +84,114 @@ msgstr "Najboljši rezultat"
 msgid "Elapsed Time"
 msgstr "Pretečeni čas"
 
-#: kexthighscore_gui.cpp:152
+#: kexthighscore_gui.cpp:147
 #, kde-format
 msgid "Best &Scores"
 msgstr "Najboljši rezult&ati"
 
-#: kexthighscore_gui.cpp:157
+#: kexthighscore_gui.cpp:152
 #, kde-format
 msgid "&Players"
 msgstr "&Igralci"
 
-#: kexthighscore_gui.cpp:162
+#: kexthighscore_gui.cpp:157
 #, kde-format
 msgid "Statistics"
 msgstr "Statistika"
 
-#: kexthighscore_gui.cpp:168
+#: kexthighscore_gui.cpp:163
 #, kde-format
 msgid "Histogram"
 msgstr "Histogram"
 
-#: kexthighscore_gui.cpp:175
+#: kexthighscore_gui.cpp:170
 #, kde-format
 msgid "View world-wide highscores"
 msgstr "Oglejte si najboljše rezultate na svetu"
 
-#: kexthighscore_gui.cpp:182
+#: kexthighscore_gui.cpp:177
 #, kde-format
 msgid "View world-wide players"
 msgstr "Oglejte si igralce po svetu"
 
-#: kexthighscore_gui.cpp:232
+#: kexthighscore_gui.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Vrhunski rezultati"
 
-#: kexthighscore_gui.cpp:300
+#: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "Overwrite"
 msgstr "Prepiši"
 
-#: kexthighscore_gui.cpp:302
+#: kexthighscore_gui.cpp:289
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Datoteka že obstaja. Ali jo želite prepisati?"
 
-#: kexthighscore_gui.cpp:303
+#: kexthighscore_gui.cpp:290
 #, kde-format
 msgid "Export"
 msgstr "Izvozi"
 
-#: kexthighscore_gui.cpp:354
+#: kexthighscore_gui.cpp:341
 #, kde-format
 msgid "Winner"
 msgstr "Zmagovalec"
 
-#: kexthighscore_gui.cpp:392
+#: kexthighscore_gui.cpp:379
 #, kde-format
 msgid "Won Games"
 msgstr "Število zmag"
 
-#: kexthighscore_gui.cpp:420
+#: kexthighscore_gui.cpp:407
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Nastavi vrhunske rezultate"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:420
 #, kde-format
 msgid "Main"
 msgstr "Glavno"
 
-#: kexthighscore_gui.cpp:448 kexthighscore_gui.cpp:487
+#: kexthighscore_gui.cpp:435 kexthighscore_gui.cpp:474
 #, kde-format
 msgid "Nickname:"
 msgstr "Vzdevek:"
 
-#: kexthighscore_gui.cpp:459
+#: kexthighscore_gui.cpp:446
 #, kde-format
 msgid "Comment:"
 msgstr "Opomba:"
 
-#: kexthighscore_gui.cpp:469
+#: kexthighscore_gui.cpp:456
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Vrhunski rezultati na svetu omogočeni"
 
-#: kexthighscore_gui.cpp:476
+#: kexthighscore_gui.cpp:463
 #, kde-format
 msgid "Advanced"
 msgstr "Napredno"
 
-#: kexthighscore_gui.cpp:482
+#: kexthighscore_gui.cpp:469
 #, kde-format
 msgid "Registration Data"
 msgstr "Podatki za registracijo"
 
-#: kexthighscore_gui.cpp:493
+#: kexthighscore_gui.cpp:480
 #, kde-format
 msgid "Key:"
 msgstr "Ključ:"
 
-#: kexthighscore_gui.cpp:500 kexthighscore_gui.cpp:543
+#: kexthighscore_gui.cpp:487 kexthighscore_gui.cpp:530
 #, kde-format
 msgid "Remove"
 msgstr "Odstrani"
 
-#: kexthighscore_gui.cpp:545
+#: kexthighscore_gui.cpp:532
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -200,156 +200,156 @@ msgstr ""
 "To bo trajno odstranilo vaš registracijski ključ. Brez njega ne boste mogli "
 "več uporabljati trenutno registriranega vzdevka."
 
-#: kexthighscore_gui.cpp:588
+#: kexthighscore_gui.cpp:575
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Izberite vzdevek, ki ni prazen."
 
-#: kexthighscore_gui.cpp:592
+#: kexthighscore_gui.cpp:579
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Vzdevek je že v uporabi, poskusite z drugim"
 
-#: kexthighscore_gui.cpp:613
+#: kexthighscore_gui.cpp:600
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Vnesite vaš vzdevek"
 
-#: kexthighscore_gui.cpp:622
+#: kexthighscore_gui.cpp:609
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Čestitke, zmagali ste!"
 
-#: kexthighscore_gui.cpp:627
+#: kexthighscore_gui.cpp:614
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Vnesite vaš vzdevek:"
 
-#: kexthighscore_gui.cpp:635
+#: kexthighscore_gui.cpp:622
 #, kde-format
 msgid "Do not ask again."
 msgstr "Ne vprašaj več."
 
-#: kexthighscore_internal.cpp:34
+#: kexthighscore_internal.cpp:33
 msgid "anonymous"
 msgstr "anonimnež"
 
-#: kexthighscore_internal.cpp:259
+#: kexthighscore_internal.cpp:258
 #, kde-format
 msgid "Games Count"
 msgstr "Število iger"
 
-#: kexthighscore_internal.cpp:266
+#: kexthighscore_internal.cpp:265
 #, kde-format
 msgid "Comment"
 msgstr "Opomba"
 
-#: kexthighscore_internal.cpp:588
+#: kexthighscore_internal.cpp:587
 msgid "Undefined error."
 msgstr "Nedoločena napaka."
 
-#: kexthighscore_internal.cpp:589
+#: kexthighscore_internal.cpp:588
 msgid "Missing argument(s)."
 msgstr "Manjkajoč(i) argument(i)."
 
-#: kexthighscore_internal.cpp:590
+#: kexthighscore_internal.cpp:589
 msgid "Invalid argument(s)."
 msgstr "Neveljaven(i) argument(i)."
 
-#: kexthighscore_internal.cpp:592
+#: kexthighscore_internal.cpp:591
 msgid "Unable to connect to MySQL server."
 msgstr "Ni se bilo mogoče povezati s strežnikom MySQL."
 
-#: kexthighscore_internal.cpp:593
+#: kexthighscore_internal.cpp:592
 msgid "Unable to select database."
 msgstr "Ni mogoče izbrati podatkovne zbirke."
 
-#: kexthighscore_internal.cpp:594
+#: kexthighscore_internal.cpp:593
 msgid "Error on database query."
 msgstr "Napaka med poizvedbo na podatkovni zbirki."
 
-#: kexthighscore_internal.cpp:595
+#: kexthighscore_internal.cpp:594
 msgid "Error on database insert."
 msgstr "Napaka med vstavitvijo v podatkovno zbirko."
 
-#: kexthighscore_internal.cpp:597
+#: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
 msgstr "Vzdevek je že registriran."
 
-#: kexthighscore_internal.cpp:598
+#: kexthighscore_internal.cpp:597
 msgid "Nickname not registered."
 msgstr "Vzdevek ni registriran."
 
-#: kexthighscore_internal.cpp:599
+#: kexthighscore_internal.cpp:598
 msgid "Invalid key."
 msgstr "Neveljaven ključ."
 
-#: kexthighscore_internal.cpp:600
+#: kexthighscore_internal.cpp:599
 msgid "Invalid submit key."
 msgstr "Neveljaven ključ pošiljanja."
 
-#: kexthighscore_internal.cpp:602
+#: kexthighscore_internal.cpp:601
 msgid "Invalid level."
 msgstr "Neveljavna stopnja."
 
-#: kexthighscore_internal.cpp:603
+#: kexthighscore_internal.cpp:602
 msgid "Invalid score."
 msgstr "Neveljaven rezultat."
 
-#: kexthighscore_internal.cpp:607
+#: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
 msgstr "Ni se mogoče povezati s strežnikom za najboljše rezultate na svetu"
 
-#: kexthighscore_internal.cpp:616
+#: kexthighscore_internal.cpp:615
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Ni mogoče odpreti začasne datoteke."
 
-#: kexthighscore_internal.cpp:625
+#: kexthighscore_internal.cpp:624
 #, kde-format
 msgid "Server URL: %1"
 msgstr "URL strežnika: %1"
 
-#: kexthighscore_internal.cpp:647
+#: kexthighscore_internal.cpp:646
 #, kde-format
 msgid "Message from world-wide highscores server"
 msgstr "Sporočilo s strežnika z najboljšimi rezultati na svetu"
 
-#: kexthighscore_internal.cpp:654
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Neveljavni odgovor s strežnika z najboljšimi rezultati na svetu."
 
-#: kexthighscore_internal.cpp:655
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Surovo sporočilo: %1"
 
-#: kexthighscore_internal.cpp:667
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
 "Neveljavni odgovor s strežnika z najboljšimi rezultati na svetu (manjka "
 "predmet: %1)."
 
-#: kexthighscore_item.cpp:290
+#: kexthighscore_item.cpp:266
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Rezultati več igralcev"
 
-#: kexthighscore_item.cpp:301
+#: kexthighscore_item.cpp:277
 #, kde-format
 msgid "No game played."
 msgstr "Ni igranih iger."
 
-#: kexthighscore_item.cpp:303
+#: kexthighscore_item.cpp:279
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Rezultati za zadnjo igro:"
 
-#: kexthighscore_item.cpp:310
+#: kexthighscore_item.cpp:286
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Rezultati za zadnjih %1 iger:"
@@ -478,17 +478,17 @@ msgstr "Modri ne more izvesti poteze. Ponovno je na vrsti rdeči."
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Črni ne more izvesti poteze. Ponovno je na vrsti beli."
 
-#: main.cpp:38
+#: main.cpp:25
 #, kde-format
 msgid "KReversi"
 msgstr "KReversi"
 
-#: main.cpp:40
+#: main.cpp:27
 #, kde-format
 msgid "KDE Reversi Board Game"
 msgstr "Namizna igra Reversi za KDE"
 
-#: main.cpp:42
+#: main.cpp:29
 #, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
@@ -499,167 +499,167 @@ msgstr ""
 "© 2004 - 2006, Inge Wallin\n"
 "© 2006, Dmitry Suzdalev"
 
-#: main.cpp:45
+#: main.cpp:32
 #, kde-format
 msgid "Mario Weilguni"
 msgstr "Mario Weilguni"
 
-#: main.cpp:45 main.cpp:46
+#: main.cpp:32 main.cpp:33
 #, kde-format
 msgid "Original author"
 msgstr "Prvotni avtor"
 
-#: main.cpp:46
+#: main.cpp:33
 #, kde-format
 msgid "Inge Wallin"
 msgstr "Inge Wallin"
 
-#: main.cpp:47
+#: main.cpp:34
 #, kde-format
 msgid "Dmitry Suzdalev"
 msgstr "Dmitry Suzdalev"
 
-#: main.cpp:47
+#: main.cpp:34
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
 msgstr "Znova napisana koda igre za KDE4. Trenutni vzdrževalec."
 
-#: main.cpp:48
+#: main.cpp:35
 #, kde-format
 msgid "Simon Hürlimann"
 msgstr "Simon Hürlimann"
 
-#: main.cpp:48
+#: main.cpp:35
 #, kde-format
 msgid "Action refactoring"
 msgstr "Preureditev dejanj"
 
-#: main.cpp:49
+#: main.cpp:36
 #, kde-format
 msgid "Mats Luthman"
 msgstr "Mats Luthman"
 
-#: main.cpp:49
+#: main.cpp:36
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
 msgstr "Pogon igre, prenesen iz njegovega vstavka za javo."
 
-#: main.cpp:50
+#: main.cpp:37
 #, kde-format
 msgid "Arne Klaassen"
 msgstr "Arne Klaassen"
 
-#: main.cpp:50
+#: main.cpp:37
 #, kde-format
 msgid "Original raytraced chips."
 msgstr "Izvorni osvetljeni žetoni."
 
-#: main.cpp:51
+#: main.cpp:38
 #, kde-format
 msgid "Mauricio Piacentini"
 msgstr "Mauricio Piacentini"
 
-#: main.cpp:51
+#: main.cpp:38
 #, kde-format
 msgid "Vector chips and background for KDE4."
 msgstr "Vektorski žetoni in ozadje za KDE4."
 
-#: main.cpp:52
+#: main.cpp:39
 #, kde-format
 msgid "Brian Croom"
 msgstr "Brian Croom"
 
-#: main.cpp:52
+#: main.cpp:39
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
 msgstr "Predelava za uporabo izrisovalnika KGameRenderer"
 
-#: main.cpp:53
+#: main.cpp:40
 #, kde-format
 msgid "Denis Kuplyakov"
 msgstr "Denis Kuplyakov"
 
-#: main.cpp:53
+#: main.cpp:40
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Predelava za kode za izrisovanje v QML, nova zasnova in več izboljšav"
 
-#: main.cpp:59
+#: main.cpp:46
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Zaženi s predstavitveno igro"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:49
 #, kde-format
 msgid "Press start game!"
 msgstr "Pritisnite Začni igro!"
 
-#: mainwindow.cpp:69
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Move History"
 msgstr "Zgodovina potez"
 
-#: mainwindow.cpp:116
+#: mainwindow.cpp:111
 #, kde-format
 msgid "Show Last Move"
 msgstr "Pokaži zadnjo potezo"
 
-#: mainwindow.cpp:121
+#: mainwindow.cpp:116
 #, kde-format
 msgid "Show Legal Moves"
 msgstr "Pokaži veljavne poteze"
 
-#: mainwindow.cpp:126
+#: mainwindow.cpp:121
 #, kde-format
 msgid "Animation Speed"
 msgstr "Hitrost animacije"
 
-#: mainwindow.cpp:130
+#: mainwindow.cpp:125
 #, kde-format
 msgid "Slow"
 msgstr "Počasi"
 
-#: mainwindow.cpp:130
+#: mainwindow.cpp:125
 #, kde-format
 msgid "Normal"
 msgstr "Normalno"
 
-#: mainwindow.cpp:130
+#: mainwindow.cpp:125
 #, kde-format
 msgid "Fast"
 msgstr "Hitro"
 
-#: mainwindow.cpp:135
+#: mainwindow.cpp:130
 #, kde-format
 msgid "Use Colored Chips"
 msgstr "Uporabljaj barvne žetone"
 
-#: mainwindow.cpp:143
+#: mainwindow.cpp:138
 #, kde-format
 msgid "Show Move History"
 msgstr "Pokaži zgodovino potez"
 
-#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#: mainwindow.cpp:216 mainwindow.cpp:231 mainwindow.cpp:244 mainwindow.cpp:252
 #, kde-format
 msgid "Game is drawn!"
 msgstr "Nihče ni zmagal!"
 
-#: mainwindow.cpp:224 mainwindow.cpp:239
+#: mainwindow.cpp:219 mainwindow.cpp:234
 #, kde-format
 msgid "You win!"
 msgstr "Zmagali ste!"
 
-#: mainwindow.cpp:227 mainwindow.cpp:242
+#: mainwindow.cpp:222 mainwindow.cpp:237
 #, kde-format
 msgid "You have lost!"
 msgstr "Izgubili ste!"
 
-#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#: mainwindow.cpp:246 mainwindow.cpp:248 mainwindow.cpp:254 mainwindow.cpp:256
 #, kde-format
 msgid "%1 has won!"
 msgstr "%1 je zmagal!"
 
-#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#: mainwindow.cpp:262 mainwindow.cpp:263 mainwindow.cpp:265 mainwindow.cpp:266
 #, kde-format
 msgid ""
 "\n"
@@ -668,32 +668,32 @@ msgstr ""
 "\n"
 "%1: %2"
 
-#: mainwindow.cpp:274
+#: mainwindow.cpp:269
 #, kde-format
 msgid "Game over"
 msgstr "Konec igre"
 
-#: mainwindow.cpp:341
+#: mainwindow.cpp:336
 #, kde-format
 msgid "GAME OVER"
 msgstr "KONEC IGRE"
 
-#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#: mainwindow.cpp:341 mainwindow.cpp:342 mainwindow.cpp:348 mainwindow.cpp:349
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: mainwindow.cpp:350
+#: mainwindow.cpp:345
 #, kde-format
 msgid "%1 turn"
 msgstr "Poteza %1"
 
-#: mainwindow.cpp:357
+#: mainwindow.cpp:352
 #, kde-format
 msgid "%1's turn"
 msgstr "Na potezi je %1"
 
-#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#: mainwindow.cpp:362 startgamedialog.cpp:155 startgamedialog.cpp:169
 #, kde-format
 msgid "Computer"
 msgstr "Računalnik"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-31 00:43+0000\n"
+"POT-Creation-Date: 2023-09-25 01:40+0000\n"
 "PO-Revision-Date: 2021-09-05 10:53+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -74,114 +74,114 @@ msgstr "Η καλύτερη βαθμολογία"
 msgid "Elapsed Time"
 msgstr "Χρόνος που πέρασε"
 
-#: kexthighscore_gui.cpp:152
+#: kexthighscore_gui.cpp:147
 #, kde-format
 msgid "Best &Scores"
 msgstr "Οι καλύτερες &βαθμολογίες"
 
-#: kexthighscore_gui.cpp:157
+#: kexthighscore_gui.cpp:152
 #, kde-format
 msgid "&Players"
 msgstr "&Παίκτες"
 
-#: kexthighscore_gui.cpp:162
+#: kexthighscore_gui.cpp:157
 #, kde-format
 msgid "Statistics"
 msgstr "Στατιστικά"
 
-#: kexthighscore_gui.cpp:168
+#: kexthighscore_gui.cpp:163
 #, kde-format
 msgid "Histogram"
 msgstr "Ιστόγραμμα"
 
-#: kexthighscore_gui.cpp:175
+#: kexthighscore_gui.cpp:170
 #, kde-format
 msgid "View world-wide highscores"
 msgstr "Προβολή των υψηλών βαθμολογιών σε παγκόσμια κλίμακα"
 
-#: kexthighscore_gui.cpp:182
+#: kexthighscore_gui.cpp:177
 #, kde-format
 msgid "View world-wide players"
 msgstr "Προβολή παικτών παγκόσμιας κλίμακας"
 
-#: kexthighscore_gui.cpp:232
+#: kexthighscore_gui.cpp:223
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Υψηλές βαθμολογίες"
 
-#: kexthighscore_gui.cpp:300
+#: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "Overwrite"
 msgstr "Αντικατάσταση"
 
-#: kexthighscore_gui.cpp:302
+#: kexthighscore_gui.cpp:289
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Το αρχείο υπάρχει ήδη. Να αντικατασταθεί;"
 
-#: kexthighscore_gui.cpp:303
+#: kexthighscore_gui.cpp:290
 #, kde-format
 msgid "Export"
 msgstr "Εξαγωγή"
 
-#: kexthighscore_gui.cpp:354
+#: kexthighscore_gui.cpp:341
 #, kde-format
 msgid "Winner"
 msgstr "Νικητής"
 
-#: kexthighscore_gui.cpp:392
+#: kexthighscore_gui.cpp:379
 #, kde-format
 msgid "Won Games"
 msgstr "Κερδισμένα παιχνίδια"
 
-#: kexthighscore_gui.cpp:420
+#: kexthighscore_gui.cpp:407
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Διαμόρφωση υψηλών βαθμολογιών"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:420
 #, kde-format
 msgid "Main"
 msgstr "Κύριο"
 
-#: kexthighscore_gui.cpp:448 kexthighscore_gui.cpp:487
+#: kexthighscore_gui.cpp:435 kexthighscore_gui.cpp:474
 #, kde-format
 msgid "Nickname:"
 msgstr "Ψευδώνυμο:"
 
-#: kexthighscore_gui.cpp:459
+#: kexthighscore_gui.cpp:446
 #, kde-format
 msgid "Comment:"
 msgstr "Σχόλιο:"
 
-#: kexthighscore_gui.cpp:469
+#: kexthighscore_gui.cpp:456
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Ενεργοποιήθηκαν οι ψηλές βαθμολογίες παγκόσμιας κλίμακας"
 
-#: kexthighscore_gui.cpp:476
+#: kexthighscore_gui.cpp:463
 #, kde-format
 msgid "Advanced"
 msgstr "Προηγμένο"
 
-#: kexthighscore_gui.cpp:482
+#: kexthighscore_gui.cpp:469
 #, kde-format
 msgid "Registration Data"
 msgstr "Δεδομένα εγγραφής"
 
-#: kexthighscore_gui.cpp:493
+#: kexthighscore_gui.cpp:480
 #, kde-format
 msgid "Key:"
 msgstr "Κλειδί:"
 
-#: kexthighscore_gui.cpp:500 kexthighscore_gui.cpp:543
+#: kexthighscore_gui.cpp:487 kexthighscore_gui.cpp:530
 #, kde-format
 msgid "Remove"
 msgstr "Διαγραφή"
 
-#: kexthighscore_gui.cpp:545
+#: kexthighscore_gui.cpp:532
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -190,159 +190,159 @@ msgstr ""
 "Αυτό θα διαγράψει μόνιμα το κλειδί της εγγραφήςσας. Δεν θα μπορείτε να "
 "χρησιμοποιείτε πλέον το ψευδώνυμο που έχει δηλωθεί για εσάς."
 
-#: kexthighscore_gui.cpp:588
+#: kexthighscore_gui.cpp:575
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Επιλέξτε ένα μη κενό ψευδώνυμο."
 
-#: kexthighscore_gui.cpp:592
+#: kexthighscore_gui.cpp:579
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Το ψευδώνυμο είναι ήδη σε χρήση. Επιλέξτε άλλο"
 
-#: kexthighscore_gui.cpp:613
+#: kexthighscore_gui.cpp:600
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Εισαγάγετε το ψευδώνυμό σας"
 
-#: kexthighscore_gui.cpp:622
+#: kexthighscore_gui.cpp:609
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Συγχαρητήρια, νικήσατε!"
 
-#: kexthighscore_gui.cpp:627
+#: kexthighscore_gui.cpp:614
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Εισαγάγετε το ψευδώνυμό σας:"
 
-#: kexthighscore_gui.cpp:635
+#: kexthighscore_gui.cpp:622
 #, kde-format
 msgid "Do not ask again."
 msgstr "Να μη γίνει ερώτηση ξανά."
 
-#: kexthighscore_internal.cpp:34
+#: kexthighscore_internal.cpp:33
 msgid "anonymous"
 msgstr "ανώνυμο"
 
-#: kexthighscore_internal.cpp:259
+#: kexthighscore_internal.cpp:258
 #, kde-format
 msgid "Games Count"
 msgstr "Πλήθος παιχνιδιών"
 
-#: kexthighscore_internal.cpp:266
+#: kexthighscore_internal.cpp:265
 #, kde-format
 msgid "Comment"
 msgstr "Σχόλιο:"
 
-#: kexthighscore_internal.cpp:588
+#: kexthighscore_internal.cpp:587
 msgid "Undefined error."
 msgstr "Αόριστο σφάλμα."
 
-#: kexthighscore_internal.cpp:589
+#: kexthighscore_internal.cpp:588
 msgid "Missing argument(s)."
 msgstr "Λείπουν ορίσματα."
 
-#: kexthighscore_internal.cpp:590
+#: kexthighscore_internal.cpp:589
 msgid "Invalid argument(s)."
 msgstr "Μη έγκυρα ορίσματα."
 
-#: kexthighscore_internal.cpp:592
+#: kexthighscore_internal.cpp:591
 msgid "Unable to connect to MySQL server."
 msgstr "Αδυναμία σύνδεσης στον εξυπηρετητή MySQL."
 
-#: kexthighscore_internal.cpp:593
+#: kexthighscore_internal.cpp:592
 msgid "Unable to select database."
 msgstr "Αδυναμία επιλογής βάσης δεδομένων."
 
-#: kexthighscore_internal.cpp:594
+#: kexthighscore_internal.cpp:593
 msgid "Error on database query."
 msgstr "Σφάλμα σε ερώτηση στη βάση δεδομένων."
 
-#: kexthighscore_internal.cpp:595
+#: kexthighscore_internal.cpp:594
 msgid "Error on database insert."
 msgstr "Σφάλμα σε εισαγωγή στη βάση δεδομένων."
 
-#: kexthighscore_internal.cpp:597
+#: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
 msgstr "Το ψευδώνυμο έχει ήδη καταχωρηθεί."
 
-#: kexthighscore_internal.cpp:598
+#: kexthighscore_internal.cpp:597
 msgid "Nickname not registered."
 msgstr "Το ψευδώνυμο δεν έχει καταχωρηθεί."
 
-#: kexthighscore_internal.cpp:599
+#: kexthighscore_internal.cpp:598
 msgid "Invalid key."
 msgstr "Μη έγκυρο κλειδί."
 
-#: kexthighscore_internal.cpp:600
+#: kexthighscore_internal.cpp:599
 msgid "Invalid submit key."
 msgstr "Μη έγκυρο κλειδί υποβολής."
 
-#: kexthighscore_internal.cpp:602
+#: kexthighscore_internal.cpp:601
 msgid "Invalid level."
 msgstr "Μη έγκυρο επίπεδο."
 
-#: kexthighscore_internal.cpp:603
+#: kexthighscore_internal.cpp:602
 msgid "Invalid score."
 msgstr "Μη έγκυρη βαθμολογία."
 
-#: kexthighscore_internal.cpp:607
+#: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
 msgstr ""
 "Αδυναμία επικοινωνίας με τον εξυπηρετητή των υψηλών βαθμολογιών παγκόσμιας "
 "κλίμακας"
 
-#: kexthighscore_internal.cpp:616
+#: kexthighscore_internal.cpp:615
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Αδυναμία ανοίγματος προσωρινού αρχείου."
 
-#: kexthighscore_internal.cpp:625
+#: kexthighscore_internal.cpp:624
 #, kde-format
 msgid "Server URL: %1"
 msgstr "URL εξυπηρετητή: %1"
 
-#: kexthighscore_internal.cpp:647
+#: kexthighscore_internal.cpp:646
 #, kde-format
 msgid "Message from world-wide highscores server"
 msgstr "Μήνυμα από τον εξυπηρετητή υψηλών βαθμολογιών παγκόσμιας κλίμακας"
 
-#: kexthighscore_internal.cpp:654
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr ""
 "Μη έγκυρη απάντηση από τον εξυπηρετητή υψηλών βαθμολογιών παγκόσμιας κλίμακας"
 
-#: kexthighscore_internal.cpp:655
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Ανεπεξέργαστο μήνυμα: %1"
 
-#: kexthighscore_internal.cpp:667
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
 "Μη έγκυρη απάντηση από τον εξυπηρετητή υψηλών βαθμολογιών παγκόσμιας "
 "κλίμακας (λείπει το αντικείμενο: %1)."
 
-#: kexthighscore_item.cpp:290
+#: kexthighscore_item.cpp:266
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Βαθμολογίες πολλών παικτών"
 
-#: kexthighscore_item.cpp:301
+#: kexthighscore_item.cpp:277
 #, kde-format
 msgid "No game played."
 msgstr "Δεν παίχθηκαν παιχνίδια."
 
-#: kexthighscore_item.cpp:303
+#: kexthighscore_item.cpp:279
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Βαθμολογίες για το τελευταίο παιχνίδι:"
 
-#: kexthighscore_item.cpp:310
+#: kexthighscore_item.cpp:286
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Βαθμολογίες για τα τελευταία %1 παιχνίδια:"
@@ -471,17 +471,17 @@ msgstr "Τα μπλε δεν μπορούν να παίξουν. Είναι η �
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Τα μαύρα δεν μπορούν να παίξουν. Είναι η σειρά των μπλε."
 
-#: main.cpp:38
+#: main.cpp:25
 #, kde-format
 msgid "KReversi"
 msgstr "KReversi"
 
-#: main.cpp:40
+#: main.cpp:27
 #, kde-format
 msgid "KDE Reversi Board Game"
 msgstr "Επιτραπέζιο παιχνίδι Reversi του KDE"
 
-#: main.cpp:42
+#: main.cpp:29
 #, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
@@ -492,167 +492,167 @@ msgstr ""
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 
-#: main.cpp:45
+#: main.cpp:32
 #, kde-format
 msgid "Mario Weilguni"
 msgstr "Mario Weilguni"
 
-#: main.cpp:45 main.cpp:46
+#: main.cpp:32 main.cpp:33
 #, kde-format
 msgid "Original author"
 msgstr "Αρχικός συγγραφέας"
 
-#: main.cpp:46
+#: main.cpp:33
 #, kde-format
 msgid "Inge Wallin"
 msgstr "Inge Wallin"
 
-#: main.cpp:47
+#: main.cpp:34
 #, kde-format
 msgid "Dmitry Suzdalev"
 msgstr "Dmitry Suzdalev"
 
-#: main.cpp:47
+#: main.cpp:34
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
 msgstr "Επανεγγραφή του παιχνιδιού για το KDE4. Τρέχων συντηρητής."
 
-#: main.cpp:48
+#: main.cpp:35
 #, kde-format
 msgid "Simon Hürlimann"
 msgstr "Simon Hürlimann"
 
-#: main.cpp:48
+#: main.cpp:35
 #, kde-format
 msgid "Action refactoring"
 msgstr "Επαναπροσδιορισμός ενέργειας"
 
-#: main.cpp:49
+#: main.cpp:36
 #, kde-format
 msgid "Mats Luthman"
 msgstr "Mats Luthman"
 
-#: main.cpp:49
+#: main.cpp:36
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
 msgstr "Μηχανή παιχνιδιού, προσαρμοσμένη από τη μικροεφαρμογή JAVA."
 
-#: main.cpp:50
+#: main.cpp:37
 #, kde-format
 msgid "Arne Klaassen"
 msgstr "Arne Klaassen"
 
-#: main.cpp:50
+#: main.cpp:37
 #, kde-format
 msgid "Original raytraced chips."
 msgstr "Αρχικά τσιπ ανιχνεύσιμα με ακτίνες."
 
-#: main.cpp:51
+#: main.cpp:38
 #, kde-format
 msgid "Mauricio Piacentini"
 msgstr "Mauricio Piacentini"
 
-#: main.cpp:51
+#: main.cpp:38
 #, kde-format
 msgid "Vector chips and background for KDE4."
 msgstr "Διανυσματικά γραφικά και φόντο για το KDE4."
 
-#: main.cpp:52
+#: main.cpp:39
 #, kde-format
 msgid "Brian Croom"
 msgstr "Brian Croom"
 
-#: main.cpp:52
+#: main.cpp:39
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
 msgstr "Προσαρμογή του κώδικα αποτύπωσης στο KGameRenderer"
 
-#: main.cpp:53
+#: main.cpp:40
 #, kde-format
 msgid "Denis Kuplyakov"
 msgstr "Denis Kuplyakov"
 
-#: main.cpp:53
+#: main.cpp:40
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Μεταφορά κώδικα αποτύπωσης σε QML, ανασχεδίαση και πολλές βελτιώσεις"
 
-#: main.cpp:59
+#: main.cpp:46
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Έναρξη με το παιχνίδι επίδειξης"
 
-#: mainwindow.cpp:54
+#: mainwindow.cpp:49
 #, kde-format
 msgid "Press start game!"
 msgstr "Πιέστε έναρξη παιχνιδιού!"
 
-#: mainwindow.cpp:69
+#: mainwindow.cpp:64
 #, kde-format
 msgid "Move History"
 msgstr "Ιστορικό κινήσεων"
 
-#: mainwindow.cpp:116
+#: mainwindow.cpp:111
 #, kde-format
 msgid "Show Last Move"
 msgstr "Εμφάνιση τελευταίας κίνησης"
 
-#: mainwindow.cpp:121
+#: mainwindow.cpp:116
 #, kde-format
 msgid "Show Legal Moves"
 msgstr "Εμφάνιση επιτρεπτών κινήσεων"
 
-#: mainwindow.cpp:126
+#: mainwindow.cpp:121
 #, kde-format
 msgid "Animation Speed"
 msgstr "Ταχύτητα απόδοσης κίνησης"
 
-#: mainwindow.cpp:130
+#: mainwindow.cpp:125
 #, kde-format
 msgid "Slow"
 msgstr "Αργά"
 
-#: mainwindow.cpp:130
+#: mainwindow.cpp:125
 #, kde-format
 msgid "Normal"
 msgstr "Κανονικό"
 
-#: mainwindow.cpp:130
+#: mainwindow.cpp:125
 #, kde-format
 msgid "Fast"
 msgstr "Γρήγορα"
 
-#: mainwindow.cpp:135
+#: mainwindow.cpp:130
 #, kde-format
 msgid "Use Colored Chips"
 msgstr "Χρήση χρωματιστών τσιπ"
 
-#: mainwindow.cpp:143
+#: mainwindow.cpp:138
 #, kde-format
 msgid "Show Move History"
 msgstr "Εμφάνιση ιστορικού κινήσεων"
 
-#: mainwindow.cpp:221 mainwindow.cpp:236 mainwindow.cpp:249 mainwindow.cpp:257
+#: mainwindow.cpp:216 mainwindow.cpp:231 mainwindow.cpp:244 mainwindow.cpp:252
 #, kde-format
 msgid "Game is drawn!"
 msgstr "Το παιχνίδι είναι ισοπαλία!"
 
-#: mainwindow.cpp:224 mainwindow.cpp:239
+#: mainwindow.cpp:219 mainwindow.cpp:234
 #, kde-format
 msgid "You win!"
 msgstr "Κερδίσατε!"
 
-#: mainwindow.cpp:227 mainwindow.cpp:242
+#: mainwindow.cpp:222 mainwindow.cpp:237
 #, kde-format
 msgid "You have lost!"
 msgstr "Χάσατε!"
 
-#: mainwindow.cpp:251 mainwindow.cpp:253 mainwindow.cpp:259 mainwindow.cpp:261
+#: mainwindow.cpp:246 mainwindow.cpp:248 mainwindow.cpp:254 mainwindow.cpp:256
 #, kde-format
 msgid "%1 has won!"
 msgstr "Ο %1 νίκησε!"
 
-#: mainwindow.cpp:267 mainwindow.cpp:268 mainwindow.cpp:270 mainwindow.cpp:271
+#: mainwindow.cpp:262 mainwindow.cpp:263 mainwindow.cpp:265 mainwindow.cpp:266
 #, kde-format
 msgid ""
 "\n"
@@ -661,32 +661,32 @@ msgstr ""
 "\n"
 "%1: %2"
 
-#: mainwindow.cpp:274
+#: mainwindow.cpp:269
 #, kde-format
 msgid "Game over"
 msgstr "Τέλος παιχνιδιού"
 
-#: mainwindow.cpp:341
+#: mainwindow.cpp:336
 #, kde-format
 msgid "GAME OVER"
 msgstr "ΤΕΛΟΣ ΠΑΙΧΝΙΔΙΟΥ"
 
-#: mainwindow.cpp:346 mainwindow.cpp:347 mainwindow.cpp:353 mainwindow.cpp:354
+#: mainwindow.cpp:341 mainwindow.cpp:342 mainwindow.cpp:348 mainwindow.cpp:349
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: mainwindow.cpp:350
+#: mainwindow.cpp:345
 #, kde-format
 msgid "%1 turn"
 msgstr "%1 επόμενη κίνηση"
 
-#: mainwindow.cpp:357
+#: mainwindow.cpp:352
 #, kde-format
 msgid "%1's turn"
 msgstr "Η σειρά του %1"
 
-#: mainwindow.cpp:367 startgamedialog.cpp:155 startgamedialog.cpp:169
+#: mainwindow.cpp:362 startgamedialog.cpp:155 startgamedialog.cpp:169
 #, kde-format
 msgid "Computer"
 msgstr "Υπολογιστής"
