@@ -144,7 +144,7 @@ void Manager::setWWHighscores(const QUrl &url, const QString &version)
     internal->version = version;
 }
 
-void Manager::setScoreHistogram(const QVector<uint> &scores,
+void Manager::setScoreHistogram(const QList<uint> &scores,
                                 ScoreTypeBound type)
 {
     Q_ASSERT( scores.size()>=2 );

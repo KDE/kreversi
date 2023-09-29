@@ -137,8 +137,8 @@ public:
     void              Push(int x, int y);
 
 private:
-    QVector<SquareStackEntry>  m_squarestack;
-    int                          m_top;
+    QList<SquareStackEntry>  m_squarestack;
+    int                      m_top;
 };
 
 

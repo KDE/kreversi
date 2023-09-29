@@ -223,7 +223,7 @@ HistogramTab::HistogramTab(QWidget *parent)
 
     const Item *sitem = internal->scoreInfos().item(QStringLiteral( "score" ))->item();
     const PlayerInfos &pi = internal->playerInfos();
-    const QVector<uint> &sh = pi.histogram();
+    const QList<uint> &sh = pi.histogram();
     for (int k=1; k<( int )pi.histoSize(); k++) {
         QString s1 = sitem->pretty(0, sh[k-1]);
         QString s2;

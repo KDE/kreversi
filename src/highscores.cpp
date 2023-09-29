@@ -7,7 +7,7 @@
 #include "highscores.h"
 
 #include <QDateTime>
-#include <QVector>
+#include <QList>
 
 #include <KLocalizedString>
 #include <KConfigGroup>
@@ -25,7 +25,7 @@ ExtManager::ExtManager()
     setShowDrawGamesStatistic(true);
 
     const uint       RANGE[6] = { 0, 32, 40, 48, 56, 64 };
-    QVector<uint>  s;
+    QList<uint>  s;
     s.resize(6);
     std::copy(RANGE, RANGE+6, s.begin());
     setScoreHistogram(s, ScoreBound);

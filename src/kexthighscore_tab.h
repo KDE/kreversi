@@ -11,7 +11,7 @@
 #include <KLazyLocalizedString>
 // Qt
 #include <QComboBox>
-#include <QVector>
+#include <QList>
 
 class QLabel;
 class QTreeWidget;
@@ -78,7 +78,7 @@ class StatisticsTab : public AdditionalTab
         uint count[Nb_Counts];
         double trend[Nb_Trends];
     };
-    QVector<Data> _data;
+    QList<Data> _data;
     QLabel *_nbs[Nb_Counts], *_percents[Nb_Counts], *_trends[Nb_Trends];
 
     QString percent(const Data &, Count) const;
@@ -95,9 +95,9 @@ class HistogramTab : public AdditionalTab
     void load() override;
 
  private:
-    QVector<uint> _counts;
-    QVector<uint> _data;
-    QTreeWidget   *_list;
+    QList<uint> _counts;
+    QList<uint> _data;
+    QTreeWidget *_list;
 
     void display(uint i) override;
 };

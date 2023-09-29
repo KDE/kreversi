@@ -17,9 +17,9 @@
 #include <KLazyLocalizedString>
 
 #include <QDateTime>
+#include <QList>
 #include <QTextStream>
 #include <QUrl>
-#include <QVector>
 
 class QDomNamedNodeMap;
 
@@ -116,7 +116,7 @@ class ItemContainer
  * Manage a bunch of @ref Item which are saved under the same group
  * in KHighscores config file.
  */
-class ItemArray : public QVector<ItemContainer *>
+class ItemArray : public QList<ItemContainer *>
 {
  public:
     ItemArray();
@@ -191,10 +191,10 @@ class PlayerInfos : public ItemArray
     uint id() const { return _id; }
     uint oldLocalId() const { return _oldLocalId; }
 
-    void createHistoItems(const QVector<uint> &scores, bool bound);
+    void createHistoItems(const QList<uint> &scores, bool bound);
     QString histoName(int i) const;
     int histoSize() const;
-    const QVector<uint> &histogram() const { return _histogram; }
+    const QList<uint> &histogram() const { return _histogram; }
 
     void submitScore(const Score &) const;
     // return true if the nickname is already used locally
@@ -207,7 +207,7 @@ class PlayerInfos : public ItemArray
  private:
     bool _newPlayer, _bound, _oldLocalPlayer;
     uint _id, _oldLocalId;
-    QVector<uint> _histogram;
+    QList<uint> _histogram;
 };
 
 //-----------------------------------------------------------------------------

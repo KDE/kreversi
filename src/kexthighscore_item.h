@@ -9,7 +9,7 @@
 
 #include <QMap>
 #include <QVariant>
-#include <QVector>
+#include <QList>
 #include <libkdegames_export.h>
 class QWidget;
 
@@ -288,8 +288,8 @@ class  MultiplayerScores
     void show(QWidget *parent);
 
  private:
-    QVector<uint>  _nbGames;
-    QVector<Score> _scores;
+    QList<uint>  _nbGames;
+    QList<Score> _scores;
 
     class MultiplayerScoresPrivate;
     MultiplayerScoresPrivate *d;

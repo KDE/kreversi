@@ -302,7 +302,7 @@ void HighscoresDialog::slotUser2()
 
 //-----------------------------------------------------------------------------
 LastMultipleScoresList::LastMultipleScoresList(
-                            const QVector<Score> &scores, QWidget *parent)
+                            const QList<Score> &scores, QWidget *parent)
     : ScoresList(parent), _scores(scores)
 {
 //     kDebug(11001) << ": LastMultipleScoresList";
@@ -346,7 +346,7 @@ QString LastMultipleScoresList::itemText(const ItemContainer &item,
 
 //-----------------------------------------------------------------------------
 TotalMultipleScoresList::TotalMultipleScoresList(
-                            const QVector<Score> &scores, QWidget *parent)
+                            const QList<Score> &scores, QWidget *parent)
     : ScoresList(parent), _scores(scores)
 {
 //     kDebug(11001) << ": TotalMultipleScoresList";

@@ -120,28 +120,28 @@ class LastMultipleScoresList : public ScoresList
 {
     Q_OBJECT
 public:
-    LastMultipleScoresList(const QVector<Score> &, QWidget *parent);
+    LastMultipleScoresList(const QList<Score> &, QWidget *parent);
 
 private:
     void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) override;
     QString itemText(const ItemContainer &, uint row) const override;
 
 private:
-    const QVector<Score> &_scores;
+    const QList<Score> &_scores;
 };
 
 class TotalMultipleScoresList : public ScoresList
 {
     Q_OBJECT
 public:
-    TotalMultipleScoresList(const QVector<Score> &, QWidget *parent);
+    TotalMultipleScoresList(const QList<Score> &, QWidget *parent);
 
 private:
     void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) override;
     QString itemText(const ItemContainer &, uint row) const override;
 
 private:
-    const QVector<Score> &_scores;
+    const QList<Score> &_scores;
 };
 
 //-----------------------------------------------------------------------------

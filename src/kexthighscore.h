@@ -11,8 +11,8 @@
 
 #include <libkdegames_export.h>
 
+#include <QList>
 #include <QLoggingCategory>
-#include <QVector>
 #include <QUrl>
 
 namespace KExtHighscore
@@ -192,7 +192,7 @@ class  Manager
      *
      * Note: should be called at construction time.
      */
-    void setScoreHistogram(const QVector<uint> &scores, ScoreTypeBound type);
+    void setScoreHistogram(const QList<uint> &scores, ScoreTypeBound type);
 
     /** 
     * Enumerate different conditions under which to show the

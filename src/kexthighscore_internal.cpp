@@ -338,7 +338,7 @@ PlayerInfos::PlayerInfos()
     internal->hsConfig().writeAndUnlock();
 }
 
-void PlayerInfos::createHistoItems(const QVector<uint> &scores, bool bound)
+void PlayerInfos::createHistoItems(const QList<uint> &scores, bool bound)
 {
     Q_ASSERT( _histogram.size()==0 );
     _bound = bound;
@@ -373,7 +373,7 @@ bool PlayerInfos::isWWEnabled() const
 
 QString PlayerInfos::histoName(int i) const
 {
-    const QVector<uint> &sh = _histogram;
+    const QList<uint> &sh = _histogram;
     Q_ASSERT( i<sh.size() || (_bound || i==sh.size()) );
     if ( i==sh.size() )
         return QStringLiteral( "nb scores greater than %1").arg(sh[sh.size()-1]);
@@ -444,7 +444,7 @@ void PlayerInfos::submitScore(const Score &score) const
 
     // update histogram
     if ( score.type()==Won ) {
-        const QVector<uint> &sh = _histogram;
+        const QList<uint> &sh = _histogram;
         for (int i=1; i<histoSize(); i++)
             if ( i==sh.size() || score.score()<sh[i] ) {
                 item(histoName(i))->increment(_id);
@@ -724,7 +724,7 @@ void ManagerPrivate::convertToGlobal()
     // read old highscores
     KHighscore *tmp = _hsConfig;
     _hsConfig = new KHighscore(true, nullptr);
-    QVector<Score> scores(_scoreInfos->nbEntries());
+    QList<Score> scores(_scoreInfos->nbEntries());
     for (int i=0; i<scores.count(); i++)
         scores[i] = readScore(i);
 

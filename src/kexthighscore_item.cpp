@@ -245,11 +245,11 @@ void MultiplayerScores::show(QWidget *parent)
     }
 
     // order the players according to the number of won games
-    QVector<Score> ordered;
+    QList<Score> ordered;
     for (int i=0; i<_scores.size(); i++) {
         uint won = _scores[i].data(QStringLiteral( "nb won games" )).toUInt();
         double mean = _scores[i].data(QStringLiteral( "mean score" )).toDouble();
-        QVector<Score>::iterator it;
+        QList<Score>::iterator it;
         for(it = ordered.begin(); it!=ordered.end(); ++it) {
             uint cwon = (*it).data(QStringLiteral( "nb won games" )).toUInt();
             double cmean = (*it).data(QStringLiteral( "mean score" )).toDouble();
