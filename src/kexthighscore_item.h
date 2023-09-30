@@ -10,7 +10,7 @@
 #include <QMap>
 #include <QVariant>
 #include <QList>
-#include <libkdegames_export.h>
+
 class QWidget;
 
 

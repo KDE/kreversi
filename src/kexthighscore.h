@@ -9,8 +9,6 @@
 
 #include "kexthighscore_item.h"
 
-#include <libkdegames_export.h>
-
 #include <QList>
 #include <QLoggingCategory>
 #include <QUrl>
