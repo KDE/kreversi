@@ -250,11 +250,11 @@ msgstr "Argumento ou argumentos incorrectos."
 
 #: kexthighscore_internal.cpp:591
 msgid "Unable to connect to MySQL server."
-msgstr "Non se pode conectar co servidor MySQL."
+msgstr "Non é posíbel conectar co servidor MySQL."
 
 #: kexthighscore_internal.cpp:592
 msgid "Unable to select database."
-msgstr "Non se pode seleccionar a base de datos."
+msgstr "Non é posíbel seleccionar a base de datos."
 
 #: kexthighscore_internal.cpp:593
 msgid "Error on database query."
@@ -290,12 +290,12 @@ msgstr "Puntuación incorrecta."
 
 #: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
-msgstr "Non se pode contactar co servidor de mellores puntuacións do mundo"
+msgstr "Non é posíbel contactar co servidor de mellores puntuacións do mundo"
 
 #: kexthighscore_internal.cpp:615
 #, kde-format
 msgid "Unable to open temporary file."
-msgstr "Non se pode abrir o ficheiro temporal."
+msgstr "Non é posíbel abrir o ficheiro temporal."
 
 #: kexthighscore_internal.cpp:624
 #, kde-format
