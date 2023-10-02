@@ -168,15 +168,13 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
         QUrl url = internal->queryUrl(ManagerPrivate::Scores);
         _scoresUrl = new KUrlLabel(url.url(),
                                    i18n("View world-wide highscores"), this);
-        connect(_scoresUrl, qOverload<>(&KUrlLabel::leftClickedUrl), this,
-                &HighscoresWidget::handleUrlClicked);
+        connect(_scoresUrl, &KUrlLabel::leftClickedUrl, this, &HighscoresWidget::handleUrlClicked);
         vbox->addWidget(_scoresUrl);
 
         url = internal->queryUrl(ManagerPrivate::Players);
         _playersUrl = new KUrlLabel(url.url(),
                                     i18n("View world-wide players"), this);
-        connect(_playersUrl, qOverload<>(&KUrlLabel::leftClickedUrl), this,
-                &HighscoresWidget::handleUrlClicked);
+        connect(_playersUrl, &KUrlLabel::leftClickedUrl, this, &HighscoresWidget::handleUrlClicked);
         vbox->addWidget(_playersUrl);
     }
     load(-1);
