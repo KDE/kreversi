@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:40+0000\n"
+"POT-Creation-Date: 2023-10-02 01:41+0000\n"
 "PO-Revision-Date: 2017-09-28 17:59+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -111,49 +111,49 @@ msgstr "Histogram"
 msgid "View world-wide highscores"
 msgstr "Najrezultati širom sveta"
 
-#: kexthighscore_gui.cpp:177
+#: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
 msgstr "Igrači širom sveta"
 
 # >> @title:window
-#: kexthighscore_gui.cpp:223
+#: kexthighscore_gui.cpp:221
 #, fuzzy, kde-format
 #| msgid "Highscores"
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Najrezultati"
 
-#: kexthighscore_gui.cpp:287
+#: kexthighscore_gui.cpp:285
 #, kde-format
 msgid "Overwrite"
 msgstr "Prebriši"
 
-#: kexthighscore_gui.cpp:289
+#: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Fajl već postoji, prebrisati ga?"
 
 # >> @title:window
-#: kexthighscore_gui.cpp:290
+#: kexthighscore_gui.cpp:288
 #, kde-format
 msgid "Export"
 msgstr "Izvoz"
 
 # >> @item
-#: kexthighscore_gui.cpp:341
+#: kexthighscore_gui.cpp:339
 #, kde-format
 msgid "Winner"
 msgstr "pobednik"
 
 # >> @item
-#: kexthighscore_gui.cpp:379
+#: kexthighscore_gui.cpp:377
 #, kde-format
 msgid "Won Games"
 msgstr "dobijene partije"
 
 # >> @title:window
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:405
 #, fuzzy, kde-format
 #| msgid "Configure Highscores"
 msgctxt "@title:window"
@@ -161,50 +161,50 @@ msgid "Configure Highscores"
 msgstr "Podešavanje najrezultata"
 
 # >> @title:tab
-#: kexthighscore_gui.cpp:420
+#: kexthighscore_gui.cpp:418
 #, kde-format
 msgid "Main"
 msgstr "Glavno"
 
-#: kexthighscore_gui.cpp:435 kexthighscore_gui.cpp:474
+#: kexthighscore_gui.cpp:433 kexthighscore_gui.cpp:472
 #, kde-format
 msgid "Nickname:"
 msgstr "Nadimak:"
 
-#: kexthighscore_gui.cpp:446
+#: kexthighscore_gui.cpp:444
 #, kde-format
 msgid "Comment:"
 msgstr "Komentar:"
 
 # >> @option:check
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:454
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Najrezultati širom sveta"
 
 # >> @title:tab
-#: kexthighscore_gui.cpp:463
+#: kexthighscore_gui.cpp:461
 #, kde-format
 msgid "Advanced"
 msgstr "Napredno"
 
 # >> @title:group
-#: kexthighscore_gui.cpp:469
+#: kexthighscore_gui.cpp:467
 #, kde-format
 msgid "Registration Data"
 msgstr "Podaci za registraciju"
 
-#: kexthighscore_gui.cpp:480
+#: kexthighscore_gui.cpp:478
 #, kde-format
 msgid "Key:"
 msgstr "Ključ:"
 
-#: kexthighscore_gui.cpp:487 kexthighscore_gui.cpp:530
+#: kexthighscore_gui.cpp:485 kexthighscore_gui.cpp:528
 #, kde-format
 msgid "Remove"
 msgstr "Ukloni"
 
-#: kexthighscore_gui.cpp:532
+#: kexthighscore_gui.cpp:530
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -213,36 +213,36 @@ msgstr ""
 "Ovo će trajno ukloniti vaš ključ za registraciju. Nećete više moći da "
 "koristite trenutno registrovani nadimak."
 
-#: kexthighscore_gui.cpp:575
+#: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Izaberite neprazan nadimak."
 
-#: kexthighscore_gui.cpp:579
+#: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Nadimak je već zauzet. Izaberite neki drugi."
 
 # >> @title:window
-#: kexthighscore_gui.cpp:600
+#: kexthighscore_gui.cpp:598
 #, fuzzy, kde-format
 #| msgid "Enter Your Nickname"
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Unos nadimka"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:607
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Čestitamo, pobedili ste!"
 
-#: kexthighscore_gui.cpp:614
+#: kexthighscore_gui.cpp:612
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Unesite nadimak:"
 
 # >> @option:check
-#: kexthighscore_gui.cpp:622
+#: kexthighscore_gui.cpp:620
 #, kde-format
 msgid "Do not ask again."
 msgstr "Ne pitaj više"

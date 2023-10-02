@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:40+0000\n"
+"POT-Creation-Date: 2023-10-02 01:41+0000\n"
 "PO-Revision-Date: 2021-08-15 16:43+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -102,89 +102,89 @@ msgstr "Histograma"
 msgid "View world-wide highscores"
 msgstr "Ikusi mundu osoko puntuazio altuenak"
 
-#: kexthighscore_gui.cpp:177
+#: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
 msgstr "Ikusi mundu osoko jokalariak"
 
-#: kexthighscore_gui.cpp:223
+#: kexthighscore_gui.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Puntuazio onenak"
 
-#: kexthighscore_gui.cpp:287
+#: kexthighscore_gui.cpp:285
 #, kde-format
 msgid "Overwrite"
 msgstr "Gainidatzi"
 
-#: kexthighscore_gui.cpp:289
+#: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Fitxategia badago. Gainidatzi?"
 
-#: kexthighscore_gui.cpp:290
+#: kexthighscore_gui.cpp:288
 #, kde-format
 msgid "Export"
 msgstr "Esportatu"
 
-#: kexthighscore_gui.cpp:341
+#: kexthighscore_gui.cpp:339
 #, kde-format
 msgid "Winner"
 msgstr "Irabazlea"
 
-#: kexthighscore_gui.cpp:379
+#: kexthighscore_gui.cpp:377
 #, kde-format
 msgid "Won Games"
 msgstr "Irabazitako jokoak"
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:405
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Konfiguratu puntuazio onenak"
 
-#: kexthighscore_gui.cpp:420
+#: kexthighscore_gui.cpp:418
 #, kde-format
 msgid "Main"
 msgstr "Nagusia"
 
-#: kexthighscore_gui.cpp:435 kexthighscore_gui.cpp:474
+#: kexthighscore_gui.cpp:433 kexthighscore_gui.cpp:472
 #, kde-format
 msgid "Nickname:"
 msgstr "Goitizena:"
 
-#: kexthighscore_gui.cpp:446
+#: kexthighscore_gui.cpp:444
 #, kde-format
 msgid "Comment:"
 msgstr "Iruzkina:"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:454
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Mundu osoko puntuazio altuenak gaituta"
 
-#: kexthighscore_gui.cpp:463
+#: kexthighscore_gui.cpp:461
 #, kde-format
 msgid "Advanced"
 msgstr "Aurreratua"
 
-#: kexthighscore_gui.cpp:469
+#: kexthighscore_gui.cpp:467
 #, kde-format
 msgid "Registration Data"
 msgstr "Erregistro datuak"
 
-#: kexthighscore_gui.cpp:480
+#: kexthighscore_gui.cpp:478
 #, kde-format
 msgid "Key:"
 msgstr "Gakoa:"
 
-#: kexthighscore_gui.cpp:487 kexthighscore_gui.cpp:530
+#: kexthighscore_gui.cpp:485 kexthighscore_gui.cpp:528
 #, kde-format
 msgid "Remove"
 msgstr "Kendu"
 
-#: kexthighscore_gui.cpp:532
+#: kexthighscore_gui.cpp:530
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -193,33 +193,33 @@ msgstr ""
 "Honek betirako ezabatuko du zure erregistro gakoa. Ezingo duzu "
 "erregistratutako uneko goitizena berriz inoiz erabili."
 
-#: kexthighscore_gui.cpp:575
+#: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Hautatu hutsa ez den goitizen bat."
 
-#: kexthighscore_gui.cpp:579
+#: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Goitizena jada hartuta dago. Hautatu beste bat"
 
-#: kexthighscore_gui.cpp:600
+#: kexthighscore_gui.cpp:598
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Sartu zure goitizena"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:607
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Zorionak, irabazi duzu!"
 
-#: kexthighscore_gui.cpp:614
+#: kexthighscore_gui.cpp:612
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Sartu zure goitizena:"
 
-#: kexthighscore_gui.cpp:622
+#: kexthighscore_gui.cpp:620
 #, kde-format
 msgid "Do not ask again."
 msgstr "Ez galdetu berriro."

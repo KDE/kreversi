@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:40+0000\n"
+"POT-Creation-Date: 2023-10-02 01:41+0000\n"
 "PO-Revision-Date: 2021-08-18 19:27+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -104,89 +104,89 @@ msgstr "Histogrammi"
 msgid "View world-wide highscores"
 msgstr "Näytä kansainväliset tulokset"
 
-#: kexthighscore_gui.cpp:177
+#: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
 msgstr "Näytä kansainväliset pelaajat"
 
-#: kexthighscore_gui.cpp:223
+#: kexthighscore_gui.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Parhaat tulokset"
 
-#: kexthighscore_gui.cpp:287
+#: kexthighscore_gui.cpp:285
 #, kde-format
 msgid "Overwrite"
 msgstr "Korvaa"
 
-#: kexthighscore_gui.cpp:289
+#: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Tiedosto on jo olemassa. Korvataanko se?"
 
-#: kexthighscore_gui.cpp:290
+#: kexthighscore_gui.cpp:288
 #, kde-format
 msgid "Export"
 msgstr "Vie"
 
-#: kexthighscore_gui.cpp:341
+#: kexthighscore_gui.cpp:339
 #, kde-format
 msgid "Winner"
 msgstr "Voittaja"
 
-#: kexthighscore_gui.cpp:379
+#: kexthighscore_gui.cpp:377
 #, kde-format
 msgid "Won Games"
 msgstr "Voitetut pelit"
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:405
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Tulosten asetukset"
 
-#: kexthighscore_gui.cpp:420
+#: kexthighscore_gui.cpp:418
 #, kde-format
 msgid "Main"
 msgstr "Pää"
 
-#: kexthighscore_gui.cpp:435 kexthighscore_gui.cpp:474
+#: kexthighscore_gui.cpp:433 kexthighscore_gui.cpp:472
 #, kde-format
 msgid "Nickname:"
 msgstr "Näyttönimi:"
 
-#: kexthighscore_gui.cpp:446
+#: kexthighscore_gui.cpp:444
 #, kde-format
 msgid "Comment:"
 msgstr "Kommentti:"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:454
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Kansainväliset tulokset käytössä"
 
-#: kexthighscore_gui.cpp:463
+#: kexthighscore_gui.cpp:461
 #, kde-format
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
-#: kexthighscore_gui.cpp:469
+#: kexthighscore_gui.cpp:467
 #, kde-format
 msgid "Registration Data"
 msgstr "Rekisteröintitiedot"
 
-#: kexthighscore_gui.cpp:480
+#: kexthighscore_gui.cpp:478
 #, kde-format
 msgid "Key:"
 msgstr "Avain:"
 
-#: kexthighscore_gui.cpp:487 kexthighscore_gui.cpp:530
+#: kexthighscore_gui.cpp:485 kexthighscore_gui.cpp:528
 #, kde-format
 msgid "Remove"
 msgstr "Poista"
 
-#: kexthighscore_gui.cpp:532
+#: kexthighscore_gui.cpp:530
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -195,33 +195,33 @@ msgstr ""
 "Tämä poistaa rekisteröintiavaimen pysyvästi. Nykyistä rekisteröityä "
 "kutsumanimeä ei voi vastedes enää käyttää."
 
-#: kexthighscore_gui.cpp:575
+#: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Valitse ei-tyhjä näyttönimi."
 
-#: kexthighscore_gui.cpp:579
+#: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Näyttönimi on jo käytössä. Valitse toinen"
 
-#: kexthighscore_gui.cpp:600
+#: kexthighscore_gui.cpp:598
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Anna näyttönimi"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:607
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Onnea, olet voittanut!"
 
-#: kexthighscore_gui.cpp:614
+#: kexthighscore_gui.cpp:612
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Anna näyttönimi:"
 
-#: kexthighscore_gui.cpp:622
+#: kexthighscore_gui.cpp:620
 #, kde-format
 msgid "Do not ask again."
 msgstr "Älä kysy uudelleen."

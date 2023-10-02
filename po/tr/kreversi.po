@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:40+0000\n"
+"POT-Creation-Date: 2023-10-02 01:41+0000\n"
 "PO-Revision-Date: 2023-06-11 22:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -102,89 +102,89 @@ msgstr "Sütun Grafiği"
 msgid "View world-wide highscores"
 msgstr "Dünya çapında yüksek puanları görüntüle"
 
-#: kexthighscore_gui.cpp:177
+#: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
 msgstr "Dünya çapında oyuncuları görüntüle"
 
-#: kexthighscore_gui.cpp:223
+#: kexthighscore_gui.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Yüksek Puanlar"
 
-#: kexthighscore_gui.cpp:287
+#: kexthighscore_gui.cpp:285
 #, kde-format
 msgid "Overwrite"
 msgstr "Üzerine Yaz"
 
-#: kexthighscore_gui.cpp:289
+#: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "The file already exists. Overwrite?"
 msgstr "Dosya zaten mevcut. Üzerine yazılsın mı?"
 
-#: kexthighscore_gui.cpp:290
+#: kexthighscore_gui.cpp:288
 #, kde-format
 msgid "Export"
 msgstr "Dışa Aktar"
 
-#: kexthighscore_gui.cpp:341
+#: kexthighscore_gui.cpp:339
 #, kde-format
 msgid "Winner"
 msgstr "Kazanan"
 
-#: kexthighscore_gui.cpp:379
+#: kexthighscore_gui.cpp:377
 #, kde-format
 msgid "Won Games"
 msgstr "Kazanılan Oyunlar"
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:405
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Yüksek Puanları Yapılandır"
 
-#: kexthighscore_gui.cpp:420
+#: kexthighscore_gui.cpp:418
 #, kde-format
 msgid "Main"
 msgstr "Ana"
 
-#: kexthighscore_gui.cpp:435 kexthighscore_gui.cpp:474
+#: kexthighscore_gui.cpp:433 kexthighscore_gui.cpp:472
 #, kde-format
 msgid "Nickname:"
 msgstr "Takma Ad:"
 
-#: kexthighscore_gui.cpp:446
+#: kexthighscore_gui.cpp:444
 #, kde-format
 msgid "Comment:"
 msgstr "Açıklama:"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:454
 #, kde-format
 msgid "World-wide highscores enabled"
 msgstr "Dünya çapında yüksek puanlar etkinleştirildi"
 
-#: kexthighscore_gui.cpp:463
+#: kexthighscore_gui.cpp:461
 #, kde-format
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: kexthighscore_gui.cpp:469
+#: kexthighscore_gui.cpp:467
 #, kde-format
 msgid "Registration Data"
 msgstr "Kayıt Verisi"
 
-#: kexthighscore_gui.cpp:480
+#: kexthighscore_gui.cpp:478
 #, kde-format
 msgid "Key:"
 msgstr "Anahtar:"
 
-#: kexthighscore_gui.cpp:487 kexthighscore_gui.cpp:530
+#: kexthighscore_gui.cpp:485 kexthighscore_gui.cpp:528
 #, kde-format
 msgid "Remove"
 msgstr "Kaldır"
 
-#: kexthighscore_gui.cpp:532
+#: kexthighscore_gui.cpp:530
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -193,33 +193,33 @@ msgstr ""
 "Bu kayıt anahtarınızı silecektir. Kayıtlı kullanıcı adınızı bundan sonra "
 "kullanamayacaksınız."
 
-#: kexthighscore_gui.cpp:575
+#: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Lütfen boş olmayan bir kullanıcı adı girin."
 
-#: kexthighscore_gui.cpp:579
+#: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Kullanıcı adı kullanılıyor. Lütfen başka bir tane deneyin"
 
-#: kexthighscore_gui.cpp:600
+#: kexthighscore_gui.cpp:598
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Takma Adınızı Girin"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:607
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Tebrikler, kazandınız!"
 
-#: kexthighscore_gui.cpp:614
+#: kexthighscore_gui.cpp:612
 #, kde-format
 msgid "Enter your nickname:"
 msgstr "Takma adınızı girin:"
 
-#: kexthighscore_gui.cpp:622
+#: kexthighscore_gui.cpp:620
 #, kde-format
 msgid "Do not ask again."
 msgstr "Bir daha sorma."
