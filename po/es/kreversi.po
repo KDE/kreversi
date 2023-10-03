@@ -6,7 +6,7 @@
 # Santiago Fernandez Sancho <santi@kde-es.org>, 2004.
 # santi <santi@kde-es.org>, 2005, 2006.
 # Santiago Fernández Sancho <santi@kde-es.org>, 2007, 2008.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2009, 2013, 2017, 2019, 2021.
+# SPDX-FileCopyrightText: 2009, 2013, 2017, 2019, 2021, 2023 Eloy Cuadra <ecuadra@eloihr.net>
 # Huever, 2009.
 # Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
 # David Paul <eodos0@gmail.com>, 2014.
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-02 01:41+0000\n"
-"PO-Revision-Date: 2021-08-14 19:23+0100\n"
+"PO-Revision-Date: 2023-10-02 21:44+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Jaime Robles <jaime@kde.org>\n"
-"X-Generator: Lokalize 21.08.0\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -203,12 +203,12 @@ msgstr ""
 #: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr "Por favor, escoja un alias que no esté vacío."
+msgstr "Escoja un alias que no esté vacío."
 
 #: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr "El alias ya está en uso. Por favor, escoja otro."
+msgstr "El alias ya está en uso. Escoja otro."
 
 #: kexthighscore_gui.cpp:598
 #, kde-format
@@ -497,9 +497,9 @@ msgid ""
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 msgstr ""
-"(c) 1997-2000, Mario Weilguni\n"
-"(c) 2004-2006, Inge Wallin\n"
-"(c) 2006, Dmitry Suzdalev"
+"© 1997-2000, Mario Weilguni\n"
+"© 2004-2006, Inge Wallin\n"
+"© 2006, Dmitry Suzdalev"
 
 #: main.cpp:32
 #, kde-format
