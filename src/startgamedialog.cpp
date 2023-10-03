@@ -14,7 +14,7 @@
 #include <QSvgRenderer>
 #include <QVBoxLayout>
 
-#include <KgDifficulty>
+#include <KGameDifficulty>
 #include <KLocalizedString>
 
 StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
@@ -55,7 +55,7 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     ui->blackAI->setIcon(QIcon::fromTheme(QStringLiteral("computer")));
     ui->blackHuman->setIcon(QIcon::fromTheme(QStringLiteral("user-identity")));
 
-    QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
+    QList< const KGameDifficultyLevel * > diffList = KGameDifficulty::global()->levels();
     const QIcon icon = QIcon::fromTheme(QStringLiteral("games-difficult"));
 
     for (int i = 0; i < diffList.size(); ++i) {

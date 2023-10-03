@@ -12,7 +12,7 @@
 #include <KLocalizedString>
 #include <KConfigGroup>
 #include <KConfig>
-#include <KgDifficulty>
+#include <KGameDifficulty>
 
 namespace KExtHighscore
 {
@@ -30,7 +30,7 @@ ExtManager::ExtManager()
     std::copy(RANGE, RANGE+6, s.begin());
     setScoreHistogram(s, ScoreBound);
 
-    QList< const KgDifficultyLevel * > diffList = Kg::difficulty()->levels();
+    QList< const KGameDifficultyLevel * > diffList = KGameDifficulty::global()->levels();
 
     for (int i = 0; i < diffList.size(); i++)
         m_typeLabels << diffList.at(i)->title();

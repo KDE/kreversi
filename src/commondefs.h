@@ -9,7 +9,7 @@
 #define COMMONDEFS_H
 
 #include <QString>
-#include <KgDifficulty>
+#include <KGameDifficulty>
 
 #include "preferences.h"
 
@@ -106,7 +106,7 @@ int difficultyLevelToInt();
  * @return Difficulty level that in @p skill place in increasing order among
  *         all difficulty levels
  */
-const KgDifficultyLevel *intToDifficultyLevel(int skill);
+const KGameDifficultyLevel *intToDifficultyLevel(int skill);
 }
 
 

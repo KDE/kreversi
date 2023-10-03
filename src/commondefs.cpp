@@ -49,15 +49,15 @@ QString Utils::moveToString(KReversiMove move)
 int Utils::difficultyLevelToInt()
 {
 
-    for (int i = 0; i < Kg::difficulty()->levels().size(); i++)
-        if (Kg::difficultyLevel()
-                == Kg::difficulty()->levels()[i]->standardLevel())
+    for (int i = 0; i < KGameDifficulty::global()->levels().size(); i++)
+        if (KGameDifficulty::globalLevel()
+                == KGameDifficulty::global()->levels()[i]->standardLevel())
             return i;
 
     return -1;
 }
 
-const KgDifficultyLevel *Utils::intToDifficultyLevel(int skill)
+const KGameDifficultyLevel *Utils::intToDifficultyLevel(int skill)
 {
-    return Kg::difficulty()->levels()[skill];
+    return KGameDifficulty::global()->levels()[skill];
 }

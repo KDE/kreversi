@@ -49,14 +49,14 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     m_statusBarLabel[common]->setText(i18n("Press start game!"));
 
     // initialize difficulty stuff
-    Kg::difficulty()->addStandardLevelRange(
-        KgDifficultyLevel::VeryEasy, KgDifficultyLevel::Impossible,
-        KgDifficultyLevel::Easy //default
+    KGameDifficulty::global()->addStandardLevelRange(
+        KGameDifficultyLevel::VeryEasy, KGameDifficultyLevel::Impossible,
+        KGameDifficultyLevel::Easy //default
     );
 
-    KgDifficultyGUI::init(this);
-    connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KReversiMainWindow::levelChanged);
-    Kg::difficulty()->setEditable(false);
+    KGameDifficultyGUI::init(this);
+    connect(KGameDifficulty::global(), &KGameDifficulty::currentLevelChanged, this, &KReversiMainWindow::levelChanged);
+    KGameDifficulty::global()->setEditable(false);
 
     // initialize history dock
     m_historyView = new QListWidget(this);
@@ -407,14 +407,14 @@ void KReversiMainWindow::receivedGameStartInformation(const GameStartInformation
 
     if (info.type[White] == GameStartInformation::AI
             && info.type[Black] == GameStartInformation::Human) {
-        Kg::difficulty()->setEditable(true);
-        Kg::difficulty()->select(Utils::intToDifficultyLevel(info.skill[White]));
+        KGameDifficulty::global()->setEditable(true);
+        KGameDifficulty::global()->select(Utils::intToDifficultyLevel(info.skill[White]));
     } else if (info.type[White] == GameStartInformation::Human
                && info.type[Black] == GameStartInformation::AI) {
-        Kg::difficulty()->setEditable(true);
-        Kg::difficulty()->select(Utils::intToDifficultyLevel(info.skill[Black]));
+        KGameDifficulty::global()->setEditable(true);
+        KGameDifficulty::global()->select(Utils::intToDifficultyLevel(info.skill[Black]));
     } else
-        Kg::difficulty()->setEditable(false);
+        KGameDifficulty::global()->setEditable(false);
 
     m_hintAct->setEnabled(m_game->isHintAllowed());
     m_undoAct->setEnabled(m_game->canUndo());
