@@ -17,7 +17,7 @@
 #include <QQmlContext>
 #include <QStandardPaths>
 
-KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider)
+KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KGameThemeProvider *provider)
     : QQuickWidget(parent),
     m_provider(provider),
     m_delay(ANIMATION_SPEED_NORMAL),

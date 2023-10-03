@@ -70,7 +70,7 @@ private:
     bool m_firstShow;
     bool m_startInDemoMode;
 
-    KgThemeProvider *m_provider;
+    KGameThemeProvider *m_provider;
 
     QAction *m_undoAct;
     QAction *m_hintAct;

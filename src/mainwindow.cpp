@@ -38,7 +38,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 {
     memset(m_player, 0, sizeof(m_player));
 
-    m_provider = new KgThemeProvider();
+    m_provider = new KGameThemeProvider();
     m_provider->discoverThemes(QStringLiteral("pics"));
 
     for (auto &label : m_statusBarLabel) {

@@ -12,7 +12,7 @@
 
 #include <QDialog>
 #include <KUser>
-#include <KgThemeProvider>
+#include <KGameThemeProvider>
 class QAbstractButton;
 namespace Ui
 {
@@ -28,7 +28,7 @@ class StartGameDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit StartGameDialog(QWidget *parent, KgThemeProvider *provider);
+    explicit StartGameDialog(QWidget *parent, KGameThemeProvider *provider);
     ~StartGameDialog() override;
 
     /**
@@ -79,7 +79,7 @@ private:
     /**
      * Used to draw chip
      */
-    KgThemeProvider *m_provider;
+    KGameThemeProvider *m_provider;
     /**
      * Sets chip's color to use
      */

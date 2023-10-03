@@ -17,7 +17,7 @@
 #include <KGameDifficulty>
 #include <KLocalizedString>
 
-StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
+StartGameDialog::StartGameDialog(QWidget *parent, KGameThemeProvider *provider) :
     QDialog(parent),
     ui(new Ui::StartGameDialog), m_provider(provider), m_chipsPrefix(BlackWhite)
 {

@@ -13,7 +13,7 @@
 #include "commondefs.h"
 #include "kreversigame.h"
 // KDEGames
-#include <KgThemeProvider>
+#include <KGameThemeProvider>
 // Qt
 #include <QQuickWidget>
 
@@ -28,7 +28,7 @@ class KReversiView : public QQuickWidget
 {
     Q_OBJECT
 public:
-    explicit KReversiView(KReversiGame* game, QWidget *parent, KgThemeProvider *provider);
+    explicit KReversiView(KReversiGame* game, QWidget *parent, KGameThemeProvider *provider);
     /**
      *  Destructor used to delete game object owned by class
      */
@@ -129,7 +129,7 @@ private:
     /**
      *  Used to access theme engine from QML
      */
-    KgThemeProvider *m_provider;
+    KGameThemeProvider *m_provider;
 
     /**
      *  Position of calculated hint. It is not valid if there is no hint
