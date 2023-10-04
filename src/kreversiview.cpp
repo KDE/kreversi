@@ -13,6 +13,7 @@
 // KF
 #include <KLocalizedString>
 #include <KLocalizedContext>
+#include <KQuickIconProvider>
 // Qt
 #include <QQmlContext>
 #include <QStandardPaths>
@@ -27,6 +28,9 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KGameThemeProvid
     m_showLabels(false)
 {
     QQmlEngine *engine = this->engine();
+
+    // setup ImageProvider for KIconTheme icons
+    engine->addImageProvider(QStringLiteral("icon"), new KQuickIconProvider);
 
     auto *localizedContextObject = new KLocalizedContext(engine);
     engine->rootContext()->setContextObject(localizedContextObject);

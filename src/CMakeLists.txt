@@ -59,6 +59,7 @@ target_link_libraries(kreversi
     KF6::CoreAddons
     KF6::Crash
     KF6::DBusAddons
+    KF6::IconThemes
     KF6::KIOCore
     KF6::KIOFileWidgets
     KF6::WidgetsAddons
