@@ -64,6 +64,7 @@ target_link_libraries(kreversi
     KF${KF_MAJOR_VERSION}::CoreAddons
     KF${KF_MAJOR_VERSION}::Crash
     KF${KF_MAJOR_VERSION}::DBusAddons
+    KF${KF_MAJOR_VERSION}::IconThemes
     KF${KF_MAJOR_VERSION}::KIOCore
     KF${KF_MAJOR_VERSION}::KIOFileWidgets
     KF${KF_MAJOR_VERSION}::WidgetsAddons
