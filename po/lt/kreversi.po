@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:41+0000\n"
+"POT-Creation-Date: 2023-10-05 01:40+0000\n"
 "PO-Revision-Date: 2011-08-09 23:24+0300\n"
 "Last-Translator: Remigijus Jarmalavičius <remigijus@jarmalavicius.lt>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -446,25 +446,25 @@ msgstr "&Nuostatos"
 msgid "Main Toolbar"
 msgstr "Pagrindinė įrankinė"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Kompiuteris negali eiti. Vėl jūsų ėjimas"
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "White can not perform any move. It is black turn again."
 msgstr "Kompiuteris negali eiti. Vėl jūsų ėjimas"
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Negalite atlikti jokio ėjimo. Dabar kompiuteris atliks kitą ėjimą."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Black can not perform any move. It is white turn again."

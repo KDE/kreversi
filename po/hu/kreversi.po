@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:41+0000\n"
+"POT-Creation-Date: 2023-10-05 01:40+0000\n"
 "PO-Revision-Date: 2014-02-16 19:07+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -446,24 +446,24 @@ msgstr "&Beállítások"
 msgid "Main Toolbar"
 msgstr "Alap eszköztár"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "White can not perform any move. It is black turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "A világos nem tud semmilyen lépést sem tenni. Ismét a sötét jön."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "A világos nem tud semmilyen lépést sem tenni. Ismét a sötét jön."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 #| msgid "Black can not perform any move. It is white turn again."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "A sötét nem tud semmilyen lépést sem tenni. Ismét a világos jön."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "A sötét nem tud semmilyen lépést sem tenni. Ismét a világos jön."

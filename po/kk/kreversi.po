@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:41+0000\n"
+"POT-Creation-Date: 2023-10-05 01:40+0000\n"
 "PO-Revision-Date: 2013-10-28 02:42+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -445,25 +445,25 @@ msgstr "&Баптау"
 msgid "Main Toolbar"
 msgstr "Негізгі құралдар"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Компьютер жүре алмайды. Тағы Сіз жүресіз."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "White can not perform any move. It is black turn again."
 msgstr "Компьютер жүре алмайды. Тағы Сіз жүресіз."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Сіз жүре алмайсыз. Тағы компьютер жүреді."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Black can not perform any move. It is white turn again."

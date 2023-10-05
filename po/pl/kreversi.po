@@ -1,4 +1,4 @@
-# Version: $Revision: 1661487 $
+# Version: $Revision: 1661692 $
 # translation of kreversi.po to Polish
 # translation of kreversi.po to
 # translation of kreversi.po to
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:41+0000\n"
+"POT-Creation-Date: 2023-10-05 01:40+0000\n"
 "PO-Revision-Date: 2022-01-08 09:19+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -453,22 +453,22 @@ msgstr "&Ustawienia"
 msgid "Main Toolbar"
 msgstr "Główny pasek narzędzi"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Czerwone nie mogą wykonać żadnego ruchu. To znowu kolej niebieskich."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Białe nie mogą wykonać żadnego ruchu. To znowu kolej czarnych."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Niebieskie nie mogą wykonać żadnego ruchu. To znowu kolej czerwonych."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Czarne nie mogą wykonać żadnego ruchu. To znowu kolej białych."
