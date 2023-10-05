@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2021-01-18 19:17+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -458,22 +458,22 @@ msgstr "அமைத்தல்கள்"
 msgid "Main Toolbar"
 msgstr "பிரதான கருவிப்பட்டை"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr ""
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr ""
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr ""
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2009-02-26 10:59+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -447,24 +447,24 @@ msgstr "सेटिंग (&S)"
 msgid "Main Toolbar"
 msgstr "मुख्य औजार पट्टी"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "कम्प्यूटर अब चाल नइ चल सके. फिर से अब ए आप मन के बारी हे."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "White can not perform any move. It is black turn again."
 msgstr "कम्प्यूटर अब चाल नइ चल सके. फिर से अब ए आप मन के बारी हे."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "अब आप मन अउ परफार्म नइ कर सके. अब कम्प्यूटर के बारी हे."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, fuzzy, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "अब आप मन अउ परफार्म नइ कर सके. अब कम्प्यूटर के बारी हे."

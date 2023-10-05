@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2019-11-22 01:46+0800\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
@@ -447,22 +447,22 @@ msgstr "設定(&S)"
 msgid "Main Toolbar"
 msgstr "主工具列"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "紅方沒有地方可以下。再次換藍方。"
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "白方沒有地方可以下。再次換黑方。"
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "藍方沒有地方可以下。再次換紅方。"
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "黑方沒有地方可以下。再次換白方。"

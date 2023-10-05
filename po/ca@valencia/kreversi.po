@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2021-08-13 18:43+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -453,23 +453,23 @@ msgstr "Con&figuració"
 msgid "Main Toolbar"
 msgstr "Barra d'eines principal"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "El roig no pot fer cap moviment. Una altra vegada és el torn del blau."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr ""
 "El blanc no pot fer cap moviment. Una altra vegada és el torn del negre."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "El blau no pot fer cap moviment. Una altra vegada és el torn del roig."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr ""

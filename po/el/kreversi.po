@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2021-09-05 10:53+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -451,22 +451,22 @@ msgstr "Ρ&υθμίσεις"
 msgid "Main Toolbar"
 msgstr "Κύρια γραμμή εργαλείων"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Τα κόκκινα δεν μπορούν να παίξουν. Είναι η σειρά των μπλε."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Τα λευκά δεν μπορούν να παίξουν. Είναι η σειρά των μαύρων."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Τα μπλε δεν μπορούν να παίξουν. Είναι η σειρά των κόκκινων."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Τα μαύρα δεν μπορούν να παίξουν. Είναι η σειρά των μπλε."

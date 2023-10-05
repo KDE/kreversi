@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2014-10-20 19:25+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -451,24 +451,24 @@ msgstr "&Postavke"
 msgid "Main Toolbar"
 msgstr "Glavna alatna traka"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "White can not perform any move. It is black turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Bijeli ne može povući nijedan potez. Crni je ponovo na potezu."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Bijeli ne može povući nijedan potez. Crni je ponovo na potezu."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 #| msgid "Black can not perform any move. It is white turn again."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Crni ne može povući nijedan potez. Bijeli je ponovo na potezu."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Crni ne može povući nijedan potez. Bijeli je ponovo na potezu."

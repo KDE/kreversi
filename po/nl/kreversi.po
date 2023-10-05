@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2021-08-13 13:54+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -451,22 +451,22 @@ msgstr "&Instellingen"
 msgid "Main Toolbar"
 msgstr "Hoofdwerkbalk"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Rood kan geen zet doen. Blauw is weer aan de beurt."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Wit kan geen zet doen. Zwart is weer aan de beurt."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Blauw kan geen zet doen. Rood is weer aan de beurt."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Zwart kan geen zet doen. Wit is weer aan de beurt."

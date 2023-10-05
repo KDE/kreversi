@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2011-04-06 18:00-0700\n"
 "Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -453,25 +453,25 @@ msgstr "設定(&S)"
 msgid "Main Toolbar"
 msgstr "メインツールバー"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "コンピュータは打つ手がありません。あなたの番です。"
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "White can not perform any move. It is black turn again."
 msgstr "コンピュータは打つ手がありません。あなたの番です。"
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "あなたは打つ手がありません。コンピュータの番になります。"
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Black can not perform any move. It is white turn again."

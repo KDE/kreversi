@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2009-10-25 09:41+0700\n"
 "Last-Translator: Morn Met\n"
 "Language-Team: Khmer <kde-i18n-doc@kde.org>\n"
@@ -446,25 +446,25 @@ msgstr "ការ​កំណត់"
 msgid "Main Toolbar"
 msgstr "របារ​ឧបករណ៍​មេ"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "កុំព្យូទ័រ​មិន​អាច​ផ្លាស់​ទី​បាន​​ទេ ។ វា​ជា​វេន​របស់​អ្នក​ម្ដង​ទៀត ។"
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "White can not perform any move. It is black turn again."
 msgstr "កុំព្យូទ័រ​មិន​អាច​ផ្លាស់​ទី​បាន​​ទេ ។ វា​ជា​វេន​របស់​អ្នក​ម្ដង​ទៀត ។"
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "អ្នក​មិន​អាច​អនុវត្ត​ការ​ផ្លាស់​ទី​បាន​​ទេ ។ កុំព្យូទ័រ​នឹង​​យក​​​វេន​ក្រោយ​ឥឡូវនេះ​ ។"
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Black can not perform any move. It is white turn again."

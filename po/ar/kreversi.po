@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:44+0000\n"
+"POT-Creation-Date: 2023-10-05 02:24+0000\n"
 "PO-Revision-Date: 2007-10-14 15:45+0000\n"
 "Last-Translator: Youssef Chahibi <chahibi@gmail.com>\n"
 "Language-Team: <en@li.org>\n"
@@ -440,22 +440,22 @@ msgstr "إ&عدادات"
 msgid "Main Toolbar"
 msgstr "شريط الأدوات الرئيسي"
 
-#: kreversiview.cpp:251
+#: kreversiview.cpp:255
 #, fuzzy, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "الحاسوب ليس انقل itإيطالياهو هو."
 
-#: kreversiview.cpp:252
+#: kreversiview.cpp:256
 #, fuzzy, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "الحاسوب ليس انقل itإيطالياهو هو."
 
-#: kreversiview.cpp:261
+#: kreversiview.cpp:265
 #, fuzzy, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "أنت ليس أي منها انقل الحاسوب التالي الآن."
 
-#: kreversiview.cpp:262
+#: kreversiview.cpp:266
 #, fuzzy, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "أنت ليس أي منها انقل الحاسوب التالي الآن."
