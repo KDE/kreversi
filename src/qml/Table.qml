@@ -118,7 +118,7 @@ Item {
         chipsImagePrefix: parent.chipsImagePrefix
         chipsAnimationTime: parent.chipsAnimationTime
 
-        onCellClicked: tableContainer.cellClicked(row, column)
+        onCellClicked: (row, column) => tableContainer.cellClicked(row, column)
     }
 
     Popup {
