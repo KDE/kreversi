@@ -41,15 +41,16 @@ int main(int argc, char **argv)
 
     KAboutData::setApplicationData(aboutData);
 
-    QCommandLineParser parser;
     KCrash::initialize();
-    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("demo"), i18n("Start with demo game playing")));
 
+    QCommandLineParser parser;
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("demo"), i18n("Start with demo game playing")));
     aboutData.setupCommandLine(&parser);
     parser.process(application);
     aboutData.processCommandLine(&parser);
 
     KDBusService service;
+
     if (application.isSessionRestored()) {
         kRestoreMainWindows<KReversiMainWindow>();
     } else {
