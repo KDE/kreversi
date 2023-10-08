@@ -40,6 +40,7 @@ int main(int argc, char **argv)
     aboutData.addCredit(i18n("Denis Kuplyakov"), i18n("Port rendering code to QML, redesign and a lot of improvements"), QStringLiteral("dener.kup@gmail.com"));
 
     KAboutData::setApplicationData(aboutData);
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("kreversi")));
 
     KCrash::initialize();
 
@@ -59,8 +60,6 @@ int main(int argc, char **argv)
     }
 
     KExtHighscore::ExtManager highscoresManager;
-
-    application.setWindowIcon(QIcon::fromTheme(QStringLiteral("kreversi")));
 
     return application.exec();
 }
