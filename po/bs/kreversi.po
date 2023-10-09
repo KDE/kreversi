@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-05 01:40+0000\n"
+"POT-Creation-Date: 2023-10-09 01:45+0000\n"
 "PO-Revision-Date: 2014-10-20 19:25+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -579,7 +579,7 @@ msgstr "Denis Kuplyakov"
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Prebacivanje koda za obradu na QML, redizajn i mnogo poboljšanja"
 
-#: main.cpp:46
+#: main.cpp:48
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Počnite sa demo igrama"

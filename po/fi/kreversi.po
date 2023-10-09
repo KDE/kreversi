@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-05 01:40+0000\n"
+"POT-Creation-Date: 2023-10-09 01:45+0000\n"
 "PO-Revision-Date: 2021-08-18 19:27+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -587,7 +587,7 @@ msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr ""
 "Renderointikoodin siirros QML:ään, uudelleensuunnittelu ja paljon parannuksia"
 
-#: main.cpp:46
+#: main.cpp:48
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Aloita toistamalla esittelypeliä"

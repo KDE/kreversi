@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-05 01:40+0000\n"
+"POT-Creation-Date: 2023-10-09 01:45+0000\n"
 "PO-Revision-Date: 2021-08-13 08:55+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -575,7 +575,7 @@ msgstr "Denis Kuplyakov"
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Портування інтерфейсу на QML, зміна дизайну та багато покращень"
 
-#: main.cpp:46
+#: main.cpp:48
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Починати з демонстраційної гри"

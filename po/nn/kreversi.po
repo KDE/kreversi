@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-05 01:40+0000\n"
+"POT-Creation-Date: 2023-10-09 01:45+0000\n"
 "PO-Revision-Date: 2023-03-11 23:29+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -570,7 +570,7 @@ msgstr "Denis Kuplyakov"
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Porting av oppteikningskoden til QML, redesign og mange forbetringar"
 
-#: main.cpp:46
+#: main.cpp:48
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Start ein demonstrasjon av spelet"

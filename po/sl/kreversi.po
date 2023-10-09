@@ -2,7 +2,7 @@
 # Translation of kreversi.po to Slovenian
 # -*- mode:po; coding:iso-latin-2; -*- Slovenian msg. catalog for Kreversi
 # Copyright (C) 2001, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-# $Id: kreversi.po 1661692 2023-10-05 02:03:14Z scripty $
+# $Id: kreversi.po 1661987 2023-10-09 02:08:15Z scripty $
 # $Source$
 #
 # Marko Samastur <markos@elite.org>, 1999.
@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-05 01:40+0000\n"
+"POT-Creation-Date: 2023-10-09 01:45+0000\n"
 "PO-Revision-Date: 2021-08-16 06:23+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -584,7 +584,7 @@ msgstr "Denis Kuplyakov"
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Predelava za kode za izrisovanje v QML, nova zasnova in več izboljšav"
 
-#: main.cpp:46
+#: main.cpp:48
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Zaženi s predstavitveno igro"
