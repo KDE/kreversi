@@ -17,7 +17,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 // KDEGames
-#include <KStandardGameAction>
+#include <KGameStandardAction>
 
 #include "commondefs.h"
 #include "kreversihumanplayer.h"
@@ -95,16 +95,16 @@ KReversiMainWindow::~KReversiMainWindow()
 void KReversiMainWindow::setupActionsInit()
 {
     // Common actions
-    KStandardGameAction::gameNew(this, &KReversiMainWindow::slotNewGame, actionCollection());
-    KStandardGameAction::highscores(this, &KReversiMainWindow::slotHighscores, actionCollection());
-    KStandardGameAction::quit(this, &QWidget::close, actionCollection());
+    KGameStandardAction::gameNew(this, &KReversiMainWindow::slotNewGame, actionCollection());
+    KGameStandardAction::highscores(this, &KReversiMainWindow::slotHighscores, actionCollection());
+    KGameStandardAction::quit(this, &QWidget::close, actionCollection());
 
     // Undo
-    m_undoAct = KStandardGameAction::undo(this, &KReversiMainWindow::slotUndo, actionCollection());
+    m_undoAct = KGameStandardAction::undo(this, &KReversiMainWindow::slotUndo, actionCollection());
     m_undoAct->setEnabled(false);   // nothing to undo at the start of the game
 
     // Hint
-    m_hintAct = KStandardGameAction::hint(m_view, &KReversiView::slotHint, actionCollection());
+    m_hintAct = KGameStandardAction::hint(m_view, &KReversiView::slotHint, actionCollection());
     m_hintAct->setEnabled(false);
 
     // Last move
