@@ -2,6 +2,7 @@
 Exec=kreversi -qwindowtitle %c
 Name=KReversi
 Name[af]=Kreversi
+Name[ast]=KReversi
 Name[be]=Рэверсі
 Name[bn]=কে-রিভার্সি
 Name[br]=KReversi
