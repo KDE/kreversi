@@ -9,11 +9,12 @@
 
 #include "kexthighscore.h"
 
+#include <KGameHighscore>
+
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
-#include <KHighscore>
 #include <KLazyLocalizedString>
 
 #include <QDateTime>
@@ -114,7 +115,7 @@ class ItemContainer
 //-----------------------------------------------------------------------------
 /**
  * Manage a bunch of @ref Item which are saved under the same group
- * in KHighscores config file.
+ * in KGameHighscores config file.
  */
 class ItemArray : public QList<ItemContainer *>
 {
@@ -232,7 +233,7 @@ class ManagerPrivate
     bool isWWHSAvailable() const { return !serverURL.isEmpty(); }
     ScoreInfos &scoreInfos()     { return *_scoreInfos; }
     PlayerInfos &playerInfos()   { return *_playerInfos; }
-    KHighscore &hsConfig()       { return *_hsConfig; }
+    KGameHighscore &hsConfig()   { return *_hsConfig; }
     enum QueryType { Submit, Register, Change, Players, Scores };
     QUrl queryUrl(QueryType type, const QString &newName = QLatin1String("")) const;
 
@@ -245,7 +246,7 @@ class ManagerPrivate
     Manager::ShowMode showMode;
 
  private:
-    KHighscore   *_hsConfig;
+    KGameHighscore *_hsConfig;
     PlayerInfos  *_playerInfos;
     ScoreInfos   *_scoreInfos;
     bool          _first;

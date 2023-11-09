@@ -12,8 +12,10 @@
 #include <QLocale>
 #include <QWidget>
 
-#include <KHighscore>
 #include <KPageDialog>
+
+#include <KGameHighscore>
+
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"
 

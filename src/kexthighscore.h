@@ -67,7 +67,7 @@ extern ManagerPrivate *internal;
  * This class manages highscores and players entries (several players can
  * share the same highscores list if the libkdegame library is built to
  * support a common highscores file; NOTE that to correctly implement such
- * feature we probably need a locking mechanism in @ref KHighscore).
+ * feature we probably need a locking mechanism in KGameHighscore).
  *
  * You need one instance of this class during the application lifetime; in
  * main() just insert 

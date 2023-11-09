@@ -517,7 +517,7 @@ ManagerPrivate::ManagerPrivate(uint nbGameTypes, Manager &m)
 
 void ManagerPrivate::init(uint maxNbEntries)
 {
-    _hsConfig = new KHighscore(false, nullptr);
+    _hsConfig = new KGameHighscore(false, nullptr);
     _playerInfos = new PlayerInfos;
     _scoreInfos = new ScoreInfos(maxNbEntries, *_playerInfos);
 }
@@ -722,8 +722,8 @@ bool ManagerPrivate::modifySettings(const QString &newName,
 void ManagerPrivate::convertToGlobal()
 {
     // read old highscores
-    KHighscore *tmp = _hsConfig;
-    _hsConfig = new KHighscore(true, nullptr);
+    KGameHighscore *tmp = _hsConfig;
+    _hsConfig = new KGameHighscore(true, nullptr);
     QList<Score> scores(_scoreInfos->nbEntries());
     for (int i=0; i<scores.count(); i++)
         scores[i] = readScore(i);
