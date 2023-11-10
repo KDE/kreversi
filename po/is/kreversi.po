@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-09 01:45+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2021-10-07 08:57+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -324,23 +324,23 @@ msgstr "Hrátt skeyti: %1"
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "Ógilt svar frá alheims-stigatöflu-miðlara (vantar: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:268
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Stig í fjölspilun"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:279
 #, kde-format
 msgid "No game played."
 msgstr "Enginn leikur leikinn."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:281
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Stig í síðasta leik:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:288
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Stig í síðustu %1 leikjum:"

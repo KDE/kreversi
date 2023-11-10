@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-09 01:45+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2021-09-13 13:13+0200\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -318,23 +318,23 @@ msgstr ""
 "Risposta non valida dal server dei punteggi internazionali più alti "
 "(elemento mancante: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:268
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "Punteggi multigiocatore"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:279
 #, kde-format
 msgid "No game played."
 msgstr "Nessuna partita disputata."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:281
 #, kde-format
 msgid "Scores for last game:"
 msgstr "Punteggi per l'ultima partita:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:288
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "Punteggi per le ultime %1 partite:"

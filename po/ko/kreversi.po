@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-09 01:45+0000\n"
+"POT-Creation-Date: 2023-11-10 01:46+0000\n"
 "PO-Revision-Date: 2021-11-12 00:39+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -316,23 +316,23 @@ msgstr "원래 메시지: %1"
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "전세계 최고 기록 서버에서 잘못된 응답을 반환했습니다(빠진 항목: %1)."
 
-#: kexthighscore_item.cpp:266
+#: kexthighscore_item.cpp:268
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "멀티 플레이어 점수"
 
-#: kexthighscore_item.cpp:277
+#: kexthighscore_item.cpp:279
 #, kde-format
 msgid "No game played."
 msgstr "플레이한 게임이 없습니다."
 
-#: kexthighscore_item.cpp:279
+#: kexthighscore_item.cpp:281
 #, kde-format
 msgid "Scores for last game:"
 msgstr "마지막 게임 점수:"
 
-#: kexthighscore_item.cpp:286
+#: kexthighscore_item.cpp:288
 #, kde-format
 msgid "Scores for the last %1 games:"
 msgstr "마지막 게임 %1판 점수:"
