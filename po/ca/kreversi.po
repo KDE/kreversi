@@ -1,9 +1,9 @@
 # Translation of kreversi.po to Catalan
-# Copyright (C) 2000-2021 This_file_is_part_of_KDE
+# Copyright (C) 2000-2023 This_file_is_part_of_KDE
 #
 # Francesc J Devesa i Berenguer <frandeve@hotmail.com>, 2000, 2001.
 # Albert Astals Cid <aacid@kde.org>, 2003, 2004, 2005, 2007, 2008.
-# Josep M. Ferrer <txemaq@gmail.com>, 2005, 2006, 2007, 2008, 2010, 2012, 2013, 2014, 2015, 2017, 2019, 2021.
+# Josep M. Ferrer <txemaq@gmail.com>, 2005, 2006, 2007, 2008, 2010, 2012, 2013, 2014, 2015, 2017, 2019, 2021, 2023.
 # Aleix Pol <aleixpol@gmail.com>, 2007.
 # Manuel Tortosa <manutortosa@chakra-project.org>, 2009, 2010.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2017, 2020, 2021.
@@ -12,14 +12,14 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-10 01:46+0000\n"
-"PO-Revision-Date: 2021-08-13 18:43+0200\n"
+"PO-Revision-Date: 2023-11-28 13:34+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -592,7 +592,7 @@ msgstr "Prem per a començar la partida!"
 #: mainwindow.cpp:64
 #, kde-format
 msgid "Move History"
-msgstr "Mou l'historial"
+msgstr "Historial de moviments"
 
 #: mainwindow.cpp:111
 #, kde-format
