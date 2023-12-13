@@ -4,19 +4,20 @@
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007.
 # Franklin Weng <franklin@mail.everfocus.com.tw>, 2010, 2013, 2014.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
+# SPDX-FileCopyrightText: 2023 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-10 01:46+0000\n"
-"PO-Revision-Date: 2019-11-22 01:46+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-12-12 19:06+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.11.80\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #, kde-format
@@ -104,8 +105,7 @@ msgid "View world-wide players"
 msgstr "顯示世界各地的玩家"
 
 #: kexthighscore_gui.cpp:221
-#, fuzzy, kde-format
-#| msgid "Highscores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "高分榜"
@@ -136,11 +136,10 @@ msgid "Won Games"
 msgstr "贏的遊戲"
 
 #: kexthighscore_gui.cpp:405
-#, fuzzy, kde-format
-#| msgid "Configure Highscores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
-msgstr "配置高分榜"
+msgstr "設定高分榜"
 
 #: kexthighscore_gui.cpp:418
 #, kde-format
@@ -200,11 +199,10 @@ msgid "Nickname already in use. Please choose another one"
 msgstr "暱稱已經被使用。請選擇其他暱稱。"
 
 #: kexthighscore_gui.cpp:598
-#, fuzzy, kde-format
-#| msgid "Enter Your Nickname"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "輸入暱稱："
+msgstr "輸入暱稱"
 
 #: kexthighscore_gui.cpp:607
 #, kde-format
@@ -322,8 +320,7 @@ msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "來自世界高分榜伺服器的無效回答。（遺失項目： %1）"
 
 #: kexthighscore_item.cpp:268
-#, fuzzy, kde-format
-#| msgid "Multiplayers Scores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
 msgstr "多人遊戲成績"
@@ -688,8 +685,7 @@ msgid "Computer"
 msgstr "電腦"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
 msgstr "新遊戲"
