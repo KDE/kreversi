@@ -84,6 +84,7 @@
   <summary xml:lang="uk">Гра на дошці (реверсі)</summary>
   <summary xml:lang="x-test">xxReversi Board Gamexx</summary>
   <summary xml:lang="zh-CN">黑白棋游戏</summary>
+  <summary xml:lang="zh-TW">黑白棋棋盤遊戲</summary>
   <description>
     <p>
       KReversi is a simple one player strategy game played against the computer.
