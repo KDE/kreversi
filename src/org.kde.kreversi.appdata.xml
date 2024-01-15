@@ -125,6 +125,7 @@
     <p xml:lang="uk">KReversi — проста стратегічна гра для одного гравця, суперником якого буде комп’ютер. Якщо фішка поміняє власника, її буде перевернуто, і вона показуватиме колір гравця-власника. Переможцем проголошується той з гравців, у якого буде більше власних фішок за такої позиції у грі, коли подальші ходи будуть неможливими.</p>
     <p xml:lang="x-test">xxKReversi is a simple one player strategy game played against the computer. If a player's piece is captured by an opposing player, that piece is turned over to reveal the color of that player. A winner is declared when one player has more pieces of his own color on the board and there are no more possible moves.xx</p>
     <p xml:lang="zh-CN">KReversi 是一个简单的与计算机对战的单机策略游戏。 如果玩家的一块被对方玩家夺取，那块将被翻转来显示该玩家的颜色。 当一个玩家在棋盘上拥有更多的自己的颜色并且没有更多可能的落子时，赢家诞生。</p>
+    <p xml:lang="zh-TW">KReversi 是一個簡單的單人意志遊戲，與電腦進行對戰。如果玩家的棋被對手吃下，它會被翻面而變成該玩家的顏色。不再有地方可以下棋的時候棋盤上最多的顏色所屬的玩家就是贏家。</p>
   </description>
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://apps.kde.org/kreversi</url>
