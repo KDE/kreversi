@@ -144,6 +144,4 @@ GenericName[zh_CN]=黑白棋游戏
 GenericName[zh_TW]=黑白棋棋盤遊戲
 Icon=kreversi
 StartupNotify=true
-X-DBUS-StartupType=Multi
 Categories=Qt;KDE;Game;BoardGame;
-X-DBUS-ServiceName=org.kde.kreversi
