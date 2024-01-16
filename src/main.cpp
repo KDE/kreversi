@@ -21,7 +21,8 @@ int main(int argc, char **argv)
 {
     QApplication application(argc, argv);
 
-    KLocalizedString::setApplicationDomain("kreversi");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kreversi"));
+
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),
                          QStringLiteral(KREVERSI_VERSION_STRING),
                          i18n("KDE Reversi Board Game"),
