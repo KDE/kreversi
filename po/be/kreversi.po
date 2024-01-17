@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-10 01:46+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2007-06-25 11:11+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -473,17 +473,17 @@ msgstr ""
 msgid "Black can not perform any move. It is white turn again."
 msgstr ""
 
-#: main.cpp:25
+#: main.cpp:26
 #, kde-format
 msgid "KReversi"
 msgstr "KReversi"
 
-#: main.cpp:27
+#: main.cpp:28
 #, kde-format
 msgid "KDE Reversi Board Game"
 msgstr "Настольная гульня для KDE"
 
-#: main.cpp:29
+#: main.cpp:30
 #, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
@@ -491,92 +491,92 @@ msgid ""
 "(c) 2006, Dmitry Suzdalev"
 msgstr ""
 
-#: main.cpp:32
+#: main.cpp:33
 #, kde-format
 msgid "Mario Weilguni"
 msgstr ""
 
-#: main.cpp:32 main.cpp:33
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr "Аўтар ідэі"
 
-#: main.cpp:33
+#: main.cpp:34
 #, kde-format
 msgid "Inge Wallin"
 msgstr ""
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Dmitry Suzdalev"
 msgstr ""
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
 msgstr ""
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Simon Hürlimann"
 msgstr ""
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Action refactoring"
 msgstr ""
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Mats Luthman"
 msgstr ""
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
 msgstr "Рухавік гульні, партаваны з JAVA."
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Arne Klaassen"
 msgstr ""
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Original raytraced chips."
 msgstr "Аб'ёмныя фішкі."
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Mauricio Piacentini"
 msgstr ""
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Vector chips and background for KDE4."
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Brian Croom"
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Denis Kuplyakov"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr ""
 
-#: main.cpp:48
+#: main.cpp:49
 #, kde-format
 msgid "Start with demo game playing"
 msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-10 01:46+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2013-10-28 02:42+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -469,17 +469,17 @@ msgstr "Сіз жүре алмайсыз. Тағы компьютер жүред
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Сіз жүре алмайсыз. Тағы компьютер жүреді."
 
-#: main.cpp:25
+#: main.cpp:26
 #, kde-format
 msgid "KReversi"
 msgstr "KReversi"
 
-#: main.cpp:27
+#: main.cpp:28
 #, kde-format
 msgid "KDE Reversi Board Game"
 msgstr "KDE-нің Реверси тақта ойыны"
 
-#: main.cpp:29
+#: main.cpp:30
 #, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
@@ -490,92 +490,92 @@ msgstr ""
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 
-#: main.cpp:32
+#: main.cpp:33
 #, kde-format
 msgid "Mario Weilguni"
 msgstr "Mario Weilguni"
 
-#: main.cpp:32 main.cpp:33
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr "Бастапқы авторы"
 
-#: main.cpp:33
+#: main.cpp:34
 #, kde-format
 msgid "Inge Wallin"
 msgstr "Inge Wallin"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Dmitry Suzdalev"
 msgstr "Dmitry Suzdalev"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
 msgstr "KDE4-ке қайта жазып шыққан. Қазіргі жетілдірушісі."
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Simon Hürlimann"
 msgstr "Simon Hürlimann"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Action refactoring"
 msgstr "Әрекет рефакторингі"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Mats Luthman"
 msgstr "Mats Luthman"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
 msgstr "Ойын тетігі, Java апплетен алынған."
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Arne Klaassen"
 msgstr "Arne Klaassen"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Original raytraced chips."
 msgstr "Сонылы көлемді тастары."
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Mauricio Piacentini"
 msgstr "Mauricio Piacentini"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Vector chips and background for KDE4."
 msgstr "Векторлы тасттары мен KDE4-гі аясы."
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Brian Croom"
 msgstr "Brian Croom"
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
 msgstr "KGameRenderer кескіндеу кодын порттау"
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Denis Kuplyakov"
 msgstr "Denis Kuplyakov"
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr ""
 
-#: main.cpp:48
+#: main.cpp:49
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Ойынды демонстрациядан бастау"

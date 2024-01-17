@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-10 01:46+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2010-03-21 20:44+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -469,17 +469,17 @@ msgstr "คุณไม่สามารถวางหมากใด ๆ ไ�
 msgid "Black can not perform any move. It is white turn again."
 msgstr "คุณไม่สามารถวางหมากใด ๆ ได้แล้ว ตอนนี้จะเป็นตาของคอมพิวเตอร์"
 
-#: main.cpp:25
+#: main.cpp:26
 #, kde-format
 msgid "KReversi"
 msgstr "หมากหนีบ-K"
 
-#: main.cpp:27
+#: main.cpp:28
 #, kde-format
 msgid "KDE Reversi Board Game"
 msgstr "เกมกระดานแนว Reversi (หมากหนีบ) ของ KDE"
 
-#: main.cpp:29
+#: main.cpp:30
 #, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
@@ -490,92 +490,92 @@ msgstr ""
 "สงวนลิขสิทธิ์ (c) 2004-2006, Inge Wallin\n"
 "สงวนลิขสิทธิ์ (c) 2006, Dmitry Suzdalev"
 
-#: main.cpp:32
+#: main.cpp:33
 #, kde-format
 msgid "Mario Weilguni"
 msgstr "Mario Weilguni"
 
-#: main.cpp:32 main.cpp:33
+#: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
 msgstr "ผู้เขียนแรกเริ่ม"
 
-#: main.cpp:33
+#: main.cpp:34
 #, kde-format
 msgid "Inge Wallin"
 msgstr "Inge Wallin"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Dmitry Suzdalev"
 msgstr "Dmitry Suzdalev"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
 msgstr "ปรับโค้ดเกมใหม่ให้ใช้กับ KDE4 ได้, ผู้ดูแลปัจจุบัน"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Simon Hürlimann"
 msgstr "Simon Hürlimann"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Action refactoring"
 msgstr "ปรับโค้ดการกระทำใหม่"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Mats Luthman"
 msgstr "Mats Luthman"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
 msgstr "กลไกหลักของเกม, โดยพอร์ทมาจากแอพเพล็ตภาษาจาวาของเขา"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Arne Klaassen"
 msgstr "Arne Klaassen"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Original raytraced chips."
 msgstr "ตัวหมากแบบเล่นแสงเงาดั้งเดิม"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Mauricio Piacentini"
 msgstr "Mauricio Piacentini"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Vector chips and background for KDE4."
 msgstr "ตัวหมากและภาพพื้นหลังแบบเวกเตอร์สำหรับใช้กับ KDE4"
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Brian Croom"
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Denis Kuplyakov"
 msgstr ""
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr ""
 
-#: main.cpp:48
+#: main.cpp:49
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "เริ่มด้วยการสาธิตการเล่นเกม"
