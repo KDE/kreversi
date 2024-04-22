@@ -22,7 +22,6 @@
   <name xml:lang="fi">KReversi</name>
   <name xml:lang="fr">KReversi</name>
   <name xml:lang="gl">KReversi</name>
-  <name xml:lang="he">KReversi</name>
   <name xml:lang="hi">के-रिवर्सी</name>
   <name xml:lang="ia">KReversi</name>
   <name xml:lang="id">KReversi</name>
@@ -63,7 +62,6 @@
   <summary xml:lang="fi">Reversi-lautapeli</summary>
   <summary xml:lang="fr">Jeu de plateau Reversi</summary>
   <summary xml:lang="gl">Xogo de taboleiro similar ao Reversi</summary>
-  <summary xml:lang="he">משחק הלוח רברסי</summary>
   <summary xml:lang="hi">रिवर्सी बोर्ड खेल</summary>
   <summary xml:lang="ia">Joco de tabula Reversi</summary>
   <summary xml:lang="id">Permainan Papan Membalik-balik</summary>
@@ -109,7 +107,6 @@
     <p xml:lang="fi">KReversi on yksinkertainen yhden pelaajan strateginen lautapeli tietokonetta vastaan. Jos vastustaja kaappaa pelaajan nappulan, se käännetään, jolloin paljastuu vastustajan väri. Kun siirtoja ei voi enää tehdä, voittajaksi selviää se, jolla on enemmän omanvärisiään nappuloita.</p>
     <p xml:lang="fr">KReversi est un jeu de stratégie simple à un joueur qui se joue contre l'ordinateur. Si une pièce du joueur est capturée par un adversaire, cette pièce change de couleur pour prendre celle du joueur. Un gagnant est déclaré lorsqu'un joueur a plus de pièces de sa propre couleur que son adversaire et qu'il n'y a plus de mouvements possibles.</p>
     <p xml:lang="gl">KReversi é un xogo de estratexia sinxelo para un único xogador que se enfronta ao computador. Se o opoñente captura a peza do xogador, a peza entrégase para descubrir a cor do xogador. O gañador declárase cando un dos xogadores ten máis pezas da súa cor no taboleiro e non hai máis movementos posíbeis.</p>
-    <p xml:lang="he">KReversi הוא משחק אסטרטגיה של שחקן אחד נגד המחשב. אם החלק של השחקן נלכד על ידי היריב, החלק הזה מתהפך לחשיפת צבע השחקן הזה. המנצח מוכרז כשלשחקן אחד יש יותר חלקים בצבע שלו על הלוח ואין עוד מהלכים למשחק על הלוח.</p>
     <p xml:lang="id">KReversi adalah permainan strategi satu pemain sederhana yang dimainkan melawan komputer. Jika potongan pemain ditangkap oleh pemain lawan, potongan itu dibalik untuk mengungkapkan warna pemain itu. Pemenang telah dinyatakan ketika satu pemain memiliki lebih banyak potongan warna sendiri di papan dan tidak ada gerakan lebih yang mungkin dilakukan.</p>
     <p xml:lang="it">KReversi è un semplice gioco di strategia a un giocatore che si gioca contro il computer. Se il pezzo del giocatore viene catturato dall'avversario, il pezzo viene girato per mostrare il colore dell'avversario. Viene dichiarato vincitore il giocatore che ha sulla scacchiera più pezzi del proprio colore e nessun'altra mossa è possibile.</p>
     <p xml:lang="ka">KReversi ერთკაციანი სტრატეგიული თამაშია კომპიუტერის წინააღმდეგ სათამაშოდ. თუ მოთამაშის ნაწილი დაპყრობილია მეტოქის მიერ, ის ნაწილი მეტოქის ფრად შეიცვლება. გამარჯვებული კი მხოლოდ მაშინ გამოცხადდება, როცა ერთ-ერთ მოთამაშეს მეტი თავისი ფერის ფილა აქვს, მოწინააღმდეგეს დარჩენილი ქულები კი - არა.</p>
@@ -131,7 +128,6 @@
     <p xml:lang="uk">KReversi — проста стратегічна гра для одного гравця, суперником якого буде комп’ютер. Якщо фішка поміняє власника, її буде перевернуто, і вона показуватиме колір гравця-власника. Переможцем проголошується той з гравців, у якого буде більше власних фішок за такої позиції у грі, коли подальші ходи будуть неможливими.</p>
     <p xml:lang="x-test">xxKReversi is a simple one player strategy game played against the computer. If a player's piece is captured by an opposing player, that piece is turned over to reveal the color of that player. A winner is declared when one player has more pieces of his own color on the board and there are no more possible moves.xx</p>
     <p xml:lang="zh-CN">KReversi 是一个简单的与计算机对战的单机策略游戏。 如果玩家的一块被对方玩家夺取，那块将被翻转来显示该玩家的颜色。 当一个玩家在棋盘上拥有更多的自己的颜色并且没有更多可能的落子时，赢家诞生。</p>
-    <p xml:lang="zh-TW">KReversi 是一個簡單的單人意志遊戲，與電腦進行對戰。如果玩家的棋被對手吃下，它會被翻面而變成該玩家的顏色。不再有地方可以下棋的時候棋盤上最多的顏色所屬的玩家就是贏家。</p>
   </description>
   <content_rating type="oars-1.1"/>
   <url type="homepage">https://apps.kde.org/kreversi</url>
