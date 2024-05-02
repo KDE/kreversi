@@ -277,17 +277,6 @@ void HighscoresDialog::slotUser2()
 //   kDebug(11001) ;
     QUrl url = QFileDialog::getSaveFileUrl(this, tr("HighscoresDialog"), QUrl(), QString());
     if ( url.isEmpty() ) return;
-    auto job = KIO::stat(url, KIO::StatJob::SourceSide, KIO::StatNoDetails);
-    KJobWidgets::setWindow(job, this);
-    job->exec();
-    if (!job->error()) {
-        KGuiItem gi = KStandardGuiItem::save();
-        gi.setText(i18n("Overwrite"));
-        int res = KMessageBox::warningContinueCancel(this,
-                                 i18n("The file already exists. Overwrite?"),
-                                 i18n("Export"), gi);
-        if ( res==KMessageBox::Cancel ) return;
-    }
     QTemporaryFile tmp;
     tmp.open();
     QTextStream stream(&tmp);
