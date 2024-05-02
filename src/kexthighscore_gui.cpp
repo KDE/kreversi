@@ -144,23 +144,23 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
     // scores tab
     _scoresList = new HighscoresList(nullptr);
     _scoresList->addHeader(s);
-    _tw->addTab(_scoresList, i18n("Best &Scores"));
+    _tw->addTab(_scoresList, i18nc("@title:tab", "Best &Scores"));
 
     // players tab
     _playersList = new HighscoresList(nullptr);
     _playersList->addHeader(p);
-    _tw->addTab(_playersList, i18n("&Players"));
+    _tw->addTab(_playersList, i18nc("@title:tab", "&Players"));
 
     // statistics tab
     if ( internal->showStatistics ) {
         _statsTab = new StatisticsTab(nullptr);
-        _tw->addTab(_statsTab, i18n("Statistics"));
+        _tw->addTab(_statsTab, i18nc("@title:tab", "Statistics"));
     }
 
     // histogram tab
     if ( p.histogram().size()!=0 ) {
         _histoTab = new HistogramTab(nullptr);
-        _tw->addTab(_histoTab, i18n("Histogram"));
+        _tw->addTab(_histoTab, i18nc("@title:tab", "Histogram"));
     }
 
     // url labels
@@ -404,7 +404,7 @@ ConfigDialog::ConfigDialog(QWidget *parent)
         tab = new QTabWidget(this);
         layout->addWidget(tab);
         page = new QWidget;
-        tab->addTab(page, i18n("Main"));
+        tab->addTab(page, i18nc("@title:tan", "Main"));
     } 
     
     else {
@@ -419,7 +419,7 @@ ConfigDialog::ConfigDialog(QWidget *parent)
     
     layout->addLayout(pageTop);
 
-    QLabel *label = new QLabel(i18n("Nickname:"), page);
+    QLabel *label = new QLabel(i18nc("@label:textbox", "Nickname:"), page);
     pageTop->addWidget(label, 0, 0);
     _nickname = new QLineEdit(page);
     connect(_nickname, &QLineEdit::textChanged,
@@ -430,7 +430,7 @@ ConfigDialog::ConfigDialog(QWidget *parent)
     _nickname->setMaxLength(16);
     pageTop->addWidget(_nickname, 0, 1);
 
-    label = new QLabel(i18n("Comment:"), page);
+    label = new QLabel(i18nc("@label:textbox", "Comment:"), page);
     pageTop->addWidget(label, 1, 0);
     _comment = new QLineEdit(page);
     connect(_comment, &QLineEdit::textChanged,
@@ -440,38 +440,38 @@ ConfigDialog::ConfigDialog(QWidget *parent)
 
     if (tab) {
         _WWHEnabled
-            = new QCheckBox(i18n("World-wide highscores enabled"), page);
+            = new QCheckBox(i18nc("@option:check", "World-wide highscores enabled"), page);
         connect(_WWHEnabled, &QAbstractButton::toggled,
                 this, &ConfigDialog::modifiedSlot);
         pageTop->addWidget(_WWHEnabled, 2, 0, 1, 2 );
 
         // advanced tab
         QWidget *page = new QWidget;
-        tab->addTab(page, i18n("Advanced"));
+        tab->addTab(page, i18nc("@title:tab", "Advanced"));
         QVBoxLayout *pageTop = new QVBoxLayout(page);
         //pageTop->setMargin(QApplication::style()->pixelMetric(QStyle::PM_DefaultChildMargin));
         //pageTop->setSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
 
         QGroupBox *group = new QGroupBox(page);
-        group->setTitle( i18n("Registration Data") );
+        group->setTitle( i18nc("@title:group", "Registration Data") );
         pageTop->addWidget(group);
         QGridLayout *groupLayout = new QGridLayout(group);
         //groupLayout->setSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
 
-        label = new QLabel(i18n("Nickname:"), group);
+        label = new QLabel(i18nc("@label:textbox", "Nickname:"), group);
         groupLayout->addWidget(label, 0, 0);
         _registeredName = new QLineEdit(group);
         _registeredName->setReadOnly(true);
         groupLayout->addWidget(_registeredName, 0, 1);
 
-        label = new QLabel(i18n("Key:"), group);
+        label = new QLabel(i18nc("@label:textbox", "Key:"), group);
         groupLayout->addWidget(label, 1, 0);
         _key = new QLineEdit(group);
         _key->setReadOnly(true);
         groupLayout->addWidget(_key, 1, 1);
 
         KGuiItem gi = KStandardGuiItem::clear();
-        gi.setText(i18n("Remove"));
+        gi.setText(i18nc("@action:button", "Remove"));
         _removeButton = new QPushButton(group);
 	KGuiItem::assign(_removeButton, gi);
 	groupLayout->addWidget(_removeButton, 2, 0);
@@ -514,7 +514,7 @@ void ConfigDialog::accept()
 void ConfigDialog::removeSlot()
 {
     KGuiItem gi = KStandardGuiItem::clear();
-    gi.setText(i18n("Remove"));
+    gi.setText(i18nc("@action:button", "Remove"));
     int res = KMessageBox::warningContinueCancel(this,
                                i18n("This will permanently remove your "
                                "registration key. You will not be able to use "
@@ -598,7 +598,7 @@ AskNameDialog::AskNameDialog(QWidget *parent)
 
     QHBoxLayout *hbox = new QHBoxLayout;
     top->addLayout(hbox);
-    label = new QLabel(i18n("Enter your nickname:"), this);
+    label = new QLabel(i18nc("@label:textbox", "Enter your nickname:"), this);
     hbox->addWidget(label);
     _edit = new QLineEdit(this);
     _edit->setFocus();
@@ -606,7 +606,7 @@ AskNameDialog::AskNameDialog(QWidget *parent)
     hbox->addWidget(_edit);
 
     //top->addSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
-    _checkbox = new QCheckBox(i18n("Do not ask again."),  this);
+    _checkbox = new QCheckBox(i18nc("@option:check", "Do not ask again."),  this);
     top->addWidget(_checkbox);
     
     _buttonBox = new QDialogButtonBox(this);

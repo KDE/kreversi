@@ -61,7 +61,7 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
     // initialize history dock
     m_historyView = new QListWidget(this);
     m_historyView->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Expanding);
-    m_historyDock = new QDockWidget(i18n("Move History"));
+    m_historyDock = new QDockWidget(i18nc("@title:window", "Move History"));
     m_historyDock->setWidget(m_historyView);
     m_historyDock->setObjectName(QStringLiteral("history_dock"));
 
@@ -108,26 +108,29 @@ void KReversiMainWindow::setupActionsInit()
     m_hintAct->setEnabled(false);
 
     // Last move
-    m_showLast = new KToggleAction(QIcon::fromTheme(QStringLiteral("lastmoves")), i18n("Show Last Move"), this);
+    m_showLast = new KToggleAction(QIcon::fromTheme(QStringLiteral("lastmoves")), i18nc("@option:check", "Show Last Move"), this);
     actionCollection()->addAction(QStringLiteral("show_last_move"), m_showLast);
     connect(m_showLast, &KToggleAction::triggered, m_view, &KReversiView::setShowLastMove);
 
     // Legal moves
-    m_showLegal = new KToggleAction(QIcon::fromTheme(QStringLiteral("legalmoves")), i18n("Show Legal Moves"), this);
+    m_showLegal = new KToggleAction(QIcon::fromTheme(QStringLiteral("legalmoves")), i18nc("@option:check", "Show Legal Moves"), this);
     actionCollection()->addAction(QStringLiteral("show_legal_moves"), m_showLegal);
     connect(m_showLegal, &KToggleAction::triggered, m_view, &KReversiView::setShowLegalMoves);
 
     // Animation speed
-    m_animSpeedAct = new KSelectAction(i18n("Animation Speed"), this);
+    m_animSpeedAct = new KSelectAction(i18nc("@title:menu", "Animation Speed"), this);
     actionCollection()->addAction(QStringLiteral("anim_speed"), m_animSpeedAct);
 
-    QStringList acts;
-    acts << i18n("Slow") << i18n("Normal") << i18n("Fast");
+    const QStringList acts {
+        i18nc("@item:inmenu animation speed", "Slow"),
+        i18nc("@item:inmenu animation speed", "Normal"),
+        i18nc("@item:inmenu animation speed", "Fast"),
+    };
     m_animSpeedAct->setItems(acts);
     connect(m_animSpeedAct, &KSelectAction::indexTriggered, this, &KReversiMainWindow::slotAnimSpeedChanged);
 
     // Chip's color
-    m_coloredChipsAct = new KToggleAction(i18n("Use Colored Chips"), this);
+    m_coloredChipsAct = new KToggleAction(i18nc("@option:check", "Use Colored Chips"), this);
     actionCollection()->addAction(QStringLiteral("use_colored_chips"), m_coloredChipsAct);
     connect(m_coloredChipsAct, &KToggleAction::triggered, this, &KReversiMainWindow::slotUseColoredChips);
 
@@ -135,7 +138,7 @@ void KReversiMainWindow::setupActionsInit()
     // NOTE: read/write this from/to config file? Or not necessary?
     m_showMovesAct = m_historyDock->toggleViewAction();
     m_showMovesAct->setIcon(QIcon::fromTheme(QStringLiteral("view-history")));
-    m_showMovesAct->setText(i18n("Show Move History"));
+    m_showMovesAct->setText(i18nc("@action", "Show Move History"));
     actionCollection()->addAction(QStringLiteral("show_moves"), m_showMovesAct);
     connect(m_historyDock, &QDockWidget::visibilityChanged, this, &KReversiMainWindow::slotToggleBoardLabels);
 }
@@ -266,7 +269,7 @@ void KReversiMainWindow::slotGameOver()
         res += i18n("\n%1: %2", m_nowPlayingInfo.name[White], whiteScore);
     }
 
-    KMessageBox::information(this, res, i18n("Game over"));
+    KMessageBox::information(this, res, i18nc("@title:window", "Game Over"));
 
     if (storeScore)
         KExtHighscore::submitScore(score, this);

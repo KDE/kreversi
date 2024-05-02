@@ -643,8 +643,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
             if ( !attr.isNull() ) {
                 // see DUMMY_STRINGS
                 QString msg = i18n(attr.value().toLatin1().constData());
-                QString caption = i18n("Message from world-wide highscores "
-                                       "server");
+                QString caption = i18nc("@title:window", "Message from World-Wide High Scores Server");
                 KMessageBox::error(parent, msg, caption);
                 return false;
             }

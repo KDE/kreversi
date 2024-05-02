@@ -33,10 +33,10 @@ StartGameDialog::StartGameDialog(QWidget *parent, KGameThemeProvider *provider) 
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &StartGameDialog::slotAccepted);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &StartGameDialog::reject);
-    okButton->setText(i18n("Start game"));
+    okButton->setText(i18nc("@action:button", "Start Game"));
     okButton->setToolTip(i18n("Let's start playing!"));
-    buttonBox->button(QDialogButtonBox::Close)->setText(i18n("Quit"));
-    buttonBox->button(QDialogButtonBox::Close)->setToolTip(i18n("Quit KReversi"));
+    buttonBox->button(QDialogButtonBox::Close)->setText(i18nc("@action:button", "Quit"));
+    buttonBox->button(QDialogButtonBox::Close)->setToolTip(i18nc("@info:tooltip", "Quit KReversi"));
 
     m_contents = new QWidget(this);
     mainLayout->addWidget(m_contents);

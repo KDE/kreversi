@@ -113,7 +113,7 @@ StatisticsTab::StatisticsTab(QWidget *parent)
     hbox->addLayout(vbox);
     top->addLayout(hbox);
 
-    QGroupBox *group = new QGroupBox(i18n("Game Counts"), this);
+    QGroupBox *group = new QGroupBox(i18nc("@title:group", "Game Counts"), this);
     vbox->addWidget(group);
     QGridLayout *gridLay = new QGridLayout(group);
     //gridLay->setSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
@@ -126,7 +126,7 @@ StatisticsTab::StatisticsTab(QWidget *parent)
         gridLay->addWidget(_percents[k], k, 2);
     }
 
-    group = new QGroupBox(i18n("Trends"), this);
+    group = new QGroupBox(i18nc("@title:group", "Trends"), this);
     vbox->addWidget(group);
     gridLay = new QGridLayout(group);
     //gridLay->setSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
@@ -214,10 +214,10 @@ HistogramTab::HistogramTab(QWidget *parent)
     _list->header()->setSectionsMovable(false);
     top->addWidget(_list);
 
-    _list->headerItem()->setText(0,i18n("From"));
-    _list->headerItem()->setText(1,i18n("To"));
-    _list->headerItem()->setText(2,i18n("Count"));
-    _list->headerItem()->setText(3,i18n("Percent"));
+    _list->headerItem()->setText(0,i18nc("@title:column", "From"));
+    _list->headerItem()->setText(1,i18nc("@title:column", "To"));
+    _list->headerItem()->setText(2,i18nc("@title:column", "Count"));
+    _list->headerItem()->setText(3,i18nc("@title:column", "Percent"));
     for (int i=0; i<4; i++) _list->headerItem()->setTextAlignment(i, Qt::AlignRight);
     _list->headerItem()->setText(4,QString());
 
