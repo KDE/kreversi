@@ -247,8 +247,8 @@ of a corner.</para>
     <term><menuchoice><shortcut><keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
     <guimenu>Game</guimenu> <guimenuitem>Show High Scores</guimenuitem></menuchoice></term>
     <listitem><para><action>Opens a dialog that displays different high score tables.</action>
-    <!--<guibutton>Export...</guibutton> the high scores into a file or click on
-    <guibutton>Configure...</guibutton> to open a dialog to customize your
+    <!--<guibutton>Export…</guibutton> the high scores into a file or click on
+    <guibutton>Configure…</guibutton> to open a dialog to customize your
     <guilabel>Nickname</guilabel> and add a <guilabel>Comment</guilabel>.--></para></listitem>
   </varlistentry>
 
