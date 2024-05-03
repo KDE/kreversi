@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-05-03 00:37+0000\n"
 "PO-Revision-Date: 2022-02-25 15:22+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -82,22 +82,30 @@ msgid "Elapsed Time"
 msgstr "Истёкшее время"
 
 #: kexthighscore_gui.cpp:147
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Best &Scores"
+msgctxt "@title:tab"
 msgid "Best &Scores"
 msgstr "Лучшие &результаты"
 
 #: kexthighscore_gui.cpp:152
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Players"
+msgctxt "@title:tab"
 msgid "&Players"
 msgstr "&Игроки"
 
 #: kexthighscore_gui.cpp:157
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Statistics"
+msgctxt "@title:tab"
 msgid "Statistics"
 msgstr "Статистика"
 
 #: kexthighscore_gui.cpp:163
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Histogram"
+msgctxt "@title:tab"
 msgid "Histogram"
 msgstr "Гистограмма"
 
@@ -117,78 +125,79 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Рекорды"
 
-#: kexthighscore_gui.cpp:285
-#, kde-format
-msgid "Overwrite"
-msgstr "Перезаписать"
-
-#: kexthighscore_gui.cpp:287
-#, kde-format
-msgid "The file already exists. Overwrite?"
-msgstr "Файл уже существует. Заменить его?"
-
-#: kexthighscore_gui.cpp:288
-#, kde-format
-msgid "Export"
-msgstr "Экспорт"
-
-#: kexthighscore_gui.cpp:339
+#: kexthighscore_gui.cpp:328
 #, kde-format
 msgid "Winner"
 msgstr "Победитель"
 
-#: kexthighscore_gui.cpp:377
+#: kexthighscore_gui.cpp:366
 #, kde-format
 msgid "Won Games"
 msgstr "Выиграно игр"
 
-#: kexthighscore_gui.cpp:405
+#: kexthighscore_gui.cpp:394
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Настройка рекордов"
 
-#: kexthighscore_gui.cpp:418
-#, kde-format
+#: kexthighscore_gui.cpp:407
+#, fuzzy, kde-format
+#| msgid "Main"
+msgctxt "@title:tan"
 msgid "Main"
 msgstr "Главное"
 
-#: kexthighscore_gui.cpp:433 kexthighscore_gui.cpp:472
-#, kde-format
+#: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
+#, fuzzy, kde-format
+#| msgid "Nickname:"
+msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Псевдоним:"
 
-#: kexthighscore_gui.cpp:444
-#, kde-format
+#: kexthighscore_gui.cpp:433
+#, fuzzy, kde-format
+#| msgid "Comment:"
+msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Комментарий:"
 
-#: kexthighscore_gui.cpp:454
-#, kde-format
+#: kexthighscore_gui.cpp:443
+#, fuzzy, kde-format
+#| msgid "World-wide highscores enabled"
+msgctxt "@option:check"
 msgid "World-wide highscores enabled"
 msgstr "Рекорды со всего света включены"
 
-#: kexthighscore_gui.cpp:461
-#, kde-format
+#: kexthighscore_gui.cpp:450
+#, fuzzy, kde-format
+#| msgid "Advanced"
+msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Дополнительно"
 
-#: kexthighscore_gui.cpp:467
-#, kde-format
+#: kexthighscore_gui.cpp:456
+#, fuzzy, kde-format
+#| msgid "Registration Data"
+msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Регистрационные данные"
 
-#: kexthighscore_gui.cpp:478
-#, kde-format
+#: kexthighscore_gui.cpp:467
+#, fuzzy, kde-format
+#| msgid "Key:"
+msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Ключ:"
 
-#: kexthighscore_gui.cpp:485 kexthighscore_gui.cpp:528
-#, kde-format
+#: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
+#, fuzzy, kde-format
+#| msgid "Remove"
+msgctxt "@action:button"
 msgid "Remove"
 msgstr "Удалить"
 
-#: kexthighscore_gui.cpp:530
+#: kexthighscore_gui.cpp:519
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -197,34 +206,38 @@ msgstr ""
 "Регистрационный ключ будет удалён без возможности восстановления. Вы больше "
 "не сможете использовать текущий зарегистрированный псевдоним."
 
-#: kexthighscore_gui.cpp:573
+#: kexthighscore_gui.cpp:562
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Псевдоним не может быть пустым."
 
-#: kexthighscore_gui.cpp:577
+#: kexthighscore_gui.cpp:566
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Этот псевдоним уже используется. Пожалуйста, выберите другой."
 
-#: kexthighscore_gui.cpp:598
+#: kexthighscore_gui.cpp:587
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Ввод псевдонима"
 
-#: kexthighscore_gui.cpp:607
+#: kexthighscore_gui.cpp:596
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Вы выиграли!"
 
-#: kexthighscore_gui.cpp:612
-#, kde-format
+#: kexthighscore_gui.cpp:601
+#, fuzzy, kde-format
+#| msgid "Enter your nickname:"
+msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr "Введите свой псевдоним:"
 
-#: kexthighscore_gui.cpp:620
-#, kde-format
+#: kexthighscore_gui.cpp:609
+#, fuzzy, kde-format
+#| msgid "Do not ask again."
+msgctxt "@option:check"
 msgid "Do not ask again."
 msgstr "Не задавать больше этот вопрос."
 
@@ -309,21 +322,23 @@ msgid "Server URL: %1"
 msgstr "Адрес сервера: %1"
 
 #: kexthighscore_internal.cpp:646
-#, kde-format
-msgid "Message from world-wide highscores server"
+#, fuzzy, kde-format
+#| msgid "Message from world-wide highscores server"
+msgctxt "@title:window"
+msgid "Message from World-Wide High Scores Server"
 msgstr "Сообщение от сервера лучших результатов со всего света"
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:652
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Неверный ответ от сервера лучших результатов со всего света."
 
-#: kexthighscore_internal.cpp:654
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Необработанное сообщение: %1"
 
-#: kexthighscore_internal.cpp:666
+#: kexthighscore_internal.cpp:665
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
@@ -390,32 +405,44 @@ msgid "Max lost:"
 msgstr "Макс. проиграно:"
 
 #: kexthighscore_tab.cpp:116
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Game Counts"
+msgctxt "@title:group"
 msgid "Game Counts"
 msgstr "Количество игр"
 
 #: kexthighscore_tab.cpp:129
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Trends"
+msgctxt "@title:group"
 msgid "Trends"
 msgstr "Тенденции"
 
 #: kexthighscore_tab.cpp:217
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "From"
+msgctxt "@title:column"
 msgid "From"
 msgstr "От"
 
 #: kexthighscore_tab.cpp:218
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "To"
+msgctxt "@title:column"
 msgid "To"
 msgstr "До"
 
 #: kexthighscore_tab.cpp:219
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Count"
+msgctxt "@title:column"
 msgid "Count"
 msgstr "Количество"
 
 #: kexthighscore_tab.cpp:220
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Percent"
+msgctxt "@title:column"
 msgid "Percent"
 msgstr "Процент"
 
@@ -592,71 +619,89 @@ msgid "Press start game!"
 msgstr "Нажмите «Начать игру»!"
 
 #: mainwindow.cpp:64
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Move History"
+msgctxt "@title:window"
 msgid "Move History"
 msgstr "История ходов"
 
 #: mainwindow.cpp:111
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show Last Move"
+msgctxt "@option:check"
 msgid "Show Last Move"
 msgstr "Показать последний ход"
 
 #: mainwindow.cpp:116
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Show Legal Moves"
+msgctxt "@option:check"
 msgid "Show Legal Moves"
 msgstr "Показать возможные ходы"
 
 #: mainwindow.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Animation Speed"
+msgctxt "@title:menu"
 msgid "Animation Speed"
 msgstr "Скорость анимации"
 
 #: mainwindow.cpp:125
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Slow"
+msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "Медленно"
 
-#: mainwindow.cpp:125
-#, kde-format
+#: mainwindow.cpp:126
+#, fuzzy, kde-format
+#| msgid "Normal"
+msgctxt "@item:inmenu animation speed"
 msgid "Normal"
 msgstr "Обычная"
 
-#: mainwindow.cpp:125
-#, kde-format
+#: mainwindow.cpp:127
+#, fuzzy, kde-format
+#| msgid "Fast"
+msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "Быстро"
 
-#: mainwindow.cpp:130
-#, kde-format
+#: mainwindow.cpp:133
+#, fuzzy, kde-format
+#| msgid "Use Colored Chips"
+msgctxt "@option:check"
 msgid "Use Colored Chips"
 msgstr "Использовать цветные фишки"
 
-#: mainwindow.cpp:138
-#, kde-format
+#: mainwindow.cpp:141
+#, fuzzy, kde-format
+#| msgid "Show Move History"
+msgctxt "@action"
 msgid "Show Move History"
 msgstr "Показать историю ходов"
 
-#: mainwindow.cpp:216 mainwindow.cpp:231 mainwindow.cpp:244 mainwindow.cpp:252
+#: mainwindow.cpp:219 mainwindow.cpp:234 mainwindow.cpp:247 mainwindow.cpp:255
 #, kde-format
 msgid "Game is drawn!"
 msgstr "Игра закончилась вничью!"
 
-#: mainwindow.cpp:219 mainwindow.cpp:234
+#: mainwindow.cpp:222 mainwindow.cpp:237
 #, kde-format
 msgid "You win!"
 msgstr "Вы выиграли!"
 
-#: mainwindow.cpp:222 mainwindow.cpp:237
+#: mainwindow.cpp:225 mainwindow.cpp:240
 #, kde-format
 msgid "You have lost!"
 msgstr "Вы проиграли!"
 
-#: mainwindow.cpp:246 mainwindow.cpp:248 mainwindow.cpp:254 mainwindow.cpp:256
+#: mainwindow.cpp:249 mainwindow.cpp:251 mainwindow.cpp:257 mainwindow.cpp:259
 #, kde-format
 msgid "%1 has won!"
 msgstr "Победил %1!"
 
-#: mainwindow.cpp:262 mainwindow.cpp:263 mainwindow.cpp:265 mainwindow.cpp:266
+#: mainwindow.cpp:265 mainwindow.cpp:266 mainwindow.cpp:268 mainwindow.cpp:269
 #, kde-format
 msgid ""
 "\n"
@@ -665,32 +710,34 @@ msgstr ""
 "\n"
 "%1: %2"
 
-#: mainwindow.cpp:269
-#, kde-format
-msgid "Game over"
+#: mainwindow.cpp:272
+#, fuzzy, kde-format
+#| msgid "Game over"
+msgctxt "@title:window"
+msgid "Game Over"
 msgstr "Игра окончена"
 
-#: mainwindow.cpp:336
+#: mainwindow.cpp:339
 #, kde-format
 msgid "GAME OVER"
 msgstr "Игра окончена"
 
-#: mainwindow.cpp:341 mainwindow.cpp:342 mainwindow.cpp:348 mainwindow.cpp:349
+#: mainwindow.cpp:344 mainwindow.cpp:345 mainwindow.cpp:351 mainwindow.cpp:352
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: mainwindow.cpp:345
+#: mainwindow.cpp:348
 #, kde-format
 msgid "%1 turn"
 msgstr "Ходит %1"
 
-#: mainwindow.cpp:352
+#: mainwindow.cpp:355
 #, kde-format
 msgid "%1's turn"
 msgstr "Ходит %1"
 
-#: mainwindow.cpp:362 startgamedialog.cpp:155 startgamedialog.cpp:169
+#: mainwindow.cpp:365 startgamedialog.cpp:155 startgamedialog.cpp:169
 #, kde-format
 msgid "Computer"
 msgstr "Компьютер"
@@ -702,8 +749,10 @@ msgid "New game"
 msgstr "Новая игра"
 
 #: startgamedialog.cpp:36
-#, kde-format
-msgid "Start game"
+#, fuzzy, kde-format
+#| msgid "Start game"
+msgctxt "@action:button"
+msgid "Start Game"
 msgstr "Начать игру"
 
 #: startgamedialog.cpp:37
@@ -712,12 +761,16 @@ msgid "Let's start playing!"
 msgstr "Давайте начнём игру!"
 
 #: startgamedialog.cpp:38
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Quit"
+msgctxt "@action:button"
 msgid "Quit"
 msgstr "Выход"
 
 #: startgamedialog.cpp:39
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Quit KReversi"
+msgctxt "@info:tooltip"
 msgid "Quit KReversi"
 msgstr "Выход из KReversi"
 
@@ -740,6 +793,15 @@ msgstr "Уровень сложности:"
 #, kde-format
 msgid "VS"
 msgstr "Против"
+
+#~ msgid "Overwrite"
+#~ msgstr "Перезаписать"
+
+#~ msgid "The file already exists. Overwrite?"
+#~ msgstr "Файл уже существует. Заменить его?"
+
+#~ msgid "Export"
+#~ msgstr "Экспорт"
 
 #~ msgid "https://kde.org/applications/games/org.kde.kreversi"
 #~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
