@@ -9,7 +9,6 @@
 
 #include <QMap>
 #include <QVariant>
-#include <QList>
 
 class QWidget;
 
@@ -225,79 +224,8 @@ class  Score
     class ScorePrivate;
     ScorePrivate *d;
 
-    friend class MultiplayerScores;
-
     friend  QDataStream &operator <<(QDataStream &stream, const Score &score);
     friend  QDataStream &operator >>(QDataStream &stream, Score &score);
-};
-
-class MultiplayerScores;
- QDataStream &operator <<(QDataStream &stream, const MultiplayerScores &score);
- QDataStream &operator >>(QDataStream &stream, MultiplayerScores &score);
-
-/**
- * This class is used to store and show scores for multiplayer games.
- *
- * Example of use:
- * Initialize the class:
- * <pre>
- * KExtHighscore::MultiScore ms(2);
- * ms.setPlayerName(0, "player 1");
- * ms.setPlayerName(1, "player 2");
- * </pre>
- * At the end of each game, add the score of each players:
- * <pre>
- * KExtHighscore::Score score(KExtHighscore::Won);
- * score.setScore(100);
- * ms.addScore(0, score);
- * score.setType(KExtHighscore::Lost);
- * score.setScore(20);
- * ms.addScore(1, score);
- * </pre>
- */
-class  MultiplayerScores
-{
- public:
-    MultiplayerScores();
-
-    ~MultiplayerScores();
-
-    /**
-     * Set the number of players and clear the scores.
-     */
-    void setPlayerCount(uint nb);
-
-    /**
-     * Set the name of player.
-     */
-    void setName(uint player, const QString &name);
-
-    /**
-     * Add the score of player.
-     */
-    void addScore(uint player, const Score &score);
-
-    /**
-     * Clear all scores.
-     */
-    void clear();
-
-    /**
-     * Show scores.
-     */
-    void show(QWidget *parent);
-
- private:
-    QList<uint>  _nbGames;
-    QList<Score> _scores;
-
-    class MultiplayerScoresPrivate;
-    MultiplayerScoresPrivate *d;
-
-    friend  QDataStream &operator <<(QDataStream &stream,
-                                    const MultiplayerScores &score);
-    friend  QDataStream &operator >>(QDataStream &stream,
-                                    MultiplayerScores &score);
 };
 
 } // namespace
