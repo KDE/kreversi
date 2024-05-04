@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-03 00:37+0000\n"
-"PO-Revision-Date: 2024-03-18 19:41+0300\n"
+"PO-Revision-Date: 2024-05-04 01:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -78,32 +78,28 @@ msgid "Elapsed Time"
 msgstr "Geçen Süre"
 
 #: kexthighscore_gui.cpp:147
-#, fuzzy, kde-format
-#| msgid "Best &Scores"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
 msgstr "En Yüksek &Puanlar"
 
 #: kexthighscore_gui.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Players"
+#, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
 msgstr "&Oyuncular"
 
 #: kexthighscore_gui.cpp:157
-#, fuzzy, kde-format
-#| msgid "Statistics"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
 msgstr "İstatistikler"
 
 #: kexthighscore_gui.cpp:163
-#, fuzzy, kde-format
-#| msgid "Histogram"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
-msgstr "Sütun Grafiği"
+msgstr "Histogram"
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
@@ -138,57 +134,49 @@ msgid "Configure Highscores"
 msgstr "Yüksek Puanları Yapılandır"
 
 #: kexthighscore_gui.cpp:407
-#, fuzzy, kde-format
-#| msgid "Main"
+#, kde-format
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Ana"
 
 #: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
-#, fuzzy, kde-format
-#| msgid "Nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr "Takma Ad:"
+msgstr "Takma ad:"
 
 #: kexthighscore_gui.cpp:433
-#, fuzzy, kde-format
-#| msgid "Comment:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Açıklama:"
 
 #: kexthighscore_gui.cpp:443
-#, fuzzy, kde-format
-#| msgid "World-wide highscores enabled"
+#, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr "Dünya çapında yüksek puanlar etkinleştirildi"
+msgstr "Dünya çapında yüksek puanlar etkin"
 
 #: kexthighscore_gui.cpp:450
-#, fuzzy, kde-format
-#| msgid "Advanced"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Gelişmiş"
 
 #: kexthighscore_gui.cpp:456
-#, fuzzy, kde-format
-#| msgid "Registration Data"
+#, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Kayıt Verisi"
 
 #: kexthighscore_gui.cpp:467
-#, fuzzy, kde-format
-#| msgid "Key:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Anahtar:"
 
 #: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Kaldır"
@@ -224,22 +212,20 @@ msgid "Congratulations, you have won!"
 msgstr "Tebrikler, kazandınız!"
 
 #: kexthighscore_gui.cpp:601
-#, fuzzy, kde-format
-#| msgid "Enter your nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "Takma adınızı girin:"
+msgstr "Takma adını gir:"
 
 #: kexthighscore_gui.cpp:609
-#, fuzzy, kde-format
-#| msgid "Do not ask again."
+#, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
-msgstr "Bir daha sorma."
+msgstr "Bir daha sorma"
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
-msgstr "anonim"
+msgstr "Anonim"
 
 #: kexthighscore_internal.cpp:258
 #, kde-format
@@ -318,16 +304,15 @@ msgid "Server URL: %1"
 msgstr "Sunucu URL: %1"
 
 #: kexthighscore_internal.cpp:646
-#, fuzzy, kde-format
-#| msgid "Message from world-wide highscores server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr "Dünya çapı yüksek puan sunucusundan ileti"
+msgstr "Dünya Yüksek Puanları Sunucusundan İleti"
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
-msgstr "Dünya çapı yüksek puan sunucusundan geçersiz cevap."
+msgstr "Dünya çapı yüksek puan sunucusundan geçersiz yanıt."
 
 #: kexthighscore_internal.cpp:653
 #, kde-format
@@ -399,43 +384,37 @@ msgid "Max lost:"
 msgstr "En az kaybedilen:"
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game Counts"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
 msgstr "Oyun Sayısı"
 
 #: kexthighscore_tab.cpp:129
-#, fuzzy, kde-format
-#| msgid "Trends"
+#, kde-format
 msgctxt "@title:group"
 msgid "Trends"
 msgstr "Eğilimler"
 
 #: kexthighscore_tab.cpp:217
-#, fuzzy, kde-format
-#| msgid "From"
+#, kde-format
 msgctxt "@title:column"
 msgid "From"
 msgstr "Kimden"
 
 #: kexthighscore_tab.cpp:218
-#, fuzzy, kde-format
-#| msgid "To"
+#, kde-format
 msgctxt "@title:column"
 msgid "To"
 msgstr "Kime"
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Count"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
 msgstr "Sayı"
 
 #: kexthighscore_tab.cpp:220
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgctxt "@title:column"
 msgid "Percent"
 msgstr "Yüzde"
@@ -514,8 +493,8 @@ msgid ""
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 msgstr ""
-"(c) 1997-2000, Mario Weilguni\n"
-"(c) 2004-2006, Inge Wallin\n"
+"(c) 1997–2000, Mario Weilguni\n"
+"(c) 2004–2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 
 #: main.cpp:33
@@ -526,7 +505,7 @@ msgstr "Mario Weilguni"
 #: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
-msgstr "Asıl yazar"
+msgstr "Özgün yazar"
 
 #: main.cpp:34
 #, kde-format
@@ -536,12 +515,12 @@ msgstr "Inge Wallin"
 #: main.cpp:35
 #, kde-format
 msgid "Dmitry Suzdalev"
-msgstr "Dmitry Suzdalev"
+msgstr "Dmitriy Suzdalev"
 
 #: main.cpp:35
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
-msgstr "KDE4 için oyunu yeniden yazan. Projeyi sürdüren."
+msgstr "KDE4 için oyunu yeniden yazan ve şu anki bakımcı"
 
 #: main.cpp:36
 #, kde-format
@@ -561,7 +540,7 @@ msgstr "Mats Luthman"
 #: main.cpp:37
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
-msgstr "Oyun motoru, Java Programcığına geçiş."
+msgstr "Java uygulamacığından aktarılan oyun işletkesi"
 
 #: main.cpp:38
 #, kde-format
@@ -571,7 +550,7 @@ msgstr "Arne Klaassen"
 #: main.cpp:38
 #, kde-format
 msgid "Original raytraced chips."
-msgstr "Özgün ışınsal çipler."
+msgstr "Özgün ışın izlemeli çipler"
 
 #: main.cpp:39
 #, kde-format
@@ -581,7 +560,7 @@ msgstr "Mauricio Piacentini"
 #: main.cpp:39
 #, kde-format
 msgid "Vector chips and background for KDE4."
-msgstr "KDE4 için doğrusal çipler ve arka plan."
+msgstr "KDE4 için vektör çipler ve arka plan"
 
 #: main.cpp:40
 #, kde-format
@@ -591,7 +570,7 @@ msgstr "Brian Croom"
 #: main.cpp:40
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
-msgstr "KGameRenderer kullanmak için geçiş"
+msgstr "KGameRenderer geçişi"
 
 #: main.cpp:41
 #, kde-format
@@ -601,8 +580,7 @@ msgstr "Denis Kuplyakov"
 #: main.cpp:41
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
-msgstr ""
-"QML'ye geciş işleme kodu yeniden tasarlandı ve birçok iyileştirme yapıldı"
+msgstr "Sunum kodunun QML’ye aktarımı, yeniden tasarım ve pek çok iyileştirme"
 
 #: main.cpp:49
 #, kde-format
@@ -612,67 +590,58 @@ msgstr "Öğretici oyunu oynatarak başlat"
 #: mainwindow.cpp:49
 #, kde-format
 msgid "Press start game!"
-msgstr "Oyuna başlat'a tıkla!"
+msgstr "Oyunu Başlat’a tıkla!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "Hareket Geçmişi"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
-msgstr "Son Hareketi Göster"
+msgstr "Son hareketi göster"
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
-msgstr "Geçerli Hareketleri Göster"
+msgstr "Geçerli hareketleri göster"
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
-msgstr "Canlandırma hızı"
+msgstr "Canlandırma Hızı"
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "Yavaş"
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
 msgstr "Normal"
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "Hızlı"
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
-msgstr "Renkli Çipler Kullan"
+msgstr "Renkli çipler kullan"
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
 msgstr "Hareket Geçmişini Göster"
@@ -707,11 +676,10 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr "Oyun bitti"
+msgstr "Oyun Bitti"
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -745,11 +713,10 @@ msgid "New game"
 msgstr "Yeni oyun"
 
 #: startgamedialog.cpp:36
-#, fuzzy, kde-format
-#| msgid "Start game"
+#, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr "Oyuna başla"
+msgstr "Oyunu Başlat"
 
 #: startgamedialog.cpp:37
 #, kde-format
@@ -757,18 +724,16 @@ msgid "Let's start playing!"
 msgstr "Oyunu oynamaya başla!"
 
 #: startgamedialog.cpp:38
-#, fuzzy, kde-format
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action:button"
 msgid "Quit"
 msgstr "Çık"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Quit KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr "K Reversi'den Çık"
+msgstr "K Reversi’den Çık"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)

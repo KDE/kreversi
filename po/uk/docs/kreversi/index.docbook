@@ -443,10 +443,10 @@
 ><action
 >Відкриває діалогове вікно найкращих результатів, у якому буде показано різноманітні таблиці найкращих результатів.</action>
     <!--<guibutton
->Export...</guibutton
+>Export…</guibutton
 > the high scores into a file or click on
     <guibutton
->Configure...</guibutton
+>Configure…</guibutton
 > to open a dialog to customize your
     <guilabel
 >Nickname</guilabel
