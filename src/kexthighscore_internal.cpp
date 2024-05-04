@@ -786,7 +786,7 @@ int ManagerPrivate::submitScore(const Score &ascore,
     score.setData(QStringLiteral( "date" ), QDateTime::currentDateTime());
 
     // ask new name if anonymous and winner
-    const QLatin1String dontAskAgainName = QLatin1String( "highscore_ask_name_dialog" );
+    const QString dontAskAgainName = QStringLiteral("highscore_ask_name_dialog");
     QString newName;
     KMessageBox::ButtonCode dummy;
     if ( score.type()==Won && askIfAnonymous && _playerInfos->isAnonymous()
