@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:37+0000\n"
+"POT-Creation-Date: 2024-05-05 00:37+0000\n"
 "PO-Revision-Date: 2024-05-03 14:58+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -120,71 +120,71 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "טבלת שיאים"
 
-#: kexthighscore_gui.cpp:328
+#: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
 msgstr "נצחון"
 
-#: kexthighscore_gui.cpp:366
+#: kexthighscore_gui.cpp:365
 #, kde-format
 msgid "Won Games"
 msgstr "משחקים בהם ניצחת"
 
-#: kexthighscore_gui.cpp:394
+#: kexthighscore_gui.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "הגדרת טבלת שיאים"
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:406
 #, kde-format
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "ראשי"
 
-#: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
+#: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "כינוי:"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:432
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "הערה:"
 
-#: kexthighscore_gui.cpp:443
+#: kexthighscore_gui.cpp:442
 #, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
 msgstr "טבלת שיאים בינלאומית פעילה"
 
-#: kexthighscore_gui.cpp:450
+#: kexthighscore_gui.cpp:449
 #, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "מתקדם"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:455
 #, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "נתוני רישום"
 
-#: kexthighscore_gui.cpp:467
+#: kexthighscore_gui.cpp:466
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "מפתח:"
 
-#: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
+#: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "הסרה"
 
-#: kexthighscore_gui.cpp:519
+#: kexthighscore_gui.cpp:518
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -193,34 +193,34 @@ msgstr ""
 "פעולה זו תסיר את מפתח הרישום שלך לצמיתות. לא תהיה לך אפשרות להשתמש בכינוי "
 "שרשום כרגע שוב."
 
-#: kexthighscore_gui.cpp:562
+#: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "נא לבחור כינוי שאינו ריק."
 
-#: kexthighscore_gui.cpp:566
+#: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "הכינוי כבר בשימוש. נא לבחור בכינוי אחר."
 
-#: kexthighscore_gui.cpp:587
+#: kexthighscore_gui.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "נא למלא את הכינוי שלך"
 
-#: kexthighscore_gui.cpp:596
+#: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "מזל טוב, ניצחת!"
 
-#: kexthighscore_gui.cpp:601
+#: kexthighscore_gui.cpp:600
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr "נא למלא את הכינוי שלך:"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:608
 #, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
@@ -326,27 +326,6 @@ msgstr "הודעה גולמית: %1"
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "תשובה שגויה משרת טבלת השיאים הבינלאומית (חסר הפריט: %1)."
-
-#: kexthighscore_item.cpp:268
-#, kde-format
-msgctxt "@title:window"
-msgid "Multiplayers Scores"
-msgstr "ניקוד ריבוי שחקנים"
-
-#: kexthighscore_item.cpp:279
-#, kde-format
-msgid "No game played."
-msgstr "לא שוחקו משחקים."
-
-#: kexthighscore_item.cpp:281
-#, kde-format
-msgid "Scores for last game:"
-msgstr "ניקוד למשחק האחרון:"
-
-#: kexthighscore_item.cpp:288
-#, kde-format
-msgid "Scores for the last %1 games:"
-msgstr "ניקוד ל־%1 המשחקים האחרונים:"
 
 #: kexthighscore_tab.cpp:32
 #, kde-format
@@ -756,6 +735,19 @@ msgstr "רמת המיומנות:"
 #, kde-format
 msgid "VS"
 msgstr "נגד"
+
+#~ msgctxt "@title:window"
+#~ msgid "Multiplayers Scores"
+#~ msgstr "ניקוד ריבוי שחקנים"
+
+#~ msgid "No game played."
+#~ msgstr "לא שוחקו משחקים."
+
+#~ msgid "Scores for last game:"
+#~ msgstr "ניקוד למשחק האחרון:"
+
+#~ msgid "Scores for the last %1 games:"
+#~ msgstr "ניקוד ל־%1 המשחקים האחרונים:"
 
 #~ msgid "Overwrite"
 #~ msgstr "לשכתב"

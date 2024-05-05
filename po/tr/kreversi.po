@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:37+0000\n"
+"POT-Creation-Date: 2024-05-05 00:37+0000\n"
 "PO-Revision-Date: 2024-05-04 01:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -117,71 +117,71 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Yüksek Puanlar"
 
-#: kexthighscore_gui.cpp:328
+#: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
 msgstr "Kazanan"
 
-#: kexthighscore_gui.cpp:366
+#: kexthighscore_gui.cpp:365
 #, kde-format
 msgid "Won Games"
 msgstr "Kazanılan Oyunlar"
 
-#: kexthighscore_gui.cpp:394
+#: kexthighscore_gui.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Yüksek Puanları Yapılandır"
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:406
 #, kde-format
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Ana"
 
-#: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
+#: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Takma ad:"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:432
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Açıklama:"
 
-#: kexthighscore_gui.cpp:443
+#: kexthighscore_gui.cpp:442
 #, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
 msgstr "Dünya çapında yüksek puanlar etkin"
 
-#: kexthighscore_gui.cpp:450
+#: kexthighscore_gui.cpp:449
 #, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:455
 #, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Kayıt Verisi"
 
-#: kexthighscore_gui.cpp:467
+#: kexthighscore_gui.cpp:466
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Anahtar:"
 
-#: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
+#: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Kaldır"
 
-#: kexthighscore_gui.cpp:519
+#: kexthighscore_gui.cpp:518
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -190,34 +190,34 @@ msgstr ""
 "Bu kayıt anahtarınızı silecektir. Kayıtlı kullanıcı adınızı bundan sonra "
 "kullanamayacaksınız."
 
-#: kexthighscore_gui.cpp:562
+#: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Lütfen boş olmayan bir kullanıcı adı girin."
 
-#: kexthighscore_gui.cpp:566
+#: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Kullanıcı adı kullanılıyor. Lütfen başka bir tane deneyin"
 
-#: kexthighscore_gui.cpp:587
+#: kexthighscore_gui.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Takma Adınızı Girin"
 
-#: kexthighscore_gui.cpp:596
+#: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Tebrikler, kazandınız!"
 
-#: kexthighscore_gui.cpp:601
+#: kexthighscore_gui.cpp:600
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr "Takma adını gir:"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:608
 #, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
@@ -323,27 +323,6 @@ msgstr "Ham ileti: %1"
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "Dünya çapı yüksek puan sunucusundan geçersiz yanıt (eksik öge: %1)."
-
-#: kexthighscore_item.cpp:268
-#, kde-format
-msgctxt "@title:window"
-msgid "Multiplayers Scores"
-msgstr "Çoklu Oyuncu Puanları"
-
-#: kexthighscore_item.cpp:279
-#, kde-format
-msgid "No game played."
-msgstr "Henüz hiç oyun oynanmadı."
-
-#: kexthighscore_item.cpp:281
-#, kde-format
-msgid "Scores for last game:"
-msgstr "Son oyunun puanı:"
-
-#: kexthighscore_item.cpp:288
-#, kde-format
-msgid "Scores for the last %1 games:"
-msgstr "Son %1 oyunun puanı:"
 
 #: kexthighscore_tab.cpp:32
 #, kde-format
@@ -754,6 +733,19 @@ msgstr "Yetenek düzeyi:"
 #, kde-format
 msgid "VS"
 msgstr "VS"
+
+#~ msgctxt "@title:window"
+#~ msgid "Multiplayers Scores"
+#~ msgstr "Çoklu Oyuncu Puanları"
+
+#~ msgid "No game played."
+#~ msgstr "Henüz hiç oyun oynanmadı."
+
+#~ msgid "Scores for last game:"
+#~ msgstr "Son oyunun puanı:"
+
+#~ msgid "Scores for the last %1 games:"
+#~ msgstr "Son %1 oyunun puanı:"
 
 #~ msgid "Overwrite"
 #~ msgstr "Üzerine Yaz"

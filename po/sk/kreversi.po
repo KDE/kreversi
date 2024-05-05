@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:37+0000\n"
+"POT-Creation-Date: 2024-05-05 00:37+0000\n"
 "PO-Revision-Date: 2021-11-20 21:35+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -115,79 +115,79 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Najvyššie skóre"
 
-#: kexthighscore_gui.cpp:328
+#: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
 msgstr "Víťaz"
 
-#: kexthighscore_gui.cpp:366
+#: kexthighscore_gui.cpp:365
 #, kde-format
 msgid "Won Games"
 msgstr "Vyhané hry"
 
-#: kexthighscore_gui.cpp:394
+#: kexthighscore_gui.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Nastaviť najvyššie skóre"
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:406
 #, fuzzy, kde-format
 #| msgid "Main"
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Hlavné"
 
-#: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
+#: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, fuzzy, kde-format
 #| msgid "Nickname:"
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Prezývka:"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:432
 #, fuzzy, kde-format
 #| msgid "Comment:"
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Komentár:"
 
-#: kexthighscore_gui.cpp:443
+#: kexthighscore_gui.cpp:442
 #, fuzzy, kde-format
 #| msgid "World-wide highscores enabled"
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
 msgstr "Svetové najvyššie skóre povolené"
 
-#: kexthighscore_gui.cpp:450
+#: kexthighscore_gui.cpp:449
 #, fuzzy, kde-format
 #| msgid "Advanced"
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:455
 #, fuzzy, kde-format
 #| msgid "Registration Data"
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Registračné údaje"
 
-#: kexthighscore_gui.cpp:467
+#: kexthighscore_gui.cpp:466
 #, fuzzy, kde-format
 #| msgid "Key:"
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Kľúč:"
 
-#: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
+#: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Odstrániť"
 
-#: kexthighscore_gui.cpp:519
+#: kexthighscore_gui.cpp:518
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -196,35 +196,35 @@ msgstr ""
 "Toto natrvalo odstráni váš registračný kľúč. Už nebudete môcť použiť vašu "
 "aktuálne registrovanú prezývku.s"
 
-#: kexthighscore_gui.cpp:562
+#: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Prosím, vyberte neprázdnu prezývku."
 
-#: kexthighscore_gui.cpp:566
+#: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Prezývka sa už používa. Prosím, vyberte inú"
 
-#: kexthighscore_gui.cpp:587
+#: kexthighscore_gui.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Zadajte svoju prezývku"
 
-#: kexthighscore_gui.cpp:596
+#: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Blahoželám, vyhrali ste!"
 
-#: kexthighscore_gui.cpp:601
+#: kexthighscore_gui.cpp:600
 #, fuzzy, kde-format
 #| msgid "Enter your nickname:"
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr "Zadajte svoju prezývku:"
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:608
 #, fuzzy, kde-format
 #| msgid "Do not ask again."
 msgctxt "@option:check"
@@ -333,27 +333,6 @@ msgstr "Čistá správa: %1"
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
 "Neplatná odpoved zo svetového servera najvyššieho skóre (chýba položka: %1)."
-
-#: kexthighscore_item.cpp:268
-#, kde-format
-msgctxt "@title:window"
-msgid "Multiplayers Scores"
-msgstr "Body multiplayera"
-
-#: kexthighscore_item.cpp:279
-#, kde-format
-msgid "No game played."
-msgstr "Žiadna odohraná hra."
-
-#: kexthighscore_item.cpp:281
-#, kde-format
-msgid "Scores for last game:"
-msgstr "Body z poslednej hry:"
-
-#: kexthighscore_item.cpp:288
-#, kde-format
-msgid "Scores for the last %1 games:"
-msgstr "Body z posledných %1 hier:"
 
 #: kexthighscore_tab.cpp:32
 #, kde-format
@@ -782,6 +761,19 @@ msgstr "Úroveň obtiažnosti:"
 #, kde-format
 msgid "VS"
 msgstr "VS"
+
+#~ msgctxt "@title:window"
+#~ msgid "Multiplayers Scores"
+#~ msgstr "Body multiplayera"
+
+#~ msgid "No game played."
+#~ msgstr "Žiadna odohraná hra."
+
+#~ msgid "Scores for last game:"
+#~ msgstr "Body z poslednej hry:"
+
+#~ msgid "Scores for the last %1 games:"
+#~ msgstr "Body z posledných %1 hier:"
 
 #~ msgid "Overwrite"
 #~ msgstr "Prepísať"

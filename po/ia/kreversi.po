@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:37+0000\n"
+"POT-Creation-Date: 2024-05-05 00:37+0000\n"
 "PO-Revision-Date: 2023-10-13 09:51+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -112,112 +112,112 @@ msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Punctos alte"
 
-#: kexthighscore_gui.cpp:328
+#: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
 msgstr "Victor"
 
-#: kexthighscore_gui.cpp:366
+#: kexthighscore_gui.cpp:365
 #, kde-format
 msgid "Won Games"
 msgstr ""
 
-#: kexthighscore_gui.cpp:394
+#: kexthighscore_gui.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr ""
 
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:406
 #, fuzzy, kde-format
 #| msgid "Main"
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Principal"
 
-#: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
+#: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, fuzzy, kde-format
 #| msgid "Nickname:"
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Pseudonymo:"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:432
 #, fuzzy, kde-format
 #| msgid "Comment:"
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Commento:"
 
-#: kexthighscore_gui.cpp:443
+#: kexthighscore_gui.cpp:442
 #, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
 msgstr ""
 
-#: kexthighscore_gui.cpp:450
+#: kexthighscore_gui.cpp:449
 #, fuzzy, kde-format
 #| msgid "Advanced"
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Avantiate"
 
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:455
 #, fuzzy, kde-format
 #| msgid "Registration Data"
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Datos de Registration"
 
-#: kexthighscore_gui.cpp:467
+#: kexthighscore_gui.cpp:466
 #, fuzzy, kde-format
 #| msgid "Key:"
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Clave:"
 
-#: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
+#: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Remove"
 
-#: kexthighscore_gui.cpp:519
+#: kexthighscore_gui.cpp:518
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr ""
 
-#: kexthighscore_gui.cpp:562
+#: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr ""
 
-#: kexthighscore_gui.cpp:566
+#: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr ""
 
-#: kexthighscore_gui.cpp:587
+#: kexthighscore_gui.cpp:586
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr ""
 
-#: kexthighscore_gui.cpp:596
+#: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr ""
 
-#: kexthighscore_gui.cpp:601
+#: kexthighscore_gui.cpp:600
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr ""
 
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:608
 #, fuzzy, kde-format
 #| msgid "Do not ask again."
 msgctxt "@option:check"
@@ -323,27 +323,6 @@ msgstr ""
 #: kexthighscore_internal.cpp:665
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
-msgstr ""
-
-#: kexthighscore_item.cpp:268
-#, kde-format
-msgctxt "@title:window"
-msgid "Multiplayers Scores"
-msgstr ""
-
-#: kexthighscore_item.cpp:279
-#, kde-format
-msgid "No game played."
-msgstr ""
-
-#: kexthighscore_item.cpp:281
-#, kde-format
-msgid "Scores for last game:"
-msgstr ""
-
-#: kexthighscore_item.cpp:288
-#, kde-format
-msgid "Scores for the last %1 games:"
 msgstr ""
 
 #: kexthighscore_tab.cpp:32

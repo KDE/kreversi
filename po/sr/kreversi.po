@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-03 00:37+0000\n"
+"POT-Creation-Date: 2024-05-05 00:37+0000\n"
 "PO-Revision-Date: 2017-09-28 17:59+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -133,19 +133,19 @@ msgid "Highscores"
 msgstr "Најрезултати"
 
 # >> @item
-#: kexthighscore_gui.cpp:328
+#: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
 msgstr "победник"
 
 # >> @item
-#: kexthighscore_gui.cpp:366
+#: kexthighscore_gui.cpp:365
 #, kde-format
 msgid "Won Games"
 msgstr "добијене партије"
 
 # >> @title:window
-#: kexthighscore_gui.cpp:394
+#: kexthighscore_gui.cpp:393
 #, fuzzy, kde-format
 #| msgid "Configure Highscores"
 msgctxt "@title:window"
@@ -153,21 +153,21 @@ msgid "Configure Highscores"
 msgstr "Подешавање најрезултата"
 
 # >> @title:tab
-#: kexthighscore_gui.cpp:407
+#: kexthighscore_gui.cpp:406
 #, fuzzy, kde-format
 #| msgid "Main"
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Главно"
 
-#: kexthighscore_gui.cpp:422 kexthighscore_gui.cpp:461
+#: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, fuzzy, kde-format
 #| msgid "Nickname:"
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Надимак:"
 
-#: kexthighscore_gui.cpp:433
+#: kexthighscore_gui.cpp:432
 #, fuzzy, kde-format
 #| msgid "Comment:"
 msgctxt "@label:textbox"
@@ -175,7 +175,7 @@ msgid "Comment:"
 msgstr "Коментар:"
 
 # >> @option:check
-#: kexthighscore_gui.cpp:443
+#: kexthighscore_gui.cpp:442
 #, fuzzy, kde-format
 #| msgid "World-wide highscores enabled"
 msgctxt "@option:check"
@@ -183,7 +183,7 @@ msgid "World-wide highscores enabled"
 msgstr "Најрезултати широм света"
 
 # >> @title:tab
-#: kexthighscore_gui.cpp:450
+#: kexthighscore_gui.cpp:449
 #, fuzzy, kde-format
 #| msgid "Advanced"
 msgctxt "@title:tab"
@@ -191,28 +191,28 @@ msgid "Advanced"
 msgstr "Напредно"
 
 # >> @title:group
-#: kexthighscore_gui.cpp:456
+#: kexthighscore_gui.cpp:455
 #, fuzzy, kde-format
 #| msgid "Registration Data"
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Подаци за регистрацију"
 
-#: kexthighscore_gui.cpp:467
+#: kexthighscore_gui.cpp:466
 #, fuzzy, kde-format
 #| msgid "Key:"
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Кључ:"
 
-#: kexthighscore_gui.cpp:474 kexthighscore_gui.cpp:517
+#: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, fuzzy, kde-format
 #| msgid "Remove"
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Уклони"
 
-#: kexthighscore_gui.cpp:519
+#: kexthighscore_gui.cpp:518
 #, kde-format
 msgid ""
 "This will permanently remove your registration key. You will not be able to "
@@ -221,30 +221,30 @@ msgstr ""
 "Ово ће трајно уклонити ваш кључ за регистрацију. Нећете више моћи да "
 "користите тренутно регистровани надимак."
 
-#: kexthighscore_gui.cpp:562
+#: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
 msgstr "Изаберите непразан надимак."
 
-#: kexthighscore_gui.cpp:566
+#: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
 msgstr "Надимак је већ заузет. Изаберите неки други."
 
 # >> @title:window
-#: kexthighscore_gui.cpp:587
+#: kexthighscore_gui.cpp:586
 #, fuzzy, kde-format
 #| msgid "Enter Your Nickname"
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Унос надимка"
 
-#: kexthighscore_gui.cpp:596
+#: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
 msgstr "Честитамо, победили сте!"
 
-#: kexthighscore_gui.cpp:601
+#: kexthighscore_gui.cpp:600
 #, fuzzy, kde-format
 #| msgid "Enter your nickname:"
 msgctxt "@label:textbox"
@@ -252,7 +252,7 @@ msgid "Enter your nickname:"
 msgstr "Унесите надимак:"
 
 # >> @option:check
-#: kexthighscore_gui.cpp:609
+#: kexthighscore_gui.cpp:608
 #, fuzzy, kde-format
 #| msgid "Do not ask again."
 msgctxt "@option:check"
@@ -366,32 +366,6 @@ msgstr "Сирова порука: %1"
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "Лош одговор сервера најрезултата широм света (нема ставке: %1)."
-
-# >> @title:window
-#: kexthighscore_item.cpp:268
-#, fuzzy, kde-format
-#| msgid "Multiplayers Scores"
-msgctxt "@title:window"
-msgid "Multiplayers Scores"
-msgstr "Резултати у више играча"
-
-#: kexthighscore_item.cpp:279
-#, kde-format
-msgid "No game played."
-msgstr "Нема одиграних партија."
-
-#: kexthighscore_item.cpp:281
-#, kde-format
-msgid "Scores for last game:"
-msgstr "Резултати за последњу партију:"
-
-# >! Plurals.
-#: kexthighscore_item.cpp:288
-#, kde-format
-msgid "Scores for the last %1 games:"
-msgstr ""
-"Резултати за претходних %1 партија:|/|Резултати за $[множ ^1 претходну "
-"претходне претходних] %1 $[множ ^1 партију партије партија]:"
 
 # >> @item
 #: kexthighscore_tab.cpp:32
@@ -837,6 +811,25 @@ msgstr "Ниво вештине:"
 #, kde-format
 msgid "VS"
 msgstr "пр."
+
+# >> @title:window
+#, fuzzy
+#~| msgid "Multiplayers Scores"
+#~ msgctxt "@title:window"
+#~ msgid "Multiplayers Scores"
+#~ msgstr "Резултати у више играча"
+
+#~ msgid "No game played."
+#~ msgstr "Нема одиграних партија."
+
+#~ msgid "Scores for last game:"
+#~ msgstr "Резултати за последњу партију:"
+
+# >! Plurals.
+#~ msgid "Scores for the last %1 games:"
+#~ msgstr ""
+#~ "Резултати за претходних %1 партија:|/|Резултати за $[множ ^1 претходну "
+#~ "претходне претходних] %1 $[множ ^1 партију партије партија]:"
 
 #~ msgid "Overwrite"
 #~ msgstr "Пребриши"
