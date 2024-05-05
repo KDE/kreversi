@@ -1,7 +1,7 @@
 # translation of kreversi.po to Italian
+# SPDX-FileCopyrightText: 2009, 2010, 2013, 2014, 2017, 2019, 2021, 2024 Valter Mura <valtermura@gmail.com>
 # Andrea Celli <andrea.celli@libero.it>, 2003, 2004, 2005, 2006, 2007, 2008.
 # Federico Zenith <federico.zenith@member.fsf.org>, 2004.
-# Valter Mura <valtermura@gmail.com>, 2009, 2010, 2013, 2014, 2017, 2019, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.03.80\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
