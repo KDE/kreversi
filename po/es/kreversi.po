@@ -6,7 +6,7 @@
 # Santiago Fernandez Sancho <santi@kde-es.org>, 2004.
 # santi <santi@kde-es.org>, 2005, 2006.
 # Santiago Fernández Sancho <santi@kde-es.org>, 2007, 2008.
-# SPDX-FileCopyrightText: 2009, 2013, 2017, 2019, 2021, 2023 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2009, 2013, 2017, 2019, 2021, 2023, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 # Huever, 2009.
 # Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
 # David Paul <eodos0@gmail.com>, 2014.
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2023-10-02 21:44+0100\n"
+"PO-Revision-Date: 2024-05-05 22:46+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Jaime Robles <jaime@kde.org>\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 24.02.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -197,29 +197,29 @@ msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr ""
-"Esto borrará su clave de registro de forma permanente. No podrá volver a "
-"usar el alias que tiene registrado en la actualidad."
+"Esto borrará tu clave de registro de forma permanente. No podrás volver a "
+"usar el alias que tienes registrado en la actualidad."
 
 #: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr "Escoja un alias que no esté vacío."
+msgstr "Escoge un alias que no esté en blanco."
 
 #: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr "El alias ya está en uso. Escoja otro."
+msgstr "El alias ya está en uso. Escoge otro."
 
 #: kexthighscore_gui.cpp:598
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "Introduzca su alias"
+msgstr "Introduce tu alias"
 
 #: kexthighscore_gui.cpp:607
 #, kde-format
 msgid "Congratulations, you have won!"
-msgstr "¡Enhorabuena! ¡Ha ganado!"
+msgstr "¡Enhorabuena! ¡Has ganado!"
 
 #: kexthighscore_gui.cpp:612
 #, kde-format
@@ -363,7 +363,7 @@ msgstr "todo"
 #: kexthighscore_tab.cpp:61
 #, kde-format
 msgid "Select player:"
-msgstr "Seleccione jugador:"
+msgstr "Selecciona jugador:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Total:"
@@ -433,14 +433,14 @@ msgstr "Velocidad de las animaciones."
 #: kreversi.kcfg:18
 #, kde-format
 msgid "Whether to play competitively in contrast to casually."
-msgstr "Para jugar en modo competitivo en contraste con el modo casual."
+msgstr ""
+"Indica si se juega en modo competitivo en contraste con el modo casual."
 
 #. i18n: ectx: label, entry (UseColoredChips), group (Game)
 #: kreversi.kcfg:22
 #, kde-format
 msgid "Whether to use colored chips instead of black and white ones."
-msgstr ""
-"Indica si se han de usar fichas coloreadas en lugar de en blanco y negro."
+msgstr "Indica si se usan fichas de color en lugar de en blanco y negro."
 
 #. i18n: ectx: Menu (view)
 #: kreversiui.rc:13
@@ -452,7 +452,7 @@ msgstr "&Ver"
 #: kreversiui.rc:18
 #, kde-format
 msgid "&Settings"
-msgstr "Preferencia&s"
+msgstr "&Preferencias"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: kreversiui.rc:25
@@ -488,7 +488,7 @@ msgstr "KReversi"
 #: main.cpp:28
 #, kde-format
 msgid "KDE Reversi Board Game"
-msgstr "Juego de mesa reversi para KDE"
+msgstr "Juego de mesa Reversi para KDE"
 
 #: main.cpp:30
 #, kde-format
@@ -509,7 +509,7 @@ msgstr "Mario Weilguni"
 #: main.cpp:33 main.cpp:34
 #, kde-format
 msgid "Original author"
-msgstr "Autor original"
+msgstr "Autor original."
 
 #: main.cpp:34
 #, kde-format
@@ -524,7 +524,7 @@ msgstr "Dmitry Suzdalev"
 #: main.cpp:35
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
-msgstr "Juego reescrito para KDE4. Responsable actual."
+msgstr "Reescritura del juego para KDE4. Responsable actual."
 
 #: main.cpp:36
 #, kde-format
@@ -534,7 +534,7 @@ msgstr "Simon Hürlimann"
 #: main.cpp:36
 #, kde-format
 msgid "Action refactoring"
-msgstr "Reconstrucción de acciones"
+msgstr "Refactorización de las acciones."
 
 #: main.cpp:37
 #, kde-format
@@ -544,7 +544,7 @@ msgstr "Mats Luthman"
 #: main.cpp:37
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
-msgstr "Motor del juego, portado de su aplicación JAVA."
+msgstr "Motor del juego, adaptado de su aplicación en JAVA."
 
 #: main.cpp:38
 #, kde-format
@@ -554,7 +554,7 @@ msgstr "Arne Klaassen"
 #: main.cpp:38
 #, kde-format
 msgid "Original raytraced chips."
-msgstr "Infografía de las fichas."
+msgstr "Fichas originales con trazado de rayos."
 
 #: main.cpp:39
 #, kde-format
@@ -574,7 +574,7 @@ msgstr "Brian Croom"
 #: main.cpp:40
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
-msgstr "Adaptación del código de renderizado a KGameRenderer"
+msgstr "Adaptación del código de renderizado a KGameRenderer."
 
 #: main.cpp:41
 #, kde-format
@@ -584,17 +584,18 @@ msgstr "Denis Kuplyakov"
 #: main.cpp:41
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
-msgstr "Port renderizando el código a QML, rediseñado y múltiples mejoras."
+msgstr ""
+"Adaptación del código de renderizando a QML, rediseño y múltiples mejoras."
 
 #: main.cpp:49
 #, kde-format
 msgid "Start with demo game playing"
-msgstr "Comenzar con una partida de demostración"
+msgstr "Empezar con una partida de demostración"
 
 #: mainwindow.cpp:49
 #, kde-format
 msgid "Press start game!"
-msgstr "¡Pulse comenzar partida!"
+msgstr "¡Pulsa para empezar la partida!"
 
 #: mainwindow.cpp:64
 #, kde-format
@@ -644,22 +645,22 @@ msgstr "Mostrar historial de movimientos"
 #: mainwindow.cpp:216 mainwindow.cpp:231 mainwindow.cpp:244 mainwindow.cpp:252
 #, kde-format
 msgid "Game is drawn!"
-msgstr "¡Partida en empate!"
+msgstr "¡Partida empatada!"
 
 #: mainwindow.cpp:219 mainwindow.cpp:234
 #, kde-format
 msgid "You win!"
-msgstr "¡Usted gana!"
+msgstr "¡Has ganado!"
 
 #: mainwindow.cpp:222 mainwindow.cpp:237
 #, kde-format
 msgid "You have lost!"
-msgstr "Ha perdido!"
+msgstr "¡Has perdido!"
 
 #: mainwindow.cpp:246 mainwindow.cpp:248 mainwindow.cpp:254 mainwindow.cpp:256
 #, kde-format
 msgid "%1 has won!"
-msgstr "¡ %1 ha ganado!"
+msgstr "¡%1 ha ganado!"
 
 #: mainwindow.cpp:262 mainwindow.cpp:263 mainwindow.cpp:265 mainwindow.cpp:266
 #, kde-format
@@ -744,7 +745,7 @@ msgstr "Nivel de habilidad:"
 #: startgamedialog.ui:124
 #, kde-format
 msgid "VS"
-msgstr "VS"
+msgstr "vs"
 
 #~ msgid "https://kde.org/applications/games/org.kde.kreversi"
 #~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
