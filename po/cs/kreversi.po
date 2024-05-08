@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-05 00:37+0000\n"
 "PO-Revision-Date: 2021-08-13 10:52+0200\n"
-"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
+"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -71,32 +71,28 @@ msgid "Elapsed Time"
 msgstr "Uplynulý čas"
 
 #: kexthighscore_gui.cpp:147
-#, fuzzy, kde-format
-#| msgid "Best &Scores"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
-msgstr "Nejlepší &skóre"
+msgstr ""
 
 #: kexthighscore_gui.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Players"
+#, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
-msgstr "&Hráči"
+msgstr ""
 
 #: kexthighscore_gui.cpp:157
-#, fuzzy, kde-format
-#| msgid "Statistics"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
-msgstr "Statistika"
+msgstr ""
 
 #: kexthighscore_gui.cpp:163
-#, fuzzy, kde-format
-#| msgid "Histogram"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
-msgstr "Histogram"
+msgstr ""
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
@@ -131,57 +127,49 @@ msgid "Configure Highscores"
 msgstr "Nastavit nejlepší výsledky"
 
 #: kexthighscore_gui.cpp:406
-#, fuzzy, kde-format
-#| msgid "Main"
+#, kde-format
 msgctxt "@title:tan"
 msgid "Main"
-msgstr "Hlavní"
+msgstr ""
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
-#, fuzzy, kde-format
-#| msgid "Nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr "Přezdívka:"
+msgstr ""
 
 #: kexthighscore_gui.cpp:432
-#, fuzzy, kde-format
-#| msgid "Comment:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Komentář:"
 
 #: kexthighscore_gui.cpp:442
-#, fuzzy, kde-format
-#| msgid "World-wide highscores enabled"
+#, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr "Celosvětové výsledky povoleny"
+msgstr ""
 
 #: kexthighscore_gui.cpp:449
-#, fuzzy, kde-format
-#| msgid "Advanced"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Pokročilé"
 
 #: kexthighscore_gui.cpp:455
-#, fuzzy, kde-format
-#| msgid "Registration Data"
+#, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
-msgstr "Registrační údaje"
+msgstr ""
 
 #: kexthighscore_gui.cpp:466
-#, fuzzy, kde-format
-#| msgid "Key:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
-msgstr "Klíč:"
+msgstr ""
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Odstranit"
@@ -217,18 +205,16 @@ msgid "Congratulations, you have won!"
 msgstr "Gratulace, vyhráli jste!"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgid "Enter your nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "Zadejte svou přezdívku:"
+msgstr ""
 
 #: kexthighscore_gui.cpp:608
-#, fuzzy, kde-format
-#| msgid "Do not ask again."
+#, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
-msgstr "Znovu se nedotazovat."
+msgstr ""
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
@@ -311,11 +297,10 @@ msgid "Server URL: %1"
 msgstr "URL počítače: %1"
 
 #: kexthighscore_internal.cpp:646
-#, fuzzy, kde-format
-#| msgid "Message from world-wide highscores server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr "Zpráva ze serveru celosvětových výsledků"
+msgstr ""
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
@@ -372,46 +357,40 @@ msgid "Max lost:"
 msgstr "Max. prohráno:"
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game Counts"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
-msgstr "Počty her"
+msgstr ""
 
 #: kexthighscore_tab.cpp:129
-#, fuzzy, kde-format
-#| msgid "Trends"
+#, kde-format
 msgctxt "@title:group"
 msgid "Trends"
-msgstr "Trendy"
+msgstr ""
 
 #: kexthighscore_tab.cpp:217
-#, fuzzy, kde-format
-#| msgid "From"
+#, kde-format
 msgctxt "@title:column"
 msgid "From"
-msgstr "Od"
+msgstr ""
 
 #: kexthighscore_tab.cpp:218
-#, fuzzy, kde-format
-#| msgid "To"
+#, kde-format
 msgctxt "@title:column"
 msgid "To"
-msgstr "Komu"
+msgstr ""
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Count"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr "Počet"
+msgstr ""
 
 #: kexthighscore_tab.cpp:220
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgctxt "@title:column"
 msgid "Percent"
-msgstr "Procent"
+msgstr ""
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
@@ -586,67 +565,58 @@ msgid "Press start game!"
 msgstr "Stiskněte započetí hry!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "Historie přesunů"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
-msgstr "Zobrazit poslední tah"
+msgstr ""
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
-msgstr "Zobrazit platné tahy"
+msgstr ""
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
-msgstr "Rychlost animace"
+msgstr ""
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
-msgstr "Pomalu"
+msgstr ""
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
-msgstr "Normální"
+msgstr ""
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
-msgstr "Rychle"
+msgstr ""
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
-msgstr "Použít barevné kameny"
+msgstr ""
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
-msgstr "Zobrazit historii přesunů"
+msgstr ""
 
 #: mainwindow.cpp:219 mainwindow.cpp:234 mainwindow.cpp:247 mainwindow.cpp:255
 #, kde-format
@@ -678,11 +648,10 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr "Hra skončena"
+msgstr ""
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -716,11 +685,10 @@ msgid "New game"
 msgstr "Nová hra"
 
 #: startgamedialog.cpp:36
-#, fuzzy, kde-format
-#| msgid "Start game"
+#, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr "Spustit hru"
+msgstr ""
 
 #: startgamedialog.cpp:37
 #, kde-format
@@ -728,18 +696,16 @@ msgid "Let's start playing!"
 msgstr "Začněme hrát!"
 
 #: startgamedialog.cpp:38
-#, fuzzy, kde-format
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action:button"
 msgid "Quit"
 msgstr "Ukončit"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Quit KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr "Ukončit KReversi"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
@@ -760,25 +726,3 @@ msgstr "Úroveň dovednosti:"
 #, kde-format
 msgid "VS"
 msgstr ""
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Výsledky her více hráčů"
-
-#~ msgid "No game played."
-#~ msgstr "Žádná odehraná hra."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Skóre poslední hry:"
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "Skóre pro posledních %1 her:"
-
-#~ msgid "Overwrite"
-#~ msgstr "Přepsat"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "Soubor již existuje. Přepsat?"
-
-#~ msgid "Export"
-#~ msgstr "Exportovat"

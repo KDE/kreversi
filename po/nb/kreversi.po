@@ -750,6 +750,3 @@ msgstr ""
 #, kde-format
 msgid "VS"
 msgstr ""
-
-#~ msgid "Export"
-#~ msgstr "Eksporter"

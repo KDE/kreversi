@@ -740,12 +740,3 @@ msgstr ""
 #, kde-format
 msgid "VS"
 msgstr ""
-
-#~ msgid "Overwrite"
-#~ msgstr "Buhtte"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "Fiila gávdnu juo. Buhttet?"
-
-#~ msgid "Export"
-#~ msgstr "Olggosfievrrit"

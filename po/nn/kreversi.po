@@ -761,25 +761,3 @@ msgstr "Vanskegrad:"
 #, kde-format
 msgid "VS"
 msgstr "mot"
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Fleirspelarpoeng"
-
-#~ msgid "No game played."
-#~ msgstr "Ingen spelte rundar."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Poeng i den siste runden:"
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "Poeng i dei siste %1 rundane:"
-
-#~ msgid "Overwrite"
-#~ msgstr "Skriv over"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "Fila finst frå før. Vil du skriva over ho?"
-
-#~ msgid "Export"
-#~ msgstr "Eksporter"

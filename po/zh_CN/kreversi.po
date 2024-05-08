@@ -70,29 +70,25 @@ msgid "Elapsed Time"
 msgstr "已用时间"
 
 #: kexthighscore_gui.cpp:147
-#, fuzzy, kde-format
-#| msgid "Best &Scores"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
 msgstr "最高分(&S)"
 
 #: kexthighscore_gui.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Players"
+#, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
 msgstr "&玩家"
 
 #: kexthighscore_gui.cpp:157
-#, fuzzy, kde-format
-#| msgid "Statistics"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
 msgstr "详情"
 
 #: kexthighscore_gui.cpp:163
-#, fuzzy, kde-format
-#| msgid "Histogram"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
 msgstr "柱状图"
@@ -130,57 +126,49 @@ msgid "Configure Highscores"
 msgstr "配置排行榜"
 
 #: kexthighscore_gui.cpp:406
-#, fuzzy, kde-format
-#| msgid "Main"
+#, kde-format
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "主体"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
-#, fuzzy, kde-format
-#| msgid "Nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "昵称："
 
 #: kexthighscore_gui.cpp:432
-#, fuzzy, kde-format
-#| msgid "Comment:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "注释："
 
 #: kexthighscore_gui.cpp:442
-#, fuzzy, kde-format
-#| msgid "World-wide highscores enabled"
+#, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
 msgstr "启用全球排行榜"
 
 #: kexthighscore_gui.cpp:449
-#, fuzzy, kde-format
-#| msgid "Advanced"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "高级"
 
 #: kexthighscore_gui.cpp:455
-#, fuzzy, kde-format
-#| msgid "Registration Data"
+#, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "注册资料"
 
 #: kexthighscore_gui.cpp:466
-#, fuzzy, kde-format
-#| msgid "Key:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "键："
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "删除"
@@ -214,15 +202,13 @@ msgid "Congratulations, you have won!"
 msgstr "恭喜！您赢了！"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgid "Enter your nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr "输入您的昵称："
 
 #: kexthighscore_gui.cpp:608
-#, fuzzy, kde-format
-#| msgid "Do not ask again."
+#, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
 msgstr "不再询问."
@@ -308,11 +294,10 @@ msgid "Server URL: %1"
 msgstr "服务器 URL：%1"
 
 #: kexthighscore_internal.cpp:646
-#, fuzzy, kde-format
-#| msgid "Message from world-wide highscores server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr "来自全球排行榜服务器的信息"
+msgstr ""
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
@@ -368,43 +353,37 @@ msgid "Max lost:"
 msgstr "最多失败数："
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game Counts"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
 msgstr "游戏计数"
 
 #: kexthighscore_tab.cpp:129
-#, fuzzy, kde-format
-#| msgid "Trends"
+#, kde-format
 msgctxt "@title:group"
 msgid "Trends"
 msgstr "趋势"
 
 #: kexthighscore_tab.cpp:217
-#, fuzzy, kde-format
-#| msgid "From"
+#, kde-format
 msgctxt "@title:column"
 msgid "From"
 msgstr "来源"
 
 #: kexthighscore_tab.cpp:218
-#, fuzzy, kde-format
-#| msgid "To"
+#, kde-format
 msgctxt "@title:column"
 msgid "To"
 msgstr "收件人"
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Count"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
 msgstr "Count"
 
 #: kexthighscore_tab.cpp:220
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgctxt "@title:column"
 msgid "Percent"
 msgstr "百分数"
@@ -582,64 +561,55 @@ msgid "Press start game!"
 msgstr "按开始游戏!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "回合历史"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
 msgstr "显示上一步"
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
 msgstr "显示合法的步数"
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
 msgstr "动画速度"
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "慢速"
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
 msgstr "普通窗口"
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "快速"
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
 msgstr "使用彩色棋子"
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
 msgstr "显示回合历史"
@@ -674,11 +644,10 @@ msgstr ""
 "%1：%2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr "游戏结束"
+msgstr ""
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -712,11 +681,10 @@ msgid "New game"
 msgstr "新游戏"
 
 #: startgamedialog.cpp:36
-#, fuzzy, kde-format
-#| msgid "Start game"
+#, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr "开始游戏"
+msgstr ""
 
 #: startgamedialog.cpp:37
 #, kde-format
@@ -724,15 +692,13 @@ msgid "Let's start playing!"
 msgstr "我们开始游戏吧!"
 
 #: startgamedialog.cpp:38
-#, fuzzy, kde-format
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action:button"
 msgid "Quit"
 msgstr "退出"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Quit KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
 msgstr "退出 KReversi"
@@ -756,25 +722,3 @@ msgstr "水平等级："
 #, kde-format
 msgid "VS"
 msgstr "VS"
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "多人游戏得分"
-
-#~ msgid "No game played."
-#~ msgstr "没有玩过游戏。"
-
-#~ msgid "Scores for last game:"
-#~ msgstr "上次游戏得分："
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "上 %1 次游戏的得分："
-
-#~ msgid "Overwrite"
-#~ msgstr "覆盖"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "文件已经存在。覆盖吗？"
-
-#~ msgid "Export"
-#~ msgstr "导出"
