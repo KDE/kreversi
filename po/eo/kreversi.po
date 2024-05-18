@@ -1,15 +1,15 @@
 # Esperantaj mesaĝoj por "kreversi"
 # Copyright (C) 1998 Free Software Foundation, Inc.
 # Wolfram Diestel <diestel@rzaix340.rz.uni-leipzig.de>, 1998.
-# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
+# Oliver Kellogg <olivermkellogg@gmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2023-11-19 20:05+0100\n"
-"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
+"PO-Revision-Date: 2024-05-04 07:47+0100\n"
+"Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <eo@li.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Wolfram Diestel,Oliver Kellogg"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "wolfram@steloj.de,okellogg@users.sourceforge.net"
+msgstr "wolfram@steloj.de,olivermkellogg@gmail.com"
 
 #: commondefs.cpp:31
 #, kde-format
@@ -660,7 +660,7 @@ msgstr "La ludo finiĝis"
 #: mainwindow.cpp:336
 #, kde-format
 msgid "GAME OVER"
-msgstr "LUDO FINIĜIS"
+msgstr "GAME OVER"
 
 #: mainwindow.cpp:341 mainwindow.cpp:342 mainwindow.cpp:348 mainwindow.cpp:349
 #, kde-format
