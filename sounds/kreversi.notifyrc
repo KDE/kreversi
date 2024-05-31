@@ -2,6 +2,7 @@
 IconName=kreversi
 DesktopEntry=org.kde.kreversi
 Comment=KReversi Game
+Comment[ar]=لعبة كريفرسي
 Comment[bs]=KReversi igra
 Comment[ca]=Joc KReversi
 Comment[ca@valencia]=Joc KReversi
@@ -54,6 +55,7 @@ Comment[zh_TW]=黑白棋棋盤遊戲
 
 [Event/click]
 Name=Click
+Name[ar]=نقر
 Name[be]=Пстрычка
 Name[bn]=ক্লিক
 Name[br]=Klik
@@ -124,6 +126,7 @@ Name[x-test]=xxClickxx
 Name[zh_CN]=单击
 Name[zh_TW]=點擊
 Comment=Click
+Comment[ar]=نقر
 Comment[be]=Пстрычка
 Comment[bn]=ক্লিক
 Comment[br]=Klik
@@ -197,6 +200,7 @@ Sound=reversi-click.wav
 
 [Event/won]
 Name=Game Won
+Name[ar]=لقد ربحت!
 Name[be]=Перамога
 Name[bs]=Pobjeda
 Name[ca]=Partida guanyada
@@ -255,6 +259,7 @@ Name[x-test]=xxGame Wonxx
 Name[zh_CN]=赢了游戏
 Name[zh_TW]=您贏了
 Comment=Game won
+Comment[ar]=لقد ربحت!
 Comment[be]=Перамога
 Comment[bn]=খেল খতম
 Comment[br]=Gounezet eo ar c'hoari
@@ -326,6 +331,7 @@ Sound=reversi-won.wav
 
 [Event/lost]
 Name=Game Lost
+Name[ar]=خسرت اللعبة
 Name[bs]=Poraz
 Name[ca]=Partida perduda
 Name[ca@valencia]=Partida perduda
@@ -384,6 +390,7 @@ Name[x-test]=xxGame Lostxx
 Name[zh_CN]=输了游戏
 Name[zh_TW]=您輸了
 Comment=Game lost
+Comment[ar]=خسرت اللعبة
 Comment[be]=Параза
 Comment[bn]=খেলায় হেরে গিয়েছেন
 Comment[br]=Koll eo ar c'hoari
@@ -453,6 +460,7 @@ Action=None
 
 [Event/draw]
 Name=Draw
+Name[ar]=اسحب
 Name[be]=Нічыя
 Name[bn]=অমীমাংসিত
 Name[br]=Tresañ
@@ -519,6 +527,7 @@ Name[x-test]=xxDrawxx
 Name[zh_CN]=绘制
 Name[zh_TW]=發牌
 Comment=Draw
+Comment[ar]=اسحب
 Comment[be]=Нічыя
 Comment[bn]=অমীমাংসিত
 Comment[br]=Tresañ
@@ -588,6 +597,7 @@ Action=None
 
 [Event/illegal_move]
 Name=Illegal Move
+Name[ar]=نقلة غير قانونية
 Name[be]=Няправільны ход
 Name[bn]=অবৈধ চাল
 Name[bs]=Nedozvoljen potez
@@ -650,6 +660,7 @@ Name[x-test]=xxIllegal Movexx
 Name[zh_CN]=无效移动
 Name[zh_TW]=移動不合法
 Comment=Illegal move
+Comment[ar]=نقلة غير قانونية
 Comment[be]=Няправільны ход
 Comment[bn]=অবৈধ চাল
 Comment[bs]=Nedozvoljen potez
