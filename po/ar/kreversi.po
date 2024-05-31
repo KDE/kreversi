@@ -2,177 +2,178 @@
 # Copyright (C) 2002, 2007 Free Software Foundation, Inc.
 # Isam Bayazidi <bayazidi@arabeyes.org>, 2002.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
+# SPDX-FileCopyrightText: 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-05 00:37+0000\n"
-"PO-Revision-Date: 2007-10-14 15:45+0000\n"
-"Last-Translator: Youssef Chahibi <chahibi@gmail.com>\n"
-"Language-Team: <en@li.org>\n"
+"PO-Revision-Date: 2024-05-30 09:41+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Mohamed SAAD محمد سعد"
+msgstr "زايد السعيدي"
 
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "metehyi@free.fr"
+msgstr "zayed.alsaidi@gmail.com"
 
 #: commondefs.cpp:31
-#, fuzzy, kde-format
+#, kde-format
 msgid "Blue"
 msgstr "أزرق"
 
 #: commondefs.cpp:31
-#, fuzzy, kde-format
+#, kde-format
 msgid "Red"
 msgstr "أحمر"
 
 #. i18n: ectx: property (text), widget (QLabel, blackLabel)
 #: commondefs.cpp:32 startgamedialog.ui:24
-#, fuzzy, kde-format
+#, kde-format
 msgid "Black"
 msgstr "أسود"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteLabel)
 #: commondefs.cpp:32 startgamedialog.ui:146
-#, fuzzy, kde-format
+#, kde-format
 msgid "White"
 msgstr "أبيض"
 
 #: kexthighscore.cpp:198
 #, kde-format
 msgid "Score"
-msgstr ""
+msgstr "النتيجة"
 
 #: kexthighscore.cpp:201
 #, kde-format
 msgid "Mean Score"
-msgstr ""
+msgstr "متوسط ​​النتيجة"
 
 #: kexthighscore.cpp:206
 #, kde-format
 msgid "Best Score"
-msgstr ""
+msgstr "أفضل نتيجة"
 
 #: kexthighscore.cpp:210
 #, kde-format
 msgid "Elapsed Time"
-msgstr ""
+msgstr "الوقت المنقضي"
 
 #: kexthighscore_gui.cpp:147
 #, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
-msgstr ""
+msgstr "أف&ضل النتائج"
 
 #: kexthighscore_gui.cpp:152
 #, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
-msgstr ""
+msgstr "اللاعبون"
 
 #: kexthighscore_gui.cpp:157
 #, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
-msgstr ""
+msgstr "الإحصائيّات"
 
 #: kexthighscore_gui.cpp:163
 #, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
-msgstr ""
+msgstr "المخطّط الدّرجيّ"
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
 msgid "View world-wide highscores"
-msgstr ""
+msgstr "عرض أعلى الدرجات في جميع أنحاء العالم"
 
 #: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
-msgstr ""
+msgstr "اعرض اللاعبين في جميع أنحاء العالم"
 
 #: kexthighscore_gui.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
-msgstr ""
+msgstr "النتائج العليا"
 
 #: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
-msgstr ""
+msgstr "الفائز"
 
 #: kexthighscore_gui.cpp:365
-#, fuzzy, kde-format
+#, kde-format
 msgid "Won Games"
-msgstr "Mohamed SAAD محمد سعد"
+msgstr "ألعاب فاز بها"
 
 #: kexthighscore_gui.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
-msgstr ""
+msgstr "ضبط أعلى النتائج"
 
 #: kexthighscore_gui.cpp:406
 #, kde-format
 msgctxt "@title:tan"
 msgid "Main"
-msgstr ""
+msgstr "الرئيسي"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr ""
+msgstr "اللقب:"
 
 #: kexthighscore_gui.cpp:432
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
-msgstr ""
+msgstr "التعليق:"
 
 #: kexthighscore_gui.cpp:442
 #, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr ""
+msgstr "تمكين أعلى الدرجات في جميع أنحاء العالم"
 
 #: kexthighscore_gui.cpp:449
 #, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
-msgstr ""
+msgstr "متقدّم"
 
 #: kexthighscore_gui.cpp:455
 #, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
-msgstr ""
+msgstr "بيانات التسجيل"
 
 #: kexthighscore_gui.cpp:466
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
-msgstr ""
+msgstr "المفتاح:"
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "أزل"
 
 #: kexthighscore_gui.cpp:518
 #, kde-format
@@ -180,460 +181,467 @@ msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr ""
+"سيؤدي هذا إلى إزالة مفتاح التسجيل الخاص بك بشكل دائم. لن تتمكن من استخدام "
+"اللقب المسجل حاليًا بعد الآن."
 
 #: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr ""
+msgstr "الرجاء اختيار لقب غير فارغ.الرجاء اختيار لقب غير فارغ."
 
 #: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr ""
+msgstr "اللقب مستخدم فعلا. الرجاء اختيار واحد آخر"
 
 #: kexthighscore_gui.cpp:586
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "Mohamed SAAD محمد سعد"
+msgstr "ادخل لقبك"
 
 #: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
-msgstr ""
+msgstr "تهانينا! لقد ربحت!"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "Mohamed SAAD محمد سعد"
+msgstr "ادخل لقبك:"
 
 #: kexthighscore_gui.cpp:608
 #, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
-msgstr ""
+msgstr "لا تسأل مجدّدًا."
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
-msgstr ""
+msgstr "مجهّل"
 
 #: kexthighscore_internal.cpp:258
-#, fuzzy, kde-format
+#, kde-format
 msgid "Games Count"
-msgstr "انتهت اللعبة"
+msgstr "عد اللعبة"
 
 #: kexthighscore_internal.cpp:265
 #, kde-format
 msgid "Comment"
-msgstr ""
+msgstr "التعليق"
 
 #: kexthighscore_internal.cpp:587
 msgid "Undefined error."
-msgstr ""
+msgstr "خطأ غير معرّف."
 
 #: kexthighscore_internal.cpp:588
 msgid "Missing argument(s)."
-msgstr ""
+msgstr "المعامل (المعاملات) ناقصة."
 
 #: kexthighscore_internal.cpp:589
 msgid "Invalid argument(s)."
-msgstr ""
+msgstr "المعامل (المعاملات) غير صالحة."
 
 #: kexthighscore_internal.cpp:591
 msgid "Unable to connect to MySQL server."
-msgstr ""
+msgstr "غير قادر على الاتصال بخادم MySQL."
 
 #: kexthighscore_internal.cpp:592
 msgid "Unable to select database."
-msgstr ""
+msgstr "غير قادر علي اختيار قاعدة البيانات."
 
 #: kexthighscore_internal.cpp:593
 msgid "Error on database query."
-msgstr ""
+msgstr "خطأ في استعلام قاعدة البيانات."
 
 #: kexthighscore_internal.cpp:594
 msgid "Error on database insert."
-msgstr ""
+msgstr "خطأ في إدراج قاعدة البيانات."
 
 #: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
-msgstr ""
+msgstr "اللقب مستخدَم بالفعل."
 
 #: kexthighscore_internal.cpp:597
 msgid "Nickname not registered."
-msgstr ""
+msgstr "اللقب لم يسجل."
 
 #: kexthighscore_internal.cpp:598
 msgid "Invalid key."
-msgstr ""
+msgstr "مفتاح غير صالح."
 
 #: kexthighscore_internal.cpp:599
 msgid "Invalid submit key."
-msgstr ""
+msgstr "مفتاح الإرسال غير صالح."
 
 #: kexthighscore_internal.cpp:601
 msgid "Invalid level."
-msgstr ""
+msgstr "مستوى غير صالح."
 
 #: kexthighscore_internal.cpp:602
 msgid "Invalid score."
-msgstr ""
+msgstr "نتيجة غير صالحة."
 
 #: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
-msgstr ""
+msgstr "غير قادر على الاتصال بخادم أعلى الدرجات في جميع أنحاء العالم"
 
 #: kexthighscore_internal.cpp:615
 #, kde-format
 msgid "Unable to open temporary file."
-msgstr ""
+msgstr "غير قادر على فتح الملف المؤقت."
 
 #: kexthighscore_internal.cpp:624
 #, kde-format
 msgid "Server URL: %1"
-msgstr ""
+msgstr "مسار الخادوم: %1"
 
 #: kexthighscore_internal.cpp:646
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr ""
+msgstr "رسالة من خادم النتائج العالية في جميع أنحاء العالم"
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
-msgstr ""
+msgstr "إجابة غير صالحة من خادم أعلى الدرجات في جميع أنحاء العالم."
 
 #: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Raw message: %1"
-msgstr ""
+msgstr "الرسالة الأولية: %1"
 
 #: kexthighscore_internal.cpp:665
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
+"إجابة غير صالحة من خادم النتائج العالية في جميع أنحاء العالم (العنصر "
+"المفقود: %1)."
 
 #: kexthighscore_tab.cpp:32
 #, kde-format
 msgid "all"
-msgstr ""
+msgstr "الكلّ"
 
 #: kexthighscore_tab.cpp:61
 #, kde-format
 msgid "Select player:"
-msgstr ""
+msgstr "اختر لاعب:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Total:"
-msgstr ""
+msgstr "الإجمالي:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Won:"
-msgstr ""
+msgstr "الفوز:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Lost:"
-msgstr ""
+msgstr "الخسارة:"
 
 #: kexthighscore_tab.cpp:98
 msgid "Draw:"
-msgstr ""
+msgstr "السحب:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Current:"
-msgstr ""
+msgstr "الحالي:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max won:"
-msgstr ""
+msgstr "أقصى فوز:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max lost:"
-msgstr ""
+msgstr "أقصى خسارة:"
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
-msgstr "انتهت اللعبة"
+msgstr "عدد اللعبة"
 
 #: kexthighscore_tab.cpp:129
 #, kde-format
 msgctxt "@title:group"
 msgid "Trends"
-msgstr ""
+msgstr "الاتجاهات"
 
 #: kexthighscore_tab.cpp:217
 #, kde-format
 msgctxt "@title:column"
 msgid "From"
-msgstr ""
+msgstr "من"
 
 #: kexthighscore_tab.cpp:218
 #, kde-format
 msgctxt "@title:column"
 msgid "To"
-msgstr ""
+msgstr "إلى"
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr "انتهت اللعبة"
+msgstr "العدد"
 
 #: kexthighscore_tab.cpp:220
 #, kde-format
 msgctxt "@title:column"
 msgid "Percent"
-msgstr ""
+msgstr "النسبة المئوية"
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
-#, fuzzy, kde-format
+#, kde-format
 msgid "The speed of the animations."
-msgstr "الـ سرعة من."
+msgstr "سرعة التحريك."
 
 #. i18n: ectx: label, entry (CompetitiveGameChoice), group (Game)
 #: kreversi.kcfg:18
-#, fuzzy, kde-format
+#, kde-format
 msgid "Whether to play competitively in contrast to casually."
-msgstr "سواء إلى تشغيل بوصة تباين إلى."
+msgstr "ما إذا كان اللعب بشكل تنافسي أم استعراضي."
 
 #. i18n: ectx: label, entry (UseColoredChips), group (Game)
 #: kreversi.kcfg:22
-#, fuzzy, kde-format
+#, kde-format
 msgid "Whether to use colored chips instead of black and white ones."
-msgstr "سواء إلى استخدام من أسود و أبيض."
+msgstr "ما إذا كان سيستخدم رقع الملونة بدلاً من الرقائق السوداء والبيضاء."
 
 #. i18n: ectx: Menu (view)
 #: kreversiui.rc:13
-#, fuzzy, kde-format
+#, kde-format
 msgid "&View"
-msgstr "ا&عرض"
+msgstr "&عرض"
 
 #. i18n: ectx: Menu (settings)
 #: kreversiui.rc:18
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Settings"
 msgstr "إ&عدادات"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: kreversiui.rc:25
-#, fuzzy, kde-format
+#, kde-format
 msgid "Main Toolbar"
 msgstr "شريط الأدوات الرئيسي"
 
 #: kreversiview.cpp:255
-#, fuzzy, kde-format
+#, kde-format
 msgid "Red can not perform any move. It is blue turn again."
-msgstr "الحاسوب ليس انقل itإيطالياهو هو."
+msgstr "الأحمر لا يستطيع القيام بأي حركة. إنه دور الأزرق مرة أخرى."
 
 #: kreversiview.cpp:256
-#, fuzzy, kde-format
+#, kde-format
 msgid "White can not perform any move. It is black turn again."
-msgstr "الحاسوب ليس انقل itإيطالياهو هو."
+msgstr "الأبيض لا يستطيع القيام بأي حركة. إنه دور الأسود مرة أخرى."
 
 #: kreversiview.cpp:265
-#, fuzzy, kde-format
+#, kde-format
 msgid "Blue can not perform any move. It is red turn again."
-msgstr "أنت ليس أي منها انقل الحاسوب التالي الآن."
+msgstr "الأزرق لا يستطيع القيام بأي حركة. إنه دور الأحمر مرة أخرى."
 
 #: kreversiview.cpp:266
-#, fuzzy, kde-format
+#, kde-format
 msgid "Black can not perform any move. It is white turn again."
-msgstr "أنت ليس أي منها انقل الحاسوب التالي الآن."
+msgstr "الأسود لا يستطيع القيام بأي حركة. إنه دور الأبيض مرة أخرى."
 
 #: main.cpp:26
-#, fuzzy, kde-format
+#, kde-format
 msgid "KReversi"
-msgstr "KReversi"
+msgstr "كريفرسي"
 
 #: main.cpp:28
-#, fuzzy, kde-format
+#, kde-format
 msgid "KDE Reversi Board Game"
-msgstr "كِيدِي لوح لعبة"
+msgstr "لعبة ريفرسي لكِيدِي"
 
 #: main.cpp:30
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
-msgstr "c ماريو n c n c"
+msgstr ""
+"(ج) 1997-2000، ماريو ويلغوني\n"
+"(ج) 2004-2006، إنجي والين\n"
+"(ج) 2006، ديمتري سوزداليف"
 
 #: main.cpp:33
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mario Weilguni"
-msgstr "Mario Weilguni"
+msgstr "ماريو ويلغوني"
 
 #: main.cpp:33 main.cpp:34
-#, fuzzy, kde-format
+#, kde-format
 msgid "Original author"
 msgstr "المؤلف الأصلي"
 
 #: main.cpp:34
-#, fuzzy, kde-format
+#, kde-format
 msgid "Inge Wallin"
-msgstr "Inge Wallin"
+msgstr "ينغ والين"
 
 #: main.cpp:35
-#, fuzzy, kde-format
+#, kde-format
 msgid "Dmitry Suzdalev"
-msgstr "Dmitry Suzdalev"
+msgstr "ديمتري سوزداليف"
 
 #: main.cpp:35
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
-msgstr "لعبة لـ الحالي المشرف على الصيانة."
+msgstr "إعادة كتابة اللعبة لـ KDE4. المشرف الحالي."
 
 #: main.cpp:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "Simon Hürlimann"
-msgstr "Simon Hürlimann"
+msgstr "سيمون هورليمان"
 
 #: main.cpp:36
-#, fuzzy, kde-format
+#, kde-format
 msgid "Action refactoring"
-msgstr "إجراء اعادة التصنيع"
+msgstr "إعادة كتابة الإجراء"
 
 #: main.cpp:37
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mats Luthman"
-msgstr "حُصُر"
+msgstr "ماتس لوثمان"
 
 #: main.cpp:37
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game engine, ported from his JAVA applet."
-msgstr "لعبة محرك من بُريْمِج."
+msgstr "محرك اللعبة من بُريْمِج جافا."
 
 #: main.cpp:38
 #, kde-format
 msgid "Arne Klaassen"
-msgstr ""
+msgstr "آرني كلاسن"
 
 #: main.cpp:38
-#, fuzzy, kde-format
+#, kde-format
 msgid "Original raytraced chips."
-msgstr "الأصلي."
+msgstr "رقع تتبع الأشعة الأصلية."
 
 #: main.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "Mauricio Piacentini"
 msgstr "Mauricio Piacentini"
 
 #: main.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 msgid "Vector chips and background for KDE4."
-msgstr "الموجه و الخلفية لـ."
+msgstr "الرقع المتجهات والخلفية لـ KDE4."
 
 #: main.cpp:40
 #, kde-format
 msgid "Brian Croom"
-msgstr ""
+msgstr "بريان كروم"
 
 #: main.cpp:40
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
-msgstr ""
+msgstr "نقل شفرة العرض إلى KGameRenderer"
 
 #: main.cpp:41
 #, kde-format
 msgid "Denis Kuplyakov"
-msgstr ""
+msgstr "دينيس كوبلياكوف"
 
 #: main.cpp:41
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
-msgstr ""
+msgstr "نقل شفرة العرض إلى QML و إعادة التصميم والكثير من التحسينات"
 
 #: main.cpp:49
-#, fuzzy, kde-format
+#, kde-format
 msgid "Start with demo game playing"
-msgstr "ابدأ مع عرض لعبة قيد القراءة"
+msgstr "ابدأ باللعب التجريبي"
 
 #: mainwindow.cpp:49
 #, kde-format
 msgid "Press start game!"
-msgstr ""
+msgstr "اضغط ابدأ اللعبة!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
-msgstr "نقل تاريخ"
+msgstr "تأريخ النقلات"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
-msgstr "اعرض الأخير نقل"
+msgstr "اعرض أخر نقلة"
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
-msgstr "اعرض قانوني الحركات"
+msgstr "اعرض الحركات القانونية"
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
 msgstr "سرعة الحركات"
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "بطيء"
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
 msgstr "عادي"
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "سريع"
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
-msgstr "إستعمل ملوّن الرقائق"
+msgstr "استعمل رقع ملونة"
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
-msgstr "اعرض نقل التاريخ"
+msgstr "أظهر تأريخ النقلات"
 
 #: mainwindow.cpp:219 mainwindow.cpp:234 mainwindow.cpp:247 mainwindow.cpp:255
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game is drawn!"
-msgstr "لعبة هو!"
+msgstr "انتهت اللعبة بالتعادل!"
 
 #: mainwindow.cpp:222 mainwindow.cpp:237
-#, fuzzy, kde-format
+#, kde-format
 msgid "You win!"
-msgstr "فزتَ!"
+msgstr "فزت!"
 
 #: mainwindow.cpp:225 mainwindow.cpp:240
-#, fuzzy, kde-format
+#, kde-format
 msgid "You have lost!"
-msgstr "أنت!"
+msgstr "لقد خسرت!"
 
 #: mainwindow.cpp:249 mainwindow.cpp:251 mainwindow.cpp:257 mainwindow.cpp:259
 #, kde-format
 msgid "%1 has won!"
-msgstr ""
+msgstr "فارز %1!"
 
 #: mainwindow.cpp:265 mainwindow.cpp:266 mainwindow.cpp:268 mainwindow.cpp:269
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "\n"
 "%1: %2"
@@ -642,84 +650,84 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
 msgstr "انتهت اللعبة"
 
 #: mainwindow.cpp:339
-#, fuzzy, kde-format
+#, kde-format
 msgid "GAME OVER"
-msgstr "OVER."
+msgstr "انتهت اللعبة"
 
 #: mainwindow.cpp:344 mainwindow.cpp:345 mainwindow.cpp:351 mainwindow.cpp:352
-#, fuzzy, kde-format
+#, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
 #: mainwindow.cpp:348
 #, kde-format
 msgid "%1 turn"
-msgstr ""
+msgstr "دور %1"
 
 #: mainwindow.cpp:355
 #, kde-format
 msgid "%1's turn"
-msgstr ""
+msgstr "دور %1"
 
 #: mainwindow.cpp:365 startgamedialog.cpp:155 startgamedialog.cpp:169
-#, fuzzy, kde-format
+#, kde-format
 msgid "Computer"
 msgstr "الحاسوب"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
-msgstr "متصل لعبة"
+msgstr "لعبة جديدة"
 
 #: startgamedialog.cpp:36
 #, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr ""
+msgstr "ابدأ اللعبة"
 
 #: startgamedialog.cpp:37
 #, kde-format
 msgid "Let's start playing!"
-msgstr ""
+msgstr "دعنا نبدأ اللعب!"
 
 #: startgamedialog.cpp:38
 #, kde-format
 msgctxt "@action:button"
 msgid "Quit"
-msgstr ""
+msgstr "أنهِ"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr "KReversi"
+msgstr "أنه كريفرسي"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: startgamedialog.ui:79 startgamedialog.ui:201
 #, kde-format
 msgid "Name:"
-msgstr ""
+msgstr "الاسم:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: startgamedialog.ui:96 startgamedialog.ui:218
 #, kde-format
 msgid "Skill level:"
-msgstr ""
+msgstr "مستوى المهارة:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: startgamedialog.ui:124
 #, kde-format
 msgid "VS"
-msgstr ""
+msgstr "ضد"
 
 #, fuzzy
 #~ msgid "Very Easy"
