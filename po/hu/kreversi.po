@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2024-03-20 14:27+0100\n"
+"PO-Revision-Date: 2024-06-29 15:10+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8-bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.04.70\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -53,78 +53,78 @@ msgstr "Világos"
 #: kexthighscore.cpp:198
 #, kde-format
 msgid "Score"
-msgstr ""
+msgstr "Pontszám"
 
 #: kexthighscore.cpp:201
 #, kde-format
 msgid "Mean Score"
-msgstr ""
+msgstr "Átlagos pontszám"
 
 #: kexthighscore.cpp:206
 #, kde-format
 msgid "Best Score"
-msgstr ""
+msgstr "Legjobb pontszám"
 
 #: kexthighscore.cpp:210
 #, kde-format
 msgid "Elapsed Time"
-msgstr ""
+msgstr "Eltelt idő"
 
 #: kexthighscore_gui.cpp:147
 #, kde-format
 msgid "Best &Scores"
-msgstr ""
+msgstr "Legjobb pont&számok"
 
 #: kexthighscore_gui.cpp:152
 #, kde-format
 msgid "&Players"
-msgstr ""
+msgstr "&Játékosok"
 
 #: kexthighscore_gui.cpp:157
 #, kde-format
 msgid "Statistics"
-msgstr ""
+msgstr "Statisztikák"
 
 #: kexthighscore_gui.cpp:163
 #, kde-format
 msgid "Histogram"
-msgstr ""
+msgstr "Hisztogram"
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
 msgid "View world-wide highscores"
-msgstr ""
+msgstr "Világcsúcsok megtekintése"
 
 #: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
-msgstr ""
+msgstr "Világszerte játszó játékosok megtekintése"
 
 #: kexthighscore_gui.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
-msgstr ""
+msgstr "Dicsőségtábla"
 
 #: kexthighscore_gui.cpp:285
 #, kde-format
 msgid "Overwrite"
-msgstr ""
+msgstr "Felülírás"
 
 #: kexthighscore_gui.cpp:287
 #, kde-format
 msgid "The file already exists. Overwrite?"
-msgstr ""
+msgstr "A fájl már létezik. Felülírja?"
 
 #: kexthighscore_gui.cpp:288
 #, kde-format
 msgid "Export"
-msgstr ""
+msgstr "Exportálás"
 
 #: kexthighscore_gui.cpp:339
 #, kde-format
 msgid "Winner"
-msgstr ""
+msgstr "Győztes"
 
 #: kexthighscore_gui.cpp:377
 #, kde-format
@@ -135,12 +135,12 @@ msgstr "Győzelmek"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
-msgstr ""
+msgstr "Dicsőségtábla beállítása"
 
 #: kexthighscore_gui.cpp:418
 #, kde-format
 msgid "Main"
-msgstr ""
+msgstr "Alap"
 
 #: kexthighscore_gui.cpp:433 kexthighscore_gui.cpp:472
 #, kde-format
@@ -150,32 +150,32 @@ msgstr "Becenév:"
 #: kexthighscore_gui.cpp:444
 #, kde-format
 msgid "Comment:"
-msgstr ""
+msgstr "Megjegyzés:"
 
 #: kexthighscore_gui.cpp:454
 #, kde-format
 msgid "World-wide highscores enabled"
-msgstr ""
+msgstr "Világcsúcsok bekapcsolva"
 
 #: kexthighscore_gui.cpp:461
 #, kde-format
 msgid "Advanced"
-msgstr ""
+msgstr "Speciális"
 
 #: kexthighscore_gui.cpp:467
 #, kde-format
 msgid "Registration Data"
-msgstr ""
+msgstr "Regisztrációs adatok"
 
 #: kexthighscore_gui.cpp:478
 #, kde-format
 msgid "Key:"
-msgstr ""
+msgstr "Kulcs:"
 
 #: kexthighscore_gui.cpp:485 kexthighscore_gui.cpp:528
 #, kde-format
 msgid "Remove"
-msgstr ""
+msgstr "Eltávolítás"
 
 #: kexthighscore_gui.cpp:530
 #, kde-format
@@ -183,16 +183,18 @@ msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr ""
+"Ez véglegesen eltávolítja a regisztrációs kulcsot. Nem használhatja többé a "
+"jelenleg regisztrált becenevet."
 
 #: kexthighscore_gui.cpp:573
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr ""
+msgstr "Válasszon egy nem üres becenevet."
 
 #: kexthighscore_gui.cpp:577
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr ""
+msgstr "A becenév már foglalt. Válasszon egy másikat"
 
 #: kexthighscore_gui.cpp:598
 #, kde-format
@@ -203,21 +205,21 @@ msgstr "Adja meg a becenevét"
 #: kexthighscore_gui.cpp:607
 #, kde-format
 msgid "Congratulations, you have won!"
-msgstr ""
+msgstr "Gratulálunk, Ön nyert!"
 
 #: kexthighscore_gui.cpp:612
 #, kde-format
 msgid "Enter your nickname:"
-msgstr ""
+msgstr "Adja meg a becenevét:"
 
 #: kexthighscore_gui.cpp:620
 #, kde-format
 msgid "Do not ask again."
-msgstr ""
+msgstr "Ne kérdezzen rá többször."
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
-msgstr ""
+msgstr "névtelen"
 
 #: kexthighscore_internal.cpp:258
 #, kde-format
@@ -227,152 +229,154 @@ msgstr "Játékszám"
 #: kexthighscore_internal.cpp:265
 #, kde-format
 msgid "Comment"
-msgstr ""
+msgstr "Megjegyzés"
 
 #: kexthighscore_internal.cpp:587
 msgid "Undefined error."
-msgstr ""
+msgstr "Nem definiált hiba."
 
 #: kexthighscore_internal.cpp:588
 msgid "Missing argument(s)."
-msgstr ""
+msgstr "Hiányzó argumentum(ok)."
 
 #: kexthighscore_internal.cpp:589
 msgid "Invalid argument(s)."
-msgstr ""
+msgstr "Érvénytelen argumentum(ok)."
 
 #: kexthighscore_internal.cpp:591
 msgid "Unable to connect to MySQL server."
-msgstr ""
+msgstr "Nem lehet kapcsolódni a MySQL kiszolgálóhoz."
 
 #: kexthighscore_internal.cpp:592
 msgid "Unable to select database."
-msgstr ""
+msgstr "Nem lehet kiválasztani az adatbázist."
 
 #: kexthighscore_internal.cpp:593
 msgid "Error on database query."
-msgstr ""
+msgstr "Hiba az adatbázis-lekérdezéskor."
 
 #: kexthighscore_internal.cpp:594
 msgid "Error on database insert."
-msgstr ""
+msgstr "Hiba az adatbázisba beszúráskor."
 
 #: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
-msgstr ""
+msgstr "A becenevet már regisztrálták."
 
 #: kexthighscore_internal.cpp:597
 msgid "Nickname not registered."
-msgstr ""
+msgstr "A becenevet nem regisztrálták."
 
 #: kexthighscore_internal.cpp:598
 msgid "Invalid key."
-msgstr ""
+msgstr "Érvénytelen kulcs."
 
 #: kexthighscore_internal.cpp:599
 msgid "Invalid submit key."
-msgstr ""
+msgstr "Érvénytelen küldő kulcs."
 
 #: kexthighscore_internal.cpp:601
 msgid "Invalid level."
-msgstr ""
+msgstr "Érvénytelen szint."
 
 #: kexthighscore_internal.cpp:602
 msgid "Invalid score."
-msgstr ""
+msgstr "Érvénytelen pontszám."
 
 #: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
-msgstr ""
+msgstr "Nem sikerült kapcsolódni a világszintű dicsőségtábla kiszolgálójához"
 
 #: kexthighscore_internal.cpp:615
 #, kde-format
 msgid "Unable to open temporary file."
-msgstr ""
+msgstr "Nem lehet megnyitni az átmeneti fájlt."
 
 #: kexthighscore_internal.cpp:624
 #, kde-format
 msgid "Server URL: %1"
-msgstr ""
+msgstr "Kiszolgáló URL: %1"
 
 #: kexthighscore_internal.cpp:646
 #, kde-format
 msgid "Message from world-wide highscores server"
-msgstr ""
+msgstr "Üzenet a világszintű dicsőségtábla kiszolgálótól"
 
 #: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
-msgstr ""
+msgstr "Érvénytelen válasz a világszintű dicsőségtábla kiszolgálótól."
 
 #: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
-msgstr ""
+msgstr "Nyers üzenet: %1"
 
 #: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
+"Érvénytelen válasz a világszintű dicsőségtábla kiszolgálótól (hiányzó elem: "
+"%1)."
 
 #: kexthighscore_item.cpp:268
 #, kde-format
 msgctxt "@title:window"
 msgid "Multiplayers Scores"
-msgstr ""
+msgstr "Többjátékos pontszámok"
 
 #: kexthighscore_item.cpp:279
 #, kde-format
 msgid "No game played."
-msgstr ""
+msgstr "Nincs lejátszott játék."
 
 #: kexthighscore_item.cpp:281
 #, kde-format
 msgid "Scores for last game:"
-msgstr ""
+msgstr "Az utolsó játék pontszáma:"
 
 #: kexthighscore_item.cpp:288
 #, kde-format
 msgid "Scores for the last %1 games:"
-msgstr ""
+msgstr "Az utolsó %1 játék pontszáma:"
 
 #: kexthighscore_tab.cpp:32
 #, kde-format
 msgid "all"
-msgstr ""
+msgstr "mind"
 
 #: kexthighscore_tab.cpp:61
 #, kde-format
 msgid "Select player:"
-msgstr ""
+msgstr "Játékosok kiválasztása:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Total:"
-msgstr ""
+msgstr "Összesen:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Won:"
-msgstr ""
+msgstr "Győzelem:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Lost:"
-msgstr ""
+msgstr "Vereség:"
 
 #: kexthighscore_tab.cpp:98
 msgid "Draw:"
-msgstr ""
+msgstr "Döntetlen:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Current:"
-msgstr ""
+msgstr "jelenlegi:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max won:"
-msgstr ""
+msgstr "Legtöbb győzelem:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max lost:"
-msgstr ""
+msgstr "Legtöbb vereség:"
 
 #: kexthighscore_tab.cpp:116
 #, kde-format
@@ -382,27 +386,27 @@ msgstr "Játékszám"
 #: kexthighscore_tab.cpp:129
 #, kde-format
 msgid "Trends"
-msgstr ""
+msgstr "Tendenciák"
 
 #: kexthighscore_tab.cpp:217
 #, kde-format
 msgid "From"
-msgstr ""
+msgstr "Ettől"
 
 #: kexthighscore_tab.cpp:218
 #, kde-format
 msgid "To"
-msgstr ""
+msgstr "Eddig"
 
 #: kexthighscore_tab.cpp:219
 #, kde-format
 msgid "Count"
-msgstr ""
+msgstr "Szám"
 
 #: kexthighscore_tab.cpp:220
 #, kde-format
 msgid "Percent"
-msgstr ""
+msgstr "Százalék"
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
@@ -504,7 +508,7 @@ msgstr "Dmitry Suzdalev"
 #: main.cpp:35
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
-msgstr "Átírás KDE4-re. Aktuális karbantartó."
+msgstr "Átírás KDE4-re. Jelenlegi karbantartó."
 
 #: main.cpp:36
 #, kde-format
@@ -514,7 +518,7 @@ msgstr "Simon Hürlimann"
 #: main.cpp:36
 #, kde-format
 msgid "Action refactoring"
-msgstr "Műveletátfaktorizálás"
+msgstr "Műveletrefaktorálás"
 
 #: main.cpp:37
 #, kde-format
@@ -595,7 +599,7 @@ msgstr "Lehetséges lépések"
 #: mainwindow.cpp:121
 #, kde-format
 msgid "Animation Speed"
-msgstr "Az animáció sebessége"
+msgstr "Animáció sebessége"
 
 #: mainwindow.cpp:125
 #, kde-format
