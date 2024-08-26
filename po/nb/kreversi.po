@@ -90,14 +90,12 @@ msgstr ""
 
 #: kexthighscore_gui.cpp:157
 #, fuzzy, kde-format
-#| msgid "Statistics"
 msgctxt "@title:tab"
 msgid "Statistics"
 msgstr "Statistikk"
 
 #: kexthighscore_gui.cpp:163
 #, fuzzy, kde-format
-#| msgid "Histogram"
 msgctxt "@title:tab"
 msgid "Histogram"
 msgstr "Histogram"
@@ -136,21 +134,18 @@ msgstr ""
 
 #: kexthighscore_gui.cpp:406
 #, fuzzy, kde-format
-#| msgid "Main"
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Hoved"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, fuzzy, kde-format
-#| msgid "Name:"
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Navn:"
 
 #: kexthighscore_gui.cpp:432
 #, fuzzy, kde-format
-#| msgid "Comment:"
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Kommentar:"
@@ -163,7 +158,6 @@ msgstr ""
 
 #: kexthighscore_gui.cpp:449
 #, fuzzy, kde-format
-#| msgid "Advanced"
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Avansert"
@@ -367,7 +361,6 @@ msgstr ""
 
 #: kexthighscore_tab.cpp:116
 #, fuzzy, kde-format
-#| msgid "Game over"
 msgctxt "@title:group"
 msgid "Game Counts"
 msgstr "Spillet er slutt"
@@ -380,14 +373,12 @@ msgstr ""
 
 #: kexthighscore_tab.cpp:217
 #, fuzzy, kde-format
-#| msgid "From"
 msgctxt "@title:column"
 msgid "From"
 msgstr "Fra"
 
 #: kexthighscore_tab.cpp:218
 #, fuzzy, kde-format
-#| msgid "To"
 msgctxt "@title:column"
 msgid "To"
 msgstr "Til"
@@ -400,7 +391,6 @@ msgstr ""
 
 #: kexthighscore_tab.cpp:220
 #, fuzzy, kde-format
-#| msgid "Percent"
 msgctxt "@title:column"
 msgid "Percent"
 msgstr "Prosent"
@@ -579,63 +569,54 @@ msgstr ""
 
 #: mainwindow.cpp:64
 #, fuzzy, kde-format
-#| msgid "Move History"
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "Trekk-historie"
 
 #: mainwindow.cpp:111
 #, fuzzy, kde-format
-#| msgid "Show Last Move"
 msgctxt "@option:check"
 msgid "Show Last Move"
 msgstr "Vis forrige trekk"
 
 #: mainwindow.cpp:116
 #, fuzzy, kde-format
-#| msgid "Show Legal Moves"
 msgctxt "@option:check"
 msgid "Show Legal Moves"
 msgstr "Vis lovlige trekk"
 
 #: mainwindow.cpp:121
 #, fuzzy, kde-format
-#| msgid "Animation Speed"
 msgctxt "@title:menu"
 msgid "Animation Speed"
 msgstr "Animasjonshastighet"
 
 #: mainwindow.cpp:125
 #, fuzzy, kde-format
-#| msgid "Slow"
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "Sakte"
 
 #: mainwindow.cpp:126
 #, fuzzy, kde-format
-#| msgid "Normal"
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
 msgstr "Normal"
 
 #: mainwindow.cpp:127
 #, fuzzy, kde-format
-#| msgid "Fast"
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "Rask"
 
 #: mainwindow.cpp:133
 #, fuzzy, kde-format
-#| msgid "Use Colored Chips"
 msgctxt "@option:check"
 msgid "Use Colored Chips"
 msgstr "Bruk fargede brikker"
 
 #: mainwindow.cpp:141
 #, fuzzy, kde-format
-#| msgid "Show Move History"
 msgctxt "@action"
 msgid "Show Move History"
 msgstr "Vis trekkhistorien"
@@ -671,7 +652,6 @@ msgstr ""
 
 #: mainwindow.cpp:272
 #, fuzzy, kde-format
-#| msgid "Game over"
 msgctxt "@title:window"
 msgid "Game Over"
 msgstr "Spillet er slutt"
@@ -726,7 +706,6 @@ msgstr ""
 
 #: startgamedialog.cpp:39
 #, fuzzy, kde-format
-#| msgid "KReversi"
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
 msgstr "KReversi"
