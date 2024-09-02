@@ -45,7 +45,7 @@ msgstr "Laurent Rathle, Yann Verley, Sébastien Renard, Xavier Besnard"
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr ""
-"lrathle@teaser.fr, yann.verley@free.fr,renard@kde.org, xavier.besnard@neuf.fr"
+"lrathle@teaser.fr, yann.verley@free.fr,renard@kde.org, xavier.besnard@kde.org"
 
 #: commondefs.cpp:31
 #, kde-format
