@@ -499,10 +499,10 @@
 ><action
 >Abre un diálogo que muestra distintas tablas de mejores puntuaciones.</action>
     <!--<guibutton
->Export...</guibutton
+>Export…</guibutton
 > the high scores into a file or click on
     <guibutton
->Configure...</guibutton
+>Configure…</guibutton
 > to open a dialog to customize your
     <guilabel
 >Nickname</guilabel
