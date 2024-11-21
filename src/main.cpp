@@ -12,15 +12,32 @@
 #include <KLocalizedString>
 #include <KCrash>
 #include <KDBusService>
+#define HAVE_KICONTHEME __has_include(<KIconTheme>)
+#if HAVE_KICONTHEME
+#include <KIconTheme>
+#endif
 
+#define HAVE_STYLE_MANAGER __has_include(<KStyleManager>)
+#if HAVE_STYLE_MANAGER
+#include <KStyleManager>
+#endif
 #include "highscores.h"
 #include "mainwindow.h"
 #include "kreversi_version.h"
 
 int main(int argc, char **argv)
 {
+#if HAVE_KICONTHEME
+    KIconTheme::initTheme();
+#endif
     QApplication application(argc, argv);
-
+#if HAVE_STYLE_MANAGER
+    KStyleManager::initStyle();
+#else // !HAVE_STYLE_MANAGER
+#if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+    QApplication::setStyle(QStringLiteral("breeze"));
+#endif // defined(Q_OS_MACOS) || defined(Q_OS_WIN)
+#endif // HAVE_STYLE_MANAGER
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("kreversi"));
 
     KAboutData aboutData(QStringLiteral("kreversi"), i18n("KReversi"),

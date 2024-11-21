@@ -67,6 +67,7 @@ target_link_libraries(kreversi
     KF6::XmlGui
     Qt6::QuickWidgets
     Qt6::Svg
+    KF6::IconThemes
 )
 
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
