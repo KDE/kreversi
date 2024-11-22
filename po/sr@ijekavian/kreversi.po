@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-05 00:37+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2017-09-28 17:59+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -510,17 +510,17 @@ msgstr "Плави не може ништа да одигра. Црвени по
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Црни не може ништа да одигра. Бели поново на потезу."
 
-#: main.cpp:26
+#: main.cpp:43
 #, kde-format
 msgid "KReversi"
 msgstr "К‑реверси"
 
-#: main.cpp:28
+#: main.cpp:45
 #, kde-format
 msgid "KDE Reversi Board Game"
 msgstr "Игра на табли реверси за КДЕ"
 
-#: main.cpp:30
+#: main.cpp:47
 #, kde-format
 msgid ""
 "(c) 1997-2000, Mario Weilguni\n"
@@ -531,93 +531,93 @@ msgstr ""
 "© 2004–2006, Инге Валин\n"
 "© 2006, Дмитриј Суздаљев"
 
-#: main.cpp:33
+#: main.cpp:50
 #, kde-format
 msgid "Mario Weilguni"
 msgstr "Марио Вајлгуни"
 
-#: main.cpp:33 main.cpp:34
+#: main.cpp:50 main.cpp:51
 #, kde-format
 msgid "Original author"
 msgstr "Првобитни аутор"
 
-#: main.cpp:34
+#: main.cpp:51
 #, kde-format
 msgid "Inge Wallin"
 msgstr "Инге Валин"
 
-#: main.cpp:35
+#: main.cpp:52
 #, kde-format
 msgid "Dmitry Suzdalev"
 msgstr "Дмитриј Суздаљев"
 
 # rewrite-msgid: /Game//
-#: main.cpp:35
+#: main.cpp:52
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
 msgstr "Писање изнова за КДЕ‑4, тренутни одржавалац"
 
-#: main.cpp:36
+#: main.cpp:53
 #, kde-format
 msgid "Simon Hürlimann"
 msgstr "Симон Хирлиман"
 
-#: main.cpp:36
+#: main.cpp:53
 #, kde-format
 msgid "Action refactoring"
 msgstr "Рефакторисање радњи"
 
-#: main.cpp:37
+#: main.cpp:54
 #, kde-format
 msgid "Mats Luthman"
 msgstr "Матс Лутман"
 
-#: main.cpp:37
+#: main.cpp:54
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
 msgstr "Мотор игре, пренесен из његовог јаванског аплета."
 
-#: main.cpp:38
+#: main.cpp:55
 #, kde-format
 msgid "Arne Klaassen"
 msgstr "Арне Класен"
 
-#: main.cpp:38
+#: main.cpp:55
 #, kde-format
 msgid "Original raytraced chips."
 msgstr "Првобитни рендеровани жетони."
 
-#: main.cpp:39
+#: main.cpp:56
 #, kde-format
 msgid "Mauricio Piacentini"
 msgstr "Мауричо Пјаћентини"
 
-#: main.cpp:39
+#: main.cpp:56
 #, kde-format
 msgid "Vector chips and background for KDE4."
 msgstr "Векторски жетони и позадина за КДЕ‑4."
 
-#: main.cpp:40
+#: main.cpp:57
 #, kde-format
 msgid "Brian Croom"
 msgstr "Брајан Крум"
 
-#: main.cpp:40
+#: main.cpp:57
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
 msgstr "Пренос рендерског кода на KGameRenderer"
 
-#: main.cpp:41
+#: main.cpp:58
 #, kde-format
 msgid "Denis Kuplyakov"
 msgstr "Денис Купљаков"
 
-#: main.cpp:41
+#: main.cpp:58
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr "Пренос рендерског кода на КуМЛ, поновно пројектовање и многа побољшања"
 
-#: main.cpp:49
+#: main.cpp:66
 #, kde-format
 msgid "Start with demo game playing"
 msgstr "Почни са демо партијом"
