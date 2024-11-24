@@ -3,31 +3,32 @@
 #
 # Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2008.
 # Maris Nartiss <maris.kde@gmail.com>, 2009.
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2009-07-19 10:56+0300\n"
-"Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2024-11-23 11:39+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Viesturs Zariņš"
+msgstr "Viesturs Zariņš, Toms Trasūns"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "viesturs.zarins@mii.lu.lv"
+msgstr "viesturs.zarins@mii.lu.lv, toms.trasuns@posteo.net"
 
 #: commondefs.cpp:31
 #, kde-format
@@ -54,128 +55,126 @@ msgstr "Balts"
 #: kexthighscore.cpp:198
 #, kde-format
 msgid "Score"
-msgstr ""
+msgstr "Punkti"
 
 #: kexthighscore.cpp:201
 #, kde-format
 msgid "Mean Score"
-msgstr ""
+msgstr "Vidējie punkti"
 
 #: kexthighscore.cpp:206
 #, kde-format
 msgid "Best Score"
-msgstr ""
+msgstr "Labākais rezultāts"
 
 #: kexthighscore.cpp:210
 #, kde-format
 msgid "Elapsed Time"
-msgstr ""
+msgstr "Pagājušais laiks"
 
 #: kexthighscore_gui.cpp:147
 #, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
-msgstr ""
+msgstr "&Labākie rezultāti"
 
 #: kexthighscore_gui.cpp:152
 #, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
-msgstr ""
+msgstr "&Spēlētāji"
 
 #: kexthighscore_gui.cpp:157
 #, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: kexthighscore_gui.cpp:163
 #, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
-msgstr ""
+msgstr "Histogramma"
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
 msgid "View world-wide highscores"
-msgstr ""
+msgstr "Apskatīt pasaulē labākos rezultātus"
 
 #: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
-msgstr ""
+msgstr "Apskatīt spēlētājus pasaulē"
 
 #: kexthighscore_gui.cpp:221
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
-msgstr ""
+msgstr "Labākie rezultāti"
 
 #: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
-msgstr ""
+msgstr "Uzvarētājs"
 
 #: kexthighscore_gui.cpp:365
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgid "Won Games"
-msgstr "Viesturs Zariņš"
+msgstr "Uzvarētās spēles"
 
 #: kexthighscore_gui.cpp:393
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
-msgstr ""
+msgstr "Konfigurēt labākos rezultātus"
 
 #: kexthighscore_gui.cpp:406
 #, kde-format
 msgctxt "@title:tan"
 msgid "Main"
-msgstr ""
+msgstr "Pamata"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr ""
+msgstr "Segvārds:"
 
 #: kexthighscore_gui.cpp:432
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
-msgstr ""
+msgstr "Komentārs:"
 
 #: kexthighscore_gui.cpp:442
 #, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr ""
+msgstr "Ieslēgti pasaulē labākie rezultāti"
 
 #: kexthighscore_gui.cpp:449
 #, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
-msgstr ""
+msgstr "Paplašināti"
 
 #: kexthighscore_gui.cpp:455
 #, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
-msgstr ""
+msgstr "Reģistrācijas dati"
 
 #: kexthighscore_gui.cpp:466
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
-msgstr ""
+msgstr "Atslēga:"
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "Noņemt"
 
 #: kexthighscore_gui.cpp:518
 #, kde-format
@@ -183,221 +182,217 @@ msgid ""
 "This will permanently remove your registration key. You will not be able to "
 "use the currently registered nickname anymore."
 msgstr ""
+"Šī darbība no sistēmas neatgriezeniski dzēsīs reģistrācijas atslēgu. Jūs "
+"vairs nevarēsit izmantot pašreizējo reģistrēto segvārdu."
 
 #: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr ""
+msgstr "Tukšu segvārdu nevar izmantot."
 
 #: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr ""
+msgstr "Segvārdu jau kāds izmanto. Izdomājiet citu"
 
 #: kexthighscore_gui.cpp:586
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "Viesturs Zariņš"
+msgstr "Ierakstiet savu segvārdu"
 
 #: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
-msgstr ""
+msgstr "Apsveicam, Tu uzvarēji!"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "Viesturs Zariņš"
+msgstr "Ierakstiet savu segvārdu:"
 
 #: kexthighscore_gui.cpp:608
 #, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
-msgstr ""
+msgstr "Vairs nejautāt."
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
-msgstr ""
+msgstr "anonīms"
 
 #: kexthighscore_internal.cpp:258
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgid "Games Count"
-msgstr "Spēle galā"
+msgstr "Spēļu skaits"
 
 #: kexthighscore_internal.cpp:265
 #, kde-format
 msgid "Comment"
-msgstr ""
+msgstr "Komentārs"
 
 #: kexthighscore_internal.cpp:587
 msgid "Undefined error."
-msgstr ""
+msgstr "Nedefinēta kļūda."
 
 #: kexthighscore_internal.cpp:588
 msgid "Missing argument(s)."
-msgstr ""
+msgstr "Trūkst parametra(-u)."
 
 #: kexthighscore_internal.cpp:589
 msgid "Invalid argument(s)."
-msgstr ""
+msgstr "Nederīgs parametrs(-i)."
 
 #: kexthighscore_internal.cpp:591
 msgid "Unable to connect to MySQL server."
-msgstr ""
+msgstr "Neizdodas savienoties ar „MySQL“ serveri."
 
 #: kexthighscore_internal.cpp:592
 msgid "Unable to select database."
-msgstr ""
+msgstr "Neizdodas atlasīt datubāzi."
 
 #: kexthighscore_internal.cpp:593
 msgid "Error on database query."
-msgstr ""
+msgstr "Kļūda, vaicājot datubāzei."
 
 #: kexthighscore_internal.cpp:594
 msgid "Error on database insert."
-msgstr ""
+msgstr "Kļūda, ievietojot datubāzē."
 
 #: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
-msgstr ""
+msgstr "Segvārds jau ir reģistrēts."
 
 #: kexthighscore_internal.cpp:597
 msgid "Nickname not registered."
-msgstr ""
+msgstr "Segvārds nav reģistrēts."
 
 #: kexthighscore_internal.cpp:598
 msgid "Invalid key."
-msgstr ""
+msgstr "Nederīga atslēga."
 
 #: kexthighscore_internal.cpp:599
 msgid "Invalid submit key."
-msgstr ""
+msgstr "Nederīga iesniegšanas atslēga."
 
 #: kexthighscore_internal.cpp:601
 msgid "Invalid level."
-msgstr ""
+msgstr "Nederīgs līmenis."
 
 #: kexthighscore_internal.cpp:602
 msgid "Invalid score."
-msgstr ""
+msgstr "Nederīgs rezultāts."
 
 #: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
-msgstr ""
+msgstr "Neizdodas sazināties ar pasaules labāko rezultātu serveri"
 
 #: kexthighscore_internal.cpp:615
 #, kde-format
 msgid "Unable to open temporary file."
-msgstr ""
+msgstr "Neizdodas atvērt pagaidu datni."
 
 #: kexthighscore_internal.cpp:624
 #, kde-format
 msgid "Server URL: %1"
-msgstr ""
+msgstr "Servera URL: %1"
 
 #: kexthighscore_internal.cpp:646
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr ""
+msgstr "Ziņa no pasaules labāko rezultātu servera"
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
-msgstr ""
+msgstr "Nederīga atbilde no pasaules labāko rezultātu servera."
 
 #: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Raw message: %1"
-msgstr ""
+msgstr "Neapstrādāta ziņa: %1"
 
 #: kexthighscore_internal.cpp:665
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
+"Nederīga atbilde no pasaules labāko rezultātu servera (trūkst vienuma: %1)"
 
 #: kexthighscore_tab.cpp:32
 #, kde-format
 msgid "all"
-msgstr ""
+msgstr "viss"
 
 #: kexthighscore_tab.cpp:61
 #, kde-format
 msgid "Select player:"
-msgstr ""
+msgstr "Norādiet spēlētāju:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Total:"
-msgstr ""
+msgstr "Kopā:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Won:"
-msgstr ""
+msgstr "Uzvarēja:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Lost:"
-msgstr ""
+msgstr "Zaudēja:"
 
 #: kexthighscore_tab.cpp:98
 msgid "Draw:"
-msgstr ""
+msgstr "Neizšķirts"
 
 #: kexthighscore_tab.cpp:101
 msgid "Current:"
-msgstr ""
+msgstr "Šobrīd:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max won:"
-msgstr ""
+msgstr "Maks. uzvaras:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max lost:"
-msgstr ""
+msgstr "Maks. zaudējumu:"
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
-msgstr "Spēle galā"
+msgstr "Spēļu skaiti"
 
 #: kexthighscore_tab.cpp:129
 #, kde-format
 msgctxt "@title:group"
 msgid "Trends"
-msgstr ""
+msgstr "Tendences"
 
 #: kexthighscore_tab.cpp:217
 #, kde-format
 msgctxt "@title:column"
 msgid "From"
-msgstr ""
+msgstr "No"
 
 #: kexthighscore_tab.cpp:218
 #, kde-format
 msgctxt "@title:column"
 msgid "To"
-msgstr ""
+msgstr "Līdz"
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr "Spēle galā"
+msgstr "Skaits"
 
 #: kexthighscore_tab.cpp:220
 #, kde-format
 msgctxt "@title:column"
 msgid "Percent"
-msgstr ""
+msgstr "Procenti"
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
@@ -409,13 +404,13 @@ msgstr "Animāciju ātrums."
 #: kreversi.kcfg:18
 #, kde-format
 msgid "Whether to play competitively in contrast to casually."
-msgstr "Vai spēlēt agresīvi nevis ikdienišķi."
+msgstr "Vai sacensties, bet ne spēlēt ikdienišķi."
 
 #. i18n: ectx: label, entry (UseColoredChips), group (Game)
 #: kreversi.kcfg:22
 #, kde-format
 msgid "Whether to use colored chips instead of black and white ones."
-msgstr "Vai izmantot krāsainus kauliņus nevis melnbaltus."
+msgstr "Vai izmantot krāsainus kauliņus, bet ne melnbaltus."
 
 #. i18n: ectx: Menu (view)
 #: kreversiui.rc:13
@@ -436,28 +431,28 @@ msgid "Main Toolbar"
 msgstr "Galvenā rīkjosla "
 
 #: kreversiview.cpp:255
-#, fuzzy, kde-format
-#| msgid "Computer can not move. It is your turn again."
+#, kde-format
 msgid "Red can not perform any move. It is blue turn again."
-msgstr "Dators nespēj izdarīt gājienu. Jūms vēl viens gājiens."
+msgstr ""
+"Sarkanais spēlētājs nespēj izdarīt gājienu. Ir atkal zilā spēlētāja gājiens."
 
 #: kreversiview.cpp:256
-#, fuzzy, kde-format
-#| msgid "Computer can not move. It is your turn again."
+#, kde-format
 msgid "White can not perform any move. It is black turn again."
-msgstr "Dators nespēj izdarīt gājienu. Jūms vēl viens gājiens."
+msgstr ""
+"Baltais spēlētājs nespēj izdarīt gājienu. Ir atkal melnā spēlētāja gājiens."
 
 #: kreversiview.cpp:265
-#, fuzzy, kde-format
-#| msgid "You can not perform any move. Computer takes next turn now."
+#, kde-format
 msgid "Blue can not perform any move. It is red turn again."
-msgstr "Jūs nevarat izdarīt gājienu. Datoram vēl viens gājiens."
+msgstr ""
+"Zilais spēlētājs nespēj izdarīt gājienu. Ir atkal sarkanā spēlētāja gājiens."
 
 #: kreversiview.cpp:266
-#, fuzzy, kde-format
-#| msgid "You can not perform any move. Computer takes next turn now."
+#, kde-format
 msgid "Black can not perform any move. It is white turn again."
-msgstr "Jūs nevarat izdarīt gājienu. Datoram vēl viens gājiens."
+msgstr ""
+"Melnais spēlētājs nespēj izdarīt gājienu. Ir atkal baltā spēlētāja gājiens."
 
 #: main.cpp:43
 #, kde-format
@@ -476,8 +471,8 @@ msgid ""
 "(c) 2004-2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 msgstr ""
-"(c) 1997-2000, Mario Weilguni\n"
-"(c) 2004-2006, Inge Wallin\n"
+"(c) 1997—2000, Mario Weilguni\n"
+"(c) 2004—2006, Inge Wallin\n"
 "(c) 2006, Dmitry Suzdalev"
 
 #: main.cpp:50
@@ -488,7 +483,7 @@ msgstr "Mario Weilguni"
 #: main.cpp:50 main.cpp:51
 #, kde-format
 msgid "Original author"
-msgstr "Sākotnējais autors"
+msgstr "Sākotnējās versijas autors"
 
 #: main.cpp:51
 #, kde-format
@@ -503,7 +498,7 @@ msgstr "Dmitry Suzdalev"
 #: main.cpp:52
 #, kde-format
 msgid "Game rewrite for KDE4. Current maintainer."
-msgstr "Spēles pārrakstīšana priekš KDE4. Pašreizējais uzturētājs."
+msgstr "Pārrakstīja spēli KDE4 versijai. Pašreizējais uzturētājs."
 
 #: main.cpp:53
 #, kde-format
@@ -513,7 +508,7 @@ msgstr "Simon Hürlimann"
 #: main.cpp:53
 #, kde-format
 msgid "Action refactoring"
-msgstr "Darbību refaktorēšana"
+msgstr "Darbību pārstrukturizēšana"
 
 #: main.cpp:54
 #, kde-format
@@ -523,7 +518,7 @@ msgstr "Mats Luthman"
 #: main.cpp:54
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
-msgstr "Spēles dzinējs, pielāgoja savu JAVA apletu."
+msgstr "Spēles dzinis, portēja no savas JAVA sīklietotnes."
 
 #: main.cpp:55
 #, kde-format
@@ -533,7 +528,7 @@ msgstr "Arne Klaassen"
 #: main.cpp:55
 #, kde-format
 msgid "Original raytraced chips."
-msgstr "Orģināli ar raytrace zīmēti kauliņi"
+msgstr "Oriģināli ar „raytrace“ zīmēti kauliņi."
 
 #: main.cpp:56
 #, kde-format
@@ -543,97 +538,90 @@ msgstr "Mauricio Piacentini"
 #: main.cpp:56
 #, kde-format
 msgid "Vector chips and background for KDE4."
-msgstr "Vektoru kauliņu un fons priekš KDE4."
+msgstr "KDE4 vektoru kauliņu un fons."
 
 #: main.cpp:57
 #, kde-format
 msgid "Brian Croom"
-msgstr ""
+msgstr "Brian Croom"
 
 #: main.cpp:57
 #, kde-format
 msgid "Port rendering code to KGameRenderer"
-msgstr ""
+msgstr "Renderēšanas kodu pārnesa uz „KGameRenderer“"
 
 #: main.cpp:58
 #, kde-format
 msgid "Denis Kuplyakov"
-msgstr ""
+msgstr "Denis Kuplyakov"
 
 #: main.cpp:58
 #, kde-format
 msgid "Port rendering code to QML, redesign and a lot of improvements"
 msgstr ""
+"Renderēšanas kodu pārnesa uz QML, pārskatīja dizainu un veica daudz "
+"uzlabojumu"
 
 #: main.cpp:66
 #, kde-format
 msgid "Start with demo game playing"
-msgstr "Sākt ar palaistu demonstrācijas spēli."
+msgstr "Sākt ar palaistu demonstrācijas spēli"
 
 #: mainwindow.cpp:49
 #, kde-format
 msgid "Press start game!"
-msgstr ""
+msgstr "Spiediet „Sākt spēli“!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "Gājienu vēsture"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
 msgstr "Parādīt pēdējo gājienu"
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
-msgstr "Parādīt iespējamos gājienus"
+msgstr "Parādīt atļautos gājienus"
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
-msgstr "Animācijas ātrums"
+msgstr "Animāciju ātrums"
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
-msgstr "Lēni"
+msgstr "Lēnas"
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
-msgstr "Normāli"
+msgstr "Normālas"
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
-msgstr "Ātri"
+msgstr "Ātras"
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
 msgstr "Lietot krāsainus kauliņus"
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
 msgstr "Rādīt gājienu vēsturi"
@@ -656,7 +644,7 @@ msgstr "Jūs zaudējāt!"
 #: mainwindow.cpp:249 mainwindow.cpp:251 mainwindow.cpp:257 mainwindow.cpp:259
 #, kde-format
 msgid "%1 has won!"
-msgstr ""
+msgstr "%1 uzvarēja!"
 
 #: mainwindow.cpp:265 mainwindow.cpp:266 mainwindow.cpp:268 mainwindow.cpp:269
 #, kde-format
@@ -668,8 +656,7 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
 msgstr "Spēle galā"
@@ -677,7 +664,7 @@ msgstr "Spēle galā"
 #: mainwindow.cpp:339
 #, kde-format
 msgid "GAME OVER"
-msgstr "Spēle galā"
+msgstr "SPĒLE GALĀ"
 
 #: mainwindow.cpp:344 mainwindow.cpp:345 mainwindow.cpp:351 mainwindow.cpp:352
 #, kde-format
@@ -687,12 +674,12 @@ msgstr "%1: %2"
 #: mainwindow.cpp:348
 #, kde-format
 msgid "%1 turn"
-msgstr ""
+msgstr "%1 gājiens"
 
 #: mainwindow.cpp:355
 #, kde-format
 msgid "%1's turn"
-msgstr ""
+msgstr "Spēlētāja %1 gājiens"
 
 #: mainwindow.cpp:365 startgamedialog.cpp:155 startgamedialog.cpp:169
 #, kde-format
@@ -700,55 +687,53 @@ msgid "Computer"
 msgstr "Dators"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
-#| msgid "Online game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
-msgstr "Tiešsaistes spēle"
+msgstr "Jauna spēle"
 
 #: startgamedialog.cpp:36
 #, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr ""
+msgstr "Sākt spēlēt"
 
 #: startgamedialog.cpp:37
 #, kde-format
 msgid "Let's start playing!"
-msgstr ""
+msgstr "Sāksim spēlēt"
 
 #: startgamedialog.cpp:38
 #, kde-format
 msgctxt "@action:button"
 msgid "Quit"
-msgstr ""
+msgstr "Iziet"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr "KReversi"
+msgstr "Iziet no „KReversi“"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: startgamedialog.ui:79 startgamedialog.ui:201
 #, kde-format
 msgid "Name:"
-msgstr ""
+msgstr "Vārds"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: startgamedialog.ui:96 startgamedialog.ui:218
 #, kde-format
 msgid "Skill level:"
-msgstr ""
+msgstr "Prasmju līmenis"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: startgamedialog.ui:124
 #, kde-format
 msgid "VS"
-msgstr ""
+msgstr "pret"
 
 #~ msgid "Very Easy"
 #~ msgstr "Ļoti viegli"
