@@ -1,19 +1,19 @@
 # translation of kreversi.po to
 # translation of kreversi.po to Finnish
 # KDE Finnish translation sprint participants:
+# SPDX-FileCopyrightText: 2011, 2018, 2020, 2021, 2024 Tommi Nieminen <translator@legisign.org>
 # Kim Enkovaara <kim.enkovaara@iki.fi>, 2002, 2004, 2006.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2003.
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003, 2008.
 # Ilpo Kantonen <ilpo@iki.fi>, 2005.
 # Niklas Laxström <niklas.laxstrom+kdetrans@gmail.com>, 2007.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2013, 2014.
-# Tommi Nieminen <translator@legisign.org>, 2011, 2018, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2021-08-18 19:27+0300\n"
+"PO-Revision-Date: 2024-10-16 20:43+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -21,8 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-12-01 22:24:04+0000\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -80,29 +79,25 @@ msgid "Elapsed Time"
 msgstr "Kulunut aika"
 
 #: kexthighscore_gui.cpp:147
-#, fuzzy, kde-format
-#| msgid "Best &Scores"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
 msgstr "&Parhaat pisteet"
 
 #: kexthighscore_gui.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Players"
+#, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
-msgstr "&Pelaajat"
+msgstr "P&elaajat"
 
 #: kexthighscore_gui.cpp:157
-#, fuzzy, kde-format
-#| msgid "Statistics"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
 msgstr "Tilastot"
 
 #: kexthighscore_gui.cpp:163
-#, fuzzy, kde-format
-#| msgid "Histogram"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
 msgstr "Histogrammi"
@@ -140,57 +135,49 @@ msgid "Configure Highscores"
 msgstr "Tulosten asetukset"
 
 #: kexthighscore_gui.cpp:406
-#, fuzzy, kde-format
-#| msgid "Main"
+#, kde-format
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Pää"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
-#, fuzzy, kde-format
-#| msgid "Nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr "Näyttönimi:"
+msgstr "Näyttönimi"
 
 #: kexthighscore_gui.cpp:432
-#, fuzzy, kde-format
-#| msgid "Comment:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Kommentti:"
 
 #: kexthighscore_gui.cpp:442
-#, fuzzy, kde-format
-#| msgid "World-wide highscores enabled"
+#, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr "Kansainväliset tulokset käytössä"
+msgstr "Käytössä maailmanlaajuiset ennätykset"
 
 #: kexthighscore_gui.cpp:449
-#, fuzzy, kde-format
-#| msgid "Advanced"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Lisäasetukset"
 
 #: kexthighscore_gui.cpp:455
-#, fuzzy, kde-format
-#| msgid "Registration Data"
+#, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Rekisteröintitiedot"
 
 #: kexthighscore_gui.cpp:466
-#, fuzzy, kde-format
-#| msgid "Key:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Avain:"
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Poista"
@@ -226,18 +213,16 @@ msgid "Congratulations, you have won!"
 msgstr "Onnea, olet voittanut!"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgid "Enter your nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "Anna näyttönimi:"
+msgstr "Anna näyttönimesi:"
 
 #: kexthighscore_gui.cpp:608
-#, fuzzy, kde-format
-#| msgid "Do not ask again."
+#, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
-msgstr "Älä kysy uudelleen."
+msgstr "Älä kysy uudelleen"
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
@@ -320,11 +305,10 @@ msgid "Server URL: %1"
 msgstr "Palvelimen verkko-osoite: %1"
 
 #: kexthighscore_internal.cpp:646
-#, fuzzy, kde-format
-#| msgid "Message from world-wide highscores server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr "Viesti kansainväliseltä tulospalvelimelta"
+msgstr "Viesti maailmanlaajuiselta tulospalvelimelta"
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
@@ -385,48 +369,42 @@ msgid "Max lost:"
 msgstr "Hävityt:"
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game Counts"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
 msgstr "Pelien määrä"
 
 #: kexthighscore_tab.cpp:129
-#, fuzzy, kde-format
-#| msgid "Trends"
+#, kde-format
 msgctxt "@title:group"
 msgid "Trends"
 msgstr "Kehitys"
 
 # From ja To ovat histogrammin pistealueen ala- ja yläraja (esim. 0–32 pistettä, 32–40 pistettä)
 #: kexthighscore_tab.cpp:217
-#, fuzzy, kde-format
-#| msgid "From"
+#, kde-format
 msgctxt "@title:column"
 msgid "From"
-msgstr "Alaraja"
+msgstr "Mistä"
 
 # From ja To ovat histogrammin pistealueen ala- ja yläraja (esim. 0–32 pistettä, 32–40 pistettä)
 #: kexthighscore_tab.cpp:218
-#, fuzzy, kde-format
-#| msgid "To"
+#, kde-format
 msgctxt "@title:column"
 msgid "To"
-msgstr "Hävittyjä:"
+msgstr "Mihin"
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Count"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr "Pelejä"
+msgstr "Määrä"
 
 #: kexthighscore_tab.cpp:220
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgctxt "@title:column"
 msgid "Percent"
-msgstr "Osuus"
+msgstr "Prosentti"
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
@@ -604,64 +582,55 @@ msgid "Press start game!"
 msgstr "Paina Aloita peli!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "Siirtohistoria"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
 msgstr "Näytä viimeisin siirto"
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
 msgstr "Näytä sallitut siirrot"
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
 msgstr "Animointinopeus"
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "Hidas"
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
 msgstr "Tavallinen"
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "Nopea"
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
 msgstr "Käytä värillisiä nappuloita"
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
 msgstr "Näytä siirtohistoria"
@@ -696,11 +665,10 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr "Peli päättyi"
+msgstr "Peli on ohi"
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -734,8 +702,7 @@ msgid "New game"
 msgstr "Uusi peli"
 
 #: startgamedialog.cpp:36
-#, fuzzy, kde-format
-#| msgid "Start game"
+#, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
 msgstr "Aloita peli"
@@ -746,15 +713,13 @@ msgid "Let's start playing!"
 msgstr "Aloitetaan peli!"
 
 #: startgamedialog.cpp:38
-#, fuzzy, kde-format
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action:button"
 msgid "Quit"
 msgstr "Lopeta"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Quit KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
 msgstr "Lopeta KReversi"
