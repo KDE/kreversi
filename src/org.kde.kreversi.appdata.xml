@@ -40,6 +40,7 @@
   <name xml:lang="pt-BR">KReversi</name>
   <name xml:lang="ro">KReversi</name>
   <name xml:lang="ru">KReversi</name>
+  <name xml:lang="sa">KReversi इति</name>
   <name xml:lang="sk">KReversi</name>
   <name xml:lang="sl">KReversi</name>
   <name xml:lang="sr">К‑реверси</name>
@@ -84,6 +85,7 @@
   <summary xml:lang="pt-BR">Jogo de tabuleiro Reversi</summary>
   <summary xml:lang="ro">Joc de table Reversi</summary>
   <summary xml:lang="ru">Настольная игра «Реверси»</summary>
+  <summary xml:lang="sa">पुनः बोर्डक्रीडां प्रति</summary>
   <summary xml:lang="sk">Stolová hra Reversi</summary>
   <summary xml:lang="sl">Namizna igra Reversi</summary>
   <summary xml:lang="sr">Игра на табли реверси</summary>
@@ -129,6 +131,7 @@
     <p xml:lang="pt">O KReversi é um jogo simples de estratégia para um jogador contra o computador. Se a peça de um jogador é capturada por um jogador adversário, essa peça é virada para revelar a cor desse jogador. É declarado um vencedor quando um jogador tem mais peças da sua própria cor no tabuleiro e não existem mais jogadas possíveis.</p>
     <p xml:lang="pt-BR">KReversi é um jogo simples de estratégia para um jogador que pratica contra o computador. Se uma peça for capturada por um jogador adversário, essa peça é virada para revelar a cor desse jogador. É declarado um vencedor quando esse jogador ficar com mais peças da sua cor no tabuleiro e se não existirem mais jogadas possíveis.</p>
     <p xml:lang="ru">KReversi — простая стратегическая игра для одного игрока, соперником которого будет компьютер. Если фишка сменит владельца, она будет перевернута и будет показывать цвет игрока-владельца. Победителем объявляется тот из игроков, у которого будет больше собственных фишек при такой позиции в игре, когда дальнейшие ходы будут невозможны.</p>
+    <p xml:lang="sa">KReversi इति सरलं एकक्रीडकरणनीतिक्रीडा सङ्गणकस्य विरुद्धं क्रीड्यते । यदि कस्यचित् क्रीडकस्य खण्डः विपक्षीयक्रीडकेन गृहीतः भवति तर्हि सः खण्डः तस्य क्रीडकस्य वर्णं प्रकाशयितुं परिवर्त्यते । यदा एकस्य क्रीडकस्य फलकस्य उपरि स्वस्य वर्णस्य अधिकानि खण्डानि सन्ति, अधिकानि चालनानि च न भवन्ति तदा विजेता घोषितः भवति ।</p>
     <p xml:lang="sk">KReversi je jednoduchá hra pre jedného hráča proti počítaču. Ak kamene hráča vezme protihráč, kamene zmenia farbu na farbu oponenta. Víťazom sa stane hráč, ktorý má viac kameňov svojej farby na ploche a nie sú možné ďalšie pohyby.</p>
     <p xml:lang="sl">KReversi je preprosta enoigralska strateška igra, ki se igra proti računalniku. Če nasprotni igralec zavzame vaš žeton, se ta obrne in razkrije barve nasprotnika. Ko ni več veljavnih potez, je igre konec, zmaga pa tisti, ki ima več žetonov njegove barve.</p>
     <p xml:lang="sr">К‑реверси је једноставна стратешка игра за једног играча, који игра против рачунара. Када противнички играч зароби играчеву фигуру, та фигура се преврће да открије боју тог играча. Победник је онај играч који има више фигура своје боје на табли када више не може да се повуче ниједан потез.</p>
