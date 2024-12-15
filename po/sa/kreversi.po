@@ -22,12 +22,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "भवतः नामानि"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "भवतः ईमेलपत्राणि"
 
 #: commondefs.cpp:31
 #, kde-format
@@ -75,25 +75,25 @@ msgstr "व्यतीतः कालः"
 #, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
-msgstr ""
+msgstr "सर्वोत्तम &स्कोर"
 
 #: kexthighscore_gui.cpp:152
 #, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
-msgstr ""
+msgstr "&क्रीडकाः"
 
 #: kexthighscore_gui.cpp:157
 #, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
-msgstr ""
+msgstr "सांख्यिकी"
 
 #: kexthighscore_gui.cpp:163
 #, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
-msgstr ""
+msgstr "हिस्टोग्राम"
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
@@ -109,7 +109,7 @@ msgstr "विश्वव्यापी खिलाडयः पश्यन�
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
-msgstr ""
+msgstr "उच्चाङ्काः"
 
 #: kexthighscore_gui.cpp:327
 #, kde-format
@@ -125,55 +125,55 @@ msgstr "विजयः क्रीडाः"
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
-msgstr ""
+msgstr "Highscores विन्यस्तं कुर्वन्तु"
 
 #: kexthighscore_gui.cpp:406
 #, kde-format
 msgctxt "@title:tan"
 msgid "Main"
-msgstr ""
+msgstr "मुख्यः"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr ""
+msgstr "उपनाम : १."
 
 #: kexthighscore_gui.cpp:432
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
-msgstr ""
+msgstr "टिप्पणी:"
 
 #: kexthighscore_gui.cpp:442
 #, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr ""
+msgstr "विश्वव्यापी उच्चाङ्काः सक्षमाः"
 
 #: kexthighscore_gui.cpp:449
 #, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
-msgstr ""
+msgstr "उन्नतं"
 
 #: kexthighscore_gui.cpp:455
 #, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
-msgstr ""
+msgstr "पञ्जीकरणदत्तांशः"
 
 #: kexthighscore_gui.cpp:466
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
-msgstr ""
+msgstr "कुंजी:"
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "अपाकरोति"
 
 #: kexthighscore_gui.cpp:518
 #, kde-format
@@ -198,7 +198,7 @@ msgstr "उपनाम पूर्वमेव प्रचलति। अन
 #, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr ""
+msgstr "स्वस्य उपनाम प्रविशतु"
 
 #: kexthighscore_gui.cpp:595
 #, kde-format
@@ -209,13 +209,13 @@ msgstr "अभिनन्दनम्, भवन्तः विजयं प�
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr ""
+msgstr "स्वस्य उपनाम प्रविशतु : १."
 
 #: kexthighscore_gui.cpp:608
 #, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
-msgstr ""
+msgstr "पुनः मा पृच्छतु।"
 
 #: kexthighscore_internal.cpp:33
 msgid "anonymous"
@@ -301,7 +301,7 @@ msgstr "सर्वर URL: %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr ""
+msgstr "विश्वव्यापी उच्चस्कोरसर्वरतः सन्देशः"
 
 #: kexthighscore_internal.cpp:652
 #, kde-format
@@ -360,37 +360,37 @@ msgstr "मैक्सः हारितवान् : १."
 #, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
-msgstr ""
+msgstr "गेम गणना"
 
 #: kexthighscore_tab.cpp:129
 #, kde-format
 msgctxt "@title:group"
 msgid "Trends"
-msgstr ""
+msgstr "प्रवृत्तिः"
 
 #: kexthighscore_tab.cpp:217
 #, kde-format
 msgctxt "@title:column"
 msgid "From"
-msgstr ""
+msgstr "इत्यस्मात्‌"
 
 #: kexthighscore_tab.cpp:218
 #, kde-format
 msgctxt "@title:column"
 msgid "To"
-msgstr ""
+msgstr "इत्यस्मै"
 
 #: kexthighscore_tab.cpp:219
 #, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr ""
+msgstr "गणनां कारोतु"
 
 #: kexthighscore_tab.cpp:220
 #, kde-format
 msgctxt "@title:column"
 msgid "Percent"
-msgstr ""
+msgstr "प्रतिशतं"
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
@@ -568,55 +568,55 @@ msgstr "प्रेस प्रारम्भ खेल!"
 #, kde-format
 msgctxt "@title:window"
 msgid "Move History"
-msgstr ""
+msgstr "इतिहासं चालयन्तु"
 
 #: mainwindow.cpp:111
 #, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
-msgstr ""
+msgstr "अन्तिम चालं दर्शयतु"
 
 #: mainwindow.cpp:116
 #, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
-msgstr ""
+msgstr "कानूनी चालाः दर्शयतु"
 
 #: mainwindow.cpp:121
 #, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
-msgstr ""
+msgstr "एनिमेशन गति"
 
 #: mainwindow.cpp:125
 #, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
-msgstr ""
+msgstr "मन्द"
 
 #: mainwindow.cpp:126
 #, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
-msgstr ""
+msgstr "सामान्य"
 
 #: mainwindow.cpp:127
 #, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
-msgstr ""
+msgstr "उपवासः"
 
 #: mainwindow.cpp:133
 #, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
-msgstr ""
+msgstr "Colored Chips इत्यस्य उपयोगं कुर्वन्तु"
 
 #: mainwindow.cpp:141
 #, kde-format
 msgctxt "@action"
 msgid "Show Move History"
-msgstr ""
+msgstr "चालन इतिहासं दर्शयतु"
 
 #: mainwindow.cpp:219 mainwindow.cpp:234 mainwindow.cpp:247 mainwindow.cpp:255
 #, kde-format
@@ -651,7 +651,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr ""
+msgstr "गेम ओवर"
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -682,13 +682,13 @@ msgstr "संगणक"
 #, kde-format
 msgctxt "@title:window"
 msgid "New game"
-msgstr ""
+msgstr "नवीनः क्रीडा"
 
 #: startgamedialog.cpp:36
 #, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr ""
+msgstr "क्रीडां आरभत"
 
 #: startgamedialog.cpp:37
 #, kde-format
@@ -699,13 +699,13 @@ msgstr "क्रीडितुं आरभामः !"
 #, kde-format
 msgctxt "@action:button"
 msgid "Quit"
-msgstr ""
+msgstr "परिजहातु"
 
 #: startgamedialog.cpp:39
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr ""
+msgstr "KReversi त्यजतु"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
