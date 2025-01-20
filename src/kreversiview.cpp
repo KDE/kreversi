@@ -14,6 +14,9 @@
 #include <KLocalizedString>
 #include <KLocalizedContext>
 #include <KQuickIconProvider>
+#if KI18N_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+#include <KLocalizedQmlContext>
+#endif
 // Qt
 #include <QQmlContext>
 #include <QStandardPaths>
@@ -32,8 +35,11 @@ KReversiView::KReversiView(KReversiGame* game, QWidget *parent, KGameThemeProvid
     // setup ImageProvider for KIconTheme icons
     engine->addImageProvider(QStringLiteral("icon"), new KQuickIconProvider);
 
-    auto *localizedContextObject = new KLocalizedContext(engine);
-    engine->rootContext()->setContextObject(localizedContextObject);
+    #if KI18N_VERSION < QT_VERSION_CHECK(6, 8, 0)
+        engine->rootContext()->setContextObject(new KLocalizedContext(engine));
+    #else
+        engine->rootContext()->setContextObject(new KLocalizedQmlContext(engine));
+    #endif
 
     setResizeMode(SizeRootObjectToView);
 

@@ -81,6 +81,10 @@ target_link_libraries(kreversi
     KF6::IconThemes
 )
 
+if(TARGET KF6::I18nQml)
+    target_link_libraries(kreversi KF6::I18nQml)
+endif()
+
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kreversi)

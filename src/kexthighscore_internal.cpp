@@ -608,8 +608,9 @@ const KLazyLocalizedString UNABLE_TO_CONTACT =
 bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
                                 QDomNamedNodeMap *map)
 {
+#if KIO_VERSION < QT_VERSION_CHECK(6, 9, 0)
     KIO::http_update_cache(url, true, QDateTime::fromSecsSinceEpoch(0)); // remove cache !
-
+#endif
     QTemporaryFile tmpFile;
     if ( !tmpFile.open() ) {
         QString details = i18n("Unable to open temporary file.");
