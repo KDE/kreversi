@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"POT-Creation-Date: 2025-01-21 00:39+0000\n"
 "PO-Revision-Date: 2024-10-08 11:13+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -297,33 +297,33 @@ msgstr "Неверный счёт."
 msgid "Unable to contact world-wide highscore server"
 msgstr "Не удалось подключиться к серверу лучших результатов со всего света"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Не удалось открыть временный файл."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "Адрес сервера: %1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
 msgstr "Сообщение от сервера лучших результатов со всего света"
 
-#: kexthighscore_internal.cpp:652
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Неверный ответ от сервера лучших результатов со всего света."
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Необработанное сообщение: %1"
 
-#: kexthighscore_internal.cpp:665
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
@@ -440,22 +440,22 @@ msgstr "&Настройка"
 msgid "Main Toolbar"
 msgstr "Основная панель инструментов"
 
-#: kreversiview.cpp:255
+#: kreversiview.cpp:261
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Красные не могут ходить. Снова ход синих."
 
-#: kreversiview.cpp:256
+#: kreversiview.cpp:262
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Белые не могут ходить. Снова ход чёрных."
 
-#: kreversiview.cpp:265
+#: kreversiview.cpp:271
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Синие не могут ходить. Снова ход красных."
 
-#: kreversiview.cpp:266
+#: kreversiview.cpp:272
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Чёрные не могут ходить. Снова ход белых."

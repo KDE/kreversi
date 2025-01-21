@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"POT-Creation-Date: 2025-01-21 00:39+0000\n"
 "PO-Revision-Date: 2010-03-21 20:44+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -290,33 +290,33 @@ msgstr ""
 msgid "Unable to contact world-wide highscore server"
 msgstr ""
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr ""
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr ""
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
 msgstr ""
 
-#: kexthighscore_internal.cpp:652
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr ""
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr ""
 
-#: kexthighscore_internal.cpp:665
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
@@ -433,25 +433,25 @@ msgstr "&ตั้งค่า"
 msgid "Main Toolbar"
 msgstr "แถบเครื่องมือหลัก"
 
-#: kreversiview.cpp:255
+#: kreversiview.cpp:261
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "คอมพิวเตอร์ไม่สามารถวางหมากได้แล้ว ตอนนี้เป็นตาของคุณอีกครั้ง"
 
-#: kreversiview.cpp:256
+#: kreversiview.cpp:262
 #, fuzzy, kde-format
 #| msgid "Computer can not move. It is your turn again."
 msgid "White can not perform any move. It is black turn again."
 msgstr "คอมพิวเตอร์ไม่สามารถวางหมากได้แล้ว ตอนนี้เป็นตาของคุณอีกครั้ง"
 
-#: kreversiview.cpp:265
+#: kreversiview.cpp:271
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "คุณไม่สามารถวางหมากใด ๆ ได้แล้ว ตอนนี้จะเป็นตาของคอมพิวเตอร์"
 
-#: kreversiview.cpp:266
+#: kreversiview.cpp:272
 #, fuzzy, kde-format
 #| msgid "You can not perform any move. Computer takes next turn now."
 msgid "Black can not perform any move. It is white turn again."

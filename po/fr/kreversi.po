@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"POT-Creation-Date: 2025-01-21 00:39+0000\n"
 "PO-Revision-Date: 2024-06-09 17:30+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -305,33 +305,33 @@ msgstr "Score non valable."
 msgid "Unable to contact world-wide highscore server"
 msgstr "Impossible de se connecter au serveur mondial des meilleurs scores"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Impossible d'ouvrir le fichier temporaire."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "Adresse du serveur : %1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
 msgstr "Message du serveur des meilleurs scores au niveau mondial"
 
-#: kexthighscore_internal.cpp:652
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Réponse non valable du serveur mondial des meilleurs scores."
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Message brut : %1"
 
-#: kexthighscore_internal.cpp:665
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
@@ -448,28 +448,28 @@ msgstr "&Configuration"
 msgid "Main Toolbar"
 msgstr "Barre principale d'outils"
 
-#: kreversiview.cpp:255
+#: kreversiview.cpp:261
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr ""
 "Les rouges ne peuvent pas faire un déplacement. C'est à nouveau au tour des "
 "bleus."
 
-#: kreversiview.cpp:256
+#: kreversiview.cpp:262
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr ""
 "Les blancs ne peuvent pas faire un déplacement. C'est à nouveau au tour des "
 "noirs."
 
-#: kreversiview.cpp:265
+#: kreversiview.cpp:271
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr ""
 "Les bleus ne peuvent pas faire un déplacement. C'est à nouveau au tour des "
 "rouges."
 
-#: kreversiview.cpp:266
+#: kreversiview.cpp:272
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr ""

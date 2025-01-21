@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"POT-Creation-Date: 2025-01-21 00:39+0000\n"
 "PO-Revision-Date: 2024-07-13 12:01+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -293,33 +293,33 @@ msgstr "Puntuazio baliogabea."
 msgid "Unable to contact world-wide highscore server"
 msgstr "Ezin da kontaktatu mundu osoko puntuazio altuenen zerbitzaria"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Ezin da ireki aldi baterako fitxategia."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "Zerbitzariaren URL: %1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
 msgstr "Mundu osoko puntuazio altuenen zerbitzaritik mezua"
 
-#: kexthighscore_internal.cpp:652
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Erantzun baliogabea mundu osoko puntuazio altuenen zerbitzaritik"
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Mezu gordina: %1"
 
-#: kexthighscore_internal.cpp:665
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
@@ -436,22 +436,22 @@ msgstr "E&zarpenak"
 msgid "Main Toolbar"
 msgstr "Tresna-barra nagusia"
 
-#: kreversiview.cpp:255
+#: kreversiview.cpp:261
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Gorriak ezin du mugimendurik egin. Urdinaren txanda da berriro."
 
-#: kreversiview.cpp:256
+#: kreversiview.cpp:262
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Zuriak ezin du mugimendurik egin. Beltzaren txanda da berriro."
 
-#: kreversiview.cpp:265
+#: kreversiview.cpp:271
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Urdinak ezin du mugimendurik egin. Gorriaren txanda da berriro."
 
-#: kreversiview.cpp:266
+#: kreversiview.cpp:272
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Beltzak ezin du mugimendurik egin. Zuriaren txanda da berriro."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"POT-Creation-Date: 2025-01-21 00:39+0000\n"
 "PO-Revision-Date: 2021-11-20 21:35+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -301,34 +301,34 @@ msgstr "Neplatné skóre."
 msgid "Unable to contact world-wide highscore server"
 msgstr "Nemôžem kontaktovať svetový server s najvyšším skóre"
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Nepodarilo sa otvoriť dočasný súbor."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "URL servera: %1"
 
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, fuzzy, kde-format
 #| msgid "Message from world-wide highscores server"
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
 msgstr "Správa zo svetového servera najvyššieho skóre"
 
-#: kexthighscore_internal.cpp:652
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Neplatná odpoveď zo svetového servera najvyššieho skóre."
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Čistá správa: %1"
 
-#: kexthighscore_internal.cpp:665
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr ""
@@ -450,22 +450,22 @@ msgstr "&Nastavenia"
 msgid "Main Toolbar"
 msgstr "Hlavný panel nástrojov"
 
-#: kreversiview.cpp:255
+#: kreversiview.cpp:261
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Červený nemôže vykonať žiadny pohyb. Znovu je na ťahu modrý."
 
-#: kreversiview.cpp:256
+#: kreversiview.cpp:262
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Biely nemôže vykonať žiadny pohyb. Znovu je na ťahu čierny."
 
-#: kreversiview.cpp:265
+#: kreversiview.cpp:271
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Modrý nemôže vykonať žiadny pohyb. Znovu je na ťahu červený."
 
-#: kreversiview.cpp:266
+#: kreversiview.cpp:272
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Čierny nemôže vykonať žiadny pohyb. Znovu je na ťahu biely."

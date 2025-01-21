@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:38+0000\n"
+"POT-Creation-Date: 2025-01-21 00:39+0000\n"
 "PO-Revision-Date: 2017-09-28 17:59+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -334,35 +334,35 @@ msgstr "Лош резултат."
 msgid "Unable to contact world-wide highscore server"
 msgstr "Не могу да контактирам сервер најрезултата широм света."
 
-#: kexthighscore_internal.cpp:615
+#: kexthighscore_internal.cpp:616
 #, kde-format
 msgid "Unable to open temporary file."
 msgstr "Не могу да отворим привремени фајл."
 
-#: kexthighscore_internal.cpp:624
+#: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
 msgstr "УРЛ сервера: %1"
 
 # >> @title
-#: kexthighscore_internal.cpp:646
+#: kexthighscore_internal.cpp:647
 #, fuzzy, kde-format
 #| msgid "Message from world-wide highscores server"
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
 msgstr "Порука са сервера најрезултата широм света"
 
-#: kexthighscore_internal.cpp:652
+#: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
 msgstr "Лош одговор од сервера најрезултата широм света."
 
-#: kexthighscore_internal.cpp:653
+#: kexthighscore_internal.cpp:654
 #, kde-format
 msgid "Raw message: %1"
 msgstr "Сирова порука: %1"
 
-#: kexthighscore_internal.cpp:665
+#: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
 msgstr "Лош одговор сервера најрезултата широм света (нема ставке: %1)."
@@ -490,22 +490,22 @@ msgstr "&Подешавање"
 msgid "Main Toolbar"
 msgstr "Главна трака"
 
-#: kreversiview.cpp:255
+#: kreversiview.cpp:261
 #, kde-format
 msgid "Red can not perform any move. It is blue turn again."
 msgstr "Црвени не може ништа да одигра. Плави поново на потезу."
 
-#: kreversiview.cpp:256
+#: kreversiview.cpp:262
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
 msgstr "Бели не може ништа да одигра. Црни поново на потезу."
 
-#: kreversiview.cpp:265
+#: kreversiview.cpp:271
 #, kde-format
 msgid "Blue can not perform any move. It is red turn again."
 msgstr "Плави не може ништа да одигра. Црвени поново на потезу."
 
-#: kreversiview.cpp:266
+#: kreversiview.cpp:272
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
 msgstr "Црни не може ништа да одигра. Бели поново на потезу."
