@@ -738,16 +738,3 @@ msgstr "Nivell d'habilitats:"
 #, kde-format
 msgid "VS"
 msgstr "VS"
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Puntuacions multijugador"
-
-#~ msgid "No game played."
-#~ msgstr "No s'ha jugat cap partida."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Puntuacions de l'última partida:"
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "Puntuacions de les %1 últimes partides:"
