@@ -1,22 +1,19 @@
-# translation of kreversi.po to Español
-# traducción de kreversi.po a Español
-# Miguel Revilla Rodríguez <yo@miguelrevilla.com>, 2002, 2003.
-# Lucas Garcia <tanke@escomposlinux.org>, 2003.
-# Rafael Osuna <rosuna@wol.es>, 2003, 2004.
-# Santiago Fernandez Sancho <santi@kde-es.org>, 2004.
-# santi <santi@kde-es.org>, 2005, 2006.
-# Santiago Fernández Sancho <santi@kde-es.org>, 2007, 2008.
+# Spanish translations for kreversi.po package.
+#
+# SPDX-FileCopyrightText: 2002, 2003 Miguel Revilla Rodríguez <yo@miguelrevilla.com>
+# SPDX-FileCopyrightText: 2003 Lucas Garcia <tanke@escomposlinux.org>
+# SPDX-FileCopyrightText: 2003, 2004 Rafael Osuna <rosuna@wol.es>
+# SPDX-FileCopyrightText: 2004, 2005, 2006, 2007, 2008 Santiago Fernández Sancho <santi@kde-es.org>
 # SPDX-FileCopyrightText: 2009, 2013, 2017, 2019, 2021, 2023, 2024 Eloy Cuadra <ecuadra@eloihr.net>
-# Huever, 2009.
-# Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
-# David Paul <eodos0@gmail.com>, 2014.
-# Sofía Priego <spriego@darksylvania.net>, %Y.
+# SPDX-FileCopyrightText: 2010 Kira J. Fernandez <kirajfdez@gmail.com>
+# SPDX-FileCopyrightText: 2014 David Paul <eodos0@gmail.com>
+# SPDX-FileCopyrightText: 2024, 2025 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-21 00:39+0000\n"
-"PO-Revision-Date: 2024-05-05 22:46+0100\n"
+"PO-Revision-Date: 2025-04-20 10:52+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -744,62 +741,3 @@ msgstr "Nivel de habilidad:"
 #, kde-format
 msgid "VS"
 msgstr "vs"
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Puntuaciones multijugador"
-
-#~ msgid "No game played."
-#~ msgstr "Ninguna partida jugada."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Puntuaciones de la última partida:"
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "Puntuaciones de las últimas %1 partidas:"
-
-#~ msgid "Overwrite"
-#~ msgstr "Sobrescribir"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "El archivo existe. ¿Desea sobrescribirlo?"
-
-#~ msgid "Export"
-#~ msgstr "Exportar"
-
-#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
-#~ msgstr "https://kde.org/applications/games/org.kde.kreversi"
-
-#~ msgid "Very Easy"
-#~ msgstr "Muy fácil"
-
-#~ msgid "Easy"
-#~ msgstr "Fácil"
-
-#~ msgid "Hard"
-#~ msgstr "Difícil"
-
-#~ msgid "Very Hard"
-#~ msgstr "Muy difícil"
-
-#~ msgid "Unbeatable"
-#~ msgstr "Invencible"
-
-#~ msgid "Champion"
-#~ msgstr "Campeón"
-
-#~ msgid "Port rendering code to QML"
-#~ msgstr "Adaptación del código de renderizado a QML"
-
-#~ msgid "Your turn."
-#~ msgstr "Su turno."
-
-#~ msgid "You: %1"
-#~ msgstr "Usted: %1"
-
-#~ msgid ""
-#~ "\n"
-#~ "You: %1"
-#~ msgstr ""
-#~ "\n"
-#~ "Usted: %1"
