@@ -201,7 +201,7 @@ void KReversiMainWindow::slotNewGame()
 void KReversiMainWindow::slotGameOver()
 {
     m_hintAct->setEnabled(false);
-    m_undoAct->setEnabled(m_game->canUndo());
+    m_undoAct->setEnabled(true);
 
     int blackScore = m_game->playerScore(Black);
     int whiteScore = m_game->playerScore(White);
