@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-21 00:39+0000\n"
-"PO-Revision-Date: 2024-05-30 09:41+0400\n"
+"PO-Revision-Date: 2024-06-08 11:49+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -261,7 +261,7 @@ msgstr "خطأ في إدراج قاعدة البيانات."
 
 #: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
-msgstr "اللقب مستخدَم بالفعل."
+msgstr "اللقب مستخدَم فعلًا."
 
 #: kexthighscore_internal.cpp:597
 msgid "Nickname not registered."
