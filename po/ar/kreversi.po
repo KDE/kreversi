@@ -295,7 +295,7 @@ msgstr "غير قادر على فتح الملف المؤقت."
 #: kexthighscore_internal.cpp:625
 #, kde-format
 msgid "Server URL: %1"
-msgstr "مسار الخادوم: %1"
+msgstr "مسار الخادم: %1"
 
 #: kexthighscore_internal.cpp:647
 #, kde-format
