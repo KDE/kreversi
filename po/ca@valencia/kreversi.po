@@ -194,12 +194,12 @@ msgstr ""
 #: kexthighscore_gui.cpp:561
 #, kde-format
 msgid "Please choose a non empty nickname."
-msgstr "Seleccioneu un sobrenom no buit."
+msgstr "Trieu un sobrenom no buit."
 
 #: kexthighscore_gui.cpp:565
 #, kde-format
 msgid "Nickname already in use. Please choose another one"
-msgstr "El sobrenom ja es troba en ús. Seleccioneu-ne un altre"
+msgstr "El sobrenom ja es troba en ús. Trieu-ne un altre"
 
 #: kexthighscore_gui.cpp:586
 #, kde-format
@@ -336,7 +336,7 @@ msgstr "totes"
 #: kexthighscore_tab.cpp:61
 #, kde-format
 msgid "Select player:"
-msgstr "Seleccioneu el jugador:"
+msgstr "Trieu el jugador:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Total:"
@@ -738,16 +738,3 @@ msgstr "Nivell d'habilitats:"
 #, kde-format
 msgid "VS"
 msgstr "VS"
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Puntuacions multijugador"
-
-#~ msgid "No game played."
-#~ msgstr "No s'ha jugat cap partida."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Puntuacions de l'última partida:"
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "Puntuacions de les %1 últimes partides:"
