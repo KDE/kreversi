@@ -142,7 +142,7 @@
 ><!--Describe the objective of the game.-->
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
 	<para
->&kreversi; se charge directement dans la boîte de dialogue <guilabel
+>&kreversi; se charge directement dans la boite de dialogue <guilabel
 >Nouvelle partie</guilabel
 >, où vous sélectionnez le mode de jeu, &pex; jouer contre l'ordinateur ou contre un autre joueur humain. Étant le premier joueur, vous pouvez jouer le premier coup.</para>
 <note
@@ -150,7 +150,7 @@
 >Par défaut, le joueur humain a toujours le droit de débuter la partie.</para
 ></note>
 <para
->Pour chaque mouvement, votre jeton saute par dessus un ennemi - un jeton (ou plusieurs, il peut y avoir plus qu'un jeton). Maintenant, votre jeton n'est pas déplacé après le mouvement, à la place, un nouveau jeton est placé sur le plateau où votre jeton doit apparaître si il doit effectivement sauter. Une fois le mouvement effectué, tous les jetons ennemis que vous sautez, deviennent les votre et la couleur de ces jetons est modifié pour la votre.</para>
+>Pour chaque mouvement, votre jeton saute par dessus un ennemi - un jeton (ou plusieurs, il peut y avoir plus qu'un jeton). Maintenant, votre jeton n'est pas déplacé après le mouvement, à la place, un nouveau jeton est placé sur le plateau où votre jeton doit apparaitre si il doit effectivement sauter. Une fois le mouvement effectué, tous les jetons ennemis que vous sautez, deviennent les votre et la couleur de ces jetons est modifié pour la votre.</para>
 <para
 >Chaque mouvement simple que vous réalisez dans &kreversi; a été fait de cette manière. Et vous pouvez déplacer vos jetons verticalement, horizontalement et en diagonale. Mais, dans certains cas, il n'y a aucun endroit où se placer, votre tour sera automatiquement passé.</para>
 <note
@@ -177,7 +177,7 @@
 >Encadrer signifie placer un jeton sur le plateau de manière à ce qu'un ou plusieurs alignements de jetons de votre adversaire soit flanqué à chaque extrémité par un jeton de votre couleur. Un tel alignement peut se composer d'un ou plusieurs jetons.</para>
 
 <para
->Le jeu commence avec la boîte de dialogue <guilabel
+>Le jeu commence avec la boite de dialogue <guilabel
 >Nouvelle partie</guilabel
 >.</para>
 
@@ -427,7 +427,7 @@
     <listitem
 ><para
 ><action
->Ouvre une boîte de dialogue affichant les tables des meilleurs scores.</action>
+>Ouvre une boite de dialogue affichant les tables des meilleurs scores.</action>
     <!--<guibutton
 >Export…</guibutton
 > the high scores into a file or click on
