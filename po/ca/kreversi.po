@@ -736,25 +736,3 @@ msgstr "Nivell d'habilitats:"
 #, kde-format
 msgid "VS"
 msgstr "VS"
-
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Puntuacions multijugador"
-
-#~ msgid "No game played."
-#~ msgstr "No s'ha jugat cap partida."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Puntuacions de la darrera partida:"
-
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr "Puntuacions de les %1 darreres partides:"
-
-#~ msgid "Overwrite"
-#~ msgstr "Sobreescriu"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "El fitxer ja existeix. S'ha de sobreescriure?"
-
-#~ msgid "Export"
-#~ msgstr "Exporta"
