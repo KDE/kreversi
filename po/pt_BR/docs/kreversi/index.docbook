@@ -6,7 +6,7 @@
   <!ENTITY % addindex "IGNORE"
 > <!-- do not change this! -->
 ]>
- 
+
 <book id="kreversi" lang="&language;"
 > <!-- do not change this! -->
 <bookinfo>
@@ -71,17 +71,17 @@
 <legalnotice
 >&FDLNotice;</legalnotice>
 <date
->28/11/2017</date
+>12/08/2021</date
 ><!-- Date of (re)writing, or update.-->
 <releaseinfo
->2.1 (Applications 17.12)</releaseinfo>
- 
+>2.1 (KDE Gear 21.08)</releaseinfo>
+
 <!--Short description of this document. Do not change unless necessary!-->
 <abstract>
 	<para
 >Esta documentação descreve o jogo &kreversi; na versão 2.1</para>
 </abstract>
- 
+
 <!--List of relevan keywords-->
 <keywordset>
 	<keyword
@@ -136,12 +136,12 @@
 >Um</para
 ></note
 ><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
- 
+
 <!--Short game description starts here. 3-4 sentences (paragraphs)-->
 <para
 >O &kreversi; é um jogo simples de estratégia para um jogador que pratica contra o computador. O campo de jogo é um tabuleiro quadrado de 8 por 8 casas, dividido equitativamente em 64 quadrados. A peça de jogo usada é uma pedra colorida - um dos seus lados é vermelho, enquanto o outro é azul. Se uma peça for capturada por um jogador adversário, essa peça é virada para revelar a cor desse jogador. É declarado um vencedor quando esse jogador ficar com mais peças da sua cor no tabuleiro e se não existirem mais jogadas possíveis.</para>
 </chapter>
- 
+
 <chapter id="howto"
 ><title
 >Como jogar</title
@@ -160,8 +160,6 @@
 >Novo jogo</guilabel
 > onde você pode selecionar o modo de jogo, &ie;  jogar contra o computador ou outro jogador. Como primeiro jogador, você terá o direito a jogar primeiro.</para>
 <note
-><title
->Nota:</title
 ><para
 >Por padrão, o jogador humano tem sempre o direito à primeira jogada.</para
 ></note>
@@ -170,22 +168,19 @@
 <para
 >Cada jogada individual que fizer no &kreversi; tem que ser feita desta forma. O jogador pode saltar as suas pedras na horizontal, vertical ou diagonal. Porém, no caso de não existir nada para saltar, a sua vez será cedida automaticamente.</para>
 <note
-><title
->Nota:</title
 ><para
 >A mesma regra aplica-se ao seu inimigo. Se não existir a possibilidade de fazer uma jogada, a vez dele é cedida.</para
 ></note>
 <para
 >A ideia aqui é preencher o tabuleiro com as pedras da sua cor. O jogador que conseguir conquistar a maior parte do tabuleiro de jogo é anunciado como vencedor. </para>
 </chapter>
- 
+
 <chapter id="rules_and_tips"
 ><title
 >Regras do jogo, estratégias e dicas</title
 > <!-- do not change this! -->
 	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
-<sect1 id="basics"
->                 
+<sect1 id="basics">
 <title
 >Fundamentos do Jogo</title>
 
@@ -243,13 +238,13 @@
 </screenshot>
 
 <variablelist>
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><interface
 >Barra de Menu</interface
 ></term>
-<listitem>
-<para
+    <listitem
+><para
 >A <interface
 >Barra de menus</interface
 > contém vários menus. Estes são o <guimenu
@@ -266,58 +261,72 @@
 >&Alt;<keycap
 >a tecla sublinhada</keycap
 ></keycombo
->, irá abrir o menu correspondente.</para>
-</listitem>
-</varlistentry>
-</variablelist>
+>, irá abrir o menu correspondente.</para
+></listitem>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><interface
 >Barra de ferramentas</interface
 ></term>
-<listitem
+    <listitem
 ><para
->Oferece ao jogador alguns atalhos com ícones para as ações mais usadas. Estas são o <guiicon
+>Fornece ao jogador atalhos em forma de ícones para ações usadas com frequência. Estes são: <inlinemediaobject
+><imageobject
+><imagedata fileref="document-new.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
 >Novo</guiicon
->, <guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="edit-undo.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
 >Desfazer</guiicon
->, <guiicon
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="games-hint.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
 >Dica</guiicon
->, <guiicon
->Mostrar a última Jogada</guiicon
-> e <guiicon
->Mostrar os movimentos válidos</guiicon
->. Coloque o cursor do mouse sobre qualquer um desses ícones e clique com o &LMB; para ativá-lo.</para
+>, <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-lastmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Mostrar último movimento</guiicon
+>, e <inlinemediaobject
+><imageobject
+><imagedata fileref="actions-legalmoves.png" format="PNG"/></imageobject
+></inlinemediaobject
+><guiicon
+>Mostrar movimentos legais</guiicon
+>. Posicione o ponteiro do mouse sobre qualquer um desses ícones e clique com o botão esquerdo do mouse para ativar.</para
 ></listitem>
-</varlistentry>
-</variablelist>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><interface
 >Tabuleiro do jogo</interface
 ></term>
-<listitem
+    <listitem
 ><para
->O tabuleiro do jogo é um tabuleiro quadrado 8 por 8 dividido em 64 quadrados.</para
+>Consiste de um quadrado 8 por 8 dividido em 64 quadrados.</para
 ></listitem>
-</varlistentry>
-</variablelist>
+  </varlistentry>
 
-<variablelist>
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><interface
 >Barra de status</interface
 ></term>
-<listitem
+    <listitem
 ><para
->A barra de estado mostra de quem é vez.</para
+>Mostra de quem é a vez. Além de uma caixa suspensa para escolher o nível de dificuldade.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 </variablelist>
 </sect1>
 
@@ -332,7 +341,7 @@
 >Se, na sua jogada, não conseguir flanquear por fora pelo menos uma pedra adversária, a sua vez é descartada e o seu adversário volta a jogar. Todavia, se for possível efetuar uma jogada, você não poderá descartá-la.</para>
 
 <para
->Uma pedra poderá flanquear um número qualquer de pedras numa ou mais fileiras em qualquer direção - horizontalmente, verticalmente ou na diagonal. Uma fileira é definida através de uma ou mais pedras numa linha contínua e direta. </para>
+>Uma pedra poderá flanquear um número qualquer de pedras numa ou mais fileiras em qualquer direção - horizontalmente, verticalmente ou na diagonal. Uma fileira é definida através de uma ou mais pedras numa linha contínua e direta.</para>
 
 <para
 >Você não poderá saltar por cima de uma pedra da sua cor para flanquear por fora uma pedra adversária.</para>
@@ -377,7 +386,7 @@
 
 </sect1>
 </chapter>
-  
+
 <chapter id="interface"
 ><title
 >Resumo da interface</title
@@ -391,8 +400,8 @@
 >Itens dos menus</title>
 
 <variablelist>
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
@@ -402,18 +411,20 @@
 ></shortcut
 > <guimenu
 >Jogo</guimenu
-><guimenuitem
+> <guimenuitem
 >Novo</guimenuitem
 ></menuchoice
 ></term>
-<listitem
+    <listitem
 ><para
->Inicia um novo jogo. </para
+><action
+>Inicia um novo jogo.</action
+></para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
@@ -423,17 +434,30 @@
 ></shortcut
 > <guimenu
 >Jogo</guimenu
-><guimenuitem
+> <guimenuitem
 >Mostrar recordes</guimenuitem
 ></menuchoice
 ></term>
-<listitem
+    <listitem
 ><para
->Abre uma janela que exibe as diferentes tabelas de recordes. </para
+><action
+>Abre uma janela que exibe as diferentes tabelas de recordes.</action>
+    <!--<guibutton
+>Export…</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure…</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
 ></listitem>
-</varlistentry>
-<varlistentry>
-<term
+  </varlistentry>
+
+  <varlistentry>
+    <term
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
@@ -443,18 +467,20 @@
 ></shortcut
 > <guimenu
 >Jogo</guimenu
-><guimenuitem
+> <guimenuitem
 >Sair</guimenuitem
 ></menuchoice
 ></term>
-<listitem
+    <listitem
 ><para
->Sai do &kreversi; </para
+><action
+>Sai do &kreversi;.</action
+></para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
@@ -464,18 +490,20 @@
 ></shortcut
 > <guimenu
 >Mover</guimenu
-><guimenuitem
+> <guimenuitem
 >Desfazer</guimenuitem
 ></menuchoice
 ></term>
-<listitem
+    <listitem
 ><para
->Desfaz a sua última jogada bem como a última jogada do computador. </para
+><action
+>Desfaz a sua última jogada</action
+> bem como a última jogada do computador.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry>
-<term
+  <varlistentry>
+    <term
 ><menuchoice
 ><shortcut
 ><keycap
@@ -483,107 +511,123 @@
 ></shortcut
 ><guimenu
 >Mover</guimenu
-><guimenuitem
+> <guimenuitem
 >Dica</guimenuitem
-> </menuchoice
+></menuchoice
 ></term>
-<listitem
+    <listitem
 ><para
->O computador fornece uma dica para sua próxima jogada.</para
+>O computador <action
+>fornece uma dica para sua próxima jogada.</action
+></para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-    <varlistentry>
-      <term
+  <varlistentry>
+    <term
 ><menuchoice
 ><guimenu
 >Ver</guimenu
-><guimenuitem
->Mostrar a Última Jogada</guimenuitem
-> </menuchoice
+> <guimenuitem
+>Mostrar a última jogada</guimenuitem
+></menuchoice
 ></term>
-      <listitem
+    <listitem
 ><para
->Realça a última jogada do seu adversário.</para
+><action
+>Realça a última jogada do seu adversário.</action
+></para
 ></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term
+  </varlistentry>
+
+  <varlistentry>
+    <term
 ><menuchoice
 ><guimenu
 >Ver</guimenu
-><guimenuitem
->Mostrar os Movimentos Possíveis</guimenuitem
-> </menuchoice
+> <guimenuitem
+>Mostrar os movimentos possíveis</guimenuitem
+></menuchoice
 ></term>
-      <listitem
+    <listitem
 ><para
->Realça todas as jogadas disponíveis para a sua jogada atual.</para
+><action
+>Realça todas as jogadas disponíveis</action
+> para a sua jogada atual.</para
 ></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term
+  </varlistentry>
+
+  <varlistentry>
+    <term
 ><menuchoice
 ><guimenu
 >Ver</guimenu
-><guimenuitem
->Mostrar o Histórico de Movimentos</guimenuitem
-> </menuchoice
+> <guimenuitem
+>Mostrar o histórico de movimentos</guimenuitem
+></menuchoice
 ></term>
-      <listitem
+    <listitem
 ><para
->Ativa/desativa a barra lateral do histórico de movimentos.</para
+><action
+>Ativa/desativa a barra lateral do histórico de movimentos.</action
+></para
 ></listitem>
-    </varlistentry>
+  </varlistentry>
 
   <varlistentry>
     <term
 ><menuchoice
 ><guimenu
 >Configurações</guimenu
-><guisubmenu
->Velocidade de Animação</guisubmenu
-><guimenuitem
->Lenta</guimenuitem
-> </menuchoice
+> <guisubmenu
+>Velocidade da animação</guisubmenu
+></menuchoice
 ></term>
     <listitem
 ><para
->A velocidade da animação do jogo pode ser definida de <guimenuitem
+><action
+>Um submenu para definir a velocidade da animação do jogo</action
+> entre as opções <guimenuitem
 >Lenta</guimenuitem
-> até <guimenuitem
+>, <guimenuitem
+>Normal</guimenuitem
+> e <guimenuitem
 >Rápida</guimenuitem
 >.</para
 ></listitem>
   </varlistentry>
+
   <varlistentry>
     <term
 ><menuchoice
 ><guimenu
 >Configurações</guimenu
 > <guimenuitem
->Usar Peças Coloridas</guimenuitem
-> </menuchoice
+>Usar peças coloridas</guimenuitem
+></menuchoice
 ></term>
     <listitem
 ><para
 ><action
->Ativa/desativa</action
-> a cor das pedras entre preto e branco (por padrão) ou vermelho e azul.</para
+>Ativa/desativa a cor das pedras entre preto e branco (por padrão)</action
+> e vermelho e azul.</para
 ></listitem>
   </varlistentry>
+
   <varlistentry>
     <term
 ><menuchoice
 ><guimenu
 >Configurações</guimenu
-><guisubmenu
+> <guisubmenu
 >Dificuldade</guisubmenu
-> </menuchoice
+></menuchoice
 ></term>
     <listitem
 ><para
->Configura a dificuldade para ser <guimenuitem
+><action
+>Configura a dificuldade</action
+> entre <guimenuitem
 >Muito fácil</guimenuitem
 > até <guimenuitem
 >Impossível</guimenuitem
@@ -591,6 +635,7 @@
 ></listitem>
   </varlistentry>
 </variablelist>
+
 <para
 >O &kreversi; possui os itens dos menus <guimenu
 >Configurações</guimenu
@@ -604,7 +649,7 @@
 
 </sect1>
 </chapter>
- 
+
  <chapter id="faq"
 ><title
 >Perguntas frequentes</title
@@ -625,7 +670,7 @@
 > <guimenu
 >Configurações</guimenu
 > <guimenuitem
->Usar Peças Coloridas</guimenuitem
+>Usar peças coloridas</guimenuitem
 > </menuchoice
 > no menu.</para
 ></answer>
@@ -645,22 +690,24 @@
 ><para
 >Eu tenho que sair do jogo agora, mas ainda não terminei. Posso salvar a minha situação atual?</para
 ></question>
-  <answer
+ <answer
 ><para
->Não. O &kreversi; não tem uma funcionalidade de gravação.</para
+>Não. O &kreversi; não tem uma funcionalidade de <quote
+>gravação</quote
+>.</para
 ></answer>
 </qandaentry>
 <!--Please add more Q&As if needed-->
- 
+
 </qandaset>
 </chapter>
- 
+
 <chapter id="credits"
 ><title
 >Créditos e licença</title
 > <!-- do not change this! -->
 <!--This chapter is for credits and licenses.-->
- 
+
 <para
 >&kreversi; </para>
 
@@ -682,9 +729,9 @@
 >stephen.killing@kdemail.net</email
 ></para
 > &underFDL; &underGPL; </chapter>
- 
- 
-&documentation.index; 
+
+
+&documentation.index;
 </book>
 <!--
 Local Variables:
