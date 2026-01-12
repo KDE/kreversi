@@ -260,11 +260,11 @@ msgstr "No s'ha pogut seleccionar la base de dades."
 
 #: kexthighscore_internal.cpp:593
 msgid "Error on database query."
-msgstr "S'ha produït un error en la consulta de la base de dades."
+msgstr "S'ha produït un error durant la consulta de la base de dades."
 
 #: kexthighscore_internal.cpp:594
 msgid "Error on database insert."
-msgstr "S'ha produït un error en inserir en la base de dades."
+msgstr "S'ha produït un error mentre s'inseria a la base de dades."
 
 #: kexthighscore_internal.cpp:596
 msgid "Nickname already registered."
