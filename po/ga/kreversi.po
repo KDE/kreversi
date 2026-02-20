@@ -110,17 +110,14 @@ msgid "Highscores"
 msgstr ""
 
 #: kexthighscore_gui.cpp:327
-#, fuzzy, kde-format
-#| msgid "Beginner"
+#, kde-format
 msgid "Winner"
-msgstr "Tosaitheoir"
+msgstr ""
 
 #: kexthighscore_gui.cpp:365
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgid "Won Games"
-msgstr "Séamus Ó Ciardhuáin,Kevin Scannell"
+msgstr ""
 
 #: kexthighscore_gui.cpp:393
 #, kde-format
@@ -194,34 +191,21 @@ msgid "Nickname already in use. Please choose another one"
 msgstr ""
 
 #: kexthighscore_gui.cpp:586
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "Séamus Ó Ciardhuáin,Kevin Scannell"
+msgstr ""
 
 #: kexthighscore_gui.cpp:595
-#, fuzzy, kde-format
-#| msgid ""
-#| "Congratulations, you have won!\n"
-#| "\n"
-#| "You     : %1\n"
-#| "Computer: %2"
+#, kde-format
 msgid "Congratulations, you have won!"
 msgstr ""
-"Comhghairdeas! Bhí an bua agat!\n"
-"\n"
-"Tusa        : %1\n"
-"An Ríomhaire: %2"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "Séamus Ó Ciardhuáin,Kevin Scannell"
+msgstr ""
 
 #: kexthighscore_gui.cpp:608
 #, kde-format
@@ -234,10 +218,9 @@ msgid "anonymous"
 msgstr "gan ainm"
 
 #: kexthighscore_internal.cpp:258
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgid "Games Count"
-msgstr "Cluiche thart"
+msgstr ""
 
 #: kexthighscore_internal.cpp:265
 #, kde-format
@@ -354,10 +337,8 @@ msgid "Lost:"
 msgstr ""
 
 #: kexthighscore_tab.cpp:98
-#, fuzzy
-#| msgid "Draw!"
 msgid "Draw:"
-msgstr "Tarraing!"
+msgstr ""
 
 #: kexthighscore_tab.cpp:101
 msgid "Current:"
@@ -372,11 +353,10 @@ msgid "Max lost:"
 msgstr ""
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
-msgstr "Cluiche thart"
+msgstr ""
 
 #: kexthighscore_tab.cpp:129
 #, kde-format
@@ -397,11 +377,10 @@ msgid "To"
 msgstr ""
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr "Cluiche thart"
+msgstr ""
 
 #: kexthighscore_tab.cpp:220
 #, kde-format
@@ -446,28 +425,24 @@ msgid "Main Toolbar"
 msgstr "Príomhbharra Uirlisí"
 
 #: kreversiview.cpp:261
-#, fuzzy, kde-format
-#| msgid "Computer can not move. It is your turn again."
+#, kde-format
 msgid "Red can not perform any move. It is blue turn again."
-msgstr "Níl aon bheart ag an ríomhaire.  Is leatsa an imirt arís."
+msgstr ""
 
 #: kreversiview.cpp:262
-#, fuzzy, kde-format
-#| msgid "Computer can not move. It is your turn again."
+#, kde-format
 msgid "White can not perform any move. It is black turn again."
-msgstr "Níl aon bheart ag an ríomhaire.  Is leatsa an imirt arís."
+msgstr ""
 
 #: kreversiview.cpp:271
-#, fuzzy, kde-format
-#| msgid "You can not perform any move. Computer takes next turn now."
+#, kde-format
 msgid "Blue can not perform any move. It is red turn again."
-msgstr "Níl aon bheart agatsa.  Is leis an ríomhaire an imirt anois."
+msgstr ""
 
 #: kreversiview.cpp:272
-#, fuzzy, kde-format
-#| msgid "You can not perform any move. Computer takes next turn now."
+#, kde-format
 msgid "Black can not perform any move. It is white turn again."
-msgstr "Níl aon bheart agatsa.  Is leis an ríomhaire an imirt anois."
+msgstr ""
 
 #: main.cpp:43
 #, kde-format
@@ -586,67 +561,58 @@ msgid "Press start game!"
 msgstr ""
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
-msgstr "Stair na mBeart"
+msgstr ""
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
-msgstr "Taispeáin an Beart Is Déanaí"
+msgstr ""
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
-msgstr "Taispeáin Bearta Ceadaithe"
+msgstr ""
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
-msgstr "Luas na Beochana"
+msgstr ""
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
-msgstr "Mall"
+msgstr ""
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
-msgstr "Gnách"
+msgstr ""
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
-msgstr "Tapa"
+msgstr ""
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
-msgstr "Úsáid Sliseanna Daite"
+msgstr ""
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
-msgstr "Taispeáin Stair na mBeart"
+msgstr ""
 
 #: mainwindow.cpp:219 mainwindow.cpp:234 mainwindow.cpp:247 mainwindow.cpp:255
 #, kde-format
@@ -678,11 +644,10 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr "Cluiche thart"
+msgstr ""
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -710,11 +675,10 @@ msgid "Computer"
 msgstr "Ríomhaire"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
-#| msgid "Online game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
-msgstr "Cluiche ar líne"
+msgstr ""
 
 #: startgamedialog.cpp:36
 #, kde-format
@@ -734,11 +698,10 @@ msgid "Quit"
 msgstr ""
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr "KReversi"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
@@ -759,147 +722,3 @@ msgstr ""
 #, kde-format
 msgid "VS"
 msgstr ""
-
-#~ msgid "Very Easy"
-#~ msgstr "An-Éasca"
-
-#~ msgid "Easy"
-#~ msgstr "Éasca"
-
-#~ msgid "Hard"
-#~ msgstr "Crua"
-
-#~ msgid "Very Hard"
-#~ msgstr "An-Chrua"
-
-#~ msgid "Unbeatable"
-#~ msgstr "Dosháraithe"
-
-#~ msgid "Champion"
-#~ msgstr "Curadh"
-
-#, fuzzy
-#~| msgid "Port rendering code to KGameRenderer"
-#~ msgid "Port rendering code to QML"
-#~ msgstr "Leagan a úsáideann KGameRenderer"
-
-#~ msgid "Your turn."
-#~ msgstr "Is leatsa an imirt."
-
-#~ msgid "You: %1"
-#~ msgstr "Tusa: %1"
-
-#~ msgid ""
-#~ "\n"
-#~ "You: %1"
-#~ msgstr ""
-#~ "\n"
-#~ "Tusa: %1"
-
-#~ msgid "Difficulty level"
-#~ msgstr "Leibhéal deacrachta"
-
-#~ msgid "Players && Seats"
-#~ msgstr "Imreoirí agus Suíocháin"
-
-#~ msgid "Opponent"
-#~ msgstr "Céile Comhraic"
-
-#~ msgid "Very easy"
-#~ msgstr "An-éasca"
-
-#~ msgid "Computer Skill"
-#~ msgstr "Leibhéal an Ríomhaire"
-
-#~ msgid "The strength of the computer player."
-#~ msgstr "Leibhéal an imreora ríomhaire."
-
-#~ msgid "Click"
-#~ msgstr "Cliceáil"
-
-#~ msgid "1 (Beginner)"
-#~ msgstr "1 (Tosaitheoir)"
-
-#~ msgid "2"
-#~ msgstr "2"
-
-#~ msgid "3"
-#~ msgstr "3"
-
-#~ msgid "4 (Average)"
-#~ msgstr "4 (Meánleibhéal)"
-
-#~ msgid "5"
-#~ msgstr "5"
-
-#~ msgid "6"
-#~ msgstr "6"
-
-#~ msgid "7 (Expert)"
-#~ msgstr "7 (Saineolaí)"
-
-#~ msgid "Abort Current Game?"
-#~ msgstr "Tobscoir an Cluiche Reatha?"
-
-#~ msgid "Abort Old Game"
-#~ msgstr "Tobscoir an Seanchluiche"
-
-#~ msgid "Notice"
-#~ msgstr "Fógra"
-
-#~ msgid " (interrupted)"
-#~ msgstr " (idirbhriste)"
-
-#~ msgid "Illegal move"
-#~ msgstr "Beart neamhcheadaithe"
-
-#~ msgid "End of game"
-#~ msgstr "Cluiche thart"
-
-#~ msgid "Game Ended"
-#~ msgstr "Cluiche Thart"
-
-#~ msgid "General"
-#~ msgstr "Ginearálta"
-
-#~ msgid "Comments and bugfixes."
-#~ msgstr "Léirmheas agus ceartúcháin."
-
-#~ msgid "Cleaning, bugfixes, some enhancements."
-#~ msgstr "Glanadh, ceartúcháin, roinnt feabhsúchán."
-
-#~ msgid "Moves"
-#~ msgstr "Bearta"
-
-#~ msgid "&Move"
-#~ msgstr "&Bog"
-
-#~ msgid "Casually"
-#~ msgstr "Go Neamhchúiseach"
-
-#~ msgid "Competitively"
-#~ msgstr "Go hIomaíoch"
-
-#~ msgid "Expert"
-#~ msgstr "Saineolaí"
-
-#~ msgid "Average"
-#~ msgstr "Meán"
-
-#~ msgid "&Animation"
-#~ msgstr "&Beochan"
-
-#~ msgid "&Background"
-#~ msgstr "&Cúlra"
-
-#~ msgid "Color:"
-#~ msgstr "Dath:"
-
-#~ msgid "&Image:"
-#~ msgstr "Í&omhá:"
-
-#~ msgid "The zoom factor of the board."
-#~ msgstr "Fachtóir súmála den chlár."
-
-#~ msgid "The background color to use."
-#~ msgstr "Dath an chúlra le húsáid."
