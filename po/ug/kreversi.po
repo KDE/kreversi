@@ -8,24 +8,25 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-05-31 19:35-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr "ئابدۇقادىر ئابلىز، غەيرەت كەنجى"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
+msgstr "sahranbay@gmail.com, gheyret@gmail.com"
 
 #: commondefs.cpp:31
 #, kde-format
@@ -52,7 +53,7 @@ msgstr "ئاق"
 #: kexthighscore.cpp:198
 #, kde-format
 msgid "Score"
-msgstr ""
+msgstr "ئېرىشكەن نومۇر"
 
 #: kexthighscore.cpp:201
 #, kde-format
@@ -67,7 +68,7 @@ msgstr ""
 #: kexthighscore.cpp:210
 #, kde-format
 msgid "Elapsed Time"
-msgstr ""
+msgstr "ئۆتكەن ۋاقىت"
 
 #: kexthighscore_gui.cpp:147
 #, kde-format
@@ -79,19 +80,19 @@ msgstr ""
 #, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
-msgstr ""
+msgstr "قويغۇلار(&P)"
 
 #: kexthighscore_gui.cpp:157
 #, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
-msgstr ""
+msgstr "ئىستاتىستىكا"
 
 #: kexthighscore_gui.cpp:163
 #, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
-msgstr ""
+msgstr "چاسا دىياگرامما"
 
 #: kexthighscore_gui.cpp:170
 #, kde-format
@@ -107,19 +108,17 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
-msgstr ""
+msgstr "دەرىجە تاختىسى"
 
 #: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
-msgstr ""
+msgstr "غالبىيەتچى"
 
 #: kexthighscore_gui.cpp:365
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgid "Won Games"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr ""
 
 #: kexthighscore_gui.cpp:393
 #, kde-format
@@ -131,19 +130,19 @@ msgstr ""
 #, kde-format
 msgctxt "@title:tan"
 msgid "Main"
-msgstr ""
+msgstr "ئاساس"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
-msgstr ""
+msgstr "تەخەللۇس:"
 
 #: kexthighscore_gui.cpp:432
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
-msgstr ""
+msgstr "ئىزاھات:"
 
 #: kexthighscore_gui.cpp:442
 #, kde-format
@@ -155,7 +154,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
-msgstr ""
+msgstr "ئالىي"
 
 #: kexthighscore_gui.cpp:455
 #, kde-format
@@ -167,13 +166,13 @@ msgstr ""
 #, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
-msgstr ""
+msgstr "شىفىرلىق ئاچقۇچ:"
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
 #, kde-format
 msgctxt "@action:button"
 msgid "Remove"
-msgstr ""
+msgstr "چىقىرىۋەت"
 
 #: kexthighscore_gui.cpp:518
 #, kde-format
@@ -193,12 +192,10 @@ msgid "Nickname already in use. Please choose another one"
 msgstr ""
 
 #: kexthighscore_gui.cpp:586
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr ""
 
 #: kexthighscore_gui.cpp:595
 #, kde-format
@@ -206,12 +203,10 @@ msgid "Congratulations, you have won!"
 msgstr ""
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgctxt "NAME OF TRANSLATORS"
-#| msgid "Your names"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr ""
 
 #: kexthighscore_gui.cpp:608
 #, kde-format
@@ -224,15 +219,14 @@ msgid "anonymous"
 msgstr ""
 
 #: kexthighscore_internal.cpp:258
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgid "Games Count"
-msgstr "ئويۇن تامام"
+msgstr ""
 
 #: kexthighscore_internal.cpp:265
 #, kde-format
 msgid "Comment"
-msgstr ""
+msgstr "ئىزاھات"
 
 #: kexthighscore_internal.cpp:587
 msgid "Undefined error."
@@ -324,7 +318,7 @@ msgstr ""
 #: kexthighscore_tab.cpp:32
 #, kde-format
 msgid "all"
-msgstr ""
+msgstr "ھەممىسى"
 
 #: kexthighscore_tab.cpp:61
 #, kde-format
@@ -333,7 +327,7 @@ msgstr ""
 
 #: kexthighscore_tab.cpp:97
 msgid "Total:"
-msgstr ""
+msgstr "جەمئىي:"
 
 #: kexthighscore_tab.cpp:97
 msgid "Won:"
@@ -349,7 +343,7 @@ msgstr ""
 
 #: kexthighscore_tab.cpp:101
 msgid "Current:"
-msgstr ""
+msgstr "نۆۋەتتىكى:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Max won:"
@@ -360,11 +354,10 @@ msgid "Max lost:"
 msgstr ""
 
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
-msgstr "ئويۇن تامام"
+msgstr ""
 
 #: kexthighscore_tab.cpp:129
 #, kde-format
@@ -376,26 +369,25 @@ msgstr ""
 #, kde-format
 msgctxt "@title:column"
 msgid "From"
-msgstr ""
+msgstr "كىمدىن"
 
 #: kexthighscore_tab.cpp:218
 #, kde-format
 msgctxt "@title:column"
 msgid "To"
-msgstr ""
+msgstr "تاپشۇرۇپ ئالغۇچى"
 
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
-msgstr "ئويۇن تامام"
+msgstr "سانى"
 
 #: kexthighscore_tab.cpp:220
 #, kde-format
 msgctxt "@title:column"
 msgid "Percent"
-msgstr ""
+msgstr "پىرسەنت"
 
 #. i18n: ectx: label, entry (AnimationSpeed), group (Game)
 #: kreversi.kcfg:9
@@ -456,7 +448,7 @@ msgstr ""
 #: main.cpp:43
 #, kde-format
 msgid "KReversi"
-msgstr "KReversi"
+msgstr ""
 
 #: main.cpp:45
 #, kde-format
@@ -474,22 +466,22 @@ msgstr ""
 #: main.cpp:50
 #, kde-format
 msgid "Mario Weilguni"
-msgstr "Mario Weilguni"
+msgstr ""
 
 #: main.cpp:50 main.cpp:51
 #, kde-format
 msgid "Original author"
-msgstr "ئەسلى ئاپتور"
+msgstr "ئەسلى يازغۇچى"
 
 #: main.cpp:51
 #, kde-format
 msgid "Inge Wallin"
-msgstr "Inge Wallin"
+msgstr ""
 
 #: main.cpp:52
 #, kde-format
 msgid "Dmitry Suzdalev"
-msgstr "Dmitry Suzdalev"
+msgstr ""
 
 #: main.cpp:52
 #, kde-format
@@ -499,7 +491,7 @@ msgstr ""
 #: main.cpp:53
 #, kde-format
 msgid "Simon Hürlimann"
-msgstr "Simon Hürlimann"
+msgstr ""
 
 #: main.cpp:53
 #, kde-format
@@ -529,7 +521,7 @@ msgstr ""
 #: main.cpp:56
 #, kde-format
 msgid "Mauricio Piacentini"
-msgstr "Mauricio Piacentini"
+msgstr ""
 
 #: main.cpp:56
 #, kde-format
@@ -539,7 +531,7 @@ msgstr ""
 #: main.cpp:57
 #, kde-format
 msgid "Brian Croom"
-msgstr "Brian Croom"
+msgstr ""
 
 #: main.cpp:57
 #, kde-format
@@ -585,29 +577,25 @@ msgid "Show Legal Moves"
 msgstr ""
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
-msgstr "جانلاندۇرۇم تېزلىكى"
+msgstr ""
 
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "ئاستا"
 
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
-msgstr "نورمال"
+msgstr "ئادەتتىكى"
 
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "تېز"
@@ -654,11 +642,10 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
-msgstr "ئويۇن تامام"
+msgstr "ئويۇن ئاخىرلاشتى"
 
 #: mainwindow.cpp:339
 #, kde-format
@@ -686,17 +673,16 @@ msgid "Computer"
 msgstr "كومپيۇتېر"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
-#| msgid "Online game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
-msgstr "تور ئويۇنى"
+msgstr "يېڭى ئويۇن"
 
 #: startgamedialog.cpp:36
 #, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
-msgstr ""
+msgstr "ئويۇننى باشلاش"
 
 #: startgamedialog.cpp:37
 #, kde-format
@@ -707,21 +693,20 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Quit"
-msgstr ""
+msgstr "چىكىن"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
-msgstr "KReversi"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: startgamedialog.ui:79 startgamedialog.ui:201
 #, kde-format
 msgid "Name:"
-msgstr ""
+msgstr "ئاتى:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
