@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2026-06-23 18:06+0200\n"
+"PO-Revision-Date: 2026-06-26 16:58+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -297,10 +297,10 @@ msgid "Server URL: %1"
 msgstr "Tenaradresse: %1"
 
 #: kexthighscore_internal.cpp:647
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr "Melding frå poengsumtenaren:"
+msgstr "Melding frå tenar for global rekordoversikt"
 
 #: kexthighscore_internal.cpp:653
 #, kde-format
