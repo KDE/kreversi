@@ -153,6 +153,12 @@ int KReversiGame::undo()
         m_changedChips.clear();
 
     Q_EMIT boardChanged();
+
+    if (movesUndone % 2 == 1) {
+        m_curPlayer = Utils::opponentColorFor(m_curPlayer);
+        m_lastPlayer = Utils::opponentColorFor(m_curPlayer);
+    }
+
     kickCurrentPlayer();
 
     return movesUndone;
