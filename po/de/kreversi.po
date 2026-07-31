@@ -182,7 +182,7 @@ msgid ""
 "use the currently registered nickname anymore."
 msgstr ""
 "Die löscht Ihren Registrierungsschlüssel dauerhaft. Sie können den gerade "
-"benutzen Spitznamen nicht mehr verwenden."
+"verwenden Spitznamen nicht mehr verwenden."
 
 #: kexthighscore_gui.cpp:561
 #, kde-format
