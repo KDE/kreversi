@@ -1,5 +1,6 @@
 # Translation of kreversi to Norwegian Nynorsk
 #
+# Karl Ove Hufthammer <karl@huftis.org>, 2008, 2009, 2016, 2017, 2020, 2022, 2023, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
