@@ -232,6 +232,8 @@ msgid "Do not ask again."
 msgstr ""
 
 #: kexthighscore_internal.cpp:33
+#, fuzzy
+#| msgid "anonymous"
 msgid "anonymous"
 msgstr "Anonimus"
 
