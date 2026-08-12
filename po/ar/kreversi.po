@@ -410,7 +410,7 @@ msgstr "ما إذا كان اللعب بشكل تنافسي أم استعراض�
 #: kreversi.kcfg:22
 #, kde-format
 msgid "Whether to use colored chips instead of black and white ones."
-msgstr "ما إذا كان سيستخدم رقع الملونة بدلاً من الرقائق السوداء والبيضاء."
+msgstr "ما إذا كان سيستخدم رقع الملونة بدلًا من الرقائق السوداء والبيضاء."
 
 #. i18n: ectx: Menu (view)
 #: kreversiui.rc:13
