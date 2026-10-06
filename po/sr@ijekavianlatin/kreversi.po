@@ -4,13 +4,14 @@
 # Chusslove Illich <caslav.ilic@gmx.net>, 2003, 2004, 2005, 2006, 2009, 2010, 2013, 2014, 2017.
 # Slobodan Simic <slsimic@gmail.com>, 2005, 2009.
 # Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2010.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kreversi\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:50+0000\n"
-"PO-Revision-Date: 2017-09-28 17:59+0200\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-05 01:57+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
 "MIME-Version: 1.0\n"
@@ -25,12 +26,14 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Miloš Puzović,Časlav Ilić,Slobodan Simić"
+msgstr "Miloš Puzović,Časlav Ilić,Slobodan Simić,Nemanja Hiršl"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "m.puzovic@etoncollege.org.uk, caslav.ilic@gmx.net,slsimic@gmail.com"
+msgstr ""
+"m.puzovic@etoncollege.org.uk, caslav.ilic@gmx.net,slsimic@gmail.com,"
+"nemhirsl@gmail.com"
 
 # >> @item
 #: commondefs.cpp:31
@@ -80,36 +83,32 @@ msgstr "najbolji rezultat"
 #: kexthighscore.cpp:210
 #, kde-format
 msgid "Elapsed Time"
-msgstr "proteklo vreme"
+msgstr "proteklo vrijeme"
 
 # >> @title:tab
 #: kexthighscore_gui.cpp:147
-#, fuzzy, kde-format
-#| msgid "Best &Scores"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Best &Scores"
 msgstr "Najbolji &rezultati"
 
 # >> @title:tab
 #: kexthighscore_gui.cpp:152
-#, fuzzy, kde-format
-#| msgid "&Players"
+#, kde-format
 msgctxt "@title:tab"
 msgid "&Players"
 msgstr "&Igrači"
 
 # >> @title:tab
 #: kexthighscore_gui.cpp:157
-#, fuzzy, kde-format
-#| msgid "Statistics"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Statistics"
 msgstr "Statistika"
 
 # >> @title:tab
 #: kexthighscore_gui.cpp:163
-#, fuzzy, kde-format
-#| msgid "Histogram"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Histogram"
 msgstr "Histogram"
@@ -117,17 +116,16 @@ msgstr "Histogram"
 #: kexthighscore_gui.cpp:170
 #, kde-format
 msgid "View world-wide highscores"
-msgstr "Najrezultati širom sveta"
+msgstr "Najrezultati širom svijeta"
 
 #: kexthighscore_gui.cpp:176
 #, kde-format
 msgid "View world-wide players"
-msgstr "Igrači širom sveta"
+msgstr "Igrači širom svijeta"
 
 # >> @title:window
 #: kexthighscore_gui.cpp:221
-#, fuzzy, kde-format
-#| msgid "Highscores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Highscores"
 msgstr "Najrezultati"
@@ -136,7 +134,7 @@ msgstr "Najrezultati"
 #: kexthighscore_gui.cpp:327
 #, kde-format
 msgid "Winner"
-msgstr "pobednik"
+msgstr "pobjednik"
 
 # >> @item
 #: kexthighscore_gui.cpp:365
@@ -146,68 +144,59 @@ msgstr "dobijene partije"
 
 # >> @title:window
 #: kexthighscore_gui.cpp:393
-#, fuzzy, kde-format
-#| msgid "Configure Highscores"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Highscores"
 msgstr "Podešavanje najrezultata"
 
 # >> @title:tab
 #: kexthighscore_gui.cpp:406
-#, fuzzy, kde-format
-#| msgid "Main"
+#, kde-format
 msgctxt "@title:tan"
 msgid "Main"
 msgstr "Glavno"
 
 #: kexthighscore_gui.cpp:421 kexthighscore_gui.cpp:460
-#, fuzzy, kde-format
-#| msgid "Nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Nickname:"
 msgstr "Nadimak:"
 
 #: kexthighscore_gui.cpp:432
-#, fuzzy, kde-format
-#| msgid "Comment:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Comment:"
 msgstr "Komentar:"
 
 # >> @option:check
 #: kexthighscore_gui.cpp:442
-#, fuzzy, kde-format
-#| msgid "World-wide highscores enabled"
+#, kde-format
 msgctxt "@option:check"
 msgid "World-wide highscores enabled"
-msgstr "Najrezultati širom sveta"
+msgstr "Najrezultati širom svijeta"
 
 # >> @title:tab
 #: kexthighscore_gui.cpp:449
-#, fuzzy, kde-format
-#| msgid "Advanced"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Advanced"
 msgstr "Napredno"
 
 # >> @title:group
 #: kexthighscore_gui.cpp:455
-#, fuzzy, kde-format
-#| msgid "Registration Data"
+#, kde-format
 msgctxt "@title:group"
 msgid "Registration Data"
 msgstr "Podaci za registraciju"
 
 #: kexthighscore_gui.cpp:466
-#, fuzzy, kde-format
-#| msgid "Key:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Key:"
 msgstr "Ključ:"
 
 #: kexthighscore_gui.cpp:473 kexthighscore_gui.cpp:516
-#, fuzzy, kde-format
-#| msgid "Remove"
+#, kde-format
 msgctxt "@action:button"
 msgid "Remove"
 msgstr "Ukloni"
@@ -233,8 +222,7 @@ msgstr "Nadimak je već zauzet. Izaberite neki drugi."
 
 # >> @title:window
 #: kexthighscore_gui.cpp:586
-#, fuzzy, kde-format
-#| msgid "Enter Your Nickname"
+#, kde-format
 msgctxt "@title:window"
 msgid "Enter Your Nickname"
 msgstr "Unos nadimka"
@@ -242,19 +230,17 @@ msgstr "Unos nadimka"
 #: kexthighscore_gui.cpp:595
 #, kde-format
 msgid "Congratulations, you have won!"
-msgstr "Čestitamo, pobedili ste!"
+msgstr "Čestitamo, pobijedili ste!"
 
 #: kexthighscore_gui.cpp:600
-#, fuzzy, kde-format
-#| msgid "Enter your nickname:"
+#, kde-format
 msgctxt "@label:textbox"
 msgid "Enter your nickname:"
 msgstr "Unesite nadimak:"
 
 # >> @option:check
 #: kexthighscore_gui.cpp:608
-#, fuzzy, kde-format
-#| msgid "Do not ask again."
+#, kde-format
 msgctxt "@option:check"
 msgid "Do not ask again."
 msgstr "Ne pitaj više"
@@ -332,7 +318,7 @@ msgstr "Loš rezultat."
 
 #: kexthighscore_internal.cpp:606
 msgid "Unable to contact world-wide highscore server"
-msgstr "Ne mogu da kontaktiram server najrezultata širom sveta."
+msgstr "Ne mogu da kontaktiram server najrezultata širom svijeta."
 
 #: kexthighscore_internal.cpp:616
 #, kde-format
@@ -346,16 +332,15 @@ msgstr "URL servera: %1"
 
 # >> @title
 #: kexthighscore_internal.cpp:647
-#, fuzzy, kde-format
-#| msgid "Message from world-wide highscores server"
+#, kde-format
 msgctxt "@title:window"
 msgid "Message from World-Wide High Scores Server"
-msgstr "Poruka sa servera najrezultata širom sveta"
+msgstr "Poruka sa servera najrezultata širom svijeta"
 
 #: kexthighscore_internal.cpp:653
 #, kde-format
 msgid "Invalid answer from world-wide highscores server."
-msgstr "Loš odgovor od servera najrezultata širom sveta."
+msgstr "Loš odgovor od servera najrezultata širom svijeta."
 
 #: kexthighscore_internal.cpp:654
 #, kde-format
@@ -365,7 +350,7 @@ msgstr "Sirova poruka: %1"
 #: kexthighscore_internal.cpp:666
 #, kde-format
 msgid "Invalid answer from world-wide highscores server (missing item: %1)."
-msgstr "Loš odgovor servera najrezultata širom sveta (nema stavke: %1)."
+msgstr "Loš odgovor servera najrezultata širom svijeta (nema stavke: %1)."
 
 # >> @item
 #: kexthighscore_tab.cpp:32
@@ -392,7 +377,7 @@ msgstr "Izgubljeno:"
 
 #: kexthighscore_tab.cpp:98
 msgid "Draw:"
-msgstr "Nerešeno:"
+msgstr "Neriješeno:"
 
 #: kexthighscore_tab.cpp:101
 msgid "Current:"
@@ -408,48 +393,42 @@ msgstr "Naj. izgubljenih:"
 
 # >> @title:group
 #: kexthighscore_tab.cpp:116
-#, fuzzy, kde-format
-#| msgid "Game Counts"
+#, kde-format
 msgctxt "@title:group"
 msgid "Game Counts"
 msgstr "Brojevi partija"
 
 # >> @title:group
 #: kexthighscore_tab.cpp:129
-#, fuzzy, kde-format
-#| msgid "Trends"
+#, kde-format
 msgctxt "@title:group"
 msgid "Trends"
 msgstr "Tendencije"
 
 # >> @title:column
 #: kexthighscore_tab.cpp:217
-#, fuzzy, kde-format
-#| msgid "From"
+#, kde-format
 msgctxt "@title:column"
 msgid "From"
 msgstr "od"
 
 # >> @title:column
 #: kexthighscore_tab.cpp:218
-#, fuzzy, kde-format
-#| msgid "To"
+#, kde-format
 msgctxt "@title:column"
 msgid "To"
 msgstr "do"
 
 # >> @title:column
 #: kexthighscore_tab.cpp:219
-#, fuzzy, kde-format
-#| msgid "Count"
+#, kde-format
 msgctxt "@title:column"
 msgid "Count"
 msgstr "broj"
 
 # >> @title:column
 #: kexthighscore_tab.cpp:220
-#, fuzzy, kde-format
-#| msgid "Percent"
+#, kde-format
 msgctxt "@title:column"
 msgid "Percent"
 msgstr "procenat"
@@ -498,7 +477,7 @@ msgstr "Crveni ne može ništa da odigra. Plavi ponovo na potezu."
 #: kreversiview.cpp:262
 #, kde-format
 msgid "White can not perform any move. It is black turn again."
-msgstr "Beli ne može ništa da odigra. Crni ponovo na potezu."
+msgstr "Bijeli ne može ništa da odigra. Crni ponovo na potezu."
 
 #: kreversiview.cpp:271
 #, kde-format
@@ -508,7 +487,7 @@ msgstr "Plavi ne može ništa da odigra. Crveni ponovo na potezu."
 #: kreversiview.cpp:272
 #, kde-format
 msgid "Black can not perform any move. It is white turn again."
-msgstr "Crni ne može ništa da odigra. Beli ponovo na potezu."
+msgstr "Crni ne može ništa da odigra. Bijeli ponovo na potezu."
 
 #: main.cpp:43
 #, kde-format
@@ -629,37 +608,32 @@ msgid "Press start game!"
 msgstr "Pritisnite „Započni partiju“!"
 
 #: mainwindow.cpp:64
-#, fuzzy, kde-format
-#| msgid "Move History"
+#, kde-format
 msgctxt "@title:window"
 msgid "Move History"
 msgstr "Istorijat poteza"
 
 #: mainwindow.cpp:111
-#, fuzzy, kde-format
-#| msgid "Show Last Move"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Last Move"
 msgstr "Prikaži posljednji potez"
 
 #: mainwindow.cpp:116
-#, fuzzy, kde-format
-#| msgid "Show Legal Moves"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Legal Moves"
 msgstr "Prikaži dozvoljene poteze"
 
 #: mainwindow.cpp:121
-#, fuzzy, kde-format
-#| msgid "Animation Speed"
+#, kde-format
 msgctxt "@title:menu"
 msgid "Animation Speed"
 msgstr "Brzina animacije"
 
 # >> @item:inlistbox Animation Speed
 #: mainwindow.cpp:125
-#, fuzzy, kde-format
-#| msgid "Slow"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Slow"
 msgstr "spora"
@@ -668,30 +642,26 @@ msgstr "spora"
 # >> Difficulty level
 # >> Animation speed
 #: mainwindow.cpp:126
-#, fuzzy, kde-format
-#| msgid "Normal"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Normal"
-msgstr "normalno"
+msgstr "normalna"
 
 # >> @item:inlistbox Animation Speed
 #: mainwindow.cpp:127
-#, fuzzy, kde-format
-#| msgid "Fast"
+#, kde-format
 msgctxt "@item:inmenu animation speed"
 msgid "Fast"
 msgstr "brza"
 
 #: mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Use Colored Chips"
+#, kde-format
 msgctxt "@option:check"
 msgid "Use Colored Chips"
 msgstr "Koristi obojene žetone"
 
 #: mainwindow.cpp:141
-#, fuzzy, kde-format
-#| msgid "Show Move History"
+#, kde-format
 msgctxt "@action"
 msgid "Show Move History"
 msgstr "Prikaži istorijat poteza"
@@ -714,7 +684,7 @@ msgstr "Izgubili ste!"
 #: mainwindow.cpp:249 mainwindow.cpp:251 mainwindow.cpp:257 mainwindow.cpp:259
 #, kde-format
 msgid "%1 has won!"
-msgstr "%1 pobedi!"
+msgstr "%1 pobijedi!"
 
 #: mainwindow.cpp:265 mainwindow.cpp:266 mainwindow.cpp:268 mainwindow.cpp:269
 #, kde-format
@@ -726,8 +696,7 @@ msgstr ""
 "%1: %2"
 
 #: mainwindow.cpp:272
-#, fuzzy, kde-format
-#| msgid "Game over"
+#, kde-format
 msgctxt "@title:window"
 msgid "Game Over"
 msgstr "Kraj igre"
@@ -760,15 +729,13 @@ msgid "Computer"
 msgstr "računar"
 
 #: startgamedialog.cpp:26
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New game"
 msgstr "Nova partija"
 
 #: startgamedialog.cpp:36
-#, fuzzy, kde-format
-#| msgid "Start game"
+#, kde-format
 msgctxt "@action:button"
 msgid "Start Game"
 msgstr "Započni partiju"
@@ -779,15 +746,13 @@ msgid "Let's start playing!"
 msgstr "Da zaigramo!"
 
 #: startgamedialog.cpp:38
-#, fuzzy, kde-format
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action:button"
 msgid "Quit"
 msgstr "Napusti"
 
 #: startgamedialog.cpp:39
-#, fuzzy, kde-format
-#| msgid "Quit KReversi"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Quit KReversi"
 msgstr "Napusti K‑reversi"
@@ -804,7 +769,7 @@ msgstr "Ime:"
 #: startgamedialog.ui:96 startgamedialog.ui:218
 #, kde-format
 msgid "Skill level:"
-msgstr "Nivo veštine:"
+msgstr "Nivo vještine:"
 
 # well-spelled: пр
 #. i18n: ectx: property (text), widget (QLabel, label_2)
@@ -812,37 +777,3 @@ msgstr "Nivo veštine:"
 #, kde-format
 msgid "VS"
 msgstr "pr."
-
-# >> @title:window
-#, fuzzy
-#~| msgid "Multiplayers Scores"
-#~ msgctxt "@title:window"
-#~ msgid "Multiplayers Scores"
-#~ msgstr "Rezultati u više igrača"
-
-#~ msgid "No game played."
-#~ msgstr "Nema odigranih partija."
-
-#~ msgid "Scores for last game:"
-#~ msgstr "Rezultati za poslednju partiju:"
-
-# >! Plurals.
-#~ msgid "Scores for the last %1 games:"
-#~ msgstr ""
-#~ "Rezultati za prethodnih %1 partija:|/|Rezultati za $[množ ^1 prethodnu "
-#~ "prethodne prethodnih] %1 $[množ ^1 partiju partije partija]:"
-
-#~ msgid "Overwrite"
-#~ msgstr "Prebriši"
-
-#~ msgid "The file already exists. Overwrite?"
-#~ msgstr "Fajl već postoji, prebrisati ga?"
-
-# >> @title:window
-#~ msgid "Export"
-#~ msgstr "Izvoz"
-
-#, fuzzy
-#~| msgid "http://games.kde.org/kreversi"
-#~ msgid "https://kde.org/applications/games/org.kde.kreversi"
-#~ msgstr "http://games.kde.org/kreversi"
