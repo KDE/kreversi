@@ -524,7 +524,7 @@ msgstr "Mats Luthman"
 #: main.cpp:54
 #, kde-format
 msgid "Game engine, ported from his JAVA applet."
-msgstr "Движок игры, портированный из JAVA."
+msgstr "Механизм игры, портированный из JAVA."
 
 #: main.cpp:55
 #, kde-format
