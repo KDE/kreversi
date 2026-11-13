@@ -1,0 +1,732 @@
+<?xml version="1.0" ?>
+<!--IMPORTANT: please note that'do not change this!' notice does not apply to translators -->
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+  <!ENTITY % addindex "IGNORE"
+> <!-- do not change this! -->
+]>
+
+<book id="kreversi" lang="&language;"
+> <!-- do not change this! -->
+<bookinfo>
+	<title
+>دليل كريفرسي</title
+> <!-- This is the title of the docbook. Leave as is unless change is necessary.-->
+<!-- List of immidiate authors begins here. -->
+<!--INPORTANT! - All other contributors: [to be determined] -->
+<authorgroup>
+<author
+><firstname
+>Clay</firstname
+> <surname
+>Pradarits</surname
+> <affiliation
+> <address
+>&Clay.Pradarits.mail;</address>
+</affiliation>
+</author>
+
+<othercredit role="developer"
+><firstname
+>Mario</firstname
+> <surname
+>Weilguni</surname
+> <affiliation
+> <address
+>&Mario.Weilguni.mail;</address
+></affiliation>
+<contrib
+>مطوّر</contrib>
+</othercredit>
+
+<othercredit role="reviewer"
+><firstname
+>Lauri</firstname
+> <surname
+>Watts</surname
+> <contrib
+>مُراجِع</contrib>
+<affiliation
+><address
+>&Lauri.Watts.mail; </address
+></affiliation>
+</othercredit>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+<legalnotice
+>&FDLNotice;</legalnotice>
+<date
+>2021-08-12</date
+><!-- Date of (re)writing, or update.-->
+<releaseinfo
+>2.1 (ترس كيدي 21.08)</releaseinfo>
+
+<!--Short description of this document. Do not change unless necessary!-->
+<abstract>
+	<para
+>تصف هذه الوثائق لعبة كريفرسي الإصدار 2.1</para>
+</abstract>
+
+<!--List of relevan keywords-->
+<keywordset>
+	<keyword
+>كيدي</keyword
+> <!-- do not change this! -->
+	<keyword
+>ألعاب كيدي</keyword
+> <!-- do not change this! -->
+	<keyword
+>لعبة</keyword
+> <!-- do not change this! -->
+	<keyword
+>كريفرسي</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>لوحة</keyword>
+	<keyword
+>أركيد</keyword>
+	<keyword
+>اذهب</keyword>
+	<keyword
+>ريفيرسي</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>لاعب واحد</keyword>
+<!--All other relevant keywords-->
+	<keyword
+>أحجار</keyword>
+	<keyword
+>أبيض</keyword>
+	<keyword
+>أسود</keyword>
+</keywordset>
+</bookinfo>
+<!--Content begins here: -->
+<chapter id="introduction"
+><title
+>مقدمة</title
+> <!-- do not change this! -->
+	<note
+><title
+>نوع اللعبة:</title
+><para
+>لوحية، أركيد</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>عدد اللاعبين الممكنين:</title
+><para
+>واحد</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+
+<!--Short game description starts here. 3-4 sentences (paragraphs)-->
+<para
+>كريفرسي هي لعبة استراتيجية بسيطة للاعب واحد تُلعب ضد الحاسوب. رقعة اللعب عبارة عن لوحة مربعة 8 في 8 مقسمة إلى 64 مربعًا. قطع اللعب المستخدمة هي أحجار ذات وجهين، حيث لكل وجه لونه المميز الخاص به. إذا التُقطت قطعة بواسطة لاعب خصم، تُقلب تلك القطعة للكشف عن لون ذلك اللاعب. يُعلن الفائز عندما يكون لدى لاعب واحد عدد أكبر من قطعه الخاصة بلونه على اللوحة ولا توجد المزيد من الحركات الممكنة.</para>
+</chapter>
+
+<chapter id="howto"
+><title
+>كيف تلعب</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>الهدف:</title
+><para
+>سيطر على أغلبية المربعات على اللوح.</para
+></note
+><!--Describe the objective of the game.-->
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>كريفيرسي تُحمَّل مباشرةً إلى مربع حوار <guilabel
+>لعبة جديدة</guilabel
+> حيث يُحدد نمط اللعبة، أي اللعب ضد الحاسوب أو لاعب بشري آخر. بصفتك اللاعب الأول، يحق لك أن تتحرك أولًا.</para>
+<note
+><para
+>مبدئيًا، لدى اللاعب البشري دائمًا الحق في الحركة الأولى.</para
+></note>
+<para
+>الآن، تخيل نفسك أن مع كل حركة يجب على حجرك أن يقفز فوق حجر العدو (أو أحجاره، حيث قد يكون هناك أكثر من حجر واحد). لكن، حجرك لا يغير موقعه بعد الحركة، بدلًا عن ذلك يوضع حجر جديد على اللوح حيث كان من الممكن أن يظهر حجرك إن كان بإمكانه القفز حقًا. عندما تنتهي الحركة، كل أحجار العدو التي قفزت فوقها، تصبح لك وتغير لونها على التوالي.</para>
+<para
+>كل حركة تقوم بها في كريفرسي يجب أن تتم بهذه الطريقة. ويمكنك القفز بأحجارك عموديًا، أفقيًا وقطريًا. لكن، في حال أنه لا يوجد مكان للقفز، فسيُتخطى دورك آليًا.</para>
+<note
+><para
+>القاعدة نفسها تنطبق على عدوك. إن لم تكن هناك إمكانية للقيام بحركة فإن الدور يُتخطى.</para
+></note>
+<para
+>الفكرة هنا هي ملء اللوح بأحجار لونك. اللاعب الذي ينجح في احتلال أغلب لوح اللعب يعلن الفائز. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>قواعد اللعبة واستراتيجياتها وتلميحاتها</title
+> <!-- do not change this! -->
+	<!--This section has to do with game rules. Please give a detailed description of those using lists or paragraphs.-->
+<sect1 id="basics">
+<title
+>أساسيات اللعبة</title>
+
+<para
+>تتكون الحركة من محاصرة أحجار خصمك، ثم قلب الأحجار المحاصرة للكشف عن لونك. تُنفذ الحركة بوضع مؤشر الفأرة فوق المربع المطلوب ثم النقر بزر الفأرة الأيسر.</para>
+
+<para
+>المحاصرة تعني وضع حجر على اللوحة بحيث يكون صف (أو صفوف) أحجار خصمك محدودًا من كل طرف بحجر من لونك. قد يتكون الصف من حجر واحد أو أكثر.</para>
+
+<para
+>تبدأ اللعبة بحوار <guilabel
+>لعبة جديدة</guilabel
+>.</para>
+
+<screenshot>
+<screeninfo
+>اختيار وضع لعبة كريفرسي</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi1.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>اختيار وضع لعبة كريفرسي</phrase
+></textobject>
+<caption
+><para
+>اختيار وضع اللعبة</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<para
+>لمشاهدة عرض تجريبي للعبة، اختر <guilabel
+>حاسوب</guilabel
+> لكلا اللاعبين.</para>
+
+<para
+>يُوضع آليًا لكل لاعب حجران في المربعات الأربعة المركزية للوحة بالنمط التالي:</para>
+
+<screenshot>
+<screeninfo
+>موضع الافتتاح في كريفرسي</screeninfo>
+<mediaobject>
+<imageobject
+><imagedata fileref="kreversi2.png" format="PNG"/></imageobject>
+<textobject
+><phrase
+>موضع الافتتاح في كريفرسي</phrase
+></textobject>
+<caption
+><para
+>تخطيط لوحة</para
+></caption>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+  <varlistentry>
+    <term
+><interface
+>شريط القائمة</interface
+></term>
+    <listitem
+><para
+>يحتوي <interface
+>شريط القائمة</interface
+> على خيارات متعددة من القوائم المنسدلة. وهي <guimenu
+>لعبة</guimenu
+>، و<guimenu
+>نقلة</guimenu
+>، و<guimenu
+>عرض</guimenu
+>، و<guimenu
+>إعدادات</guimenu
+>، و<guimenu
+>مساعدة</guimenu
+>. انقر بزر الفأرة الأيسر أو <keycombo action="simul"
+>&Alt;<keycap
+>الحرف الذي تحته خط</keycap
+></keycombo
+> لإظهار القائمة المنسدلة.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>شريط الأدوات</interface
+></term>
+    <listitem
+><para
+>يوفر للاعب اختصارات أيقونية للإجراءات الشائعة. وهي <guiicon
+>جديد</guiicon
+>، و<guiicon
+>تراجع</guiicon
+>، و<guiicon
+>تلميحة</guiicon
+>، و<guiicon
+>أظهر الحركة الأخيرة</guiicon
+>، و<guiicon
+>أظهر الحركات القانونية</guiicon
+>. ضع مؤشر الفأرة فوق أي من هذه الأيقونات وانقر بزر الفأرة الأيسر لتنشيطها.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>لوحة اللعب</interface
+></term>
+    <listitem
+><para
+>تتكون من لوحة مربعة 8 في 8 مقسمة إلى 64 مربعًا.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><interface
+>شريط الحالة</interface
+></term>
+    <listitem
+><para
+>يعرض دور من هو الآن. بالإضافة إلى مربع منسدل لاختيار مستوى الصعوبة.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+</sect1>
+
+<sect1 id="Rules">
+<title
+>قواعد اللعبة</title>
+
+<para
+>أنت تتحرك أولًا دائمًا.</para>
+
+<para
+>إذا لم تستطع في دورك محاصرة وقلب حجر واحد على الأقل من أحجار الخصم، فسيُسقط دورك ويتحرك خصمك مرة أخرى. ومع ذلك، إذا كانت هناك حركة متاحة لك، فلا يجوز لك إسقاط دورك.</para>
+
+<para
+>قد يحاصر الحجر أي عدد من الأحجار في صف واحد أو أكثر في أي عدد من الاتجاهات في الوقت نفسه - أفقيًا، أو عموديًا، أو قطريًا. يُعرف الصف بأنه حجر واحد أو أكثر في خط مستقيم مستمر.</para>
+
+<para
+>لا يجوز لك تخطي حجر من لونك لمحاصرة حجر من أحجار الخصم.</para>
+
+<para
+>لا يجوز محاصرة الأحجار إلا كنتيجة مباشرة لحركة ويجب أن تقع في الخط المباشر للحجر الذي وُضع.</para>
+
+<para
+>يجب قلب جميع الأحجار المحاصرة في أي حركة واحدة، حتى لو كان من مصلحة اللاعب عدم قلبها.</para>
+
+<para
+>بمجرد وضع حجر في مربع، لا يمكن نقله إلى مربع آخر لاحقًا في اللعبة.</para>
+
+<para
+>عندما لا يعود من الممكن لأي من اللاعبين التحرك، تنتهي اللعبة. ثم تُعد الأحجار ويُعلن اللاعب الذي يمتلك أغلب الأقراص من لونه على اللوحة فائزًا.</para>
+
+<note
+><para
+>من الممكن أن تنتهي اللعبة قبل ملء جميع المربعات الـ 64.</para
+></note>
+
+</sect1>
+
+<sect1 id="tips">
+<title
+>الاستراتيجيات والتلميحات</title>
+
+<para
+>حاول وضع الأحجار في الزوايا كلما أمكن ذلك. لا يمكن لخصمك محاصرة هذه الأحجار.</para>
+
+<para
+>تجنب وضع الأحجار في أحد الحقول الثلاثة المجاورة للزاوية ما لم تكن متأكدًا تمامًا من أن خصمك لن يتمكن من وضع حجر في الزاوية.</para>
+
+<para
+>أحيانًا يكون من الأفضل تقديم بعض الأحجار لخصمك.</para>
+
+<para
+>حاول وضع أحجار في حقول تمنع خصمك من التحرك.</para>
+
+<para
+>حاول إجبار خصمك على وضع حجر في حقل مجاور للزاوية.</para>
+
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>نظرة عامة على الواجهة</title
+> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist
+> and <varlistentry
+>. Split the chapter into sections using <sect1(2,3)
+> for better viewing.-->
+<sect1 id="menu">
+<title
+>عناصر القائمة</title>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>جديد</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يبدأ لعبة جديدة.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>أظهر أعلى النتائج</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يفتح حوارًا يعرض جداول أعلى النتائج المختلفة.</action>
+    <!--<guibutton
+>Export…</guibutton
+> the high scores into a file or click on
+    <guibutton
+>Configure…</guibutton
+> to open a dialog to customize your
+    <guilabel
+>Nickname</guilabel
+> and add a <guilabel
+>Comment</guilabel
+>.--></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>أنهِ</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يخرج من كريفرسي.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حركة</guimenu
+> <guimenuitem
+>تراجع</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يزيل حركتك الأخيرة</action
+> وكذلك حركة الحاسوب الأخيرة من اللوحة.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><shortcut
+> <keycap
+>H</keycap
+> </shortcut
+> <guimenu
+>نقلة</guimenu
+> <guimenuitem
+>تلميحة</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+>سيقوم الحاسوب <action
+>بتقديم تلميحة لحركتك التالية.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أظهر الحركة الأخيرة</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يبرز حركة خصمك الأخيرة.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أظهر الحركات القانونية</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يبرز جميع الحركات المتاحة</action
+> لحركتك الحالية.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>عرض</guimenu
+> <guimenuitem
+>أظهر تاريخ النقلات</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>يُمكّن/يُعطّل الشريط الجانبي لتاريخ النقلات.</action
+></para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guisubmenu
+>سرعة التحريك</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>قائمة فرعية لضبط سرعة تحريك اللعبة</action
+> بين خيارات <guimenuitem
+>بطيء</guimenuitem
+>، و<guimenuitem
+>عادي</guimenuitem
+>، و<guimenuitem
+>سريع</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+> <guimenuitem
+>استخدم أقراص ملونة</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>تبديل لون الأحجار بين الأسود والأبيض (مبدئي)،</action
+> والأحمر والأزرق.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>الإعدادات</guimenu
+><guisubmenu
+>الصعوبة</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>ضبط الصعوبة</action
+> من <guimenuitem
+>سهل جدًا</guimenuitem
+> إلى <guimenuitem
+>مستحيل</guimenuitem
+>.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>بالإضافة إلى ذلك، تمتلك كريفرسي عناصر قائمتي كيدي الشائعة <guimenu
+>إعدادات</guimenu
+> و <guimenu
+>مساعدة</guimenu
+>، لمزيد من المعلومات اقرأ الأقسام المتعلقة بـ <ulink url="help:/fundamentals/menus.html#menus-settings"
+>قائمة الإعدادات</ulink
+> و <ulink url="help:/fundamentals/menus.html#menus-help"
+>قائمة المساعدة</ulink
+> في أساسيات كيدي. </para>
+
+</sect1>
+</chapter>
+
+ <chapter id="faq"
+><title
+>الأسئلة الشائعة</title
+> <!-- do not change this! -->
+<!--This chapter is for frequently asked questions. Please use <qandaset
+> <qandaentry
+> only!-->
+<qandaset>
+<!--Following is a standard list of FAQ questions.-->
+<qandaentry>
+ <question
+><para
+>أريد تغيير شكل اللعبة. هل يمكنني ذلك؟ </para
+></question>
+ <answer
+><para
+>الجزء الوحيد من اللعبة الذي يمكن تغييره هو لون الأحجار. لتغيير لون الأحجار استخدم عنصر القائمة <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>استخدم أقراص ملونة</guimenuitem
+></menuchoice
+>.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>هل يمكنني استخدام لوحة المفاتيح للعب؟</para
+></question>
+ <answer
+><para
+>لا. لا توفر كريفرسي اللعب عبر لوحة المفاتيح.</para
+></answer>
+</qandaentry>
+<qandaentry>
+ <question
+><para
+>يجب أن أخرج من اللعبة الآن، لكنني لم أنتهِ بعد. هل يمكنني حفظ تقدمي؟</para
+></question>
+ <answer
+><para
+>لا. لا تملك كريفرسي ميزة <quote
+>حفظ</quote
+>.</para
+></answer>
+</qandaentry>
+<!--Please add more Q&As if needed-->
+
+</qandaset>
+</chapter>
+
+<chapter id="credits"
+><title
+>الحقوق والترخيص</title
+> <!-- do not change this! -->
+<!--This chapter is for credits and licenses.-->
+
+<para
+>كريفرسي </para>
+
+<para
+>حقوق نشر البرنامج 1998-2000 &Mario.Weilguni;</para>
+<para
+>ماتس لوثمان - مصمم محرك النقلات.</para>
+
+<para
+>التوثيق الأصلي بواسطة &Mario.Weilguni;</para>
+<para
+>حرره Robert Williams</para>
+
+<para
+>أُعيدت كتابة الدليل وتحديثه للإصدارة 2.0 بواسطة &Clay.Pradarits; &Clay.Pradarits.mail;</para>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-omittag:t
+sgml-shorttag:t
+sgml-namecase-general:t
+sgml-always-quote-attributes:t
+sgml-indent-step:0
+sgml-indent-data:nil
+sgml-parent-document:nil
+sgml-exposed-tags:nil
+sgml-local-catalogs:nil
+sgml-local-ecat-files:nil
+End:
+-->
